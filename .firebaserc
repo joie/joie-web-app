@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "joie-app"
+  },
+  "targets": {
+    "joie-app": {
+      "hosting": {
+        "joie": [
+          "joie-app"
+        ]
+      }
+    }
+  }
+}
