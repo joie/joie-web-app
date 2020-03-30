@@ -16,15 +16,15 @@ import { SharedModule } from './shared/shared.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    CoreModule,
+    SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
     }),
-    BrowserAnimationsModule,
-    CoreModule,
-    SharedModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
