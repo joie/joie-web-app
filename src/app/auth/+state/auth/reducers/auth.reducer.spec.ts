@@ -1,6 +1,6 @@
-import { reducer, initialState } from './shared-auth.reducer';
+import { reducer, initialState } from './auth.reducer';
 
-describe('SharedAuth Reducer', () => {
+describe('Auth Reducer', () => {
   describe('an unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as any;

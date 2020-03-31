@@ -5,8 +5,8 @@ import { environment } from '../../environments/environment';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { SharedAuthDataAccessModule } from '../shared/shared-auth-data-access/shared-auth-data-access.module';
 import { EffectsModule } from '@ngrx/effects';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
   declarations: [],
@@ -23,7 +23,8 @@ import { EffectsModule } from '@ngrx/effects';
     ),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    SharedAuthDataAccessModule
-  ]
+    AuthModule
+  ],
+  exports: [AuthModule]
 })
 export class CoreModule {}

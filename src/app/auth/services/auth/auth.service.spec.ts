@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ButterCMSService } from './butter-cms.service';
+import { AuthService } from './auth.service';
 
-describe('ButterCMSService', () => {
-  let service: ButterCMSService;
+describe('AuthService', () => {
+  let service: AuthService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ButterCMSService);
+    service = TestBed.inject(AuthService);
   });
 
   it('should be created', () => {

@@ -1,9 +1,15 @@
-<div *ngIf="afAuth.user | async as user; else showLogin">
-  <h1>Hello {{ user.displayName }}!</h1>
-  <button (click)="logout()">Logout</button>
-</div>
+<ng-container *ngIf="authFacade.loaded$ | async">
+  <div *ngIf="authFacade.user$ | async as user; else showLogin">
+    <h1>Hello {{ user.displayName }}!</h1>
+    <button (click)="logout()">Logout</button>
+  </div>
+</ng-container>
+
 <ng-template #showLogin>
   <p>Please login.</p>
   <button (click)="login()">Login with Google</button>
 </ng-template>
+
+<a routerLink="blog">Blog</a>
+
 <router-outlet></router-outlet>
