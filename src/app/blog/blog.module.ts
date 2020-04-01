@@ -6,6 +6,12 @@ import { BlogDashboardComponent } from './blog-dashboard/blog-dashboard.componen
 import { PostListComponent } from './post-list/post-list.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostWriteComponent } from './post-write/post-write.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +20,15 @@ import { PostWriteComponent } from './post-write/post-write.component';
     PostDetailComponent,
     PostWriteComponent
   ],
-  imports: [CommonModule, BlogRoutingModule]
+  imports: [
+    CommonModule,
+    BlogRoutingModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    ReactiveFormsModule
+  ]
 })
 export class BlogModule {}

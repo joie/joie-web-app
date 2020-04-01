@@ -26,15 +26,16 @@
     "@angular/router": "~9.1.0",
     "@angular/service-worker": "~9.1.0",
     "@ngrx/effects": "^9.0.0",
+    "@ngrx/entity": "9.0.0",
+    "@ngrx/router-store": "9.0.0",
     "@ngrx/schematics": "^9.0.0",
     "@ngrx/store": "^9.0.0",
     "@ngrx/store-devtools": "^9.0.0",
     "firebase": "^7.8.0",
+    "ramda": "^0.27.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2",
-    "@ngrx/entity": "9.0.0",
-    "@ngrx/router-store": "9.0.0"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/architect": "^0.900.0-0 || ^0.900.0",

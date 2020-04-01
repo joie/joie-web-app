@@ -7,9 +7,9 @@ import { PostWriteComponent } from './post-write/post-write.component';
 
 const routes: Routes = [
   { path: '', component: BlogDashboardComponent },
-  { path: ':id', component: PostDetailComponent },
   { path: 'write', component: PostWriteComponent },
-  { path: 'write/:id', component: PostWriteComponent }
+  { path: 'write/:id', component: PostWriteComponent },
+  { path: ':id', component: PostDetailComponent }
 ];
 
 @NgModule({
