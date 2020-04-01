@@ -8,9 +8,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthStateModule } from '../auth-state/auth-state.module';
 import { UserControlComponent } from './user-control/user-control.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [UserControlComponent],
+  declarations: [UserControlComponent, PageNotFoundComponent],
   imports: [
     CommonModule,
     StoreModule.forRoot(
@@ -26,6 +27,6 @@ import { UserControlComponent } from './user-control/user-control.component';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AuthStateModule
   ],
-  exports: [UserControlComponent]
+  exports: [UserControlComponent, PageNotFoundComponent]
 })
 export class CoreModule {}
