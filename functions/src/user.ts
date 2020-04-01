@@ -1,7 +1,6 @@
 import * as functions from 'firebase-functions';
 // import { sgMail, msg } from './email';
 import { db } from './config';
-import { auth } from 'firebase';
 
 // type Role = 'subscriber' | 'admin';
 interface User {
@@ -9,7 +8,7 @@ interface User {
   // displayName: string | null;
   // photoURL: string | null;
   // email: string;
-  joined: number;
+  // joined: number;
   // roles: Role[];
 }
 
@@ -19,11 +18,11 @@ export const newUserSetup = functions.auth
     const ref = db.collection('users').doc(user.uid);
     const { uid /*, displayName, photoURL, email*/ } = user;
     const userPayload: User = {
-      uid,
+      uid
       // displayName,
       // photoURL,
       // email,
-      joined: Date.now()
+      // joined: Date.now()
       // roles: ['subscriber']
     };
     await ref.set(userPayload);
