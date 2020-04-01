@@ -7,9 +7,10 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthModule } from '../auth/auth.module';
+import { UserControlComponent } from './user-control/user-control.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [UserControlComponent],
   imports: [
     CommonModule,
     StoreModule.forRoot(
@@ -25,6 +26,6 @@ import { AuthModule } from '../auth/auth.module';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AuthModule
   ],
-  exports: [AuthModule]
+  exports: [UserControlComponent]
 })
 export class CoreModule {}
