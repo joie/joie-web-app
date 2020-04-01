@@ -3,9 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { User } from '../../+state/auth/models/auth.models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
   get state$(): Observable<User> {
     // this.afAuth.authState.subscribe(console.log);

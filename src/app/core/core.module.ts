@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { AuthModule } from '../auth/auth.module';
+import { AuthStateModule } from '../auth-state/auth-state.module';
 import { UserControlComponent } from './user-control/user-control.component';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { UserControlComponent } from './user-control/user-control.component';
     ),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    AuthModule
+    AuthStateModule
   ],
   exports: [UserControlComponent]
 })

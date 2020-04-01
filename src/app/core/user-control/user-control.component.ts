@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-import { AuthFacade } from '../../auth/+state/auth/facades/auth.facade';
+import { AuthFacade } from '../../auth-state/+state/auth/facades/auth.facade';
 
 @Component({
   selector: 'app-user-control',
