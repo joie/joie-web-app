@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng deploy"
+    "deploy": "ng deploy",
+    "emulate": "firebase emulators:start --only functions"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +26,7 @@
     "@angular/platform-browser-dynamic": "~9.1.0",
     "@angular/router": "~9.1.0",
     "@angular/service-worker": "~9.1.0",
+    "@firebase/testing": "^0.18.1",
     "@ngrx/effects": "^9.0.0",
     "@ngrx/entity": "9.0.0",
     "@ngrx/router-store": "9.0.0",

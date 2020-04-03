@@ -1,0 +1,800 @@
+[debug] [2020-04-02T10:38:59.899Z] ----------------------------------------------------------------------
+[debug] [2020-04-02T10:38:59.900Z] Command:       /Users/yoved/.nvm/versions/node/v8.17.0/bin/node /Users/yoved/.nvm/versions/node/v12.16.1/bin/firebase emulators:start
+[debug] [2020-04-02T10:38:59.901Z] CLI Version:   8.0.0
+[debug] [2020-04-02T10:38:59.901Z] Platform:      darwin
+[debug] [2020-04-02T10:38:59.901Z] Node Version:  v8.17.0
+[debug] [2020-04-02T10:38:59.902Z] Time:          Thu Apr 02 2020 13:38:59 GMT+0300 (IDT)
+[debug] [2020-04-02T10:38:59.902Z] ----------------------------------------------------------------------
+[debug] [2020-04-02T10:38:59.902Z] 
+[debug] [2020-04-02T10:38:59.909Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-02T10:38:59.909Z] > authorizing via signed-in user
+[info] i  emulators: Starting emulators: functions, firestore, hosting
+[debug] [2020-04-02T10:38:59.971Z] [hub] writing locator at /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/hub-joie-app.json
+[info] ✔  hub: emulator hub started at http://localhost:4400
+[info] ✔  functions: Using node@8 from host.
+[info] ✔  functions: functions emulator started at http://localhost:5001
+[debug] [2020-04-02T10:39:00.246Z] Ignoring unsupported arg: projectId
+[debug] [2020-04-02T10:39:00.246Z] Ignoring unsupported arg: auto_download
+[debug] [2020-04-02T10:39:00.246Z] Starting firestore emulator with command {"binary":"java","args":["-Duser.language=en","-jar","/Users/yoved/.cache/firebase/emulators/cloud-firestore-emulator-v1.11.2.jar","--host","localhost","--port",8080,"--rules","/Users/yoved/Repos/joie/firestore.rules","--functions_emulator","localhost:5001"],"optionalArgs":["port","webchannel_port","host","rules","functions_emulator","seed_from_export"],"joinArgs":false}
+[info] i  firestore: firestore emulator logging to firestore-debug.log
+[debug] [2020-04-02T10:39:01.357Z] API endpoint: http://localhost:8080
+[debug] [2020-04-02T10:39:01.357Z] 
+If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:
+
+   export FIRESTORE_EMULATOR_HOST=localhost:8080
+
+Dev App Server is now running.
+
+
+[info] ✔  firestore: firestore emulator started at http://localhost:8080
+[info] i  firestore: For testing set FIRESTORE_EMULATOR_HOST=localhost:8080
+[debug] [2020-04-02T10:39:01.518Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/joie-app/webApps/-/config  
+ 
+[debug] [2020-04-02T10:39:02.509Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 02 Apr 2020 10:39:02 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting: Serving hosting files from: www
+[info] ✔  hosting: Local server: http://localhost:5000
+[info] i  hosting[joie]: Serving hosting files from: dist/joie
+[info] ✔  hosting[joie]: Local server: http://localhost:5005
+[info] ✔  hosting: hosting emulator started at http://localhost:5000
+[info] i  functions: Watching "/Users/yoved/Repos/joie/functions" for Cloud Functions...
+[debug] [2020-04-02T10:39:02.649Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T10:39:02.649Z] [worker-pool] Adding worker with key ~diagnostic~, total=1 
+[debug] [2020-04-02T10:39:02.650Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T10:39:02.650Z] [worker-~diagnostic~-af091ad0-f12b-4798-8e45-3e08d81d3842]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_77989.sock 
+[debug] [2020-04-02T10:39:02.650Z] [worker-~diagnostic~-af091ad0-f12b-4798-8e45-3e08d81d3842]: BUSY 
+[debug] [2020-04-02T10:39:02.957Z] [runtime-status] [77989] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T10:39:02.958Z] [runtime-status] [77989] Disabled runtime features: undefined 
+[debug] [2020-04-02T10:39:02.961Z] [runtime-status] [77989] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T10:39:02.962Z] [runtime-status] [77989] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T10:39:02.966Z] [runtime-status] [77989] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T10:39:03.017Z] [runtime-status] [77989] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T10:39:03.017Z] [runtime-status] [77989] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T10:39:03.018Z] [runtime-status] [77989] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T10:39:03.018Z] [runtime-status] [77989] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T10:39:03.018Z] [runtime-status] [77989] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T10:39:03.019Z] [runtime-status] [77989] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T10:39:03.339Z] Unsupported trigger: {"eventTrigger":{"resource":"projects/joie-app","eventType":"providers/firebase.auth/eventTypes/user.create","service":"firebaseauth.googleapis.com"},"name":"newUserSetup","entryPoint":"newUserSetup"} 
+[debug] [2020-04-02T10:39:03.339Z] addFirestoreTrigger "{\"eventTrigger\":{\"resource\":\"projects/joie-app/databases/(default)/documents/posts/{id}\",\"eventType\":\"providers/cloud.firestore/eventTypes/document.create\",\"service\":\"firestore.googleapis.com\"}}"
+[debug] [2020-04-02T10:39:03.339Z] >>> HTTP REQUEST PUT http://localhost:8080/emulator/v1/projects/joie-app/triggers/newPostSetup  
+ {"eventTrigger":{"resource":"projects/joie-app/databases/(default)/documents/posts/{id}","eventType":"providers/cloud.firestore/eventTypes/document.create","service":"firestore.googleapis.com"}}
+[debug] [2020-04-02T10:39:03.341Z] [worker-~diagnostic~-af091ad0-f12b-4798-8e45-3e08d81d3842]: IDLE 
+[debug] [2020-04-02T10:39:03.372Z] Apr 02, 2020 1:39:03 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+
+[debug] [2020-04-02T10:39:03.558Z] Apr 02, 2020 1:39:03 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected HTTP/2 connection.
+
+[debug] [2020-04-02T10:39:04.126Z] <<< HTTP RESPONSE 200 {"content-type":"application/json","content-length":"4"}
+[info] ✔  functions[newPostSetup]: firestore function initialized.
+[info] i  functions[newUserSetup]: function ignored because the auth emulator does not exist or is not running.
+[info] ✔  emulators: All emulators started, it is now safe to connect.
+[debug] [2020-04-02T15:19:16.010Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:19:17.043Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:19:17.044Z] [worker-~diagnostic~-af091ad0-f12b-4798-8e45-3e08d81d3842]: FINISHING 
+[debug] [2020-04-02T15:19:17.067Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:19:17.067Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:19:17.067Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:19:17.068Z] [worker-~diagnostic~-05d69908-ef0b-46c2-be15-6f1bb94224f4]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_80717.sock 
+[debug] [2020-04-02T15:19:17.068Z] [worker-~diagnostic~-05d69908-ef0b-46c2-be15-6f1bb94224f4]: BUSY 
+[debug] [2020-04-02T15:19:17.073Z] [worker-~diagnostic~-af091ad0-f12b-4798-8e45-3e08d81d3842]: exited 
+[debug] [2020-04-02T15:19:17.074Z] [worker-~diagnostic~-af091ad0-f12b-4798-8e45-3e08d81d3842]: FINISHED 
+[debug] [2020-04-02T15:19:17.590Z] [runtime-status] [80717] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:19:17.591Z] [runtime-status] [80717] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:19:17.607Z] [runtime-status] [80717] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:19:17.607Z] [runtime-status] [80717] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:19:17.608Z] [runtime-status] [80717] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:19:17.649Z] [runtime-status] [80717] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:19:17.649Z] [runtime-status] [80717] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:19:17.650Z] [runtime-status] [80717] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:19:17.650Z] [runtime-status] [80717] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:19:17.650Z] [runtime-status] [80717] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:19:17.653Z] [runtime-status] [80717] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:19:18.013Z] [worker-~diagnostic~-05d69908-ef0b-46c2-be15-6f1bb94224f4]: IDLE 
+[debug] [2020-04-02T15:20:01.570Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:20:01.571Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-02T15:20:01.571Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:20:01.571Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-02T15:20:01.571Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:20:01.571Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-02T15:20:01.571Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:20:01.571Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-02T15:20:02.573Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:20:02.573Z] [worker-~diagnostic~-05d69908-ef0b-46c2-be15-6f1bb94224f4]: FINISHING 
+[debug] [2020-04-02T15:20:02.573Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T15:20:02.577Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:20:02.578Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:20:02.578Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:20:02.578Z] [worker-~diagnostic~-1238c4ca-48ab-4e42-b252-c2f12cd4261b]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_81045.sock 
+[debug] [2020-04-02T15:20:02.578Z] [worker-~diagnostic~-1238c4ca-48ab-4e42-b252-c2f12cd4261b]: BUSY 
+[debug] [2020-04-02T15:20:02.580Z] [worker-~diagnostic~-05d69908-ef0b-46c2-be15-6f1bb94224f4]: exited 
+[debug] [2020-04-02T15:20:02.580Z] [worker-~diagnostic~-05d69908-ef0b-46c2-be15-6f1bb94224f4]: FINISHED 
+[debug] [2020-04-02T15:20:02.847Z] [runtime-status] [81045] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:20:02.849Z] [runtime-status] [81045] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:20:02.850Z] [runtime-status] [81045] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:20:02.851Z] [runtime-status] [81045] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:20:02.855Z] [runtime-status] [81045] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:20:02.906Z] [runtime-status] [81045] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:20:02.907Z] [runtime-status] [81045] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:20:02.907Z] [runtime-status] [81045] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:20:02.908Z] [runtime-status] [81045] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:20:02.908Z] [runtime-status] [81045] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:20:02.910Z] [runtime-status] [81045] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:20:03.199Z] [worker-~diagnostic~-1238c4ca-48ab-4e42-b252-c2f12cd4261b]: IDLE 
+[debug] [2020-04-02T15:25:17.150Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:25:17.226Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:25:18.232Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:25:18.233Z] [worker-~diagnostic~-1238c4ca-48ab-4e42-b252-c2f12cd4261b]: FINISHING 
+[debug] [2020-04-02T15:25:18.233Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T15:25:18.240Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:25:18.241Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:25:18.241Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:25:18.241Z] [worker-~diagnostic~-6b73c9f3-1f0d-4668-81f1-ec520baf9afc]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_81603.sock 
+[debug] [2020-04-02T15:25:18.242Z] [worker-~diagnostic~-6b73c9f3-1f0d-4668-81f1-ec520baf9afc]: BUSY 
+[debug] [2020-04-02T15:25:18.244Z] [worker-~diagnostic~-1238c4ca-48ab-4e42-b252-c2f12cd4261b]: exited 
+[debug] [2020-04-02T15:25:18.244Z] [worker-~diagnostic~-1238c4ca-48ab-4e42-b252-c2f12cd4261b]: FINISHED 
+[debug] [2020-04-02T15:25:18.695Z] [runtime-status] [81603] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:25:18.697Z] [runtime-status] [81603] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:25:18.701Z] [runtime-status] [81603] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:25:18.702Z] [runtime-status] [81603] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:25:18.707Z] [runtime-status] [81603] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:25:18.766Z] [runtime-status] [81603] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:25:18.767Z] [runtime-status] [81603] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:25:18.767Z] [runtime-status] [81603] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:25:18.768Z] [runtime-status] [81603] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:25:18.768Z] [runtime-status] [81603] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:25:18.769Z] [runtime-status] [81603] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:25:19.147Z] [worker-~diagnostic~-6b73c9f3-1f0d-4668-81f1-ec520baf9afc]: IDLE 
+[debug] [2020-04-02T15:25:27.705Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:25:27.821Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:25:28.825Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:25:28.826Z] [worker-~diagnostic~-6b73c9f3-1f0d-4668-81f1-ec520baf9afc]: FINISHING 
+[debug] [2020-04-02T15:25:28.826Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T15:25:28.830Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:25:28.830Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:25:28.840Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:25:28.840Z] [worker-~diagnostic~-20c4422c-2d65-4c76-ac84-1363d76709aa]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_81661.sock 
+[debug] [2020-04-02T15:25:28.841Z] [worker-~diagnostic~-20c4422c-2d65-4c76-ac84-1363d76709aa]: BUSY 
+[debug] [2020-04-02T15:25:28.841Z] [worker-~diagnostic~-6b73c9f3-1f0d-4668-81f1-ec520baf9afc]: exited 
+[debug] [2020-04-02T15:25:28.842Z] [worker-~diagnostic~-6b73c9f3-1f0d-4668-81f1-ec520baf9afc]: FINISHED 
+[debug] [2020-04-02T15:25:29.225Z] [runtime-status] [81661] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:25:29.227Z] [runtime-status] [81661] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:25:29.229Z] [runtime-status] [81661] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:25:29.231Z] [runtime-status] [81661] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:25:29.236Z] [runtime-status] [81661] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:25:29.292Z] [runtime-status] [81661] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:25:29.292Z] [runtime-status] [81661] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:25:29.293Z] [runtime-status] [81661] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:25:29.294Z] [runtime-status] [81661] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:25:29.294Z] [runtime-status] [81661] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:25:29.295Z] [runtime-status] [81661] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:25:29.649Z] [worker-~diagnostic~-20c4422c-2d65-4c76-ac84-1363d76709aa]: IDLE 
+[debug] [2020-04-02T15:25:46.386Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:25:46.487Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:25:47.490Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:25:47.490Z] [worker-~diagnostic~-20c4422c-2d65-4c76-ac84-1363d76709aa]: FINISHING 
+[debug] [2020-04-02T15:25:47.490Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T15:25:47.493Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:25:47.493Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:25:47.493Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:25:47.495Z] [worker-~diagnostic~-1e9cab53-6b8a-445c-8dce-abec8c651d09]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_81935.sock 
+[debug] [2020-04-02T15:25:47.495Z] [worker-~diagnostic~-1e9cab53-6b8a-445c-8dce-abec8c651d09]: BUSY 
+[debug] [2020-04-02T15:25:47.496Z] [worker-~diagnostic~-20c4422c-2d65-4c76-ac84-1363d76709aa]: exited 
+[debug] [2020-04-02T15:25:47.496Z] [worker-~diagnostic~-20c4422c-2d65-4c76-ac84-1363d76709aa]: FINISHED 
+[debug] [2020-04-02T15:25:47.796Z] [runtime-status] [81935] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:25:47.797Z] [runtime-status] [81935] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:25:47.799Z] [runtime-status] [81935] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:25:47.799Z] [runtime-status] [81935] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:25:47.803Z] [runtime-status] [81935] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:25:47.838Z] [runtime-status] [81935] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:25:47.839Z] [runtime-status] [81935] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:25:47.839Z] [runtime-status] [81935] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:25:47.840Z] [runtime-status] [81935] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:25:47.840Z] [runtime-status] [81935] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:25:47.841Z] [runtime-status] [81935] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:25:48.030Z] [worker-~diagnostic~-1e9cab53-6b8a-445c-8dce-abec8c651d09]: IDLE 
+[debug] [2020-04-02T15:26:12.716Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:26:13.717Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:26:13.736Z] [worker-~diagnostic~-1e9cab53-6b8a-445c-8dce-abec8c651d09]: FINISHING 
+[debug] [2020-04-02T15:26:13.736Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T15:26:13.741Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:26:13.741Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:26:13.742Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:26:13.742Z] [worker-~diagnostic~-8fd29c87-7c91-4f61-b875-7a69d4d5e7ed]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_82017.sock 
+[debug] [2020-04-02T15:26:13.742Z] [worker-~diagnostic~-8fd29c87-7c91-4f61-b875-7a69d4d5e7ed]: BUSY 
+[debug] [2020-04-02T15:26:13.744Z] [worker-~diagnostic~-1e9cab53-6b8a-445c-8dce-abec8c651d09]: exited 
+[debug] [2020-04-02T15:26:13.744Z] [worker-~diagnostic~-1e9cab53-6b8a-445c-8dce-abec8c651d09]: FINISHED 
+[debug] [2020-04-02T15:26:14.022Z] [runtime-status] [82017] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:26:14.022Z] [runtime-status] [82017] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:26:14.023Z] [runtime-status] [82017] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:26:14.023Z] [runtime-status] [82017] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:26:14.027Z] [runtime-status] [82017] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:26:14.065Z] [runtime-status] [82017] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:26:14.066Z] [runtime-status] [82017] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:26:14.067Z] [runtime-status] [82017] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:26:14.067Z] [runtime-status] [82017] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:26:14.067Z] [runtime-status] [82017] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:26:14.068Z] [runtime-status] [82017] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:26:14.269Z] [worker-~diagnostic~-8fd29c87-7c91-4f61-b875-7a69d4d5e7ed]: IDLE 
+[debug] [2020-04-02T15:26:22.330Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:26:23.332Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:26:23.333Z] [worker-~diagnostic~-8fd29c87-7c91-4f61-b875-7a69d4d5e7ed]: FINISHING 
+[debug] [2020-04-02T15:26:23.333Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T15:26:23.336Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:26:23.336Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:26:23.336Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:26:23.336Z] [worker-~diagnostic~-fccb1799-5052-4585-9dba-308f3e76f4db]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_82072.sock 
+[debug] [2020-04-02T15:26:23.336Z] [worker-~diagnostic~-fccb1799-5052-4585-9dba-308f3e76f4db]: BUSY 
+[debug] [2020-04-02T15:26:23.337Z] [worker-~diagnostic~-8fd29c87-7c91-4f61-b875-7a69d4d5e7ed]: exited 
+[debug] [2020-04-02T15:26:23.337Z] [worker-~diagnostic~-8fd29c87-7c91-4f61-b875-7a69d4d5e7ed]: FINISHED 
+[debug] [2020-04-02T15:26:23.596Z] [runtime-status] [82072] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:26:23.598Z] [runtime-status] [82072] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:26:23.599Z] [runtime-status] [82072] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:26:23.600Z] [runtime-status] [82072] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:26:23.603Z] [runtime-status] [82072] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:26:23.636Z] [runtime-status] [82072] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:26:23.637Z] [runtime-status] [82072] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:26:23.637Z] [runtime-status] [82072] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:26:23.638Z] [runtime-status] [82072] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:26:23.638Z] [runtime-status] [82072] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:26:23.639Z] [runtime-status] [82072] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:26:23.839Z] [worker-~diagnostic~-fccb1799-5052-4585-9dba-308f3e76f4db]: IDLE 
+[debug] [2020-04-02T15:26:41.225Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:26:41.225Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-02T15:26:41.225Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:26:41.226Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-02T15:26:41.226Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:26:41.226Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-02T15:26:41.325Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:26:41.325Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-02T15:26:42.330Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:26:42.330Z] [worker-~diagnostic~-fccb1799-5052-4585-9dba-308f3e76f4db]: FINISHING 
+[debug] [2020-04-02T15:26:42.330Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T15:26:42.333Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:26:42.333Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:26:42.333Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:26:42.333Z] [worker-~diagnostic~-d5eea07a-aafd-407b-8c7d-a500c9b68a73]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_82177.sock 
+[debug] [2020-04-02T15:26:42.333Z] [worker-~diagnostic~-d5eea07a-aafd-407b-8c7d-a500c9b68a73]: BUSY 
+[debug] [2020-04-02T15:26:42.334Z] [worker-~diagnostic~-fccb1799-5052-4585-9dba-308f3e76f4db]: exited 
+[debug] [2020-04-02T15:26:42.334Z] [worker-~diagnostic~-fccb1799-5052-4585-9dba-308f3e76f4db]: FINISHED 
+[debug] [2020-04-02T15:26:42.597Z] [runtime-status] [82177] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:26:42.599Z] [runtime-status] [82177] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:26:42.600Z] [runtime-status] [82177] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:26:42.601Z] [runtime-status] [82177] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:26:42.604Z] [runtime-status] [82177] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:26:42.635Z] [runtime-status] [82177] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:26:42.635Z] [runtime-status] [82177] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:26:42.636Z] [runtime-status] [82177] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:26:42.636Z] [runtime-status] [82177] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:26:42.636Z] [runtime-status] [82177] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:26:42.637Z] [runtime-status] [82177] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:26:42.813Z] [worker-~diagnostic~-d5eea07a-aafd-407b-8c7d-a500c9b68a73]: IDLE 
+[debug] [2020-04-02T15:32:03.367Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:32:04.399Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:32:04.399Z] [worker-~diagnostic~-d5eea07a-aafd-407b-8c7d-a500c9b68a73]: FINISHING 
+[debug] [2020-04-02T15:32:04.401Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T15:32:04.412Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:32:04.412Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:32:04.412Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:32:04.413Z] [worker-~diagnostic~-6dffe5d1-aef9-4d3f-a35f-f95631a25fab]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_82601.sock 
+[debug] [2020-04-02T15:32:04.414Z] [worker-~diagnostic~-6dffe5d1-aef9-4d3f-a35f-f95631a25fab]: BUSY 
+[debug] [2020-04-02T15:32:04.437Z] [worker-~diagnostic~-d5eea07a-aafd-407b-8c7d-a500c9b68a73]: exited 
+[debug] [2020-04-02T15:32:04.437Z] [worker-~diagnostic~-d5eea07a-aafd-407b-8c7d-a500c9b68a73]: FINISHED 
+[debug] [2020-04-02T15:32:05.026Z] [runtime-status] [82601] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:32:05.029Z] [runtime-status] [82601] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:32:05.032Z] [runtime-status] [82601] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:32:05.035Z] [runtime-status] [82601] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:32:05.053Z] [runtime-status] [82601] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:32:05.135Z] [runtime-status] [82601] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:32:05.137Z] [runtime-status] [82601] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:32:05.138Z] [runtime-status] [82601] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:32:05.138Z] [runtime-status] [82601] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:32:05.139Z] [runtime-status] [82601] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:32:05.142Z] [runtime-status] [82601] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:32:05.670Z] [worker-~diagnostic~-6dffe5d1-aef9-4d3f-a35f-f95631a25fab]: IDLE 
+[debug] [2020-04-02T15:44:15.060Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:44:16.072Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:44:16.072Z] [worker-~diagnostic~-6dffe5d1-aef9-4d3f-a35f-f95631a25fab]: FINISHING 
+[debug] [2020-04-02T15:44:16.073Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T15:44:16.083Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:44:16.084Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:44:16.084Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:44:16.085Z] [worker-~diagnostic~-1f26796a-7146-489e-9813-6260c290f171]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_83422.sock 
+[debug] [2020-04-02T15:44:16.085Z] [worker-~diagnostic~-1f26796a-7146-489e-9813-6260c290f171]: BUSY 
+[debug] [2020-04-02T15:44:16.087Z] [worker-~diagnostic~-6dffe5d1-aef9-4d3f-a35f-f95631a25fab]: exited 
+[debug] [2020-04-02T15:44:16.087Z] [worker-~diagnostic~-6dffe5d1-aef9-4d3f-a35f-f95631a25fab]: FINISHED 
+[debug] [2020-04-02T15:44:16.499Z] [runtime-status] [83422] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:44:16.500Z] [runtime-status] [83422] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:44:16.502Z] [runtime-status] [83422] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:44:16.503Z] [runtime-status] [83422] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:44:16.508Z] [runtime-status] [83422] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:44:16.563Z] [runtime-status] [83422] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:44:16.563Z] [runtime-status] [83422] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:44:16.564Z] [runtime-status] [83422] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:44:16.564Z] [runtime-status] [83422] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:44:16.565Z] [runtime-status] [83422] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:44:16.566Z] [runtime-status] [83422] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:44:16.916Z] [worker-~diagnostic~-1f26796a-7146-489e-9813-6260c290f171]: IDLE 
+[debug] [2020-04-02T15:44:59.955Z] File /Users/yoved/Repos/joie/functions/src/index.ts changed, reloading triggers 
+[debug] [2020-04-02T15:45:00.959Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:45:00.960Z] [worker-~diagnostic~-1f26796a-7146-489e-9813-6260c290f171]: FINISHING 
+[debug] [2020-04-02T15:45:00.960Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T15:45:00.964Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:45:00.964Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:45:00.964Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:45:00.966Z] [worker-~diagnostic~-11cef5b7-7715-47b9-9a94-a95e82816f92]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_83785.sock 
+[debug] [2020-04-02T15:45:00.966Z] [worker-~diagnostic~-11cef5b7-7715-47b9-9a94-a95e82816f92]: BUSY 
+[debug] [2020-04-02T15:45:00.967Z] [worker-~diagnostic~-1f26796a-7146-489e-9813-6260c290f171]: exited 
+[debug] [2020-04-02T15:45:00.967Z] [worker-~diagnostic~-1f26796a-7146-489e-9813-6260c290f171]: FINISHED 
+[debug] [2020-04-02T15:45:01.381Z] [runtime-status] [83785] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:45:01.383Z] [runtime-status] [83785] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:45:01.385Z] [runtime-status] [83785] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:45:01.386Z] [runtime-status] [83785] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:45:01.390Z] [runtime-status] [83785] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:45:01.435Z] [runtime-status] [83785] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:45:01.436Z] [runtime-status] [83785] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:45:01.436Z] [runtime-status] [83785] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:45:01.437Z] [runtime-status] [83785] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:45:01.437Z] [runtime-status] [83785] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:45:01.438Z] [runtime-status] [83785] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:45:01.779Z] [worker-~diagnostic~-11cef5b7-7715-47b9-9a94-a95e82816f92]: IDLE 
+[debug] [2020-04-02T15:45:54.662Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:45:55.666Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:45:55.666Z] [worker-~diagnostic~-11cef5b7-7715-47b9-9a94-a95e82816f92]: FINISHING 
+[debug] [2020-04-02T15:45:55.666Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T15:45:55.670Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:45:55.670Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:45:55.670Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:45:55.671Z] [worker-~diagnostic~-9402ffdb-7ccc-4c08-b62b-e889ee29b176]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_83860.sock 
+[debug] [2020-04-02T15:45:55.671Z] [worker-~diagnostic~-9402ffdb-7ccc-4c08-b62b-e889ee29b176]: BUSY 
+[debug] [2020-04-02T15:45:55.672Z] [worker-~diagnostic~-11cef5b7-7715-47b9-9a94-a95e82816f92]: exited 
+[debug] [2020-04-02T15:45:55.672Z] [worker-~diagnostic~-11cef5b7-7715-47b9-9a94-a95e82816f92]: FINISHED 
+[debug] [2020-04-02T15:45:56.126Z] [runtime-status] [83860] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:45:56.128Z] [runtime-status] [83860] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:45:56.130Z] [runtime-status] [83860] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:45:56.130Z] [runtime-status] [83860] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:45:56.134Z] [runtime-status] [83860] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:45:56.190Z] [runtime-status] [83860] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:45:56.191Z] [runtime-status] [83860] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:45:56.192Z] [runtime-status] [83860] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:45:56.192Z] [runtime-status] [83860] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:45:56.192Z] [runtime-status] [83860] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:45:56.194Z] [runtime-status] [83860] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:45:56.607Z] [worker-~diagnostic~-9402ffdb-7ccc-4c08-b62b-e889ee29b176]: IDLE 
+[debug] [2020-04-02T15:47:13.178Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:47:14.182Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:47:14.182Z] [worker-~diagnostic~-9402ffdb-7ccc-4c08-b62b-e889ee29b176]: FINISHING 
+[debug] [2020-04-02T15:47:14.182Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T15:47:14.186Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:47:14.186Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:47:14.186Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:47:14.186Z] [worker-~diagnostic~-289779a7-fb3f-4a7b-ab43-f1f1185b13a0]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_83945.sock 
+[debug] [2020-04-02T15:47:14.186Z] [worker-~diagnostic~-289779a7-fb3f-4a7b-ab43-f1f1185b13a0]: BUSY 
+[debug] [2020-04-02T15:47:14.195Z] [worker-~diagnostic~-9402ffdb-7ccc-4c08-b62b-e889ee29b176]: exited 
+[debug] [2020-04-02T15:47:14.195Z] [worker-~diagnostic~-9402ffdb-7ccc-4c08-b62b-e889ee29b176]: FINISHED 
+[debug] [2020-04-02T15:47:14.639Z] [runtime-status] [83945] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:47:14.645Z] [runtime-status] [83945] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:47:14.646Z] [runtime-status] [83945] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:47:14.646Z] [runtime-status] [83945] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:47:14.647Z] [runtime-status] [83945] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:47:14.705Z] [runtime-status] [83945] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:47:14.705Z] [runtime-status] [83945] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:47:14.705Z] [runtime-status] [83945] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:47:14.706Z] [runtime-status] [83945] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:47:14.706Z] [runtime-status] [83945] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:47:14.708Z] [runtime-status] [83945] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:47:14.958Z] [worker-~diagnostic~-289779a7-fb3f-4a7b-ab43-f1f1185b13a0]: IDLE 
+[debug] [2020-04-02T15:47:25.683Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:47:25.780Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:47:26.785Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:47:26.785Z] [worker-~diagnostic~-289779a7-fb3f-4a7b-ab43-f1f1185b13a0]: FINISHING 
+[debug] [2020-04-02T15:47:26.785Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T15:47:26.788Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:47:26.788Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:47:26.788Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:47:26.789Z] [worker-~diagnostic~-570bc983-1336-4eef-99ef-abc959eceab5]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_84003.sock 
+[debug] [2020-04-02T15:47:26.789Z] [worker-~diagnostic~-570bc983-1336-4eef-99ef-abc959eceab5]: BUSY 
+[debug] [2020-04-02T15:47:26.790Z] [worker-~diagnostic~-289779a7-fb3f-4a7b-ab43-f1f1185b13a0]: exited 
+[debug] [2020-04-02T15:47:26.790Z] [worker-~diagnostic~-289779a7-fb3f-4a7b-ab43-f1f1185b13a0]: FINISHED 
+[debug] [2020-04-02T15:47:27.068Z] [runtime-status] [84003] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:47:27.070Z] [runtime-status] [84003] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:47:27.075Z] [runtime-status] [84003] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:47:27.075Z] [runtime-status] [84003] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:47:27.077Z] [runtime-status] [84003] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:47:27.113Z] [runtime-status] [84003] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:47:27.114Z] [runtime-status] [84003] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:47:27.114Z] [runtime-status] [84003] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:47:27.115Z] [runtime-status] [84003] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:47:27.115Z] [runtime-status] [84003] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:47:27.116Z] [runtime-status] [84003] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:47:27.309Z] [worker-~diagnostic~-570bc983-1336-4eef-99ef-abc959eceab5]: IDLE 
+[debug] [2020-04-02T15:48:01.613Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:48:01.614Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-02T15:48:01.614Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:48:01.614Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-02T15:48:01.614Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:48:01.614Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-02T15:48:01.614Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:48:01.614Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-02T15:48:02.617Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T15:48:02.632Z] [worker-~diagnostic~-570bc983-1336-4eef-99ef-abc959eceab5]: FINISHING 
+[debug] [2020-04-02T15:48:02.638Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T15:48:02.834Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:48:02.837Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T15:48:02.838Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:48:02.843Z] [worker-~diagnostic~-30ed3bb0-f38f-4ba1-a57f-63cff2afb110]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_84416.sock 
+[debug] [2020-04-02T15:48:02.848Z] [worker-~diagnostic~-30ed3bb0-f38f-4ba1-a57f-63cff2afb110]: BUSY 
+[debug] [2020-04-02T15:48:02.858Z] [worker-~diagnostic~-570bc983-1336-4eef-99ef-abc959eceab5]: exited 
+[debug] [2020-04-02T15:48:02.859Z] [worker-~diagnostic~-570bc983-1336-4eef-99ef-abc959eceab5]: FINISHED 
+[debug] [2020-04-02T15:48:03.475Z] [runtime-status] [84416] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:48:03.479Z] [runtime-status] [84416] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:48:03.481Z] [runtime-status] [84416] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:48:03.482Z] [runtime-status] [84416] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:48:03.489Z] [runtime-status] [84416] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:48:03.573Z] [runtime-status] [84416] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:48:03.575Z] [runtime-status] [84416] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:48:03.577Z] [runtime-status] [84416] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:48:03.577Z] [runtime-status] [84416] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:48:03.579Z] [runtime-status] [84416] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:48:03.582Z] [runtime-status] [84416] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:48:04.117Z] [runtime-status] [84416] Error in handleMessage: {"frb":{"cwd":"/Users/yoved/Repos/joie/functions","projectId":"joie-app","triggerId":"","emulators":{"firestore":{"host":"localhost","port":8080}},"socketPath":"/var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_84416.sock"},"opts":{"nodeBinary":"/Users/yoved/.nvm/versions/node/v8.17.0/bin/node"}} => RangeError: Maximum call stack size exceeded: RangeError: Maximum call stack size exceeded
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:2:32)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13) 
+[warn] ⚠  functions: Maximum call stack size exceeded
+[warn] ⚠  Your function was killed because it raised an unhandled error.
+[debug] [2020-04-02T15:48:04.170Z] [worker-~diagnostic~-30ed3bb0-f38f-4ba1-a57f-63cff2afb110]: exited 
+[debug] [2020-04-02T15:48:04.170Z] [worker-~diagnostic~-30ed3bb0-f38f-4ba1-a57f-63cff2afb110]: FINISHED 
+[debug] [2020-04-02T15:55:59.836Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T15:55:59.842Z] File /Users/yoved/Repos/joie/functions/src/index.ts changed, reloading triggers 
+[debug] [2020-04-02T15:56:00.848Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 0 
+[debug] [2020-04-02T15:56:00.856Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:56:00.857Z] [worker-pool] Adding worker with key ~diagnostic~, total=1 
+[debug] [2020-04-02T15:56:00.857Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:56:00.857Z] [worker-~diagnostic~-22e9c320-a04a-44ed-8f49-85d9a9ef059c]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_85209.sock 
+[debug] [2020-04-02T15:56:00.857Z] [worker-~diagnostic~-22e9c320-a04a-44ed-8f49-85d9a9ef059c]: BUSY 
+[debug] [2020-04-02T15:56:01.354Z] [runtime-status] [85209] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:56:01.356Z] [runtime-status] [85209] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:56:01.357Z] [runtime-status] [85209] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:56:01.357Z] [runtime-status] [85209] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:56:01.362Z] [runtime-status] [85209] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:56:01.410Z] [runtime-status] [85209] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:56:01.410Z] [runtime-status] [85209] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:56:01.411Z] [runtime-status] [85209] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:56:01.411Z] [runtime-status] [85209] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:56:01.412Z] [runtime-status] [85209] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:56:01.413Z] [runtime-status] [85209] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:56:01.799Z] [runtime-status] [85209] Error in handleMessage: {"frb":{"cwd":"/Users/yoved/Repos/joie/functions","projectId":"joie-app","triggerId":"","emulators":{"firestore":{"host":"localhost","port":8080}},"socketPath":"/var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_85209.sock"},"opts":{"nodeBinary":"/Users/yoved/.nvm/versions/node/v8.17.0/bin/node"}} => RangeError: Maximum call stack size exceeded: RangeError: Maximum call stack size exceeded
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:2:32)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13)
+    at extractTriggers (/Users/yoved/.nvm/versions/node/v12.16.1/lib/node_modules/firebase-tools/lib/extractTriggers.js:19:13) 
+[warn] ⚠  functions: Maximum call stack size exceeded
+[warn] ⚠  Your function was killed because it raised an unhandled error.
+[debug] [2020-04-02T15:56:01.811Z] [worker-~diagnostic~-22e9c320-a04a-44ed-8f49-85d9a9ef059c]: exited 
+[debug] [2020-04-02T15:56:01.811Z] [worker-~diagnostic~-22e9c320-a04a-44ed-8f49-85d9a9ef059c]: FINISHED 
+[debug] [2020-04-02T15:56:12.657Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:56:12.658Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-02T15:56:12.658Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:56:12.658Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-02T15:56:12.680Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:56:12.680Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-02T15:56:12.680Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-02T15:56:12.680Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-02T15:56:13.685Z] [worker-pool] Cleaned up workers for ~diagnostic~: 1 --> 0 
+[debug] [2020-04-02T15:56:13.690Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T15:56:13.690Z] [worker-pool] Adding worker with key ~diagnostic~, total=1 
+[debug] [2020-04-02T15:56:13.690Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T15:56:13.691Z] [worker-~diagnostic~-f7f21e3f-28b9-4b86-a9eb-bca4158d4095]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_85320.sock 
+[debug] [2020-04-02T15:56:13.691Z] [worker-~diagnostic~-f7f21e3f-28b9-4b86-a9eb-bca4158d4095]: BUSY 
+[debug] [2020-04-02T15:56:13.951Z] [runtime-status] [85320] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T15:56:13.952Z] [runtime-status] [85320] Disabled runtime features: undefined 
+[debug] [2020-04-02T15:56:13.954Z] [runtime-status] [85320] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:56:13.954Z] [runtime-status] [85320] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:56:13.958Z] [runtime-status] [85320] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T15:56:13.986Z] [runtime-status] [85320] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T15:56:13.987Z] [runtime-status] [85320] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:56:13.987Z] [runtime-status] [85320] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T15:56:13.988Z] [runtime-status] [85320] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T15:56:13.988Z] [runtime-status] [85320] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T15:56:13.989Z] [runtime-status] [85320] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T15:56:14.194Z] [worker-~diagnostic~-f7f21e3f-28b9-4b86-a9eb-bca4158d4095]: IDLE 
+[debug] [2020-04-02T16:10:48.684Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T16:10:49.697Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T16:10:49.697Z] [worker-~diagnostic~-f7f21e3f-28b9-4b86-a9eb-bca4158d4095]: FINISHING 
+[debug] [2020-04-02T16:10:49.712Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T16:10:49.713Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T16:10:49.713Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T16:10:49.715Z] [worker-~diagnostic~-6402dd88-07f4-4d10-9f10-e03e7c0bacbb]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_86255.sock 
+[debug] [2020-04-02T16:10:49.715Z] [worker-~diagnostic~-6402dd88-07f4-4d10-9f10-e03e7c0bacbb]: BUSY 
+[debug] [2020-04-02T16:10:49.721Z] [worker-~diagnostic~-f7f21e3f-28b9-4b86-a9eb-bca4158d4095]: exited 
+[debug] [2020-04-02T16:10:49.721Z] [worker-~diagnostic~-f7f21e3f-28b9-4b86-a9eb-bca4158d4095]: FINISHED 
+[debug] [2020-04-02T16:10:50.249Z] [runtime-status] [86255] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T16:10:50.251Z] [runtime-status] [86255] Disabled runtime features: undefined 
+[debug] [2020-04-02T16:10:50.253Z] [runtime-status] [86255] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T16:10:50.256Z] [runtime-status] [86255] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T16:10:50.260Z] [runtime-status] [86255] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T16:10:50.325Z] [runtime-status] [86255] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T16:10:50.326Z] [runtime-status] [86255] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T16:10:50.326Z] [runtime-status] [86255] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T16:10:50.327Z] [runtime-status] [86255] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T16:10:50.328Z] [runtime-status] [86255] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T16:10:50.329Z] [runtime-status] [86255] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T16:10:50.741Z] [worker-~diagnostic~-6402dd88-07f4-4d10-9f10-e03e7c0bacbb]: IDLE 
+[debug] [2020-04-02T16:11:02.656Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-02T16:11:02.657Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-02T16:11:02.657Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-02T16:11:02.657Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-02T16:11:02.658Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-02T16:11:02.658Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-02T16:11:02.756Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-02T16:11:02.757Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-02T16:11:03.761Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T16:11:03.761Z] [worker-~diagnostic~-6402dd88-07f4-4d10-9f10-e03e7c0bacbb]: FINISHING 
+[debug] [2020-04-02T16:11:03.761Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T16:11:03.767Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T16:11:03.767Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T16:11:03.767Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T16:11:03.768Z] [worker-~diagnostic~-18c05691-3b10-45cd-811a-6ae1af7c76c9]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_86360.sock 
+[debug] [2020-04-02T16:11:03.768Z] [worker-~diagnostic~-18c05691-3b10-45cd-811a-6ae1af7c76c9]: BUSY 
+[debug] [2020-04-02T16:11:03.769Z] [worker-~diagnostic~-6402dd88-07f4-4d10-9f10-e03e7c0bacbb]: exited 
+[debug] [2020-04-02T16:11:03.769Z] [worker-~diagnostic~-6402dd88-07f4-4d10-9f10-e03e7c0bacbb]: FINISHED 
+[debug] [2020-04-02T16:11:04.112Z] [runtime-status] [86360] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T16:11:04.113Z] [runtime-status] [86360] Disabled runtime features: undefined 
+[debug] [2020-04-02T16:11:04.115Z] [runtime-status] [86360] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T16:11:04.115Z] [runtime-status] [86360] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T16:11:04.119Z] [runtime-status] [86360] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T16:11:04.161Z] [runtime-status] [86360] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T16:11:04.161Z] [runtime-status] [86360] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T16:11:04.162Z] [runtime-status] [86360] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T16:11:04.163Z] [runtime-status] [86360] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T16:11:04.164Z] [runtime-status] [86360] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T16:11:04.164Z] [runtime-status] [86360] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T16:11:04.425Z] [worker-~diagnostic~-18c05691-3b10-45cd-811a-6ae1af7c76c9]: IDLE 
+[debug] [2020-04-02T16:12:42.105Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T16:12:43.109Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T16:12:43.109Z] [worker-~diagnostic~-18c05691-3b10-45cd-811a-6ae1af7c76c9]: FINISHING 
+[debug] [2020-04-02T16:12:43.110Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T16:12:43.136Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T16:12:43.137Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T16:12:43.137Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T16:12:43.138Z] [worker-~diagnostic~-d58bff09-16d6-4da0-b56e-2528656a9640]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_86430.sock 
+[debug] [2020-04-02T16:12:43.138Z] [worker-~diagnostic~-d58bff09-16d6-4da0-b56e-2528656a9640]: BUSY 
+[debug] [2020-04-02T16:12:43.140Z] [worker-~diagnostic~-18c05691-3b10-45cd-811a-6ae1af7c76c9]: exited 
+[debug] [2020-04-02T16:12:43.140Z] [worker-~diagnostic~-18c05691-3b10-45cd-811a-6ae1af7c76c9]: FINISHED 
+[debug] [2020-04-02T16:12:43.524Z] [runtime-status] [86430] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T16:12:43.525Z] [runtime-status] [86430] Disabled runtime features: undefined 
+[debug] [2020-04-02T16:12:43.527Z] [runtime-status] [86430] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T16:12:43.528Z] [runtime-status] [86430] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T16:12:43.531Z] [runtime-status] [86430] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T16:12:43.573Z] [runtime-status] [86430] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T16:12:43.573Z] [runtime-status] [86430] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T16:12:43.574Z] [runtime-status] [86430] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T16:12:43.574Z] [runtime-status] [86430] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T16:12:43.575Z] [runtime-status] [86430] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T16:12:43.575Z] [runtime-status] [86430] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T16:12:43.924Z] [worker-~diagnostic~-d58bff09-16d6-4da0-b56e-2528656a9640]: IDLE 
+[debug] [2020-04-02T16:12:55.877Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-02T16:12:55.877Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-02T16:12:55.877Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-02T16:12:55.878Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-02T16:12:55.878Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-02T16:12:55.878Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-02T16:12:55.878Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-02T16:12:55.879Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-02T16:12:56.882Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T16:12:56.882Z] [worker-~diagnostic~-d58bff09-16d6-4da0-b56e-2528656a9640]: FINISHING 
+[debug] [2020-04-02T16:12:56.882Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T16:12:56.886Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T16:12:56.886Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T16:12:56.886Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T16:12:56.887Z] [worker-~diagnostic~-b725be5a-a33b-4f9e-b4a3-b35a60233610]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_86703.sock 
+[debug] [2020-04-02T16:12:56.887Z] [worker-~diagnostic~-b725be5a-a33b-4f9e-b4a3-b35a60233610]: BUSY 
+[debug] [2020-04-02T16:12:56.888Z] [worker-~diagnostic~-d58bff09-16d6-4da0-b56e-2528656a9640]: exited 
+[debug] [2020-04-02T16:12:56.888Z] [worker-~diagnostic~-d58bff09-16d6-4da0-b56e-2528656a9640]: FINISHED 
+[debug] [2020-04-02T16:12:57.146Z] [runtime-status] [86703] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T16:12:57.147Z] [runtime-status] [86703] Disabled runtime features: undefined 
+[debug] [2020-04-02T16:12:57.149Z] [runtime-status] [86703] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T16:12:57.149Z] [runtime-status] [86703] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T16:12:57.153Z] [runtime-status] [86703] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T16:12:57.183Z] [runtime-status] [86703] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T16:12:57.183Z] [runtime-status] [86703] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T16:12:57.184Z] [runtime-status] [86703] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T16:12:57.184Z] [runtime-status] [86703] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T16:12:57.185Z] [runtime-status] [86703] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T16:12:57.185Z] [runtime-status] [86703] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T16:12:57.358Z] [worker-~diagnostic~-b725be5a-a33b-4f9e-b4a3-b35a60233610]: IDLE 
+[debug] [2020-04-02T17:27:09.598Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T17:27:10.638Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T17:27:10.642Z] [worker-~diagnostic~-b725be5a-a33b-4f9e-b4a3-b35a60233610]: FINISHING 
+[debug] [2020-04-02T17:27:10.657Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T17:27:10.751Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T17:27:10.751Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T17:27:10.752Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T17:27:10.758Z] [worker-~diagnostic~-bfec8087-475f-4e45-a83b-f7c3760ead6f]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_88359.sock 
+[debug] [2020-04-02T17:27:10.758Z] [worker-~diagnostic~-bfec8087-475f-4e45-a83b-f7c3760ead6f]: BUSY 
+[debug] [2020-04-02T17:27:10.772Z] [worker-~diagnostic~-b725be5a-a33b-4f9e-b4a3-b35a60233610]: exited 
+[debug] [2020-04-02T17:27:10.772Z] [worker-~diagnostic~-b725be5a-a33b-4f9e-b4a3-b35a60233610]: FINISHED 
+[debug] [2020-04-02T17:27:11.384Z] [runtime-status] [88359] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T17:27:11.384Z] [runtime-status] [88359] Disabled runtime features: undefined 
+[debug] [2020-04-02T17:27:11.387Z] [runtime-status] [88359] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T17:27:11.388Z] [runtime-status] [88359] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:27:11.394Z] [runtime-status] [88359] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T17:27:11.458Z] [runtime-status] [88359] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T17:27:11.461Z] [runtime-status] [88359] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:27:11.461Z] [runtime-status] [88359] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T17:27:11.462Z] [runtime-status] [88359] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:27:11.464Z] [runtime-status] [88359] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T17:27:11.464Z] [runtime-status] [88359] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T17:27:11.878Z] [worker-~diagnostic~-bfec8087-475f-4e45-a83b-f7c3760ead6f]: IDLE 
+[debug] [2020-04-02T17:27:25.822Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-02T17:27:25.823Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-02T17:27:25.823Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-02T17:27:25.823Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-02T17:27:25.824Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-02T17:27:25.824Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-02T17:27:25.861Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-02T17:27:25.862Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-02T17:27:26.865Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T17:27:26.866Z] [worker-~diagnostic~-bfec8087-475f-4e45-a83b-f7c3760ead6f]: FINISHING 
+[debug] [2020-04-02T17:27:26.867Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T17:27:26.870Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T17:27:26.870Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T17:27:26.870Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T17:27:26.871Z] [worker-~diagnostic~-5fccf5f3-a52c-4bcb-8407-faf73555be59]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_88462.sock 
+[debug] [2020-04-02T17:27:26.871Z] [worker-~diagnostic~-5fccf5f3-a52c-4bcb-8407-faf73555be59]: BUSY 
+[debug] [2020-04-02T17:27:26.873Z] [worker-~diagnostic~-bfec8087-475f-4e45-a83b-f7c3760ead6f]: exited 
+[debug] [2020-04-02T17:27:26.874Z] [worker-~diagnostic~-bfec8087-475f-4e45-a83b-f7c3760ead6f]: FINISHED 
+[debug] [2020-04-02T17:27:27.142Z] [runtime-status] [88462] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T17:27:27.143Z] [runtime-status] [88462] Disabled runtime features: undefined 
+[debug] [2020-04-02T17:27:27.144Z] [runtime-status] [88462] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T17:27:27.144Z] [runtime-status] [88462] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:27:27.147Z] [runtime-status] [88462] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T17:27:27.178Z] [runtime-status] [88462] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T17:27:27.179Z] [runtime-status] [88462] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:27:27.179Z] [runtime-status] [88462] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T17:27:27.179Z] [runtime-status] [88462] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:27:27.179Z] [runtime-status] [88462] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T17:27:27.180Z] [runtime-status] [88462] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T17:27:27.370Z] [worker-~diagnostic~-5fccf5f3-a52c-4bcb-8407-faf73555be59]: IDLE 
+[debug] [2020-04-02T17:41:46.886Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T17:41:47.892Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T17:41:47.892Z] [worker-~diagnostic~-5fccf5f3-a52c-4bcb-8407-faf73555be59]: FINISHING 
+[debug] [2020-04-02T17:41:47.892Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T17:41:47.897Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T17:41:47.898Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T17:41:47.898Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T17:41:47.899Z] [worker-~diagnostic~-7727ae48-0a01-4401-ad75-3a207a783147]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_89754.sock 
+[debug] [2020-04-02T17:41:47.899Z] [worker-~diagnostic~-7727ae48-0a01-4401-ad75-3a207a783147]: BUSY 
+[debug] [2020-04-02T17:41:47.900Z] [worker-~diagnostic~-5fccf5f3-a52c-4bcb-8407-faf73555be59]: exited 
+[debug] [2020-04-02T17:41:47.901Z] [worker-~diagnostic~-5fccf5f3-a52c-4bcb-8407-faf73555be59]: FINISHED 
+[debug] [2020-04-02T17:41:48.408Z] [runtime-status] [89754] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T17:41:48.410Z] [runtime-status] [89754] Disabled runtime features: undefined 
+[debug] [2020-04-02T17:41:48.412Z] [runtime-status] [89754] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T17:41:48.413Z] [runtime-status] [89754] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:41:48.417Z] [runtime-status] [89754] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T17:41:48.475Z] [runtime-status] [89754] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T17:41:48.476Z] [runtime-status] [89754] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:41:48.477Z] [runtime-status] [89754] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T17:41:48.478Z] [runtime-status] [89754] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:41:48.478Z] [runtime-status] [89754] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T17:41:48.479Z] [runtime-status] [89754] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T17:41:48.923Z] [worker-~diagnostic~-7727ae48-0a01-4401-ad75-3a207a783147]: IDLE 
+[debug] [2020-04-02T17:42:56.498Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T17:42:57.503Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T17:42:57.503Z] [worker-~diagnostic~-7727ae48-0a01-4401-ad75-3a207a783147]: FINISHING 
+[debug] [2020-04-02T17:42:57.503Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T17:42:57.509Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T17:42:57.509Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T17:42:57.509Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T17:42:57.510Z] [worker-~diagnostic~-12530eb4-d79c-4c5d-820b-2a261c6968d8]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_89856.sock 
+[debug] [2020-04-02T17:42:57.510Z] [worker-~diagnostic~-12530eb4-d79c-4c5d-820b-2a261c6968d8]: BUSY 
+[debug] [2020-04-02T17:42:57.512Z] [worker-~diagnostic~-7727ae48-0a01-4401-ad75-3a207a783147]: exited 
+[debug] [2020-04-02T17:42:57.512Z] [worker-~diagnostic~-7727ae48-0a01-4401-ad75-3a207a783147]: FINISHED 
+[debug] [2020-04-02T17:42:57.933Z] [runtime-status] [89856] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T17:42:57.934Z] [runtime-status] [89856] Disabled runtime features: undefined 
+[debug] [2020-04-02T17:42:57.936Z] [runtime-status] [89856] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T17:42:57.937Z] [runtime-status] [89856] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:42:57.941Z] [runtime-status] [89856] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T17:42:57.997Z] [runtime-status] [89856] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T17:42:57.997Z] [runtime-status] [89856] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:42:57.998Z] [runtime-status] [89856] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T17:42:57.999Z] [runtime-status] [89856] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:42:57.999Z] [runtime-status] [89856] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T17:42:58.000Z] [runtime-status] [89856] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T17:42:58.316Z] [worker-~diagnostic~-12530eb4-d79c-4c5d-820b-2a261c6968d8]: IDLE 
+[debug] [2020-04-02T17:43:17.277Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-02T17:43:17.278Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-02T17:43:17.278Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-02T17:43:17.278Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-02T17:43:17.279Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-02T17:43:17.279Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-02T17:43:17.279Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-02T17:43:17.280Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-02T17:43:18.280Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T17:43:18.281Z] [worker-~diagnostic~-12530eb4-d79c-4c5d-820b-2a261c6968d8]: FINISHING 
+[debug] [2020-04-02T17:43:18.281Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T17:43:18.296Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T17:43:18.296Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T17:43:18.297Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T17:43:18.298Z] [worker-~diagnostic~-bfcc8dca-5490-4524-8fda-f4b95d0d1a16]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_89966.sock 
+[debug] [2020-04-02T17:43:18.299Z] [worker-~diagnostic~-bfcc8dca-5490-4524-8fda-f4b95d0d1a16]: BUSY 
+[debug] [2020-04-02T17:43:18.300Z] [worker-~diagnostic~-12530eb4-d79c-4c5d-820b-2a261c6968d8]: exited 
+[debug] [2020-04-02T17:43:18.301Z] [worker-~diagnostic~-12530eb4-d79c-4c5d-820b-2a261c6968d8]: FINISHED 
+[debug] [2020-04-02T17:43:18.701Z] [runtime-status] [89966] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T17:43:18.703Z] [runtime-status] [89966] Disabled runtime features: undefined 
+[debug] [2020-04-02T17:43:18.704Z] [runtime-status] [89966] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T17:43:18.705Z] [runtime-status] [89966] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:43:18.709Z] [runtime-status] [89966] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T17:43:18.756Z] [runtime-status] [89966] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T17:43:18.756Z] [runtime-status] [89966] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:43:18.757Z] [runtime-status] [89966] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T17:43:18.757Z] [runtime-status] [89966] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T17:43:18.757Z] [runtime-status] [89966] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T17:43:18.759Z] [runtime-status] [89966] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T17:43:19.121Z] [worker-~diagnostic~-bfcc8dca-5490-4524-8fda-f4b95d0d1a16]: IDLE 
+[debug] [2020-04-02T19:26:54.191Z] File /Users/yoved/Repos/joie/functions/src/post.ts changed, reloading triggers 
+[debug] [2020-04-02T19:26:55.222Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T19:26:55.222Z] [worker-~diagnostic~-bfcc8dca-5490-4524-8fda-f4b95d0d1a16]: FINISHING 
+[debug] [2020-04-02T19:26:55.224Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T19:26:55.247Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T19:26:55.248Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T19:26:55.248Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T19:26:55.248Z] [worker-~diagnostic~-d9b490b3-7907-4274-9205-761c2620bf3a]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_91168.sock 
+[debug] [2020-04-02T19:26:55.248Z] [worker-~diagnostic~-d9b490b3-7907-4274-9205-761c2620bf3a]: BUSY 
+[debug] [2020-04-02T19:26:55.252Z] [worker-~diagnostic~-bfcc8dca-5490-4524-8fda-f4b95d0d1a16]: exited 
+[debug] [2020-04-02T19:26:55.253Z] [worker-~diagnostic~-bfcc8dca-5490-4524-8fda-f4b95d0d1a16]: FINISHED 
+[debug] [2020-04-02T19:26:55.803Z] [runtime-status] [91168] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T19:26:55.805Z] [runtime-status] [91168] Disabled runtime features: undefined 
+[debug] [2020-04-02T19:26:55.806Z] [runtime-status] [91168] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T19:26:55.806Z] [runtime-status] [91168] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T19:26:55.811Z] [runtime-status] [91168] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T19:26:55.875Z] [runtime-status] [91168] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T19:26:55.876Z] [runtime-status] [91168] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T19:26:55.876Z] [runtime-status] [91168] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T19:26:55.877Z] [runtime-status] [91168] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T19:26:55.877Z] [runtime-status] [91168] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T19:26:55.880Z] [runtime-status] [91168] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T19:26:56.326Z] [worker-~diagnostic~-d9b490b3-7907-4274-9205-761c2620bf3a]: IDLE 
+[debug] [2020-04-02T19:27:10.436Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-02T19:27:10.436Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-02T19:27:10.436Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-02T19:27:10.436Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-02T19:27:10.436Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-02T19:27:10.437Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-02T19:27:10.437Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-02T19:27:10.437Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-02T19:27:11.447Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-02T19:27:11.448Z] [worker-~diagnostic~-d9b490b3-7907-4274-9205-761c2620bf3a]: FINISHING 
+[debug] [2020-04-02T19:27:11.448Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-02T19:27:11.451Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-02T19:27:11.451Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-02T19:27:11.451Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-02T19:27:11.451Z] [worker-~diagnostic~-d2d41901-d28b-42c8-a4ba-7ab8269f9165]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_91274.sock 
+[debug] [2020-04-02T19:27:11.451Z] [worker-~diagnostic~-d2d41901-d28b-42c8-a4ba-7ab8269f9165]: BUSY 
+[debug] [2020-04-02T19:27:11.453Z] [worker-~diagnostic~-d9b490b3-7907-4274-9205-761c2620bf3a]: exited 
+[debug] [2020-04-02T19:27:11.454Z] [worker-~diagnostic~-d9b490b3-7907-4274-9205-761c2620bf3a]: FINISHED 
+[debug] [2020-04-02T19:27:11.734Z] [runtime-status] [91274] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"8.17.0"} 
+[debug] [2020-04-02T19:27:11.735Z] [runtime-status] [91274] Disabled runtime features: undefined 
+[debug] [2020-04-02T19:27:11.737Z] [runtime-status] [91274] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T19:27:11.738Z] [runtime-status] [91274] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T19:27:11.744Z] [runtime-status] [91274] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-02T19:27:11.779Z] [runtime-status] [91274] Checked functions.config() {"config":{}} 
+[debug] [2020-04-02T19:27:11.779Z] [runtime-status] [91274] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T19:27:11.780Z] [runtime-status] [91274] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-02T19:27:11.780Z] [runtime-status] [91274] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-02T19:27:11.780Z] [runtime-status] [91274] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.10.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-02T19:27:11.782Z] [runtime-status] [91274] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[debug] [2020-04-02T19:27:11.990Z] [worker-~diagnostic~-d2d41901-d28b-42c8-a4ba-7ab8269f9165]: IDLE 

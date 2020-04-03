@@ -1,14 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DbService } from 'src/app/services/db.service';
 import { Post } from '../models/post';
+import { AuthFacade } from 'src/app/auth-state/+state/auth/facades/auth.facade';
+import { Observable, Subject, of, throwError } from 'rxjs';
+import {
+  map,
+  withLatestFrom,
+  pluck,
+  filter,
+  switchMap,
+  catchError
+} from 'rxjs/operators';
+import { User } from 'src/app/auth-state/+state/auth/models/auth.models';
 
 @Component({
   selector: 'app-post-write',
   templateUrl: './post-write.component.html',
   styleUrls: ['./post-write.component.scss']
 })
-export class PostWriteComponent {
+export class PostWriteComponent implements OnDestroy {
+  submit$ = new Subject();
+  // uid$: Observable<User['uid']>;
+
   postForm = this.fb.group({
     // company: null,
     title: [null, Validators.required]
@@ -23,13 +37,34 @@ export class PostWriteComponent {
     // shipping: ['free', Validators.required]
   });
 
-  hasUnitNumber = false;
+  // hasUnitNumber = false;
 
-  constructor(private fb: FormBuilder, private db: DbService) {}
+  constructor(
+    private fb: FormBuilder,
+    private db: DbService,
+    private authFacade: AuthFacade
+  ) {
+    const uid$ = this.authFacade.user$.pipe(
+      filter(Boolean),
+      map(({ uid }) => ({ uid }))
+    );
 
-  onSubmit() {
-    // alert('Thanks!');
-    const { value } = this.postForm;
-    this.db.set<Post>('posts', value);
+    this.submit$
+      .pipe(
+        switchMap(({ valid, value }) =>
+          valid ? of(value) : throwError('invalid form')
+        ),
+        withLatestFrom(uid$),
+        map(([value, uid]) => ({ ...value, ...uid }))
+      )
+      .subscribe(this.save.bind(this));
+  }
+
+  ngOnDestroy(): void {
+    this.submit$.complete();
+  }
+
+  save(post: Post) {
+    this.db.set<Post>('posts', post);
   }
 }
