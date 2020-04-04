@@ -18,14 +18,23 @@ export const initialState: State = {
 const authReducer = createReducer(
   initialState,
 
-  on(AuthActions.loadAuth, (state): State => ({ ...state, loaded: false })),
+  // on(AuthActions.loadAuth, (state): State => ({ ...state, loaded: false })),
+  // on(
+  //   AuthActions.loadAuthSuccess,
+  //   (state, { user }): State => ({ ...state, user, loaded: true })
+  // ),
+  // on(
+  //   AuthActions.loadAuthFailure,
+  //   (state, { error }): State => ({ ...state, error, loaded: true })
+  //   ),
+  on(AuthActions.authStateChange, () => initialState),
   on(
-    AuthActions.loadAuthSuccess,
+    AuthActions.authStateAuthenticated,
     (state, { user }): State => ({ ...state, user, loaded: true })
   ),
   on(
-    AuthActions.loadAuthFailure,
-    (state, { error }): State => ({ ...state, error, loaded: true })
+    AuthActions.authStateNotAuthenticated,
+    (state): State => ({ ...state, user: null, loaded: true })
   )
 );
 

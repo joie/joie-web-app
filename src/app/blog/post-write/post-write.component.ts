@@ -4,18 +4,10 @@ import { DbService } from 'src/app/services/db.service';
 import { Post } from '../models/post';
 import { AuthFacade } from 'src/app/auth-state/+state/auth/facades/auth.facade';
 import { Observable, Subject, of, throwError } from 'rxjs';
-import {
-  map,
-  withLatestFrom,
-  pluck,
-  filter,
-  switchMap,
-  catchError
-} from 'rxjs/operators';
+import { map, withLatestFrom, filter, switchMap } from 'rxjs/operators';
 import { User } from 'src/app/auth-state/+state/auth/models/auth.models';
 
 @Component({
-  selector: 'app-post-write',
   templateUrl: './post-write.component.html',
   styleUrls: ['./post-write.component.scss']
 })
@@ -44,7 +36,7 @@ export class PostWriteComponent implements OnDestroy {
     private db: DbService,
     private authFacade: AuthFacade
   ) {
-    const uid$ = this.authFacade.user$.pipe(
+    const uid$: Observable<Pick<User, 'uid'>> = this.authFacade.user$.pipe(
       filter(Boolean),
       map(({ uid }) => ({ uid }))
     );

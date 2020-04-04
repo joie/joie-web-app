@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import 'firebase/firestore';
 import {
   AngularFirestore,
-  AngularFirestoreDocument
+  AngularFirestoreDocument,
+  AngularFirestoreCollection
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 import { __, split, modulo, pipe, length, equals } from 'ramda';
 
 @Injectable({
@@ -26,14 +27,18 @@ export class DbService {
     return pipe(split('/'), length, isOdd, equals(0));
   }
 
-  get(pathStr: string) {
-    const path = pathStr.split('/');
-    console.log(path);
+  get<T>(path: string) {
+    return (this.isCollection(path)
+      ? this.afs.doc<T>(path)
+      : this.afs.collection<T>(path)
+    ).valueChanges();
   }
 
   set<T>(path: string, data: T) {
-    this.isCollection(path)
-      ? this.afs.doc<T>(path).set(data)
-      : this.afs.collection<T>(path).add(data);
+    return from(
+      this.isCollection(path)
+        ? this.afs.doc<T>(path).set(data)
+        : this.afs.collection<T>(path).add(data)
+    );
   }
 }

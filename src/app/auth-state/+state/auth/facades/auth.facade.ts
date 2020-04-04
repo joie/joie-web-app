@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { select, Store, Action } from '@ngrx/store';
 
+import * as fromActions from '../actions/auth.actions';
 import * as fromAuth from '../reducers/auth.reducer';
 import * as AuthSelectors from '../selectors/auth.selectors';
 
@@ -13,7 +14,11 @@ export class AuthFacade {
 
   constructor(private store: Store<fromAuth.State>) {}
 
-  dispatch(action: Action) {
+  private dispatch(action: Action) {
     this.store.dispatch(action);
+  }
+
+  dispatchStateChange(payload: { uid: firebase.User['uid'] } | null) {
+    this.dispatch(fromActions.authStateChange(payload));
   }
 }
