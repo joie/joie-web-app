@@ -1,0 +1,14 @@
+[debug] [2020-04-04T16:54:47.001Z] ----------------------------------------------------------------------
+[debug] [2020-04-04T16:54:47.003Z] Command:       /Users/yoved/.nvm/versions/node/v12.16.1/bin/node /Users/yoved/.nvm/versions/node/v12.16.1/bin/firebase deploy --only functions
+[debug] [2020-04-04T16:54:47.003Z] CLI Version:   8.0.0
+[debug] [2020-04-04T16:54:47.003Z] Platform:      darwin
+[debug] [2020-04-04T16:54:47.003Z] Node Version:  v12.16.1
+[debug] [2020-04-04T16:54:47.008Z] Time:          Sat Apr 04 2020 19:54:47 GMT+0300 (Israel Daylight Time)
+[debug] [2020-04-04T16:54:47.009Z] ----------------------------------------------------------------------
+[debug] [2020-04-04T16:54:47.009Z] 
+[debug] [2020-04-04T16:54:47.021Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-04T16:54:47.021Z] > authorizing via signed-in user
+[debug] [2020-04-04T16:54:47.021Z] [iam] checking project joie-app for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-04-04T16:54:47.023Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-04-04T16:54:47.023Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>

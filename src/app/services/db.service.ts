@@ -27,11 +27,13 @@ export class DbService {
     return pipe(split('/'), length, isOdd, equals(0));
   }
 
-  get$<T>(path: string): Observable<any> {
+  get$<T>(path: string): Observable<T> | Observable<T[]> {
     return (this.isCollection(path)
       ? this.afs.doc<T>(path)
       : this.afs.collection<T>(path)
     ).valueChanges();
+    // return this.afs.doc<T>(path).valueChanges();
+    // return this.afs.collection<T>(path).valueChanges();
   }
 
   set$<T>(path: string, data: T) {

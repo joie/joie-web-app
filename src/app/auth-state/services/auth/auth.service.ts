@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable, of } from 'rxjs';
 import { User } from '../../+state/auth/models/auth.models';
 import { DbService } from 'src/app/services/db.service';
-import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AuthFacade } from '../../+state/auth/facades/auth.facade';
 
 @Injectable()
@@ -13,10 +12,8 @@ export class AuthService {
     return this.afAuth.authState;
   }
 
-  getUser$(uid: firebase.User['uid']): Observable<User> {
-    // this.afAuth.authState.subscribe(console.log);
-    return this.db.get$<User>(`users/${uid}`);
-    // return of('egsd') as any;
+  getUser$(uid: User['uid']): Observable<User> {
+    return this.db.get$<User>(`users/${uid}`) as Observable<User>;
   }
 
   constructor(
@@ -26,7 +23,7 @@ export class AuthService {
   ) {}
 
   observeAuthState() {
-    this.state$.subscribe((user: firebase.User) => {
+    this.state$.subscribe((user: User) => {
       const payload = user ? { uid: user.uid } : null;
       this.authFacade.dispatchStateChange(payload);
     });

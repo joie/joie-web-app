@@ -25,7 +25,7 @@ export class AuthEffects {
       ofType(AuthActions.authStateChange),
       pluck('uid'),
       switchMap(
-        (uid: firebase.User['uid']) =>
+        (uid: User['uid']) =>
           uid
             ? this.authService.getUser$(uid).pipe(
                 map(
@@ -46,7 +46,7 @@ export class AuthEffects {
       //   console.log(1, uid);
       //   AuthActions.authStateAuthenticated({} as User);
       // }),
-      // map((uid: firebase.User['uid']) =>
+      // map((uid: User['uid']) =>
       //   uid
       //     ? this.authService
       //         .getUser$(uid)
@@ -57,7 +57,7 @@ export class AuthEffects {
       //         )
       //     : AuthActions.authStateNotAuthenticated()
       // ),
-      // map((fbUser: firebase.User) =>
+      // map((fbUser: User) =>
       //   fbUser
       //     ? this.authService
       //         .getUser$(fbUser.uid)
