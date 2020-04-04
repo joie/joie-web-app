@@ -5,5 +5,5 @@ import { map } from 'rxjs/operators';
 export const authorOnly = () =>
   pipe(
     customClaims,
-    map(claims => claims.author === true)
+    map(claims => claims.admin === true)
   );

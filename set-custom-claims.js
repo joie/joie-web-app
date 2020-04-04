@@ -5,7 +5,7 @@ const preDefinedClaims = ["admin", "teacher", "author", "student"];
 const claims = preDefinedClaims.reduce(
   (acc, claim) => ({
     ...acc,
-    ...(argv[claim] && { [claim]: argv[claim] })
+    ...(argv[claim] && { [claim]: true })
   }),
   {}
 );
@@ -31,4 +31,4 @@ admin
     process.exit();
   });
 
-// node set-custom-claims.js --uid=[uid] --[claim]=[value]
+// node set-custom-claims.js --uid=[uid] --[claim1] --[claim2]

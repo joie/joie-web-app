@@ -11,9 +11,9 @@ const routes: Routes = [
   { path: '', component: BlogDashboardComponent },
   {
     path: 'write',
-    component: PostWriteComponent,
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: authorOnly }
+    component: PostWriteComponent
+    // canActivate: [AngularFireAuthGuard],
+    // data: { authGuardPipe: authorOnly }
   },
   { path: 'write/:id', component: PostWriteComponent },
   { path: ':id', component: PostDetailComponent }
