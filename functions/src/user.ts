@@ -22,7 +22,8 @@ export const newUserSetup = functions.auth
       displayName,
       email,
       phoneNumber,
-      photoURL
+      photoURL,
+      joined: Date.now()
     };
     await ref.set(userPayload);
 

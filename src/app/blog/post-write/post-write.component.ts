@@ -57,6 +57,6 @@ export class PostWriteComponent implements OnDestroy {
   }
 
   save(post: Post) {
-    this.db.set<Post>('posts', post);
+    this.db.set$<Post>('posts', post);
   }
 }

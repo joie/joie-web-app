@@ -16,7 +16,7 @@ import { User } from '../models/auth.models';
 
 export const authStateChange = createAction(
   '[Auth] State Change',
-  props<{ user: User } | null>()
+  props<{ uid: User['uid'] } | null>()
 );
 
 export const authStateAuthenticated = createAction(

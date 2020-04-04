@@ -13,10 +13,10 @@ export class AuthService {
     return this.afAuth.authState;
   }
 
-  getUser$(uid: firebase.User['uid']) {
+  getUser$(uid: firebase.User['uid']): Observable<User> {
     // this.afAuth.authState.subscribe(console.log);
-    return this.db.get<User>(`users/${uid}`);
-    // return (of({ name: 'dhfhf' })) as Observable<User>;
+    return this.db.get$<User>(`users/${uid}`);
+    // return of('egsd') as any;
   }
 
   constructor(
@@ -26,10 +26,9 @@ export class AuthService {
   ) {}
 
   observeAuthState() {
-    this.state$.subscribe(
-      ({ uid }: firebase.User, payload = uid ? { uid } : null) => {
-        this.authFacade.dispatchStateChange(payload);
-      }
-    );
+    this.state$.subscribe((user: firebase.User) => {
+      const payload = user ? { uid: user.uid } : null;
+      this.authFacade.dispatchStateChange(payload);
+    });
   }
 }
