@@ -5,7 +5,7 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { BlogDashboardComponent } from './blog-dashboard/blog-dashboard.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostWriteComponent } from './post-write/post-write.component';
-import { authorOnly } from '../common/claims-check';
+// import { authorOnly } from '../common/claims-check';
 
 const routes: Routes = [
   { path: '', component: BlogDashboardComponent },
