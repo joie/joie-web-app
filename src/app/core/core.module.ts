@@ -9,7 +9,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthStateModule } from '../auth-state/auth-state.module';
 import { UserControlComponent } from './user-control/user-control.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ProbableRoutePreloadingStrategy } from '../services/probable-route-preloading-strategy.service';
 
 @NgModule({
   declarations: [UserControlComponent, PageNotFoundComponent],
@@ -29,6 +28,5 @@ import { ProbableRoutePreloadingStrategy } from '../services/probable-route-prel
     AuthStateModule,
   ],
   exports: [UserControlComponent, PageNotFoundComponent],
-  providers: [ProbableRoutePreloadingStrategy],
 })
 export class CoreModule {}

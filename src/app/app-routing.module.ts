@@ -4,10 +4,7 @@ import { QuicklinkStrategy } from 'ngx-quicklink';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { claimCheck } from './common/claims-check';
 
-import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
-import { of } from 'rxjs';
-// import { ProbableRoutePreloadingStrategy } from './services/probable-route-preloading-strategy.service';
 
 const routes: Routes = [
   {
