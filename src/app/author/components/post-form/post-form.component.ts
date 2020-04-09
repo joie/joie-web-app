@@ -1,10 +1,9 @@
-import { Component, OnDestroy } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { DbService } from 'src/app/services/db.service';
+import { Component, OnDestroy, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Post } from '../../../posts/models/post';
 import { AuthFacade } from 'src/app/auth-state/+state/auth/facades/auth.facade';
 import { Observable, Subject, of, throwError } from 'rxjs';
-import { map, withLatestFrom, filter, switchMap } from 'rxjs/operators';
+import { map, withLatestFrom, filter, switchMap, tap } from 'rxjs/operators';
 import { User } from 'src/app/auth-state/+state/auth/models/auth.models';
 
 @Component({
@@ -13,7 +12,8 @@ import { User } from 'src/app/auth-state/+state/auth/models/auth.models';
   styleUrls: ['./post-form.component.scss'],
 })
 export class PostFormComponent implements OnDestroy {
-  submit$ = new Subject();
+  @Output() save = new EventEmitter<Post>();
+  submit$: Subject<FormGroup> = new Subject();
   // uid$: Observable<User['uid']>;
 
   postForm = this.fb.group({
@@ -32,11 +32,8 @@ export class PostFormComponent implements OnDestroy {
 
   // hasUnitNumber = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private db: DbService,
-    private authFacade: AuthFacade
-  ) {
+  constructor(private fb: FormBuilder, private authFacade: AuthFacade) {
+    // Todo move this to container (parent component)
     const uid$: Observable<Pick<User, 'uid'>> = this.authFacade.user$.pipe(
       filter(Boolean),
       map(({ uid }) => ({ uid }))
@@ -44,20 +41,18 @@ export class PostFormComponent implements OnDestroy {
 
     this.submit$
       .pipe(
+        tap(({ invalid }) => invalid && console.warn('form invalid')),
+        filter(({ valid }) => valid),
         switchMap(({ valid, value }) =>
           valid ? of(value) : throwError('invalid form')
         ),
         withLatestFrom(uid$),
         map(([value, uid]) => ({ ...value, ...uid }))
       )
-      .subscribe(this.save.bind(this));
+      .subscribe((value) => this.save.emit(value));
   }
 
   ngOnDestroy(): void {
     this.submit$.complete();
-  }
-
-  save(post: Post) {
-    this.db.set$<Post>('posts', post);
   }
 }

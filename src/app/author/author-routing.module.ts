@@ -7,15 +7,14 @@ import { PostUpdateComponent } from './containers/post-update/post-update.compon
 
 const routes: Routes = [
   {
-    path: 'dshboard',
+    path: '',
     component: AuthorDashboardComponent,
   },
   {
     path: 'draft',
     component: PostCreateComponent,
   },
-  { path: 'update:postId', component: PostUpdateComponent },
-  { path: '', redirectTo: 'dshboard', pathMatch: 'full' },
+  { path: 'update/:postId', component: PostUpdateComponent },
 ];
 
 @NgModule({

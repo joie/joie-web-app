@@ -3,7 +3,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { PostsRoutingModule } from './posts-routing.module';
 import { PostsDashboardComponent } from './containers/posts-dashboard/posts-dashboard.component';
-import { PostListComponent } from './containers/post-list/post-list.component';
+import { PostListComponent } from './components/post-list/post-list.component';
 import { PostDetailComponent } from './containers/post-detail/post-detail.component';
 
 @NgModule({
