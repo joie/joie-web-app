@@ -1,23 +1,23 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DbService } from 'src/app/services/db.service';
-import { Post } from '../models/post';
+import { Post } from '../../../posts/models/post';
 import { AuthFacade } from 'src/app/auth-state/+state/auth/facades/auth.facade';
 import { Observable, Subject, of, throwError } from 'rxjs';
 import { map, withLatestFrom, filter, switchMap } from 'rxjs/operators';
 import { User } from 'src/app/auth-state/+state/auth/models/auth.models';
 
 @Component({
-  templateUrl: './post-write.component.html',
-  styleUrls: ['./post-write.component.scss']
+  templateUrl: './post-form.component.html',
+  styleUrls: ['./post-form.component.scss'],
 })
-export class PostWriteComponent implements OnDestroy {
+export class PostFormComponent implements OnDestroy {
   submit$ = new Subject();
   // uid$: Observable<User['uid']>;
 
   postForm = this.fb.group({
     // company: null,
-    title: [null, Validators.required]
+    title: [null, Validators.required],
     // lastName: [null, Validators.required],
     // address: [null, Validators.required],
     // address2: null,c

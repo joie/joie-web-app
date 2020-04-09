@@ -1,11 +1,16 @@
 import { customClaims } from '@angular/fire/auth-guard';
 import { pipe } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 type Claim = 'admin' | 'author'; // etc'...
-export const claimCheckMemoizedFactorial = (claim: Claim) => () =>
+
+export const claimCheck = (claim: Claim, alternatePath = ['']) => () =>
   pipe(
     customClaims,
-    map(claims => claims[claim] === true)
+    tap(() => {
+      console.warn(`user must be ${claim}`);
+    }),
+    map((claims) => claims[claim] === true || alternatePath)
   );
-//! add memoization with ramda
+// TODO add memoization with ramda
+// !!NO! if user changes the memoization can return wrong result

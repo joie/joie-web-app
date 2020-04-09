@@ -9,6 +9,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthStateModule } from '../auth-state/auth-state.module';
 import { UserControlComponent } from './user-control/user-control.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ProbableRoutePreloadingStrategy } from '../services/probable-route-preloading-strategy.service';
 
 @NgModule({
   declarations: [UserControlComponent, PageNotFoundComponent],
@@ -19,14 +20,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
       {
         runtimeChecks: {
           strictStateImmutability: true,
-          strictActionImmutability: true
-        }
+          strictActionImmutability: true,
+        },
       }
     ),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    AuthStateModule
+    AuthStateModule,
   ],
-  exports: [UserControlComponent, PageNotFoundComponent]
+  exports: [UserControlComponent, PageNotFoundComponent],
+  providers: [ProbableRoutePreloadingStrategy],
 })
 export class CoreModule {}

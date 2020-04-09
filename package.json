@@ -34,6 +34,7 @@
     "@ngrx/store": "^9.0.0",
     "@ngrx/store-devtools": "^9.0.0",
     "firebase": "^7.8.0",
+    "ngx-quicklink": "^0.2.1",
     "ramda": "^0.27.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

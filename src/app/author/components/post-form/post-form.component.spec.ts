@@ -7,15 +7,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 
-import { PostWriteComponent } from './post-write.component';
+import { PostFormComponent } from './post-form.component';
 
 describe('PostWriteComponent', () => {
-  let component: PostWriteComponent;
-  let fixture: ComponentFixture<PostWriteComponent>;
+  let component: PostFormComponent;
+  let fixture: ComponentFixture<PostFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PostWriteComponent ],
+      declarations: [PostFormComponent],
       imports: [
         NoopAnimationsModule,
         ReactiveFormsModule,
@@ -24,12 +24,12 @@ describe('PostWriteComponent', () => {
         MatInputModule,
         MatRadioModule,
         MatSelectModule,
-      ]
+      ],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PostWriteComponent);
+    fixture = TestBed.createComponent(PostFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
