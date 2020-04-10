@@ -1,13 +1,12 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-@include mat-core();
+// @include mat-core();
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -24,9 +23,31 @@ $joie-theme: mat-light-theme($joie-primary, $joie-accent, $joie-warn);
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($joie-theme);
+// @include angular-material-theme($joie-theme);
+
+// Include the theme styles for only specified components.
+@include mat-core-theme($joie-theme);
+// @include mat-button-theme($joie-theme);
+// @include mat-form-field-theme($joie-theme);
+// @include mat-checkbox-theme($joie-theme);
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// html,
+// body {
+//   height: 100%;
+// }
+// body {
+//   margin: 0;
+//   font-family: Roboto, "Helvetica Neue", sans-serif;
+// }
+
+// @import "~@angular/material/theming";
+// @import "~@angular/material-experimental/mdc-checkbox";
+
+// $my-primary: mat-palette($mat-indigo);
+// $my-accent: mat-palette($mat-pink, A200, A100, A400);
+// $my-theme: mat-light-theme($my-primary, $my-accent);
+
+// @include mat-mdc-checkbox-theme($my-theme);
+// @include mat-mdc-checkbox-typography();

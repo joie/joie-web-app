@@ -29,7 +29,24 @@
               "src/manifest.webmanifest",
               "src/posts"
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              {
+                "input": "src/styles/styles-critical.scss",
+                "bundleName": "styles-critical",
+                "inject": true
+              },
+              {
+                "input": "src/styles/styles-app.scss",
+                "bundleName": "styles-app",
+                "inject": true
+              },
+              {
+                "input": "src/styles/styles-posts.scss",
+                "bundleName": "styles-posts",
+                "inject": false
+              }
+            ],
+            "extractCss": true,
             "scripts": []
           },
           "configurations": {
@@ -95,7 +112,23 @@
               "src/manifest.webmanifest",
               "src/posts"
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              {
+                "input": "src/styles/styles-critical.scss",
+                "bundleName": "styles-critical",
+                "inject": true
+              },
+              {
+                "input": "src/styles/styles-app.scss",
+                "bundleName": "styles-app",
+                "inject": true
+              },
+              {
+                "input": "src/styles/styles-posts.scss",
+                "bundleName": "styles-posts",
+                "inject": false
+              }
+            ],
             "scripts": []
           }
         },

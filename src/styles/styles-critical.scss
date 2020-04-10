@@ -1,0 +1,19 @@
+@import "~@angular/material/theming";
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$joie-typography: mat-typography-config(
+  $font-family: "Montserrat, monospace",
+  $headline: mat-typography-level(47px, 40px, 900),
+  $title: mat-typography-level(40px, 29px, 700),
+  $body-1: mat-typography-level(20px, 24px, 400),
+);
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("~/assets/fonts/Montserrat/Montserrat-VF.woff2")
+    format("woff-variations");
+  font-weight: 400 700 900;
+}
+
+@include mat-base-typography($joie-typography);
