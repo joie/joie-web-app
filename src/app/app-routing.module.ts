@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QuicklinkStrategy } from 'ngx-quicklink';
-import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
-import { claimCheck } from './common/claims-check';
+import { canActivate } from '@angular/fire/auth-guard';
+import {
+  authorOnly,
+  redirectUnauthorizedToLogin,
+} from './common/auth-guards-pipes';
 
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
@@ -16,8 +19,15 @@ const routes: Routes = [
     path: 'author',
     loadChildren: () =>
       import('./author/author.module').then((m) => m.AuthorModule),
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: claimCheck('author', ['']), preload: false },
+    data: { preload: false },
+    ...canActivate(redirectUnauthorizedToLogin),
+    ...canActivate(authorOnly),
+  },
+  {
+    path: 'account',
+    loadChildren: () =>
+      import('./account/account.module').then((m) => m.AccountModule),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
   { path: '', redirectTo: 'posts', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
