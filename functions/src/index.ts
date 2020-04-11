@@ -7,3 +7,4 @@ admin.initializeApp();
 //USER
 export { newUserSetup } from './user';
 export { newPostSetup } from './post';
+export * from './stripe';
