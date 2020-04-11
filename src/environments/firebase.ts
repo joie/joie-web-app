@@ -8,4 +8,4 @@ export const firebase = {
   appId: '1:999974863094:web:37ae6deb807f3a8d206cd7',
   measurementId: 'G-4L534VZ3CD',
 };
-// Stripe.setPublishableKey('pk_test_jUM77xVwh9ftqO9uDTia0v0Z00XwwgWxVN');
+// Stripe.setPublishableKey('pk_test_2iuUrsVhJB1IVAhu1KnRYSFA00elnKh57f');
