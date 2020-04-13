@@ -5,18 +5,18 @@ const preDefinedClaims = ["admin", "teacher", "author", "student"];
 const claims = preDefinedClaims.reduce(
   (acc, claim) => ({
     ...acc,
-    ...(argv[claim] && { [claim]: true })
+    ...(argv[claim] && { [claim]: true }),
   }),
   {}
 );
 
 const { uid } = argv;
 
-var serviceAccount = require("./jafafa.json");
+var serviceAccount = require("./service-account.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://joie-app.firebaseio.com"
+  databaseURL: "https://joie-app.firebaseio.com",
 });
 
 admin
@@ -26,7 +26,7 @@ admin
     console.log(`user ${uid} claims updated successfuly:`, claims);
     process.exit();
   })
-  .catch(error => {
+  .catch((error) => {
     console.log({ error });
     process.exit();
   });
