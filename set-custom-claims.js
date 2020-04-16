@@ -12,7 +12,7 @@ const claims = preDefinedClaims.reduce(
 
 const { uid } = argv;
 
-var serviceAccount = require("./service-account.json");
+var serviceAccount = require("./firebase-service-account.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

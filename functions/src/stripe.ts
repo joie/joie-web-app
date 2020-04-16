@@ -1,19 +1,14 @@
 'use strict';
 
 import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
-import { Stripe } from 'stripe';
-
-const stripeToken = functions.config().stripe.token;
-const stripe = new Stripe(stripeToken, { apiVersion: '2020-03-02' });
+import { stripe, db } from './config';
 
 // When a user is created, register them with Stripe
 export const createStripeCustomer = functions.auth
   .user()
   .onCreate(async (user) => {
     const customer = await stripe.customers.create({ email: user.email });
-    return admin
-      .firestore()
+    return db
       .collection('stripe_customers')
       .doc(user.uid)
       .set({ customer_id: customer.id });
@@ -23,8 +18,7 @@ export const createStripeCustomer = functions.auth
 export const cleanupStripeCustomer = functions.auth
   .user()
   .onDelete(async (user) => {
-    const snapshot = await admin
-      .firestore()
+    const snapshot = await db
       .collection('stripe_customers')
       .doc(user.uid)
       .get();
@@ -33,11 +27,7 @@ export const cleanupStripeCustomer = functions.auth
       return null;
     }
     await stripe.customers.del(customer.customer_id);
-    return admin
-      .firestore()
-      .collection('stripe_customers')
-      .doc(user.uid)
-      .delete();
+    return db.collection('stripe_customers').doc(user.uid).delete();
   });
 
 // // Add a payment source (card) for a user by writing a stripe payment source token to Cloud Firestore
@@ -51,8 +41,7 @@ export const cleanupStripeCustomer = functions.auth
 //     const token = source.token;
 
 //     try {
-//       const snapshot = await admin
-//         .firestore()
+//       const snapshot = await db
 //         .collection('stripe_customers')
 //         .doc(context.params.userId)
 //         .get();
@@ -65,8 +54,7 @@ export const cleanupStripeCustomer = functions.auth
 //       const response = await stripe.customers.createSource(customer, {
 //         source: token,
 //       });
-//       return admin
-//         .firestore()
+//       return db
 //         .collection('stripe_customers')
 //         .doc(context.params.userId)
 //         .collection('sources')
@@ -111,8 +99,7 @@ export const cleanupStripeCustomer = functions.auth
 //     const val = snap.data();
 //     try {
 //       // Look up the Stripe customer id written in createStripeCustomer
-//       const snapshot = await admin
-//         .firestore()
+//       const snapshot = await db
 //         .collection(`stripe_customers`)
 //         .doc(context.params.userId)
 //         .get();
@@ -156,8 +143,7 @@ export const cleanupStripeCustomer = functions.auth
 //   .user()
 //   .onCreate(async (user) => {
 //     const customer = await stripe.customers.create({ email: user.email });
-//     return admin
-//       .firestore()
+//     return db
 //       .collection('stripe_customers')
 //       .doc(user.uid)
 //       .set({ customer_id: customer.id });
@@ -174,8 +160,7 @@ export const cleanupStripeCustomer = functions.auth
 //     const token = source.token;
 
 //     try {
-//       const snapshot = await admin
-//         .firestore()
+//       const snapshot = await db
 //         .collection('stripe_customers')
 //         .doc(context.params.userId)
 //         .get();
@@ -188,8 +173,7 @@ export const cleanupStripeCustomer = functions.auth
 //       const response = await stripe.customers.createSource(customer, {
 //         source: token,
 //       });
-//       return admin
-//         .firestore()
+//       return db
 //         .collection('stripe_customers')
 //         .doc(context.params.userId)
 //         .collection('sources')
@@ -203,8 +187,7 @@ export const cleanupStripeCustomer = functions.auth
 
 // // When a user deletes their account, clean up after them
 // export const cleanupUser = functions.auth.user().onDelete(async (user) => {
-//   const snapshot = await admin
-//     .firestore()
+//   const snapshot = await db
 //     .collection('stripe_customers')
 //     .doc(user.uid)
 //     .get();
@@ -213,8 +196,7 @@ export const cleanupStripeCustomer = functions.auth
 //     return null;
 //   }
 //   await stripe.customers.del(customer.customer_id);
-//   return admin
-//     .firestore()
+//   return db
 //     .collection('stripe_customers')
 //     .doc(user.uid)
 //     .delete();

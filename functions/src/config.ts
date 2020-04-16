@@ -1,9 +1,16 @@
+// Initialize Firebase Admin
+import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-export const db = admin.firestore();
+admin.initializeApp();
 
-// The timestampsInSnapshots setting now defaults to true and you no
-// longer need to explicitly set it.In a future release, the setting
-// will be removed entirely and so it is recommended that you remove it
-// from your firestore.settings() call now.
-// const settings = { timestampsInSnapshots: true };
-// db.settings(settings);
+// Initialize Cloud Firestore Database
+export const db = admin.firestore();
+const settings = { timestampsInSnapshots: true };
+db.settings(settings);
+
+// ENV Variables
+export const stripeToken = functions.config().stripe.token;
+
+// Export Stripe
+import { Stripe } from 'stripe';
+export const stripe = new Stripe(stripeToken, { apiVersion: '2020-03-02' });
