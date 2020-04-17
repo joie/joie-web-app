@@ -57,7 +57,7 @@ service cloud.firestore {
 //     }
 
 		match /users/{uid} {
-      allow read, write: if request.auth.uid == uid;
+      allow read: if request.auth.uid == uid;
     }
 
 		match /posts/{post} {

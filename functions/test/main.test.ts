@@ -9,7 +9,7 @@ test('Firestore is initialized', () => {
   expect(db).toBeDefined();
 });
 
-test('Stripe token is initialized', () => {
+test('Stripe token is exist', () => {
   expect(stripeToken).toBeDefined();
 });
 

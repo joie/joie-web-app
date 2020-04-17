@@ -1,3 +1,3 @@
-export { newUserSetup } from './user';
-export { newPostSetup } from './post';
+export * from './user';
+export * from './post';
 export * from './stripe';

@@ -8,3 +8,11 @@ typings/
 node_modules/
 
 test/environment-config.ts
+
+# cloud functions
+lib
+etc
+.env
+.runtimeconfig.json
+firebase-debug.log
+firestore-debug.log

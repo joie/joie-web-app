@@ -2,6 +2,8 @@ import * as functions from 'firebase-functions';
 // import { sgMail, msg } from './email';
 import { db } from './config';
 
+const USER = 'users';
+
 // type Role = 'subscriber' | 'admin';
 // interface User {
 //   readonly uid: functions.auth.UserRecord['uid'];
@@ -15,7 +17,7 @@ import { db } from './config';
 export const newUserSetup = functions.auth
   .user()
   .onCreate(async (user, context) => {
-    const ref = db.collection('users').doc(user.uid);
+    const ref = db.collection(USER).doc(user.uid);
     const { uid, displayName, email, phoneNumber, photoURL } = user;
     const userPayload = {
       uid,
@@ -23,9 +25,9 @@ export const newUserSetup = functions.auth
       email,
       phoneNumber,
       photoURL,
-      joined: Date.now()
+      joined: Date.now(),
     };
-    await ref.set(userPayload);
+    await ref.set(userPayload, { merge: true });
 
     // const body = 'Welcome to Fireship.io!';
     // const subject = 'Welcome aboard!';
@@ -34,3 +36,8 @@ export const newUserSetup = functions.auth
 
     // return await sgMail.send(emailMsg);
   });
+
+// When a user deletes their account, clean up after them
+export const cleanupUser = functions.auth.user().onDelete(async (user) => {
+  return db.collection(USER).doc(user.uid).delete();
+});
