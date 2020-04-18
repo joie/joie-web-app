@@ -1,37 +1,82 @@
 'use strict';
 
 import * as functions from 'firebase-functions';
-import { stripe, db } from './config';
 
-const STRIPE_CUSTOMERS = 'stripe_customers';
+export const addPaymentSource = functions.https.onCall((data, context) => {
+  return { data, auth: context.auth };
+});
 
-// When a user is created, register them with Stripe
-export const createStripeCustomer = functions.auth
-  .user()
-  .onCreate(async ({ uid, email }) => {
-    const customer = await stripe.customers.create({
-      email,
-      metadata: { firebaseUID: uid },
-    });
-    return db
-      .collection(STRIPE_CUSTOMERS)
-      .doc(uid)
-      .set({ customer_id: customer.id });
-  });
+// import { assert, getUID, catchErrors } from './helpers';
+// import { stripe, db } from './config';
 
-// When a user deletes their account, clean up after them
-export const cleanupStripeCustomer = functions.auth
-  .user()
-  .onDelete(async ({ uid }) => {
-    const snapshot = await db.collection(STRIPE_CUSTOMERS).doc(uid).get();
-    const customer = snapshot.data();
-    if (customer === undefined) {
-      return null;
-    }
-    await stripe.customers.del(customer.customer_id);
-    return db.collection(STRIPE_CUSTOMERS).doc(uid).delete();
-  });
+// const STRIPE_CUSTOMERS = 'stripe_customers';
+// const USERS = 'users';
 
+// /**
+//  *  Use this function to read the user document from Firestore
+//  */
+// export const getUser = async (uid: string) => {
+//   return await db
+//     .collection(USERS)
+//     .doc(uid)
+//     .get()
+//     .then((doc) => doc.data());
+// };
+
+// /**
+//  *  Read the stripe customer ID from firestore, or create a new one if missing
+//  */
+// export const getOrCreateCustomer = async (uid: string) => {
+//   const user = await getUser(uid);
+
+//   if (!user) {
+//     await updateUser(uid, { uid });
+//     return createCustomer({ uid, email: null });
+//   }
+
+//   const customerId = user.stripeCustomerId;
+
+//   // If missing customerID, create it
+//   if (!customerId) {
+//     return createCustomer(user);
+//   } else {
+//     return stripe.customers.retrieve(customerId);
+//   }
+// };
+
+// export const stripeGetCustomer = functions.https.onCall(
+//   async (data, context) => {
+//     const uid = getUID(context);
+//     return catchErrors(getOrCreateCustomer(uid));
+//   }
+// );
+
+// // When a user is created, register them with Stripe
+// export const createStripeCustomer = async ({ uid, email }) => {
+//   const customer = await stripe.customers.create({
+//     email,
+//     metadata: { firebaseUID: uid },
+//   });
+//   return db
+//     .collection(STRIPE_CUSTOMERS)
+//     .doc(uid)
+//     .set({ customer_id: customer.id });
+// };
+
+// // When a user deletes their account, clean up after them
+// export const cleanupStripeCustomer = functions.auth
+//   .user()
+//   .onDelete(async ({ uid }) => {
+//     const snapshot = await db.collection(STRIPE_CUSTOMERS).doc(uid).get();
+//     const customer = snapshot.data();
+//     if (customer === undefined) {
+//       return null;
+//     }
+//     await stripe.customers.del(customer.customer_id);
+//     return db.collection(STRIPE_CUSTOMERS).doc(uid).delete();
+//   });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 // // Add a payment source (card) for a user by writing a stripe payment source token to Cloud Firestore
 // export const addPaymentSource = functions.firestore
 //   .document('/stripe_customers/{userId}/tokens/{pushId}')

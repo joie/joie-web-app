@@ -1,0 +1,762 @@
+[debug] [2020-04-18T16:49:15.122Z] ----------------------------------------------------------------------
+[debug] [2020-04-18T16:49:15.124Z] Command:       /Users/yoved/.nvm/versions/node/v12.16.1/bin/node /Users/yoved/.nvm/versions/node/v12.16.1/bin/firebase emulators:start --only functions
+[debug] [2020-04-18T16:49:15.124Z] CLI Version:   8.1.0
+[debug] [2020-04-18T16:49:15.124Z] Platform:      darwin
+[debug] [2020-04-18T16:49:15.124Z] Node Version:  v12.16.1
+[debug] [2020-04-18T16:49:15.130Z] Time:          Sat Apr 18 2020 19:49:15 GMT+0300 (Israel Daylight Time)
+[debug] [2020-04-18T16:49:15.130Z] ----------------------------------------------------------------------
+[debug] [2020-04-18T16:49:15.130Z] 
+[debug] [2020-04-18T16:49:15.139Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-18T16:49:15.140Z] > authorizing via signed-in user
+[info] i  emulators: Starting emulators: functions
+[debug] [2020-04-18T16:49:15.173Z] [hub] writing locator at /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/hub-joie-app.json
+[info] ✔  hub: emulator hub started at http://localhost:4400
+[warn] ⚠  Your requested "node" version "8" doesn't match your global version "12"
+[info] ✔  functions: functions emulator started at http://localhost:5001
+[info] i  functions: Watching "/Users/yoved/Repos/joie/functions" for Cloud Functions...
+[debug] [2020-04-18T16:49:15.209Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-18T16:49:15.209Z] [worker-pool] Adding worker with key ~diagnostic~, total=1 
+[debug] [2020-04-18T16:49:15.209Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-18T16:49:15.209Z] [worker-~diagnostic~-99164c87-d71d-4037-b7b0-5d54b0d5851b]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_99282.sock 
+[debug] [2020-04-18T16:49:15.210Z] [worker-~diagnostic~-99164c87-d71d-4037-b7b0-5d54b0d5851b]: BUSY 
+[debug] [2020-04-18T16:49:15.443Z] [runtime-status] [99282] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-18T16:49:15.444Z] [runtime-status] [99282] Disabled runtime features: undefined 
+[debug] [2020-04-18T16:49:15.446Z] [runtime-status] [99282] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T16:49:15.447Z] [runtime-status] [99282] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T16:49:15.449Z] [runtime-status] [99282] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-18T16:49:15.514Z] [runtime-status] [99282] Checked functions.config() {"config":{}} 
+[debug] [2020-04-18T16:49:15.514Z] [runtime-status] [99282] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T16:49:15.515Z] [runtime-status] [99282] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T16:49:15.516Z] [runtime-status] [99282] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T16:49:15.516Z] [runtime-status] [99282] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-18T16:49:15.520Z] [runtime-status] [99282] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-18T16:49:15.882Z] [runtime-status] [99282] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-18T16:49:15.933Z] Unsupported trigger: {"eventTrigger":{"resource":"projects/joie-app","eventType":"providers/firebase.auth/eventTypes/user.create","service":"firebaseauth.googleapis.com"},"name":"newUserSetup","entryPoint":"newUserSetup"} 
+[debug] [2020-04-18T16:49:15.933Z] Unsupported trigger: {"eventTrigger":{"resource":"projects/joie-app","eventType":"providers/firebase.auth/eventTypes/user.delete","service":"firebaseauth.googleapis.com"},"name":"cleanupUser","entryPoint":"cleanupUser"} 
+[debug] [2020-04-18T16:49:15.933Z] Unsupported trigger: {"eventTrigger":{"resource":"projects/joie-app","eventType":"providers/firebase.auth/eventTypes/user.create","service":"firebaseauth.googleapis.com"},"name":"createStripeCustomer","entryPoint":"createStripeCustomer"} 
+[debug] [2020-04-18T16:49:15.933Z] Unsupported trigger: {"eventTrigger":{"resource":"projects/joie-app","eventType":"providers/firebase.auth/eventTypes/user.delete","service":"firebaseauth.googleapis.com"},"name":"cleanupStripeCustomer","entryPoint":"cleanupStripeCustomer"} 
+[info] i  functions[newUserSetup]: function ignored because the auth emulator does not exist or is not running.
+[info] i  functions[cleanupUser]: function ignored because the auth emulator does not exist or is not running.
+[info] i  functions[newPostSetup]: function ignored because the firestore emulator does not exist or is not running.
+[info] i  functions[createStripeCustomer]: function ignored because the auth emulator does not exist or is not running.
+[info] i  functions[cleanupStripeCustomer]: function ignored because the auth emulator does not exist or is not running.
+[info] ✔  emulators: All emulators started, it is now safe to connect.
+[debug] [2020-04-18T16:49:15.934Z] [worker-~diagnostic~-99164c87-d71d-4037-b7b0-5d54b0d5851b]: IDLE 
+[debug] [2020-04-18T16:52:33.919Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T16:52:33.919Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T16:52:33.920Z] FirebaseError: No trigger with name my-fn-name 
+[debug] [2020-04-18T16:52:33.920Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T16:52:37.389Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T16:52:37.389Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T16:52:37.389Z] FirebaseError: No trigger with name my-fn-name 
+[debug] [2020-04-18T16:52:37.389Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T17:28:51.205Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T17:28:51.206Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T17:28:51.206Z] FirebaseError: No trigger with name my-fn-name 
+[debug] [2020-04-18T17:28:51.206Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:12:32.524Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:12:32.525Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:12:32.525Z] FirebaseError: No trigger with name my-fn-name 
+[debug] [2020-04-18T18:12:32.525Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:23:11.444Z] File /Users/yoved/Repos/joie/functions/src/stripe.ts changed, reloading triggers 
+[debug] [2020-04-18T18:23:12.449Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-18T18:23:12.450Z] [worker-~diagnostic~-99164c87-d71d-4037-b7b0-5d54b0d5851b]: FINISHING 
+[debug] [2020-04-18T18:23:12.465Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-18T18:23:12.466Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-18T18:23:12.466Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-18T18:23:12.466Z] [worker-~diagnostic~-361c3977-14de-4290-9de6-1770c448ae9d]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_99930.sock 
+[debug] [2020-04-18T18:23:12.466Z] [worker-~diagnostic~-361c3977-14de-4290-9de6-1770c448ae9d]: BUSY 
+[debug] [2020-04-18T18:23:12.468Z] [worker-~diagnostic~-99164c87-d71d-4037-b7b0-5d54b0d5851b]: exited 
+[debug] [2020-04-18T18:23:12.468Z] [worker-~diagnostic~-99164c87-d71d-4037-b7b0-5d54b0d5851b]: FINISHED 
+[debug] [2020-04-18T18:23:12.983Z] [runtime-status] [99930] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-18T18:23:12.985Z] [runtime-status] [99930] Disabled runtime features: undefined 
+[debug] [2020-04-18T18:23:12.988Z] [runtime-status] [99930] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T18:23:12.989Z] [runtime-status] [99930] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:23:12.991Z] [runtime-status] [99930] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-18T18:23:13.061Z] [runtime-status] [99930] Checked functions.config() {"config":{}} 
+[debug] [2020-04-18T18:23:13.062Z] [runtime-status] [99930] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:23:13.062Z] [runtime-status] [99930] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T18:23:13.063Z] [runtime-status] [99930] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:23:13.063Z] [runtime-status] [99930] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-18T18:23:13.067Z] [runtime-status] [99930] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-18T18:23:13.447Z] [runtime-status] [99930] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-18T18:23:13.504Z] [worker-~diagnostic~-361c3977-14de-4290-9de6-1770c448ae9d]: IDLE 
+[debug] [2020-04-18T18:23:24.165Z] File /Users/yoved/Repos/joie/functions/src/stripe.ts changed, reloading triggers 
+[debug] [2020-04-18T18:23:25.169Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-18T18:23:25.170Z] [worker-~diagnostic~-361c3977-14de-4290-9de6-1770c448ae9d]: FINISHING 
+[debug] [2020-04-18T18:23:25.170Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-18T18:23:25.174Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-18T18:23:25.174Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-18T18:23:25.175Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-18T18:23:25.175Z] [worker-~diagnostic~-33aef9cf-b5b5-44cb-a14b-e53d044ca58a]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_99943.sock 
+[debug] [2020-04-18T18:23:25.175Z] [worker-~diagnostic~-33aef9cf-b5b5-44cb-a14b-e53d044ca58a]: BUSY 
+[debug] [2020-04-18T18:23:25.176Z] [worker-~diagnostic~-361c3977-14de-4290-9de6-1770c448ae9d]: exited 
+[debug] [2020-04-18T18:23:25.176Z] [worker-~diagnostic~-361c3977-14de-4290-9de6-1770c448ae9d]: FINISHED 
+[debug] [2020-04-18T18:23:25.386Z] [runtime-status] [99943] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-18T18:23:25.387Z] [runtime-status] [99943] Disabled runtime features: undefined 
+[debug] [2020-04-18T18:23:25.389Z] [runtime-status] [99943] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T18:23:25.390Z] [runtime-status] [99943] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:23:25.392Z] [runtime-status] [99943] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-18T18:23:25.417Z] [runtime-status] [99943] Checked functions.config() {"config":{}} 
+[debug] [2020-04-18T18:23:25.418Z] [runtime-status] [99943] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:23:25.419Z] [runtime-status] [99943] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T18:23:25.419Z] [runtime-status] [99943] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:23:25.419Z] [runtime-status] [99943] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-18T18:23:25.421Z] [runtime-status] [99943] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-18T18:23:25.566Z] [runtime-status] [99943] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-18T18:23:25.586Z] [worker-~diagnostic~-33aef9cf-b5b5-44cb-a14b-e53d044ca58a]: IDLE 
+[debug] [2020-04-18T18:23:43.459Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:23:43.459Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:23:43.460Z] FirebaseError: No trigger with name my-fn-name 
+[debug] [2020-04-18T18:23:43.460Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:24:11.411Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:24:11.412Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:24:11.412Z] FirebaseError: No trigger with name testFunction 
+[debug] [2020-04-18T18:24:11.412Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:25:23.924Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:25:23.924Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:25:23.924Z] FirebaseError: No trigger with name testFunction 
+[debug] [2020-04-18T18:25:23.924Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:25:31.510Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:25:31.510Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:25:31.510Z] FirebaseError: No trigger with name testFunction 
+[debug] [2020-04-18T18:25:31.524Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:25:56.669Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:25:56.670Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:25:56.670Z] FirebaseError: No trigger with name testCall 
+[debug] [2020-04-18T18:25:56.670Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:26:14.645Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:26:14.645Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:26:14.645Z] FirebaseError: No trigger with name testCall 
+[debug] [2020-04-18T18:26:14.645Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:26:26.622Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:26:26.623Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:26:26.623Z] FirebaseError: No trigger with name testCall 
+[debug] [2020-04-18T18:26:26.623Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:27:17.843Z] File /Users/yoved/Repos/joie/functions/src/stripe.ts changed, reloading triggers 
+[debug] [2020-04-18T18:27:18.845Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-18T18:27:18.845Z] [worker-~diagnostic~-33aef9cf-b5b5-44cb-a14b-e53d044ca58a]: FINISHING 
+[debug] [2020-04-18T18:27:18.845Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-18T18:27:18.852Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-18T18:27:18.852Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-18T18:27:18.852Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-18T18:27:18.853Z] [worker-~diagnostic~-fc69965b-8c99-4125-a181-ee3224ce1e42]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_217.sock 
+[debug] [2020-04-18T18:27:18.853Z] [worker-~diagnostic~-fc69965b-8c99-4125-a181-ee3224ce1e42]: BUSY 
+[debug] [2020-04-18T18:27:18.854Z] [worker-~diagnostic~-33aef9cf-b5b5-44cb-a14b-e53d044ca58a]: exited 
+[debug] [2020-04-18T18:27:18.854Z] [worker-~diagnostic~-33aef9cf-b5b5-44cb-a14b-e53d044ca58a]: FINISHED 
+[debug] [2020-04-18T18:27:19.236Z] [runtime-status] [217] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-18T18:27:19.238Z] [runtime-status] [217] Disabled runtime features: undefined 
+[debug] [2020-04-18T18:27:19.240Z] [runtime-status] [217] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T18:27:19.241Z] [runtime-status] [217] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:27:19.243Z] [runtime-status] [217] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-18T18:27:19.287Z] [runtime-status] [217] Checked functions.config() {"config":{}} 
+[debug] [2020-04-18T18:27:19.288Z] [runtime-status] [217] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:27:19.288Z] [runtime-status] [217] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T18:27:19.289Z] [runtime-status] [217] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:27:19.289Z] [runtime-status] [217] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-18T18:27:19.292Z] [runtime-status] [217] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-18T18:27:19.631Z] [runtime-status] [217] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-18T18:27:19.675Z] [worker-~diagnostic~-fc69965b-8c99-4125-a181-ee3224ce1e42]: IDLE 
+[debug] [2020-04-18T18:30:49.645Z] File /Users/yoved/Repos/joie/functions/src/stripe.ts changed, reloading triggers 
+[debug] [2020-04-18T18:30:50.645Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-18T18:30:50.645Z] [worker-~diagnostic~-fc69965b-8c99-4125-a181-ee3224ce1e42]: FINISHING 
+[debug] [2020-04-18T18:30:50.645Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-18T18:30:50.654Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-18T18:30:50.654Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-18T18:30:50.654Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-18T18:30:50.655Z] [worker-~diagnostic~-9374be53-ec70-48b3-8eb2-512edd339a92]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_284.sock 
+[debug] [2020-04-18T18:30:50.655Z] [worker-~diagnostic~-9374be53-ec70-48b3-8eb2-512edd339a92]: BUSY 
+[debug] [2020-04-18T18:30:50.656Z] [worker-~diagnostic~-fc69965b-8c99-4125-a181-ee3224ce1e42]: exited 
+[debug] [2020-04-18T18:30:50.656Z] [worker-~diagnostic~-fc69965b-8c99-4125-a181-ee3224ce1e42]: FINISHED 
+[debug] [2020-04-18T18:30:51.033Z] [runtime-status] [284] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-18T18:30:51.035Z] [runtime-status] [284] Disabled runtime features: undefined 
+[debug] [2020-04-18T18:30:51.037Z] [runtime-status] [284] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T18:30:51.038Z] [runtime-status] [284] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:30:51.039Z] [runtime-status] [284] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-18T18:30:51.079Z] [runtime-status] [284] Checked functions.config() {"config":{}} 
+[debug] [2020-04-18T18:30:51.080Z] [runtime-status] [284] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:30:51.081Z] [runtime-status] [284] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T18:30:51.081Z] [runtime-status] [284] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:30:51.081Z] [runtime-status] [284] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-18T18:30:51.084Z] [runtime-status] [284] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-18T18:30:51.371Z] [runtime-status] [284] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-18T18:30:51.416Z] [worker-~diagnostic~-9374be53-ec70-48b3-8eb2-512edd339a92]: IDLE 
+[debug] [2020-04-18T18:31:00.119Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:31:00.120Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:31:00.120Z] FirebaseError: No trigger with name testCall 
+[debug] [2020-04-18T18:31:00.120Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:31:25.924Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-18T18:31:25.925Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-18T18:31:25.934Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-18T18:31:25.935Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-18T18:31:25.935Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-18T18:31:25.935Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-18T18:31:25.935Z] File /Users/yoved/Repos/joie/functions/lib/stripe.js.map changed, reloading triggers 
+[debug] [2020-04-18T18:31:25.936Z] File /Users/yoved/Repos/joie/functions/lib/stripe.js changed, reloading triggers 
+[debug] [2020-04-18T18:31:25.936Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-18T18:31:25.936Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-18T18:31:26.937Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-18T18:31:26.937Z] [worker-~diagnostic~-9374be53-ec70-48b3-8eb2-512edd339a92]: FINISHING 
+[debug] [2020-04-18T18:31:26.939Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-18T18:31:26.943Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-18T18:31:26.943Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-18T18:31:26.944Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-18T18:31:26.944Z] [worker-~diagnostic~-a0a15341-2660-4c54-b826-b2fe5b85c82e]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_559.sock 
+[debug] [2020-04-18T18:31:26.944Z] [worker-~diagnostic~-a0a15341-2660-4c54-b826-b2fe5b85c82e]: BUSY 
+[debug] [2020-04-18T18:31:26.945Z] [worker-~diagnostic~-9374be53-ec70-48b3-8eb2-512edd339a92]: exited 
+[debug] [2020-04-18T18:31:26.945Z] [worker-~diagnostic~-9374be53-ec70-48b3-8eb2-512edd339a92]: FINISHED 
+[debug] [2020-04-18T18:31:27.343Z] [runtime-status] [559] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-18T18:31:27.344Z] [runtime-status] [559] Disabled runtime features: undefined 
+[debug] [2020-04-18T18:31:27.347Z] [runtime-status] [559] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T18:31:27.347Z] [runtime-status] [559] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:31:27.349Z] [runtime-status] [559] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-18T18:31:27.387Z] [runtime-status] [559] Checked functions.config() {"config":{}} 
+[debug] [2020-04-18T18:31:27.388Z] [runtime-status] [559] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:31:27.388Z] [runtime-status] [559] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T18:31:27.389Z] [runtime-status] [559] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:31:27.389Z] [runtime-status] [559] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-18T18:31:27.390Z] [runtime-status] [559] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-18T18:31:27.652Z] [runtime-status] [559] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[info] ✔  functions[testCall]: http function initialized (http://localhost:5001/joie-app/us-central1/testCall).
+[debug] [2020-04-18T18:31:27.702Z] [worker-~diagnostic~-a0a15341-2660-4c54-b826-b2fe5b85c82e]: IDLE 
+[debug] [2020-04-18T18:31:40.960Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-18T18:31:40.961Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-18T18:31:40.967Z] File /Users/yoved/Repos/joie/functions/lib/helpers.js.map changed, reloading triggers 
+[debug] [2020-04-18T18:31:40.967Z] File /Users/yoved/Repos/joie/functions/lib/helpers.js changed, reloading triggers 
+[debug] [2020-04-18T18:31:40.968Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-18T18:31:40.968Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-18T18:31:40.968Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-18T18:31:40.968Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-18T18:31:40.968Z] File /Users/yoved/Repos/joie/functions/lib/stripe.js.map changed, reloading triggers 
+[debug] [2020-04-18T18:31:40.968Z] File /Users/yoved/Repos/joie/functions/lib/stripe.js changed, reloading triggers 
+[debug] [2020-04-18T18:31:40.968Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-18T18:31:40.969Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-18T18:31:41.969Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-18T18:31:41.969Z] [worker-~diagnostic~-a0a15341-2660-4c54-b826-b2fe5b85c82e]: FINISHING 
+[debug] [2020-04-18T18:31:41.969Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-18T18:31:41.974Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-18T18:31:41.974Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-18T18:31:41.974Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-18T18:31:41.975Z] [worker-~diagnostic~-5df6686c-1e12-483d-be5b-187052f352c2]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_583.sock 
+[debug] [2020-04-18T18:31:41.975Z] [worker-~diagnostic~-5df6686c-1e12-483d-be5b-187052f352c2]: BUSY 
+[debug] [2020-04-18T18:31:41.976Z] [worker-~diagnostic~-a0a15341-2660-4c54-b826-b2fe5b85c82e]: exited 
+[debug] [2020-04-18T18:31:41.976Z] [worker-~diagnostic~-a0a15341-2660-4c54-b826-b2fe5b85c82e]: FINISHED 
+[debug] [2020-04-18T18:31:42.226Z] [runtime-status] [583] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-18T18:31:42.227Z] [runtime-status] [583] Disabled runtime features: undefined 
+[debug] [2020-04-18T18:31:42.229Z] [runtime-status] [583] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T18:31:42.230Z] [runtime-status] [583] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:31:42.232Z] [runtime-status] [583] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-18T18:31:42.259Z] [runtime-status] [583] Checked functions.config() {"config":{}} 
+[debug] [2020-04-18T18:31:42.260Z] [runtime-status] [583] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:31:42.260Z] [runtime-status] [583] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T18:31:42.261Z] [runtime-status] [583] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:31:42.261Z] [runtime-status] [583] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-18T18:31:42.263Z] [runtime-status] [583] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-18T18:31:42.410Z] [runtime-status] [583] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-18T18:31:42.438Z] [worker-~diagnostic~-5df6686c-1e12-483d-be5b-187052f352c2]: IDLE 
+[debug] [2020-04-18T18:31:44.782Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:31:44.782Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:31:44.783Z] Accepted request OPTIONS /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T18:31:44.790Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-18T18:31:44.798Z] [worker-pool] addWorker(testCall) 
+[debug] [2020-04-18T18:31:44.798Z] [worker-pool] Adding worker with key testCall, total=1 
+[debug] [2020-04-18T18:31:44.798Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T18:31:44.798Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:31:44.798Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T18:31:45.115Z] [runtime-status] [592] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-18T18:31:45.116Z] [runtime-status] [592] Disabled runtime features: undefined 
+[debug] [2020-04-18T18:31:45.118Z] [runtime-status] [592] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T18:31:45.119Z] [runtime-status] [592] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:31:45.120Z] [runtime-status] [592] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-18T18:31:45.146Z] [runtime-status] [592] Checked functions.config() {"config":{}} 
+[debug] [2020-04-18T18:31:45.147Z] [runtime-status] [592] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:31:45.147Z] [runtime-status] [592] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T18:31:45.148Z] [runtime-status] [592] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T18:31:45.148Z] [runtime-status] [592] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-18T18:31:45.150Z] [runtime-status] [592] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-18T18:31:45.307Z] [runtime-status] [592] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-18T18:31:45.326Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T18:31:45.332Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T18:31:45.332Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T18:31:45.335Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:31:45.356Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T18:31:45.370Z] [runtime-status] [592] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-18T18:31:45.375Z] [runtime-status] [592] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T18:31:45.376Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T18:31:45.376Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:31:45.377Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:31:45.377Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:31:45.377Z] Accepted request POST /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T18:31:45.378Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MTMxNDA3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODcyMzQyMjAsImV4cCI6MTU4NzIzNzgyMCwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.haPD8HpD-hRON03XQX9MAKWM6um2cGX9MFtdk1hQAxizOhUa60p73QIhPCvqUoS3wGq8GVBRU2JYJKBUyQmF0o1ChZFQtMQLoAysjsfwYGvuo0mDuIfnrDH8qBHJGc2lvAQ8M8AEdU4-rwGbG4W9ncFQtujUzv0Kbtxkx-25E_VE9riGiUdf6pGRzs3UO5m0P-pqV_LUvpaxC87pYdiFvgWAgXgtGVeBXpsho9ymsOxKRB7aH9EH3m-Um-rMslBkKC8nXLzKkd0tfiHR4dgxJCD93LyZdJZLn3IO-_1p89g0J2tZBZWn_98kUDGXClicgBTnvBvqRX3Wa1WvjIJYlg
+[debug] [2020-04-18T18:31:45.380Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T18:31:45.380Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:31:45.380Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T18:31:45.386Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T18:31:45.386Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T18:31:45.386Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T18:31:45.386Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:31:45.387Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T18:31:45.405Z] [runtime-status] [592] Ephemeral server handling POST request 
+[debug] [2020-04-18T18:31:45.406Z] [runtime-status] [592] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587131407,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587234220,\"exp\":1587237820,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-18T18:31:45.409Z] [runtime-status] [592] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T18:31:45.409Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T18:31:45.409Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:56:00.934Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:56:00.934Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:56:00.934Z] Accepted request OPTIONS /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T18:56:00.934Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T18:56:00.934Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:56:00.934Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T18:56:00.944Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T18:56:00.946Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T18:56:00.946Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T18:56:00.948Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:56:00.951Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T18:56:00.955Z] [runtime-status] [592] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-18T18:56:00.956Z] [runtime-status] [592] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T18:56:00.956Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T18:56:00.957Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:56:00.958Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:56:00.958Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:56:00.959Z] Accepted request POST /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T18:56:00.959Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MTMxNDA3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODcyMzQyMjAsImV4cCI6MTU4NzIzNzgyMCwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.haPD8HpD-hRON03XQX9MAKWM6um2cGX9MFtdk1hQAxizOhUa60p73QIhPCvqUoS3wGq8GVBRU2JYJKBUyQmF0o1ChZFQtMQLoAysjsfwYGvuo0mDuIfnrDH8qBHJGc2lvAQ8M8AEdU4-rwGbG4W9ncFQtujUzv0Kbtxkx-25E_VE9riGiUdf6pGRzs3UO5m0P-pqV_LUvpaxC87pYdiFvgWAgXgtGVeBXpsho9ymsOxKRB7aH9EH3m-Um-rMslBkKC8nXLzKkd0tfiHR4dgxJCD93LyZdJZLn3IO-_1p89g0J2tZBZWn_98kUDGXClicgBTnvBvqRX3Wa1WvjIJYlg
+[debug] [2020-04-18T18:56:00.959Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T18:56:00.960Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:56:00.960Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T18:56:00.967Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T18:56:00.968Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T18:56:00.968Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T18:56:00.968Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:56:00.980Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T18:56:00.983Z] [runtime-status] [592] Ephemeral server handling POST request 
+[debug] [2020-04-18T18:56:00.983Z] [runtime-status] [592] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587131407,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587234220,\"exp\":1587237820,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-18T18:56:00.984Z] [runtime-status] [592] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T18:56:00.985Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T18:56:00.985Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:56:18.260Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:56:18.260Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:56:18.260Z] Accepted request OPTIONS /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T18:56:18.260Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T18:56:18.260Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:56:18.260Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T18:56:18.261Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T18:56:18.261Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T18:56:18.261Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T18:56:18.262Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:56:18.265Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T18:56:18.268Z] [runtime-status] [592] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-18T18:56:18.269Z] [runtime-status] [592] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T18:56:18.270Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T18:56:18.270Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:56:18.274Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:56:18.274Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:56:18.274Z] Accepted request POST /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T18:56:18.274Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MTMxNDA3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODcyMzQyMjAsImV4cCI6MTU4NzIzNzgyMCwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.haPD8HpD-hRON03XQX9MAKWM6um2cGX9MFtdk1hQAxizOhUa60p73QIhPCvqUoS3wGq8GVBRU2JYJKBUyQmF0o1ChZFQtMQLoAysjsfwYGvuo0mDuIfnrDH8qBHJGc2lvAQ8M8AEdU4-rwGbG4W9ncFQtujUzv0Kbtxkx-25E_VE9riGiUdf6pGRzs3UO5m0P-pqV_LUvpaxC87pYdiFvgWAgXgtGVeBXpsho9ymsOxKRB7aH9EH3m-Um-rMslBkKC8nXLzKkd0tfiHR4dgxJCD93LyZdJZLn3IO-_1p89g0J2tZBZWn_98kUDGXClicgBTnvBvqRX3Wa1WvjIJYlg
+[debug] [2020-04-18T18:56:18.275Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T18:56:18.275Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:56:18.275Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T18:56:18.281Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T18:56:18.281Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T18:56:18.281Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T18:56:18.281Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:56:18.282Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T18:56:18.286Z] [runtime-status] [592] Ephemeral server handling POST request 
+[debug] [2020-04-18T18:56:18.286Z] [runtime-status] [592] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587131407,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587234220,\"exp\":1587237820,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-18T18:56:18.289Z] [runtime-status] [592] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T18:56:18.289Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T18:56:18.289Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:56:26.621Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:56:26.621Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:56:26.621Z] Accepted request OPTIONS /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T18:56:26.621Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T18:56:26.621Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:56:26.621Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T18:56:26.622Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T18:56:26.622Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T18:56:26.622Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T18:56:26.622Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:56:26.623Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T18:56:26.627Z] [runtime-status] [592] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-18T18:56:26.628Z] [runtime-status] [592] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T18:56:26.634Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T18:56:26.634Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T18:56:26.635Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T18:56:26.635Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T18:56:26.635Z] Accepted request POST /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T18:56:26.635Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MTMxNDA3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODcyMzQyMjAsImV4cCI6MTU4NzIzNzgyMCwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.haPD8HpD-hRON03XQX9MAKWM6um2cGX9MFtdk1hQAxizOhUa60p73QIhPCvqUoS3wGq8GVBRU2JYJKBUyQmF0o1ChZFQtMQLoAysjsfwYGvuo0mDuIfnrDH8qBHJGc2lvAQ8M8AEdU4-rwGbG4W9ncFQtujUzv0Kbtxkx-25E_VE9riGiUdf6pGRzs3UO5m0P-pqV_LUvpaxC87pYdiFvgWAgXgtGVeBXpsho9ymsOxKRB7aH9EH3m-Um-rMslBkKC8nXLzKkd0tfiHR4dgxJCD93LyZdJZLn3IO-_1p89g0J2tZBZWn_98kUDGXClicgBTnvBvqRX3Wa1WvjIJYlg
+[debug] [2020-04-18T18:56:26.635Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T18:56:26.635Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:56:26.636Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T18:56:26.640Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T18:56:26.640Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T18:56:26.640Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T18:56:26.641Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T18:56:26.641Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T18:56:26.644Z] [runtime-status] [592] Ephemeral server handling POST request 
+[debug] [2020-04-18T18:56:26.644Z] [runtime-status] [592] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587131407,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587234220,\"exp\":1587237820,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-18T18:56:26.645Z] [runtime-status] [592] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T18:56:26.646Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T18:56:26.646Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T19:24:19.949Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T19:24:19.949Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T19:24:19.949Z] Accepted request OPTIONS /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T19:24:19.949Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T19:24:19.950Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T19:24:19.950Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T19:24:19.950Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T19:24:19.950Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T19:24:19.950Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T19:24:19.969Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T19:24:19.972Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T19:24:19.973Z] [runtime-status] [592] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-18T19:24:19.974Z] [runtime-status] [592] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T19:24:19.975Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T19:24:19.975Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T19:24:19.977Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T19:24:19.977Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T19:24:19.977Z] Accepted request POST /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T19:24:19.977Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MTMxNDA3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODcyMzc4MzAsImV4cCI6MTU4NzI0MTQzMCwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.l9KIp6-AeMMCeuwxH-sNCJXTUXo67M5dJleksXaOwo4jTJZchYRVRZjv198VlnZI7O27gDNGjOpavk2Q87xHLGtEFKr13KUCIfCKJMMKazGjL0eVblf9ufmYJnFRvjcA8vgNL5jqznS6rq-BBYO4krY8ipvVg_mxjUZRU2-YZ9Krk_4jACpsRFiTaYVPs-AhuS845Uo-uEUlL48WVGZdi2mK3F_gfYwbUa6VRr0bP91enHC8_LQlCJBVPLsO2jneb3PpEh6-nBKXWlw0opSMWfsb2FKZGUGrb_PpmLEQX3ml-2cMvUUvfl076UnAVbqkOTKXu6E2yABaX41x2-ifZg
+[debug] [2020-04-18T19:24:19.977Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T19:24:19.977Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T19:24:19.978Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T19:24:19.986Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T19:24:19.986Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T19:24:19.987Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T19:24:19.987Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T19:24:19.988Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T19:24:19.991Z] [runtime-status] [592] Ephemeral server handling POST request 
+[debug] [2020-04-18T19:24:19.991Z] [runtime-status] [592] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587131407,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587237830,\"exp\":1587241430,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-18T19:24:19.993Z] [runtime-status] [592] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T19:24:19.994Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T19:24:19.994Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T20:12:58.748Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T20:12:58.751Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T20:12:58.753Z] Accepted request OPTIONS /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T20:12:58.754Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T20:12:58.756Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T20:12:58.756Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T20:12:58.798Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T20:12:58.799Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T20:12:58.799Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T20:12:58.806Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T20:12:58.813Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T20:12:58.818Z] [runtime-status] [592] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-18T20:12:58.819Z] [runtime-status] [592] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T20:12:58.820Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T20:12:58.820Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T20:12:58.821Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T20:12:58.822Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T20:12:58.822Z] Accepted request POST /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T20:12:58.822Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MTMxNDA3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODcyMzc4MzAsImV4cCI6MTU4NzI0MTQzMCwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.l9KIp6-AeMMCeuwxH-sNCJXTUXo67M5dJleksXaOwo4jTJZchYRVRZjv198VlnZI7O27gDNGjOpavk2Q87xHLGtEFKr13KUCIfCKJMMKazGjL0eVblf9ufmYJnFRvjcA8vgNL5jqznS6rq-BBYO4krY8ipvVg_mxjUZRU2-YZ9Krk_4jACpsRFiTaYVPs-AhuS845Uo-uEUlL48WVGZdi2mK3F_gfYwbUa6VRr0bP91enHC8_LQlCJBVPLsO2jneb3PpEh6-nBKXWlw0opSMWfsb2FKZGUGrb_PpmLEQX3ml-2cMvUUvfl076UnAVbqkOTKXu6E2yABaX41x2-ifZg
+[debug] [2020-04-18T20:12:58.823Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T20:12:58.823Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T20:12:58.823Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T20:12:58.831Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T20:12:58.831Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T20:12:58.831Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T20:12:58.831Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T20:12:58.833Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T20:12:58.836Z] [runtime-status] [592] Ephemeral server handling POST request 
+[debug] [2020-04-18T20:12:58.837Z] [runtime-status] [592] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587131407,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587237830,\"exp\":1587241430,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-18T20:12:58.838Z] [runtime-status] [592] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T20:12:58.839Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T20:12:58.839Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T20:25:38.223Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T20:25:38.223Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T20:25:38.223Z] Accepted request OPTIONS /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T20:25:38.223Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T20:25:38.223Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T20:25:38.223Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T20:25:38.224Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T20:25:38.225Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T20:25:38.225Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T20:25:38.225Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T20:25:38.227Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T20:25:38.230Z] [runtime-status] [592] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-18T20:25:38.232Z] [runtime-status] [592] Ephemeral server survived. 
+[debug] [2020-04-18T20:25:38.235Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-04-18T20:25:38.235Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-04-18T20:25:38.235Z] Accepted request POST /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T20:25:38.235Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MTMxNDA3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODcyNDE0MjUsImV4cCI6MTU4NzI0NTAyNSwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.O5sMVA1eiCyTSqhTqUOV0yic7tJhDKaW2fBLGKfxXtz50tOy8hyw558QG5xuW0i5zOC5OI95EOf4dkKyddOrz-728v4FSK5k8KKqlukSIRPnafDjzbRWEZ3ZINbu_cn7km8xMRa4IDLtM4B-RvsanUFP55eqLZ342uDKgqtpqxixrRmf3yjrl75TqUPyjZU_w6HF_X2-AjUZ1ZyPh2ewc49FFPm0K4YQfN1ajJ3Ws8Xiv3sG58QErSjZVYGwUKs8ehvSIzcepomxjc5-C9Ktx1BuMlTKPKZtFkU-VYLOc5cDqK9mXbIrTRe11Uwvu90b_kZXmiLv-jSU-sCN1mjCgA
+[debug] [2020-04-18T20:25:38.255Z] [worker-pool] addWorker(testCall) 
+[debug] [2020-04-18T20:25:38.256Z] [worker-pool] Adding worker with key testCall, total=2 
+[debug] [2020-04-18T20:25:38.256Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T20:25:38.257Z] [worker-testCall-7c2a2792-bf7c-496c-b6b6-a83f67d9ac86]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2169.sock 
+[debug] [2020-04-18T20:25:38.257Z] [worker-testCall-7c2a2792-bf7c-496c-b6b6-a83f67d9ac86]: BUSY 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T20:25:38.257Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T20:25:38.257Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T20:25:38.783Z] [runtime-status] [2169] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-18T20:25:38.783Z] [runtime-status] [2169] Disabled runtime features: undefined 
+[debug] [2020-04-18T20:25:38.784Z] [runtime-status] [2169] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T20:25:38.785Z] [runtime-status] [2169] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:25:38.788Z] [runtime-status] [2169] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-18T20:25:38.833Z] [runtime-status] [2169] Checked functions.config() {"config":{}} 
+[debug] [2020-04-18T20:25:38.834Z] [runtime-status] [2169] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:25:38.835Z] [runtime-status] [2169] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T20:25:38.835Z] [runtime-status] [2169] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:25:38.836Z] [runtime-status] [2169] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-18T20:25:38.845Z] [runtime-status] [2169] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-18T20:25:39.192Z] [runtime-status] [2169] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-18T20:25:39.262Z] [runtime-status] [2169] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T20:25:39.262Z] [runtime-status] [2169] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T20:25:39.262Z] [runtime-status] [2169] Running testCall in mode HTTPS 
+[debug] [2020-04-18T20:25:39.265Z] [runtime-status] [2169] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2169.sock 
+[debug] [2020-04-18T20:25:39.267Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T20:25:39.300Z] [runtime-status] [2169] Ephemeral server handling POST request 
+[debug] [2020-04-18T20:25:39.303Z] [runtime-status] [2169] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587131407,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587241425,\"exp\":1587245025,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-18T20:25:39.306Z] [runtime-status] [2169] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T20:25:39.308Z] [worker-testCall-7c2a2792-bf7c-496c-b6b6-a83f67d9ac86]: IDLE 
+[debug] [2020-04-18T20:25:39.308Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T20:26:49.820Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T20:26:49.820Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T20:26:49.820Z] Accepted request OPTIONS /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T20:26:49.820Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T20:26:49.820Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T20:26:49.820Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T20:26:49.821Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T20:26:49.851Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T20:26:49.851Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T20:26:49.852Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T20:26:49.858Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T20:26:49.860Z] [runtime-status] [592] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-18T20:26:49.860Z] [runtime-status] [592] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T20:26:49.861Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T20:26:49.861Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T20:26:49.863Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T20:26:49.863Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T20:26:49.863Z] Accepted request POST /joie-app/us-central1/testCall --> testCall
+[debug] [2020-04-18T20:26:49.863Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MTMxNDA3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODcyNDE0MjUsImV4cCI6MTU4NzI0NTAyNSwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.O5sMVA1eiCyTSqhTqUOV0yic7tJhDKaW2fBLGKfxXtz50tOy8hyw558QG5xuW0i5zOC5OI95EOf4dkKyddOrz-728v4FSK5k8KKqlukSIRPnafDjzbRWEZ3ZINbu_cn7km8xMRa4IDLtM4B-RvsanUFP55eqLZ342uDKgqtpqxixrRmf3yjrl75TqUPyjZU_w6HF_X2-AjUZ1ZyPh2ewc49FFPm0K4YQfN1ajJ3Ws8Xiv3sG58QErSjZVYGwUKs8ehvSIzcepomxjc5-C9Ktx1BuMlTKPKZtFkU-VYLOc5cDqK9mXbIrTRe11Uwvu90b_kZXmiLv-jSU-sCN1mjCgA
+[debug] [2020-04-18T20:26:49.864Z] [worker-pool] submitWork(triggerId=testCall) 
+[debug] [2020-04-18T20:26:49.864Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T20:26:49.864Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: BUSY 
+[debug] [2020-04-18T20:26:49.873Z] [runtime-status] [592] Trigger "testCall" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "testCall"
+[debug] [2020-04-18T20:26:49.874Z] [runtime-status] [592] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"testCall","entryPoint":"testCall"} 
+[debug] [2020-04-18T20:26:49.874Z] [runtime-status] [592] Running testCall in mode HTTPS 
+[debug] [2020-04-18T20:26:49.874Z] [runtime-status] [592] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_592.sock 
+[debug] [2020-04-18T20:26:49.874Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T20:26:49.880Z] [runtime-status] [592] Ephemeral server handling POST request 
+[debug] [2020-04-18T20:26:49.880Z] [runtime-status] [592] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587131407,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587241425,\"exp\":1587245025,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-18T20:26:49.881Z] [runtime-status] [592] Ephemeral server survived. 
+[info] i  functions: Finished "testCall" in ~1s
+[debug] [2020-04-18T20:26:49.881Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: IDLE 
+[debug] [2020-04-18T20:26:49.881Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T20:29:19.101Z] File /Users/yoved/Repos/joie/functions/src/stripe.ts changed, reloading triggers 
+[debug] [2020-04-18T20:29:20.103Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-18T20:29:20.103Z] [worker-~diagnostic~-5df6686c-1e12-483d-be5b-187052f352c2]: FINISHING 
+[debug] [2020-04-18T20:29:20.104Z] [worker-pool] Shutting down IDLE worker (testCall) 
+[debug] [2020-04-18T20:29:20.104Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: FINISHING 
+[debug] [2020-04-18T20:29:20.104Z] [worker-pool] Shutting down IDLE worker (testCall) 
+[debug] [2020-04-18T20:29:20.104Z] [worker-testCall-7c2a2792-bf7c-496c-b6b6-a83f67d9ac86]: FINISHING 
+[debug] [2020-04-18T20:29:20.109Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-18T20:29:20.110Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-18T20:29:20.110Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-18T20:29:20.110Z] [worker-~diagnostic~-6a75cb45-a355-4862-8ed4-0125cd9cad19]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2253.sock 
+[debug] [2020-04-18T20:29:20.110Z] [worker-~diagnostic~-6a75cb45-a355-4862-8ed4-0125cd9cad19]: BUSY 
+[debug] [2020-04-18T20:29:20.113Z] [worker-~diagnostic~-5df6686c-1e12-483d-be5b-187052f352c2]: exited 
+[debug] [2020-04-18T20:29:20.113Z] [worker-~diagnostic~-5df6686c-1e12-483d-be5b-187052f352c2]: FINISHED 
+[debug] [2020-04-18T20:29:20.114Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: exited 
+[debug] [2020-04-18T20:29:20.119Z] [worker-testCall-1074791b-bfe0-422e-a61b-a32f4136b429]: FINISHED 
+[debug] [2020-04-18T20:29:20.119Z] [worker-testCall-7c2a2792-bf7c-496c-b6b6-a83f67d9ac86]: exited 
+[debug] [2020-04-18T20:29:20.119Z] [worker-testCall-7c2a2792-bf7c-496c-b6b6-a83f67d9ac86]: FINISHED 
+[debug] [2020-04-18T20:29:20.499Z] [runtime-status] [2253] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-18T20:29:20.501Z] [runtime-status] [2253] Disabled runtime features: undefined 
+[debug] [2020-04-18T20:29:20.503Z] [runtime-status] [2253] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T20:29:20.504Z] [runtime-status] [2253] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:29:20.506Z] [runtime-status] [2253] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-18T20:29:20.551Z] [runtime-status] [2253] Checked functions.config() {"config":{}} 
+[debug] [2020-04-18T20:29:20.551Z] [runtime-status] [2253] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:29:20.552Z] [runtime-status] [2253] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T20:29:20.552Z] [runtime-status] [2253] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:29:20.553Z] [runtime-status] [2253] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-18T20:29:20.556Z] [runtime-status] [2253] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-18T20:29:20.904Z] [runtime-status] [2253] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-18T20:29:20.954Z] [worker-~diagnostic~-6a75cb45-a355-4862-8ed4-0125cd9cad19]: IDLE 
+[debug] [2020-04-18T20:30:37.183Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T20:30:37.183Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T20:30:37.189Z] FirebaseError: No trigger with name addPaymentSource 
+[debug] [2020-04-18T20:30:37.189Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-18T20:30:49.550Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-18T20:30:49.551Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-18T20:30:49.551Z] File /Users/yoved/Repos/joie/functions/lib/helpers.js.map changed, reloading triggers 
+[debug] [2020-04-18T20:30:49.551Z] File /Users/yoved/Repos/joie/functions/lib/helpers.js changed, reloading triggers 
+[debug] [2020-04-18T20:30:49.551Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-18T20:30:49.551Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-18T20:30:49.551Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-18T20:30:49.551Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-18T20:30:49.552Z] File /Users/yoved/Repos/joie/functions/lib/stripe.js.map changed, reloading triggers 
+[debug] [2020-04-18T20:30:49.552Z] File /Users/yoved/Repos/joie/functions/lib/stripe.js changed, reloading triggers 
+[debug] [2020-04-18T20:30:49.552Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-18T20:30:49.553Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-18T20:30:50.558Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-18T20:30:50.558Z] [worker-~diagnostic~-6a75cb45-a355-4862-8ed4-0125cd9cad19]: FINISHING 
+[debug] [2020-04-18T20:30:50.559Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-18T20:30:50.559Z] [worker-pool] Cleaned up workers for testCall: 2 --> 0 
+[debug] [2020-04-18T20:30:50.563Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-18T20:30:50.564Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-18T20:30:50.564Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-18T20:30:50.564Z] [worker-~diagnostic~-b1d0b3de-042a-4c12-8277-254e2c2eeca0]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2324.sock 
+[debug] [2020-04-18T20:30:50.564Z] [worker-~diagnostic~-b1d0b3de-042a-4c12-8277-254e2c2eeca0]: BUSY 
+[debug] [2020-04-18T20:30:50.567Z] [worker-~diagnostic~-6a75cb45-a355-4862-8ed4-0125cd9cad19]: exited 
+[debug] [2020-04-18T20:30:50.567Z] [worker-~diagnostic~-6a75cb45-a355-4862-8ed4-0125cd9cad19]: FINISHED 
+[debug] [2020-04-18T20:30:50.937Z] [runtime-status] [2324] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-18T20:30:50.938Z] [runtime-status] [2324] Disabled runtime features: undefined 
+[debug] [2020-04-18T20:30:50.940Z] [runtime-status] [2324] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T20:30:50.941Z] [runtime-status] [2324] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:30:50.942Z] [runtime-status] [2324] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-18T20:30:50.992Z] [runtime-status] [2324] Checked functions.config() {"config":{}} 
+[debug] [2020-04-18T20:30:50.992Z] [runtime-status] [2324] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:30:50.993Z] [runtime-status] [2324] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T20:30:50.993Z] [runtime-status] [2324] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:30:50.994Z] [runtime-status] [2324] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-18T20:30:50.995Z] [runtime-status] [2324] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-18T20:30:51.335Z] [runtime-status] [2324] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[info] ✔  functions[addPaymentSource]: http function initialized (http://localhost:5001/joie-app/us-central1/addPaymentSource).
+[debug] [2020-04-18T20:30:51.385Z] [worker-~diagnostic~-b1d0b3de-042a-4c12-8277-254e2c2eeca0]: IDLE 
+[debug] [2020-04-18T20:31:20.091Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-18T20:31:20.091Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T20:31:20.091Z] Accepted request OPTIONS /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-18T20:31:20.091Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-18T20:31:20.097Z] [worker-pool] addWorker(addPaymentSource) 
+[debug] [2020-04-18T20:31:20.097Z] [worker-pool] Adding worker with key addPaymentSource, total=1 
+[debug] [2020-04-18T20:31:20.097Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-18T20:31:20.097Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-18T20:31:20.097Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: BUSY 
+[debug] [2020-04-18T20:31:20.301Z] [runtime-status] [2339] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-18T20:31:20.302Z] [runtime-status] [2339] Disabled runtime features: undefined 
+[debug] [2020-04-18T20:31:20.304Z] [runtime-status] [2339] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T20:31:20.304Z] [runtime-status] [2339] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:31:20.305Z] [runtime-status] [2339] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-18T20:31:20.327Z] [runtime-status] [2339] Checked functions.config() {"config":{}} 
+[debug] [2020-04-18T20:31:20.327Z] [runtime-status] [2339] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:31:20.328Z] [runtime-status] [2339] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T20:31:20.328Z] [runtime-status] [2339] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:31:20.328Z] [runtime-status] [2339] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-18T20:31:20.330Z] [runtime-status] [2339] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-18T20:31:20.453Z] [runtime-status] [2339] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-18T20:31:20.476Z] [runtime-status] [2339] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-18T20:31:20.477Z] [runtime-status] [2339] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-18T20:31:20.477Z] [runtime-status] [2339] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-18T20:31:20.479Z] [runtime-status] [2339] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-18T20:31:20.482Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T20:31:20.487Z] [runtime-status] [2339] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-18T20:31:20.490Z] [runtime-status] [2339] Ephemeral server survived. 
+[debug] [2020-04-18T20:31:20.494Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-04-18T20:31:20.494Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-04-18T20:31:20.495Z] Accepted request POST /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-18T20:31:20.495Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MTMxNDA3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODcyNDE0MjUsImV4cCI6MTU4NzI0NTAyNSwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.O5sMVA1eiCyTSqhTqUOV0yic7tJhDKaW2fBLGKfxXtz50tOy8hyw558QG5xuW0i5zOC5OI95EOf4dkKyddOrz-728v4FSK5k8KKqlukSIRPnafDjzbRWEZ3ZINbu_cn7km8xMRa4IDLtM4B-RvsanUFP55eqLZ342uDKgqtpqxixrRmf3yjrl75TqUPyjZU_w6HF_X2-AjUZ1ZyPh2ewc49FFPm0K4YQfN1ajJ3Ws8Xiv3sG58QErSjZVYGwUKs8ehvSIzcepomxjc5-C9Ktx1BuMlTKPKZtFkU-VYLOc5cDqK9mXbIrTRe11Uwvu90b_kZXmiLv-jSU-sCN1mjCgA
+[debug] [2020-04-18T20:31:20.497Z] [worker-pool] addWorker(addPaymentSource) 
+[debug] [2020-04-18T20:31:20.498Z] [worker-pool] Adding worker with key addPaymentSource, total=2 
+[debug] [2020-04-18T20:31:20.498Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-18T20:31:20.498Z] [worker-addPaymentSource-6712bc2a-f65b-4f3b-8009-89423288dff1]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2340.sock 
+[debug] [2020-04-18T20:31:20.498Z] [worker-addPaymentSource-6712bc2a-f65b-4f3b-8009-89423288dff1]: BUSY 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-18T20:31:20.498Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: IDLE 
+[debug] [2020-04-18T20:31:20.498Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-18T20:31:20.696Z] [runtime-status] [2340] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-18T20:31:20.698Z] [runtime-status] [2340] Disabled runtime features: undefined 
+[debug] [2020-04-18T20:31:20.700Z] [runtime-status] [2340] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T20:31:20.700Z] [runtime-status] [2340] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:31:20.701Z] [runtime-status] [2340] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-18T20:31:20.725Z] [runtime-status] [2340] Checked functions.config() {"config":{}} 
+[debug] [2020-04-18T20:31:20.726Z] [runtime-status] [2340] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:31:20.727Z] [runtime-status] [2340] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-18T20:31:20.727Z] [runtime-status] [2340] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-18T20:31:20.727Z] [runtime-status] [2340] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-18T20:31:20.729Z] [runtime-status] [2340] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-18T20:31:20.854Z] [runtime-status] [2340] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-18T20:31:20.873Z] [runtime-status] [2340] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-18T20:31:20.873Z] [runtime-status] [2340] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-18T20:31:20.873Z] [runtime-status] [2340] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-18T20:31:20.876Z] [runtime-status] [2340] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2340.sock 
+[debug] [2020-04-18T20:31:20.877Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-18T20:31:20.894Z] [runtime-status] [2340] Ephemeral server handling POST request 
+[debug] [2020-04-18T20:31:20.896Z] [runtime-status] [2340] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587131407,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587241425,\"exp\":1587245025,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-18T20:31:20.899Z] [runtime-status] [2340] Ephemeral server survived. 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-18T20:31:20.900Z] [worker-addPaymentSource-6712bc2a-f65b-4f3b-8009-89423288dff1]: IDLE 
+[debug] [2020-04-18T20:31:20.900Z] [work-queue] {"queueLength":0,"workRunningCount":0}

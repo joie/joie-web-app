@@ -1,2 +1,7 @@
 <h1>User:</h1>
 <pre [innerHTML]="user$ | async | json"></pre>
+
+<button type="button" (click)="loadPaymentMethod()">
+  Update payment method
+</button>
+<ng-template #paymentMethodFormContainer></ng-template>
