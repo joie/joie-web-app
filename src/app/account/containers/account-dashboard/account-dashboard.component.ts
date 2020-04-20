@@ -1,10 +1,9 @@
 import {
   Component,
-  OnInit,
+  ViewChild,
   ViewContainerRef,
   ComponentFactoryResolver,
-  ViewChild,
-  TemplateRef,
+  Injector,
 } from '@angular/core';
 import { AuthFacade } from 'src/app/auth-state/+state/auth/facades/auth.facade';
 import { User } from 'src/app/auth-state/+state/auth/models/auth.models';
@@ -16,27 +15,30 @@ import { Observable } from 'rxjs';
 })
 export class AccountDashboardComponent {
   user$: Observable<User>;
-  @ViewChild('paymentMethodFormContainer', { read: ViewContainerRef })
-  private templateViewContainerRef: ViewContainerRef;
+
+  @ViewChild('paymentSourceFormContainer', { read: ViewContainerRef })
+  private paymentSourceFormContainer: ViewContainerRef;
 
   constructor(
     private authFacade: AuthFacade,
-    private viewContainerRef: ViewContainerRef,
-    private cfr: ComponentFactoryResolver
+    private cfr: ComponentFactoryResolver,
+    private injector: Injector
   ) {
     this.user$ = this.authFacade.user$;
   }
 
-  async loadPaymentMethod() {
-    this.viewContainerRef.clear();
-    const { PaymentMethodFormComponent } = await import(
+  // TODO move to a dedicated service
+  async loadPaymentSourceForm() {
+    const { PaymentMethodFormComponent: component } = await import(
       '../../components/payment-method-form/payment-method-form.component'
     );
-    const component = this.cfr.resolveComponentFactory(
-      PaymentMethodFormComponent
-    );
-    const componentRef = this.templateViewContainerRef.createComponent(
+    const paymentSourceFormFactory = this.cfr.resolveComponentFactory(
       component
+    );
+    const { instance } = this.paymentSourceFormContainer.createComponent(
+      paymentSourceFormFactory,
+      null,
+      this.injector
     );
   }
 }

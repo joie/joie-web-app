@@ -760,3 +760,255 @@
 [info] i  functions: Finished "addPaymentSource" in ~1s
 [debug] [2020-04-18T20:31:20.900Z] [worker-addPaymentSource-6712bc2a-f65b-4f3b-8009-89423288dff1]: IDLE 
 [debug] [2020-04-18T20:31:20.900Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-19T06:28:10.732Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-19T06:28:10.735Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-19T06:28:10.735Z] Accepted request OPTIONS /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-19T06:28:10.736Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-19T06:28:10.736Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T06:28:10.736Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: BUSY 
+[debug] [2020-04-19T06:28:10.760Z] [runtime-status] [2339] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-19T06:28:10.761Z] [runtime-status] [2339] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-19T06:28:10.761Z] [runtime-status] [2339] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-19T06:28:10.766Z] [runtime-status] [2339] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T06:28:10.778Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-19T06:28:10.785Z] [runtime-status] [2339] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-19T06:28:10.786Z] [runtime-status] [2339] Ephemeral server survived. 
+[debug] [2020-04-19T06:28:10.790Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-04-19T06:28:10.790Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-04-19T06:28:10.790Z] Accepted request POST /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-19T06:28:10.790Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MTMxNDA3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODcyNzYxNTIsImV4cCI6MTU4NzI3OTc1MiwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.aRoWRT4Shh_1xJmohVqD7a3GpHDTA_fL9OWNYwX4lh--cEG2AOLg8b22_41Xg4x6UPqhlqvQoB0_ZAi1yDza8r0u1ejyxFCYo1MYhvJcYgGp7lmEZiHw_JAmfJ-6fxooYIPyqMz7JJ53gY-j39GTeuqltlxTG8e1eXZ-QzVwpthneGFPPFIhzLOPdl1QNbeONANDO-rIL2AVyR3S5VDR6FeUx67DaWM-61T3HGCZ5W8GYDfBMkC5Np85HYt309gzT_GmHRqrbi9k-gXKZY69z9IcOFqbWbHmjs23MUkYa2GGBHQWZOjldC5RKunfOmmV4tcpFbu2vlJLwAnhrlJygg
+[debug] [2020-04-19T06:28:10.792Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-19T06:28:10.792Z] [worker-addPaymentSource-6712bc2a-f65b-4f3b-8009-89423288dff1]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2340.sock 
+[debug] [2020-04-19T06:28:10.793Z] [worker-addPaymentSource-6712bc2a-f65b-4f3b-8009-89423288dff1]: BUSY 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-19T06:28:10.793Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: IDLE 
+[debug] [2020-04-19T06:28:10.793Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-19T06:28:10.808Z] [runtime-status] [2340] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-19T06:28:10.809Z] [runtime-status] [2340] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-19T06:28:10.809Z] [runtime-status] [2340] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-19T06:28:10.813Z] [runtime-status] [2340] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2340.sock 
+[debug] [2020-04-19T06:28:10.815Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-19T06:28:10.820Z] [runtime-status] [2340] Ephemeral server handling POST request 
+[debug] [2020-04-19T06:28:10.822Z] [runtime-status] [2340] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587131407,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587276152,\"exp\":1587279752,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-19T06:28:10.828Z] [runtime-status] [2340] Ephemeral server survived. 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-19T06:28:10.829Z] [worker-addPaymentSource-6712bc2a-f65b-4f3b-8009-89423288dff1]: IDLE 
+[debug] [2020-04-19T06:28:10.829Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-19T14:59:35.926Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-19T14:59:35.929Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-19T14:59:35.929Z] Accepted request OPTIONS /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-19T14:59:35.933Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-19T14:59:35.936Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T14:59:35.936Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: BUSY 
+[debug] [2020-04-19T14:59:35.960Z] [runtime-status] [2339] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-19T14:59:35.964Z] [runtime-status] [2339] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-19T14:59:35.964Z] [runtime-status] [2339] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-19T14:59:35.970Z] [runtime-status] [2339] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T14:59:35.976Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-19T14:59:35.982Z] [runtime-status] [2339] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-19T14:59:35.984Z] [runtime-status] [2339] Ephemeral server survived. 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-19T14:59:35.985Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: IDLE 
+[debug] [2020-04-19T14:59:35.986Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-19T14:59:35.988Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-19T14:59:35.988Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-19T14:59:35.988Z] Accepted request POST /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-19T14:59:35.988Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MzA4MzQ3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODczMDgzNDcsImV4cCI6MTU4NzMxMTk0NywiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.bNDOt-cYBSLU59yC6tx1gBS4kZtesEn-N5tcDOj1cR9EdU2gXMBG_eRiWkpYjLrZutG6giW2_HwrNhkIycTtjAliUlKzIs9KbPc64-NVg8vySAmGgLif36faELhH2ge2eQ593NMhH4H7R9pCA4DkZ6vjcRC1H2I7QJYlKUskLixrzXl51caFhw-yzOIXTnIOpMjsLZb7oA7EFvHHPaRT5g1ESx_Q989p-anTJinqSr6YXxP1coGjRFiB1gNZ8dP_Hc3DELehfFeelDGBaKeyXvE_16WrMErrfMMoLykyk41qTGmlgR71IkmZ2MnrvQQeNSLiKI9RWvnLtdmGd9fMNA
+[debug] [2020-04-19T14:59:35.988Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-19T14:59:35.988Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T14:59:35.988Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: BUSY 
+[debug] [2020-04-19T14:59:35.996Z] [runtime-status] [2339] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-19T14:59:35.997Z] [runtime-status] [2339] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-19T14:59:35.997Z] [runtime-status] [2339] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-19T14:59:35.998Z] [runtime-status] [2339] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T14:59:35.999Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-19T14:59:36.082Z] [runtime-status] [2339] Ephemeral server handling POST request 
+[debug] [2020-04-19T14:59:36.089Z] [runtime-status] [2339] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587308347,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587308347,\"exp\":1587311947,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-19T14:59:36.093Z] [runtime-status] [2339] Ephemeral server survived. 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-19T14:59:36.094Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: IDLE 
+[debug] [2020-04-19T14:59:36.094Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-19T15:53:49.236Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-19T15:53:49.240Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-19T15:53:49.241Z] Accepted request OPTIONS /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-19T15:53:49.242Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-19T15:53:49.244Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T15:53:49.244Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: BUSY 
+[debug] [2020-04-19T15:53:49.259Z] [runtime-status] [2339] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-19T15:53:49.260Z] [runtime-status] [2339] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-19T15:53:49.263Z] [runtime-status] [2339] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-19T15:53:49.263Z] [runtime-status] [2339] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T15:53:49.270Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-19T15:53:49.312Z] [runtime-status] [2339] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-19T15:53:49.314Z] [runtime-status] [2339] Ephemeral server survived. 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-19T15:53:49.314Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: IDLE 
+[debug] [2020-04-19T15:53:49.314Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-19T15:53:49.316Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-19T15:53:49.316Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-19T15:53:49.316Z] Accepted request POST /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-19T15:53:49.316Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MzA4MzQ3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODczMDgzNDcsImV4cCI6MTU4NzMxMTk0NywiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.bNDOt-cYBSLU59yC6tx1gBS4kZtesEn-N5tcDOj1cR9EdU2gXMBG_eRiWkpYjLrZutG6giW2_HwrNhkIycTtjAliUlKzIs9KbPc64-NVg8vySAmGgLif36faELhH2ge2eQ593NMhH4H7R9pCA4DkZ6vjcRC1H2I7QJYlKUskLixrzXl51caFhw-yzOIXTnIOpMjsLZb7oA7EFvHHPaRT5g1ESx_Q989p-anTJinqSr6YXxP1coGjRFiB1gNZ8dP_Hc3DELehfFeelDGBaKeyXvE_16WrMErrfMMoLykyk41qTGmlgR71IkmZ2MnrvQQeNSLiKI9RWvnLtdmGd9fMNA
+[debug] [2020-04-19T15:53:49.316Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-19T15:53:49.316Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T15:53:49.317Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: BUSY 
+[debug] [2020-04-19T15:53:49.324Z] [runtime-status] [2339] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-19T15:53:49.325Z] [runtime-status] [2339] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-19T15:53:49.325Z] [runtime-status] [2339] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-19T15:53:49.344Z] [runtime-status] [2339] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T15:53:49.346Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-19T15:53:49.350Z] [runtime-status] [2339] Ephemeral server handling POST request 
+[debug] [2020-04-19T15:53:49.351Z] [runtime-status] [2339] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587308347,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587308347,\"exp\":1587311947,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-19T15:53:49.352Z] [runtime-status] [2339] Ephemeral server survived. 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-19T15:53:49.352Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: IDLE 
+[debug] [2020-04-19T15:53:49.352Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-19T16:17:06.717Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-19T16:17:06.720Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-19T16:17:06.720Z] Accepted request OPTIONS /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-19T16:17:06.721Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-19T16:17:06.721Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T16:17:06.722Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: BUSY 
+[debug] [2020-04-19T16:17:06.735Z] [runtime-status] [2339] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-19T16:17:06.737Z] [runtime-status] [2339] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-19T16:17:06.737Z] [runtime-status] [2339] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-19T16:17:06.738Z] [runtime-status] [2339] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T16:17:06.750Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-19T16:17:06.767Z] [runtime-status] [2339] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-19T16:17:06.769Z] [runtime-status] [2339] Ephemeral server survived. 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-19T16:17:06.769Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: IDLE 
+[debug] [2020-04-19T16:17:06.769Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-19T16:17:06.772Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-19T16:17:06.773Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-19T16:17:06.773Z] Accepted request POST /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-19T16:17:06.773Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MzA4MzQ3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODczMTE2NDcsImV4cCI6MTU4NzMxNTI0NywiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.nuncA0lYfOwduRh6fDG2gcY6P-0BTfWO0_JOKb8YYw91uIQpRz1aNmHdadRG7QSk1vghoo7SET-TwI9qNiLEDeycexKENj0TRZkFqL3xuKwlr3Cp15dm8tqx2yv9faJHuJ_WwI5dbhXqZWLHDaZTBH52mmAcGYde-qzQRbGHyJbN8j8RXTx0QxuaZQ1zFVsamf21-6MiGtE2QxUsM2Fj3CqEJRXdH8hBZHAwTMj07LUyweFotQOWJWV4YkS_6y9a1UYbf_4BXO3goLNxLkzQMGcMKQGiQsr32fksSTgCVSOHiFvLkxwiLMpGf1X82fdWvbtXG7nPZr8SJ2l5YdhQvw
+[debug] [2020-04-19T16:17:06.773Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-19T16:17:06.773Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T16:17:06.774Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: BUSY 
+[debug] [2020-04-19T16:17:06.779Z] [runtime-status] [2339] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-19T16:17:06.780Z] [runtime-status] [2339] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-19T16:17:06.780Z] [runtime-status] [2339] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-19T16:17:06.781Z] [runtime-status] [2339] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T16:17:06.781Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-19T16:17:06.786Z] [runtime-status] [2339] Ephemeral server handling POST request 
+[debug] [2020-04-19T16:17:06.786Z] [runtime-status] [2339] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587308347,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587311647,\"exp\":1587315247,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-19T16:17:06.788Z] [runtime-status] [2339] Ephemeral server survived. 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-19T16:17:06.789Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: IDLE 
+[debug] [2020-04-19T16:17:06.789Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-19T17:18:55.857Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-19T17:18:55.859Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-19T17:18:55.859Z] Accepted request OPTIONS /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-19T17:18:55.861Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-19T17:18:55.862Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T17:18:55.862Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: BUSY 
+[debug] [2020-04-19T17:18:55.872Z] [runtime-status] [2339] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-19T17:18:55.875Z] [runtime-status] [2339] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-19T17:18:55.875Z] [runtime-status] [2339] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-19T17:18:55.877Z] [runtime-status] [2339] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T17:18:55.886Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-19T17:18:55.910Z] [runtime-status] [2339] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-19T17:18:55.912Z] [runtime-status] [2339] Ephemeral server survived. 
+[debug] [2020-04-19T17:18:55.915Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-04-19T17:18:55.916Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-04-19T17:18:55.916Z] Accepted request POST /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-19T17:18:55.916Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MzA4MzQ3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODczMTUyMDUsImV4cCI6MTU4NzMxODgwNSwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.Rte3bjOzYoOnltE7X_y7iRPnnsZwjE6M7lsXYKUwqPioD790_g7-4JOHKjHHUT5hPcxuRK5Q3TolZrqz2XWDqQwvUeefLd70Vcv-nD2LazyKzCdbxpaFFZko67xoXbsdtfb_xHKA0Wtdg-oxMWRKpjXoxOYglJya2ciA_YK_yXc_muzoQk5eanILD2Dd3atLZuAjDWnRMH2kRDr8jp2L6q79WHUDm7wSQNIFI9NY7XIeEPu4kcnrU8d7GdZrP0stRFroUnAXDN82FSD1Gm0XzwGl1BrMMG1qgHTTVrqHy8HJ94R6qCR9kpX005HNxno2lc0Bfd3qA8laxC2MRuCQFg
+[debug] [2020-04-19T17:18:55.917Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-19T17:18:55.917Z] [worker-addPaymentSource-6712bc2a-f65b-4f3b-8009-89423288dff1]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2340.sock 
+[debug] [2020-04-19T17:18:55.917Z] [worker-addPaymentSource-6712bc2a-f65b-4f3b-8009-89423288dff1]: BUSY 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-19T17:18:55.928Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: IDLE 
+[debug] [2020-04-19T17:18:55.928Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-19T17:18:55.959Z] [runtime-status] [2340] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-19T17:18:55.963Z] [runtime-status] [2340] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-19T17:18:55.963Z] [runtime-status] [2340] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-19T17:18:55.986Z] [runtime-status] [2340] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2340.sock 
+[debug] [2020-04-19T17:18:55.995Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-19T17:18:56.010Z] [runtime-status] [2340] Ephemeral server handling POST request 
+[debug] [2020-04-19T17:18:56.017Z] [runtime-status] [2340] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587308347,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587315205,\"exp\":1587318805,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-19T17:18:56.023Z] [runtime-status] [2340] Ephemeral server survived. 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-19T17:18:56.025Z] [worker-addPaymentSource-6712bc2a-f65b-4f3b-8009-89423288dff1]: IDLE 
+[debug] [2020-04-19T17:18:56.025Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-19T17:18:57.485Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-19T17:18:57.485Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-19T17:18:57.485Z] Accepted request OPTIONS /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-19T17:18:57.485Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-19T17:18:57.486Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T17:18:57.486Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: BUSY 
+[debug] [2020-04-19T17:18:57.486Z] [runtime-status] [2339] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-19T17:18:57.487Z] [runtime-status] [2339] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-19T17:18:57.487Z] [runtime-status] [2339] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-19T17:18:57.487Z] [runtime-status] [2339] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T17:18:57.488Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-19T17:18:57.490Z] [runtime-status] [2339] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-19T17:18:57.491Z] [runtime-status] [2339] Ephemeral server survived. 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-19T17:18:57.491Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: IDLE 
+[debug] [2020-04-19T17:18:57.491Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-19T17:18:57.493Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-19T17:18:57.493Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-19T17:18:57.493Z] Accepted request POST /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-19T17:18:57.493Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MzA4MzQ3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODczMTUyMDUsImV4cCI6MTU4NzMxODgwNSwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.Rte3bjOzYoOnltE7X_y7iRPnnsZwjE6M7lsXYKUwqPioD790_g7-4JOHKjHHUT5hPcxuRK5Q3TolZrqz2XWDqQwvUeefLd70Vcv-nD2LazyKzCdbxpaFFZko67xoXbsdtfb_xHKA0Wtdg-oxMWRKpjXoxOYglJya2ciA_YK_yXc_muzoQk5eanILD2Dd3atLZuAjDWnRMH2kRDr8jp2L6q79WHUDm7wSQNIFI9NY7XIeEPu4kcnrU8d7GdZrP0stRFroUnAXDN82FSD1Gm0XzwGl1BrMMG1qgHTTVrqHy8HJ94R6qCR9kpX005HNxno2lc0Bfd3qA8laxC2MRuCQFg
+[debug] [2020-04-19T17:18:57.494Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-19T17:18:57.494Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T17:18:57.494Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: BUSY 
+[debug] [2020-04-19T17:18:57.502Z] [runtime-status] [2339] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-19T17:18:57.502Z] [runtime-status] [2339] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-19T17:18:57.503Z] [runtime-status] [2339] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-19T17:18:57.503Z] [runtime-status] [2339] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T17:18:57.505Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-19T17:18:57.512Z] [runtime-status] [2339] Ephemeral server handling POST request 
+[debug] [2020-04-19T17:18:57.514Z] [runtime-status] [2339] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587308347,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587315205,\"exp\":1587318805,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-19T17:18:57.516Z] [runtime-status] [2339] Ephemeral server survived. 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-19T17:18:57.516Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: IDLE 
+[debug] [2020-04-19T17:18:57.516Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-19T23:55:46.700Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-19T23:55:46.705Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-19T23:55:46.706Z] Accepted request OPTIONS /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-19T23:55:46.707Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-19T23:55:46.741Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T23:55:46.741Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: BUSY 
+[debug] [2020-04-19T23:55:46.750Z] [runtime-status] [2339] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-19T23:55:46.752Z] [runtime-status] [2339] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-19T23:55:46.752Z] [runtime-status] [2339] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-19T23:55:46.755Z] [runtime-status] [2339] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T23:55:46.761Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-19T23:55:46.770Z] [runtime-status] [2339] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-19T23:55:46.772Z] [runtime-status] [2339] Ephemeral server survived. 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-19T23:55:46.772Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: IDLE 
+[debug] [2020-04-19T23:55:46.772Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-19T23:55:46.776Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-19T23:55:46.776Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-19T23:55:46.777Z] Accepted request POST /joie-app/us-central1/addPaymentSource --> addPaymentSource
+[debug] [2020-04-19T23:55:46.777Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MzA4MzQ3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODczMzk2NjEsImV4cCI6MTU4NzM0MzI2MSwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.VApNMhHFPKfNnIvqf12YNCn-me3mNmoOj8rJbuehF-Zby80oz0H0kGUA0FBNaeDTklT5gpv_VFoFCSeWiLpb_Ufn0PXWVke11tG1nE9G3lnV8KDbjUrU01sU-m2T7_1o37U-bhaNjc2mhjpuvaQUuEwvvswWPb4myqeJTRSabkyigrWJxrIy3abwDvMoKdWAjaq9Lea0zy4q1_DeREe0aRL9ZNhZt_iAbZ-w_B1lDq2B61GjXCWzEHa3p4XtPAuu3jvoc3JQSD47rkBhPJQcmC7y4fyoc3iN5aHzVI3broqyJN6e4vYqKIU4FJpFP3smAhmAxTd10lwN6zgVS7tfDQ
+[debug] [2020-04-19T23:55:46.777Z] [worker-pool] submitWork(triggerId=addPaymentSource) 
+[debug] [2020-04-19T23:55:46.777Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T23:55:46.778Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: BUSY 
+[debug] [2020-04-19T23:55:46.782Z] [runtime-status] [2339] Trigger "addPaymentSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "addPaymentSource"
+[debug] [2020-04-19T23:55:46.782Z] [runtime-status] [2339] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"addPaymentSource","entryPoint":"addPaymentSource"} 
+[debug] [2020-04-19T23:55:46.782Z] [runtime-status] [2339] Running addPaymentSource in mode HTTPS 
+[debug] [2020-04-19T23:55:46.783Z] [runtime-status] [2339] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_2339.sock 
+[debug] [2020-04-19T23:55:46.784Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-19T23:55:46.792Z] [runtime-status] [2339] Ephemeral server handling POST request 
+[debug] [2020-04-19T23:55:46.794Z] [runtime-status] [2339] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587308347,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587339661,\"exp\":1587343261,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[debug] [2020-04-19T23:55:46.798Z] [runtime-status] [2339] Ephemeral server survived. 
+[info] i  functions: Finished "addPaymentSource" in ~1s
+[debug] [2020-04-19T23:55:46.798Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: IDLE 
+[debug] [2020-04-19T23:55:46.799Z] [work-queue] {"queueLength":0,"workRunningCount":0}
