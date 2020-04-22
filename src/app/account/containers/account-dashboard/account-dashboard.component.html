@@ -1,7 +1,3 @@
 <h1>User:</h1>
 <pre [innerHTML]="user$ | async | json"></pre>
-
-<button (click)="loadPaymentSourceForm()">
-  open payment source form
-</button>
-<ng-container #paymentSourceFormContainer></ng-container>
+<app-payment-source></app-payment-source>

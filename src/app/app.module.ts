@@ -26,11 +26,11 @@ import { SharedModule } from './shared/shared.module';
     AngularFireFunctionsModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production
+      enabled: environment.production,
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [{ provide: ORIGIN, useValue: 'http://localhost:5001' }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

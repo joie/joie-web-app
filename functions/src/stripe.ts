@@ -2,15 +2,21 @@
 
 import * as functions from 'firebase-functions';
 
-export const addPaymentSource = functions.https.onCall((data, context) => {
-  return { data, auth: context.auth };
-});
-
 // import { assert, getUID, catchErrors } from './helpers';
 // import { stripe, db } from './config';
 
 // const STRIPE_CUSTOMERS = 'stripe_customers';
 // const USERS = 'users';
+
+export const stripeAttachSource = functions.https.onCall(
+  async (data, context) => {
+    //   return await stripe.customers.createSource('cus_AFGbOSiITuJVDs', {
+    //     source: 'src_18eYalAHEMiOZZp1l9ZTjSU0',
+    //   });
+
+    return { data, context };
+  }
+);
 
 // /**
 //  *  Use this function to read the user document from Firestore

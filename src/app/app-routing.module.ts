@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QuicklinkStrategy } from 'ngx-quicklink';
-import { canActivate } from '@angular/fire/auth-guard';
+import { canActivate, AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import {
   authorOnly,
   redirectUnauthorizedToLogin,
@@ -27,8 +27,11 @@ const routes: Routes = [
     path: 'account',
     loadChildren: () =>
       import('./account/account.module').then((m) => m.AccountModule),
-    ...canActivate(redirectUnauthorizedToLogin),
+    // TODO uncomment this when angularfire fixes their zone issue
+    // https://github.com/angular/angularfire/issues/2367
+    // ...canActivate(redirectUnauthorizedToLogin),
   },
+
   { path: '', redirectTo: 'posts', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];

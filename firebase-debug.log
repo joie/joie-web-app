@@ -1012,3 +1012,570 @@
 [info] i  functions: Finished "addPaymentSource" in ~1s
 [debug] [2020-04-19T23:55:46.798Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: IDLE 
 [debug] [2020-04-19T23:55:46.799Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-22T21:55:37.208Z] File /Users/yoved/Repos/joie/functions/src/stripe.ts changed, reloading triggers 
+[debug] [2020-04-22T21:55:38.260Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-22T21:55:38.261Z] [worker-~diagnostic~-b1d0b3de-042a-4c12-8277-254e2c2eeca0]: FINISHING 
+[debug] [2020-04-22T21:55:38.267Z] [worker-pool] Shutting down IDLE worker (addPaymentSource) 
+[debug] [2020-04-22T21:55:38.267Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: FINISHING 
+[debug] [2020-04-22T21:55:38.268Z] [worker-pool] Shutting down IDLE worker (addPaymentSource) 
+[debug] [2020-04-22T21:55:38.268Z] [worker-addPaymentSource-6712bc2a-f65b-4f3b-8009-89423288dff1]: FINISHING 
+[debug] [2020-04-22T21:55:38.336Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-22T21:55:38.337Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-22T21:55:38.337Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-22T21:55:38.338Z] [worker-~diagnostic~-0cb29fe6-12a0-4b58-8e9d-fab38fe82bd8]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53436.sock 
+[debug] [2020-04-22T21:55:38.339Z] [worker-~diagnostic~-0cb29fe6-12a0-4b58-8e9d-fab38fe82bd8]: BUSY 
+[debug] [2020-04-22T21:55:38.351Z] [worker-~diagnostic~-b1d0b3de-042a-4c12-8277-254e2c2eeca0]: exited 
+[debug] [2020-04-22T21:55:38.352Z] [worker-~diagnostic~-b1d0b3de-042a-4c12-8277-254e2c2eeca0]: FINISHED 
+[debug] [2020-04-22T21:55:38.352Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: exited 
+[debug] [2020-04-22T21:55:38.352Z] [worker-addPaymentSource-430371d0-dcdc-4b6f-bd7a-4f1e7da45d00]: FINISHED 
+[debug] [2020-04-22T21:55:38.354Z] [worker-addPaymentSource-6712bc2a-f65b-4f3b-8009-89423288dff1]: exited 
+[debug] [2020-04-22T21:55:38.354Z] [worker-addPaymentSource-6712bc2a-f65b-4f3b-8009-89423288dff1]: FINISHED 
+[debug] [2020-04-22T21:55:39.031Z] [runtime-status] [53436] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-22T21:55:39.032Z] [runtime-status] [53436] Disabled runtime features: undefined 
+[debug] [2020-04-22T21:55:39.036Z] [runtime-status] [53436] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T21:55:39.039Z] [runtime-status] [53436] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:55:39.042Z] [runtime-status] [53436] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-22T21:55:39.104Z] [runtime-status] [53436] Checked functions.config() {"config":{}} 
+[debug] [2020-04-22T21:55:39.105Z] [runtime-status] [53436] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:55:39.105Z] [runtime-status] [53436] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T21:55:39.106Z] [runtime-status] [53436] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:55:39.108Z] [runtime-status] [53436] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-22T21:55:39.111Z] [runtime-status] [53436] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-22T21:55:39.592Z] [runtime-status] [53436] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-22T21:55:39.659Z] [worker-~diagnostic~-0cb29fe6-12a0-4b58-8e9d-fab38fe82bd8]: IDLE 
+[debug] [2020-04-22T21:57:18.001Z] File /Users/yoved/Repos/joie/functions/src/stripe.ts changed, reloading triggers 
+[debug] [2020-04-22T21:57:19.002Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-22T21:57:19.005Z] [worker-~diagnostic~-0cb29fe6-12a0-4b58-8e9d-fab38fe82bd8]: FINISHING 
+[debug] [2020-04-22T21:57:19.005Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-22T21:57:19.005Z] [worker-pool] Cleaned up workers for addPaymentSource: 2 --> 0 
+[debug] [2020-04-22T21:57:19.014Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-22T21:57:19.015Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-22T21:57:19.051Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-22T21:57:19.052Z] [worker-~diagnostic~-b132d128-3609-4ae7-b37f-fb619f1e0b98]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53510.sock 
+[debug] [2020-04-22T21:57:19.052Z] [worker-~diagnostic~-b132d128-3609-4ae7-b37f-fb619f1e0b98]: BUSY 
+[debug] [2020-04-22T21:57:19.053Z] [worker-~diagnostic~-0cb29fe6-12a0-4b58-8e9d-fab38fe82bd8]: exited 
+[debug] [2020-04-22T21:57:19.053Z] [worker-~diagnostic~-0cb29fe6-12a0-4b58-8e9d-fab38fe82bd8]: FINISHED 
+[debug] [2020-04-22T21:57:19.374Z] [runtime-status] [53510] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-22T21:57:19.375Z] [runtime-status] [53510] Disabled runtime features: undefined 
+[debug] [2020-04-22T21:57:19.375Z] [runtime-status] [53510] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T21:57:19.375Z] [runtime-status] [53510] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:57:19.377Z] [runtime-status] [53510] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-22T21:57:19.399Z] [runtime-status] [53510] Checked functions.config() {"config":{}} 
+[debug] [2020-04-22T21:57:19.446Z] [runtime-status] [53510] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:57:19.446Z] [runtime-status] [53510] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T21:57:19.446Z] [runtime-status] [53510] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:57:19.446Z] [runtime-status] [53510] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-22T21:57:19.446Z] [runtime-status] [53510] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-22T21:57:19.652Z] [runtime-status] [53510] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-22T21:57:19.700Z] [worker-~diagnostic~-b132d128-3609-4ae7-b37f-fb619f1e0b98]: IDLE 
+[debug] [2020-04-22T21:57:44.977Z] File /Users/yoved/Repos/joie/functions/src/stripe.ts changed, reloading triggers 
+[debug] [2020-04-22T21:57:45.977Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-22T21:57:45.978Z] [worker-~diagnostic~-b132d128-3609-4ae7-b37f-fb619f1e0b98]: FINISHING 
+[debug] [2020-04-22T21:57:45.978Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-22T21:57:45.984Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-22T21:57:45.984Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-22T21:57:45.984Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-22T21:57:45.985Z] [worker-~diagnostic~-06abcb8a-6d4c-4ccf-92f3-234278b5461d]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53566.sock 
+[debug] [2020-04-22T21:57:45.985Z] [worker-~diagnostic~-06abcb8a-6d4c-4ccf-92f3-234278b5461d]: BUSY 
+[debug] [2020-04-22T21:57:45.986Z] [worker-~diagnostic~-b132d128-3609-4ae7-b37f-fb619f1e0b98]: exited 
+[debug] [2020-04-22T21:57:45.986Z] [worker-~diagnostic~-b132d128-3609-4ae7-b37f-fb619f1e0b98]: FINISHED 
+[debug] [2020-04-22T21:57:46.227Z] [runtime-status] [53566] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-22T21:57:46.229Z] [runtime-status] [53566] Disabled runtime features: undefined 
+[debug] [2020-04-22T21:57:46.231Z] [runtime-status] [53566] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T21:57:46.232Z] [runtime-status] [53566] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:57:46.233Z] [runtime-status] [53566] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-22T21:57:46.260Z] [runtime-status] [53566] Checked functions.config() {"config":{}} 
+[debug] [2020-04-22T21:57:46.261Z] [runtime-status] [53566] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:57:46.261Z] [runtime-status] [53566] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T21:57:46.262Z] [runtime-status] [53566] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:57:46.262Z] [runtime-status] [53566] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-22T21:57:46.263Z] [runtime-status] [53566] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-22T21:57:46.416Z] [runtime-status] [53566] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-22T21:57:46.438Z] [worker-~diagnostic~-06abcb8a-6d4c-4ccf-92f3-234278b5461d]: IDLE 
+[debug] [2020-04-22T21:58:06.714Z] File /Users/yoved/Repos/joie/functions/src/stripe.ts changed, reloading triggers 
+[debug] [2020-04-22T21:58:07.715Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-22T21:58:07.716Z] [worker-~diagnostic~-06abcb8a-6d4c-4ccf-92f3-234278b5461d]: FINISHING 
+[debug] [2020-04-22T21:58:07.716Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-22T21:58:07.719Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-22T21:58:07.720Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-22T21:58:07.720Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-22T21:58:07.720Z] [worker-~diagnostic~-d5421b96-e936-4a6f-a2a9-f64103587ebb]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53611.sock 
+[debug] [2020-04-22T21:58:07.720Z] [worker-~diagnostic~-d5421b96-e936-4a6f-a2a9-f64103587ebb]: BUSY 
+[debug] [2020-04-22T21:58:07.721Z] [worker-~diagnostic~-06abcb8a-6d4c-4ccf-92f3-234278b5461d]: exited 
+[debug] [2020-04-22T21:58:07.721Z] [worker-~diagnostic~-06abcb8a-6d4c-4ccf-92f3-234278b5461d]: FINISHED 
+[debug] [2020-04-22T21:58:07.935Z] [runtime-status] [53611] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-22T21:58:07.936Z] [runtime-status] [53611] Disabled runtime features: undefined 
+[debug] [2020-04-22T21:58:07.938Z] [runtime-status] [53611] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T21:58:07.938Z] [runtime-status] [53611] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:58:07.940Z] [runtime-status] [53611] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-22T21:58:07.964Z] [runtime-status] [53611] Checked functions.config() {"config":{}} 
+[debug] [2020-04-22T21:58:07.964Z] [runtime-status] [53611] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:58:07.965Z] [runtime-status] [53611] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T21:58:07.965Z] [runtime-status] [53611] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:58:07.965Z] [runtime-status] [53611] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-22T21:58:07.967Z] [runtime-status] [53611] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-22T21:58:08.104Z] [runtime-status] [53611] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-22T21:58:08.134Z] [worker-~diagnostic~-d5421b96-e936-4a6f-a2a9-f64103587ebb]: IDLE 
+[debug] [2020-04-22T21:58:25.835Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-22T21:58:25.837Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-22T21:58:25.844Z] FirebaseError: No trigger with name stripeAttachSource 
+[debug] [2020-04-22T21:58:25.845Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-22T21:59:23.813Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-22T21:59:23.813Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-22T21:59:23.813Z] FirebaseError: No trigger with name stripeAttachSource 
+[debug] [2020-04-22T21:59:23.813Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-22T21:59:27.401Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-22T21:59:27.401Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-22T21:59:27.401Z] FirebaseError: No trigger with name stripeAttachSource 
+[debug] [2020-04-22T21:59:27.401Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-22T21:59:57.422Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-22T21:59:57.422Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-22T21:59:57.423Z] File /Users/yoved/Repos/joie/functions/lib/helpers.js.map changed, reloading triggers 
+[debug] [2020-04-22T21:59:57.423Z] File /Users/yoved/Repos/joie/functions/lib/helpers.js changed, reloading triggers 
+[debug] [2020-04-22T21:59:57.423Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-22T21:59:57.423Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-22T21:59:57.423Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-22T21:59:57.424Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-22T21:59:57.424Z] File /Users/yoved/Repos/joie/functions/lib/stripe.js.map changed, reloading triggers 
+[debug] [2020-04-22T21:59:57.424Z] File /Users/yoved/Repos/joie/functions/lib/stripe.js changed, reloading triggers 
+[debug] [2020-04-22T21:59:57.425Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-22T21:59:57.425Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-22T21:59:58.425Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-22T21:59:58.425Z] [worker-~diagnostic~-d5421b96-e936-4a6f-a2a9-f64103587ebb]: FINISHING 
+[debug] [2020-04-22T21:59:58.425Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-22T21:59:58.429Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-22T21:59:58.429Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-22T21:59:58.429Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-22T21:59:58.431Z] [worker-~diagnostic~-58206dd6-462e-4e90-b62b-c2be4e0beb49]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53890.sock 
+[debug] [2020-04-22T21:59:58.431Z] [worker-~diagnostic~-58206dd6-462e-4e90-b62b-c2be4e0beb49]: BUSY 
+[debug] [2020-04-22T21:59:58.432Z] [worker-~diagnostic~-d5421b96-e936-4a6f-a2a9-f64103587ebb]: exited 
+[debug] [2020-04-22T21:59:58.432Z] [worker-~diagnostic~-d5421b96-e936-4a6f-a2a9-f64103587ebb]: FINISHED 
+[debug] [2020-04-22T21:59:58.809Z] [runtime-status] [53890] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-22T21:59:58.810Z] [runtime-status] [53890] Disabled runtime features: undefined 
+[debug] [2020-04-22T21:59:58.812Z] [runtime-status] [53890] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T21:59:58.812Z] [runtime-status] [53890] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:59:58.814Z] [runtime-status] [53890] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-22T21:59:58.859Z] [runtime-status] [53890] Checked functions.config() {"config":{}} 
+[debug] [2020-04-22T21:59:58.860Z] [runtime-status] [53890] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:59:58.861Z] [runtime-status] [53890] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T21:59:58.861Z] [runtime-status] [53890] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T21:59:58.865Z] [runtime-status] [53890] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-22T21:59:58.866Z] [runtime-status] [53890] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-22T21:59:59.208Z] [runtime-status] [53890] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[info] ✔  functions[stripeAttachSource]: http function initialized (http://localhost:5001/joie-app/us-central1/stripeAttachSource).
+[debug] [2020-04-22T21:59:59.256Z] [worker-~diagnostic~-58206dd6-462e-4e90-b62b-c2be4e0beb49]: IDLE 
+[debug] [2020-04-22T22:00:12.715Z] File /Users/yoved/Repos/joie/functions/src/stripe.ts changed, reloading triggers 
+[debug] [2020-04-22T22:00:13.717Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-22T22:00:13.717Z] [worker-~diagnostic~-58206dd6-462e-4e90-b62b-c2be4e0beb49]: FINISHING 
+[debug] [2020-04-22T22:00:13.717Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-22T22:00:13.723Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-22T22:00:13.723Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-22T22:00:13.723Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-22T22:00:13.723Z] [worker-~diagnostic~-6a3671c7-4b60-4912-9783-13c596a4eb83]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53930.sock 
+[debug] [2020-04-22T22:00:13.724Z] [worker-~diagnostic~-6a3671c7-4b60-4912-9783-13c596a4eb83]: BUSY 
+[debug] [2020-04-22T22:00:13.724Z] [worker-~diagnostic~-58206dd6-462e-4e90-b62b-c2be4e0beb49]: exited 
+[debug] [2020-04-22T22:00:13.724Z] [worker-~diagnostic~-58206dd6-462e-4e90-b62b-c2be4e0beb49]: FINISHED 
+[debug] [2020-04-22T22:00:13.948Z] [runtime-status] [53930] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-22T22:00:13.949Z] [runtime-status] [53930] Disabled runtime features: undefined 
+[debug] [2020-04-22T22:00:13.951Z] [runtime-status] [53930] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T22:00:13.952Z] [runtime-status] [53930] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:00:13.953Z] [runtime-status] [53930] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-22T22:00:13.974Z] [runtime-status] [53930] Checked functions.config() {"config":{}} 
+[debug] [2020-04-22T22:00:13.975Z] [runtime-status] [53930] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:00:13.975Z] [runtime-status] [53930] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T22:00:13.975Z] [runtime-status] [53930] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:00:13.976Z] [runtime-status] [53930] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-22T22:00:13.977Z] [runtime-status] [53930] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-22T22:00:14.103Z] [runtime-status] [53930] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-22T22:00:14.129Z] [worker-~diagnostic~-6a3671c7-4b60-4912-9783-13c596a4eb83]: IDLE 
+[debug] [2020-04-22T22:00:17.615Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-22T22:00:17.623Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-22T22:00:17.623Z] File /Users/yoved/Repos/joie/functions/lib/helpers.js.map changed, reloading triggers 
+[debug] [2020-04-22T22:00:17.623Z] File /Users/yoved/Repos/joie/functions/lib/helpers.js changed, reloading triggers 
+[debug] [2020-04-22T22:00:17.623Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-22T22:00:17.623Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-22T22:00:17.623Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-22T22:00:17.624Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-22T22:00:17.624Z] File /Users/yoved/Repos/joie/functions/lib/stripe.js.map changed, reloading triggers 
+[debug] [2020-04-22T22:00:17.624Z] File /Users/yoved/Repos/joie/functions/lib/stripe.js changed, reloading triggers 
+[debug] [2020-04-22T22:00:17.624Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-22T22:00:17.624Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-22T22:00:18.638Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-22T22:00:18.639Z] [worker-~diagnostic~-6a3671c7-4b60-4912-9783-13c596a4eb83]: FINISHING 
+[debug] [2020-04-22T22:00:18.639Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-22T22:00:18.644Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-22T22:00:18.644Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-22T22:00:18.644Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-22T22:00:18.644Z] [worker-~diagnostic~-04f8355b-b1ce-4f0b-8b14-266f9785aa9c]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53944.sock 
+[debug] [2020-04-22T22:00:18.644Z] [worker-~diagnostic~-04f8355b-b1ce-4f0b-8b14-266f9785aa9c]: BUSY 
+[debug] [2020-04-22T22:00:18.645Z] [worker-~diagnostic~-6a3671c7-4b60-4912-9783-13c596a4eb83]: exited 
+[debug] [2020-04-22T22:00:18.645Z] [worker-~diagnostic~-6a3671c7-4b60-4912-9783-13c596a4eb83]: FINISHED 
+[debug] [2020-04-22T22:00:18.852Z] [runtime-status] [53944] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-22T22:00:18.854Z] [runtime-status] [53944] Disabled runtime features: undefined 
+[debug] [2020-04-22T22:00:18.855Z] [runtime-status] [53944] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T22:00:18.855Z] [runtime-status] [53944] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:00:18.857Z] [runtime-status] [53944] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-22T22:00:18.878Z] [runtime-status] [53944] Checked functions.config() {"config":{}} 
+[debug] [2020-04-22T22:00:18.879Z] [runtime-status] [53944] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:00:18.879Z] [runtime-status] [53944] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T22:00:18.879Z] [runtime-status] [53944] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:00:18.880Z] [runtime-status] [53944] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-22T22:00:18.881Z] [runtime-status] [53944] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-22T22:00:19.019Z] [runtime-status] [53944] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-22T22:00:19.043Z] [worker-~diagnostic~-04f8355b-b1ce-4f0b-8b14-266f9785aa9c]: IDLE 
+[debug] [2020-04-22T22:00:34.610Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-22T22:00:34.610Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-22T22:00:34.610Z] Accepted request OPTIONS /joie-app/us-central1/stripeAttachSource --> stripeAttachSource
+[debug] [2020-04-22T22:00:34.611Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-22T22:00:34.615Z] [worker-pool] addWorker(stripeAttachSource) 
+[debug] [2020-04-22T22:00:34.616Z] [worker-pool] Adding worker with key stripeAttachSource, total=1 
+[debug] [2020-04-22T22:00:34.616Z] [worker-pool] submitWork(triggerId=stripeAttachSource) 
+[debug] [2020-04-22T22:00:34.616Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53954.sock 
+[debug] [2020-04-22T22:00:34.616Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: BUSY 
+[debug] [2020-04-22T22:00:34.818Z] [runtime-status] [53954] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-22T22:00:34.819Z] [runtime-status] [53954] Disabled runtime features: undefined 
+[debug] [2020-04-22T22:00:34.820Z] [runtime-status] [53954] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T22:00:34.821Z] [runtime-status] [53954] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:00:34.823Z] [runtime-status] [53954] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-22T22:00:34.845Z] [runtime-status] [53954] Checked functions.config() {"config":{}} 
+[debug] [2020-04-22T22:00:34.846Z] [runtime-status] [53954] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:00:34.846Z] [runtime-status] [53954] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T22:00:34.847Z] [runtime-status] [53954] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:00:34.847Z] [runtime-status] [53954] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-22T22:00:34.849Z] [runtime-status] [53954] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-22T22:00:34.975Z] [runtime-status] [53954] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-22T22:00:34.993Z] [runtime-status] [53954] Trigger "stripeAttachSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "stripeAttachSource"
+[debug] [2020-04-22T22:00:34.995Z] [runtime-status] [53954] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"stripeAttachSource","entryPoint":"stripeAttachSource"} 
+[debug] [2020-04-22T22:00:34.995Z] [runtime-status] [53954] Running stripeAttachSource in mode HTTPS 
+[debug] [2020-04-22T22:00:34.996Z] [runtime-status] [53954] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53954.sock 
+[debug] [2020-04-22T22:00:35.015Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-22T22:00:35.044Z] [runtime-status] [53954] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-22T22:00:35.049Z] [runtime-status] [53954] Ephemeral server survived. 
+[info] i  functions: Finished "stripeAttachSource" in ~1s
+[debug] [2020-04-22T22:00:35.050Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: IDLE 
+[debug] [2020-04-22T22:00:35.050Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-22T22:00:35.053Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-22T22:00:35.054Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-22T22:00:35.055Z] Accepted request POST /joie-app/us-central1/stripeAttachSource --> stripeAttachSource
+[debug] [2020-04-22T22:00:35.055Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjVlOWVlOTdjODQwZjk3ZTAyNTM2ODhhM2I3ZTk0NDczZTUyOGE3YjUiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MzA4MzQ3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODc1OTI4MzIsImV4cCI6MTU4NzU5NjQzMiwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.XDZUUou9IhVtM22CNaUi99qSuU80-X7sWpXPNBblUWcSxsbMpZW99ncOFMucaU183-g2c-OcxWzHPi2H7l20zCPSOlbekDhuq38fZB_42kH4bXy95a_zqr4Hh_MeX7Ol5wHGUUUqGSWmVpohZXNsJKzAm6yYQ4Nns3BqSRdwgfk5hDW9mtkYpLUFQijwWi7rrN912BjgULj3w0-nY0FRKrPuG0CH8quP-AsfHUSIvYws1S5xpCwvKPLXvAGtS8OqDQxTu1xcWXCtI_q7X1-vbAjxzAenn7x6yGqMykONxmWEALv8sIPnawlXLYaDdvYg_PHWwLTu-9WYg-MV_nWTFw
+[debug] [2020-04-22T22:00:35.063Z] [worker-pool] submitWork(triggerId=stripeAttachSource) 
+[debug] [2020-04-22T22:00:35.063Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53954.sock 
+[debug] [2020-04-22T22:00:35.064Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: BUSY 
+[debug] [2020-04-22T22:00:35.064Z] [runtime-status] [53954] Trigger "stripeAttachSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "stripeAttachSource"
+[debug] [2020-04-22T22:00:35.065Z] [runtime-status] [53954] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"stripeAttachSource","entryPoint":"stripeAttachSource"} 
+[debug] [2020-04-22T22:00:35.065Z] [runtime-status] [53954] Running stripeAttachSource in mode HTTPS 
+[debug] [2020-04-22T22:00:35.065Z] [runtime-status] [53954] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53954.sock 
+[debug] [2020-04-22T22:00:35.067Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-22T22:00:35.091Z] [runtime-status] [53954] Ephemeral server handling POST request 
+[debug] [2020-04-22T22:00:35.092Z] [runtime-status] [53954] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587308347,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587592832,\"exp\":1587596432,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[info] >  Unhandled error RangeError: Maximum call stack size exceeded {"user":"Unhandled error RangeError: Maximum call stack size exceeded"}
+[info] >      at Object (<anonymous>) {"user":"    at Object (<anonymous>)"}
+[info] >      at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:1198:19 {"user":"    at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:1198:19"}
+[info] >      at baseKeys (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:3484:16) {"user":"    at baseKeys (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:3484:16)"}
+[info] >      at keys (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13307:60) {"user":"    at keys (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13307:60)"}
+[info] >      at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:4900:21 {"user":"    at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:4900:21"}
+[info] >      at baseForOwn (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:2990:24) {"user":"    at baseForOwn (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:2990:24)"}
+[info] >      at Function.mapValues (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13400:7) {"user":"    at Function.mapValues (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13400:7)"}
+[info] >      at encode (/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/providers/https.js:179:18) {"user":"    at encode (/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/providers/https.js:179:18)"}
+[info] >      at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13401:38 {"user":"    at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13401:38"}
+[info] >      at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:4905:15 {"user":"    at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:4905:15"}
+[debug] [2020-04-22T22:00:35.250Z] [runtime-status] [53954] Ephemeral server survived. 
+[info] i  functions: Finished "stripeAttachSource" in ~1s
+[debug] [2020-04-22T22:00:35.251Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: IDLE 
+[debug] [2020-04-22T22:00:35.251Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-22T22:00:37.682Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-22T22:00:37.682Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-22T22:00:37.683Z] Accepted request OPTIONS /joie-app/us-central1/stripeAttachSource --> stripeAttachSource
+[debug] [2020-04-22T22:00:37.683Z] [worker-pool] submitWork(triggerId=stripeAttachSource) 
+[debug] [2020-04-22T22:00:37.683Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53954.sock 
+[debug] [2020-04-22T22:00:37.683Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: BUSY 
+[debug] [2020-04-22T22:00:37.683Z] [runtime-status] [53954] Trigger "stripeAttachSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "stripeAttachSource"
+[debug] [2020-04-22T22:00:37.683Z] [runtime-status] [53954] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"stripeAttachSource","entryPoint":"stripeAttachSource"} 
+[debug] [2020-04-22T22:00:37.684Z] [runtime-status] [53954] Running stripeAttachSource in mode HTTPS 
+[debug] [2020-04-22T22:00:37.684Z] [runtime-status] [53954] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53954.sock 
+[debug] [2020-04-22T22:00:37.685Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-22T22:00:37.688Z] [runtime-status] [53954] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-22T22:00:37.688Z] [runtime-status] [53954] Ephemeral server survived. 
+[info] i  functions: Finished "stripeAttachSource" in ~1s
+[debug] [2020-04-22T22:00:37.689Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: IDLE 
+[debug] [2020-04-22T22:00:37.689Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-22T22:00:37.691Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-22T22:00:37.691Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-22T22:00:37.691Z] Accepted request POST /joie-app/us-central1/stripeAttachSource --> stripeAttachSource
+[debug] [2020-04-22T22:00:37.691Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjVlOWVlOTdjODQwZjk3ZTAyNTM2ODhhM2I3ZTk0NDczZTUyOGE3YjUiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MzA4MzQ3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODc1OTI4MzIsImV4cCI6MTU4NzU5NjQzMiwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.XDZUUou9IhVtM22CNaUi99qSuU80-X7sWpXPNBblUWcSxsbMpZW99ncOFMucaU183-g2c-OcxWzHPi2H7l20zCPSOlbekDhuq38fZB_42kH4bXy95a_zqr4Hh_MeX7Ol5wHGUUUqGSWmVpohZXNsJKzAm6yYQ4Nns3BqSRdwgfk5hDW9mtkYpLUFQijwWi7rrN912BjgULj3w0-nY0FRKrPuG0CH8quP-AsfHUSIvYws1S5xpCwvKPLXvAGtS8OqDQxTu1xcWXCtI_q7X1-vbAjxzAenn7x6yGqMykONxmWEALv8sIPnawlXLYaDdvYg_PHWwLTu-9WYg-MV_nWTFw
+[debug] [2020-04-22T22:00:37.692Z] [worker-pool] submitWork(triggerId=stripeAttachSource) 
+[debug] [2020-04-22T22:00:37.693Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53954.sock 
+[debug] [2020-04-22T22:00:37.693Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: BUSY 
+[debug] [2020-04-22T22:00:37.699Z] [runtime-status] [53954] Trigger "stripeAttachSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "stripeAttachSource"
+[debug] [2020-04-22T22:00:37.700Z] [runtime-status] [53954] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"stripeAttachSource","entryPoint":"stripeAttachSource"} 
+[debug] [2020-04-22T22:00:37.700Z] [runtime-status] [53954] Running stripeAttachSource in mode HTTPS 
+[debug] [2020-04-22T22:00:37.700Z] [runtime-status] [53954] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53954.sock 
+[debug] [2020-04-22T22:00:37.702Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-22T22:00:37.704Z] [runtime-status] [53954] Ephemeral server handling POST request 
+[debug] [2020-04-22T22:00:37.705Z] [runtime-status] [53954] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587308347,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587592832,\"exp\":1587596432,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[info] >  Unhandled error RangeError: Maximum call stack size exceeded {"user":"Unhandled error RangeError: Maximum call stack size exceeded"}
+[info] >      at Object (<anonymous>) {"user":"    at Object (<anonymous>)"}
+[info] >      at baseGetTag (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:3067:51) {"user":"    at baseGetTag (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:3067:51)"}
+[info] >      at isFunction (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:11653:17) {"user":"    at isFunction (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:11653:17)"}
+[info] >      at isArrayLike (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:11333:58) {"user":"    at isArrayLike (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:11333:58)"}
+[info] >      at keys (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13307:14) {"user":"    at keys (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13307:14)"}
+[info] >      at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:4900:21 {"user":"    at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:4900:21"}
+[info] >      at baseForOwn (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:2990:24) {"user":"    at baseForOwn (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:2990:24)"}
+[info] >      at Function.mapValues (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13400:7) {"user":"    at Function.mapValues (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13400:7)"}
+[info] >      at encode (/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/providers/https.js:179:18) {"user":"    at encode (/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/providers/https.js:179:18)"}
+[info] >      at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13401:38 {"user":"    at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13401:38"}
+[debug] [2020-04-22T22:00:37.808Z] [runtime-status] [53954] Ephemeral server survived. 
+[info] i  functions: Finished "stripeAttachSource" in ~1s
+[debug] [2020-04-22T22:00:37.808Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: IDLE 
+[debug] [2020-04-22T22:00:37.808Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-22T22:00:39.529Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-22T22:00:39.529Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-22T22:00:39.529Z] Accepted request OPTIONS /joie-app/us-central1/stripeAttachSource --> stripeAttachSource
+[debug] [2020-04-22T22:00:39.529Z] [worker-pool] submitWork(triggerId=stripeAttachSource) 
+[debug] [2020-04-22T22:00:39.530Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53954.sock 
+[debug] [2020-04-22T22:00:39.530Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: BUSY 
+[debug] [2020-04-22T22:00:39.530Z] [runtime-status] [53954] Trigger "stripeAttachSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "stripeAttachSource"
+[debug] [2020-04-22T22:00:39.530Z] [runtime-status] [53954] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"stripeAttachSource","entryPoint":"stripeAttachSource"} 
+[debug] [2020-04-22T22:00:39.530Z] [runtime-status] [53954] Running stripeAttachSource in mode HTTPS 
+[debug] [2020-04-22T22:00:39.531Z] [runtime-status] [53954] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53954.sock 
+[debug] [2020-04-22T22:00:39.531Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-22T22:00:39.533Z] [runtime-status] [53954] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-22T22:00:39.533Z] [runtime-status] [53954] Ephemeral server survived. 
+[info] i  functions: Finished "stripeAttachSource" in ~1s
+[debug] [2020-04-22T22:00:39.534Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: IDLE 
+[debug] [2020-04-22T22:00:39.534Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-22T22:00:39.536Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-22T22:00:39.537Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-22T22:00:39.537Z] Accepted request POST /joie-app/us-central1/stripeAttachSource --> stripeAttachSource
+[debug] [2020-04-22T22:00:39.537Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjVlOWVlOTdjODQwZjk3ZTAyNTM2ODhhM2I3ZTk0NDczZTUyOGE3YjUiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MzA4MzQ3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODc1OTI4MzIsImV4cCI6MTU4NzU5NjQzMiwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.XDZUUou9IhVtM22CNaUi99qSuU80-X7sWpXPNBblUWcSxsbMpZW99ncOFMucaU183-g2c-OcxWzHPi2H7l20zCPSOlbekDhuq38fZB_42kH4bXy95a_zqr4Hh_MeX7Ol5wHGUUUqGSWmVpohZXNsJKzAm6yYQ4Nns3BqSRdwgfk5hDW9mtkYpLUFQijwWi7rrN912BjgULj3w0-nY0FRKrPuG0CH8quP-AsfHUSIvYws1S5xpCwvKPLXvAGtS8OqDQxTu1xcWXCtI_q7X1-vbAjxzAenn7x6yGqMykONxmWEALv8sIPnawlXLYaDdvYg_PHWwLTu-9WYg-MV_nWTFw
+[debug] [2020-04-22T22:00:39.537Z] [worker-pool] submitWork(triggerId=stripeAttachSource) 
+[debug] [2020-04-22T22:00:39.537Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53954.sock 
+[debug] [2020-04-22T22:00:39.537Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: BUSY 
+[debug] [2020-04-22T22:00:39.545Z] [runtime-status] [53954] Trigger "stripeAttachSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "stripeAttachSource"
+[debug] [2020-04-22T22:00:39.545Z] [runtime-status] [53954] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"stripeAttachSource","entryPoint":"stripeAttachSource"} 
+[debug] [2020-04-22T22:00:39.545Z] [runtime-status] [53954] Running stripeAttachSource in mode HTTPS 
+[debug] [2020-04-22T22:00:39.545Z] [runtime-status] [53954] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53954.sock 
+[debug] [2020-04-22T22:00:39.547Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-22T22:00:39.550Z] [runtime-status] [53954] Ephemeral server handling POST request 
+[debug] [2020-04-22T22:00:39.550Z] [runtime-status] [53954] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587308347,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587592832,\"exp\":1587596432,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[info] >  Unhandled error RangeError: Maximum call stack size exceeded {"user":"Unhandled error RangeError: Maximum call stack size exceeded"}
+[info] >      at Object (<anonymous>) {"user":"    at Object (<anonymous>)"}
+[info] >      at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:4899:24 {"user":"    at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:4899:24"}
+[info] >      at baseForOwn (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:2990:24) {"user":"    at baseForOwn (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:2990:24)"}
+[info] >      at Function.mapValues (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13400:7) {"user":"    at Function.mapValues (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13400:7)"}
+[info] >      at encode (/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/providers/https.js:179:18) {"user":"    at encode (/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/providers/https.js:179:18)"}
+[info] >      at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13401:38 {"user":"    at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13401:38"}
+[info] >      at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:4905:15 {"user":"    at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:4905:15"}
+[info] >      at baseForOwn (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:2990:24) {"user":"    at baseForOwn (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:2990:24)"}
+[info] >      at Function.mapValues (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13400:7) {"user":"    at Function.mapValues (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13400:7)"}
+[info] >      at encode (/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/providers/https.js:179:18) {"user":"    at encode (/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/providers/https.js:179:18)"}
+[debug] [2020-04-22T22:00:39.642Z] [runtime-status] [53954] Ephemeral server survived. 
+[info] i  functions: Finished "stripeAttachSource" in ~1s
+[debug] [2020-04-22T22:00:39.642Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: IDLE 
+[debug] [2020-04-22T22:00:39.642Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-22T22:01:14.059Z] File /Users/yoved/Repos/joie/functions/src/stripe.ts changed, reloading triggers 
+[debug] [2020-04-22T22:01:15.061Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-22T22:01:15.061Z] [worker-~diagnostic~-04f8355b-b1ce-4f0b-8b14-266f9785aa9c]: FINISHING 
+[debug] [2020-04-22T22:01:15.061Z] [worker-pool] Shutting down IDLE worker (stripeAttachSource) 
+[debug] [2020-04-22T22:01:15.061Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: FINISHING 
+[debug] [2020-04-22T22:01:15.068Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-22T22:01:15.068Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-22T22:01:15.068Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-22T22:01:15.068Z] [worker-~diagnostic~-4b1bdf69-2732-4916-ad90-e13d0f3a30b7]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_53989.sock 
+[debug] [2020-04-22T22:01:15.069Z] [worker-~diagnostic~-4b1bdf69-2732-4916-ad90-e13d0f3a30b7]: BUSY 
+[debug] [2020-04-22T22:01:15.070Z] [worker-~diagnostic~-04f8355b-b1ce-4f0b-8b14-266f9785aa9c]: exited 
+[debug] [2020-04-22T22:01:15.070Z] [worker-~diagnostic~-04f8355b-b1ce-4f0b-8b14-266f9785aa9c]: FINISHED 
+[debug] [2020-04-22T22:01:15.070Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: exited 
+[debug] [2020-04-22T22:01:15.070Z] [worker-stripeAttachSource-1753b0ad-eef7-4787-aec6-42f422ddae8a]: FINISHED 
+[debug] [2020-04-22T22:01:15.282Z] [runtime-status] [53989] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-22T22:01:15.283Z] [runtime-status] [53989] Disabled runtime features: undefined 
+[debug] [2020-04-22T22:01:15.284Z] [runtime-status] [53989] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T22:01:15.285Z] [runtime-status] [53989] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:01:15.286Z] [runtime-status] [53989] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-22T22:01:15.307Z] [runtime-status] [53989] Checked functions.config() {"config":{}} 
+[debug] [2020-04-22T22:01:15.307Z] [runtime-status] [53989] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:01:15.308Z] [runtime-status] [53989] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T22:01:15.308Z] [runtime-status] [53989] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:01:15.308Z] [runtime-status] [53989] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-22T22:01:15.311Z] [runtime-status] [53989] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-22T22:01:15.451Z] [runtime-status] [53989] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-22T22:01:15.479Z] [worker-~diagnostic~-4b1bdf69-2732-4916-ad90-e13d0f3a30b7]: IDLE 
+[debug] [2020-04-22T22:01:27.006Z] File /Users/yoved/Repos/joie/functions/lib/config.js.map changed, reloading triggers 
+[debug] [2020-04-22T22:01:27.006Z] File /Users/yoved/Repos/joie/functions/lib/config.js changed, reloading triggers 
+[debug] [2020-04-22T22:01:27.007Z] File /Users/yoved/Repos/joie/functions/lib/helpers.js.map changed, reloading triggers 
+[debug] [2020-04-22T22:01:27.007Z] File /Users/yoved/Repos/joie/functions/lib/helpers.js changed, reloading triggers 
+[debug] [2020-04-22T22:01:27.007Z] File /Users/yoved/Repos/joie/functions/lib/user.js.map changed, reloading triggers 
+[debug] [2020-04-22T22:01:27.007Z] File /Users/yoved/Repos/joie/functions/lib/user.js changed, reloading triggers 
+[debug] [2020-04-22T22:01:27.007Z] File /Users/yoved/Repos/joie/functions/lib/post.js.map changed, reloading triggers 
+[debug] [2020-04-22T22:01:27.007Z] File /Users/yoved/Repos/joie/functions/lib/post.js changed, reloading triggers 
+[debug] [2020-04-22T22:01:27.007Z] File /Users/yoved/Repos/joie/functions/lib/stripe.js.map changed, reloading triggers 
+[debug] [2020-04-22T22:01:27.007Z] File /Users/yoved/Repos/joie/functions/lib/stripe.js changed, reloading triggers 
+[debug] [2020-04-22T22:01:27.008Z] File /Users/yoved/Repos/joie/functions/lib/index.js.map changed, reloading triggers 
+[debug] [2020-04-22T22:01:27.008Z] File /Users/yoved/Repos/joie/functions/lib/index.js changed, reloading triggers 
+[debug] [2020-04-22T22:01:28.011Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-22T22:01:28.012Z] [worker-~diagnostic~-4b1bdf69-2732-4916-ad90-e13d0f3a30b7]: FINISHING 
+[debug] [2020-04-22T22:01:28.012Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-22T22:01:28.012Z] [worker-pool] Cleaned up workers for stripeAttachSource: 1 --> 0 
+[debug] [2020-04-22T22:01:28.016Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-22T22:01:28.016Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-22T22:01:28.017Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-22T22:01:28.017Z] [worker-~diagnostic~-2a05c22c-bd5f-4ce5-9114-4d2bc3dc037c]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_54022.sock 
+[debug] [2020-04-22T22:01:28.017Z] [worker-~diagnostic~-2a05c22c-bd5f-4ce5-9114-4d2bc3dc037c]: BUSY 
+[debug] [2020-04-22T22:01:28.018Z] [worker-~diagnostic~-4b1bdf69-2732-4916-ad90-e13d0f3a30b7]: exited 
+[debug] [2020-04-22T22:01:28.018Z] [worker-~diagnostic~-4b1bdf69-2732-4916-ad90-e13d0f3a30b7]: FINISHED 
+[debug] [2020-04-22T22:01:28.469Z] [runtime-status] [54022] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-22T22:01:28.471Z] [runtime-status] [54022] Disabled runtime features: undefined 
+[debug] [2020-04-22T22:01:28.473Z] [runtime-status] [54022] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T22:01:28.474Z] [runtime-status] [54022] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:01:28.475Z] [runtime-status] [54022] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-22T22:01:28.524Z] [runtime-status] [54022] Checked functions.config() {"config":{}} 
+[debug] [2020-04-22T22:01:28.525Z] [runtime-status] [54022] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:01:28.526Z] [runtime-status] [54022] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T22:01:28.526Z] [runtime-status] [54022] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:01:28.526Z] [runtime-status] [54022] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-22T22:01:28.528Z] [runtime-status] [54022] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-22T22:01:28.871Z] [runtime-status] [54022] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-22T22:01:28.916Z] [worker-~diagnostic~-2a05c22c-bd5f-4ce5-9114-4d2bc3dc037c]: IDLE 
+[debug] [2020-04-22T22:01:31.748Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-22T22:01:31.748Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-22T22:01:31.748Z] Accepted request OPTIONS /joie-app/us-central1/stripeAttachSource --> stripeAttachSource
+[debug] [2020-04-22T22:01:31.748Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1 
+[debug] [2020-04-22T22:01:31.752Z] [worker-pool] addWorker(stripeAttachSource) 
+[debug] [2020-04-22T22:01:31.752Z] [worker-pool] Adding worker with key stripeAttachSource, total=1 
+[debug] [2020-04-22T22:01:31.752Z] [worker-pool] submitWork(triggerId=stripeAttachSource) 
+[debug] [2020-04-22T22:01:31.752Z] [worker-stripeAttachSource-7246a0c9-c127-4a20-b186-8af8ecd2a0d7]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_54023.sock 
+[debug] [2020-04-22T22:01:31.752Z] [worker-stripeAttachSource-7246a0c9-c127-4a20-b186-8af8ecd2a0d7]: BUSY 
+[debug] [2020-04-22T22:01:31.955Z] [runtime-status] [54023] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-22T22:01:31.956Z] [runtime-status] [54023] Disabled runtime features: undefined 
+[debug] [2020-04-22T22:01:31.958Z] [runtime-status] [54023] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T22:01:31.958Z] [runtime-status] [54023] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:01:31.960Z] [runtime-status] [54023] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-22T22:01:31.981Z] [runtime-status] [54023] Checked functions.config() {"config":{}} 
+[debug] [2020-04-22T22:01:31.981Z] [runtime-status] [54023] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:01:31.982Z] [runtime-status] [54023] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T22:01:31.982Z] [runtime-status] [54023] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:01:31.982Z] [runtime-status] [54023] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-22T22:01:31.983Z] [runtime-status] [54023] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-22T22:01:32.109Z] [runtime-status] [54023] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-22T22:01:32.127Z] [runtime-status] [54023] Trigger "stripeAttachSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "stripeAttachSource"
+[debug] [2020-04-22T22:01:32.131Z] [runtime-status] [54023] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"stripeAttachSource","entryPoint":"stripeAttachSource"} 
+[debug] [2020-04-22T22:01:32.132Z] [runtime-status] [54023] Running stripeAttachSource in mode HTTPS 
+[debug] [2020-04-22T22:01:32.132Z] [runtime-status] [54023] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_54023.sock 
+[debug] [2020-04-22T22:01:32.133Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-22T22:01:32.137Z] [runtime-status] [54023] Ephemeral server handling OPTIONS request 
+[debug] [2020-04-22T22:01:32.140Z] [runtime-status] [54023] Ephemeral server survived. 
+[info] i  functions: Finished "stripeAttachSource" in ~1s
+[debug] [2020-04-22T22:01:32.141Z] [worker-stripeAttachSource-7246a0c9-c127-4a20-b186-8af8ecd2a0d7]: IDLE 
+[debug] [2020-04-22T22:01:32.141Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-22T22:01:32.142Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-22T22:01:32.142Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-22T22:01:32.143Z] Accepted request POST /joie-app/us-central1/stripeAttachSource --> stripeAttachSource
+[debug] [2020-04-22T22:01:32.143Z] ID Token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjVlOWVlOTdjODQwZjk3ZTAyNTM2ODhhM2I3ZTk0NDczZTUyOGE3YjUiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWlub24gT3ZlZCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHanVfTVZBejlIeUpuaWxOZDhaMUh3NHdvWDZERnBUdTI5UEZCM29NQSIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9qb2llLWFwcCIsImF1ZCI6ImpvaWUtYXBwIiwiYXV0aF90aW1lIjoxNTg3MzA4MzQ3LCJ1c2VyX2lkIjoiR0dLdVdaSENJWVVXb1RSczJ5ekQzZFlleFJyMSIsInN1YiI6IkdHS3VXWkhDSVlVV29UUnMyeXpEM2RZZXhScjEiLCJpYXQiOjE1ODc1OTI4MzIsImV4cCI6MTU4NzU5NjQzMiwiZW1haWwiOiJ5aW5vbm92ZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTYyNTQ1NDkwODcyNzcwMTA4NDQiXSwiZW1haWwiOlsieWlub25vdmVkQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.XDZUUou9IhVtM22CNaUi99qSuU80-X7sWpXPNBblUWcSxsbMpZW99ncOFMucaU183-g2c-OcxWzHPi2H7l20zCPSOlbekDhuq38fZB_42kH4bXy95a_zqr4Hh_MeX7Ol5wHGUUUqGSWmVpohZXNsJKzAm6yYQ4Nns3BqSRdwgfk5hDW9mtkYpLUFQijwWi7rrN912BjgULj3w0-nY0FRKrPuG0CH8quP-AsfHUSIvYws1S5xpCwvKPLXvAGtS8OqDQxTu1xcWXCtI_q7X1-vbAjxzAenn7x6yGqMykONxmWEALv8sIPnawlXLYaDdvYg_PHWwLTu-9WYg-MV_nWTFw
+[debug] [2020-04-22T22:01:32.143Z] [worker-pool] submitWork(triggerId=stripeAttachSource) 
+[debug] [2020-04-22T22:01:32.144Z] [worker-stripeAttachSource-7246a0c9-c127-4a20-b186-8af8ecd2a0d7]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_54023.sock 
+[debug] [2020-04-22T22:01:32.144Z] [worker-stripeAttachSource-7246a0c9-c127-4a20-b186-8af8ecd2a0d7]: BUSY 
+[debug] [2020-04-22T22:01:32.152Z] [runtime-status] [54023] Trigger "stripeAttachSource" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "stripeAttachSource"
+[debug] [2020-04-22T22:01:32.153Z] [runtime-status] [54023] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"stripeAttachSource","entryPoint":"stripeAttachSource"} 
+[debug] [2020-04-22T22:01:32.153Z] [runtime-status] [54023] Running stripeAttachSource in mode HTTPS 
+[debug] [2020-04-22T22:01:32.153Z] [runtime-status] [54023] Attempting to listen to socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_54023.sock 
+[debug] [2020-04-22T22:01:32.154Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-22T22:01:32.170Z] [runtime-status] [54023] Ephemeral server handling POST request 
+[debug] [2020-04-22T22:01:32.172Z] [runtime-status] [54023] Callable functions auth override {"key":"x-callable-context-auth","value":"{\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"token\":{\"name\":\"Yinon Oved\",\"picture\":\"https://lh3.googleusercontent.com/a-/AOh14Gju_MVAz9HyJnilNd8Z1Hw4woX6DFpTu29PFB3oMA\",\"iss\":\"https://securetoken.google.com/joie-app\",\"aud\":\"joie-app\",\"auth_time\":1587308347,\"user_id\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"sub\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\",\"iat\":1587592832,\"exp\":1587596432,\"email\":\"yinonoved@gmail.com\",\"email_verified\":true,\"firebase\":{\"identities\":{\"google.com\":[\"116254549087277010844\"],\"email\":[\"yinonoved@gmail.com\"]},\"sign_in_provider\":\"google.com\"},\"uid\":\"GGKuWZHCIYUWoTRs2yzD3dYexRr1\"}}"} 
+[info] >  Unhandled error RangeError: Maximum call stack size exceeded {"user":"Unhandled error RangeError: Maximum call stack size exceeded"}
+[info] >      at baseIteratee (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:3458:26) {"user":"    at baseIteratee (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:3458:26)"}
+[info] >      at getIteratee (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:5926:33) {"user":"    at getIteratee (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:5926:33)"}
+[info] >      at Function.mapValues (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13398:18) {"user":"    at Function.mapValues (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13398:18)"}
+[info] >      at encode (/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/providers/https.js:179:18) {"user":"    at encode (/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/providers/https.js:179:18)"}
+[info] >      at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13401:38 {"user":"    at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13401:38"}
+[info] >      at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:4905:15 {"user":"    at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:4905:15"}
+[info] >      at baseForOwn (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:2990:24) {"user":"    at baseForOwn (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:2990:24)"}
+[info] >      at Function.mapValues (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13400:7) {"user":"    at Function.mapValues (/Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13400:7)"}
+[info] >      at encode (/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/providers/https.js:179:18) {"user":"    at encode (/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/providers/https.js:179:18)"}
+[info] >      at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13401:38 {"user":"    at /Users/yoved/Repos/joie/functions/node_modules/lodash/lodash.js:13401:38"}
+[debug] [2020-04-22T22:01:32.301Z] [runtime-status] [54023] Ephemeral server survived. 
+[info] i  functions: Finished "stripeAttachSource" in ~1s
+[debug] [2020-04-22T22:01:32.301Z] [worker-stripeAttachSource-7246a0c9-c127-4a20-b186-8af8ecd2a0d7]: IDLE 
+[debug] [2020-04-22T22:01:32.301Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-22T22:01:41.494Z] File /Users/yoved/Repos/joie/functions/src/stripe.ts changed, reloading triggers 
+[debug] [2020-04-22T22:01:42.498Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-04-22T22:01:42.498Z] [worker-~diagnostic~-2a05c22c-bd5f-4ce5-9114-4d2bc3dc037c]: FINISHING 
+[debug] [2020-04-22T22:01:42.498Z] [worker-pool] Shutting down IDLE worker (stripeAttachSource) 
+[debug] [2020-04-22T22:01:42.498Z] [worker-stripeAttachSource-7246a0c9-c127-4a20-b186-8af8ecd2a0d7]: FINISHING 
+[debug] [2020-04-22T22:01:42.502Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-04-22T22:01:42.503Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-04-22T22:01:42.503Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-22T22:01:42.503Z] [worker-~diagnostic~-c97e46e8-b101-4cc1-8cf3-9e3fd39a7a57]: Assigning socketPath: /var/folders/4r/7fk7hhxn6xjc01htp5v53cjdl5jgzl/T/fire_emu_54039.sock 
+[debug] [2020-04-22T22:01:42.503Z] [worker-~diagnostic~-c97e46e8-b101-4cc1-8cf3-9e3fd39a7a57]: BUSY 
+[debug] [2020-04-22T22:01:42.504Z] [worker-~diagnostic~-2a05c22c-bd5f-4ce5-9114-4d2bc3dc037c]: exited 
+[debug] [2020-04-22T22:01:42.504Z] [worker-~diagnostic~-2a05c22c-bd5f-4ce5-9114-4d2bc3dc037c]: FINISHED 
+[debug] [2020-04-22T22:01:42.505Z] [worker-stripeAttachSource-7246a0c9-c127-4a20-b186-8af8ecd2a0d7]: exited 
+[debug] [2020-04-22T22:01:42.505Z] [worker-stripeAttachSource-7246a0c9-c127-4a20-b186-8af8ecd2a0d7]: FINISHED 
+[debug] [2020-04-22T22:01:42.717Z] [runtime-status] [54039] Functions runtime initialized. {"cwd":"/Users/yoved/Repos/joie/functions","node_version":"12.16.1"} 
+[debug] [2020-04-22T22:01:42.719Z] [runtime-status] [54039] Disabled runtime features: undefined 
+[debug] [2020-04-22T22:01:42.721Z] [runtime-status] [54039] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T22:01:42.721Z] [runtime-status] [54039] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:01:42.723Z] [runtime-status] [54039] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-22T22:01:42.749Z] [runtime-status] [54039] Checked functions.config() {"config":{}} 
+[debug] [2020-04-22T22:01:42.749Z] [runtime-status] [54039] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:01:42.750Z] [runtime-status] [54039] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-22T22:01:42.750Z] [runtime-status] [54039] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.0","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-22T22:01:42.750Z] [runtime-status] [54039] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yoved/Repos/joie/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-22T22:01:42.752Z] [runtime-status] [54039] initializeApp(DEFAULT) {"databaseURL":"https://joie-app.firebaseio.com","storageBucket":"joie-app.appspot.com","projectId":"joie-app"} 
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production.
+[debug] [2020-04-22T22:01:42.917Z] [runtime-status] [54039] config() parent accessed! {"parentKey":"stripe","parentConfig":{}} 
+[warn] ⚠  Non-existent functions.config() value requested!
+   - Path: "stripe.token"
+   - Learn more at https://firebase.google.com/docs/functions/local-emulator
+[debug] [2020-04-22T22:01:42.937Z] [worker-~diagnostic~-c97e46e8-b101-4cc1-8cf3-9e3fd39a7a57]: IDLE 

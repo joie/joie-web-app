@@ -1,0 +1,10 @@
+<form (submit)="onSubmit($event)">
+  <fieldset #cardElement>
+    <!-- A Stripe Element will be inserted here. -->
+  </fieldset>
+
+  <!-- Used to display Element errors. -->
+  <p>{{ cardErrors }}</p>
+
+  <button type="submit">add</button>
+</form>
