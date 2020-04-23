@@ -57,7 +57,7 @@ export class PaymentMethodFormComponent implements AfterViewInit {
     } else {
       const callable = this.fns.httpsCallable('stripeAttachSource');
       console.log(source);
-      const res = await callable({ source: source.id }).toPromise();
+      const res = await callable({ sourceId: source.id }).toPromise();
       //    data$.subscribe(console.log);
       console.log(res);
 

@@ -1,306 +1,174 @@
-'use strict';
-
 import * as functions from 'firebase-functions';
+import { getUID, catchErrors } from './helpers';
+import { db, stripe } from './config';
 
-// import { assert, getUID, catchErrors } from './helpers';
-// import { stripe, db } from './config';
+/**
+ * Takes a Firebase user and creates a Stripe customer account
+ */
+export const createCustomer = async (firebaseUser: any) => {
+  const { uid, email } = firebaseUser;
+  const customer = await (stripe.customers as any).create(
+    {
+      email,
+      metadata: { firebaseUID: uid },
+    },
+    { idempotency_key: uid }
+  );
 
-// const STRIPE_CUSTOMERS = 'stripe_customers';
-// const USERS = 'users';
+  await updateUser(uid, { stripeCustomerId: customer.id });
 
-export const stripeAttachSource = functions.https.onCall(
+  return customer;
+};
+/**
+ *  Read the stripe customer ID from firestore, or create a new one if missing
+ */
+export const getOrCreateCustomer = async (uid: string) => {
+  const user = await getUser(uid);
+
+  if (!user) {
+    await updateUser(uid, { uid });
+    return createCustomer({ uid, email: null });
+  }
+
+  const customerId = user.stripeCustomerId;
+
+  // If missing customerID, create it
+  if (!customerId) {
+    return createCustomer(user);
+  } else {
+    return stripe.customers.retrieve(customerId);
+  }
+};
+
+/**
+ *  Use this function to read the user document from Firestore
+ */
+export const getUser = async (uid: string) => {
+  return await db
+    .collection('users')
+    .doc(uid)
+    .get()
+    .then((doc) => doc.data());
+};
+
+/**
+ *  Convenience method to get customer ID
+ */
+export const getCustomerId = async (uid: string) => {
+  const customer = await getOrCreateCustomer(uid);
+  return customer.id;
+};
+
+/**
+ * Updates the user document non-destructively
+ */
+export const updateUser = async (uid: string, data: Object) => {
+  return await db.collection('users').doc(uid).set(data, { merge: true });
+};
+
+/**
+ * Get all user charges
+ */
+export const getUserCharges = async (uid: string, limit?: number) => {
+  const customer = await getCustomerId(uid);
+
+  return await stripe.charges.list({
+    limit,
+    customer,
+  });
+};
+
+/**
+ * Get all invoices
+ */
+export const getUserInvoices = async (uid: string, limit?: number) => {
+  const customer = await getCustomerId(uid);
+  return await stripe.invoices.list({
+    limit,
+    customer,
+  });
+};
+
+export const stripeGetInvoices = functions.https.onCall(
   async (data, context) => {
-    //   return await stripe.customers.createSource('cus_AFGbOSiITuJVDs', {
-    //     source: 'src_18eYalAHEMiOZZp1l9ZTjSU0',
-    //   });
-
-    return { data, context };
+    const uid = getUID(context);
+    return catchErrors(getUserInvoices(uid));
   }
 );
 
-// /**
-//  *  Use this function to read the user document from Firestore
-//  */
-// export const getUser = async (uid: string) => {
-//   return await db
-//     .collection(USERS)
-//     .doc(uid)
-//     .get()
-//     .then((doc) => doc.data());
-// };
+export const stripeGetCharges = functions.https.onCall(
+  async (data, context) => {
+    const uid = getUID(context);
+    return catchErrors(getUserCharges(uid));
+  }
+);
 
-// /**
-//  *  Read the stripe customer ID from firestore, or create a new one if missing
-//  */
-// export const getOrCreateCustomer = async (uid: string) => {
-//   const user = await getUser(uid);
+export const stripeGetCustomer = functions.https.onCall(
+  async (data, context) => {
+    const uid = getUID(context);
+    return catchErrors(getOrCreateCustomer(uid));
+  }
+);
 
-//   if (!user) {
-//     await updateUser(uid, { uid });
-//     return createCustomer({ uid, email: null });
-//   }
+const STRIPE_CUSTOMERS = 'stripe_customers';
 
-//   const customerId = user.stripeCustomerId;
+const mockdata = async (uid: string) => {
+  await db
+    .collection('stripe_customers')
+    .doc(uid)
+    .set({ customer_id: 'cus_H78rs5J2txh3WZ' }, { merge: true });
+};
 
-//   // If missing customerID, create it
-//   if (!customerId) {
-//     return createCustomer(user);
-//   } else {
-//     return stripe.customers.retrieve(customerId);
-//   }
-// };
+const getUserCustomerId = async (uid: string) => {
+  const UserCustomer = await db
+    .collection(STRIPE_CUSTOMERS)
+    .doc(uid)
+    .get()
+    .then((doc) => doc.data());
+  return UserCustomer?.customer_id;
+};
 
-// export const stripeGetCustomer = functions.https.onCall(
-//   async (data, context) => {
-//     const uid = getUID(context);
-//     return catchErrors(getOrCreateCustomer(uid));
-//   }
-// );
+/**
+ *  Use this function to create a source for existing customer
+ */
+// const createSource = async (source: string, stripeCustomerId: string) =>
+//   await stripe.customers.createSource(stripeCustomerId, { source });
 
-// // When a user is created, register them with Stripe
-// export const createStripeCustomer = async ({ uid, email }) => {
-//   const customer = await stripe.customers.create({
-//     email,
-//     metadata: { firebaseUID: uid },
-//   });
-//   return db
-//     .collection(STRIPE_CUSTOMERS)
-//     .doc(uid)
-//     .set({ customer_id: customer.id });
-// };
+export const stripeAttachSource = functions.https.onCall(
+  async ({ sourceId }, context) => {
+    const uid = getUID(context);
+    await mockdata(uid);
+    const stripeCustomerId = await getUserCustomerId(uid);
 
-// // When a user deletes their account, clean up after them
-// export const cleanupStripeCustomer = functions.auth
-//   .user()
-//   .onDelete(async ({ uid }) => {
-//     const snapshot = await db.collection(STRIPE_CUSTOMERS).doc(uid).get();
-//     const customer = snapshot.data();
-//     if (customer === undefined) {
-//       return null;
-//     }
-//     await stripe.customers.del(customer.customer_id);
-//     return db.collection(STRIPE_CUSTOMERS).doc(uid).delete();
-//   });
+    // await updateUser(uid, { name: 'john' });
+    // const t = await createSource(sourceId, stripeCustomerId);
+    const b = await stripe.customers.createSource(stripeCustomerId, {
+      source: sourceId,
+    });
+    console.log(b);
+    return 5;
+    // ? catchErrors(createSource(sourceId, stripeCustomerId))
+    // : null;
+  }
+);
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// // Add a payment source (card) for a user by writing a stripe payment source token to Cloud Firestore
-// export const addPaymentSource = functions.firestore
-//   .document('/stripe_customers/{userId}/tokens/{pushId}')
-//   .onCreate(async (snap, context) => {
-//     const source = snap.data();
-//     if (source === undefined) {
-//       return null;
-//     }
-//     const token = source.token;
+// call stripe attach source with source id
+// get stripe_customer stripe id by firebase user uid
+// if id exist create source
+// otherwise create customer with source
 
-//     try {
-//       const snapshot = await db
-//         .collection(STRIPE_CUSTOMERS)
-//         .doc(context.params.userId)
-//         .get();
-
-//       const data = snapshot?.data();
-//       if (data === undefined) {
-//         return null;
-//       }
-//       const customer = data.customer_id;
-//       const response = await stripe.customers.createSource(customer, {
-//         source: token,
-//       });
-//       return db
-//         .collection(STRIPE_CUSTOMERS)
-//         .doc(context.params.userId)
-//         .collection('sources')
-//         .doc(response.fingerprint)
-//         .set(response, { merge: true });
-//     } catch (error) {
-//       await snap.ref.set({ error: userFacingMessage(error) }, { merge: true });
-//       return reportError(error, { user: context.params.userId });
-//     }
-//   });
-
-// /**
-//  * Copyright 2016 Google Inc. All Rights Reserved.
-//  *
-//  * Licensed under the Apache License, Version 2.0 (the "License");
-//  * you may not use this file except in compliance with the License.
-//  * You may obtain a copy of the License at
-//  *
-//  *      http://www.apache.org/licenses/LICENSE-2.0
-//  *
-//  * Unless required by applicable law or agreed to in writing, software
-//  * distributed under the License is distributed on an "AS IS" BASIS,
-//  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//  * See the License for the specific language governing permissions and
-//  * limitations under the License.
-//  */
-// 'use strict';
-
-// import * as functions from 'firebase-functions';
-// import * as admin from 'firebase-admin';
-// import { Logging } from '@google-cloud/logging';
-// const logging = new Logging();
-// // const logging = require('@google-cloud/logging')();
-// const stripe = require('stripe')(functions.config().stripe.token);
-// const currency = functions.config().stripe.currency || 'USD';
-
-// // [START chargecustomer]
-// // Charge the Stripe customer whenever an amount is created in Cloud Firestore
-// export const createStripeCharge = functions.firestore
-//   .document('stripe_customers/{userId}/charges/{id}')
-//   .onCreate(async (snap, context) => {
-//     const val = snap.data();
-//     try {
-//       // Look up the Stripe customer id written in createStripeCustomer
-//       const snapshot = await db
-//         .collection(`stripe_customers`)
-//         .doc(context.params.userId)
-//         .get();
-//       const snapval = snapshot.data();
-//       if (snapval === undefined) {
-//         return null;
-//       }
-//       const customer = snapval.customer_id;
-//       // Create a charge using the pushId as the idempotency key
-//       // protecting against double charges
-//       if (val === undefined) {
-//         return null;
-//       }
-
-//       const amount = val.amount;
-//       const idempotencyKey = context.params.id;
-//       const charge = { amount, currency, customer };
-//       if (charge === undefined) {
-//         return null;
-//       }
-//       if (val.source !== null) {
-//         Object.assign(charge, { source: val.source });
-//       }
-//       const response = await stripe.charges.create(charge, {
-//         idempotency_key: idempotencyKey,
-//       });
-//       // If the result is successful, write it back to the database
-//       return snap.ref.set(response, { merge: true });
-//     } catch (error) {
-//       // We want to capture errors and render them in a user-friendly way, while
-//       // still logging an exception with StackDriver
-//       console.log(error);
-//       await snap.ref.set({ error: userFacingMessage(error) }, { merge: true });
-//       return reportError(error, { user: context.params.userId });
-//     }
-//   });
-// // [END chargecustomer]]
-
-// // When a user is created, register them with Stripe
-// export const createStripeCustomer = functions.auth
-//   .user()
-//   .onCreate(async (user) => {
-//     const customer = await stripe.customers.create({ email: user.email });
-//     return db
-//       .collection(STRIPE_CUSTOMERS)
-//       .doc(user.uid)
-//       .set({ customer_id: customer.id });
-//   });
-
-// // Add a payment source (card) for a user by writing a stripe payment source token to Cloud Firestore
-// export const addPaymentSource = functions.firestore
-//   .document('/stripe_customers/{userId}/tokens/{pushId}')
-//   .onCreate(async (snap, context) => {
-//     const source = snap.data();
-//     if (source === undefined) {
-//       return null;
-//     }
-//     const token = source.token;
-
-//     try {
-//       const snapshot = await db
-//         .collection(STRIPE_CUSTOMERS)
-//         .doc(context.params.userId)
-//         .get();
-
-//       const data = snapshot?.data();
-//       if (data === undefined) {
-//         return null;
-//       }
-//       const customer = data.customer_id;
-//       const response = await stripe.customers.createSource(customer, {
-//         source: token,
-//       });
-//       return db
-//         .collection(STRIPE_CUSTOMERS)
-//         .doc(context.params.userId)
-//         .collection('sources')
-//         .doc(response.fingerprint)
-//         .set(response, { merge: true });
-//     } catch (error) {
-//       await snap.ref.set({ error: userFacingMessage(error) }, { merge: true });
-//       return reportError(error, { user: context.params.userId });
-//     }
-//   });
-
-// // When a user deletes their account, clean up after them
-// export const cleanupUser = functions.auth.user().onDelete(async (user) => {
-//   const snapshot = await db
-//     .collection(STRIPE_CUSTOMERS)
-//     .doc(user.uid)
-//     .get();
-//   const customer = snapshot.data();
-//   if (customer === undefined) {
-//     return null;
-//   }
-//   await stripe.customers.del(customer.customer_id);
-//   return db
-//     .collection(STRIPE_CUSTOMERS)
-//     .doc(user.uid)
-//     .delete();
+// const customer = await stripe.customers.create({
+//   email: 'paying.user@example.com',
+//   source: 'src_18eYalAHEMiOZZp1l9ZTjSU0',
 // });
 
-// // To keep on top of errors, we should raise a verbose error report with Stackdriver rather
-// // than simply relying on console.error. This will calculate users affected + send you email
-// // alerts, if you've opted into receiving them.
-// // [START reporterror]
-// function reportError(err: any, context = {}) {
-//   // This is the name of the StackDriver log stream that will receive the log
-//   // entry. This name can be any valid log stream name, but must contain "err"
-//   // in order for the error to be picked up by StackDriver Error Reporting.
-//   const logName = 'errors';
-//   const log = logging.log(logName);
+// const customer = await stripe.customers.update('cus_AFGbOSiITuJVDs', {
+//   default_source: 'src_18eYalAHEMiOZZp1l9ZTjSU0',
+// });
 
-//   // https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/MonitoredResource
-//   const metadata: any = {
-//     resource: {
-//       type: 'cloud_function',
-//       labels: { function_name: process.env.FUNCTION_NAME },
-//     },
-//   };
-
-//   // https://cloud.google.com/error-reporting/reference/rest/v1beta1/ErrorEvent
-//   const errorEvent = {
-//     message: err.stack,
-//     serviceContext: {
-//       service: process.env.FUNCTION_NAME,
-//       resourceType: 'cloud_function',
-//     },
-//     context: context,
-//   };
-
-//   // Write the error log entry
-//   return new Promise((resolve, reject) => {
-//     log.write(log.entry(metadata, errorEvent), (error: any) => {
-//       if (error) {
-//         // tslint:disable-next-line: no-void-expression
-//         return reject(error);
-//       }
-//       // tslint:disable-next-line: no-void-expression
-//       return resolve();
-//     });
-//   });
-// }
-// // [END reporterror]
-
-// // Sanitize the error message for the user
-// function userFacingMessage(error: any) {
-//   return error.type
-//     ? error.message
-//     : 'An error occurred, developers have been alerted';
-// }
+// const charge = await stripe.charges.create({
+//   amount: 1099,
+//   currency: 'eur',
+//   customer: 'cus_AFGbOSiITuJVDs',
+//   source: 'src_18eYalAHEMiOZZp1l9ZTjSU0',
+// });

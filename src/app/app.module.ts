@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule, SETTINGS } from '@angular/fire/firestore';
 import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/functions';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,7 +30,21 @@ import { SharedModule } from './shared/shared.module';
     }),
     BrowserAnimationsModule,
   ],
-  providers: [{ provide: ORIGIN, useValue: 'http://localhost:5001' }],
+  providers: [
+    {
+      provide: SETTINGS,
+      useValue: environment.production
+        ? undefined
+        : {
+            host: 'localhost:8081',
+            ssl: false,
+          },
+    },
+    {
+      provide: ORIGIN,
+      useValue: environment.production ? undefined : 'http://localhost:5001',
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

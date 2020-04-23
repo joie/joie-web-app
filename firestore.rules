@@ -60,6 +60,10 @@ service cloud.firestore {
       allow read: if request.auth.uid == uid;
     }
 
+		// match /stripe_customers/{uid} {
+    //   allow read: if request.auth.uid == uid;
+    // }
+
 		match /posts/{post} {
       allow read: if true;
       allow create: if isSignedIn() && isClaim('author');
