@@ -78,6 +78,21 @@ export const stripeAttachSource = functions.https.onCall(
   }
 );
 
+/**
+ * When a user deletes their account, clean up after them
+ */
+exports.cleanupUser = functions.auth.user().onDelete(async (user) => {
+  const snapshot = await db.collection(STRIPE_CUSTOMERS).doc(user.uid).get();
+  const customer = snapshot.data();
+
+  // delete customer if exist in user
+  if (customer) {
+    await stripe.customers.del(customer.customer_id);
+  }
+
+  return db.collection(STRIPE_CUSTOMERS).doc(user.uid).delete();
+});
+
 // call stripe attach source with source id
 // get stripe_customer stripe id by firebase user uid
 // if id exist create source
