@@ -1,10 +1,11 @@
-<form (submit)="onSubmit($event)">
-  <fieldset #cardElement>
+<div *ngIf="isLoading">LOADING...</div>
+<form class="form-grid" (submit)="onSubmit($event)" [class.loading]="isLoading">
+  <fieldset #cardElement class="stripe-card">
     <!-- A Stripe Element will be inserted here. -->
   </fieldset>
 
   <!-- Used to display Element errors. -->
-  <p>{{ cardErrors }}</p>
 
-  <button type="submit">add</button>
+  <button type="submit">Submit Payment</button>
 </form>
+<p>{{ cardErrors }}</p>

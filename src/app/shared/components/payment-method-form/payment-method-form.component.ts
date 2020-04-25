@@ -23,6 +23,7 @@ export class PaymentMethodFormComponent implements AfterViewInit {
   private stripe: Stripe;
   private card: StripeCardElement;
   cardErrors: string;
+  isLoading = true;
 
   constructor(private fns: AngularFireFunctions) {}
 
@@ -30,6 +31,18 @@ export class PaymentMethodFormComponent implements AfterViewInit {
     this.card = await this.mountCard();
     // Handle real-time validation errors from the card Element.
     this.cardValidate();
+    await this.cardAvailable();
+    this.isLoading = false;
+    this.card.focus();
+  }
+
+  private cardAvailable() {
+    const promise = new Promise((resolve) => {
+      this.card.on('ready', async () => {
+        return resolve();
+      });
+    });
+    return promise;
   }
 
   private cardValidate() {
@@ -41,7 +54,7 @@ export class PaymentMethodFormComponent implements AfterViewInit {
   async mountCard() {
     this.stripe = await loadStripe(STRIPE_KEY);
     const elements = this.stripe.elements();
-    const card = elements.create('card', { style: style });
+    const card = elements.create('card', { style });
     card.mount(this.cardElement.nativeElement);
     return card;
   }
@@ -55,28 +68,12 @@ export class PaymentMethodFormComponent implements AfterViewInit {
       // Inform the customer that there was an error.
       this.cardErrors = error.message;
     } else {
+      this.isLoading = true;
+      // Send the token to your server.
       const callable = this.fns.httpsCallable('stripeAttachSource');
-      console.log(source);
       const res = await callable({ sourceId: source.id }).toPromise();
-      //    data$.subscribe(console.log);
       console.log(res);
-
-      // // Send the token to your server.
-      // this.loading = true;
-      // const user = await this.auth.getUser();
-      // // onSubmit(): void {
-      // //   const callable = this.fns.httpsCallable('addPaymentSource');
-      // //   const data$ = callable({ name: 'some-data' });
-      // //   data$.subscribe(console.log);
-      // //   console.log(this.stripe);
-      // // }
-      // const fun = this.functions.httpsCallable('stripeCreateCharge');
-      // this.confirmation = await fun({
-      //   source: source.id,
-      //   uid: user.uid,
-      //   amount: this.amount,
-      // }).toPromise();
-      // this.loading = false;
+      this.isLoading = false;
     }
   }
 }
