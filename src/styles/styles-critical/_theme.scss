@@ -1,6 +1,9 @@
+@use "sass:map";
+@use "theme-custom-palettes" as custom-palettes;
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@import "~@angular/material/theming";
+@use "~@angular/material/theming" as *;
+
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -11,7 +14,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$joie-primary: mat-palette($mat-indigo);
+$joie-primary: mat-palette(custom-palettes.$joie-primary);
 $joie-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -25,8 +28,8 @@ $joie-theme: mat-light-theme($joie-primary, $joie-accent, $joie-warn);
 // that you are using.
 // @include angular-material-theme($joie-theme);
 
-// Include the theme styles for only specified components.
-@include mat-core-theme($joie-theme);
+//! Include the theme styles for only specified components.
+// @include mat-core-theme($joie-theme);
 // @include mat-button-theme($joie-theme);
 // @include mat-form-field-theme($joie-theme);
 // @include mat-checkbox-theme($joie-theme);
@@ -51,3 +54,27 @@ $joie-theme: mat-light-theme($joie-primary, $joie-accent, $joie-warn);
 
 // @include mat-mdc-checkbox-theme($my-theme);
 // @include mat-mdc-checkbox-typography();
+
+// Custom Overrides
+// Foreground
+$foreground: map.get($joie-theme, foreground);
+$foreground: map.merge(
+  $foreground,
+  custom-palettes.$joie-light-theme-foreground
+);
+
+// Background
+$background: map.get($joie-theme, background);
+$background: map.merge(
+  $background,
+  custom-palettes.$joie-light-theme-background
+);
+
+// Merge theme
+$joie-theme: map.merge(
+  $joie-theme,
+  (
+    foreground: $foreground,
+    background: $background,
+  )
+);

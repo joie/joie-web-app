@@ -31,13 +31,8 @@
             ],
             "styles": [
               {
-                "input": "src/styles/styles-critical.scss",
+                "input": "src/styles/styles-critical/styles-critical.scss",
                 "bundleName": "styles-critical",
-                "inject": true
-              },
-              {
-                "input": "src/styles/styles-app.scss",
-                "bundleName": "styles-app",
                 "inject": true
               },
               {
@@ -85,7 +80,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "joie:build"
+            "browserTarget": "joie:build",
+            "port": 8927
           },
           "configurations": {
             "production": {
@@ -114,13 +110,8 @@
             ],
             "styles": [
               {
-                "input": "src/styles/styles-critical.scss",
+                "input": "src/styles/styles-critical/styles-critical.scss",
                 "bundleName": "styles-critical",
-                "inject": true
-              },
-              {
-                "input": "src/styles/styles-app.scss",
-                "bundleName": "styles-app",
                 "inject": true
               },
               {

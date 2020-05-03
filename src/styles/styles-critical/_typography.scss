@@ -1,10 +1,5 @@
 @use "~@angular/material/theming" as *;
 
-// Define a custom typography config that overrides the font-family as well as the
-// `headlines` and `body-1` levels.
-$system-fonts: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-
 $joie-typography: mat-typography-config(
   $font-family: unquote("Montserrat,") $system-fonts,
   $display-4: mat-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
@@ -21,12 +16,5 @@ $joie-typography: mat-typography-config(
   $button: mat-typography-level(14px, 14px, 500),
   $input: mat-typography-level(inherit, 1.125, 400),
 );
-
-@font-face {
-  font-family: "Montserrat";
-  src: url("~/assets/fonts/Montserrat/Montserrat-VF.woff2")
-    format("woff-variations");
-  font-weight: 400 700 900;
-}
 
 @include mat-base-typography($joie-typography);

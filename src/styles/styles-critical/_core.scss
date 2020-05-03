@@ -1,0 +1,18 @@
+@use "~@angular/material/theming" as *;
+@use 'theme';
+@use "sass:map";
+
+$background-map: map.get(theme.$joie-theme, background);
+$foreground-map: map.get(theme.$joie-theme, foreground);
+$primary-map: map.get(theme.$joie-theme, primary);
+
+:root {
+  --joie-color-background: #{mat-color($background-map, background)};
+  --joie-color-foreground: #{mat-color($foreground-map, text)};
+  --joie-color-primary: #{mat-color($primary-map, text)};
+}
+
+body {
+  background-color: var(--joie-color-background);
+  color: var(--joie-color-background);
+}
