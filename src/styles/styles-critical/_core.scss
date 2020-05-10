@@ -1,4 +1,4 @@
-@use "~@angular/material/theming" as *;
+@use "theming-proxy" as *;
 @use 'theme';
 @use "sass:map";
 
@@ -10,9 +10,16 @@ $primary-map: map.get(theme.$joie-theme, primary);
   --joie-color-background: #{mat-color($background-map, background)};
   --joie-color-foreground: #{mat-color($foreground-map, text)};
   --joie-color-primary: #{mat-color($primary-map, text)};
+  --joie-color-divider: #{mat-color($foreground-map, divider)};
 }
 
 body {
   background-color: var(--joie-color-background);
-  color: var(--joie-color-background);
+  color: var(--joie-color-foreground);
+}
+
+hr {
+  border-color: var(--joie-color-divider);
+  border-width: 1px 0 0;
+  border-style: solid;
 }

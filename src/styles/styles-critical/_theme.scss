@@ -2,7 +2,7 @@
 @use "theme-custom-palettes" as custom-palettes;
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use "~@angular/material/theming" as *;
+@use "theming-proxy" as *;
 
 // Plus imports for other components in your app.
 

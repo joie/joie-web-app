@@ -1,4 +1,4 @@
-@use "~@angular/material/theming" as *;
+@use "theming-proxy" as *;
 
 $joie-typography: mat-typography-config(
   $font-family: unquote("Montserrat,") $system-fonts,
