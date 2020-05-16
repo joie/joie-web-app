@@ -1,6 +1,7 @@
 $background: #f2f2f2;
 $foreground: #323232;
 $dark-dividers: #979797;
+$dark-secondary-text: #686868;
 
 // Foreground palette for light themes.
 $joie-light-theme-foreground: (
@@ -12,7 +13,7 @@ $joie-light-theme-foreground: (
     // disabled-text: $dark-disabled-text,
     // elevation: black,
     // hint-text: $dark-disabled-text,
-    // secondary-text: $dark-secondary-text,
+    secondary-text: $dark-secondary-text,
     // icon: rgba(black, 0.54),
     // icons: rgba(black, 0.54),
     text: $foreground,
