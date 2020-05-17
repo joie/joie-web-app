@@ -3,19 +3,19 @@
 
 $joie-typography: mat-typography-config(
   $font-family: unquote("Montserrat,") $system-fonts,
-  $display-4: mat-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
-  $display-3: mat-typography-level(56px, 56px, $semi-bold),
-  $display-2: mat-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
-  $display-1: mat-typography-level(34px, 40px, 400),
+  $display-4: mat-typography-level(112px, 112px, $semi-bold, $letter-spacing: -0.05em),
+  $display-3: mat-typography-level(56px, .95, $semi-bold),
+  $display-2: mat-typography-level(45px, 48px, $normal, $letter-spacing: -0.005em),
+  $display-1: mat-typography-level(34px, 40px, $normal),
   $headline: mat-typography-level(30px, 1.1, $semi-bold),
   $title: mat-typography-level(18px, 1.15, $semi-bold),
-  $subheading-2: mat-typography-level(16px, 28px, 400),
-  $subheading-1: mat-typography-level(15px, 24px, 400),
-  $body-2: mat-typography-level(14px, 24px, 500),
-  $body-1: mat-typography-level(20px, 24px, 400),
-  $caption: mat-typography-level(12px, 20px, 400),
-  $button: mat-typography-level(14px, 14px, 500),
-  $input: mat-typography-level(inherit, 1.125, 400),
+  $subheading-2: mat-typography-level(25px, 1.15, $semi-bold),
+  $subheading-1: mat-typography-level(22px, 1, $normal),
+  $body-2: mat-typography-level(144px, 24px, $semi-bold),
+  $body-1: mat-typography-level(20px, 24px, $normal),
+  $caption: mat-typography-level(12px, 20px, $normal),
+  $button: mat-typography-level(14px, 14px, $semi-bold),
+  $input: mat-typography-level(inherit, 1.125, $normal),
 );
 
 @include mat-base-typography($joie-typography);

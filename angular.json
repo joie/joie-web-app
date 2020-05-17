@@ -26,18 +26,12 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest",
-              "src/posts"
+              "src/manifest.webmanifest"
             ],
             "styles": [
               {
                 "input": "src/styles/styles-critical/styles-critical.scss",
                 "bundleName": "styles-critical",
-                "inject": true
-              },
-              {
-                "input": "src/styles/styles-posts.scss",
-                "bundleName": "styles-posts",
                 "inject": false
               }
             ],
@@ -105,18 +99,11 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest",
-              "src/posts"
-            ],
+              "src/manifest.webmanifest"            ],
             "styles": [
               {
                 "input": "src/styles/styles-critical/styles-critical.scss",
                 "bundleName": "styles-critical",
-                "inject": true
-              },
-              {
-                "input": "src/styles/styles-posts.scss",
-                "bundleName": "styles-posts",
                 "inject": false
               }
             ],
