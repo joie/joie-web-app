@@ -100,7 +100,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"            ],
+              "src/manifest.webmanifest"
+            ],
             "styles": [
               {
                 "input": "src/styles/styles-critical/styles-critical.scss",
@@ -120,7 +121,9 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "e2e": {

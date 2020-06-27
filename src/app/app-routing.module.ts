@@ -32,7 +32,7 @@ const routes: Routes = [
     // https://github.com/angular/angularfire/issues/2367
     // ...canActivate(redirectUnauthorizedToLogin),
   },
-
+  { path: 'classes', loadChildren: () => import('./classes/classes.module').then(m => m.ClassesModule) },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
