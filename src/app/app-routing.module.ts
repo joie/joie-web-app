@@ -7,7 +7,7 @@ import {
   redirectUnauthorizedToLogin,
 } from './common/auth-guards-pipes';
 
-import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './core/containers/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {

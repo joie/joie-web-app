@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { environment } from '../../environments/environment';
 
+import {MatTabsModule} from '@angular/material/tabs';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthStateModule } from '../auth-state/auth-state.module';
-import { UserControlComponent } from './user-control/user-control.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserControlComponent } from './components/user-control/user-control.component';
+import { PageNotFoundComponent } from './containers/page-not-found/page-not-found.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [UserControlComponent, PageNotFoundComponent],
+  declarations: [UserControlComponent, PageNotFoundComponent, HeaderComponent],
   imports: [
-    CommonModule,
+    SharedModule,
+    MatTabsModule,
     StoreModule.forRoot(
       {},
       {
@@ -27,6 +30,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AuthStateModule,
   ],
-  exports: [UserControlComponent, PageNotFoundComponent],
+  exports: [UserControlComponent, PageNotFoundComponent, HeaderComponent],
 })
 export class CoreModule {}
