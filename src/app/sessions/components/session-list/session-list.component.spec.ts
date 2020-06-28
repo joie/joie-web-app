@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClassesDashboardComponent } from './classes-dashboard.component';
+import { SessionListComponent } from './session-list.component';
 
-describe('ClassesComponent', () => {
-  let component: ClassesDashboardComponent;
-  let fixture: ComponentFixture<ClassesDashboardComponent>;
+describe('SessionListComponent', () => {
+  let component: SessionListComponent;
+  let fixture: ComponentFixture<SessionListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ClassesDashboardComponent ]
+      declarations: [ SessionListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ClassesDashboardComponent);
+    fixture = TestBed.createComponent(SessionListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeDashboardComponent } from './containers/home-dashboard/home-dashboard.component';
-import { ClassesModule } from '../classes/classes.module';
+import { SessionsModule } from '../sessions/sessions.module';
 
 @NgModule({
   declarations: [HomeDashboardComponent],
-  imports: [ClassesModule, HomeRoutingModule],
+  imports: [SessionsModule, HomeRoutingModule],
 })
 export class HomeModule {}

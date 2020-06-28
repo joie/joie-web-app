@@ -36,6 +36,9 @@
               },
               "src/styles/components/components.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["node_modules/"]
+            },
             "extractCss": true,
             "scripts": []
           },
@@ -110,6 +113,9 @@
               },
               "src/styles/components/components.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["node_modules/"]
+            },
             "scripts": []
           }
         },
@@ -121,9 +127,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {

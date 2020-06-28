@@ -6,15 +6,16 @@ export interface Price {
   display: number;
   currency: 'USD';
 }
-export interface Teacher {
-  displayName: 'string';
-}
+// export interface Teacher {
+//   displayName: 'string';
+// }
 
-export interface Class {
+export interface Session {
+  readonly id: string;
   title: string;
   duration: Duration;
   price: Price;
-  teacher: Teacher;
+  uid: string;
   type: 'on-demand' | 'live';
   date: number;
 }

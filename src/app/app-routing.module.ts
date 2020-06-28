@@ -10,7 +10,10 @@ import {
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+  },
   {
     path: 'posts',
     loadChildren: () =>
@@ -32,7 +35,11 @@ const routes: Routes = [
     // https://github.com/angular/angularfire/issues/2367
     // ...canActivate(redirectUnauthorizedToLogin),
   },
-  { path: 'classes', loadChildren: () => import('./classes/classes.module').then(m => m.ClassesModule) },
+  {
+    path: 'sessions',
+    loadChildren: () =>
+      import('./sessions/sessions.module').then((m) => m.SessionsModule),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
@@ -41,6 +48,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       preloadingStrategy: QuicklinkStrategy,
+      paramsInheritanceStrategy: 'always',
     }),
   ],
   exports: [RouterModule],

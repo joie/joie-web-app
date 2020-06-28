@@ -1,16 +1,20 @@
-<ng-container *ngIf="classes$ | async as classes">
-  <mat-card class="card" *ngFor="let class of classes">
+<ng-container *ngIf="sessions$ | async as sessions">
+  <mat-card class="card" *ngFor="let session of sessions">
     <img
       mat-card-image
       src="https://material.angular.io/assets/img/examples/shiba2.jpg"
       alt="Photo of a Shiba Inu"
     />
     <mat-card-title>
-      <a routerLink="/classes/first-class">{{ class.title }}</a>
+      <a routerLink="/sessions/first-session">{{ session.title }}</a>
     </mat-card-title>
-    <mat-card-subtitle>{{ class.date }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ session.date }}</mat-card-subtitle>
     <mat-card-content>
-      <button mat-button (click)="openDialog()">Enroll in session</button>
+      <a
+        [routerLink]="['/sessions', session.id, 'enroll']"
+        routerLinkActive="router-link-active"
+        ><button mat-button>Enroll in session</button></a
+      >
       <p>
         The Shiba Inu is the smallest of the six original and distinct spitz
         breeds of dog from Japan. A small, agile dog that copes very well with
