@@ -33,7 +33,7 @@ const routes: Routes = [
       import('./account/account.module').then((m) => m.AccountModule),
     // TODO uncomment this when angularfire fixes their zone issue
     // https://github.com/angular/angularfire/issues/2367
-    // ...canActivate(redirectUnauthorizedToLogin),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'sessions',

@@ -11,10 +11,12 @@ import { UserControlComponent } from './components/user-control/user-control.com
 import { PageNotFoundComponent } from './containers/page-not-found/page-not-found.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [UserControlComponent, PageNotFoundComponent, HeaderComponent],
   imports: [
+    RouterModule,
     SharedModule,
     MatTabsModule,
     StoreModule.forRoot(
