@@ -13,6 +13,6 @@ export class SessionEnrollDialogComponent {
     public dialogRef: MatDialogRef<SessionEnrollDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { session$: Observable<Session> }
   ) {
-    data.session$.subscribe(console.log)
+    // data.session$.subscribe(console.log)
   }
 }

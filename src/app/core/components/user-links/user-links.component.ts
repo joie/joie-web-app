@@ -4,15 +4,17 @@ import { auth } from 'firebase/app';
 import { AuthFacade } from '../../../auth-state/+state/auth/facades/auth.facade';
 
 @Component({
-  selector: 'app-user-control',
-  templateUrl: './user-control.component.html',
-  styleUrls: ['./user-control.component.scss']
+  selector: 'app-user-links',
+  templateUrl: './user-links.component.html',
+  styleUrls: ['./user-links.component.scss'],
 })
-export class UserControlComponent {
+export class UserLinksComponent {
   constructor(private afAuth: AngularFireAuth, public authFacade: AuthFacade) {}
+
   login() {
     this.afAuth.signInWithPopup(new auth.GoogleAuthProvider());
   }
+
   logout() {
     this.afAuth.signOut();
   }

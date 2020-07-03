@@ -11,7 +11,13 @@
     <mat-card-subtitle>{{ session.date }}</mat-card-subtitle>
     <mat-card-content>
       <a
-        [routerLink]="['/sessions', session.id, 'enroll']"
+        [routerLink]="[
+          {
+            outlets: {
+              popup: ['enroll', session.id]
+            }
+          }
+        ]"
         ><button mat-button>Enroll in session</button></a
       >
       <p>

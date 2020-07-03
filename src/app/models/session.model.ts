@@ -1,3 +1,4 @@
+import { firestore } from 'firebase';
 export interface Duration {
   amount: number;
   unit: 'ms';
@@ -17,5 +18,5 @@ export interface Session {
   price: Price;
   uid: string;
   type: 'on-demand' | 'live';
-  date: number;
+  date: firestore.Timestamp;
 }

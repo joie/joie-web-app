@@ -9,23 +9,25 @@ import { SessionEnrollDialogComponent } from './components/session-enroll-dialog
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     component: SessionsDashboardComponent,
-  },
-  {
-    path: ':sessionId',
-    component: SessionComponent,
     children: [
       {
-        path: 'enroll',
+        path: 'enroll/:sessionId',
         component: DialogRouterComponent,
         resolve: {
-          matDialogConfig: EnrollDialogConfigResolver
+          matDialogConfig: EnrollDialogConfigResolver,
         },
         data: { dialogComponent: SessionEnrollDialogComponent },
+        outlet: 'popup',
       },
     ],
   },
+  // {
+  //   path: ':sessionId',
+  //   component: SessionComponent,
+  // },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({

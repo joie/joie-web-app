@@ -15,7 +15,7 @@ import { DialogRouterComponent } from './components/dialog-router/dialog-router.
     ReactiveFormsModule,
     PaymentSourceComponent,
     VideoComponent,
-    DialogRouterComponent
+    DialogRouterComponent,
   ],
 })
 export class SharedModule {}

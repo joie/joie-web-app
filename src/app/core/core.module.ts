@@ -2,19 +2,25 @@ import { NgModule } from '@angular/core';
 
 import { environment } from '../../environments/environment';
 
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthStateModule } from '../auth-state/auth-state.module';
-import { UserControlComponent } from './components/user-control/user-control.component';
 import { PageNotFoundComponent } from './containers/page-not-found/page-not-found.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { UserLinksComponent } from './components/user-links/user-links.component';
 
 @NgModule({
-  declarations: [UserControlComponent, PageNotFoundComponent, HeaderComponent],
+  declarations: [
+    PageNotFoundComponent,
+    HeaderComponent,
+    NavigationComponent,
+    UserLinksComponent,
+  ],
   imports: [
     RouterModule,
     SharedModule,
@@ -32,6 +38,6 @@ import { RouterModule } from '@angular/router';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AuthStateModule,
   ],
-  exports: [UserControlComponent, PageNotFoundComponent, HeaderComponent],
+  exports: [PageNotFoundComponent, HeaderComponent],
 })
 export class CoreModule {}

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-
 
 @Component({
   selector: 'app-dialog-router',
@@ -9,7 +8,11 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./dialog-router.component.scss'],
 })
 export class DialogRouterComponent implements OnInit {
-  constructor(private route: ActivatedRoute, public dialog: MatDialog) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.openDialog();
@@ -23,6 +26,7 @@ export class DialogRouterComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed with:', result);
+      this.router.navigate([this.route.parent.snapshot.params, { outlets: { popup: null } }])
     });
   }
 }
