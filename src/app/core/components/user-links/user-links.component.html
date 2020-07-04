@@ -6,6 +6,14 @@
 </ng-container>
 
 <ng-template #showLogin>
-  <p>Please login.</p>
-  <button (click)="login()">Login with Google</button>
+  <a
+    [routerLink]="[
+      {
+        outlets: {
+          popup: ['auth', 'log-in']
+        }
+      }
+    ]"
+    >Log in</a
+  >
 </ng-template>

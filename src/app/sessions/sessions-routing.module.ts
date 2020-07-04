@@ -6,6 +6,16 @@ import { SessionsDashboardComponent } from './containers/sessions-dashboard/sess
 import { SessionComponent } from './containers/session/session.component';
 import { DialogRouterComponent } from '../shared/components/dialog-router/dialog-router.component';
 import { SessionEnrollDialogComponent } from './components/session-enroll-dialog/session-enroll-dialog.component';
+import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToLogin = () =>
+  redirectUnauthorizedTo([
+    {
+      outlets: {
+        popup: ['auth'],
+      },
+    },
+  ]);
 
 const routes: Routes = [
   {
@@ -20,13 +30,14 @@ const routes: Routes = [
         },
         data: { dialogComponent: SessionEnrollDialogComponent },
         outlet: 'popup',
+        // ...canActivate(redirectUnauthorizedToLogin),
       },
     ],
   },
-  // {
-  //   path: ':sessionId',
-  //   component: SessionComponent,
-  // },
+  {
+    path: ':sessionId',
+    component: SessionComponent,
+  },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 
