@@ -6,6 +6,6 @@ import { SessionsModule } from '../sessions/sessions.module';
 
 @NgModule({
   declarations: [HomeDashboardComponent],
-  imports: [SessionsModule, HomeRoutingModule],
+  imports: [HomeRoutingModule, SessionsModule],
 })
 export class HomeModule {}

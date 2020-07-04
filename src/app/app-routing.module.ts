@@ -10,6 +10,7 @@ import {
 import { PageNotFoundComponent } from './core/containers/page-not-found/page-not-found.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
@@ -40,7 +41,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./sessions/sessions.module').then((m) => m.SessionsModule),
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
 
