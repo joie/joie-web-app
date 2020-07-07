@@ -1,21 +1,55 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ActivatedRouteSnapshot } from '@angular/router';
 
 import { EnrollDialogConfigResolver } from './resolvers/enroll-dialog-config.resolver';
 import { SessionsDashboardComponent } from './containers/sessions-dashboard/sessions-dashboard.component';
 import { SessionComponent } from './containers/session/session.component';
 import { DialogRouterComponent } from '../shared/components/dialog-router/dialog-router.component';
 import { SessionEnrollDialogComponent } from './components/session-enroll-dialog/session-enroll-dialog.component';
-import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { canActivate, redirectUnauthorizedTo, loggedIn } from '@angular/fire/auth-guard';
+import { pipe } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
 
-const redirectUnauthorizedToLogin = () =>
-  redirectUnauthorizedTo([
-    {
-      outlets: {
-        popup: ['auth'],
-      },
-    },
-  ]);
+const redirectUnauthorizedToLogin = (route: ActivatedRouteSnapshot) => {
+  const path = route.pathFromRoot.map(v => v.url.map(segment => segment.toString()).join('/')).join('/');
+  const params = route.queryParams;
+
+  return pipe(
+    loggedIn,
+    tap((isLoggedIn) => {
+      if (!isLoggedIn) {
+        console.log('Saving afterLogin');
+        sessionStorage.setItem('afterLogin', JSON.stringify({path, params}));
+      }
+    }),
+    map(loggedIn => loggedIn || ['/'])
+  );
+};
+
+// const redirectUnauthorizedToLogin = (route: ActivatedRouteSnapshot) => {
+//   const path = route.pathFromRoot.map(v => v.url.map(segment => segment.toString()).join('/')).join('/');
+//   const params = route.queryParams;
+
+//   return pipe(
+//     loggedIn,
+//     tap((isLoggedIn) => {
+//       if (!isLoggedIn) {
+//         console.log('Saving afterLogin');
+//         sessionStorage.setItem('afterLogin', JSON.stringify({path, params}));
+//       }
+//     }),
+//     map(loggedIn => loggedIn || ['/'])
+//   );
+// };
+
+// const redirectUnauthorizedToLogin = () =>
+//   redirectUnauthorizedTo([
+//     {
+//       outlets: {
+//         popup: ['auth'],
+//       },
+//     },
+//   ]);
 
 const routes: Routes = [
   {
@@ -30,7 +64,7 @@ const routes: Routes = [
         },
         data: { dialogComponent: SessionEnrollDialogComponent },
         outlet: 'popup',
-        // ...canActivate(redirectUnauthorizedToLogin),
+        ...canActivate(redirectUnauthorizedToLogin),
       },
     ],
   },
