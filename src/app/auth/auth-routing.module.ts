@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LogInComponent } from './containers/log-in/log-in.component';
 import { DialogRouterComponent } from '../shared/components/dialog-router/dialog-router.component';
+import { redirectLoggedInTo, canActivate } from '@angular/fire/auth-guard';
+
+// const redirectLoggedInToItems = () => redirectLoggedInTo(['items']);
 
 const routes: Routes = [
   { path: '', redirectTo: 'log-in', pathMatch: 'full' },
@@ -18,6 +21,7 @@ const routes: Routes = [
         data: { dialogComponent: LogInComponent },
         //! guard if already logged in
         // ...canActivate(redirectUnauthorizedToLogin),
+        // ...canActivate(redirectLoggedInToItems)
       },
     ],
   },

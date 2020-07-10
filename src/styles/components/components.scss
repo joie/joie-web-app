@@ -1,6 +1,6 @@
 @use "~@angular/material/theming" as *;
 @use "../styles-critical/theme" as *;
-// @import '~firebaseui/dist/firebaseui.css';
+@import '~firebaseui/dist/firebaseui.css';
 
 @include mat-core();
 @include mat-core-theme($joie-theme);

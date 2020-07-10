@@ -8,7 +8,7 @@ import { AuthFacade } from '../../../auth-state/+state/auth/facades/auth.facade'
   styleUrls: ['./user-links.component.scss'],
 })
 export class UserLinksComponent {
-  constructor(private afAuth: AngularFireAuth, public authFacade: AuthFacade) {}
+  constructor(public afAuth: AngularFireAuth, public authFacade: AuthFacade) {}
 
   logout() {
     this.afAuth.signOut();
