@@ -5,10 +5,10 @@ import {
   NgModule,
   AfterViewInit,
 } from '@angular/core';
-import { AngularFireFunctions } from '@angular/fire/functions';
 import { loadStripe, Stripe, StripeCardElement } from '@stripe/stripe-js';
 import { style } from './stripe-elements.style';
 import { CommonModule } from '@angular/common';
+import { PaymentService } from '../../../services/payment/payment.service';
 
 const STRIPE_KEY = 'pk_test_2iuUrsVhJB1IVAhu1KnRYSFA00elnKh57f';
 // declare var Stripe: stripe.StripeStatic;
@@ -25,7 +25,7 @@ export class PaymentMethodFormComponent implements AfterViewInit {
   cardErrors: string;
   isLoading = true;
 
-  constructor(private fns: AngularFireFunctions) {}
+  constructor(private paymentService: PaymentService) {}
 
   async ngAfterViewInit(): Promise<void> {
     this.card = await this.mountCard();
@@ -70,8 +70,7 @@ export class PaymentMethodFormComponent implements AfterViewInit {
     } else {
       this.isLoading = true;
       // Send the token to your server.
-      const callable = this.fns.httpsCallable('stripeAttachSource');
-      const res = await callable({ sourceId: source.id }).toPromise();
+      const res = await this.paymentService.attachSource(source.id);
       console.log(res);
       this.isLoading = false;
     }
