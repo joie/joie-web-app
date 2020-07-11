@@ -7,21 +7,21 @@ import {
   Router,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { map, take } from 'rxjs/operators';
+import { PaymentService } from 'src/app/services/payment/payment.service';
+import { map, pluck, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
-  constructor(private afAuth: AngularFireAuth, private router: Router) {}
+export class PaymentSourceGuard implements CanActivate {
+  constructor(private paymentService: PaymentService, private router: Router) {}
 
   getUrlTree(redirectUrl: string) {
     return this.router.createUrlTree(
       [
         {
           outlets: {
-            popup: ['auth', 'log-in'],
+            popup: ['sort-payment'],
           },
         },
       ],
@@ -33,9 +33,11 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> {
-    console.log(state.url, this.getUrlTree(state.url));
-    return this.afAuth.authState.pipe(
-      map((user) => Boolean(user) || this.getUrlTree(state.url))
+    console.log(this.getUrlTree(state.url));
+    return this.paymentService.getSources().pipe(
+      pluck('data', 'length'),
+      map(Boolean),
+      map((hasPaymentSource) => hasPaymentSource || this.getUrlTree(state.url))
     );
   }
 }

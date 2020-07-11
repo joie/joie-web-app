@@ -70,7 +70,7 @@ export class PaymentMethodFormComponent implements AfterViewInit {
     } else {
       this.isLoading = true;
       // Send the token to your server.
-      const res = await this.paymentService.attachSource(source.id);
+      const res = await this.paymentService.attachSource(source.id).toPromise();
       console.log(res);
       this.isLoading = false;
     }

@@ -81,17 +81,19 @@ export const stripeAttachSource = functions.https.onCall(
 /**
  * When a user deletes their account, clean up after them
  */
-exports.cleanupUser = functions.auth.user().onDelete(async (user) => {
-  const snapshot = await db.collection(STRIPE_CUSTOMERS).doc(user.uid).get();
-  const customer = snapshot.data();
+export const cleanupStripeCustomer = functions.auth
+  .user()
+  .onDelete(async (user) => {
+    const snapshot = await db.collection(STRIPE_CUSTOMERS).doc(user.uid).get();
+    const customer = snapshot.data();
 
-  // delete customer if exist in user
-  if (customer) {
-    await stripe.customers.del(customer.customer_id);
-  }
+    // delete customer if exist in user
+    if (customer) {
+      await stripe.customers.del(customer.customer_id);
+    }
 
-  return db.collection(STRIPE_CUSTOMERS).doc(user.uid).delete();
-});
+    return db.collection(STRIPE_CUSTOMERS).doc(user.uid).delete();
+  });
 
 // call stripe attach source with source id
 // get stripe_customer stripe id by firebase user uid
@@ -113,3 +115,26 @@ exports.cleanupUser = functions.auth.user().onDelete(async (user) => {
 //   customer: 'cus_AFGbOSiITuJVDs',
 //   source: 'src_18eYalAHEMiOZZp1l9ZTjSU0',
 // });
+
+/**
+ *  Use this function to get all sources for existing customer
+ */
+const getSources = async (stripeCustomerId: string) =>
+  await stripe.customers.listSources(stripeCustomerId);
+
+export const stripeGetSources = functions.https.onCall(
+  async ({ sourceId }, context) => {
+    const uid = getUID(context);
+
+    const stripeCustomerId = await getUserCustomerId(uid);
+
+    if (!stripeCustomerId) {
+      throw new functions.https.HttpsError(
+        'not-found',
+        "couldn't find stripe customer in firestore"
+      );
+    }
+
+    return catchErrors(getSources(stripeCustomerId));
+  }
+);

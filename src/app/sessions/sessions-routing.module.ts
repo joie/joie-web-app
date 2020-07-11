@@ -8,6 +8,7 @@ import { DialogRouterComponent } from '../shared/components/dialog-router/dialog
 import { SessionEnrollDialogComponent } from './components/session-enroll-dialog/session-enroll-dialog.component';
 
 import { AuthGuard } from '../auth/guards/auth.guard';
+import { PaymentSourceGuard } from '../guards/payment-source/payment-source.guard';
 
 const routes: Routes = [
   {
@@ -22,7 +23,19 @@ const routes: Routes = [
         },
         data: { dialogComponent: SessionEnrollDialogComponent },
         outlet: 'popup',
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, PaymentSourceGuard],
+      },
+      {
+        path: 'sort-payment',
+        component: DialogRouterComponent,
+        // resolve: {
+        //   matDialogConfig: {},
+        // },
+        data: { dialogComponent: SessionComponent },
+        //! guard if already logged in
+        // ...canActivate(redirectUnauthorizedToLogin),
+        // ...canActivate(redirectLoggedInToItems)
+        outlet: 'popup',
       },
     ],
   },
