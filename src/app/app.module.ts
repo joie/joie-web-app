@@ -32,21 +32,21 @@ import { AuthModule } from './auth/auth.module';
     }),
     BrowserAnimationsModule,
   ],
-  // providers: [
-  //   {
-  //     provide: SETTINGS,
-  //     useValue: environment.production
-  //       ? undefined
-  //       : {
-  //           host: 'localhost:8080',
-  //           ssl: false,
-  //         },
-  //   },
-  //   {
-  //     provide: ORIGIN,
-  //     useValue: environment.production ? undefined : 'http://localhost:5001',
-  //   },
-  // ],
+  providers: [
+    //   {
+    //     provide: SETTINGS,
+    //     useValue: environment.production
+    //       ? undefined
+    //       : {
+    //           host: 'localhost:8080',
+    //           ssl: false,
+    //         },
+    //   },
+    //   {
+    //     provide: ORIGIN,
+    //     useValue: environment.production ? undefined : 'http://localhost:5001',
+    //   },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

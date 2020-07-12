@@ -16,16 +16,6 @@ const routes: Routes = [
     component: SessionsDashboardComponent,
     children: [
       {
-        path: 'enroll/:sessionId',
-        component: DialogRouterComponent,
-        resolve: {
-          matDialogConfig: EnrollDialogConfigResolver,
-        },
-        data: { dialogComponent: SessionEnrollDialogComponent },
-        outlet: 'popup',
-        canActivate: [AuthGuard, PaymentSourceGuard],
-      },
-      {
         path: 'sort-payment',
         component: DialogRouterComponent,
         // resolve: {
@@ -36,6 +26,16 @@ const routes: Routes = [
         // ...canActivate(redirectUnauthorizedToLogin),
         // ...canActivate(redirectLoggedInToItems)
         outlet: 'popup',
+      },
+      {
+        path: 'enroll/:sessionId',
+        component: DialogRouterComponent,
+        resolve: {
+          matDialogConfig: EnrollDialogConfigResolver,
+        },
+        data: { dialogComponent: SessionEnrollDialogComponent },
+        outlet: 'popup',
+        canActivate: [AuthGuard, PaymentSourceGuard],
       },
     ],
   },

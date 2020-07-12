@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PaymentService } from 'src/app/services/payment/payment.service';
-import { map, pluck, tap } from 'rxjs/operators';
+import { map, pluck } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +19,8 @@ export class PaymentSourceGuard implements CanActivate {
   getUrlTree(redirectUrl: string) {
     return this.router.createUrlTree(
       [
+        'sessions',
+        'dashboard',
         {
           outlets: {
             popup: ['sort-payment'],
@@ -31,13 +33,13 @@ export class PaymentSourceGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    { url }: RouterStateSnapshot
   ): Observable<boolean | UrlTree> {
-    console.log(this.getUrlTree(state.url));
+    console.log(this.getUrlTree(url).toString());
     return this.paymentService.getSources().pipe(
       pluck('data', 'length'),
       map(Boolean),
-      map((hasPaymentSource) => hasPaymentSource || this.getUrlTree(state.url))
+      map((hasPaymentSource) => hasPaymentSource || this.getUrlTree(url))
     );
   }
 }

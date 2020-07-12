@@ -31,11 +31,11 @@ export class AuthGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    { url }: RouterStateSnapshot
   ): Observable<boolean | UrlTree> {
-    console.log(state.url, this.getUrlTree(state.url));
+    console.log(this.getUrlTree(url).toString());
     return this.afAuth.authState.pipe(
-      map((user) => Boolean(user) || this.getUrlTree(state.url))
+      map((user) => Boolean(user) || this.getUrlTree(url))
     );
   }
 }
