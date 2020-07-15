@@ -14,8 +14,9 @@ fieldset {
 
 .form-grid {
   display: grid;
-  grid-gap: 20px;
-  grid-template-columns: minmax(auto, 100%) auto;
+  grid-gap: 10px;
+  grid-template-columns: 100%;
+  // grid-template-columns: minmax(auto, 100%) auto;
 }
 
 /**
@@ -48,4 +49,8 @@ fieldset {
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+
+mat-spinner {
+  display: inline-block;
 }

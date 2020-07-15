@@ -1,6 +1,6 @@
 @use "~@angular/material/theming" as *;
 @use "../styles-critical/theme" as *;
-@import '~firebaseui/dist/firebaseui.css';
+@import "~firebaseui/dist/firebaseui.css";
 
 @include mat-core();
 @include mat-core-theme($joie-theme);
@@ -8,3 +8,6 @@
 @include mat-tabs-theme($joie-theme);
 @include mat-card-theme($joie-theme);
 @include mat-dialog-theme($joie-theme);
+@include mat-progress-spinner-theme($joie-theme);
+@include mat-form-field-theme($joie-theme);
+@include mat-input-theme($joie-theme);

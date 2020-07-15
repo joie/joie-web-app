@@ -10,7 +10,8 @@
     "e2e": "ng e2e",
     "deploy": "ng deploy",
     "emulate": "firebase emulators:start --only functions",
-    "postinstall": "node ./decorate-angular-cli.js"
+    "postinstall": "node ./decorate-angular-cli.js",
+    "analyze": "nx build --prod --stats-json && npx webpack-bundle-analyzer ./dist/joie/stats.json"
   },
   "private": true,
   "dependencies": {

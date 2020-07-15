@@ -9,6 +9,10 @@ import { loadStripe, Stripe, StripeCardElement } from '@stripe/stripe-js';
 import { style } from './stripe-elements.style';
 import { CommonModule } from '@angular/common';
 import { PaymentService } from '../../../services/payment/payment.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 const STRIPE_KEY = 'pk_test_2iuUrsVhJB1IVAhu1KnRYSFA00elnKh57f';
 // declare var Stripe: stripe.StripeStatic;
@@ -62,6 +66,7 @@ export class PaymentMethodFormComponent implements AfterViewInit {
   async onSubmit(e) {
     e.preventDefault();
 
+    //!move stripe to its own service
     const { source, error } = await this.stripe.createSource(this.card, null);
 
     if (error) {
@@ -79,7 +84,13 @@ export class PaymentMethodFormComponent implements AfterViewInit {
 
 @NgModule({
   declarations: [PaymentMethodFormComponent],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+  ],
 })
 export class PaymentSourceFormModule {}
 
