@@ -29,8 +29,19 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles.scss"
+              {
+                "input": "src/styles/styles-critical/styles-critical.scss",
+                "bundleName": "styles-critical",
+                "inject": false
+              },
+              "src/styles/components/components.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules/"
+              ]
+            },
+            "extractCss": true,
             "scripts": []
           },
           "configurations": {
@@ -69,7 +80,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "joie:build"
+            "browserTarget": "joie:build",
+            "port": 8927
           },
           "configurations": {
             "production": {
@@ -96,8 +108,18 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles.scss"
+              {
+                "input": "src/styles/styles-critical/styles-critical.scss",
+                "bundleName": "styles-critical",
+                "inject": false
+              },
+              "src/styles/components/components.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules/"
+              ]
+            },
             "scripts": []
           }
         },
@@ -133,5 +155,8 @@
       }
     }
   },
-  "defaultProject": "joie"
+  "defaultProject": "joie",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

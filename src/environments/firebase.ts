@@ -6,5 +6,6 @@ export const firebase = {
   storageBucket: 'joie-app.appspot.com',
   messagingSenderId: '999974863094',
   appId: '1:999974863094:web:37ae6deb807f3a8d206cd7',
-  measurementId: 'G-4L534VZ3CD'
+  measurementId: 'G-4L534VZ3CD',
 };
+// Stripe.setPublishableKey('pk_test_2iuUrsVhJB1IVAhu1KnRYSFA00elnKh57f');

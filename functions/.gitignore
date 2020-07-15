@@ -1,0 +1,18 @@
+## Compiled JavaScript files
+**/*.js
+**/*.js.map
+
+# Typescript v1 declaration files
+typings/
+
+node_modules/
+
+test/environment-config.ts
+
+# cloud functions
+lib
+etc
+.env
+.runtimeconfig.json
+firebase-debug.log
+firestore-debug.log
