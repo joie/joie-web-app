@@ -23,7 +23,13 @@ import {
 export const adminOnly = () => hasCustomClaim('admin');
 export const authorOnly = () => hasCustomClaim('author');
 export const redirectUnauthorizedToLogin = () =>
-  redirectUnauthorizedTo(['login']);
+  redirectUnauthorizedTo([
+    {
+      outlets: {
+        popup: ['auth', 'log-in'],
+      },
+    },
+  ]);
 export const redirectLoggedInToItems = () => redirectLoggedInTo(['items']);
 export const belongsToAccount = (next) =>
   hasCustomClaim(`account-${next.params.id}`);
