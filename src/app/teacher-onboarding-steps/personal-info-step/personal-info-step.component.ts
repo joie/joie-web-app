@@ -14,8 +14,6 @@ export class PersonalInfoStepComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {}
 
   collectPersonalInfo(stepData) {
-    console.log('data collector invoked');
-    console.log(stepData);
     this.stepComplete.next(stepData);
   }
 

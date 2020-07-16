@@ -14,7 +14,6 @@ export class WhyJoieStepComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {}
 
   submitFormsData(stepData): void {
-    console.log('last step data', stepData);
     this.stepperComplete.next(stepData);
   }
 
@@ -23,10 +22,4 @@ export class WhyJoieStepComponent implements OnInit {
       addedValDescriptionCtrl: ['', Validators.required],
     });
   }
-
-  // collectPersonalInfo(stepData) {ß
-  //   console.log('data collector invoked');
-  //   console.log(stepData);
-  //   this.stepperComplete.next(stepData);
-  // }
 }

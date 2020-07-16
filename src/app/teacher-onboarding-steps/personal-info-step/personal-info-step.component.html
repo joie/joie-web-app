@@ -1,10 +1,11 @@
-<p>joie is looking for passionate teachers, experts etc.. bla bla</p>
+<p>
+  Joie is looking for passionate teachers, experts and coaches who believe in
+  our philosophy, and interested in growing together. Fill out this form to help
+  us learn more about you.
+</p>
 <h3>Personal Information</h3>
 <form [formGroup]="formGroup" (ngSubmit)="collectPersonalInfo(formGroup.value)">
-  <!-- <mat-form-field> -->
-  <!-- <mat-label>Name</mat-label> -->
   <input placeholder="first name" formControlName="firstNameCtrl" required />
-  <!-- </mat-form-field> -->
   <input placeholder="last name" formControlName="lastNameCtrl" required />
   <input placeholder="email" formControlName="emailCtrl" required />
   <input
