@@ -14,9 +14,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
+import { OnboardingStepperComponent } from './onboarding-stepper/onboarding-stepper.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, OnboardingStepperComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -31,6 +37,11 @@ import { AuthModule } from './auth/auth.module';
       enabled: environment.production,
     }),
     BrowserAnimationsModule,
+    MatStepperModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    ReactiveFormsModule,
   ],
   providers: [
     //   {

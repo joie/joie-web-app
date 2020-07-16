@@ -1,0 +1,5 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step *ngFor="let step of steps" [stepControl]="step">{{
+    step
+  }}</mat-step>
+</mat-horizontal-stepper>
