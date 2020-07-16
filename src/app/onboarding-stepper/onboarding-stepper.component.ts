@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PersonalInfoStepComponent } from '../teacher-onboarding-steps/personal-info-step/personal-info-step.component';
 
 @Component({
   selector: 'app-onboarding-stepper',
@@ -7,19 +7,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./onboarding-stepper.component.scss'],
 })
 export class OnboardingStepperComponent implements OnInit {
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  steps = ['step1', 'step2', 'step3'];
+  @ViewChild('stepper') stepper: OnboardingStepperComponent;
+  @ViewChild('step1') step1: PersonalInfoStepComponent;
+  constructor() {}
 
-  constructor(private _formBuilder: FormBuilder) {}
+  ngOnInit() {}
 
-  ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
-    });
+  logData() {
+    console.log(this.step1);
   }
 }

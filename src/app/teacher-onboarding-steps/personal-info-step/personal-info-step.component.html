@@ -1,0 +1,18 @@
+<p>joie is looking for passionate teachers, experts etc.. bla bla</p>
+<h3>Personal Information</h3>
+<form [formGroup]="formGroup">
+  <!-- <mat-form-field> -->
+  <!-- <mat-label>Name</mat-label> -->
+  <input placeholder="first name" formControlName="firstNameCtrl" required />
+  <!-- </mat-form-field> -->
+  <input placeholder="last name" formControlName="lastNameCtrl" required />
+  <input placeholder="email" formControlName="emailCtrl" required />
+  <input
+    placeholder="phone number"
+    formControlName="phoneNumberCtrl"
+    required
+  />
+</form>
+<button mat-button matStepperNext type="button">
+  Next
+</button>

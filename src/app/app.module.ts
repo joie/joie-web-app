@@ -18,11 +18,17 @@ import { OnboardingStepperComponent } from './onboarding-stepper/onboarding-step
 import { MatStepperModule } from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { MatIconModule } from '@angular/material/icon';
+import { PersonalInfoStepComponent } from './teacher-onboarding-steps/personal-info-step/personal-info-step.component';
 
 @NgModule({
-  declarations: [AppComponent, OnboardingStepperComponent],
+  declarations: [
+    AppComponent,
+    OnboardingStepperComponent,
+    PersonalInfoStepComponent,
+  ],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -40,6 +46,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatStepperModule,
     FormsModule,
     MatFormFieldModule,
+    // MatInputModule,
     MatIconModule,
     ReactiveFormsModule,
   ],

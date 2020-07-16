@@ -1,5 +1,11 @@
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
-  <mat-step *ngFor="let step of steps" [stepControl]="step">{{
-    step
-  }}</mat-step>
+<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="step1.formGroup">
+    <app-personal-info-step #step1></app-personal-info-step>
+  </mat-step>
+  <mat-step>
+    zzz
+  </mat-step>
+  <mat-step>
+    <button (click)="logData()">info</button>
+  </mat-step>
 </mat-horizontal-stepper>
