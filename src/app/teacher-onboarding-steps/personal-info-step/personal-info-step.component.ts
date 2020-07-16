@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,10 +7,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./personal-info-step.component.scss'],
 })
 export class PersonalInfoStepComponent implements OnInit {
+  @Output() stepComplete = new EventEmitter(); //todo  type as step1 form data model interface
+
   formGroup: FormGroup;
-  completed: true;
 
   constructor(private _formBuilder: FormBuilder) {}
+
+  collectPersonalInfo(stepData) {
+    console.log('data collector invoked');
+    console.log(stepData);
+    this.stepComplete.next(stepData);
+  }
 
   ngOnInit() {
     this.formGroup = this._formBuilder.group({

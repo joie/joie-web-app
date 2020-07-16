@@ -9,10 +9,21 @@ import { PersonalInfoStepComponent } from '../teacher-onboarding-steps/personal-
 export class OnboardingStepperComponent implements OnInit {
   @ViewChild('stepper') stepper: OnboardingStepperComponent;
   @ViewChild('step1') step1: PersonalInfoStepComponent;
+
+  teacherData = { firstNameCtrl: '' };
+
   constructor() {}
 
   ngOnInit() {}
 
+  collectStepData(stepData) {
+    console.log('collected on this step: ', stepData);
+    Object.assign(this.teacherData, stepData);
+  }
+  submitData(stepData) {
+    this.collectStepData(stepData);
+    console.log('whole damn data: ', this.teacherData);
+  }
   logData() {
     console.log(this.step1);
   }

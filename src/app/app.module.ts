@@ -22,12 +22,14 @@ import { MatInputModule } from '@angular/material/input';
 
 import { MatIconModule } from '@angular/material/icon';
 import { PersonalInfoStepComponent } from './teacher-onboarding-steps/personal-info-step/personal-info-step.component';
+import { WhyJoieStepComponent } from './teacher-onboarding-steps/why-joie-step/why-joie-step.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OnboardingStepperComponent,
     PersonalInfoStepComponent,
+    WhyJoieStepComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -1,6 +1,6 @@
 <p>joie is looking for passionate teachers, experts etc.. bla bla</p>
 <h3>Personal Information</h3>
-<form [formGroup]="formGroup">
+<form [formGroup]="formGroup" (ngSubmit)="collectPersonalInfo(formGroup.value)">
   <!-- <mat-form-field> -->
   <!-- <mat-label>Name</mat-label> -->
   <input placeholder="first name" formControlName="firstNameCtrl" required />
@@ -12,7 +12,7 @@
     formControlName="phoneNumberCtrl"
     required
   />
+  <button mat-button matStepperNext type="submit">
+    Next
+  </button>
 </form>
-<button mat-button matStepperNext type="button">
-  Next
-</button>

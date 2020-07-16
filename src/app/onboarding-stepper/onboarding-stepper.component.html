@@ -1,11 +1,27 @@
 <mat-horizontal-stepper linear #stepper>
   <mat-step [stepControl]="step1.formGroup">
-    <app-personal-info-step #step1></app-personal-info-step>
+    <app-personal-info-step
+      (stepComplete)="collectStepData($event)"
+      #step1
+    ></app-personal-info-step>
   </mat-step>
   <mat-step>
     zzz
+    <button mat-button matStepperNext type="button">
+      Next
+    </button>
   </mat-step>
   <mat-step>
     <button (click)="logData()">info</button>
+    <button mat-button matStepperNext type="button">
+      Next
+    </button>
+  </mat-step>
+  <mat-step [stepControl]="step5.formGroup">
+    <app-why-joie-step
+      [teachersName]="teacherData?.firstNameCtrl"
+      (stepperComplete)="submitData($event)"
+      #step5
+    ></app-why-joie-step>
   </mat-step>
 </mat-horizontal-stepper>
