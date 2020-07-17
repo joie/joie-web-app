@@ -23,6 +23,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { PersonalInfoStepComponent } from './teacher-onboarding-steps/personal-info-step/personal-info-step.component';
 import { WhyJoieStepComponent } from './teacher-onboarding-steps/why-joie-step/why-joie-step.component';
+import { TeachingExperienceStepComponent } from './teacher-onboarding-steps/teaching-experience-step/teaching-experience-step.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { WhyJoieStepComponent } from './teacher-onboarding-steps/why-joie-step/w
     OnboardingStepperComponent,
     PersonalInfoStepComponent,
     WhyJoieStepComponent,
+    TeachingExperienceStepComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -1,0 +1,13 @@
+<h3>Your value to our students</h3>
+<p>
+  {{ teachersName }}, in up to 300 words, tell us about what do you teach, your
+  training and experience, and what is your teaching philosophy.
+</p>
+<form [formGroup]="formGroup" (ngSubmit)="collectPersonalInfo(formGroup.value)">
+  <mat-form-field>
+    <textarea matInput formControlName="teachingExpCtrl" required></textarea>
+  </mat-form-field>
+  <button mat-button matStepperNext type="submit">
+    Next
+  </button>
+</form>

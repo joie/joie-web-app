@@ -5,6 +5,13 @@
       #step1
     ></app-personal-info-step>
   </mat-step>
+  <mat-step [stepControl]="step2.formGroup">
+    <app-teaching-experience-step
+      [teachersName]="teacherData?.firstNameCtrl"
+      (stepComplete)="collectStepData($event)"
+      #step2
+    ></app-teaching-experience-step>
+  </mat-step>
   <mat-step [stepControl]="step5.formGroup">
     <app-why-joie-step
       [teachersName]="teacherData?.firstNameCtrl"
