@@ -20,6 +20,13 @@
     ></app-session-focus-area-step>
   </mat-step>
 
+  <mat-step [stepControl]="step4.formGroup">
+    <app-online-presence-step
+      (stepComplete)="collectStepData($event)"
+      #step4
+    ></app-online-presence-step>
+  </mat-step>
+
   <mat-step [stepControl]="step5.formGroup">
     <app-why-joie-step
       [teachersName]="teacherData?.firstNameCtrl"

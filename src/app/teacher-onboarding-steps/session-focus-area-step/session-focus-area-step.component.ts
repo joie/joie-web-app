@@ -26,7 +26,6 @@ export class SessionFocusAreaStepComponent implements OnInit {
 
   collectSessionFocusInfo(stepData) {
     this.stepComplete.next(stepData);
-    console.log(stepData);
   }
 
   get groupsFormArray() {
@@ -40,7 +39,7 @@ export class SessionFocusAreaStepComponent implements OnInit {
   }
 
   getCheckboxListValue() {
-    return this.formGroup.value.orders
+    return this.formGroup.value.focusGroupsCtrl
       .map((checked, i) => (checked ? this.focusGroupsData[i].id : null))
       .filter((v) => v !== null);
   }

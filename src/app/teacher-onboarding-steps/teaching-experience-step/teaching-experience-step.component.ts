@@ -13,7 +13,7 @@ export class TeachingExperienceStepComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder) {}
 
-  collectPersonalInfo(stepData) {
+  collectTeachingExperienceInfo(stepData) {
     this.stepComplete.next(stepData);
   }
 

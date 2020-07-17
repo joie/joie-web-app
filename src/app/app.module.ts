@@ -26,6 +26,7 @@ import { PersonalInfoStepComponent } from './teacher-onboarding-steps/personal-i
 import { WhyJoieStepComponent } from './teacher-onboarding-steps/why-joie-step/why-joie-step.component';
 import { TeachingExperienceStepComponent } from './teacher-onboarding-steps/teaching-experience-step/teaching-experience-step.component';
 import { SessionFocusAreaStepComponent } from './teacher-onboarding-steps/session-focus-area-step/session-focus-area-step.component';
+import { OnlinePresenceStepComponent } from './teacher-onboarding-steps/online-presence-step/online-presence-step.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SessionFocusAreaStepComponent } from './teacher-onboarding-steps/sessio
     WhyJoieStepComponent,
     TeachingExperienceStepComponent,
     SessionFocusAreaStepComponent,
+    OnlinePresenceStepComponent,
   ],
   imports: [
     AppRoutingModule,

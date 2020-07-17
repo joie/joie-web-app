@@ -1,0 +1,26 @@
+<h3>Your market</h3>
+<p>
+  What's your niche, the area you focus on in your sessions?
+</p>
+<form [formGroup]="formGroup" (ngSubmit)="collectSessionInfo(formGroup.value)">
+  <label
+    formArrayName="sessionTypesCtrl"
+    *ngFor="let sessionType of sessionTypesData; let i = index"
+  >
+    <mat-checkbox [formControlName]="i">{{
+      sessionTypesData[i].type
+    }}</mat-checkbox>
+  </label>
+
+  <mat-form-field>
+    <textarea
+      matInput
+      formControlName="teachingPortfolioUrlCtrl"
+      required
+    ></textarea>
+  </mat-form-field>
+
+  <button mat-button matStepperNext type="submit">
+    Next
+  </button>
+</form>
