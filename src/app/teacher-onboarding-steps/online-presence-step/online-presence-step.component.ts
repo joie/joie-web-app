@@ -12,7 +12,7 @@ import {
   templateUrl: './online-presence-step.component.html',
   styleUrls: ['./online-presence-step.component.scss'],
 })
-export class OnlinePresenceStepComponent implements OnInit {
+export class OnlinePresenceStepComponent {
   @Output() stepComplete = new EventEmitter(); //todo  type as step1 form data model interface
   formGroup: FormGroup;
   sessionTypesData = [
@@ -23,7 +23,13 @@ export class OnlinePresenceStepComponent implements OnInit {
     { id: 5, type: 'Live lecture' },
     { id: 6, type: 'Live 1:1 coaching' },
   ];
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder) {
+    this.formGroup = this._formBuilder.group({
+      teachingPortfolioUrlCtrl: ['', Validators.required],
+      sessionTypesCtrl: new FormArray([]),
+    });
+    this.addCheckboxes();
+  }
 
   collectSessionInfo(stepData) {
     this.stepComplete.next(stepData);
@@ -43,12 +49,5 @@ export class OnlinePresenceStepComponent implements OnInit {
     return this.formGroup.value.sessionTypesCtrl
       .map((checked, i) => (checked ? this.sessionTypesData[i].id : null))
       .filter((v) => v !== null);
-  }
-  ngOnInit() {
-    this.formGroup = this._formBuilder.group({
-      teachingPortfolioUrlCtrl: ['', Validators.required],
-      sessionTypesCtrl: new FormArray([]),
-    });
-    this.addCheckboxes();
   }
 }

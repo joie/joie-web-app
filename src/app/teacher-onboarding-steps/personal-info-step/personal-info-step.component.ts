@@ -11,13 +11,7 @@ export class PersonalInfoStepComponent implements OnInit {
 
   formGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
-
-  collectPersonalInfo(stepData) {
-    this.stepComplete.next(stepData);
-  }
-
-  ngOnInit() {
+  constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
       firstNameCtrl: ['', Validators.required],
       lastNameCtrl: ['', Validators.required],
@@ -25,4 +19,10 @@ export class PersonalInfoStepComponent implements OnInit {
       phoneNumberCtrl: ['', Validators.required],
     });
   }
+
+  collectPersonalInfo(stepData) {
+    this.stepComplete.next(stepData);
+  }
+
+  ngOnInit() {}
 }

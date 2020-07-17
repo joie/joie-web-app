@@ -12,7 +12,7 @@ import {
   templateUrl: './session-focus-area-step.component.html',
   styleUrls: ['./session-focus-area-step.component.scss'],
 })
-export class SessionFocusAreaStepComponent implements OnInit {
+export class SessionFocusAreaStepComponent {
   @Output() stepComplete = new EventEmitter(); //todo  type as step1 form data model interface
   formGroup: FormGroup;
   focusGroupsData = [
@@ -22,7 +22,13 @@ export class SessionFocusAreaStepComponent implements OnInit {
     { id: 4, group: 'Eldery (65+)' },
     { id: 5, group: 'All of the above' },
   ];
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder) {
+    this.formGroup = this._formBuilder.group({
+      sessionAreaCtrl: ['', Validators.required],
+      focusGroupsCtrl: new FormArray([]),
+    });
+    this.addCheckboxes();
+  }
 
   collectSessionFocusInfo(stepData) {
     this.stepComplete.next(stepData);
@@ -42,12 +48,5 @@ export class SessionFocusAreaStepComponent implements OnInit {
     return this.formGroup.value.focusGroupsCtrl
       .map((checked, i) => (checked ? this.focusGroupsData[i].id : null))
       .filter((v) => v !== null);
-  }
-  ngOnInit() {
-    this.formGroup = this._formBuilder.group({
-      sessionAreaCtrl: ['', Validators.required],
-      focusGroupsCtrl: new FormArray([]),
-    });
-    this.addCheckboxes();
   }
 }

@@ -6,20 +6,18 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './teaching-experience-step.component.html',
   styleUrls: ['./teaching-experience-step.component.scss'],
 })
-export class TeachingExperienceStepComponent implements OnInit {
+export class TeachingExperienceStepComponent {
   @Input() teachersName;
   @Output() stepComplete = new EventEmitter(); //todo  type as step1 form data model interface
   formGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
-
-  collectTeachingExperienceInfo(stepData) {
-    this.stepComplete.next(stepData);
-  }
-
-  ngOnInit() {
+  constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
       teachingExpCtrl: ['', Validators.required],
     });
+  }
+
+  collectTeachingExperienceInfo(stepData) {
+    this.stepComplete.next(stepData);
   }
 }
