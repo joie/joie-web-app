@@ -11,8 +11,6 @@ import { CommonModule } from '@angular/common';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 
 const STRIPE_KEY = 'pk_test_2iuUrsVhJB1IVAhu1KnRYSFA00elnKh57f';
 // declare var Stripe: stripe.StripeStatic;
@@ -84,13 +82,7 @@ export class PaymentMethodFormComponent implements AfterViewInit {
 
 @NgModule({
   declarations: [PaymentMethodFormComponent],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-  ],
+  imports: [CommonModule, MatButtonModule, MatProgressSpinnerModule],
 })
 export class PaymentSourceFormModule {}
 
