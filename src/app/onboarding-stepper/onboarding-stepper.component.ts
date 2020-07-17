@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PersonalInfoStepComponent } from '../teacher-onboarding-steps/personal-info-step/personal-info-step.component';
-import { WhyJoieStepComponent } from '../teacher-onboarding-steps/why-joie-step/why-joie-step.component';
 
 @Component({
   selector: 'app-onboarding-stepper',
@@ -8,9 +6,6 @@ import { WhyJoieStepComponent } from '../teacher-onboarding-steps/why-joie-step/
   styleUrls: ['./onboarding-stepper.component.scss'],
 })
 export class OnboardingStepperComponent implements OnInit {
-  @ViewChild('step1') step1: PersonalInfoStepComponent;
-  @ViewChild('step5') step5: WhyJoieStepComponent;
-
   teacherData = { firstNameCtrl: '' }; // TODO type with teacherStepperDataInterface
 
   constructor() {}
