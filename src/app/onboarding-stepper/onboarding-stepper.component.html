@@ -12,6 +12,14 @@
       #step2
     ></app-teaching-experience-step>
   </mat-step>
+
+  <mat-step [stepControl]="step3.formGroup">
+    <app-session-focus-area-step
+      (stepComplete)="collectStepData($event)"
+      #step3
+    ></app-session-focus-area-step>
+  </mat-step>
+
   <mat-step [stepControl]="step5.formGroup">
     <app-why-joie-step
       [teachersName]="teacherData?.firstNameCtrl"
