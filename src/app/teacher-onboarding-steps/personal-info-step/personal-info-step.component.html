@@ -5,14 +5,41 @@
 </p>
 <h3>Personal Information</h3>
 <form [formGroup]="formGroup" (ngSubmit)="collectPersonalInfo(formGroup.value)">
-  <input placeholder="first name" formControlName="firstNameCtrl" required />
-  <input placeholder="last name" formControlName="lastNameCtrl" required />
-  <input placeholder="email" formControlName="emailCtrl" required />
-  <input
-    placeholder="phone number"
-    formControlName="phoneNumberCtrl"
-    required
-  />
+  <mat-form-field>
+    <mat-label>First name</mat-label>
+    <input
+      matInput
+      placeholder="first name"
+      formControlName="firstNameCtrl"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Last name</mat-label>
+    <input
+      matInput
+      placeholder="last name"
+      formControlName="lastNameCtrl"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="email" formControlName="emailCtrl" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Phone number</mat-label>
+    <input
+      matInput
+      placeholder="phone number"
+      formControlName="phoneNumberCtrl"
+      required
+    />
+  </mat-form-field>
+
   <button mat-button matStepperNext type="submit">
     Next
   </button>

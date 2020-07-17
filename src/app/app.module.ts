@@ -48,7 +48,7 @@ import { WhyJoieStepComponent } from './teacher-onboarding-steps/why-joie-step/w
     MatStepperModule,
     FormsModule,
     MatFormFieldModule,
-    // MatInputModule,
+    MatInputModule,
     MatIconModule,
     ReactiveFormsModule,
   ],
