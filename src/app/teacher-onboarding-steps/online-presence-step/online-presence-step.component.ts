@@ -25,7 +25,15 @@ export class OnlinePresenceStepComponent {
   ];
   constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
-      teachingPortfolioUrlCtrl: ['', Validators.required],
+      teachingPortfolioUrlCtrl: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'
+          ),
+        ],
+      ],
       sessionTypesCtrl: new FormArray([]),
     });
     this.addCheckboxes();

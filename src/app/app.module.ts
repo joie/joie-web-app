@@ -27,6 +27,7 @@ import { WhyJoieStepComponent } from './teacher-onboarding-steps/why-joie-step/w
 import { TeachingExperienceStepComponent } from './teacher-onboarding-steps/teaching-experience-step/teaching-experience-step.component';
 import { SessionFocusAreaStepComponent } from './teacher-onboarding-steps/session-focus-area-step/session-focus-area-step.component';
 import { OnlinePresenceStepComponent } from './teacher-onboarding-steps/online-presence-step/online-presence-step.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { OnlinePresenceStepComponent } from './teacher-onboarding-steps/online-p
     MatIconModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+    HttpClientModule,
   ],
   providers: [
     //   {

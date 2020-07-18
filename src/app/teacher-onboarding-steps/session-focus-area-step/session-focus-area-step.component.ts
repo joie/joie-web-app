@@ -24,7 +24,7 @@ export class SessionFocusAreaStepComponent {
   ];
   constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
-      sessionAreaCtrl: ['', Validators.required],
+      sessionAreaCtrl: ['', [Validators.required, Validators.minLength(100)]],
       focusGroupsCtrl: new FormArray([]),
     });
     this.addCheckboxes();

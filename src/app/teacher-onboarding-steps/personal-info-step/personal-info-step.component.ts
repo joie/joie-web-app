@@ -13,10 +13,32 @@ export class PersonalInfoStepComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
-      firstNameCtrl: ['', Validators.required],
-      lastNameCtrl: ['', Validators.required],
-      emailCtrl: ['', Validators.required],
-      phoneNumberCtrl: ['', Validators.required],
+      firstNameCtrl: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern('[a-zA-Z][a-zA-Z ]+'),
+        ],
+      ],
+      lastNameCtrl: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern('[a-zA-Z][a-zA-Z ]+'),
+        ],
+      ],
+      emailCtrl: ['', [Validators.required, Validators.email]],
+      phoneNumberCtrl: [
+        '',
+        [
+          Validators.required,
+          Validators.min(3),
+          Validators.min(7),
+          Validators.pattern('^[0-9]*$'),
+        ],
+      ],
     });
   }
 

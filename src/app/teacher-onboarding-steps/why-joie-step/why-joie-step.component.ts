@@ -13,7 +13,10 @@ export class WhyJoieStepComponent {
 
   constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
-      addedValDescriptionCtrl: ['', Validators.required],
+      addedValDescriptionCtrl: [
+        '',
+        [Validators.required, Validators.minLength(100)],
+      ],
     });
   }
 

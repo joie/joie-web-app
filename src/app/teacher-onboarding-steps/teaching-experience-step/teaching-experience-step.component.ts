@@ -13,7 +13,14 @@ export class TeachingExperienceStepComponent {
 
   constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
-      teachingExpCtrl: ['', Validators.required],
+      teachingExpCtrl: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(50),
+          Validators.maxLength(300),
+        ],
+      ],
     });
   }
 
