@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
+import { TeacherOnboardingApiService } from './service/teacher-onboarding-api.service';
 interface TeacherData {
   firstNameCtrl: string;
   lastNameCtrl: string;
@@ -21,7 +21,7 @@ interface TeacherData {
 export class OnboardingStepperComponent implements OnInit {
   teacherData = {} as TeacherData;
 
-  constructor() {}
+  constructor(private apiService: TeacherOnboardingApiService) {}
 
   ngOnInit() {}
 
@@ -32,5 +32,6 @@ export class OnboardingStepperComponent implements OnInit {
     this.collectStepData(stepData);
     console.log(this.teacherData);
     //todo this.TeacherOnboardingApiService.submitTeacherData(this.teacherData)
+    this.apiService.submitTeacherAccountData(this.teacherData).subscribe();
   }
 }
