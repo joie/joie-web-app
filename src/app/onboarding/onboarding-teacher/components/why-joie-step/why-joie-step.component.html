@@ -3,7 +3,7 @@
   Finally, {{ teachersName }} where do you see your added value to the students?
 </p>
 <form [formGroup]="formGroup" (ngSubmit)="submitFormsData(formGroup.value)">
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <textarea
       matInput
       formControlName="addedValDescriptionCtrl"

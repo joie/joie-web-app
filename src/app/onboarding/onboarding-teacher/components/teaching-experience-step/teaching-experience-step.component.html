@@ -7,7 +7,7 @@
   [formGroup]="formGroup"
   (ngSubmit)="collectTeachingExperienceInfo(formGroup.value)"
 >
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <textarea matInput formControlName="teachingExpCtrl" required></textarea>
   </mat-form-field>
   <button mat-button matStepperNext type="submit">

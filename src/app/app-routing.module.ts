@@ -46,6 +46,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./sessions/sessions.module').then((m) => m.SessionsModule),
   },
+  {
+    path: 'onboarding',
+    loadChildren: () =>
+      import('./onboarding/onboarding.module').then((m) => m.OnboardingModule),
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 

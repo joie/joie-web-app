@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TeacherOnboardingApiService } from './service/teacher-onboarding-api.service';
+import { TeacherOnboardingApiService } from '../../services/teacher-onboarding-api.service';
+
 interface TeacherData {
   firstNameCtrl: string;
   lastNameCtrl: string;
@@ -14,7 +15,6 @@ interface TeacherData {
 }
 
 @Component({
-  selector: 'app-onboarding-stepper',
   templateUrl: './onboarding-stepper.component.html',
   styleUrls: ['./onboarding-stepper.component.scss'],
 })
