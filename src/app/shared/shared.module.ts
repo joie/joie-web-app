@@ -5,10 +5,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PaymentSourceComponent } from './components/payment-source/payment-source.component';
 import { VideoComponent } from './components/video/video.component';
 import { DialogRouterComponent } from './components/dialog-router/dialog-router.component';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [PaymentSourceComponent, VideoComponent, DialogRouterComponent],
-  imports: [CommonModule, QuicklinkModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    QuicklinkModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
+  ],
   exports: [
     CommonModule,
     QuicklinkModule,
@@ -16,6 +21,7 @@ import { DialogRouterComponent } from './components/dialog-router/dialog-router.
     PaymentSourceComponent,
     VideoComponent,
     DialogRouterComponent,
+    FlexLayoutModule,
   ],
 })
 export class SharedModule {}

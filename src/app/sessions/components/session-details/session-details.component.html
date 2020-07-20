@@ -1,0 +1,36 @@
+<div fxLayout="column" fxLayoutGap="20px">
+  <div class="text-center">JoieSprit</div>
+  <div class="text-center text-xl">{{ session.title }}</div>
+  <div
+    fxLayout="row"
+    class="text-center"
+    fxLayoutGap="20px"
+    fxLayoutAlign="center center"
+  >
+    <img src="" class="author-image" width="40px" height="40px" />
+    <div class="text-lg">{{ session.author.name }}</div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
+    <div>
+      {{ session.publishedDate }}
+    </div>
+    <div>
+      {{ session.duration.amount + session.duration.unit }}
+    </div>
+    <div>
+      {{ session.courseType }}
+    </div>
+    <div>
+      {{ session.level }}
+    </div>
+    <div>
+      <!-- TODO implement price pipe based on the logged in user-->
+      {{ session.price }}
+    </div>
+    <div>
+      <!--TODO implement share component-->
+    </div>
+  </div>
+
+  <div></div>
+</div>

@@ -1,12 +1,8 @@
+// TODO  delete this file
+
 import { firestore } from 'firebase';
-export interface Duration {
-  amount: number;
-  unit: 'ms';
-}
-export interface Price {
-  display: number;
-  currency: 'USD';
-}
+import { Price, Duration } from './index';
+
 // export interface Teacher {
 //   displayName: 'string';
 // }
