@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QuicklinkStrategy } from 'ngx-quicklink';
-import { canActivate } from '@angular/fire/auth-guard';
+import { canActivate, AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import {
   authorOnly,
   redirectUnauthorizedToLogin,
@@ -25,14 +25,22 @@ const routes: Routes = [
     loadChildren: () =>
       import('./posts/posts.module').then((m) => m.PostsModule),
   },
-  {
-    path: 'author',
-    loadChildren: () =>
-      import('./author/author.module').then((m) => m.AuthorModule),
-    data: { preload: false },
-    ...canActivate(redirectUnauthorizedToLogin),
-    ...canActivate(authorOnly),
-  },
+  // {
+  //   path: 'author',
+  //   loadChildren: () =>
+  //     import('./author/author.module').then((m) => m.AuthorModule),
+  //   // ! angularfire doesn't support multiple guards
+  //   canActivate: [AngularFireAuthGuard],
+  //   data: {
+  //     preload: false,
+  //     authGuardPipe: redirectUnauthorizedToLogin,
+  //   },
+  //   // ! the following commented out approach probably overrides
+  //   // ! the data property as it preloads this route even though
+  //   // ! we defined it not to
+  //   // ...canActivate(redirectUnauthorizedToLogin),
+  //   // ...canActivate(authorOnly),
+  // },
   {
     path: 'account',
     loadChildren: () =>

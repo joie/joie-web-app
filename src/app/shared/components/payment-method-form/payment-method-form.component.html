@@ -1,13 +1,9 @@
 <h2>Please add payment source</h2>
 <div *ngIf="isLoading">LOADING...</div>
 <form class="form-grid" (submit)="onSubmit($event)" [class.loading]="isLoading">
-  <fieldset #cardElement class="stripe-card">
+  <fieldset class="stripe-card">
     <!-- A Stripe Element will be inserted here. -->
   </fieldset>
-  <mat-form-field appearance="outline" appearance="outline">
-    <mat-label>Favorite food</mat-label>
-    <input matInput placeholder="Ex. Pizza" value="Sushi" />
-  </mat-form-field>
 
   <!-- Used to display Element errors. -->
   <button mat-flat-button color="primary" type="submit" [disabled]="isLoading">
