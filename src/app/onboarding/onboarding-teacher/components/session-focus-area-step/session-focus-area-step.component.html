@@ -1,0 +1,25 @@
+<h3>Your market</h3>
+<p>
+  What's your niche, the area you focus on in your sessions?
+</p>
+<form
+  [formGroup]="formGroup"
+  (ngSubmit)="collectSessionFocusInfo(formGroup.value)"
+>
+  <mat-form-field appearance="outline">
+    <textarea matInput formControlName="sessionAreaCtrl" required></textarea>
+  </mat-form-field>
+
+  <label
+    formArrayName="focusGroupsCtrl"
+    *ngFor="let group of focusGroupsData; let i = index"
+  >
+    <mat-checkbox [formControlName]="i">{{
+      focusGroupsData[i].group
+    }}</mat-checkbox>
+  </label>
+
+  <button mat-button matStepperNext type="submit">
+    Next
+  </button>
+</form>

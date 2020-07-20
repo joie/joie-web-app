@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -31,6 +32,7 @@ import { AuthModule } from './auth/auth.module';
       enabled: environment.production,
     }),
     BrowserAnimationsModule,
+    HttpClientModule,
   ],
   providers: [
     //   {
