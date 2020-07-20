@@ -21,6 +21,10 @@
   text-align: right;
 }
 
+.text-justify {
+  text-align: justify;
+}
+
 .text-muted-lt {
   opacity: 0.1;
 }
@@ -94,4 +98,14 @@
 
 .font-thick {
   font-weight: 600 !important;
+}
+
+.p {
+  padding: 30px;
+}
+
+@media screen and (max-width: 600px) {
+  .p {
+    padding: 10px;
+  }
 }

@@ -10,7 +10,12 @@
     <img src="" class="author-image" width="40px" height="40px" />
     <div class="text-lg">{{ session.author.name }}</div>
   </div>
-  <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
+  <div
+    fxLayout="row"
+    fxLayoutAlign="space-between"
+    fxLayoutGap="20px"
+    fxLayout.xs="column"
+  >
     <div>
       {{ session.publishedDate }}
     </div>
@@ -25,12 +30,72 @@
     </div>
     <div>
       <!-- TODO implement price pipe based on the logged in user-->
-      {{ session.price }}
+      {{ session.price.currency + session.price.display }}
     </div>
     <div>
-      <!--TODO implement share component-->
+      <!-- Implement share component -->
     </div>
   </div>
 
-  <div></div>
+  <div>
+    <joie-player></joie-player>
+  </div>
+
+  <div>
+    <mat-tab-group>
+      <mat-tab label="What you will learn">
+        <div fxLayout="column" class="p" fxLayoutGap="20px">
+          <div
+            fxLayout="row"
+            fxLayoutAlign="space-between"
+            fxLayout.xs="column"
+          >
+            <div fxLayout="row" fxLayoutGap="10px">
+              <mat-icon aria-hidden="false">home</mat-icon>
+              <div fxLayout="column" fxLayoutAlign="flex-start">
+                <div>
+                  Activities
+                </div>
+                <div>
+                  <span *ngFor="let activity of session.activities">
+                    {{ activity }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10px">
+              <mat-icon aria-hidden="false">home</mat-icon>
+              <div fxLayout="column" fxLayoutAlign="flex-start">
+                <div>
+                  Types of sessions
+                </div>
+                <div>
+                  {{ session.sessionType }}
+                </div>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10px">
+              <mat-icon aria-hidden="false">home</mat-icon>
+              <div fxLayout="column" fxLayoutAlign="flex-start">
+                <div>
+                  Pillars
+                </div>
+                <div>
+                  {{ session.pillar }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-justify">
+            {{ session.description }}
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Meet your teacher"> Content 2 </mat-tab>
+      <mat-tab label="What our community say"> Content 3 </mat-tab>
+    </mat-tab-group>
+  </div>
 </div>

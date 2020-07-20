@@ -5,15 +5,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PaymentSourceComponent } from './components/payment-source/payment-source.component';
 import { VideoComponent } from './components/video/video.component';
 import { DialogRouterComponent } from './components/dialog-router/dialog-router.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from 'src/app/core/material.module';
+import { PlayerComponent } from './components/player/player.component';
+import { PlayerService } from './components/player/player.service';
 @NgModule({
-  declarations: [PaymentSourceComponent, VideoComponent, DialogRouterComponent],
-  imports: [
-    CommonModule,
-    QuicklinkModule,
-    ReactiveFormsModule,
-    FlexLayoutModule,
+  declarations: [
+    PaymentSourceComponent,
+    VideoComponent,
+    DialogRouterComponent,
+    PlayerComponent,
   ],
+  imports: [CommonModule, QuicklinkModule, ReactiveFormsModule, MaterialModule],
   exports: [
     CommonModule,
     QuicklinkModule,
@@ -21,7 +23,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     PaymentSourceComponent,
     VideoComponent,
     DialogRouterComponent,
-    FlexLayoutModule,
+    PlayerComponent,
+    MaterialModule,
   ],
+  providers: [PlayerService],
 })
 export class SharedModule {}
