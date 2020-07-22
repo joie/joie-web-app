@@ -1,10 +1,19 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  Location,
+  LocationStrategy,
+  PathLocationStrategy,
+} from '@angular/common';
 
 @Component({
   selector: 'app-personal-info-step',
   templateUrl: './personal-info-step.component.html',
   styleUrls: ['./personal-info-step.component.scss'],
+  providers: [
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+  ],
 })
 export class PersonalInfoStepComponent implements OnInit {
   @Output() stepComplete = new EventEmitter(); //todo  type as step1 form data model interface
