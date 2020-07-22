@@ -1,7 +1,6 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-teaching-experience-step',
@@ -9,9 +8,7 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./teaching-experience-step.component.scss'],
 })
 export class TeachingExperienceStepComponent implements OnInit {
-  // @Input()
   teachersName;
-  // @Output() stepComplete = new EventEmitter(); //todo  type as step1 form data model interface
   formGroup: FormGroup;
 
   constructor(
@@ -30,12 +27,7 @@ export class TeachingExperienceStepComponent implements OnInit {
     });
   }
 
-  // collectTeachingExperienceInfo(stepData) {
-  //   this.stepComplete.next(stepData);
-  // }
-
   ngOnInit() {
-    // console.log(history.state.teacherData.firstNameCtrl);
     this.teachersName = history.state.teacherData.firstNameCtrl;
   }
 }

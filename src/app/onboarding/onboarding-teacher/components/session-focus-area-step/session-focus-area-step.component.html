@@ -2,10 +2,7 @@
 <p>
   What's your niche, the area you focus on in your sessions?
 </p>
-<form
-  [formGroup]="formGroup"
-  (ngSubmit)="collectSessionFocusInfo(formGroup.value)"
->
+<form [formGroup]="formGroup">
   <mat-form-field appearance="outline">
     <textarea matInput formControlName="sessionAreaCtrl" required></textarea>
   </mat-form-field>
@@ -19,7 +16,7 @@
     }}</mat-checkbox>
   </label>
 
-  <button mat-button matStepperNext type="submit">
+  <button mat-button matStepperNext>
     Next
   </button>
 </form>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TeacherOnboardingApiService } from '../../services/teacher-onboarding-api.service';
 
@@ -9,7 +9,6 @@ import { TeacherOnboardingApiService } from '../../services/teacher-onboarding-a
 })
 export class WhyJoieStepComponent implements OnInit {
   teachersName;
-  // @Output() stepperComplete = new EventEmitter();
   formGroup: FormGroup;
 
   constructor(

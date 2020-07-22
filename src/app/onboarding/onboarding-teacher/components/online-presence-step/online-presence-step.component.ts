@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -13,7 +13,6 @@ import {
   styleUrls: ['./online-presence-step.component.scss'],
 })
 export class OnlinePresenceStepComponent {
-  @Output() stepComplete = new EventEmitter(); //todo  type as step1 form data model interface
   formGroup: FormGroup;
   sessionTypesData = [
     { id: 1, type: 'On-demand session or a lecture' },
@@ -37,10 +36,6 @@ export class OnlinePresenceStepComponent {
       sessionTypesCtrl: new FormArray([]),
     });
     this.addCheckboxes();
-  }
-
-  collectSessionInfo(stepData) {
-    this.stepComplete.next(stepData);
   }
 
   get sessionTypesFormArray() {
