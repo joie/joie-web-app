@@ -20,7 +20,7 @@ interface TeacherData {
 })
 export class OnboardingStepperComponent implements OnInit {
   teacherData = {} as TeacherData;
-  currentFormGroup;
+  currentFormGroup = { status: 'INVALID', value: {} };
   public steps: string[];
   public selectedStep: number = 0;
 
@@ -38,6 +38,7 @@ export class OnboardingStepperComponent implements OnInit {
 
   onActivate(componentRef) {
     this.currentFormGroup = componentRef.formGroup;
+    console.log(this.currentFormGroup);
   }
 
   selectionChanged(event: any) {

@@ -1,4 +1,8 @@
-<mat-horizontal-stepper #stepper (selectionChange)="selectionChanged($event)">
+<mat-horizontal-stepper
+  #stepper
+  linear
+  (selectionChange)="selectionChanged($event)"
+>
   <mat-step
     *ngFor="let step of steps; let i = index"
     [label]="step"
