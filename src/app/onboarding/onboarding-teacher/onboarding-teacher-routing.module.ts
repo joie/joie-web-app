@@ -16,27 +16,22 @@ const routes: Routes = [
       {
         path: 'personal-info',
         component: PersonalInfoStepComponent,
-        children: [],
       },
       {
         path: 'teaching-experience',
         component: TeachingExperienceStepComponent,
-        children: [],
       },
       {
         path: 'focus-area',
         component: SessionFocusAreaStepComponent,
-        children: [],
       },
       {
         path: 'online-presence',
         component: OnlinePresenceStepComponent,
-        children: [],
       },
       {
         path: 'value-to-students',
         component: WhyJoieStepComponent,
-        children: [],
       },
     ],
   },
