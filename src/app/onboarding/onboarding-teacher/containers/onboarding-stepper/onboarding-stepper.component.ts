@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { TeacherOnboardingApiService } from '../../services/teacher-onboarding-api.service';
 
 interface TeacherData {
@@ -18,12 +18,10 @@ interface TeacherData {
   templateUrl: './onboarding-stepper.component.html',
   styleUrls: ['./onboarding-stepper.component.scss'],
 })
-export class OnboardingStepperComponent implements OnInit {
+export class OnboardingStepperComponent {
   teacherData = {} as TeacherData;
 
   constructor(private apiService: TeacherOnboardingApiService) {}
-
-  ngOnInit() {}
 
   collectStepData(stepData) {
     Object.assign(this.teacherData, stepData);
