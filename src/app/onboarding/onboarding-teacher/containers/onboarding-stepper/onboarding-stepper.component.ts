@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { TeacherOnboardingApiService } from '../../services/teacher-onboarding-api.service';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 interface TeacherData {
   firstNameCtrl: string;
@@ -18,18 +18,35 @@ interface TeacherData {
   templateUrl: './onboarding-stepper.component.html',
   styleUrls: ['./onboarding-stepper.component.scss'],
 })
-export class OnboardingStepperComponent {
+export class OnboardingStepperComponent implements OnInit {
   teacherData = {} as TeacherData;
+  currentFormGroup = { status: 'INVALID', value: {} };
+  public steps: string[];
+  public selectedStep: number = 0;
 
-  constructor(private apiService: TeacherOnboardingApiService) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
-  collectStepData(stepData) {
-    Object.assign(this.teacherData, stepData);
+  ngOnInit() {
+    this.steps = this.route.snapshot.routeConfig.children.map((child) => {
+      return child.path;
+    });
+    let step = this.steps[0];
+    this.router.navigate([step], {
+      relativeTo: this.route,
+    });
   }
-  submitData(stepData) {
-    this.collectStepData(stepData);
-    console.log(this.teacherData);
-    //todo this.TeacherOnboardingApiService.submitTeacherData(this.teacherData)
-    this.apiService.submitTeacherAccountData(this.teacherData).subscribe();
+
+  onActivate(componentRef) {
+    this.currentFormGroup = componentRef.formGroup;
+    console.log(this.currentFormGroup);
+  }
+
+  selectionChanged(event: any) {
+    Object.assign(this.teacherData, this.currentFormGroup.value);
+    this.selectedStep = event.selectedIndex;
+    this.router.navigate([this.steps[this.selectedStep]], {
+      state: { teacherData: this.teacherData },
+      relativeTo: this.route,
+    });
   }
 }

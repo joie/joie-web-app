@@ -1,37 +1,16 @@
-<mat-horizontal-stepper linear #stepper>
-  <mat-step [stepControl]="step1.formGroup">
-    <app-personal-info-step
-      (stepComplete)="collectStepData($event)"
-      #step1
-    ></app-personal-info-step>
-  </mat-step>
-  <mat-step [stepControl]="step2.formGroup">
-    <app-teaching-experience-step
-      [teachersName]="teacherData?.firstNameCtrl"
-      (stepComplete)="collectStepData($event)"
-      #step2
-    ></app-teaching-experience-step>
-  </mat-step>
-
-  <mat-step [stepControl]="step3.formGroup">
-    <app-session-focus-area-step
-      (stepComplete)="collectStepData($event)"
-      #step3
-    ></app-session-focus-area-step>
-  </mat-step>
-
-  <mat-step [stepControl]="step4.formGroup">
-    <app-online-presence-step
-      (stepComplete)="collectStepData($event)"
-      #step4
-    ></app-online-presence-step>
-  </mat-step>
-
-  <mat-step [stepControl]="step5.formGroup">
-    <app-why-joie-step
-      [teachersName]="teacherData?.firstNameCtrl"
-      (stepperComplete)="submitData($event)"
-      #step5
-    ></app-why-joie-step>
+<mat-horizontal-stepper
+  #stepper
+  linear
+  (selectionChange)="selectionChanged($event)"
+>
+  <mat-step
+    *ngFor="let step of steps; let i = index"
+    [label]="step"
+    [stepControl]="currentFormGroup"
+  >
+    <router-outlet
+      (activate)="onActivate($event)"
+      *ngIf="i === selectedStep"
+    ></router-outlet>
   </mat-step>
 </mat-horizontal-stepper>

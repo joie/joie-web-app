@@ -56,8 +56,22 @@ const routes: Routes = [
   },
   {
     path: 'onboarding',
-    loadChildren: () =>
-      import('./onboarding/onboarding.module').then((m) => m.OnboardingModule),
+    children: [
+      {
+        path: 'teacher',
+        loadChildren: () =>
+          import(
+            './onboarding/onboarding-teacher/onboarding-teacher.module'
+          ).then((m) => m.OnboardingTeacherModule),
+      },
+      {
+        path: 'student',
+        loadChildren: () =>
+          import(
+            './onboarding/onboarding-student/onboarding-student.module'
+          ).then((m) => m.OnboardingStudentModule),
+      },
+    ],
   },
   { path: '**', component: PageNotFoundComponent },
 ];

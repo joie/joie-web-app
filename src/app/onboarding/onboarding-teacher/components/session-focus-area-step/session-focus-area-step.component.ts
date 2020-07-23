@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -13,7 +13,6 @@ import {
   styleUrls: ['./session-focus-area-step.component.scss'],
 })
 export class SessionFocusAreaStepComponent {
-  @Output() stepComplete = new EventEmitter(); //todo  type as step1 form data model interface
   formGroup: FormGroup;
   focusGroupsData = [
     { id: 1, group: 'Children (6-14)' },
@@ -28,10 +27,6 @@ export class SessionFocusAreaStepComponent {
       focusGroupsCtrl: new FormArray([]),
     });
     this.addCheckboxes();
-  }
-
-  collectSessionFocusInfo(stepData) {
-    this.stepComplete.next(stepData);
   }
 
   get groupsFormArray() {

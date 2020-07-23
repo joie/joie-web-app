@@ -2,7 +2,7 @@
 <p>
   What's your niche, the area you focus on in your sessions?
 </p>
-<form [formGroup]="formGroup" (ngSubmit)="collectSessionInfo(formGroup.value)">
+<form [formGroup]="formGroup">
   <label
     formArrayName="sessionTypesCtrl"
     *ngFor="let sessionType of sessionTypesData; let i = index"
@@ -20,7 +20,7 @@
     ></textarea>
   </mat-form-field>
 
-  <button mat-button matStepperNext type="submit">
+  <button mat-button matStepperNext>
     Next
   </button>
 </form>
