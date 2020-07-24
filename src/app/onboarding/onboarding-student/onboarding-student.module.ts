@@ -7,6 +7,7 @@ import { StudentOnboardingStepperComponent } from './containers/student-onboardi
 import { GoalStepComponent } from './components/goal-step/goal-step.component';
 import { SessionTypesStepComponent } from './components/session-types-step/session-types-step.component';
 import { WelcomeStepComponent } from './components/welcome-step/welcome-step.component';
+import { SubGoalsStepComponent } from './components/sub-goals-step/sub-goals-step.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { WelcomeStepComponent } from './components/welcome-step/welcome-step.com
     GoalStepComponent,
     SessionTypesStepComponent,
     WelcomeStepComponent,
+    SubGoalsStepComponent,
   ],
   imports: [
     OnboardingStudentRoutingModule,
