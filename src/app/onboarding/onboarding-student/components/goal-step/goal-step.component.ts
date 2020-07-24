@@ -6,7 +6,7 @@ import {
   FormArray,
   FormControl,
 } from '@angular/forms';
-import { StudentOnbiardingService } from '../../service/student-onbiarding.service';
+import { StudentOnboardingService } from '../../service/student-onboarding.service';
 
 @Component({
   selector: 'app-goal-step',
@@ -24,7 +24,7 @@ export class GoalStepComponent {
   ];
   constructor(
     private _formBuilder: FormBuilder,
-    public onboardingService: StudentOnbiardingService
+    public onboardingService: StudentOnboardingService
   ) {
     this.formGroup = this._formBuilder.group({
       goalsCtrl: new FormArray([]),

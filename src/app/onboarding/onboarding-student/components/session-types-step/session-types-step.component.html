@@ -1,0 +1,22 @@
+<form [formGroup]="formGroup">
+  <label
+    formArrayName="sessionTypesCtrl"
+    *ngFor="let sessionType of sessionTypesData; let i = index"
+  >
+    <mat-checkbox [formControlName]="i">{{
+      sessionTypesData[i].sessionType
+    }}</mat-checkbox>
+  </label>
+
+  <button mat-button matStepperNext>
+    Next
+  </button>
+
+  <button
+    mat-button
+    mat-raised-button
+    (click)="onboardingService.skipOnboarding()"
+  >
+    Skip for now.
+  </button>
+</form>
