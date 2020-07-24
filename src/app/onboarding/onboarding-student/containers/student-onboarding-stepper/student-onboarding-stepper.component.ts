@@ -27,8 +27,7 @@ export class StudentOnboardingStepperComponent implements OnInit {
   }
 
   onActivate(componentRef) {
-    this.currentFormGroup = componentRef.formGroup;
-    console.log(this.currentFormGroup);
+    this.currentFormGroup = componentRef.formGroup || this.currentFormGroup; // some steps don't have any forms on
   }
 
   selectionChanged(event: any) {
