@@ -1,0 +1,20 @@
+<form [formGroup]="formGroup">
+  <label
+    formArrayName="goalsCtrl"
+    *ngFor="let goal of goalsData; let i = index"
+  >
+    <mat-checkbox [formControlName]="i">{{ goalsData[i].goal }}</mat-checkbox>
+  </label>
+
+  <button mat-button matStepperNext>
+    Next
+  </button>
+
+  <button
+    mat-button
+    mat-raised-button
+    (click)="onboardingService.skipOnboarding()"
+  >
+    Skip for now.
+  </button>
+</form>
