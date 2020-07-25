@@ -6,16 +6,18 @@
   the way to reach your goal.
 </p>
 
-<div class="subgoals-flexbox"></div>
+<div class="subgoals-flexbox">
+  <app-sub-goals-box
+    *ngFor="let goal of goals"
+    [title]="goal.title"
+    [subgoalsData]="goal.subgoals"
+  ></app-sub-goals-box>
+</div>
 
 <button mat-button matStepperNext>
   Continue
 </button>
 
-<button
-  mat-button
-  mat-raised-button
-  (click)="onboardingService.skipOnboarding()"
->
+<button mat-raised-button (click)="onboardingService.skipOnboarding()">
   Skip for now.
 </button>
