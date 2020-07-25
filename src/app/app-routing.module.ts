@@ -5,7 +5,7 @@ import { canActivate, AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import {
   authorOnly,
   redirectUnauthorizedToLogin,
-} from './common/auth-guards-pipes';
+} from './common/guards/auth-guards-pipes';
 
 import { PageNotFoundComponent } from './core/containers/page-not-found/page-not-found.component';
 

@@ -7,10 +7,15 @@ import { WhyJoieStepComponent } from './components/why-joie-step/why-joie-step.c
 import { TeachingExperienceStepComponent } from './components/teaching-experience-step/teaching-experience-step.component';
 import { OnlinePresenceStepComponent } from './components/online-presence-step/online-presence-step.component';
 import { SessionFocusAreaStepComponent } from './components/session-focus-area-step/session-focus-area-step.component';
+import { PartnerUpComponent } from './containers/partner-up/partner-up.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: PartnerUpComponent,
+  },
+  {
+    path: 'aboard',
     component: OnboardingStepperComponent,
     children: [
       {
@@ -33,6 +38,7 @@ const routes: Routes = [
         path: 'value-to-students',
         component: WhyJoieStepComponent,
       },
+      { path: '', redirectTo: 'personal-info', pathMatch: 'full' },
     ],
   },
 ];
