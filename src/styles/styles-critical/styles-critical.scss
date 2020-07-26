@@ -105,6 +105,14 @@
   padding: 30px;
 }
 
+.i-20 {
+  font-size: 20px;
+}
+.box-shadow {
+  box-shadow: 0px 1px 10px rgba(69, 69, 69, 0.2);
+  border-radius: 10px;
+}
+
 @media screen and (max-width: 600px) {
   .p {
     padding: 10px;

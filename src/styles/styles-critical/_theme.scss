@@ -15,7 +15,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $joie-primary: mat-palette(custom-palettes.$joie-primary);
-$joie-accent: mat-palette($mat-pink, A200, A100, A400);
+$joie-accent: mat-palette(custom-palettes.$joie-accent, 300, 500, 700);
 
 // The warn palette is optional (defaults to red).
 $joie-warn: mat-palette($mat-red);
