@@ -25,12 +25,11 @@ export class SubGoalsStepComponent implements AfterViewInit {
     SubGoalsBoxComponent
   >;
   formGroup: FormGroup;
-  //= { value: {}, subformsStatus: {}, status: 'INVALID' };
   goals = [
     {
       title: 'JoieConnections',
       subgoals: [
-        { id: 1, title: 'Social interactions' }, // rm , isSelected: false
+        { id: 1, title: 'Social interactions' },
         { id: 2, title: 'Friendships' },
         { id: 3, title: 'Parenting' },
         { id: 4, title: 'Relationships' },
@@ -53,10 +52,6 @@ export class SubGoalsStepComponent implements AfterViewInit {
     this.formGroup = this.formBuilder.group({});
   }
 
-  // addSubgoalSets(){
-  //   const subgoalSets = this.subgoalBoxes.toArray(); //first i pass data to build low level forms, than i add a top-level control to it here
-
-  // }
   ngAfterViewInit(): void {
     const subgoalSets = this.subgoalBoxes.toArray(); //first i pass data to build low level forms, than i add a top-level control to it here
 
@@ -64,49 +59,7 @@ export class SubGoalsStepComponent implements AfterViewInit {
       this.formGroup.controls[set.title] = set.formGroup;
       this.formGroup.value[set.title] = set.formGroup.value['subgoalsCtrl'];
     });
-    // todo ok, seems like it doesn't reassign nested form values to here..
-    // mb there's a right way to do this, but
-    console.log(
-      'subgoals step formGroup after initializing nested groups(boxes)',
-      this.formGroup
-    );
-
-    // this.addSubgoalSets();
-    // console.log(this.subgoalBoxes.toArray());
-    // const subgoalSets = this.subgoalBoxes.toArray();
-
-    // subgoalSets.forEach((set) => {
-    //   this.formGroup[set.title] = set
-    // })
-
-    // //todo mb gotta set subgoals-box.components's subgoalsData to private
-    // subgoalSets.forEach((set) => {
-    //   console.log('set', set);
-    //   this.formGroup.value[set.title] = set.formGroup.value;
-    //   this.formGroup.subformsStatus[set.title] = set.formGroup.status;
-    // });
-
-    // this.formGroup.status = this.formStatus();
+    // todo ok, seems like it doesn't reassign step root level fromGroup value to nested form values  here..
+    // mb there's a right way to do this, but yet I'll try it manually
   }
-
-  // isValid() {
-  //   console.log(this.formStatus());
-  // }
-
-  // formStatus() { // this is unnecessary, it appears that i can just wrap it in a formGroup
-  //   console.log(this.formGroup);
-  //   if (Object.keys(this.formGroup.subformsStatus).length < 1) {
-  //     return 'INVALID';
-  //   } else {
-  //     let allStatuses = [];
-  //     Object.keys(this.formGroup.subformsStatus).forEach((subform) => {
-  //       console.log(this.formGroup.subformsStatus[subform]);
-  //       allStatuses.push(this.formGroup.subformsStatus[subform]);
-  //     });
-  //     console.log(allStatuses);
-  //     return allStatuses.some((status) => status === 'INVALID')
-  //       ? 'INVALID'
-  //       : 'VALID';
-  //   }
-  // }
 }
