@@ -9,6 +9,7 @@ import { SessionTypesStepComponent } from './components/session-types-step/sessi
 import { WelcomeStepComponent } from './components/welcome-step/welcome-step.component';
 import { SubGoalsStepComponent } from './components/sub-goals-step/sub-goals-step.component';
 import { SubGoalsBoxComponent } from './components/sub-goals-step/sub-goals-box/sub-goals-box.component';
+import { SummaryStepComponent } from './components/summary-step/summary-step.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SubGoalsBoxComponent } from './components/sub-goals-step/sub-goals-box/
     WelcomeStepComponent,
     SubGoalsStepComponent,
     SubGoalsBoxComponent,
+    SummaryStepComponent,
   ],
   imports: [
     OnboardingStudentRoutingModule,

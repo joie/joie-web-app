@@ -9,7 +9,7 @@ import {
 
 @Component({
   selector: 'app-sub-goals-box',
-  template: `<div class="subgoal-box">
+  template: `<div class="box-with-badge">
     <h3>{{ title }}</h3>
     <form [formGroup]="formGroup">
       <mat-form-field>
@@ -46,7 +46,7 @@ export class SubGoalsBoxComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       subgoalsCtrl: new FormArray([]),
       //todo for validation  gotta wrap it in form group and add
-      // a custom validator "required tomselecet at least one"
+      // a custom validator "required to selecet at least one"
       // This gonna be reusable for every checkboxes group
     });
     this.addChips();

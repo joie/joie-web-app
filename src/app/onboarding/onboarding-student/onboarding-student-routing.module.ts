@@ -6,6 +6,7 @@ import { StudentOnboardingStepperComponent } from './containers/student-onboardi
 import { SessionTypesStepComponent } from './components/session-types-step/session-types-step.component';
 import { WelcomeStepComponent } from './components/welcome-step/welcome-step.component';
 import { SubGoalsStepComponent } from './components/sub-goals-step/sub-goals-step.component';
+import { SummaryStepComponent } from './components/summary-step/summary-step.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path: 'session-types',
         component: SessionTypesStepComponent,
+      },
+      {
+        path: 'summary',
+        component: SummaryStepComponent,
       },
     ],
   },
