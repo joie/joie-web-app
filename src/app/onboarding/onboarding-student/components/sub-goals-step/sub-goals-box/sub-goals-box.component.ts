@@ -13,17 +13,16 @@ import {
     <h3>{{ title }}</h3>
     <form [formGroup]="formGroup">
       <mat-form-field>
-        <mat-chip-list multiple formArrayName="subgoalsCtrl">
+        <mat-chip-list multiple>
           <label
-            *ngFor="let subgoal of subgoals.controls; let i = index"
-            [formGroupName]="i"
+            *ngFor="let subgoal of subgoalsData; let i = index"
+            formArrayName="subgoalsCtrl"
           >
             <mat-chip
               selectable="true"
-              [selected]="subgoal.value.isSelected"
               (click)="toggleSubgoal(subgoal)"
               (selectionChange)="onSelectionChange($event)"
-              >{{ subgoal.value.title }}</mat-chip
+              >{{ subgoal.title }}</mat-chip
             >
           </label>
         </mat-chip-list>
@@ -43,17 +42,30 @@ export class SubGoalsBoxComponent implements OnInit {
     return this.formGroup.get('subgoalsCtrl') as FormArray;
   }
 
-  logForm() {
-    //todo for debugging rm later
-    console.log(this.formGroup);
-    console.log(this.formGroup.get('subgoalsCtrl'));
-  }
-
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
-      subgoalsCtrl: this.formBuilder.array(this.subgoalsData),
+      subgoalsCtrl: new FormArray([]),
+      //todo for validation  gotta wrap it in form group and add
+      // a custom validator "required tomselecet at least one"
+      // This gonna be reusable for every checkboxes group
     });
-    this.logForm();
+    this.addChips();
+  }
+
+  private addChips() {
+    this.subgoalsData.forEach(() =>
+      this.subgoalsFormArray.push(new FormControl(false, Validators.required))
+    );
+  }
+
+  get subgoalsFormArray() {
+    return this.formGroup.controls.subgoalsCtrl as FormArray;
+  }
+
+  getChipListValue() {
+    return this.formGroup.value.subgoalsCtrl
+      .map((checked, i) => (checked ? this.subgoalsFormArray[i].id : null))
+      .filter((v) => v !== null);
   }
 
   onSelectionChange(event) {

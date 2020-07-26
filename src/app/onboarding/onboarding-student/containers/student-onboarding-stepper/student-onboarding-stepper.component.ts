@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 interface StudentOnboardingData {}
 
@@ -29,9 +30,12 @@ export class StudentOnboardingStepperComponent implements OnInit {
   onActivate(componentRef) {
     this.currentFormGroup = componentRef.formGroup || this.currentFormGroup; // some steps don't have any forms on
   }
-
+  // todo research why data from the sessionTypes step is collected right after the welcome step
   selectionChanged(event: any) {
     Object.assign(this.studentData, this.currentFormGroup.value);
+    console.log(this.currentFormGroup);
+
+    console.log(this.currentFormGroup.value);
     this.selectedStep = event.selectedIndex;
     this.router.navigate([this.steps[this.selectedStep]], {
       state: { studentData: this.studentData },
