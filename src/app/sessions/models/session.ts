@@ -14,6 +14,7 @@ export interface Session {
   pillar: Pillar;
   description: string;
   author?: Author;
+  recommendationPercentage: number;
 }
 
 export enum CourseType {

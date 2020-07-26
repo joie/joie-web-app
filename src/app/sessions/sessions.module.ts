@@ -11,6 +11,7 @@ import { SessionListComponent } from './components/session-list/session-list.com
 import { SessionEnrollDialogComponent } from './components/session-enroll-dialog/session-enroll-dialog.component';
 import { SessionDetailsComponent } from './components/session-details/session-details.component';
 import { SessionService } from './services/session.service';
+import { SessionCardComponent } from './components/session-card/session-card.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SessionService } from './services/session.service';
     SessionListComponent,
     SessionEnrollDialogComponent,
     SessionDetailsComponent,
+    SessionCardComponent,
   ],
   imports: [
     SharedModule,

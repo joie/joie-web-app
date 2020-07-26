@@ -41,6 +41,7 @@ export class SessionService {
         id: 112,
         name: 'Jill Shireen',
       },
+      recommendationPercentage: 97,
     }) as unknown) as Observable<Session>;
     //  return this.dbService.get$<Session>(`sessions/${sessionId}`) as Observable<Session>;
   }
