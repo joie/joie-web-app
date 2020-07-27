@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
+import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 
 @Component({
   selector: 'app-sub-goals-box',
@@ -41,7 +42,7 @@ export class SubGoalsBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
-      subgoalsCtrl: new FormArray([]),
+      subgoalsCtrl: new FormArray([], atLeastOneIsCheckedValidator()),
     });
     this.addChips();
     this.formGroup.setParent(this.parentFormGroup);

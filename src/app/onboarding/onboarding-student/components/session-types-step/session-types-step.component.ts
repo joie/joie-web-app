@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
+import { atLeastOneIsCheckedValidator } from '../../validators/atLeastOnIsChecked';
+import { notMoreThanOneIsCheckedValidator } from '../../validators/notMoreThanOneIsSelected';
 @Component({
   selector: 'app-session-types-step',
   templateUrl: './session-types-step.component.html',
@@ -18,7 +20,10 @@ export class SessionTypesStepComponent {
     public onboardingService: StudentOnboardingService
   ) {
     this.formGroup = this._formBuilder.group({
-      sessionTypesCtrl: new FormArray([]),
+      sessionTypesCtrl: new FormArray(
+        [],
+        [atLeastOneIsCheckedValidator(), notMoreThanOneIsCheckedValidator()]
+      ),
     });
     this.addCheckboxes();
   }

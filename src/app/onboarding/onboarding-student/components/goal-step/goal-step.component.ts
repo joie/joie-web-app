@@ -7,6 +7,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
+import { atLeastOneIsCheckedValidator } from '../../validators/atLeastOnIsChecked';
 
 @Component({
   selector: 'app-goal-step',
@@ -27,7 +28,7 @@ export class GoalStepComponent {
     public onboardingService: StudentOnboardingService
   ) {
     this.formGroup = this._formBuilder.group({
-      goalsCtrl: new FormArray([]),
+      goalsCtrl: new FormArray([], atLeastOneIsCheckedValidator()),
     });
     this.addCheckboxes();
   }
