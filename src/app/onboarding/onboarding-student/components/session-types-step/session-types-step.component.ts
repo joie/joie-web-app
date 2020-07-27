@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { atLeastOneIsCheckedValidator } from '../../validators/atLeastOnIsChecked';
@@ -8,7 +8,7 @@ import { notMoreThanOneIsCheckedValidator } from '../../validators/notMoreThanOn
   templateUrl: './session-types-step.component.html',
   styleUrls: ['./session-types-step.component.scss'],
 })
-export class SessionTypesStepComponent {
+export class SessionTypesStepComponent implements OnInit {
   formGroup: FormGroup;
   sessionTypesData = [
     { sessionType: 'On-demand sessions', isChecked: false },
@@ -18,7 +18,8 @@ export class SessionTypesStepComponent {
   constructor(
     private _formBuilder: FormBuilder,
     public onboardingService: StudentOnboardingService
-  ) {
+  ) {}
+  ngOnInit(): void {
     this.formGroup = this._formBuilder.group({
       sessionTypesCtrl: new FormArray(
         [],
