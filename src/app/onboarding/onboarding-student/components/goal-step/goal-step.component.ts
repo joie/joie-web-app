@@ -19,8 +19,8 @@ export class GoalStepComponent {
     { goal: 'Joie Movement', isChecked: false },
     { goal: 'Joie Emotions', isChecked: false },
     { goal: 'Joie Connections', isChecked: false },
-    { goal: 'Joie Spirit', isChecked: true },
-    { goal: 'Joie Professional', isChecked: true },
+    { goal: 'Joie Spirit', isChecked: false },
+    { goal: 'Joie Professional', isChecked: false },
   ];
   constructor(
     private _formBuilder: FormBuilder,

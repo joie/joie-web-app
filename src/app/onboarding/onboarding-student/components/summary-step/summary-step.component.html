@@ -2,15 +2,17 @@
 <h2>For now, {{ name }}, your journey will start with:</h2>
 <div class="box-with-badge">
   <label>Exploring the pillars:</label>
-  <h4>{{ "subgoals here" }}</h4>
+  <h4>{{ dataToPrint.goals }}</h4>
   <label>You will start with the following smaller steps:</label>
-  <h4>{{ "chosen subgoals go here" }}</h4>
+  <h4>{{ dataToPrint.subgoals }}</h4>
   <label>And you will explore:</label>
-  <h4>{{ "chosen session types goes here" }}</h4>
+  <h4>{{ dataToPrint.sessionTypes }}</h4>
 </div>
 
 <p>
   And don't worry! You can always update it later. We have good feeling about
   this, {{ name }}!
 </p>
-<button mat-raised-button>Now, let's find your first session!</button>
+<button mat-raised-button (click)="submitData()">
+  Now, let's find your first session!
+</button>
