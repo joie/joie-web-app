@@ -13,11 +13,11 @@
     <button mat-raised-button color="accent">Enroll In Session</button>
 
     <div fxLayout="row" fxLayoutAlign="space-between">
-      <div>
+      <div fxFlex="80%">
         {{ session.title }}
       </div>
 
-      <div>
+      <div fxFlex="20%" class="text-right">
         <i class="feather icon-heart"></i>
         {{ session.recommendationPercentage }} %
       </div>
