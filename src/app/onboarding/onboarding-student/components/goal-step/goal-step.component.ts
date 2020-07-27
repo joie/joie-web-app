@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -14,7 +14,7 @@ import { atLeastOneIsCheckedValidator } from '../../validators/atLeastOnIsChecke
   templateUrl: './goal-step.component.html',
   styleUrls: ['./goal-step.component.scss'],
 })
-export class GoalStepComponent {
+export class GoalStepComponent implements OnInit {
   formGroup: FormGroup;
   goalsData = [
     { goal: 'Joie Movement', isChecked: false },
@@ -26,7 +26,8 @@ export class GoalStepComponent {
   constructor(
     private _formBuilder: FormBuilder,
     public onboardingService: StudentOnboardingService
-  ) {
+  ) {}
+  ngOnInit(): void {
     this.formGroup = this._formBuilder.group({
       goalsCtrl: new FormArray([], atLeastOneIsCheckedValidator()),
     });

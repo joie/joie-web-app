@@ -10,7 +10,7 @@ interface StudentOnboardingData {}
 })
 export class StudentOnboardingStepperComponent implements OnInit {
   studentData = {} as StudentOnboardingData;
-  currentFormGroup = { status: 'VALID', value: {} };
+  currentFormGroup = { status: 'INVALID', value: {} };
   public steps: string[];
   public selectedStep: number = 0;
 
