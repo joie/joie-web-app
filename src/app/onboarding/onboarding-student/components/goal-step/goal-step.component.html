@@ -12,7 +12,7 @@
     <mat-checkbox
       [checked]="goal.isChecked"
       [formControlName]="i"
-      (change)="handleCheck(goal)"
+      (change)="handleCheck(goal, i)"
       >{{ goalsData[i].goal }}</mat-checkbox
     >
   </label>

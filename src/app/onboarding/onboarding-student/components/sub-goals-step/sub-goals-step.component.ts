@@ -6,7 +6,7 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { SubGoalsBoxComponent } from './sub-goals-box/sub-goals-box.component';
 
 @Component({
@@ -19,6 +19,7 @@ export class SubGoalsStepComponent implements AfterViewInit {
     SubGoalsBoxComponent
   >;
   formGroup: FormGroup;
+  boxesFormGroup: FormGroup = new FormGroup({});
   goals = [
     {
       title: 'JoieConnections',
@@ -43,13 +44,14 @@ export class SubGoalsStepComponent implements AfterViewInit {
     public onboardingService: StudentOnboardingService,
     private formBuilder: FormBuilder
   ) {
-    this.formGroup = this.formBuilder.group({});
+    this.formGroup = this.formBuilder.group({ subgoals: this.boxesFormGroup });
   }
 
   ngAfterViewInit(): void {
     const subgoalSets = this.subgoalBoxes.toArray(); //first i pass data to build low level forms, than i add a top-level control to it here
     subgoalSets.forEach((set) => {
-      this.formGroup.addControl(set.title, set.formGroup);
+      this.boxesFormGroup.addControl(set.title, set.formGroup);
     });
+    // well this fires to early to get new values, probably. or idk what.. looks like really. how to catch form right before the step?
   }
 }

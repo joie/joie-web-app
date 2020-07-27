@@ -9,9 +9,9 @@ import { StudentOnboardingService } from '../../service/student-onboarding.servi
 export class SessionTypesStepComponent {
   formGroup: FormGroup;
   sessionTypesData = [
-    { id: 1, sessionType: 'On-demand sessions', isChecked: false },
-    { id: 2, sessionType: 'Live streaming sessions', isChecked: false },
-    { id: 3, sessionType: '1:1 coaching sessions', isChecked: false },
+    { sessionType: 'On-demand sessions', isChecked: false },
+    { sessionType: 'Live streaming sessions', isChecked: false },
+    { sessionType: '1:1 coaching sessions', isChecked: false },
   ];
   constructor(
     private _formBuilder: FormBuilder,
@@ -27,8 +27,8 @@ export class SessionTypesStepComponent {
     return this.formGroup.controls.sessionTypesCtrl as FormArray;
   }
 
-  handleCheck({ sessionType, id, isChecked }) {
-    this.sessionTypesArray.controls[id - 1].patchValue({
+  handleCheck({ sessionType, isChecked }, index) {
+    this.sessionTypesArray.controls[index].patchValue({
       [sessionType]: !isChecked,
     });
   }
