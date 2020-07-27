@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ViewChildren,
   QueryList,
   AfterViewInit,
@@ -52,6 +51,5 @@ export class SubGoalsStepComponent implements AfterViewInit {
     subgoalSets.forEach((set) => {
       this.boxesFormGroup.addControl(set.title, set.formGroup);
     });
-    // well this fires to early to get new values, probably. or idk what.. looks like really. how to catch form right before the step?
   }
 }

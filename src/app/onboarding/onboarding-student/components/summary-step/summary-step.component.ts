@@ -18,7 +18,6 @@ export class SummaryStepComponent implements OnInit {
   }
 
   mapAndFilter(array: {}[]): string {
-    console.log(array);
     return array
       .map((item) => {
         let itemKeyVal = Object.entries(item)[0];

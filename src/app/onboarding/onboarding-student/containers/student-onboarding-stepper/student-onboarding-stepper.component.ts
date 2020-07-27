@@ -32,9 +32,6 @@ export class StudentOnboardingStepperComponent implements OnInit {
   // todo research why data from the sessionTypes step is collected right after the welcome step
   selectionChanged(event: any) {
     Object.assign(this.studentData, this.currentFormGroup.value);
-    console.log(this.currentFormGroup);
-
-    console.log(this.currentFormGroup.value);
     this.selectedStep = event.selectedIndex;
     this.router.navigate([this.steps[this.selectedStep]], {
       state: { studentData: this.studentData },
