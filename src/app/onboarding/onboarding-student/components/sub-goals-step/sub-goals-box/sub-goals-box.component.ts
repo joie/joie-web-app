@@ -1,11 +1,5 @@
-import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl,
-  FormArray,
-} from '@angular/forms';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-sub-goals-box',
@@ -13,15 +7,17 @@ import {
     <h3>{{ title }}</h3>
     <form [formGroup]="formGroup">
       <mat-form-field>
-        <mat-chip-list multiple>
+        <mat-chip-list [multiple]="true" [selectable]="true">
           <label
             *ngFor="let subgoal of subgoalsData; let i = index"
             formArrayName="subgoalsCtrl"
           >
             <mat-chip
-              selectable="true"
-              (click)="toggleSubgoal(subgoal)"
-              (selectionChange)="onSelectionChange($event)"
+              #chip="matChip"
+              [selected]="subgoal.selected"
+              [selectable]="true"
+              (click)="subgoal.selected ? chip.deselect() : chip.select()"
+              (selectionChange)="handleSelect(subgoal, i)"
               >{{ subgoal.title }}</mat-chip
             >
           </label>
@@ -34,6 +30,7 @@ import {
 export class SubGoalsBoxComponent implements OnInit {
   @Input() title: string;
   @Input() subgoalsData;
+  @Input() parentFormGroup;
   public formGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
@@ -45,35 +42,24 @@ export class SubGoalsBoxComponent implements OnInit {
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
       subgoalsCtrl: new FormArray([]),
-      //todo for validation  gotta wrap it in form group and add
-      // a custom validator "required to selecet at least one"
-      // This gonna be reusable for every checkboxes group
     });
     this.addChips();
-  }
-
-  private addChips() {
-    this.subgoalsData.forEach(() =>
-      this.subgoalsFormArray.push(new FormControl(false, Validators.required))
-    );
+    this.formGroup.setParent(this.parentFormGroup);
   }
 
   get subgoalsFormArray() {
     return this.formGroup.controls.subgoalsCtrl as FormArray;
   }
 
-  getChipListValue() {
-    return this.formGroup.value.subgoalsCtrl
-      .map((checked, i) => (checked ? this.subgoalsFormArray[i].id : null))
-      .filter((v) => v !== null);
+  handleSelect({ title, selected }, index) {
+    this.subgoalsFormArray.controls[index].patchValue({
+      [title]: !selected,
+    });
   }
 
-  onSelectionChange(event) {
-    event.source._color = event.source._selected ? 'primary' : 'basic';
-    // current styles seem to block color change but either this or chipColor() should work
-  }
-  toggleSubgoal(subgoal) {
-    subgoal.isSelected = !subgoal.isSelected;
-    console.log(`toggled  ${!subgoal.isSelected} -> ${subgoal.isSelected}`);
+  private addChips() {
+    this.subgoalsData.forEach(({ title, selected }) =>
+      this.subgoalsFormArray.push(new FormControl({ [title]: selected }))
+    );
   }
 }

@@ -9,13 +9,13 @@
     formArrayName="sessionTypesCtrl"
     *ngFor="let sessionType of sessionTypesData; let i = index"
   >
-    <mat-checkbox [formControlName]="i">{{
+    <mat-checkbox (change)="handleCheck(sessionType)" [formControlName]="i">{{
       sessionTypesData[i].sessionType
     }}</mat-checkbox>
   </label>
 
   <button mat-button matStepperNext>
-    Next
+    Continue
   </button>
 
   <button

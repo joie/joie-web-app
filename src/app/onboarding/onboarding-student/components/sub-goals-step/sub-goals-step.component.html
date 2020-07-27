@@ -12,6 +12,7 @@
       *ngFor="let goal of goals"
       [title]="goal.title"
       [subgoalsData]="goal.subgoals"
+      [parentFormGroup]="formGroup"
     ></app-sub-goals-box>
   </div>
 

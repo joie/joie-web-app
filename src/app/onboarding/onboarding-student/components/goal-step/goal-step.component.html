@@ -9,7 +9,12 @@
     formArrayName="goalsCtrl"
     *ngFor="let goal of goalsData; let i = index"
   >
-    <mat-checkbox [formControlName]="i">{{ goalsData[i].goal }}</mat-checkbox>
+    <mat-checkbox
+      [checked]="goal.isChecked"
+      [formControlName]="i"
+      (change)="handleCheck(goal)"
+      >{{ goalsData[i].goal }}</mat-checkbox
+    >
   </label>
 
   <button mat-button matStepperNext>

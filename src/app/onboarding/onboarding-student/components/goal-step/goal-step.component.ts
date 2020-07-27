@@ -16,11 +16,11 @@ import { StudentOnboardingService } from '../../service/student-onboarding.servi
 export class GoalStepComponent {
   formGroup: FormGroup;
   goalsData = [
-    { id: 1, goal: 'Joie Movement' },
-    { id: 2, goal: 'Joie Emotions' },
-    { id: 3, goal: 'Joie Connections' },
-    { id: 4, goal: 'Joie Spirit' },
-    { id: 5, goal: 'Joie Professional' },
+    { id: 1, goal: 'Joie Movement', isChecked: false },
+    { id: 2, goal: 'Joie Emotions', isChecked: false },
+    { id: 3, goal: 'Joie Connections', isChecked: false },
+    { id: 4, goal: 'Joie Spirit', isChecked: true },
+    { id: 5, goal: 'Joie Professional', isChecked: true },
   ];
   constructor(
     private _formBuilder: FormBuilder,
@@ -36,15 +36,13 @@ export class GoalStepComponent {
     return this.formGroup.controls.goalsCtrl as FormArray;
   }
 
-  private addCheckboxes() {
-    this.goalsData.forEach(() =>
-      this.goalsFormArray.push(new FormControl(false))
-    );
+  handleCheck({ goal, id, isChecked }) {
+    this.goalsFormArray.controls[id - 1].patchValue({ [goal]: !isChecked });
   }
 
-  getCheckboxListValue() {
-    return this.formGroup.value.goalsCtrl
-      .map((checked, i) => (checked ? this.goalsData[i].id : null))
-      .filter((v) => v !== null);
+  private addCheckboxes() {
+    this.goalsData.forEach(({ goal, isChecked }) =>
+      this.goalsFormArray.push(new FormControl({ [goal]: isChecked }))
+    );
   }
 }
