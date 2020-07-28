@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
 interface StudentOnboardingData {}
 
@@ -11,7 +12,7 @@ interface StudentOnboardingData {}
 export class StudentOnboardingStepperComponent
   implements OnInit, AfterViewInit {
   studentData = {} as StudentOnboardingData;
-  currentFormGroup = { status: 'INVALID', value: {} };
+  currentFormGroup = new FormGroup({});
   public steps: string[];
   public selectedStep: number = 0;
 
@@ -34,6 +35,8 @@ export class StudentOnboardingStepperComponent
     if (![0, this.steps.length - 1].includes(this.selectedStep)) {
       // welcome step doesn't have form; so does not the summary step
       this.currentFormGroup = componentRef.formGroup;
+    } else {
+      this.currentFormGroup = new FormGroup({});
     }
   }
 
