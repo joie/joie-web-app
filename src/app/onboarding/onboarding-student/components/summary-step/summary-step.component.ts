@@ -18,26 +18,26 @@ export class SummaryStepComponent implements OnInit {
     this.getDataForPrinting();
   }
 
-  mapAndFilter(array: {}[]): string {
+  mapAndFilter(array: {}[]): string[] {
     return array
       .map((item) => {
         let itemKeyVal = Object.entries(item)[0];
         return itemKeyVal[1] ? itemKeyVal[0] : null;
       })
-      .filter(Boolean)
-      .join(' and ');
+      .filter(Boolean);
   }
 
   getDataForPrinting() {
     this.dataToPrint = {
-      goals: this.mapAndFilter(this.studentData.goalsCtrl),
-      subgoals: '',
+      goals: this.mapAndFilter(this.studentData.goalsCtrl).join(' and '),
+      subgoals: [],
       sessionTypes: this.mapAndFilter(this.studentData.sessionTypesCtrl),
     };
 
     Object.values(this.studentData.subgoals).forEach((subgoal) => {
-      this.dataToPrint.subgoals =
-        this.dataToPrint.subgoals + this.mapAndFilter(subgoal['subgoalsCtrl']);
+      this.dataToPrint.subgoals.push(
+        this.mapAndFilter(subgoal['subgoalsCtrl'])
+      );
     });
   }
 
