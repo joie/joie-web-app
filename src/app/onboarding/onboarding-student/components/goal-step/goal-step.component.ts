@@ -28,7 +28,6 @@ export class GoalStepComponent {
   }
 
   get goalsFormArray() {
-    // todo research why this fires 5 times every time
     return this.formGroup.controls.goalsCtrl as FormArray;
   }
 
