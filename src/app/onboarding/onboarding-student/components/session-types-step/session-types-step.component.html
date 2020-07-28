@@ -5,26 +5,20 @@
   one describes the best type of session for you?
 </p>
 <form [formGroup]="formGroup">
-  <label
-    formArrayName="sessionTypesCtrl"
-    *ngFor="let sessionType of sessionTypesData; let i = index"
-  >
-    <mat-checkbox
-      (change)="handleCheck(sessionType, i)"
-      [formControlName]="i"
-      >{{ sessionTypesData[i].sessionType }}</mat-checkbox
-    >
+  <label formArrayName="sessionTypesCtrl"
+         *ngFor="let sessionType of sessionTypesArray.value; let i = index">
+    <mat-checkbox (change)="handleCheck(entry(sessionType)[0], entry(sessionType)[1], i)"
+                  [formControlName]="i">{{ entry(sessionType)[0] }}</mat-checkbox>
   </label>
 
-  <button mat-button matStepperNext>
+  <button mat-button
+          matStepperNext>
     Continue
   </button>
 
-  <button
-    mat-button
-    mat-raised-button
-    (click)="onboardingService.skipOnboarding()"
-  >
+  <button mat-button
+          mat-raised-button
+          (click)="onboardingService.skipOnboarding()">
     Skip for now.
   </button>
 </form>

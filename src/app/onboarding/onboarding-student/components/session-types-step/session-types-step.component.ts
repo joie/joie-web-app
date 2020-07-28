@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  FormArray,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { atLeastOneIsCheckedValidator } from '../../validators/atLeastOnIsChecked';
 import { notMoreThanOneIsCheckedValidator } from '../../validators/notMoreThanOneIsSelected';
@@ -18,8 +24,7 @@ export class SessionTypesStepComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     public onboardingService: StudentOnboardingService
-  ) {}
-  ngOnInit(): void {
+  ) {
     this.formGroup = this._formBuilder.group({
       sessionTypesCtrl: new FormArray(
         [],
@@ -28,12 +33,17 @@ export class SessionTypesStepComponent implements OnInit {
     });
     this.addCheckboxes();
   }
+  ngOnInit(): void {}
 
   get sessionTypesArray() {
     return this.formGroup.controls.sessionTypesCtrl as FormArray;
   }
 
-  handleCheck({ sessionType, isChecked }, index) {
+  entry(obj) {
+    return Object.entries(obj)[0];
+  }
+
+  handleCheck(sessionType, isChecked, index) {
     this.sessionTypesArray.controls[index].patchValue({
       [sessionType]: !isChecked,
     });

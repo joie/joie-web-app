@@ -10,16 +10,15 @@ import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChe
       <mat-form-field>
         <mat-chip-list [multiple]="true" [selectable]="true">
           <label
-            *ngFor="let subgoal of subgoalsData; let i = index"
+            *ngFor="let subgoal of subgoalsFormArray.value; let i = index"
             formArrayName="subgoalsCtrl"
           >
             <mat-chip
               #chip="matChip"
-              [selected]="subgoal.selected"
+              [selected]="entry(subgoal)[1]"
               [selectable]="true"
-              (click)="subgoal.selected ? chip.deselect() : chip.select()"
-              (selectionChange)="handleSelect(subgoal, i)"
-              >{{ subgoal.title }}</mat-chip
+              (click)="handleSelect(entry(subgoal)[0], entry(subgoal)[1], i)"
+              >{{ entry(subgoal)[0] }}</mat-chip
             >
           </label>
         </mat-chip-list>
@@ -36,10 +35,6 @@ export class SubGoalsBoxComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {}
 
-  get subgoals(): FormArray {
-    return this.formGroup.get('subgoalsCtrl') as FormArray;
-  }
-
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
       subgoalsCtrl: new FormArray([], atLeastOneIsCheckedValidator()),
@@ -52,9 +47,12 @@ export class SubGoalsBoxComponent implements OnInit {
     return this.formGroup.controls.subgoalsCtrl as FormArray;
   }
 
-  handleSelect({ title, selected }, index) {
+  entry(obj) {
+    return Object.entries(obj)[0];
+  }
+  handleSelect(title, isSelected, index) {
     this.subgoalsFormArray.controls[index].patchValue({
-      [title]: !selected,
+      [title]: !isSelected,
     });
   }
 

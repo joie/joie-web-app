@@ -14,6 +14,7 @@ export class SummaryStepComponent implements OnInit {
 
   ngOnInit(): void {
     this.studentData = history.state.studentData;
+
     this.getDataForPrinting();
   }
 

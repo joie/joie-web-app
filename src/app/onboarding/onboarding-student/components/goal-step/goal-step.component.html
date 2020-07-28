@@ -5,27 +5,23 @@
   later.
 </p>
 <form [formGroup]="formGroup">
-  <label
-    formArrayName="goalsCtrl"
-    *ngFor="let goal of goalsData; let i = index"
-  >
-    <mat-checkbox
-      [checked]="goal.isChecked"
-      [formControlName]="i"
-      (change)="handleCheck(goal, i)"
-      >{{ goalsData[i].goal }}</mat-checkbox
-    >
+  <label formArrayName="goalsCtrl"
+         *ngFor="let goal of goalsFormArray.value; let i = index">
+    <mat-checkbox [checked]="entry(goal)[1]"
+                  [formControlName]="i"
+                  (change)="handleCheck(entry(goal)[0], entry(goal)[1], i)">
+      {{ entry(goal)[0] }}
+    </mat-checkbox>
   </label>
 
-  <button mat-button matStepperNext>
+  <button mat-button
+          matStepperNext>
     Continue
   </button>
 
-  <button
-    mat-button
-    mat-raised-button
-    (click)="onboardingService.skipOnboarding()"
-  >
+  <button mat-button
+          mat-raised-button
+          (click)="onboardingService.skipOnboarding()">
     Skip for now.
   </button>
 </form>
