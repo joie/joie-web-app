@@ -33,12 +33,13 @@ export class SubGoalsBoxComponent implements OnInit {
   @Input() parentFormGroup;
   public formGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
-
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
       subgoalsCtrl: new FormArray([], atLeastOneIsCheckedValidator()),
     });
+  }
+
+  ngOnInit(): void {
     this.addChips();
     this.formGroup.setParent(this.parentFormGroup);
   }

@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatHorizontalStepper } from '@angular/material/stepper';
 
 interface StudentOnboardingData {}
 
@@ -8,7 +15,8 @@ interface StudentOnboardingData {}
   templateUrl: './student-onboarding-stepper.component.html',
   styleUrls: ['./student-onboarding-stepper.component.scss'],
 })
-export class StudentOnboardingStepperComponent implements OnInit {
+export class StudentOnboardingStepperComponent implements AfterViewInit {
+  @ViewChild('stepper') stepper: MatHorizontalStepper;
   studentData = {} as StudentOnboardingData;
   currentFormGroup = { status: 'INVALID', value: {} };
   public steps: string[];
@@ -16,7 +24,7 @@ export class StudentOnboardingStepperComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.steps = this.route.snapshot.routeConfig.children.map((child) => {
       return child.path;
     });
@@ -24,6 +32,7 @@ export class StudentOnboardingStepperComponent implements OnInit {
     this.router.navigate([step], {
       relativeTo: this.route,
     });
+    this.stepper.reset(); //todo mb gotta add condition but the thing is that sometimes the builtIn onStep works slower than the selectionChange event triggerd here and replaces curentFormgGroup before the step was opened making the current step uncompleteds
   }
 
   onActivate(componentRef) {
