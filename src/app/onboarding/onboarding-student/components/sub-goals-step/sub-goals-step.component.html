@@ -1,4 +1,3 @@
-<p>sub-goals-step works!</p>
 <h1>What will be your first step on your journey?</h1>
 <p>
   Taking small steps will help you see progress, gain self-confidence, stay
@@ -8,19 +7,19 @@
 
 <form [formGroup]="formGroup">
   <div class="subgoals-flexbox">
-    <app-sub-goals-box
-      *ngFor="let goal of goals"
-      [title]="goal.title"
-      [subgoalsData]="goal.subgoals"
-      [parentFormGroup]="formGroup"
-    ></app-sub-goals-box>
+    <app-sub-goals-box *ngFor="let goal of goals"
+                       [title]="goal.title"
+                       [subgoalsData]="goal.subgoals"
+                       [parentFormGroup]="formGroup"></app-sub-goals-box>
   </div>
 
-  <button mat-button matStepperNext>
+  <button mat-button
+          matStepperNext>
     Continue
   </button>
 
-  <button mat-raised-button (click)="onboardingService.skipOnboarding()">
+  <button mat-raised-button
+          (click)="onboardingService.skipOnboarding()">
     Skip for now.
   </button>
 </form>

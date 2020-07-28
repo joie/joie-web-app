@@ -3,6 +3,7 @@ import {
   ViewChildren,
   QueryList,
   AfterViewInit,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
@@ -12,6 +13,7 @@ import { SubGoalsBoxComponent } from './sub-goals-box/sub-goals-box.component';
   selector: 'app-sub-goals-step',
   templateUrl: './sub-goals-step.component.html',
   styleUrls: ['./sub-goals-step.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SubGoalsStepComponent implements AfterViewInit {
   @ViewChildren(SubGoalsBoxComponent) subgoalBoxes: QueryList<
