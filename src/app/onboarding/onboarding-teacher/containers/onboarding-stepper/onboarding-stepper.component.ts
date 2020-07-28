@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 interface TeacherData {
@@ -38,7 +38,6 @@ export class OnboardingStepperComponent implements OnInit {
 
   onActivate(componentRef) {
     this.currentFormGroup = componentRef.formGroup;
-    console.log(this.currentFormGroup);
   }
 
   selectionChanged(event: any) {

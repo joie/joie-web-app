@@ -1,0 +1,21 @@
+div.box-with-badge {
+  border: 1px solid lightblue;
+  border-radius: 10px;
+  height: 200px;
+  width: 300px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+mat-chip-list {
+  // display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
+}
+mat-chip {
+  width: auto;
+  border: 1px solid #48d1cc;
+}
+
+h3 {
+  margin-bottom: 5px;
+}

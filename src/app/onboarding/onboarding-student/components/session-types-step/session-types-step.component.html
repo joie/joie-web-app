@@ -1,0 +1,24 @@
+<h1>What will help you stay motivated?</h1>
+<p>
+  We all need diffrent types of support. Joie offers 3 types of learning styles
+  to help you persist on your journey, and give you the support you need. Which
+  one describes the best type of session for you?
+</p>
+<form [formGroup]="formGroup">
+  <label formArrayName="sessionTypesCtrl"
+         *ngFor="let sessionType of sessionTypesArray.value; let i = index">
+    <mat-checkbox (change)="handleCheck(entry(sessionType)[0], entry(sessionType)[1], i)"
+                  [formControlName]="i">{{ entry(sessionType)[0] }}</mat-checkbox>
+  </label>
+
+  <button mat-button
+          matStepperNext>
+    Continue
+  </button>
+
+  <button mat-button
+          mat-raised-button
+          (click)="onboardingService.skipOnboarding()">
+    Skip for now.
+  </button>
+</form>
