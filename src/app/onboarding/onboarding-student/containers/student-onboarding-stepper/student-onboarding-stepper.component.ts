@@ -31,8 +31,8 @@ export class StudentOnboardingStepperComponent
   }
 
   onActivate(componentRef) {
-    if (this.selectedStep !== 0) {
-      // welcome step doesn't have form
+    if (![0, this.steps.length - 1].includes(this.selectedStep)) {
+      // welcome step doesn't have form; so does not the summary step
       this.currentFormGroup = componentRef.formGroup;
     }
   }
