@@ -1,0 +1,86 @@
+<ng-container *ngIf="showThumbnail; else card">
+  <div
+    fxFlex
+    fxLayout="column"
+    class="box box-shadow card p-10"
+    fxLayoutGap="5px"
+    fxLayoutAlign="flex-start"
+  >
+    <div class="banner">Hurry up! Only 2 spots left</div>
+    <div fxLayoutAlign="center">
+      <img src="" width="250px" height="200px" />
+    </div>
+    <button mat-raised-button color="accent">Enroll In Session</button>
+
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <div fxFlex="80%">
+        {{ session.title }}
+      </div>
+
+      <div fxFlex="20%" class="text-right">
+        <i class="feather icon-heart"></i>
+        {{ session.recommendationPercentage }} %
+      </div>
+    </div>
+
+    <div>{{ session.author.name }}</div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <!-- TODO implement price pipe based on the logged in user-->
+      <div>Price {{ session.price.currency + session.price.display }}</div>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <i class="feather icon-more-horizontal"></i>
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #card>
+  <div
+    fxFlex
+    fxLayout="column"
+    class="box box-shadow"
+    fxLayoutGap="20px"
+    fxLayoutAlign="center center"
+  >
+    <div class="banner">Hurry up! Only 2 spots left</div>
+    <div>
+      {{ session.title }}
+    </div>
+    <div
+      fxLayout="row"
+      class="text-center"
+      fxLayoutGap="20px"
+      fxLayoutAlign="center center"
+    >
+      <img src="" class="author-image" width="40px" height="40px" />
+      <div class="text-lg">{{ session.author.name }}</div>
+    </div>
+    <div>
+      <i class="feather icon-calendar i-20"></i>
+      {{ session.publishedDate }}
+    </div>
+    <div>
+      <i class="feather icon-clock i-20"></i>
+      {{ session.duration.amount + session.duration.unit }} -
+      {{ session.courseType }}
+    </div>
+    <div>
+      <!-- TODO implement price pipe based on the logged in user-->
+      <i class="feather icon-tag i-20"></i>
+      {{ session.price.currency + session.price.display }}
+    </div>
+
+    <button mat-raised-button color="accent">Enroll In Session</button>
+    <div>
+      <i class="feather icon-heart"></i>
+      {{ session.recommendationPercentage }} % people recommended this
+    </div>
+  </div>
+</ng-template>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Menu 1</button>
+  <button mat-menu-item>Menu 2</button>
+</mat-menu>

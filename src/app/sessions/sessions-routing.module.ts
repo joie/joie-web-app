@@ -10,6 +10,7 @@ import { SessionEnrollDialogComponent } from './components/session-enroll-dialog
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { PaymentSourceGuard } from '../guards/payment-source/payment-source.guard';
 import { PaymentMethodFormComponent } from '../shared/components/payment-method-form/payment-method-form.component';
+import { SessionDetailsComponent } from './components/session-details/session-details.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
         outlet: 'popup',
       },
     ],
+  },
+  {
+    path: 'details',
+    component: SessionDetailsComponent,
   },
   {
     path: ':sessionId',
