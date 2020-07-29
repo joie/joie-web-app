@@ -31,9 +31,15 @@ export class SessionTypesStepComponent implements OnInit {
         [atLeastOneIsCheckedValidator(), notMoreThanOneIsCheckedValidator()]
       ),
     });
-    this.addCheckboxes();
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let studentData = history.state.studentData || null;
+    if (studentData && 'sessionTypesCtrl' in studentData) {
+      this.addCheckboxesFromCache(studentData.sessionTypesCtrl);
+    } else {
+      this.addCheckboxes();
+    }
+  }
 
   get sessionTypesArray() {
     return this.formGroup.controls.sessionTypesCtrl as FormArray;
@@ -46,6 +52,15 @@ export class SessionTypesStepComponent implements OnInit {
   handleCheck(sessionType, isChecked, index) {
     this.sessionTypesArray.controls[index].patchValue({
       [sessionType]: !isChecked,
+    });
+  }
+
+  private addCheckboxesFromCache(sessionTypes) {
+    sessionTypes.forEach((sessionType) => {
+      let entries = this.entry(sessionType);
+      this.sessionTypesArray.push(
+        new FormControl({ [entries[0]]: entries[1] })
+      );
     });
   }
 

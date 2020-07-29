@@ -1,14 +1,15 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
-import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
+import { atLeastOneIsCheckedValidator } from '../../validators/atLeastOnIsChecked';
+import { Router, RouterState } from '@angular/router';
 
 @Component({
   selector: 'app-goal-step',
   templateUrl: './goal-step.component.html',
   styleUrls: ['./goal-step.component.scss'],
 })
-export class GoalStepComponent {
+export class GoalStepComponent implements OnInit {
   formGroup: FormGroup;
   goalsData = [
     { goal: 'Joie Movement', isChecked: false },
@@ -17,14 +18,24 @@ export class GoalStepComponent {
     { goal: 'Joie Spirit', isChecked: false },
     { goal: 'Joie Professional', isChecked: false },
   ];
+  cachedFormData;
   constructor(
     private _formBuilder: FormBuilder,
-    public onboardingService: StudentOnboardingService
+    public onboardingService: StudentOnboardingService,
+    private router: Router
   ) {
     this.formGroup = this._formBuilder.group({
       goalsCtrl: new FormArray([], atLeastOneIsCheckedValidator()),
     });
-    this.addCheckboxes();
+  }
+
+  ngOnInit(): void {
+    let studentData = history.state.studentData || null;
+    if (studentData && 'goalsCtrl' in studentData) {
+      this.addCheckboxesFromCache(studentData.goalsCtrl);
+    } else {
+      this.addCheckboxes();
+    }
   }
 
   get goalsFormArray() {
@@ -36,6 +47,13 @@ export class GoalStepComponent {
   }
   handleCheck(goal, isChecked, index) {
     this.goalsFormArray.controls[index].patchValue({ [goal]: !isChecked });
+  }
+
+  private addCheckboxesFromCache(goals) {
+    goals.forEach((goal) => {
+      let entries = this.entry(goal);
+      this.goalsFormArray.push(new FormControl({ [entries[0]]: entries[1] }));
+    });
   }
 
   private addCheckboxes() {
