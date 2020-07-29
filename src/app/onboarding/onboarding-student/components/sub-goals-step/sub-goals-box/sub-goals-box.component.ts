@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 
@@ -11,7 +11,7 @@ import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChe
         <mat-chip-list [multiple]="true" [selectable]="true">
           <label
             *ngFor="let subgoal of subgoalsFormArray.value; let i = index"
-            formArrayName="subgoalsCtrl"
+            formArrayName="subgoals"
           >
             <mat-chip
               #chip="matChip"
@@ -35,17 +35,24 @@ export class SubGoalsBoxComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
-      subgoalsCtrl: new FormArray([], atLeastOneIsCheckedValidator()),
+      subgoals: new FormArray([], atLeastOneIsCheckedValidator()),
     });
   }
 
   ngOnInit(): void {
-    this.addChips();
+    let studentData = history.state.studentData || null;
+    if (studentData && 'subgoalsCtrl' in studentData) {
+      this.addCheckboxesFromCache(
+        studentData.subgoalsCtrl[this.title].subgoals
+      );
+    } else {
+      this.addChips();
+    }
     this.formGroup.setParent(this.parentFormGroup);
   }
 
   get subgoalsFormArray() {
-    return this.formGroup.controls.subgoalsCtrl as FormArray;
+    return this.formGroup.controls.subgoals as FormArray;
   }
 
   entry(obj) {
@@ -54,6 +61,15 @@ export class SubGoalsBoxComponent implements OnInit {
   handleSelect(title, isSelected, index) {
     this.subgoalsFormArray.controls[index].patchValue({
       [title]: !isSelected,
+    });
+  }
+
+  private addCheckboxesFromCache(subgoals) {
+    subgoals.forEach((goal) => {
+      let entries = this.entry(goal);
+      this.subgoalsFormArray.push(
+        new FormControl({ [entries[0]]: entries[1] })
+      );
     });
   }
 

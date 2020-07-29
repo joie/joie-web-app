@@ -14,7 +14,6 @@ export class SummaryStepComponent implements OnInit {
 
   ngOnInit(): void {
     this.studentData = history.state.studentData;
-
     this.getDataForPrinting();
   }
 
@@ -29,15 +28,13 @@ export class SummaryStepComponent implements OnInit {
 
   getDataForPrinting() {
     this.dataToPrint = {
-      goals: this.mapAndFilter(this.studentData.goalsCtrl).join(' and '),
+      goals: this.mapAndFilter(this.studentData.goalsCtrl),
       subgoals: [],
       sessionTypes: this.mapAndFilter(this.studentData.sessionTypesCtrl),
     };
 
-    Object.values(this.studentData.subgoals).forEach((subgoal) => {
-      this.dataToPrint.subgoals.push(
-        this.mapAndFilter(subgoal['subgoalsCtrl'])
-      );
+    Object.values(this.studentData.subgoalsCtrl).forEach((subgoal) => {
+      this.dataToPrint.subgoals.push(this.mapAndFilter(subgoal['subgoals']));
     });
   }
 
