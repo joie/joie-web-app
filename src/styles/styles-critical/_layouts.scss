@@ -1,0 +1,8 @@
+.joie-form {
+  display: grid;
+  &-densed {
+    $inline-size: 365px;
+    max-inline-size: $inline-size;
+    max-width: $inline-size;
+  }
+}

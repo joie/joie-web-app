@@ -1,0 +1,16 @@
+<h3>Your value to our students</h3>
+<p>
+  Finally, {{ teachersName }} where do you see your added value to the students?
+</p>
+<form [formGroup]="formGroup" (ngSubmit)="submitFormsData()">
+  <mat-form-field appearance="outline">
+    <textarea
+      matInput
+      formControlName="addedValDescriptionCtrl"
+      required
+    ></textarea>
+  </mat-form-field>
+  <button mat-button>
+    Submit your application
+  </button>
+</form>

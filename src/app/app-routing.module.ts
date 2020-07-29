@@ -5,7 +5,7 @@ import { canActivate, AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import {
   authorOnly,
   redirectUnauthorizedToLogin,
-} from './common/auth-guards-pipes';
+} from './common/guards/auth-guards-pipes';
 
 import { PageNotFoundComponent } from './core/containers/page-not-found/page-not-found.component';
 
@@ -53,6 +53,25 @@ const routes: Routes = [
     path: 'sessions',
     loadChildren: () =>
       import('./sessions/sessions.module').then((m) => m.SessionsModule),
+  },
+  {
+    path: 'onboarding',
+    children: [
+      {
+        path: 'teacher',
+        loadChildren: () =>
+          import(
+            './onboarding/onboarding-teacher/onboarding-teacher.module'
+          ).then((m) => m.OnboardingTeacherModule),
+      },
+      {
+        path: 'student',
+        loadChildren: () =>
+          import(
+            './onboarding/onboarding-student/onboarding-student.module'
+          ).then((m) => m.OnboardingStudentModule),
+      },
+    ],
   },
   { path: '**', component: PageNotFoundComponent },
 ];
