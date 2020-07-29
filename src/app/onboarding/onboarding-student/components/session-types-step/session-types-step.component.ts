@@ -7,8 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
-import { atLeastOneIsCheckedValidator } from '../../validators/atLeastOnIsChecked';
-import { notMoreThanOneIsCheckedValidator } from '../../validators/notMoreThanOneIsSelected';
+import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
+import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
 @Component({
   selector: 'app-session-types-step',
   templateUrl: './session-types-step.component.html',

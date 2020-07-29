@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
-import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
+import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
 
 @Component({
   selector: 'app-sub-goals-box',
