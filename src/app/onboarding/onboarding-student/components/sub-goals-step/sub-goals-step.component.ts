@@ -45,7 +45,9 @@ export class SubGoalsStepComponent implements AfterViewInit {
     public onboardingService: StudentOnboardingService,
     private formBuilder: FormBuilder
   ) {
-    this.formGroup = this.formBuilder.group({ subgoals: this.boxesFormGroup });
+    this.formGroup = this.formBuilder.group({
+      subgoalsCtrl: this.boxesFormGroup,
+    });
   }
 
   ngAfterViewInit(): void {
