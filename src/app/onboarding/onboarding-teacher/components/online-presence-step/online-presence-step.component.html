@@ -3,24 +3,22 @@
   What's your niche, the area you focus on in your sessions?
 </p>
 <form [formGroup]="formGroup">
-  <label
-    formArrayName="sessionTypesCtrl"
-    *ngFor="let sessionType of sessionTypesData; let i = index"
-  >
-    <mat-checkbox [formControlName]="i">{{
-      sessionTypesData[i].type
+  <label formArrayName="sessionTypesCtrl"
+         *ngFor="let sessionType of sessionTypesFormArray.value; let i = index">
+    <mat-checkbox (change)="handleCheck(entry(sessionType)[0], entry(sessionType)[1], i)"
+                  [formControlName]="i">{{
+      entry(sessionType)[0]
     }}</mat-checkbox>
   </label>
 
   <mat-form-field appearance="outline">
-    <textarea
-      matInput
-      formControlName="teachingPortfolioUrlCtrl"
-      required
-    ></textarea>
+    <textarea matInput
+              formControlName="teachingPortfolioUrlCtrl"
+              required></textarea>
   </mat-form-field>
 
-  <button mat-button matStepperNext>
+  <button mat-button
+          matStepperNext>
     Next
   </button>
 </form>

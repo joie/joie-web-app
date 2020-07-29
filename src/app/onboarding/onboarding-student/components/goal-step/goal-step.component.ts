@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
-import { atLeastOneIsCheckedValidator } from '../../validators/atLeastOnIsChecked';
+import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 
 @Component({
   selector: 'app-goal-step',
