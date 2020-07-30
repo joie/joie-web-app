@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
-import { atLeastOneIsCheckedValidator } from '../../validators/atLeastOnIsChecked';
+import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { Router, RouterState } from '@angular/router';
 
 @Component({

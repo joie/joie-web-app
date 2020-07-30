@@ -16,6 +16,7 @@ import { PlayerService } from './components/player/player.service';
     VideoComponent,
     DialogRouterComponent,
     PlayerComponent,
+    FigureImageComponent,
   ],
   imports: [CommonModule, QuicklinkModule, ReactiveFormsModule, MaterialModule],
   exports: [
