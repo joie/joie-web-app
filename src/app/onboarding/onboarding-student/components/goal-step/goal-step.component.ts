@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
-import { atLeastOneIsCheckedValidator } from '../../validators/atLeastOnIsChecked';
+import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { Router, RouterState } from '@angular/router';
 
 @Component({
@@ -30,9 +30,9 @@ export class GoalStepComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let studentData = history.state.studentData || null;
-    if (studentData && 'goalsCtrl' in studentData) {
-      this.addCheckboxesFromCache(studentData.goalsCtrl);
+    let student = history.state.student || null;
+    if (student && 'goalsCtrl' in student) {
+      this.addCheckboxesFromCache(student.goalsCtrl);
     } else {
       this.addCheckboxes();
     }

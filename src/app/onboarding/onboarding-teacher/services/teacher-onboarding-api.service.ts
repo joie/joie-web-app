@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 export class TeacherOnboardingApiService {
   constructor(private httpClient: HttpClient) {}
 
-  submitTeacherAccountData(teacherData) {
+  submitTeacherAccountData(teacher) {
     const url = '/dummyurl';
-    return this.httpClient.post(url, teacherData);
+    return this.httpClient.post(url, teacher);
   }
 }

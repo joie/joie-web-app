@@ -38,9 +38,9 @@ export class OnlinePresenceStepComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    let teacherData = history.state.teacherData || null;
-    if (teacherData && 'sessionTypesCtrl' in teacherData) {
-      this.initFormWithCachedData(teacherData);
+    let teacher = history.state.teacher || null;
+    if (teacher && 'sessionTypesCtrl' in teacher) {
+      this.initFormWithCachedData(teacher);
     } else {
       this.addCheckboxes();
     }
@@ -75,10 +75,10 @@ export class OnlinePresenceStepComponent implements OnInit {
     );
   }
 
-  private initFormWithCachedData(teacherData) {
+  private initFormWithCachedData(teacher) {
     this.formGroup.controls['teachingPortfolioUrlCtrl'].setValue(
-      teacherData.teachingPortfolioUrlCtrl
+      teacher.teachingPortfolioUrlCtrl
     );
-    this.addCheckboxesFromCache(teacherData.sessionTypesCtrl);
+    this.addCheckboxesFromCache(teacher.sessionTypesCtrl);
   }
 }

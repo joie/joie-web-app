@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
-interface StudentOnboardingData {}
+interface Student {}
 
 @Component({
   selector: 'app-student-onboarding-stepper',
@@ -11,7 +11,7 @@ interface StudentOnboardingData {}
 })
 export class StudentOnboardingStepperComponent
   implements OnInit, AfterViewInit {
-  studentData = {} as StudentOnboardingData;
+  student = {} as Student;
   currentFormGroup = new FormGroup({});
   public steps: string[];
   public selectedStep: number = 0;
@@ -41,10 +41,10 @@ export class StudentOnboardingStepperComponent
   }
 
   selectionChanged(event: any) {
-    Object.assign(this.studentData, this.currentFormGroup.value);
+    Object.assign(this.student, this.currentFormGroup.value);
     this.selectedStep = event.selectedIndex;
     this.router.navigate([this.steps[this.selectedStep]], {
-      state: { studentData: this.studentData },
+      state: { student: this.student },
       relativeTo: this.route,
     });
   }
