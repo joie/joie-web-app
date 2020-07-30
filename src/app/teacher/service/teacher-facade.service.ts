@@ -17,4 +17,12 @@ export class TeacherFacadeService {
   getMenuTabs() {
     return this.teacherDataService.getMenuTabs();
   }
+
+  getTeacher() {
+    return this.teacherDataService.getTeacher();
+  }
+
+  getTeacherEvents() {
+    return this.teacherDataService.getTeacherEvents();
+  }
 }

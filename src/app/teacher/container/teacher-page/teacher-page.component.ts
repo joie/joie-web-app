@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TeacherFacadeService } from '../../service/teacher-facade.service';
+import { Observable } from 'rxjs';
+import { Teacher } from '../../teacher.interfaces';
 
 @Component({
   selector: 'app-teacher-page',
@@ -7,10 +9,12 @@ import { TeacherFacadeService } from '../../service/teacher-facade.service';
   styleUrls: ['./teacher-page.component.scss'],
 })
 export class TeacherPageComponent implements OnInit {
-  tabs: string[];
+  tabs$: Observable<string[]>;
+  teacher$: Observable<Teacher>;
 
   constructor(private facadeService: TeacherFacadeService) {}
   ngOnInit(): void {
-    this.tabs = this.facadeService.getMenuTabs();
+    this.tabs$ = this.facadeService.getMenuTabs();
+    this.teacher$ = this.facadeService.getTeacher();
   }
 }
