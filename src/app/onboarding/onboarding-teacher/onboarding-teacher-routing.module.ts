@@ -14,6 +14,7 @@ const routes: Routes = [
     path: '',
     component: PartnerUpComponent,
   },
+  { path: 'aboard', redirectTo: 'aboard/personal-info', pathMatch: 'full' },
   {
     path: 'aboard',
     component: OnboardingStepperComponent,
@@ -38,7 +39,6 @@ const routes: Routes = [
         path: 'value-to-students',
         component: WhyJoieStepComponent,
       },
-      { path: '', redirectTo: 'personal-info', pathMatch: 'full' },
     ],
   },
 ];

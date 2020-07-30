@@ -1,4 +1,8 @@
-.mat-list-item .feature-icon{
+:host {
+  text-align: center;
+}
+
+.mat-list-item .feature-icon {
   width: auto;
   height: auto;
 }

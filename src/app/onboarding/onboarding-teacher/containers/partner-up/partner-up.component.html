@@ -1,7 +1,11 @@
 <header>
-  <figure>
-    https://unsplash.com/photos/p7w95B7b2PM figcapti
-  </figure>
+  <app-figure-image
+    src="https://source.unsplash.com/p7w95B7b2PM"
+    caption="Photo by Priscilla Du Preez on Unsplash"
+    alt="cover image for teacher onboarding of happy people"
+    [style.--width]="16"
+    [style.--height]="5"
+  ></app-figure-image>
 </header>
 <main>
   <section>
@@ -13,7 +17,9 @@
       Joie will help you grow your online business, expand your reach, and
       optimize your income so that you could do what you do best - Teach.
     </p>
-    <button mat-flat-button color="primary" routerLink="aboard">Apply Now</button>
+    <button mat-flat-button color="primary" routerLink="aboard">
+      Apply Now
+    </button>
   </section>
   <section>
     <h1>
