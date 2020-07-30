@@ -3,13 +3,13 @@ import 'firebase/firestore';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
-  AngularFirestoreCollection
+  AngularFirestoreCollection,
 } from '@angular/fire/firestore';
 import { Observable, of, from } from 'rxjs';
 import { __, split, modulo, pipe, length, equals } from 'ramda';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DbService {
   // private itemDoc: AngularFirestoreDocument<Item>;

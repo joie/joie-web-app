@@ -9,6 +9,9 @@ import { SessionsDashboardComponent } from './containers/sessions-dashboard/sess
 import { SessionComponent } from './containers/session/session.component';
 import { SessionListComponent } from './components/session-list/session-list.component';
 import { SessionEnrollDialogComponent } from './components/session-enroll-dialog/session-enroll-dialog.component';
+import { SessionDetailsComponent } from './components/session-details/session-details.component';
+import { SessionService } from './services/session.service';
+import { SessionCardComponent } from './components/session-card/session-card.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +19,8 @@ import { SessionEnrollDialogComponent } from './components/session-enroll-dialog
     SessionComponent,
     SessionListComponent,
     SessionEnrollDialogComponent,
+    SessionDetailsComponent,
+    SessionCardComponent,
   ],
   imports: [
     SharedModule,
@@ -24,6 +29,7 @@ import { SessionEnrollDialogComponent } from './components/session-enroll-dialog
     MatDialogModule,
     MatButtonModule,
   ],
+  providers: [SessionService],
   exports: [SessionListComponent],
 })
 export class SessionsModule {}
