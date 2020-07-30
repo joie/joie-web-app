@@ -1,0 +1,8 @@
+<p>teacher-page works!</p>
+<mat-selection-list #navigation
+                    [multiple]="false">
+  <mat-list-option *ngFor="let tab of tabs"
+                   [value]="tab">
+    {{tab}}
+  </mat-list-option>
+</mat-selection-list>

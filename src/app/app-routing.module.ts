@@ -17,6 +17,11 @@ const routes: Routes = [
     outlet: 'popup',
   },
   {
+    path: 'teacher',
+    loadChildren: () =>
+      import('./teacher/teacher.module').then((m) => m.TeacherModule),
+  },
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
