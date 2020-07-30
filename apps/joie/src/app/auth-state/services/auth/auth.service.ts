@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable, of } from 'rxjs';
 import { User } from '../../+state/auth/models/auth.models';
-import { DbService } from 'src/app/services/db.service';
+import { DbService } from '../../../services/db.service';
 import { AuthFacade } from '../../+state/auth/facades/auth.facade';
 
 @Injectable()

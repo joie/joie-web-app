@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthFacade } from 'src/app/auth-state/+state/auth/facades/auth.facade';
-import { User } from 'src/app/auth-state/+state/auth/models/auth.models';
+import { AuthFacade } from '../../../auth-state/+state/auth/facades/auth.facade';
+import { User } from '../../../auth-state/+state/auth/models/auth.models';
 import { Observable } from 'rxjs';
 
 @Component({

@@ -9,7 +9,7 @@ import { WhyJoieStepComponent } from './components/why-joie-step/why-joie-step.c
 import { TeachingExperienceStepComponent } from './components/teaching-experience-step/teaching-experience-step.component';
 import { SessionFocusAreaStepComponent } from './components/session-focus-area-step/session-focus-area-step.component';
 import { OnlinePresenceStepComponent } from './components/online-presence-step/online-presence-step.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { OnboardingSharedModule } from '../shared/onboarding-shared.module';
 import { PartnerUpComponent } from './containers/partner-up/partner-up.component';
 import { SubscribeToNewsletterComponent } from '../../common/components/subscribe-to-newsletter/subscribe-to-newsletter.component';

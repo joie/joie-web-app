@@ -7,7 +7,7 @@ import { VideoComponent } from './components/video/video.component';
 import { DialogRouterComponent } from './components/dialog-router/dialog-router.component';
 import { FigureImageComponent } from './components/figure-image/figure-image.component';
 
-import { MaterialModule } from 'src/app/core/material.module';
+import { MaterialModule } from '../core/material.module';
 import { PlayerComponent } from './components/player/player.component';
 import { PlayerService } from './components/player/player.service';
 @NgModule({

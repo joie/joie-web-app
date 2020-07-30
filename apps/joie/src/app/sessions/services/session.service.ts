@@ -8,9 +8,9 @@ import {
   Pillar,
   SessionType,
 } from '../models';
-import { DurationUnits } from 'src/app/models';
+import { DurationUnits } from '../../models';
 import { firestore } from 'firebase';
-import { DbService } from 'src/app/services/db.service';
+import { DbService } from '../../services/db.service';
 
 @Injectable()
 export class SessionService {

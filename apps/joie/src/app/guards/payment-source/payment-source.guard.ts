@@ -7,7 +7,7 @@ import {
   Router,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { PaymentService } from 'src/app/services/payment/payment.service';
+import { PaymentService } from '../../services/payment/payment.service';
 import { map, pluck } from 'rxjs/operators';
 
 @Injectable({

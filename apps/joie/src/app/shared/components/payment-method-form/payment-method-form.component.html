@@ -1,7 +1,7 @@
 <h2>Please add payment source</h2>
 <div *ngIf="isLoading">LOADING...</div>
 <form class="form-grid" (submit)="onSubmit($event)" [class.loading]="isLoading">
-  <fieldset class="stripe-card">
+  <fieldset class="stripe-card" #cardElement>
     <!-- A Stripe Element will be inserted here. -->
   </fieldset>
 

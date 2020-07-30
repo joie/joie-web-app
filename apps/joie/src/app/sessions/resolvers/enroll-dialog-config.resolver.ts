@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
   Resolve,
 } from '@angular/router';
-import { SessionsFacade } from 'src/app/services/sessions.facade';
+import { SessionsFacade } from '../../services/sessions.facade';
 
 @Injectable({ providedIn: 'root' })
 export class EnrollDialogConfigResolver implements Resolve<any> {

@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Session } from 'src/app/models/session.model';
+import { Session } from '../../../models/session.model';
 import { Observable } from 'rxjs';
 
 @Component({
