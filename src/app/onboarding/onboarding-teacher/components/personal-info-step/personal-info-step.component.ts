@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   Location,
@@ -15,7 +15,7 @@ import {
     { provide: LocationStrategy, useClass: PathLocationStrategy },
   ],
 })
-export class PersonalInfoStepComponent {
+export class PersonalInfoStepComponent implements OnInit {
   formGroup: FormGroup;
 
   constructor(private _formBuilder: FormBuilder) {
@@ -47,5 +47,22 @@ export class PersonalInfoStepComponent {
         ],
       ],
     });
+  }
+  ngOnInit(): void {
+    let teacherData = history.state.teacherData || null;
+    if (teacherData && 'firstNameCtrl' in teacherData) {
+      this.initFormWithCachedData(teacherData);
+    }
+  }
+
+  private initFormWithCachedData(teacherData) {
+    this.formGroup.controls['firstNameCtrl'].setValue(
+      teacherData.firstNameCtrl
+    );
+    this.formGroup.controls['lastNameCtrl'].setValue(teacherData.lastNameCtrl);
+    this.formGroup.controls['emailCtrl'].setValue(teacherData.emailCtrl);
+    this.formGroup.controls['phoneNumberCtrl'].setValue(
+      teacherData.phoneNumberCtrl
+    );
   }
 }

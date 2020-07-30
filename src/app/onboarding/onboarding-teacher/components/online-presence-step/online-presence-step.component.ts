@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -6,21 +6,22 @@ import {
   FormArray,
   FormControl,
 } from '@angular/forms';
+import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 
 @Component({
   selector: 'app-online-presence-step',
   templateUrl: './online-presence-step.component.html',
   styleUrls: ['./online-presence-step.component.scss'],
 })
-export class OnlinePresenceStepComponent {
+export class OnlinePresenceStepComponent implements OnInit {
   formGroup: FormGroup;
   sessionTypesData = [
-    { id: 1, type: 'On-demand session or a lecture' },
-    { id: 2, type: 'On-demand course' },
-    { id: 3, type: 'Live group session' },
-    { id: 4, type: 'Live group course' },
-    { id: 5, type: 'Live lecture' },
-    { id: 6, type: 'Live 1:1 coaching' },
+    { type: 'On-demand session or a lecture', isChecked: false },
+    { type: 'On-demand course', isChecked: false },
+    { type: 'Live group session', isChecked: false },
+    { type: 'Live group course', isChecked: false },
+    { type: 'Live lecture', isChecked: false },
+    { type: 'Live 1:1 coaching', isChecked: false },
   ];
   constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
@@ -33,24 +34,51 @@ export class OnlinePresenceStepComponent {
           ),
         ],
       ],
-      sessionTypesCtrl: new FormArray([]),
+      sessionTypesCtrl: new FormArray([], atLeastOneIsCheckedValidator()),
     });
-    this.addCheckboxes();
+  }
+  ngOnInit(): void {
+    let teacherData = history.state.teacherData || null;
+    if (teacherData && 'sessionTypesCtrl' in teacherData) {
+      this.initFormWithCachedData(teacherData);
+    } else {
+      this.addCheckboxes();
+    }
   }
 
   get sessionTypesFormArray() {
     return this.formGroup.controls.sessionTypesCtrl as FormArray;
   }
 
+  entry(obj) {
+    return Object.entries(obj)[0];
+  }
+
+  handleCheck(sessionType, isChecked, index) {
+    this.sessionTypesFormArray.controls[index].patchValue({
+      [sessionType]: !isChecked,
+    });
+  }
+
+  private addCheckboxesFromCache(sessionTypes) {
+    sessionTypes.forEach((type) => {
+      let entries = this.entry(type);
+      this.sessionTypesFormArray.push(
+        new FormControl({ [entries[0]]: entries[1] })
+      );
+    });
+  }
+
   private addCheckboxes() {
-    this.sessionTypesData.forEach(() =>
-      this.sessionTypesFormArray.push(new FormControl(false))
+    this.sessionTypesData.forEach(({ type, isChecked }) =>
+      this.sessionTypesFormArray.push(new FormControl({ [type]: isChecked }))
     );
   }
 
-  getCheckboxListValue() {
-    return this.formGroup.value.sessionTypesCtrl
-      .map((checked, i) => (checked ? this.sessionTypesData[i].id : null))
-      .filter((v) => v !== null);
+  private initFormWithCachedData(teacherData) {
+    this.formGroup.controls['teachingPortfolioUrlCtrl'].setValue(
+      teacherData.teachingPortfolioUrlCtrl
+    );
+    this.addCheckboxesFromCache(teacherData.sessionTypesCtrl);
   }
 }

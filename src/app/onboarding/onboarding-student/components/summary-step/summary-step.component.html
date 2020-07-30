@@ -1,0 +1,18 @@
+<h2>For now, {{ name }}, your journey will start with:</h2>
+<div class="box-with-badge">
+  <label>Exploring the pillars:</label>
+  <h4>{{ dataToPrint.goals.join(' and ')  }}</h4>
+  <label>You will start with the following smaller steps:</label>
+  <h4>{{ dataToPrint.subgoals.join(' and ') }}</h4>
+  <label>And you will explore:</label>
+  <h4>{{ dataToPrint.sessionTypes }}</h4>
+</div>
+
+<p>
+  And don't worry! You can always update it later. We have good feeling about
+  this, {{ name }}!
+</p>
+<button mat-raised-button
+        (click)="submitData()">
+  Now, let's find your first session!
+</button>

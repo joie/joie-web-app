@@ -32,6 +32,16 @@ export class WhyJoieStepComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.teachersName = history.state.teacherData.firstNameCtrl;
+    let teacherData = history.state.teacherData;
+    this.teachersName = teacherData.firstNameCtrl;
+    if ('addedValDescriptionCtrl' in teacherData) {
+      this.initFormWithCachedData(teacherData);
+    }
+  }
+
+  private initFormWithCachedData(teacherData) {
+    this.formGroup.controls['addedValDescriptionCtrl'].setValue(
+      teacherData.addedValDescriptionCtrl
+    );
   }
 }
