@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { navTabs, teacherMock, eventsMock } from '../../teacher-profile.mocks';
-import { EventTypes, TeacherEvent, Teacher } from '../../teacher.interfaces';
+import { TeacherEvent, Teacher } from '../../teacher.interfaces';
 import { of, Observable } from 'rxjs';
 
 @Injectable({

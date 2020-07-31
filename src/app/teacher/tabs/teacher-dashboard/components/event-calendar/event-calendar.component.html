@@ -4,6 +4,7 @@
                 [selected]="selectedDate"
                 [startAt]="startAt"
                 [dateFilter]="myDateFilter"
+                (click)="calendar"
                 (selectedChange)="onSelect($event)"
                 [dateClass]="dateClass()">
   </mat-calendar>

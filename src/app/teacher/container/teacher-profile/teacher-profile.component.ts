@@ -12,6 +12,8 @@ export class TeacherProfileComponent implements OnInit {
   tabs$: Observable<string[]>;
   teacher$: Observable<Teacher>;
 
+  // todo add avatar
+
   constructor(private facadeService: TeacherFacadeService) {}
   ngOnInit(): void {
     this.tabs$ = this.facadeService.getMenuTabs();

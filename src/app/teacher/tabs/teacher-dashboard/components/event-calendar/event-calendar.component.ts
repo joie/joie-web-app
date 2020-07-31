@@ -22,6 +22,7 @@ export class EventCalendarComponent implements OnInit {
   }
 
   onSelect(event) {
+    console.log(event);
     this.selectedDate = event;
     // todo is it supposed to be a popup with event details ?
   }

@@ -44,3 +44,36 @@ export const eventsMock = [
     url: '/urlll',
   },
 ];
+
+// export const eventsMock = [
+//          {
+//            ['2020/07/29']: [
+//              {
+//                time: '4:10',
+//                date: new Date('2020/07/29'),
+//                type: EventTypes.Course,
+//                title: 'Full body stretch and yoga for stress & anxiety Relief',
+//                url: '//http',
+//              },
+//              {
+//                ['2020/07/30']: {
+//                  time: '4:20',
+//                  date: new Date('2020/07/30'),
+//                  type: EventTypes.Coaching,
+//                  title: 'Super relax meditation session',
+//                  url: '/fakeurl',
+//                },
+//              },
+//            ],
+//          },
+//          {
+//            ['2020/07/31']: [
+//              {
+//                time: '4:30',
+//                date: new Date('2020/07/31'),
+//                type: EventTypes.Course,
+//                title: 'Nutrition course',
+//                url: '/urlll',
+//              },
+//            ],
+//          },
