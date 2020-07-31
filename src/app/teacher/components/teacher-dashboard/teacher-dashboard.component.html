@@ -1,5 +1,7 @@
-<span *ngIf="teacher$ | async as teacher" class="stats-flex-container">
-  <div class="stat-flex-item" *ngFor="let stat of teacher.stats">
+<span *ngIf="teacher$ | async as teacher"
+      class="stats-flex-container">
+  <div class="stat-flex-item"
+       *ngFor="let stat of teacher.stats">
     <h3>{{ stat.value }}</h3>
     <h4>{{ stat.title }}</h4>
   </div>
@@ -11,3 +13,7 @@
     <app-event-card [event]="event"></app-event-card>
   </mat-list-item>
 </mat-list>
+
+<div *ngIf="events$ | async as events">
+  <app-event-calendar [eventsArray]="events"></app-event-calendar>
+</div>

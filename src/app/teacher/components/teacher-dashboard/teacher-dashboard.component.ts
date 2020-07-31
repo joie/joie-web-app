@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TeacherFacadeService } from '../../service/teacher-facade.service';
 import { Teacher, TeacherEvent } from '../../teacher.interfaces';
 import { Observable } from 'rxjs';

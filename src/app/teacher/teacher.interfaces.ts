@@ -12,9 +12,10 @@ export interface Stat {
   value: number;
 }
 export interface TeacherEvent {
+  title: string;
+  date: Date;
   time: string; //todo Time
   type: EventTypes;
-  title: string;
   url: string;
 }
 

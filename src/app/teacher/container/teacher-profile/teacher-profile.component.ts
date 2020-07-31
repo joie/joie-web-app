@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { Teacher } from '../../teacher.interfaces';
 
 @Component({
-  selector: 'app-teacher-page',
-  templateUrl: './teacher-page.component.html',
-  styleUrls: ['./teacher-page.component.scss'],
+  selector: 'app-teacher-profile',
+  templateUrl: './teacher-profile.component.html',
+  styleUrls: ['./teacher-profile.component.scss'],
 })
-export class TeacherPageComponent implements OnInit {
+export class TeacherProfileComponent implements OnInit {
   tabs$: Observable<string[]>;
   teacher$: Observable<Teacher>;
 
