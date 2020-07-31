@@ -3,15 +3,13 @@
 </h1>
 <h3>Manage your profile, sessions, and banking on Joie</h3>
 <div class="navigation">
-  <mat-selection-list #navigation [multiple]="false">
-    <mat-list-option
-      *ngFor="let tab of tabs$ | async"
-      [value]="tab"
-      [routerLink]="'/teacher/' + tab.toLowerCase()"
-    >
+  <mat-selection-list #navigation
+                      [multiple]="false">
+    <mat-list-option *ngFor="let tab of tabs$ | async"
+                     [value]="tab"
+                     [routerLink]="'/teacher/' + tab.toLowerCase()">
       {{ tab }}
     </mat-list-option>
   </mat-selection-list>
-  <p>Option selected: {{ navigation.selectedOptions.selected[0]?.value }}</p>
 </div>
 <router-outlet class="tabs-outlet"></router-outlet>
