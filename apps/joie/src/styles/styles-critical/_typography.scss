@@ -1,24 +1,46 @@
 @use "~@angular/material/theming" as *;
-@forward "font" show $light, $normal;
+@forward "font" show $light, $normal, $system-fonts;
+
+@import '~modularscale-sass/stylesheets/modularscale';
+
+$modularscale: (
+  base: 16px,
+  ratio: 1.2,
+
+  // 400px: (
+  //   ratio: 1.2,
+  // ),
+  // 900px: (
+  //   // base: 16px,
+  //   ratio: 1.3,
+  // ),
+  // 1200px: (
+  //   // base: 16px,
+  //   ratio: 1.4,
+  // ),
+);
+
+
 
 $joie-typography: mat-typography-config(
   $font-family: unquote("Montserrat,") $system-fonts,
   // $display-4:
   //   mat-typography-level(112px, 112px, $normal, $letter-spacing: -0.05em),
-  $display-3: mat-typography-level(75px, 0.95, $normal),
+  // $display-3: mat-typography-level(75px, 0.95, $normal),
   // $display-2:
   //   mat-typography-level(45px, 48px, $normal, $letter-spacing: -0.005em),
   // $display-1: mat-typography-level(34px, 40px, $normal),
 
-  $headline: mat-typography-level(80px, 1.225, $light),
-  $title: mat-typography-level(50px, 1.22, $light),
-  $subheading-2: mat-typography-level(40px, 1.225, $normal),
-  $subheading-1: mat-typography-level(22px, 1, $normal),
-  $body-2: mat-typography-level(144px, 24px, $normal),
-  $body-1: mat-typography-level(16px, 1.625, $normal),
-  $caption: mat-typography-level(12px, 1.25, $normal),
-  $button: mat-typography-level(14px, 14px, $normal),
+  $headline: mat-typography-level(ms(6), calc(1ex / 0.47), $light),
+  $title: mat-typography-level(ms(5), calc(1ex / 0.47), $light),
+  $subheading-2: mat-typography-level(ms(4), 1.225, $normal),
+  $subheading-1: mat-typography-level(ms(3), 1, $normal),
+  $body-2: mat-typography-level(ms(1), 24px, $normal),
+  $body-1: mat-typography-level(ms(0), 1.625, $normal),
+  $caption: mat-typography-level(ms(-1), 1.25, $normal),
+  $button: mat-typography-level(ms(0), 14px, $normal),
   $input: mat-typography-level(inherit, 1.125, $normal),
 );
 
-@include mat-base-typography($joie-typography);
+// @include mat-base-typography($joie-typography);
+@include mat-core($joie-typography);
