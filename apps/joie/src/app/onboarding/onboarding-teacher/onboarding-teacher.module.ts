@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
 import { OnboardingTeacherRoutingModule } from './onboarding-teacher-routing.module';
-import { MatListModule } from '@angular/material/list';
 
 import { OnboardingStepperComponent } from './containers/onboarding-stepper/onboarding-stepper.component';
 import { PersonalInfoStepComponent } from './components/personal-info-step/personal-info-step.component';
@@ -29,7 +28,6 @@ import { SubscribeToNewsletterComponent } from '../../common/components/subscrib
     OnboardingTeacherRoutingModule,
     SharedModule,
     OnboardingSharedModule,
-    MatListModule,
   ],
 })
 export class OnboardingTeacherModule {}

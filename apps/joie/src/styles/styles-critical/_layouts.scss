@@ -1,3 +1,19 @@
+.container {
+  --max-inline-size: 1365px;
+  max-width: var(--max-inline-size);
+  max-inline-size: var(--max-inline-size);
+  margin: 0 auto;
+  &#{&}-condense {
+    --max-inline-size: 990px;
+  }
+}
+
+.section-context {
+  place-items: center;
+  display: grid;
+  grid-row-gap: 35px;
+}
+
 .joie-form {
   display: grid;
   &-densed {
