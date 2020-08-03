@@ -1,19 +1,26 @@
+import { TeacherSessionsModule } from './teacher-sessions.module';
 import { NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
-import { TeacherDashboardComponent } from './tabs/teacher-dashboard/teacher-dashboard.component';
-import { TeacherProfileComponent } from './container/teacher-profile/teacher-profile.component';
+import { TeacherComponent } from './container/teacher/teacher.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: TeacherProfileComponent,
+    component: TeacherComponent,
     children: [
       {
         path: 'dashboard',
         loadChildren: () =>
-          import('./tabs/teacher-dashboard/teacher-dashboard.module').then(
+          import('./teacher-dashboard.module').then(
             (m) => m.TeacherDashboardModule
+          ),
+      },
+      {
+        path: 'sessions',
+        loadChildren: () =>
+          import('./teacher-sessions.module').then(
+            (m) => m.TeacherSessionsModule
           ),
       },
     ],
@@ -21,7 +28,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })

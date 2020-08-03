@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { TeacherDataService } from './services/teacher-data.service';
+import { TeacherDataService } from './teacher-data.service';
 
 @Injectable({
   providedIn: 'root',

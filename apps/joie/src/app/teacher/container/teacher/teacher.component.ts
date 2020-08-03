@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TeacherFacadeService } from '../../service/teacher-facade.service';
 import { Observable } from 'rxjs';
 import { Teacher } from '../../teacher.interfaces';
 
 @Component({
-  selector: 'app-teacher-profile',
-  templateUrl: './teacher-profile.component.html',
-  styleUrls: ['./teacher-profile.component.scss'],
+  selector: 'app-teacher',
+  templateUrl: './teacher.component.html',
+  styleUrls: ['./teacher.component.scss'],
 })
-export class TeacherProfileComponent implements OnInit {
+export class TeacherComponent implements OnInit {
   tabs$: Observable<string[]>;
   teacher$: Observable<Teacher>;
 

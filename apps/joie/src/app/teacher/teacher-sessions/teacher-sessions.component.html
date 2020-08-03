@@ -1,0 +1,4 @@
+<app-add-session-header #header
+                        (onHeaderToggle)="onHeaderToggle($event)"></app-add-session-header>
+<router-outlet (activate)="onActivate($event)"
+               (deactivate)="onDeactivate($event)"></router-outlet>

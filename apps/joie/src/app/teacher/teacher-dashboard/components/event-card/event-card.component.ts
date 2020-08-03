@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TeacherEvent } from '../../../../teacher.interfaces';
+import { TeacherEvent } from '../../../teacher.interfaces';
 
 @Component({
   selector: 'app-event-card',

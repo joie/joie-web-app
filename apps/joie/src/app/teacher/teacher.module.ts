@@ -4,10 +4,10 @@ import { MatListModule } from '@angular/material/list';
 
 import { SharedModule } from '../shared/shared.module';
 import { TeacherRoutingModule } from './teacher-routing.module';
-import { TeacherProfileComponent } from './container/teacher-profile/teacher-profile.component';
+import { TeacherComponent } from './container/teacher/teacher.component';
 
 @NgModule({
-  declarations: [TeacherProfileComponent],
-  imports: [CommonModule, SharedModule, TeacherRoutingModule, MatListModule],
+  declarations: [TeacherComponent],
+  imports: [SharedModule, TeacherRoutingModule, MatListModule],
 })
 export class TeacherModule {}

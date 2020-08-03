@@ -3,7 +3,7 @@ import {
   MatCalendarCellCssClasses,
 } from '@angular/material/datepicker';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { TeacherEvent } from '../../../../teacher.interfaces';
+import { TeacherEvent } from '../../../teacher.interfaces';
 
 @Component({
   selector: 'app-event-calendar',
