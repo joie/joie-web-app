@@ -1,0 +1,93 @@
+$background: #f2f2f2;
+$foreground: #323232;
+$dark-dividers: #979797;
+$dark-secondary-text: #686868;
+
+// Foreground palette for light themes.
+$joie-light-theme-foreground: (
+  // base: black,
+    divider: $dark-dividers,
+  dividers: $dark-dividers,
+  // disabled: $dark-disabled-text,
+    // disabled-button: rgba(black, 0.26),
+    // disabled-text: $dark-disabled-text,
+    // elevation: black,
+    // hint-text: $dark-disabled-text,
+    secondary-text: $dark-secondary-text,
+  // icon: rgba(black, 0.54),
+    // icons: rgba(black, 0.54),
+    text: $foreground,
+  // slider-min: rgba(black, 0.87),
+    // slider-off: rgba(black, 0.26),
+    // slider-off-active: rgba(black, 0.38),
+);
+// Background palette for light themes.
+$joie-light-theme-background: (
+  background: $background,
+);
+
+$joie-primary: (
+  50: #e3f5f7,
+  100: #b9e6ec,
+  200: #8ad5df,
+  300: #5bc4d2,
+  400: #38b7c9,
+  500: #15aabf,
+  600: #12a3b9,
+  700: #0f99b1,
+  800: #0c90a9,
+  900: #067f9b,
+  A100: #c7f3ff,
+  A200: #94e8ff,
+  A400: #61deff,
+  A700: #48d8ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$joie-accent: (
+  50: #e9f6ee,
+  100: #c9e9d4,
+  200: #a5dab7,
+  300: #fca601,
+  400: #65c084,
+  500: #4ab56e,
+  600: #43ae66,
+  700: #3aa55b,
+  800: #329d51,
+  900: #228d3f,
+  A100: #cbffd8,
+  A200: #98ffb1,
+  A400: #65ff8b,
+  A700: #4cff77,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);

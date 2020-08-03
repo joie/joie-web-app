@@ -1,0 +1,14 @@
+<h2>Please add payment source</h2>
+<div *ngIf="isLoading">LOADING...</div>
+<form class="form-grid" (submit)="onSubmit($event)" [class.loading]="isLoading">
+  <fieldset class="stripe-card" #cardElement>
+    <!-- A Stripe Element will be inserted here. -->
+  </fieldset>
+
+  <!-- Used to display Element errors. -->
+  <button mat-flat-button color="primary" type="submit" [disabled]="isLoading">
+    <mat-spinner diameter="24" *ngIf="isLoading; else buttonText"></mat-spinner>
+    <ng-template #buttonText>Submit Payment</ng-template>
+  </button>
+</form>
+<p>{{ cardErrors }}</p>

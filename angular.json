@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "",
   "projects": {
     "joie": {
       "projectType": "application",
@@ -10,36 +10,34 @@
           "style": "scss"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
+      "root": "apps/joie",
+      "sourceRoot": "apps/joie/src",
+      "prefix": "joie",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/joie",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/apps/joie",
+            "index": "apps/joie/src/index.html",
+            "main": "apps/joie/src/main.ts",
+            "polyfills": "apps/joie/src/polyfills.ts",
+            "tsConfig": "apps/joie/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
+              "apps/joie/src/favicon.ico",
+              "apps/joie/src/assets",
+              "apps/joie/src/manifest.webmanifest"
             ],
             "styles": [
               {
-                "input": "src/styles/styles-critical/styles-critical.scss",
+                "input": "apps/joie/src/styles/styles-critical/styles-critical.scss",
                 "bundleName": "styles-critical",
                 "inject": false
               },
-              "src/styles/components/components.scss"
+              "apps/joie/src/styles/components/components.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "node_modules/"
-              ]
+              "includePaths": ["node_modules/"]
             },
             "extractCss": true,
             "scripts": []
@@ -48,8 +46,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/joie/src/environments/environment.ts",
+                  "with": "apps/joie/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -98,27 +96,25 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "main": "apps/joie/src/test.ts",
+            "polyfills": "apps/joie/src/polyfills.ts",
+            "tsConfig": "apps/joie/tsconfig.spec.json",
+            "karmaConfig": "apps/joie/karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
+              "apps/joie/src/favicon.ico",
+              "apps/joie/src/assets",
+              "apps/joie/src/manifest.webmanifest"
             ],
             "styles": [
               {
-                "input": "src/styles/styles-critical/styles-critical.scss",
+                "input": "apps/joie/src/styles/styles-critical/styles-critical.scss",
                 "bundleName": "styles-critical",
                 "inject": false
               },
-              "src/styles/components/components.scss"
+              "apps/joie/src/styles/components/components.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "node_modules/"
-              ]
+              "includePaths": ["node_modules/"]
             },
             "scripts": []
           }
@@ -127,19 +123,26 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "apps/joie/tsconfig.app.json",
+              "apps/joie/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
+        }
+      }
+    },
+    "joie-e2e": {
+      "projectType": "application",
+      "root": "apps/joie-e2e",
+      "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
+            "protractorConfig": "apps/joie-e2e/protractor.conf.js",
             "devServerTarget": "joie:serve"
           },
           "configurations": {
@@ -148,15 +151,21 @@
             }
           }
         },
-        "deploy": {
-          "builder": "@angular/fire:deploy",
-          "options": {}
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/joie-e2e/tsconfig.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
         }
       }
     }
   },
   "defaultProject": "joie",
   "cli": {
-    "defaultCollection": "@ngrx/schematics"
+    "defaultCollection": "@ngrx/schematics",
+    "analytics": false
   }
 }
