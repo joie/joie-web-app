@@ -1,4 +1,3 @@
-import { TeacherSessionsModule } from './teacher-sessions.module';
 import { NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
@@ -21,6 +20,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./teacher-sessions.module').then(
             (m) => m.TeacherSessionsModule
+          ),
+      },
+      {
+        path: 'email and notifications',
+        loadChildren: () =>
+          import('./teacher-notifications.module').then(
+            (m) => m.TeacherNotificationsModule
           ),
       },
     ],

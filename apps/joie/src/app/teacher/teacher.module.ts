@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 
 import { SharedModule } from '../shared/shared.module';

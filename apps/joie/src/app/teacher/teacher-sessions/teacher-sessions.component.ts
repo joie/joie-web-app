@@ -26,7 +26,7 @@ export class TeacherSessionsComponent implements OnInit {
     if (formGroup) {
       this.header.toggle();
       if (this.sessionDraft) {
-        formGroup.patchValue(this.sessionDraft);
+        formGroup.setValue(this.sessionDraft);
         this.sessionDraft = null;
       }
     }

@@ -12,4 +12,5 @@
     </mat-list-option>
   </mat-selection-list>
 </div>
-<router-outlet class="tabs-outlet"></router-outlet>
+<router-outlet (deactivate)="onDeactivate($event)"
+               class="tabs-outlet"></router-outlet>
