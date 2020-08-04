@@ -14,10 +14,10 @@ export const SUBMIT = 'SUBMIT';
 export class TeacherSessionsComponent implements OnInit {
   @ViewChild('header') header: AddSessionHeaderComponent;
   sessionDraft = null; // type as session model
-  mode = false; //rename
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   onHeaderToggle(e) {}
+
   ngOnInit(): void {
     this.router.navigate(['list'], { relativeTo: this.route });
   }
@@ -46,7 +46,6 @@ export class TeacherSessionsComponent implements OnInit {
           this.header.toggle();
           break;
         case SUBMIT:
-          console.log('submiting', history.state.formData);
           // TODO facadeService.submit(history.state.formData)
           this.header.toggle();
           break;

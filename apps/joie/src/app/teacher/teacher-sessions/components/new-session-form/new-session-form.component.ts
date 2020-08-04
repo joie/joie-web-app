@@ -1,3 +1,9 @@
+import {
+  SessionType,
+  CourseType,
+  CourseLevel,
+  Pillar,
+} from './../../../../sessions/models/session';
 import { CANCEL, SUBMIT } from '../../teacher-sessions.component';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -14,17 +20,12 @@ export class NewSessionFormComponent {
   formGroup: FormGroup;
 
   // form spec
-  sessionFormatOptions = ['On-demand video', 'Livestreaming'];
-  sessionTypeOptions = [
-    'Class',
-    'Workshop',
-    'Course',
-    'Lecture',
-    '1:1 Coaching',
-  ];
-  sessionPillars = ['pillar1', 'pillar2', 'pillar3'];
-  sessionLevels = ['jr', 'md', 'sr'];
-  sessionActivities = ['activity1', 'activity2', 'activity3'];
+  sessionFormatOptions = Object.keys(CourseType);
+  sessionTypeOptions = Object.keys(SessionType);
+
+  sessionPillars = Object.keys(Pillar);
+  sessionLevels = Object.keys(CourseLevel);
+  sessionActivities = ['activity1', 'activity2', 'activity3']; // TODO enum for activities
   public availableTimeSlots: FormArray;
   public relatedSessions: FormArray;
   public goals: FormArray;
@@ -143,11 +144,6 @@ export class NewSessionFormComponent {
   createUrlInput() {
     return this.formBuilder.control('');
   }
-
-  log() {
-    console.log(this.formGroup);
-  }
-
   cancelAdding() {
     this.router.navigate(['list'], {
       relativeTo: this.route.parent,
@@ -157,13 +153,13 @@ export class NewSessionFormComponent {
   saveFormDraft() {
     this.router.navigate(['list'], {
       relativeTo: this.route.parent,
-      state: { operation: SAVE_DRAFT, formData: this.formGroup.value },
+      state: { operation: SAVE_DRAFT },
     });
   }
   submitSession() {
     this.router.navigate(['list'], {
       relativeTo: this.route.parent,
-      state: { operation: SUBMIT, formData: this.formGroup.value },
+      state: { operation: SUBMIT },
     });
   }
 }

@@ -1,4 +1,4 @@
-import { EventTypes } from './teacher.interfaces';
+import { EventTypes } from './models/event';
 
 export const navTabs = [
   'Dashboard',

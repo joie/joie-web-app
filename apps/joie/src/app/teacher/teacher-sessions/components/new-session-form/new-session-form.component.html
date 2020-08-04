@@ -1,6 +1,6 @@
 <form [formGroup]="formGroup">
 
-  <mat-label>Session format and type</mat-label>
+  <mat-label class="block">Session format and type</mat-label>
   <mat-radio-group name="format"
                    formControlName="format">
     <mat-radio-button *ngFor="let format of sessionFormatOptions"
@@ -13,7 +13,7 @@
                       [value]="type">{{type}}</mat-radio-button>
   </mat-radio-group>
 
-  <mat-label>Session information</mat-label>
+  <mat-label class="block">Session information</mat-label>
 
   <mat-form-field appearance="fill">
     <mat-label>Session pillar</mat-label>
@@ -98,10 +98,10 @@
 
   </section>
 
-  <mat-label>Session image and intro video </mat-label>
+  <mat-label class="block">Session image and intro video </mat-label>
   <p>// TODO after kaltura implementation</p>
 
-  <mat-label>Session details</mat-label>
+  <mat-label class="block">Session details</mat-label>
 
   <mat-form-field appearance="fill">
     <mat-label>Session price (USD)</mat-label>
@@ -178,7 +178,7 @@
 
   </section>
 
-  <mat-label>Upsell and promos (optional)</mat-label>
+  <mat-label class="block">Upsell and promos (optional)</mat-label>
   <mat-form-field>
     <mat-label>Special offer promotion</mat-label>
     <input type="text"
@@ -206,7 +206,6 @@
     </mat-form-field>
 
   </section>
-  <button (click)="log()">LOGGGG</button>
 
   <button type="button"
           (click)="cancelAdding()">Delete</button>
