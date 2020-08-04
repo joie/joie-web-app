@@ -49,20 +49,18 @@ export class PersonalInfoStepComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    let teacherData = history.state.teacherData || null;
-    if (teacherData && 'firstNameCtrl' in teacherData) {
-      this.initFormWithCachedData(teacherData);
+    let teacher = history.state.teacher || null;
+    if (teacher && 'firstNameCtrl' in teacher) {
+      this.initFormWithCachedData(teacher);
     }
   }
 
-  private initFormWithCachedData(teacherData) {
-    this.formGroup.controls['firstNameCtrl'].setValue(
-      teacherData.firstNameCtrl
-    );
-    this.formGroup.controls['lastNameCtrl'].setValue(teacherData.lastNameCtrl);
-    this.formGroup.controls['emailCtrl'].setValue(teacherData.emailCtrl);
+  private initFormWithCachedData(teacher) {
+    this.formGroup.controls['firstNameCtrl'].setValue(teacher.firstNameCtrl);
+    this.formGroup.controls['lastNameCtrl'].setValue(teacher.lastNameCtrl);
+    this.formGroup.controls['emailCtrl'].setValue(teacher.emailCtrl);
     this.formGroup.controls['phoneNumberCtrl'].setValue(
-      teacherData.phoneNumberCtrl
+      teacher.phoneNumberCtrl
     );
   }
 }

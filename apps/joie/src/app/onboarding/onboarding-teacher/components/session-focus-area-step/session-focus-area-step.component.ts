@@ -32,9 +32,9 @@ export class SessionFocusAreaStepComponent {
       ),
     });
 
-    let teacherData = history.state.teacherData || null;
-    if (teacherData && 'focusGroupsCtrl' in teacherData) {
-      this.initFormWithCachedData(teacherData);
+    let teacher = history.state.teacher || null;
+    if (teacher && 'focusGroupsCtrl' in teacher) {
+      this.initFormWithCachedData(teacher);
     } else {
       this.addCheckboxes();
     }
@@ -67,10 +67,10 @@ export class SessionFocusAreaStepComponent {
     });
   }
 
-  private initFormWithCachedData(teacherData) {
+  private initFormWithCachedData(teacher) {
     this.formGroup.controls['sessionAreaCtrl'].setValue(
-      teacherData.sessionAreaCtrl
+      teacher.sessionAreaCtrl
     );
-    this.addCheckboxesFromCache(teacherData.focusGroupsCtrl);
+    this.addCheckboxesFromCache(teacher.focusGroupsCtrl);
   }
 }

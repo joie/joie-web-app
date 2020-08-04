@@ -1,0 +1,12 @@
+.calendar-box {
+  width: 500px;
+  height: 500px;
+  margin-left: 400px;
+  margin-top: 50px;
+}
+mat-calendar {
+  .scheduled {
+    background: aquamarine;
+    border-radius: 100%;
+  }
+}
