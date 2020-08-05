@@ -7,9 +7,16 @@ import { TeacherEvent } from '../../../models/event';
   styleUrls: ['./event-card.component.scss'],
 })
 export class EventCardComponent implements OnInit {
+  @Input() cdkCopyToClipboard: string;
   @Input() event: TeacherEvent;
   constructor() {}
   // todo message/edit button handlers
   //icon for copying url
   ngOnInit(): void {}
+
+  handleMessage() {
+    // todo implement handlers
+  }
+
+  handleEditBtn() {}
 }

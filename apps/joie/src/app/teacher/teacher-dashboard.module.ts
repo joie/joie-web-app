@@ -1,3 +1,4 @@
+import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard.component';
@@ -11,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TeacherDashboardRoutingModule } from './teacher-dashboard-routing.module';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { TeacherDashboardRoutingModule } from './teacher-dashboard-routing.modul
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatIconModule,
+    ClipboardModule,
   ],
 })
 export class TeacherDashboardModule {}

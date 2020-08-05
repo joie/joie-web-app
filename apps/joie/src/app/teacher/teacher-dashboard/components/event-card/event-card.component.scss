@@ -7,11 +7,12 @@
   text-align: left;
   h4 {
     margin: 2.5px;
+    display: inline;
   }
   strong {
     color: #009fe1;
   }
-  button {
+  button.bottom {
     height: 25px;
     padding: 0;
   }
