@@ -40,4 +40,10 @@ export class TeacherProfileComponent implements OnInit {
       this.profile[key] = this.profileData[key];
     });
   }
+
+  handleCloseAccount() {}
+
+  handleContactSupport() {}
+
+  handleSendResetEmail() {}
 }

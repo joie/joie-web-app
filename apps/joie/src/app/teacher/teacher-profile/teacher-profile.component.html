@@ -40,7 +40,7 @@
              type="password"
              #password>
       <button mat-raised-button
-              (click)="password.disabled = !password.disabled">Send email to reset password</button>
+              (click)="handleSendResetEmail()">Send email to reset password</button>
     </mat-form-field>
   </span>
 
@@ -65,10 +65,9 @@
 
 <h2>
   Close my account
-
 </h2>
 
-<mat-icon>mail</mat-icon> <a>Contact support@joie.co</a>
+<mat-icon>mail</mat-icon> <a (click)="handleContactSupport()">Contact support@joie.co</a>
 
 <p>Closing your account will take between 14-20 business days, due to our payment policy. During this time, your account
   will not be visible to Joie's students</p>
@@ -78,6 +77,6 @@
   <li *ngFor='let bullet of bullets'>{{bullet}}</li>
 </ul>
 
-<button>
+<button (click)="handleCloseAccount()">
   Close my account
 </button>
