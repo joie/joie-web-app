@@ -29,6 +29,13 @@ const routes: Routes = [
             (m) => m.TeacherNotificationsModule
           ),
       },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./teacher-profile.module').then(
+            (m) => m.TeacherProfileModule
+          ),
+      },
     ],
   },
 ];

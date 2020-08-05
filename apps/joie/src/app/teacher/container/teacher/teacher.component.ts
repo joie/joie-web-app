@@ -22,6 +22,7 @@ export class TeacherComponent implements OnInit {
 
   onDeactivate(componentRef) {
     // todo in case i need acccess i can do it like dis
+    // also the profile component uses TDF and this interface doesn't fit it. Is it a good practice to attach his ngModel  to fake formGroup so this interface can reach it? or to add some code here
     // console.log(componentRef);
     // let formGroup = componentRef.formGroup;
     // if (formGroup) {
