@@ -1,14 +1,17 @@
+import { take } from 'rxjs/operators';
 import { ToggleBlock } from '../../models/toggle.model';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { mapValues } from 'lodash';
+import { NotificationsApiService } from './notifications-api.service';
+import { TeacherFacadeService } from '../service/teacher-facade.service';
 
 @Component({
   selector: 'joie-teacher-notifications',
   templateUrl: './teacher-notifications.component.html',
   styleUrls: ['./teacher-notifications.component.scss'],
 })
-export class TeacherNotificationsComponent implements OnDestroy {
+export class TeacherNotificationsComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
   toggleBlocks: ToggleBlock[] = [
     {
@@ -37,7 +40,32 @@ export class TeacherNotificationsComponent implements OnDestroy {
     },
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private teacherFacadeService: TeacherFacadeService
+  ) {
+    // todo this is the interface of the form.value. it's also an easier way to build the form, shall i use it instead ? or fetch one structure and submit another?
+    // this structure is easy to access by keys, but idk how to interface it
+    // this.formGroup = fb.group({
+    //   settings: {
+    //     session_reminders: {
+    //       all: true,
+    //       email: true,
+    //       push_notification: true,
+    //     },
+    //     account_activity: {
+    //       all: false,
+    //       new_registration: false,
+    //       new_follow: false,
+    //     },
+    //     newsletter_and_promotions: {
+    //       all: false,
+    //       weekly_newsletter: false,
+    //       'free_sessions promos, events': false,
+    //     },
+    //   },
+    //   });
+
     this.formGroup = this.fb.group({ settings: new FormGroup({}) });
     let settingFormGroup = this.fb.group({});
     this.toggleBlocks.forEach((block) => {
@@ -56,10 +84,21 @@ export class TeacherNotificationsComponent implements OnDestroy {
       );
     });
     this.formGroup.setControl('settings', settingFormGroup);
+    // todo maybe rm tis setting control? if the final data flow decision would be to submit from here - better add the settings key in another way
+  }
+  ngOnInit(): void {
+    this.teacherFacadeService
+      .getNotificationSettings('user123')
+      .pipe(take(1))
+      .subscribe((settings) => (this.toggleBlocks = settings));
   }
 
   ngOnDestroy(): void {
-    // todo apiService.submitSettings()
+    // todo
+    // this.teacherFacadeService.submitNotificationSettings(
+    //   '123',
+    //   this.formGroup.value
+    // );
   }
 
   convertToKey = (title) =>

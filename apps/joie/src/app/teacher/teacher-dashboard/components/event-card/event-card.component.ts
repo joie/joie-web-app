@@ -14,8 +14,11 @@ export class EventCardComponent implements OnInit {
   ngOnInit(): void {}
 
   handleMessage() {
-    // todo implement handlers
+    // todo
+    // open  dialog form to create message, on submit use this.facadeService.postMessage(id, event, message)
   }
 
-  handleEditBtn() {}
+  handleEditBtn() {
+    //todo open dialog to edit the whole event, on submit use facade service
+  }
 }

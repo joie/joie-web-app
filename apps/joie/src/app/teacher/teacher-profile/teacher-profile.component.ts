@@ -1,12 +1,6 @@
 import { Profile } from '../../models/profile.model';
-import {
-  FormGroup,
-  FormBuilder,
-  FormControl,
-  FormArray,
-  Form,
-} from '@angular/forms';
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Form } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'joie-teacher-profile',

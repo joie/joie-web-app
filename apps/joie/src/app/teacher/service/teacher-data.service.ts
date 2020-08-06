@@ -1,8 +1,9 @@
+import { TeacherEvent } from './../../models/event.model';
 import { Injectable } from '@angular/core';
-import { navTabs, teacherMock, eventsMock } from '../teacher.mocks';
+import { navTabs, dashboardInfoMock } from '../teacher.mocks';
 import { of, Observable } from 'rxjs';
 import { Teacher } from '../../models/teacher.model';
-import { TeacherEvent } from '../../models/event.model';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,12 +15,17 @@ export class TeacherDataService {
     return of(navTabs);
   }
   getTeacher(userId = '123'): Observable<Teacher> {
-    return of(teacherMock);
+    return of(dashboardInfoMock).pipe(tap((d) => console.log(d)));
   }
-  getTeacherEvents(
-    userId = 123,
-    limit: number = 3
-  ): Observable<TeacherEvent[]> {
-    return of(eventsMock);
+
+  // todo teacher event should be a part of session or contain a refrence to it
+  postMessage(id: string, event: TeacherEvent, message: string) {
+    return of(true);
   }
+  // getTeacherEvents(
+  //   userId = 123,
+  //   limit: number = 3
+  // ): Observable<TeacherEvent[]> {
+  //   return of(dashboardInfoMock.events);
+  // }
 }

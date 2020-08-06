@@ -1,5 +1,9 @@
+import { TeacherSessionsDataService } from './../teacher-sessions/teacher-sessions-data.service';
 import { Injectable, Injector } from '@angular/core';
 import { TeacherDataService } from './teacher-data.service';
+import { NotificationsApiService } from '../teacher-notifications/notifications-api.service';
+import { Observable } from 'rxjs';
+import { TeacherEvent } from '../../models/event.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,17 +16,55 @@ export class TeacherFacadeService {
     }
     return this._teacherDataService;
   }
+  private _notificationsApiService: NotificationsApiService;
+  public get notificationsApiService(): NotificationsApiService {
+    if (!this._notificationsApiService) {
+      this._notificationsApiService = this.injector.get(
+        NotificationsApiService
+      );
+      return this._notificationsApiService;
+    }
+  }
+
+  private _teacherSessionsDataService: TeacherSessionsDataService;
+  public get teacherSessionsDataService(): TeacherSessionsDataService {
+    if (!this._teacherSessionsDataService) {
+      this._teacherSessionsDataService = this.injector.get(
+        TeacherSessionsDataService
+      );
+    }
+    return this._teacherSessionsDataService;
+  }
   constructor(private injector: Injector) {}
 
   getMenuTabs() {
     return this.teacherDataService.getMenuTabs();
   }
 
-  getTeacher() {
-    return this.teacherDataService.getTeacher();
+  getTeacher(id: string) {
+    return this.teacherDataService.getTeacher(id);
   }
 
-  getTeacherEvents() {
-    return this.teacherDataService.getTeacherEvents();
+  postMesage(id: string, event: TeacherEvent, message: string) {
+    return this.teacherDataService.postMessage(id, event, message);
+  }
+
+  // getTeacherEvents() { // todo events will probably come inside the TeacherData
+  //   return this.teacherDataService.getTeacherEvents();
+  // }
+  getNotificationSettings(id: string) {
+    // todo this should be definetely abstracted into some account service
+    return this.notificationsApiService.getNotificationSettings(id);
+  }
+  // todo to account service
+  submitNotificationSettings(id: string, settings): Observable<Boolean> {
+    return this.notificationsApiService.submitNotificationSettings(
+      id,
+      settings
+    );
+  }
+
+  submitSession(id: string, session) {
+    this.teacherSessionsDataService.submitSession(id, session);
   }
 }

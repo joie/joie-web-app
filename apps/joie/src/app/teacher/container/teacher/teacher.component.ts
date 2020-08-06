@@ -17,7 +17,7 @@ export class TeacherComponent implements OnInit {
   constructor(private facadeService: TeacherFacadeService) {}
   ngOnInit(): void {
     this.tabs$ = this.facadeService.getMenuTabs();
-    this.teacher$ = this.facadeService.getTeacher();
+    this.teacher$ = this.facadeService.getTeacher('user123');
   }
 
   onDeactivate(componentRef) {
