@@ -1,8 +1,13 @@
-.joie-form {
+.spacing-block {
   display: grid;
-  &-densed {
-    $inline-size: 365px;
-    max-inline-size: $inline-size;
-    max-width: $inline-size;
+  grid-row-gap: var(--row-gap, 20px);
+  &#{&}-sm {
+    --row-gap: 10px;
+  }
+  &#{&}-md {
+    --row-gap: 20px;
+  }
+  &#{&}-lg {
+    --row-gap: 30px;
   }
 }
