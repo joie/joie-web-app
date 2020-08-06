@@ -1,4 +1,4 @@
-import { Profile } from './../models/profile';
+import { Profile } from '../../models/profile.model';
 import {
   FormGroup,
   FormBuilder,

@@ -1,4 +1,4 @@
-import { EventTypes } from './models/event';
+import { EventTypes } from '../models/event.model';
 
 export const navTabs = [
   'Dashboard',

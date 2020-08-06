@@ -43,6 +43,31 @@ export enum Pillar {
   Professional = 'Professional',
 }
 
+export enum Activities {
+  YOGA = 'Yoga',
+  MEDITATION = 'Meditation',
+  DANCE = 'Dance',
+  NUTRITION = 'Nutrition',
+  DIET = 'Diet',
+  SELF_REGULATION = 'Self-regulation',
+  SELF_CATE = 'Self-care',
+  RELAXATION = 'Relaxation',
+  STRESS_REDUCTION = 'Stress Reduction',
+  INNER_STRENGTH = 'Inner Strength',
+  SOCIAL_INTRACTIONS = 'Social interactions',
+  FRIENDSHIPS = 'Friendships',
+  PARENTING = 'Parenting',
+  RELATIONSHIPS = 'Relationships',
+  SEEK_MEANING = 'Seek Meaninng',
+  INDIVIDUAL_PURPOSE = 'Individual Purpose',
+  FAITH = 'Faith',
+  VALUES = 'Values',
+  ETHICS = 'Ethics',
+  MORALS = 'Morals',
+  PROFESSIONAL_DEVELOPMENT = 'Professional Development',
+  FINANACIAL_STABILITY = 'Final Stability',
+  SATISFACTION_AT_WORK = 'Satisfaction at Work',
+}
 export interface Author {
   id: string;
   name: string;

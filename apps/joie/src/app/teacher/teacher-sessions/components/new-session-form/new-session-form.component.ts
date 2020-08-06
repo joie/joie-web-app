@@ -3,6 +3,7 @@ import {
   CourseType,
   CourseLevel,
   Pillar,
+  Activities,
 } from './../../../../sessions/models/session';
 import { CANCEL, SUBMIT } from '../../teacher-sessions.component';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
@@ -20,12 +21,12 @@ export class NewSessionFormComponent {
   formGroup: FormGroup;
 
   // form spec
-  sessionFormatOptions = Object.keys(CourseType);
+  sessionFormatOptions = Object.values(CourseType);
   sessionTypeOptions = Object.keys(SessionType);
 
-  sessionPillars = Object.keys(Pillar);
-  sessionLevels = Object.keys(CourseLevel);
-  sessionActivities = ['activity1', 'activity2', 'activity3']; // TODO enum for activities
+  sessionPillars = Object.values(Pillar);
+  sessionLevels = Object.values(CourseLevel);
+  sessionActivities = Object.values(Activities);
   public availableTimeSlots: FormArray;
   public relatedSessions: FormArray;
   public goals: FormArray;

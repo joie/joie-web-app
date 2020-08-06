@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Teacher } from '../../models/teacher';
+import { Teacher } from '../../../models/teacher.model';
 import { Observable } from 'rxjs';
 
 @Component({

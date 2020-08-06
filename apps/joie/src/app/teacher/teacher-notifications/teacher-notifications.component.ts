@@ -1,4 +1,4 @@
-import { ToggleBlock } from './../models/toggle';
+import { ToggleBlock } from '../../models/toggle.model';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Component, OnDestroy } from '@angular/core';
 import { mapValues } from 'lodash';

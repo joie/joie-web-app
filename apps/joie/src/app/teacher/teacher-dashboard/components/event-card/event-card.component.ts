@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TeacherEvent } from '../../../models/event';
+import { TeacherEvent } from '../../../../models/event.model';
 
 @Component({
   selector: 'app-event-card',
@@ -10,7 +10,6 @@ export class EventCardComponent implements OnInit {
   @Input() cdkCopyToClipboard: string;
   @Input() event: TeacherEvent;
   constructor() {}
-  // todo message/edit button handlers
   //icon for copying url
   ngOnInit(): void {}
 

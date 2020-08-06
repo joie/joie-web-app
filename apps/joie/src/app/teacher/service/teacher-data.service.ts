@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { navTabs, teacherMock, eventsMock } from '../teacher.mocks';
 import { of, Observable } from 'rxjs';
-import { Teacher } from '../models/teacher';
-import { TeacherEvent } from '../models/event';
+import { Teacher } from '../../models/teacher.model';
+import { TeacherEvent } from '../../models/event.model';
 
 @Injectable({
   providedIn: 'root',

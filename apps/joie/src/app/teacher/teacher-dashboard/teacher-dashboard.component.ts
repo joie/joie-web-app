@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TeacherFacadeService } from '../service/teacher-facade.service';
 import { Observable } from 'rxjs';
-import { Teacher } from '../models/teacher';
-import { TeacherEvent } from '../models/event';
+import { Teacher } from '../../models/teacher.model';
+import { TeacherEvent } from '../../models/event.model';
 
 @Component({
   selector: 'app-teacher-dashboard',
