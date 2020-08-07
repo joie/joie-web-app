@@ -17,6 +17,11 @@ const routes: Routes = [
     outlet: 'popup',
   },
   {
+    path: 'teacher',
+    loadChildren: () =>
+      import('./teacher/teacher.module').then((m) => m.TeacherModule),
+  },
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
@@ -73,6 +78,7 @@ const routes: Routes = [
       },
     ],
   },
+  { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
   { path: '**', component: PageNotFoundComponent },
 ];
 

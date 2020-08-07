@@ -1,0 +1,216 @@
+<form [formGroup]="formGroup">
+
+  <mat-label class="block">Session format and type</mat-label>
+  <mat-radio-group name="format"
+                   formControlName="format">
+    <mat-radio-button *ngFor="let format of sessionFormatOptions"
+                      [value]="format">{{format}}</mat-radio-button>
+  </mat-radio-group>
+
+  <mat-radio-group name="type"
+                   formControlName="type">
+    <mat-radio-button *ngFor="let type of sessionTypeOptions"
+                      [value]="type">{{type}}</mat-radio-button>
+  </mat-radio-group>
+
+  <mat-label class="block">Session information</mat-label>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Session pillar</mat-label>
+    <mat-select formControlName="pillar">
+      <mat-option *ngFor="let pillar of sessionPillars"
+                  [value]="pillar">
+        {{pillar}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Session level</mat-label>
+    <mat-select formControlName="level">
+      <mat-option *ngFor="let level of sessionLevels"
+                  [value]="level">
+        {{level}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Session activity</mat-label>
+    <mat-select formControlName="activity">
+      <mat-option *ngFor="let activity of sessionActivities"
+                  [value]="activity">
+        {{activity}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Session name</mat-label>
+    <input formControlName="name"
+           matInput>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Session description</mat-label>
+    <textarea formControlName="description"
+              matInput></textarea>
+  </mat-form-field>
+
+
+  <button (click)="addGoal()">Add
+    goal</button>
+  <section *ngFor="let goal of goalControls; let i = index"
+           formArrayName="goals">
+    <button *ngIf="i > 0"
+            mat-icon-button
+            (click)="removeGoal(i)">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <mat-form-field>
+      <mat-label>Session goal</mat-label>
+      <input type="text"
+             matInput
+             [formControlName]="i">
+    </mat-form-field>
+
+  </section>
+
+
+  <button (click)="addComment()">Add
+    comment</button>
+  <section *ngFor="let comment of commentControls; let i = index"
+           formArrayName="comments">
+
+    <button *ngIf="i > 0"
+            mat-icon-button
+            (click)="removeComment(i)">
+      <mat-icon>delete</mat-icon>
+    </button>
+
+    <mat-form-field>
+      <mat-label>Comment</mat-label>
+      <input type="text"
+             matInput
+             [formControlName]="i">
+    </mat-form-field>
+
+  </section>
+
+  <mat-label class="block">Session image and intro video </mat-label>
+  <p>// TODO after kaltura implementation</p>
+
+  <mat-label class="block">Session details</mat-label>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Session price (USD)</mat-label>
+    <input formControlName="price"
+           matInput>
+    <p class="input-label">At the moment, Joie using USD as it's currency.</p>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Number of students</mat-label>
+    <input formControlName="maxStudents"
+           matInput>
+    <p class="input-label">This type of session is limited to 10 students.</p>
+  </mat-form-field>
+
+  <div formGroupName="dateTimeDuration">
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input type="date"
+             matInput
+             formControlName="date">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Time</mat-label>
+      <input type="time"
+             matInput
+             formControlName="time">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Duration</mat-label>
+      <input type="number"
+             matInput
+             formControlName="duration">
+    </mat-form-field>
+  </div>
+  <button (click)="addTimeSlot()">Add
+    a time slot</button>
+
+
+  <section formArrayName="availableTimeSlots"
+           *ngFor="let slot of slotControls; let i = index;">
+    <div [formGroupName]="i">
+
+      <button *ngIf="i > 0"
+              mat-icon-button
+              (click)="removeTimeSlot(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input type="date"
+               matInput
+               formControlName="date">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Time</mat-label>
+        <input type="time"
+               matInput
+               formControlName="time">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Duration</mat-label>
+        <input type="number"
+               matInput
+               formControlName="duration">
+      </mat-form-field>
+    </div>
+
+
+  </section>
+
+  <mat-label class="block">Upsell and promos (optional)</mat-label>
+  <mat-form-field>
+    <mat-label>Special offer promotion</mat-label>
+    <input type="text"
+           matInput
+           formControlName="promo">
+  </mat-form-field>
+
+
+  <button (click)="addRelatedSession()">Add
+    session</button>
+  <section formArrayName="relatedSessions"
+           *ngFor="let session of relatedSessionControl; let i = index;">
+
+    <button *ngIf="i > 0"
+            mat-icon-button
+            (click)="removeRelatedSession(i)">
+      <mat-icon>delete</mat-icon>
+    </button>
+
+    <mat-form-field>
+      <mat-label>Related session (add a link)</mat-label>
+      <input type="url"
+             matInput
+             [formControlName]="i">
+    </mat-form-field>
+
+  </section>
+
+  <button type="button"
+          (click)="cancelAdding()">Delete</button>
+  <button type='button'
+          (click)="saveFormDraft()">Save as draft</button>
+  <button type='submit'
+          (click)="submitSession()">Publish</button>
+</form>

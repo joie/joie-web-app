@@ -33,9 +33,9 @@ export class SessionTypesStepComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    let studentData = history.state.studentData || null;
-    if (studentData && 'sessionTypesCtrl' in studentData) {
-      this.addCheckboxesFromCache(studentData.sessionTypesCtrl);
+    let student = history.state.student || null;
+    if (student && 'sessionTypesCtrl' in student) {
+      this.addCheckboxesFromCache(student.sessionTypesCtrl);
     } else {
       this.addCheckboxes();
     }

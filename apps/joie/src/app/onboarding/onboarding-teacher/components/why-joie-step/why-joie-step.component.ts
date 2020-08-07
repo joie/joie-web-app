@@ -26,22 +26,22 @@ export class WhyJoieStepComponent implements OnInit {
   submitFormsData(): void {
     if (this.formGroup) {
       this.apiService.submitTeacherAccountData(
-        Object.assign(history.state.teacherData, this.formGroup.value)
+        Object.assign(history.state.teacher, this.formGroup.value)
       );
     }
   }
 
   ngOnInit() {
-    let teacherData = history.state.teacherData;
-    this.teachersName = teacherData.firstNameCtrl;
-    if ('addedValDescriptionCtrl' in teacherData) {
-      this.initFormWithCachedData(teacherData);
+    let teacher = history.state.teacher;
+    this.teachersName = teacher.firstNameCtrl;
+    if ('addedValDescriptionCtrl' in teacher) {
+      this.initFormWithCachedData(teacher);
     }
   }
 
-  private initFormWithCachedData(teacherData) {
+  private initFormWithCachedData(teacher) {
     this.formGroup.controls['addedValDescriptionCtrl'].setValue(
-      teacherData.addedValDescriptionCtrl
+      teacher.addedValDescriptionCtrl
     );
   }
 }

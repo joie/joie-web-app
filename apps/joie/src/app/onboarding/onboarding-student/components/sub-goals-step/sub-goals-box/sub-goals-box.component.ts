@@ -40,11 +40,9 @@ export class SubGoalsBoxComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let studentData = history.state.studentData || null;
-    if (studentData && 'subgoalsCtrl' in studentData) {
-      this.addCheckboxesFromCache(
-        studentData.subgoalsCtrl[this.title].subgoals
-      );
+    let student = history.state.student || null;
+    if (student && 'subgoalsCtrl' in student) {
+      this.addCheckboxesFromCache(student.subgoalsCtrl[this.title].subgoals);
     } else {
       this.addChips();
     }

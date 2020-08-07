@@ -1,0 +1,15 @@
+<h1 *ngIf="teacher$ | async as teacher">
+  Welcome, {{ teacher.firstName + " " + teacher.lastName }}
+</h1>
+<h3>Manage your profile, sessions, and banking on Joie</h3>
+<div class="navigation">
+  <mat-selection-list #navigation
+                      [multiple]="false">
+    <mat-list-option *ngFor="let tab of tabs$ | async"
+                     [value]="tab"
+                     [routerLink]="'/teacher/' + tab.toLowerCase()">
+      {{ tab }}
+    </mat-list-option>
+  </mat-selection-list>
+</div>
+<router-outlet class="tabs-outlet"></router-outlet>

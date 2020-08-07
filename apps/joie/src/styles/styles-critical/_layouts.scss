@@ -8,6 +8,20 @@
   }
 }
 
+.spacing-block {
+  display: grid;
+  grid-row-gap: var(--row-gap, 20px);
+  &#{&}-sm {
+    --row-gap: 10px;
+  }
+  &#{&}-md {
+    --row-gap: 20px;
+  }
+  &#{&}-lg {
+    --row-gap: 30px;
+  }
+}
+
 .section-context {
   place-items: center;
   display: grid;

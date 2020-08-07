@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PlayerService } from './player.service';
 
 @Component({
-  selector: 'joie-player',
+  selector: 'app-player',
   templateUrl: 'player.component.html',
 })
 export class PlayerComponent implements OnInit {

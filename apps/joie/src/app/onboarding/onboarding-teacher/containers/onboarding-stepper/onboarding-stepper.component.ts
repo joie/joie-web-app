@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-interface TeacherData {
+interface Teacher {
   firstNameCtrl: string;
   lastNameCtrl: string;
   emailCtrl: string;
@@ -19,7 +19,7 @@ interface TeacherData {
   styleUrls: ['./onboarding-stepper.component.scss'],
 })
 export class OnboardingStepperComponent implements OnInit {
-  teacherData = {} as TeacherData;
+  teacher = {} as Teacher;
   currentFormGroup = { status: 'INVALID', value: {} };
   public steps: string[];
   public selectedStep: number = 0;
@@ -41,10 +41,10 @@ export class OnboardingStepperComponent implements OnInit {
   }
 
   selectionChanged(event: any) {
-    Object.assign(this.teacherData, this.currentFormGroup.value);
+    Object.assign(this.teacher, this.currentFormGroup.value);
     this.selectedStep = event.selectedIndex;
     this.router.navigate([this.steps[this.selectedStep]], {
-      state: { teacherData: this.teacherData },
+      state: { teacher: this.teacher },
       relativeTo: this.route,
     });
   }

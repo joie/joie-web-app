@@ -30,9 +30,9 @@ export class GoalStepComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let studentData = history.state.studentData || null;
-    if (studentData && 'goalsCtrl' in studentData) {
-      this.addCheckboxesFromCache(studentData.goalsCtrl);
+    let student = history.state.student || null;
+    if (student && 'goalsCtrl' in student) {
+      this.addCheckboxesFromCache(student.goalsCtrl);
     } else {
       this.addCheckboxes();
     }

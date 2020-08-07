@@ -7,13 +7,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./summary-step.component.scss'],
 })
 export class SummaryStepComponent implements OnInit {
-  studentData; // todo add interface
+  student; // todo add interface
   name = 'heregoesthename';
   dataToPrint;
   constructor(public activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.studentData = history.state.studentData;
+    this.student = history.state.student;
     this.getDataForPrinting();
   }
 
@@ -28,12 +28,12 @@ export class SummaryStepComponent implements OnInit {
 
   getDataForPrinting() {
     this.dataToPrint = {
-      goals: this.mapAndFilter(this.studentData.goalsCtrl),
+      goals: this.mapAndFilter(this.student.goalsCtrl),
       subgoals: [],
-      sessionTypes: this.mapAndFilter(this.studentData.sessionTypesCtrl),
+      sessionTypes: this.mapAndFilter(this.student.sessionTypesCtrl),
     };
 
-    Object.values(this.studentData.subgoalsCtrl).forEach((subgoal) => {
+    Object.values(this.student.subgoalsCtrl).forEach((subgoal) => {
       this.dataToPrint.subgoals.push(this.mapAndFilter(subgoal['subgoals']));
     });
   }

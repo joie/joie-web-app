@@ -1,0 +1,12 @@
+<div class='calendar-box'>
+  <mat-calendar #calendar
+                class="calendar"
+                [selected]="selectedDate"
+                [startAt]="startAt"
+                [dateFilter]="myDateFilter"
+                (click)="calendar"
+                (selectedChange)="onSelect($event)"
+                [dateClass]="dateClass()">
+  </mat-calendar>
+
+</div>

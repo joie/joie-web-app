@@ -1,0 +1,22 @@
+.event-card {
+  box-shadow: 1px 1px 1px 1px #888888;
+  border-radius: 5px;
+  padding: 10px;
+  width: 275px;
+  height: 100px;
+  text-align: left;
+  h4 {
+    margin: 2.5px;
+  }
+  strong {
+    color: #009fe1;
+  }
+  button {
+    height: 25px;
+    padding: 0;
+  }
+  p {
+    font-size: 12px;
+    margin: 5px;
+  }
+}

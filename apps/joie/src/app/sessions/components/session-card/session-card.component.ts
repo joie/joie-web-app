@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Session } from '../../models';
 
 @Component({
-  selector: 'joie-session-card',
+  selector: 'app-session-card',
   templateUrl: 'session-card.component.html',
   styleUrls: ['session-card.component.scss'],
 })

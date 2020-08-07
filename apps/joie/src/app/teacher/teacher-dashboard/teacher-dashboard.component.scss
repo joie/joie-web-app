@@ -1,0 +1,28 @@
+span.stats-flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+div.stat-flex-item {
+  box-shadow: 1px 1px 1px 1px #888888;
+  border-radius: 5px;
+  padding: 10px;
+  width: max-content;
+  text-align: center;
+  h3 {
+    color: #009fe1;
+  }
+}
+
+mat-form-field.calendar {
+  margin-left: 75px;
+}
+
+mat-list.events-list {
+  float: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 500px;
+  padding: 0;
+}
