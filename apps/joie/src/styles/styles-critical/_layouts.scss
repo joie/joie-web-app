@@ -6,6 +6,9 @@
   &#{&}-condense {
     --max-inline-size: 990px;
   }
+  &#{&}-ultra-condense {
+    --max-inline-size: 700px;
+  }
 }
 
 .spacing-block {
@@ -22,10 +25,21 @@
   }
 }
 
-.section-context {
-  place-items: center;
-  display: grid;
-  grid-row-gap: 35px;
+main {
+  > section {
+    --block-gutter: 60px;
+    padding: var(--block-gutter) 0;
+    &.section-block-start-offset {
+      padding-top: 0;
+      margin-top: calc(-1 * var(--block-gutter));
+    }
+
+    .section-context {
+      place-items: center;
+      display: grid;
+      grid-row-gap: 35px;
+    }
+  }
 }
 
 .featured-cards-grid {

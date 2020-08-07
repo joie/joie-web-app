@@ -1,4 +1,3 @@
-<p>contact-form works!</p>
 <form
   class="spacing-block"
   [formGroup]="contactForm"
@@ -13,7 +12,6 @@
       placeholder="E.g. rozevelt@example.com"
       formControlName="email"
       autocomplete="email"
-      autofocus
     />
     <mat-icon matSuffix>email</mat-icon>
     <mat-hint>We'll never share your email with anyone else</mat-hint>
@@ -41,9 +39,9 @@
     ></textarea>
   </mat-form-field>
 
-  <button type="submit" mat-flat-button>
+  <!-- <button type="submit" mat-flat-button>
     Submit
-  </button>
+  </button> -->
   <button type="submit" mat-flat-button [disabled]="contactForm.invalid">
     Submit
   </button>

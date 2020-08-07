@@ -59,7 +59,6 @@ img {
 
 main {
   > section {
-    padding: 60px 0;
     &:nth-child(even) {
       background: var(--joie-color-surface);
     }
