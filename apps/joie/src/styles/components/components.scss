@@ -2,7 +2,6 @@
 @use "../styles-critical/theme" as *;
 @import "~firebaseui/dist/firebaseui.css";
 
-@include mat-core();
 @include mat-core-theme($joie-theme);
 @include mat-button-theme($joie-theme);
 @include mat-tabs-theme($joie-theme);

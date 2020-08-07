@@ -1,10 +1,32 @@
-:host {
-  text-align: center;
-}
+// :host {
+//   text-align: center;
+// }
 
-.mat-list-item .feature-icon {
-  width: auto;
-  height: auto;
+.joie-list-item {
+  display: grid;
+  grid-template-columns: 115px auto;
+  grid-row-gap: 15px;
+  grid-column-gap: 50px;
+  > #{&}-figure {
+    // $size: 115px;
+    // width: $size;
+    // block-size: $size;
+    // height: $size;
+    // inline-size: $size;
+    grid-column: 1;
+    grid-row: span 2;
+    aspect-ratio: 1/1;
+  }
+  > #{&}-name {
+    grid-column: 2;
+  }
+  > #{&}-description {
+    grid-column: 2;
+    margin: 0;
+  }
+  + #{&} {
+    margin-block-start: 70px;
+  }
 }
 
 blockquote {
@@ -26,7 +48,7 @@ blockquote::after {
   content: close-quote;
 }
 blockquote {
-  quotes: "“" "”" "‘" "’";
+  quotes: '“' '”' '‘' '’';
 }
 
 .quote figcaption,

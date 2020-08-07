@@ -1,7 +1,7 @@
 <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="outline">
     <mat-label>Email</mat-label>
-    <input matInput placeholder="Here is my email" formControlName="email" />
+    <input type="email" matInput placeholder="Here is my email" formControlName="email" />
     <mat-hint>Your details will never be shared.</mat-hint>
   </mat-form-field>
 

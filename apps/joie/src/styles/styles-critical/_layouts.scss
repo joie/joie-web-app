@@ -1,3 +1,13 @@
+.container {
+  --max-inline-size: 1365px;
+  max-width: var(--max-inline-size);
+  max-inline-size: var(--max-inline-size);
+  margin: 0 auto;
+  &#{&}-condense {
+    --max-inline-size: 990px;
+  }
+}
+
 .spacing-block {
   display: grid;
   grid-row-gap: var(--row-gap, 20px);
@@ -11,3 +21,18 @@
     --row-gap: 30px;
   }
 }
+
+.section-context {
+  place-items: center;
+  display: grid;
+  grid-row-gap: 35px;
+}
+
+// .joie-form {
+//   display: grid;
+//   &-condense {
+//     $inline-size: 365px;
+//     max-inline-size: $inline-size;
+//     max-width: $inline-size;
+//   }
+// }

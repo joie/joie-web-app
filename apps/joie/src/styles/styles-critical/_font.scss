@@ -1,12 +1,12 @@
-$light: 300;
-$normal: 400;
-// $semi-bold: 600;
+$font-weights: ("normal": 400, "500": 500, "600": 600);
+
+
 
 @font-face {
   font-family: "Montserrat";
   src: url("/assets/fonts/Montserrat/Montserrat-VF.woff2")
     format("woff-variations");
-  font-weight: $light $normal;
+  font-weight: 0 1000;
 }
 
 // Define a custom typography config that overrides the font-family as well as the
