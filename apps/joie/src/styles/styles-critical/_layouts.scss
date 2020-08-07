@@ -28,11 +28,10 @@
   grid-row-gap: 35px;
 }
 
-// .joie-form {
-//   display: grid;
-//   &-condense {
-//     $inline-size: 365px;
-//     max-inline-size: $inline-size;
-//     max-width: $inline-size;
-//   }
-// }
+.featured-cards-grid {
+  width: 100%;
+  // place-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 20px;
+}

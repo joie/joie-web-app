@@ -33,7 +33,7 @@ $joie-typography: mat-typography-config(
   //   mat-typography-level(45px, 48px, $normal, $letter-spacing: -0.005em),
   // $display-1: mat-typography-level(34px, 40px, $normal),
 
-  $headline: mat-typography-level(math.round(ms(5)), calc(1ex / 0.47), map.get($font-weights, "600")),
+  $headline: mat-typography-level(math.round(ms(7)), calc(1ex / 0.47), map.get($font-weights, "600")),
   $title: mat-typography-level(math.round(ms(4)), calc(1ex / 0.47), map.get($font-weights, "500")),
   $subheading-2: mat-typography-level(math.round(ms(3)), 1.225, map.get($font-weights, "500")),
   $subheading-1: mat-typography-level(math.round(ms(2)), 1, map.get($font-weights, "500")),
