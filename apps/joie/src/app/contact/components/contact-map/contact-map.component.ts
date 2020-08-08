@@ -17,7 +17,7 @@ export class ContactMapComponent implements OnInit {
     zoomControl: false,
     scrollwheel: false,
     disableDoubleClickZoom: true,
-    mapTypeId: 'hybrid',
+    // mapTypeId: 'hybrid',
     maxZoom: 15,
     minZoom: 8,
   };
