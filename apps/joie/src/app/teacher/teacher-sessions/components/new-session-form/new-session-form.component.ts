@@ -40,8 +40,8 @@ export class NewSessionFormComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.formGroup = this.formBuilder.group({
-      format: this.sessionFormatOptions[0],
-      type: this.sessionTypeOptions[0],
+      format: ['', Validators.required],
+      type: ['', Validators.required],
       pillar: ['', Validators.required],
       level: ['', Validators.required],
       activity: ['', Validators.required],
@@ -69,6 +69,7 @@ export class NewSessionFormComponent implements OnInit {
       relatedSessions: this.formBuilder.array([this.createUrlInput()]),
     });
   }
+
   ngOnInit(): void {
     console.log(this.formGroup);
   }
@@ -163,10 +164,12 @@ export class NewSessionFormComponent implements OnInit {
     });
   }
   submitSession() {
-    this.router.navigate(['list'], {
-      relativeTo: this.route.parent,
-      state: { operation: SUBMIT },
-    });
+    if (this.formGroup.valid) {
+      this.router.navigate(['list'], {
+        relativeTo: this.route.parent,
+        state: { operation: SUBMIT },
+      });
+    }
   }
 
   isLiveStreaming() {

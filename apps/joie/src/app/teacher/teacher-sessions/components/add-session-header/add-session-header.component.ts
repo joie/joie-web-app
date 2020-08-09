@@ -37,6 +37,7 @@ export class AddSessionHeaderComponent implements OnInit {
   }
 
   saveFormDraft() {
+    // todo leaving this handler yet without validation for testing purposes
     this.toggle();
     this.router.navigate(['list'], {
       relativeTo: this.route,

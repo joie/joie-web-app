@@ -1,6 +1,6 @@
 import { TeacherSessionsDataService } from './../teacher-sessions/teacher-sessions-data.service';
 import { Injectable, Injector } from '@angular/core';
-import { TeacherDataService } from './teacher-data.service';
+import { TeacherDataService } from '../teacher-dashboard/teacher-data.service';
 import { NotificationsApiService } from '../teacher-notifications/notifications-api.service';
 import { Observable } from 'rxjs';
 import { TeacherEvent } from '../../models/event.model';
