@@ -38,11 +38,11 @@ export class DialogRouterComponent implements OnInit {
       if (redirectUrl) {
         this.router.navigateByUrl(redirectUrl);
       } else {
-        // this.router.navigate([{ outlets: { popup: null } }]);
-        this.router.navigate([
-          this.route.parent.snapshot.params,
-          { outlets: { popup: null } },
-        ]);
+        this.router.navigate([{ outlets: { popup: null } }]);
+        // this.router.navigate([
+        //   this.route.parent.snapshot.params,
+        //   { outlets: { popup: null } },
+        // ]);
       }
     });
   }
