@@ -9,8 +9,10 @@
 
   <mat-radio-group name="type"
                    formControlName="type">
-    <mat-radio-button *ngFor="let type of sessionTypeOptions"
-                      [value]="type">{{type}}</mat-radio-button>
+    <ng-container *ngFor="let type of sessionTypeOptions; let i = index">
+      <mat-radio-button *ngIf="i < sessionTypeOptions.length -1 || i === sessionTypeOptions.length -1  && isLiveStreaming()"
+                        [value]="type">{{type}}</mat-radio-button>
+    </ng-container>
   </mat-radio-group>
 
   <mat-label class="block">Session information</mat-label>
@@ -58,9 +60,7 @@
               matInput></textarea>
   </mat-form-field>
 
-
-  <button (click)="addGoal()">Add
-    goal</button>
+  <h3>Session goals (add one goal in line)</h3>
   <section *ngFor="let goal of goalControls; let i = index"
            formArrayName="goals">
     <button *ngIf="i > 0"
@@ -76,10 +76,11 @@
     </mat-form-field>
 
   </section>
+  <button (click)="addGoal()">Add
+    goal</button>
 
 
-  <button (click)="addComment()">Add
-    comment</button>
+  <h3>Need to know (add one comment in line)</h3>
   <section *ngFor="let comment of commentControls; let i = index"
            formArrayName="comments">
 
@@ -95,8 +96,9 @@
              matInput
              [formControlName]="i">
     </mat-form-field>
-
   </section>
+  <button (click)="addComment()">Add
+    comment</button>
 
   <mat-label class="block">Session image and intro video </mat-label>
   <p>// TODO after kaltura implementation</p>
@@ -110,14 +112,18 @@
     <p class="input-label">At the moment, Joie using USD as it's currency.</p>
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field *ngIf="formGroup.value.format !== 'On demand' && formGroup.value.type !== 'Coaching'"
+                  appearance="fill">
     <mat-label>Number of students</mat-label>
     <input formControlName="maxStudents"
            matInput>
-    <p class="input-label">This type of session is limited to 10 students.</p>
+    <p class="input-label">This type of session is limited to {{studentLimitForSessionType()}}.</p>
   </mat-form-field>
 
-  <div formGroupName="dateTimeDuration">
+  <div *ngIf="isLiveStreaming()"
+       formGroupName="dateTimeDuration">
+    <h3>Date, time and duration</h3>
+
     <mat-form-field>
       <mat-label>Date</mat-label>
       <input type="date"
@@ -139,44 +145,59 @@
              formControlName="duration">
     </mat-form-field>
   </div>
-  <button (click)="addTimeSlot()">Add
-    a time slot</button>
 
+  <mat-form-field *ngIf="formGroup.value.type === 'Course'"
+                  appearance="fill">
+    <mat-label>Repeat</mat-label>
+    <mat-icon>repeat</mat-icon>
 
-  <section formArrayName="availableTimeSlots"
-           *ngFor="let slot of slotControls; let i = index;">
-    <div [formGroupName]="i">
+    <mat-select formControlName="repeat">
+      <mat-option *ngFor="let option of repeatOptions"
+                  [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <button *ngIf="i > 0"
-              mat-icon-button
-              (click)="removeTimeSlot(i)">
-        <mat-icon>delete</mat-icon>
-      </button>
+  <ng-container *ngIf="formGroup.value.type === 'Coaching'">
+    <h3>Available time slots</h3>
 
-      <mat-form-field>
-        <mat-label>Date</mat-label>
-        <input type="date"
-               matInput
-               formControlName="date">
-      </mat-form-field>
+    <section formArrayName="availableTimeSlots"
+             *ngFor="let slot of slotControls; let i = index;">
+      <div [formGroupName]="i">
 
-      <mat-form-field>
-        <mat-label>Time</mat-label>
-        <input type="time"
-               matInput
-               formControlName="time">
-      </mat-form-field>
+        <button *ngIf="i > 0"
+                mat-icon-button
+                (click)="removeTimeSlot(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
 
-      <mat-form-field>
-        <mat-label>Duration</mat-label>
-        <input type="number"
-               matInput
-               formControlName="duration">
-      </mat-form-field>
-    </div>
+        <mat-form-field>
+          <mat-label>Date</mat-label>
+          <input type="date"
+                 matInput
+                 formControlName="date">
+        </mat-form-field>
 
+        <mat-form-field>
+          <mat-label>Time</mat-label>
+          <input type="time"
+                 matInput
+                 formControlName="time">
+        </mat-form-field>
 
-  </section>
+        <mat-form-field>
+          <mat-label>Duration</mat-label>
+          <input type="number"
+                 matInput
+                 formControlName="duration">
+        </mat-form-field>
+      </div>
+    </section>
+    <button (click)="addTimeSlot()">Add
+      a time slot</button>
+
+  </ng-container>
 
   <mat-label class="block">Upsell and promos (optional)</mat-label>
   <mat-form-field>
