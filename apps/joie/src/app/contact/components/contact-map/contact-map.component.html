@@ -4,7 +4,7 @@
   [zoom]="zoom"
   [center]="center"
   [options]="options"
->
+
   <map-marker
     #markerElem
     *ngFor="let marker of markers"
@@ -15,6 +15,7 @@
     (mapClick)="openInfo(markerElem, marker.info)"
   >
   </map-marker>
+
 
   <map-info-window>{{ infoContent }}</map-info-window>
 </google-map>

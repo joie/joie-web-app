@@ -1,4 +1,4 @@
-# Joie
+# Joie Web App ![Build and Deploy](https://github.com/joie/joie-web-app/workflows/Build%20and%20Deploy/badge.svg)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
 

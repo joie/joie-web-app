@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 
+
 @Component({
   selector: 'app-contact-map',
   templateUrl: './contact-map.component.html',

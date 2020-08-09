@@ -1,0 +1,10 @@
+<div class="navigation">
+  <mat-selection-list #navigation
+                      [multiple]="false">
+    <mat-list-option *ngFor="let tab of tabs$ | async"
+                     [value]="tab"
+                     [routerLink]="'/teacher/' + tab.toLowerCase()">
+      {{ tab }}
+    </mat-list-option>
+  </mat-selection-list>
+</div>
