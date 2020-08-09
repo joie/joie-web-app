@@ -8,14 +8,11 @@ import { DialogRouterComponent } from './components/dialog-router/dialog-router.
 import { FigureImageComponent } from './components/figure-image/figure-image.component';
 
 import { MaterialModule } from '../core/material.module';
-import { PlayerComponent } from './components/player/player.component';
-import { PlayerService } from './components/player/player.service';
 @NgModule({
   declarations: [
     PaymentSourceComponent,
     VideoComponent,
     DialogRouterComponent,
-    PlayerComponent,
     FigureImageComponent,
   ],
   imports: [CommonModule, QuicklinkModule, ReactiveFormsModule, MaterialModule],
@@ -27,9 +24,7 @@ import { PlayerService } from './components/player/player.service';
     VideoComponent,
     DialogRouterComponent,
     FigureImageComponent,
-    PlayerComponent,
     MaterialModule, // ! remove in favour of individual importing
   ],
-  providers: [PlayerService],
 })
 export class SharedModule {}
