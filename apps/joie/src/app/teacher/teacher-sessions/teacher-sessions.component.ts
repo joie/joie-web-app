@@ -1,3 +1,4 @@
+import { SessionType, CourseType } from './../../sessions/models/session';
 import { TeacherFacadeService } from './../service/teacher-facade.service';
 import { AddSessionHeaderComponent } from './components/add-session-header/add-session-header.component';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -32,6 +33,25 @@ export class TeacherSessionsComponent implements OnInit {
     */
     this.router.navigate(['list'], { relativeTo: this.route });
   }
+
+  formatFormData(value) {
+    if (value.format === CourseType.OnDemand) {
+      delete value['dateTimeDuration'];
+      delete value['availableTimeSlots'];
+      delete value['repeat'];
+      delete value['maxStudents'];
+    }
+    if (value.format === CourseType.LiveStreaming) {
+      if (value.type !== 'Course') {
+        delete value['repeat'];
+      }
+      if (value.type !== SessionType.Coaching) {
+        delete value['availableTimeSlots'];
+        delete value['maxStudents'];
+      }
+    }
+    return value;
+  }
   onActivate(componentRef) {
     const formGroup = componentRef.formGroup;
     if (formGroup) {
@@ -57,6 +77,7 @@ export class TeacherSessionsComponent implements OnInit {
           this.header.toggle();
           break;
         case SUBMIT:
+          console.log(this.formatFormData(componentRef.formGroup.value));
           this.facadeService.submitSession('user123', history.state.formData);
           this.header.toggle();
           break;

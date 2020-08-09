@@ -18,13 +18,15 @@ export interface Session {
 }
 
 export enum CourseType {
-  OnDemand = 'OnDemand',
+  OnDemand = 'On demand',
+  LiveStreaming = 'Live streaming',
 }
 
 export enum CourseLevel {
   Beginner = 'Beginner',
   Intermediate = 'Intermediate',
   Advanced = 'Advanced',
+  All_levels = 'All levels',
 }
 
 export enum SessionType {
@@ -36,11 +38,11 @@ export enum SessionType {
 }
 
 export enum Pillar {
-  Movement = 'Movement',
-  Emotions = 'Emotions',
-  Connections = 'Connections',
-  Spirit = 'Spirit',
-  Professional = 'Professional',
+  Movement = 'JoieMovement',
+  Emotions = 'JoieEmotions',
+  Connections = 'JoieConnections',
+  Spirit = 'JoieSpirit',
+  Professional = 'JoieProfessional',
 }
 
 export enum Activities {
@@ -67,6 +69,12 @@ export enum Activities {
   PROFESSIONAL_DEVELOPMENT = 'Professional Development',
   FINANACIAL_STABILITY = 'Final Stability',
   SATISFACTION_AT_WORK = 'Satisfaction at Work',
+}
+export enum Repeat {
+  Daily = 'Daily',
+  Weekly = 'Weekly',
+  BiWeekly = 'Bi-weekly',
+  Monthly = 'Monthly',
 }
 export interface Author {
   id: string;

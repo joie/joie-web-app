@@ -4,10 +4,11 @@ import {
   CourseLevel,
   Pillar,
   Activities,
+  Repeat,
 } from './../../../../sessions/models/session';
 import { CANCEL, SUBMIT } from '../../teacher-sessions.component';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SAVE_DRAFT } from '../../teacher-sessions.component';
@@ -17,13 +18,13 @@ import { SAVE_DRAFT } from '../../teacher-sessions.component';
   templateUrl: './new-session-form.component.html',
   styleUrls: ['./new-session-form.component.scss'],
 })
-export class NewSessionFormComponent {
+export class NewSessionFormComponent implements OnInit {
   formGroup: FormGroup;
 
   // form spec
   sessionFormatOptions = Object.values(CourseType);
-  sessionTypeOptions = Object.keys(SessionType);
-
+  sessionTypeOptions = Object.values(SessionType);
+  repeatOptions = Object.values(Repeat);
   sessionPillars = Object.values(Pillar);
   sessionLevels = Object.values(CourseLevel);
   sessionActivities = Object.values(Activities);
@@ -62,10 +63,14 @@ export class NewSessionFormComponent {
         time: '',
         duration: '',
       }),
+      repeat: ['', Validators.required],
       availableTimeSlots: this.formBuilder.array([this.createTimeSlot()]),
       promo: '',
       relatedSessions: this.formBuilder.array([this.createUrlInput()]),
     });
+  }
+  ngOnInit(): void {
+    console.log(this.formGroup);
   }
 
   restoreFormValue(formData) {
@@ -162,5 +167,16 @@ export class NewSessionFormComponent {
       relativeTo: this.route.parent,
       state: { operation: SUBMIT },
     });
+  }
+
+  isLiveStreaming() {
+    return this.formGroup.value.format === CourseType.LiveStreaming;
+  }
+
+  studentLimitForSessionType() {
+    switch (this.formGroup.value.type) {
+      default:
+        return '10 students';
+    } // todo add cases if other types also affect limit
   }
 }
