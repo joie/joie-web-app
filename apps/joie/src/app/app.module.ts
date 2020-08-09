@@ -7,6 +7,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule, SETTINGS } from '@angular/fire/firestore';
 import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/functions';
 
+import { KalturaClientModule, KalturaClient } from 'kaltura-ngx-client';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -32,9 +33,11 @@ import { AuthModule } from './auth/auth.module';
       enabled: environment.production,
     }),
     BrowserAnimationsModule,
-    HttpClientModule,
+	HttpClientModule,
+	KalturaClientModule,
   ],
   providers: [
+	KalturaClient,
     //   {
     //     provide: SETTINGS,
     //     useValue: environment.production
