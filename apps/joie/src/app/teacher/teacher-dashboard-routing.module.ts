@@ -6,19 +6,18 @@ import { DialogRouterComponent } from '../shared/components/dialog-router/dialog
 
 const routes: Routes = [
   {
+    path: 'message',
+    component: DialogRouterComponent,
+    data: {
+      dialogComponent: MessagePopupComponent,
+      matDialogConfig: { width: '500px' },
+    },
+    outlet: 'teacherdashboardpopup',
+  },
+  {
     path: 'another-dashboard',
     component: TeacherDashboardComponent,
-    children: [
-      {
-        path: 'message',
-        component: DialogRouterComponent,
-        data: {
-          dialogComponent: MessagePopupComponent,
-          matDialogConfig: { width: '500px' },
-        },
-        outlet: 'teacherdashboardpopup',
-      },
-    ],
+    children: [],
   },
 ];
 

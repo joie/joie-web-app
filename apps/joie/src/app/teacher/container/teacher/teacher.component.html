@@ -2,5 +2,9 @@
 
 <app-side-nav [tabs$]="tabs$"></app-side-nav>
 
-<router-outlet (deactivate)="onDeactivate($event)"
-               class="tabs-outlet"></router-outlet>
+<router-outlet
+  (deactivate)="onDeactivate($event)"
+  class="tabs-outlet"
+></router-outlet>
+
+<router-outlet name="teacherdashboardpopup"></router-outlet>
