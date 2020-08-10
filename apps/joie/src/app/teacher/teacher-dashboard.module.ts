@@ -1,3 +1,4 @@
+import { MessagePopupComponent } from './teacher-dashboard/components/message-popup/message-popup.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,6 +20,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     TeacherDashboardComponent,
     EventCardComponent,
     EventCalendarComponent,
+    MessagePopupComponent,
   ],
   imports: [
     TeacherDashboardRoutingModule,
