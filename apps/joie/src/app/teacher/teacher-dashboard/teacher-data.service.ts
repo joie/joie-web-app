@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { navTabs, dashboardInfoMock } from '../teacher.mocks';
 import { of, Observable } from 'rxjs';
 import { Teacher } from '../../models/teacher.model';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',

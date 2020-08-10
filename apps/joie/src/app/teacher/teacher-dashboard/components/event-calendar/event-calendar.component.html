@@ -1,3 +1,15 @@
+<div class="tools-panel">
+  <h3>My calendar</h3>
+  <mat-divider></mat-divider>
+  <button>
+    <mat-icon>add</mat-icon>Add a session
+  </button>
+  <button>
+    <mat-icon>visibility</mat-icon>View all sessions
+  </button>
+
+</div>
+
 <div class='calendar-box'>
   <mat-calendar #calendar
                 class="calendar"
@@ -8,5 +20,3 @@
                 (selectedChange)="onSelect($event)"
                 [dateClass]="dateClass()">
   </mat-calendar>
-
-</div>

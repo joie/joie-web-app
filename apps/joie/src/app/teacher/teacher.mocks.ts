@@ -110,6 +110,27 @@ export const dashboardInfoMock = {
       title: 'Nutrition course',
       url: '/urlll',
     },
+    {
+      time: '4:40',
+      date: new Date('2020/07/29'),
+      type: EventTypes.Course,
+      title: 'Full body stretch and yoga for stress & anxiety Relief',
+      url: '//http',
+    },
+    {
+      time: '4:50',
+      date: new Date('2020/07/30'),
+      type: EventTypes.Coaching,
+      title: 'Super relax meditation session',
+      url: '/fakeurl',
+    },
+    {
+      time: '5:00',
+      date: new Date('2020/07/31'),
+      type: EventTypes.Course,
+      title: 'Nutrition course',
+      url: '/urlll',
+    },
   ],
 };
 
