@@ -2,7 +2,6 @@
 
   <app-header [teacher$]="teacher$"></app-header>
 
-
 </header>
 <main>
   <section>
@@ -15,6 +14,8 @@
 
         <router-outlet (deactivate)="onDeactivate($event)"
                        class="tabs-outlet"></router-outlet>
+        <router-outlet name="teacherdashboardpopup"></router-outlet>
+
       </div>
     </div>
   </section>
