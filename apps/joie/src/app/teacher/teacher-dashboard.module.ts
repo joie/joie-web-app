@@ -1,3 +1,6 @@
+import { StatsComponent } from './teacher-dashboard/components/stats/stats.component';
+import { SharedModule } from './../shared/shared.module';
+import { EventsListComponent } from './teacher-dashboard/components/events-list/events-list.component';
 import { MessagePopupComponent } from './teacher-dashboard/components/message-popup/message-popup.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
@@ -21,10 +24,12 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     EventCardComponent,
     EventCalendarComponent,
     MessagePopupComponent,
+    EventsListComponent,
+    StatsComponent,
   ],
   imports: [
     TeacherDashboardRoutingModule,
-    CommonModule,
+    SharedModule,
     MatListModule,
     MatInputModule,
     MatFormFieldModule,

@@ -10,5 +10,5 @@ export interface Teacher {
 
 export interface Stat {
   title: string;
-  value: number;
+  value: number | string;
 }
