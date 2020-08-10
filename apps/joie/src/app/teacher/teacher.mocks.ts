@@ -2,7 +2,7 @@ import { EventTypes } from '../models/event.model';
 import { Profile } from '../models/profile.model';
 
 export const navTabs = [
-  'Dashboard',
+  'Dashboard/another-dashboard',
   'Sessions',
   'Profile',
   'Banking',

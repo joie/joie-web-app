@@ -1,24 +1,25 @@
- <mat-card class="event-card">
-   <h4>{{ event.time }} pm</h4>
-   <mat-icon class='copy-url'
-             [cdkCopyToClipboard]="event.url">link</mat-icon>
-   <p>
-     <strong>{{ event.type }}</strong>{{ " "+ event.title }}
-   </p>
+<mat-card class="event-card">
+  <h4>{{ event.time }} pm</h4>
+  <mat-icon class="copy-url" [cdkCopyToClipboard]="event.url">link</mat-icon>
+  <p>
+    <strong>{{ event.type }}</strong
+    >{{ ' ' + event.title }}
+  </p>
 
-   <a [routerLink]="[{ outlets: { popup: ['message'] } }]">
+  <a
+    [routerLink]="[
+      '/teacher',
+      'dashboard',
+      'another-dashboard',
+      { outlets: { teacherdashboardpopup: ['message'] } }
+    ]"
+  >
+    <button class="bottom" mat-raised-button>
+      <mat-icon>message</mat-icon>Message
+    </button>
+  </a>
 
-     <button class="bottom"
-             mat-raised-button>
-       <mat-icon>message</mat-icon>Message
-     </button>
-   </a>
-
-
-   <button class="bottom"
-           mat-raised-button>
-     <mat-icon>edit</mat-icon>Edit
-   </button>
-
-
- </mat-card>
+  <button class="bottom" mat-raised-button>
+    <mat-icon>edit</mat-icon>Edit
+  </button>
+</mat-card>

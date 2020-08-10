@@ -16,11 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
     outlet: 'popup',
   },
-  {
-    path: 'teacher',
-    loadChildren: () =>
-      import('./teacher/teacher.module').then((m) => m.TeacherModule),
-  },
+
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
@@ -60,6 +56,11 @@ const routes: Routes = [
       import('./sessions/sessions.module').then((m) => m.SessionsModule),
   },
   {
+    path: 'teacher',
+    loadChildren: () =>
+      import('./teacher/teacher.module').then((m) => m.TeacherModule),
+  },
+  {
     path: 'onboarding',
     children: [
       {
@@ -78,7 +79,11 @@ const routes: Routes = [
       },
     ],
   },
-  { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
+  {
+    path: 'contact',
+    loadChildren: () =>
+      import('./contact/contact.module').then((m) => m.ContactModule),
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 
