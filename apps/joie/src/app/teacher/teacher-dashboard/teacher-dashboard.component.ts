@@ -16,9 +16,7 @@ export class TeacherDashboardComponent implements OnInit {
   constructor(private facadeService: TeacherFacadeService) {}
 
   ngOnInit(): void {
-    this.teacher$ = this.facadeService
-      .getTeacher('user123')
-      .pipe(tap((data) => console.log(data)));
+    this.teacher$ = this.facadeService.getTeacher('user123');
 
     // this.events$ = this.facadeService.getTeacherEvents(); // todo sorted by time on server side?
 

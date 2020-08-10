@@ -15,7 +15,7 @@ export class TeacherDataService {
     return of(navTabs);
   }
   getTeacher(userId = '123'): Observable<Teacher> {
-    return of(dashboardInfoMock).pipe(tap((d) => console.log(d)));
+    return of(dashboardInfoMock);
   }
 
   // todo teacher event should be a part of session or contain a refrence to it
