@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-message-popup',
   templateUrl: './message-popup.component.html',
-  styleUrls: ['./message-popup.component.scss']
+  styleUrls: ['./message-popup.component.scss'],
 })
-export class MessagePopupComponent implements OnInit {
+export class MessagePopupComponent {
+  message = '';
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  sendMessage() {
+    // todo add function to service facadeService.send(this.message)
   }
-
 }

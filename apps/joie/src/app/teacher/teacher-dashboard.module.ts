@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { StatsComponent } from './teacher-dashboard/components/stats/stats.component';
 import { EventsListComponent } from './teacher-dashboard/components/events-list/events-list.component';
 
@@ -39,6 +40,7 @@ import { SharedModule } from '../shared/shared.module';
     MatNativeDateModule,
     MatIconModule,
     ClipboardModule,
+    FormsModule,
   ],
 })
 export class TeacherDashboardModule {}

@@ -1,1 +1,12 @@
-<p>message-popup works!</p>
+<form ng-submit="sendMessage()">
+  <mat-form-field>
+    <mat-label>Message to event participants</mat-label>
+    <input matInput
+           required
+           [(ngModel)]="message">
+  </mat-form-field>
+
+  <button matButton
+          type='submit'>Send to participants</button>
+
+</form>
