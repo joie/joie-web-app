@@ -12,6 +12,7 @@ import { SessionEnrollDialogComponent } from './components/session-enroll-dialog
 import { SessionDetailsComponent } from './components/session-details/session-details.component';
 import { SessionService } from './services/session.service';
 import { SessionCardComponent } from './components/session-card/session-card.component';
+import { KalturaPlayerModule } from '../kaltura-player/kaltura-player.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SessionCardComponent } from './components/session-card/session-card.com
     MatCardModule,
     MatDialogModule,
     MatButtonModule,
+    KalturaPlayerModule,
   ],
   providers: [SessionService],
   exports: [SessionListComponent],
