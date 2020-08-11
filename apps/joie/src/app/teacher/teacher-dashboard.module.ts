@@ -1,4 +1,3 @@
-import { EditEventPopupComponent } from './teacher-dashboard/components/edit-event-popup/edit-event-popup.component';
 import { FormsModule } from '@angular/forms';
 import { StatsComponent } from './teacher-dashboard/components/stats/stats.component';
 import { EventsListComponent } from './teacher-dashboard/components/events-list/events-list.component';
@@ -29,7 +28,6 @@ import { SessionsListPopupComponent } from './teacher-dashboard/components/sessi
     MessagePopupComponent,
     EventsListComponent,
     StatsComponent,
-    EditEventPopupComponent,
     SessionsListPopupComponent,
   ],
   imports: [
