@@ -5,12 +5,26 @@
          fxLayoutGap="16px">
       <h3>My calendar</h3>
       <mat-divider></mat-divider>
-      <button>
-        <mat-icon>add</mat-icon>Add a session
-      </button>
-      <button>
-        <mat-icon>visibility</mat-icon>View all sessions
-      </button>
+
+      <a [routerLink]="[
+      '/teacher',
+      'dashboard',
+      { outlets: { teacherdashboardpopup: ['new-session'] } }
+    ]">
+        <button>
+          <mat-icon>add</mat-icon>Add a session
+        </button>
+      </a>
+
+      <a [routerLink]="[
+      '/teacher',
+      'dashboard',
+      { outlets: { teacherdashboardpopup: ['events'] } }
+    ]">
+        <button>
+          <mat-icon>visibility</mat-icon>View all sessions
+        </button>
+      </a>
 
     </div>
   </div>
@@ -21,7 +35,6 @@
                   [selected]="selectedDate"
                   [startAt]="startAt"
                   [dateFilter]="myDateFilter"
-                  (click)="calendar"
                   (selectedChange)="onSelect($event)"
                   [dateClass]="dateClass()">
     </mat-calendar>

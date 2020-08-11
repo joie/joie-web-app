@@ -18,9 +18,14 @@
     </button>
   </a>
 
-
-  <button class="bottom"
-          mat-raised-button>
-    <mat-icon>edit</mat-icon>Edit
-  </button>
+  <a [routerLink]="[
+      '/teacher',
+      'dashboard',
+      { outlets: { teacherdashboardpopup: ['edit-event'] } }
+    ]">
+    <button class="bottom"
+            mat-raised-button>
+      <mat-icon>edit</mat-icon>Edit
+    </button>
+  </a>
 </mat-card>

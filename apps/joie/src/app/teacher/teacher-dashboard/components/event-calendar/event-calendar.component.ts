@@ -4,6 +4,7 @@ import {
 } from '@angular/material/datepicker';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { TeacherEvent } from '../../../../models/event.model';
+import { Router, Route, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-event-calendar',
@@ -14,17 +15,45 @@ export class EventCalendarComponent implements OnInit {
   @ViewChild('calendar') calendar: MatCalendar<Date>;
   @Input() eventsArray: TeacherEvent[];
   datesArray: Date[];
+  eventMap = {};
   selectedDate = new Date('2020/07/30');
   startAt = new Date();
 
-  constructor() {
+  constructor(private router: Router, private route: ActivatedRoute) {
     // this.onSelect(this.datesArray);
   }
 
   onSelect(event) {
-    console.log(event);
-    this.selectedDate = event;
-    // todo is it supposed to be a popup with event details ?
+    if (this.eventMap[this.dateToKey(event)]) {
+      console.log(this.router.routerState.snapshot);
+      this.router.navigate(
+        [
+          '/teacher',
+          'dashboard',
+          {
+            outlets: {
+              teacherdashboardpopup: ['events'],
+            },
+          },
+        ],
+        { relativeTo: this.route }
+      );
+    } else {
+      // todo open add event popup
+      this.router.navigate(
+        [
+          '/teacher',
+          'dashboard',
+          {
+            outlets: {
+              teacherdashboardpopup: ['new-session'],
+            },
+          },
+        ],
+        { relativeTo: this.route }
+      );
+    }
+    // this.selectedDate = event; // todo dont need it yet
   }
 
   dateClass() {
@@ -42,13 +71,20 @@ export class EventCalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.datesArray = this.eventsArray.map((event) => event.date);
-    // this.calendar.updateTodaysDate();
+    this.datesArray = this.eventsArray.map((event) => {
+      Object.assign(this.eventMap, { [this.dateToKey(event.date)]: event });
+      return event.date;
+    });
+  }
+
+  dateToKey(date: Date): string {
+    let space = new RegExp(' ', 'g');
+    return date.toString().replace(space, '_');
   }
 
   myDateFilter = (d: Date): boolean => {
     const day = d.getDay();
     // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
+    return day !== 0 && day !== 6; //todo shall we filter days? sat sun?
   };
 }

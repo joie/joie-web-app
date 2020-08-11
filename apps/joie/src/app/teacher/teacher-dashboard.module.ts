@@ -1,3 +1,4 @@
+import { EditEventPopupComponent } from './teacher-dashboard/components/edit-event-popup/edit-event-popup.component';
 import { FormsModule } from '@angular/forms';
 import { StatsComponent } from './teacher-dashboard/components/stats/stats.component';
 import { EventsListComponent } from './teacher-dashboard/components/events-list/events-list.component';
@@ -18,6 +19,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { TeacherDashboardRoutingModule } from './teacher-dashboard-routing.module';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { SharedModule } from '../shared/shared.module';
+import { SessionsListPopupComponent } from './teacher-dashboard/components/sessions-list-popup/sessions-list-popup.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { SharedModule } from '../shared/shared.module';
     MessagePopupComponent,
     EventsListComponent,
     StatsComponent,
+    EditEventPopupComponent,
+    SessionsListPopupComponent,
   ],
   imports: [
     SharedModule,
