@@ -11,15 +11,11 @@
         <mat-icon>add</mat-icon>Add a session
       </button>
 
-      <a [routerLink]="[
-      '/teacher',
-      'dashboard',
-      { outlets: { teacherdashboardpopup: ['events'] } }
-    ]">
-        <button>
-          <mat-icon>visibility</mat-icon>View all sessions
-        </button>
-      </a>
+
+      <button (click)="viewSessionsList()">
+        <mat-icon>visibility</mat-icon>View all sessions
+      </button>
+
 
     </div>
   </div>

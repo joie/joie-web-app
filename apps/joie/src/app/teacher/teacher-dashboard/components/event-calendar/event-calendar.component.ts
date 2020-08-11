@@ -24,9 +24,11 @@ export class EventCalendarComponent implements OnInit {
     // this.onSelect(this.datesArray);
   }
 
-  onSelect(event) {
-    if (this.eventMap[this.dateToKey(event)]) {
-      this.redirectToNewSession('edit', event);
+  onSelect(date) {
+    let key = this.dateToKey(date);
+
+    if (this.eventMap[key]) {
+      this.viewSessionsList(this.eventMap[key]);
     } else {
       this.redirectToNewSession('add');
     }
@@ -43,6 +45,16 @@ export class EventCalendarComponent implements OnInit {
     this.router.navigate(['teacher', 'sessions'], extras);
   }
 
+  viewSessionsList(sessions = this.sessions) {
+    this.router.navigate(
+      [
+        '/teacher',
+        'dashboard',
+        { outlets: { teacherdashboardpopup: ['events'] } },
+      ],
+      { state: { sessions: sessions } }
+    );
+  }
   dateClass() {
     return (date: Date): MatCalendarCellCssClasses => {
       const highlightDate = this.datesArray
@@ -60,9 +72,15 @@ export class EventCalendarComponent implements OnInit {
   ngOnInit(): void {
     this.datesArray = this.sessions.map((session) => {
       let { date } = session.dateTimeDuration;
-      Object.assign(this.eventMap, {
-        [this.dateToKey(new Date(date))]: session,
-      });
+      let key = this.dateToKey(new Date(date));
+
+      if (!this.eventMap[key]) {
+        Object.assign(this.eventMap, {
+          [key]: [],
+        });
+      }
+
+      this.eventMap[key].push(session);
       return date;
     });
   }

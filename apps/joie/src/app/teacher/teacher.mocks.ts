@@ -200,7 +200,7 @@ export const sessionsMock = [
     comments: ['//todo'],
     price: '500',
     dateTimeDuration: {
-      date: '2020-08-03',
+      date: '2020-08-31 00:00',
       time: '16:40',
       duration: 59,
     },
