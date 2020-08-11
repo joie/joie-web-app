@@ -6,15 +6,10 @@
       <h3>My calendar</h3>
       <mat-divider></mat-divider>
 
-      <a [routerLink]="[
-      '/teacher',
-      'dashboard',
-      { outlets: { teacherdashboardpopup: ['new-session'] } }
-    ]">
-        <button>
-          <mat-icon>add</mat-icon>Add a session
-        </button>
-      </a>
+
+      <button (click)="redirectToNewSession('add')">
+        <mat-icon>add</mat-icon>Add a session
+      </button>
 
       <a [routerLink]="[
       '/teacher',

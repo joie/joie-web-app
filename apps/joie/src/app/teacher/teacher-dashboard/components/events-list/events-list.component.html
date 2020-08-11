@@ -4,10 +4,10 @@
   <div fxLayout="row wrap"
        fxLayoutGap="16px grid"
        fxLayoutAlign="flex-start">
-    <ng-container *ngFor="let event of events">
+    <ng-container *ngFor="let session of sessions">
 
       <app-event-card fxFlex="0 1 calc(33.3% - 8px)"
-                      [event]="event"></app-event-card>
+                      [session]="session"></app-event-card>
 
     </ng-container>
 

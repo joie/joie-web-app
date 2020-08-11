@@ -45,6 +45,10 @@ export class TeacherFacadeService {
     return this.teacherDataService.getTeacher(id);
   }
 
+  getSessions(id: string) {
+    return this.teacherDataService.getSessions(id);
+  }
+
   postMesage(id: string, event: TeacherEvent, message: string) {
     return this.teacherDataService.postMessage(id, event, message);
   }

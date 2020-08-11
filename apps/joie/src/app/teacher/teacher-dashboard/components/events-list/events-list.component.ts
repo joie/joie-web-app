@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./events-list.component.scss'],
 })
 export class EventsListComponent implements OnInit {
-  @Input() events: TeacherEvent[];
+  @Input() sessions;
   constructor() {}
 
   ngOnInit(): void {}

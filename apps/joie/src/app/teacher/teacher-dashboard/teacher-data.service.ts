@@ -1,3 +1,4 @@
+import { sessionsMock } from './../teacher.mocks';
 import { TeacherEvent } from '../../models/event.model';
 import { Injectable } from '@angular/core';
 import { navTabs, dashboardInfoMock } from '../teacher.mocks';
@@ -20,6 +21,10 @@ export class TeacherDataService {
   // todo teacher event should be a part of session or contain a refrence to it
   postMessage(id: string, event: TeacherEvent, message: string) {
     return of(true);
+  }
+
+  getSessions(userId: string) {
+    return of(sessionsMock);
   }
   // getTeacherEvents(
   //   userId = 123,

@@ -5,7 +5,6 @@ export interface Teacher {
   firstName: string;
   lastName: string;
   stats: Stat[];
-  events: TeacherEvent[];
 }
 
 export interface Stat {

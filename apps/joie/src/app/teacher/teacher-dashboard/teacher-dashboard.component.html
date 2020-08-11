@@ -3,14 +3,15 @@
   <header>
     <app-stats [stats]="teacher.stats"></app-stats>
   </header>
-  <main>
+  <main *ngIf="sessions$ | async as sessions">
+
 
     <section>
-      <app-event-calendar [eventsArray]="teacher.events"></app-event-calendar>
+      <app-event-calendar [sessions]="sessions"></app-event-calendar>
     </section>
 
     <section>
-      <app-events-list [events]="teacher.events"></app-events-list>
+      <app-events-list [sessions]="sessions"></app-events-list>
     </section>
 
   </main>

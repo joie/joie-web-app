@@ -1,9 +1,9 @@
 <mat-card class="event-card">
-  <h4>{{ event.time }} pm</h4>
+  <h4>{{ session.dateTimeDuration.time }} pm</h4>
   <mat-icon class="copy-url"
-            [cdkCopyToClipboard]="event.url">link</mat-icon>
+            [cdkCopyToClipboard]="session.url">link</mat-icon>
   <p>
-    <strong>{{ event.type }}</strong>{{ ' ' + event.title }}
+    <strong>{{ session.type }}</strong>{{ ' ' + session.name }}
   </p>
 
 
@@ -18,14 +18,10 @@
     </button>
   </a>
 
-  <a [routerLink]="[
-      '/teacher',
-      'dashboard',
-      { outlets: { teacherdashboardpopup: ['edit-event'] } }
-    ]">
-    <button class="bottom"
-            mat-raised-button>
-      <mat-icon>edit</mat-icon>Edit
-    </button>
-  </a>
+
+  <button class="bottom"
+          (click)="handleEdit()"
+          mat-raised-button>
+    <mat-icon>edit</mat-icon>Edit
+  </button>
 </mat-card>

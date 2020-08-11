@@ -12,11 +12,14 @@ import { tap } from 'rxjs/operators';
 })
 export class TeacherDashboardComponent implements OnInit {
   teacher$: Observable<Teacher>;
+  sessions$; //todo interface
   // events$: Observable<TeacherEvent[]>;
   constructor(private facadeService: TeacherFacadeService) {}
 
   ngOnInit(): void {
     this.teacher$ = this.facadeService.getTeacher('user123');
+
+    this.sessions$ = this.facadeService.getSessions('user123');
 
     // this.events$ = this.facadeService.getTeacherEvents(); // todo sorted by time on server side?
 

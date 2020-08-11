@@ -14,6 +14,7 @@ import { Router, Route, ActivatedRoute } from '@angular/router';
 export class EventCalendarComponent implements OnInit {
   @ViewChild('calendar') calendar: MatCalendar<Date>;
   @Input() eventsArray: TeacherEvent[];
+  @Input() sessions;
   datesArray: Date[];
   eventMap = {};
   selectedDate = new Date('2020/07/30');
@@ -25,35 +26,21 @@ export class EventCalendarComponent implements OnInit {
 
   onSelect(event) {
     if (this.eventMap[this.dateToKey(event)]) {
-      console.log(this.router.routerState.snapshot);
-      this.router.navigate(
-        [
-          '/teacher',
-          'dashboard',
-          {
-            outlets: {
-              teacherdashboardpopup: ['events'],
-            },
-          },
-        ],
-        { relativeTo: this.route }
-      );
+      this.redirectToNewSession('edit', event);
     } else {
-      // todo open add event popup
-      this.router.navigate(
-        [
-          '/teacher',
-          'dashboard',
-          {
-            outlets: {
-              teacherdashboardpopup: ['new-session'],
-            },
-          },
-        ],
-        { relativeTo: this.route }
-      );
+      this.redirectToNewSession('add');
     }
     // this.selectedDate = event; // todo dont need it yet
+  }
+
+  redirectToNewSession(action, sessionData = null) {
+    let extras = {
+      state: { action: action },
+    };
+    if (sessionData) {
+      Object.assign(extras, sessionData);
+    }
+    this.router.navigate(['teacher', 'sessions'], extras);
   }
 
   dateClass() {
@@ -71,9 +58,12 @@ export class EventCalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.datesArray = this.eventsArray.map((event) => {
-      Object.assign(this.eventMap, { [this.dateToKey(event.date)]: event });
-      return event.date;
+    this.datesArray = this.sessions.map((session) => {
+      let { date } = session.dateTimeDuration;
+      Object.assign(this.eventMap, {
+        [this.dateToKey(new Date(date))]: session,
+      });
+      return date;
     });
   }
 
