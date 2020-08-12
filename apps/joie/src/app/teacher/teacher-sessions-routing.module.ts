@@ -2,7 +2,7 @@ import { TeacherSessionsComponent } from './teacher-sessions/teacher-sessions.co
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SessionListComponent } from '../sessions/components/session-list/session-list.component';
-import { NewSessionFormComponent } from './teacher-sessions/components/new-session-form/new-session-form.component';
+import { SessionFormComponent } from './teacher-sessions/components/session-form/session-form.component';
 
 const routes: Routes = [
   {
@@ -10,8 +10,8 @@ const routes: Routes = [
     component: TeacherSessionsComponent,
     children: [
       { path: 'list', component: SessionListComponent },
-      { path: 'add', component: NewSessionFormComponent },
-      { path: 'edit', component: NewSessionFormComponent }, // todo this route gonna have preloaded form data from router state, the component is better to be called SessionFormComponent;
+      { path: 'add', component: SessionFormComponent },
+      { path: 'edit', component: SessionFormComponent },
     ],
   },
 ];

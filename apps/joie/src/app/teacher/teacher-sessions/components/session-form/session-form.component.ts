@@ -5,7 +5,7 @@ import {
   Pillar,
   Activities,
   Repeat,
-} from './../../../../sessions/models/session';
+} from '../../../../sessions/models/session';
 import { CANCEL, SUBMIT } from '../../teacher-sessions.component';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -14,11 +14,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SAVE_DRAFT } from '../../teacher-sessions.component';
 
 @Component({
-  selector: 'app-new-session-form',
-  templateUrl: './new-session-form.component.html',
-  styleUrls: ['./new-session-form.component.scss'],
+  selector: 'app-session-form',
+  templateUrl: './session-form.component.html',
+  styleUrls: ['./session-form.component.scss'],
 })
-export class NewSessionFormComponent implements OnInit {
+export class SessionFormComponent implements OnInit {
   formGroup: FormGroup;
 
   // form spec

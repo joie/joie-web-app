@@ -8,7 +8,7 @@ import { MatDividerModule } from '@angular/material/divider';
 
 import { TeacherSessionsComponent } from './teacher-sessions/teacher-sessions.component';
 import { TeacherSessionsRoutingModule } from './teacher-sessions-routing.module';
-import { NewSessionFormComponent } from './teacher-sessions/components/new-session-form/new-session-form.component';
+import { SessionFormComponent } from './teacher-sessions/components/session-form/session-form.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
@@ -20,7 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
   declarations: [
     TeacherSessionsComponent,
     AddSessionHeaderComponent,
-    NewSessionFormComponent,
+    SessionFormComponent,
   ],
   imports: [
     TeacherSessionsRoutingModule,
