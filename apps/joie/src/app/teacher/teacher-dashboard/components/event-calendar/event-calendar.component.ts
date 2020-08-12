@@ -4,7 +4,7 @@ import {
 } from '@angular/material/datepicker';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { TeacherEvent } from '../../../../models/event.model';
-import { Router, Route, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-event-calendar',
@@ -13,7 +13,6 @@ import { Router, Route, ActivatedRoute } from '@angular/router';
 })
 export class EventCalendarComponent implements OnInit {
   @ViewChild('calendar') calendar: MatCalendar<Date>;
-  @Input() eventsArray: TeacherEvent[];
   @Input() sessions;
   datesArray: Date[];
   eventMap = {};
