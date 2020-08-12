@@ -8,10 +8,10 @@ import { DialogRouterComponent } from '../shared/components/dialog-router/dialog
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'another-dashboard',
+    redirectTo: 'info',
   },
   {
-    path: 'another-dashboard',
+    path: 'info',
     component: TeacherDashboardComponent,
     children: [],
   },
