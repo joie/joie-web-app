@@ -59,6 +59,8 @@ img {
 
 main {
   > section {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px; /* Explained in the next section. */
     &:nth-child(even) {
       background: var(--joie-color-surface);
     }
