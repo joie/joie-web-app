@@ -1,12 +1,35 @@
-<div class='calendar-box'>
-  <mat-calendar #calendar
-                class="calendar"
-                [selected]="selectedDate"
-                [startAt]="startAt"
-                [dateFilter]="myDateFilter"
-                (click)="calendar"
-                (selectedChange)="onSelect($event)"
-                [dateClass]="dateClass()">
-  </mat-calendar>
+<section class="my-calendar-section">
+  <div class="container">
+    <div class="tools-panel"
+         fxLayout="column"
+         fxLayoutGap="16px">
+      <h3>My calendar</h3>
+      <mat-divider></mat-divider>
 
-</div>
+
+      <button (click)="redirectToNewSession('add')">
+        <mat-icon>add</mat-icon>Add a session
+      </button>
+
+
+      <button (click)="viewSessionsList()">
+        <mat-icon>visibility</mat-icon>View all sessions
+      </button>
+
+
+    </div>
+  </div>
+
+  <div class='calendar-box container'>
+    <mat-calendar #calendar
+                  class="calendar"
+                  [selected]="selectedDate"
+                  [startAt]="startAt"
+                  [dateFilter]="myDateFilter"
+                  (selectedChange)="onSelect($event)"
+                  [dateClass]="dateClass()">
+    </mat-calendar>
+  </div>
+
+
+</section>

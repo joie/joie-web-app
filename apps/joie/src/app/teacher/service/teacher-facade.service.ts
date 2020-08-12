@@ -45,13 +45,14 @@ export class TeacherFacadeService {
     return this.teacherDataService.getTeacher(id);
   }
 
-  postMesage(id: string, event: TeacherEvent, message: string) {
-    return this.teacherDataService.postMessage(id, event, message);
+  getSessions(id: string) {
+    return this.teacherDataService.getSessions(id);
   }
 
-  // getTeacherEvents() { // todo events will probably come inside the TeacherData
-  //   return this.teacherDataService.getTeacherEvents();
-  // }
+  postMesage(id: string, session, message: string) {
+    return this.teacherDataService.postMessage(id, session, message);
+  }
+
   getNotificationSettings(id: string) {
     // todo this should be definetely abstracted into some account service
     return this.notificationsApiService.getNotificationSettings(id);

@@ -31,7 +31,15 @@ export class TeacherSessionsComponent implements OnInit {
     this.router.navigate('list', {relTo:this, state: response})
     })
     */
-    this.router.navigate(['list'], { relativeTo: this.route });
+    const dashboardAction = history.state.action;
+    if (dashboardAction) {
+      this.sessionDraft = history.state.session;
+      this.router.navigate([dashboardAction], {
+        relativeTo: this.route,
+      });
+    } else {
+      this.router.navigate(['list'], { relativeTo: this.route });
+    }
   }
 
   formatFormData(value) {
@@ -57,7 +65,7 @@ export class TeacherSessionsComponent implements OnInit {
     if (formGroup) {
       this.header.toggle();
       if (this.sessionDraft) {
-        formGroup.setValue(this.sessionDraft);
+        formGroup.patchValue(this.sessionDraft);
         this.sessionDraft = null; // todo maybe nulling isn't a must, let it be, why
       }
     }
@@ -67,7 +75,6 @@ export class TeacherSessionsComponent implements OnInit {
       let { operation } = history.state;
       switch (operation) {
         case SAVE_DRAFT:
-          console.log('saving draft', componentRef.formGroup);
           this.sessionDraft = componentRef.formGroup.value;
           // todo save draft to somewhere persistent
           this.header.toggle();
@@ -77,7 +84,6 @@ export class TeacherSessionsComponent implements OnInit {
           this.header.toggle();
           break;
         case SUBMIT:
-          console.log(this.formatFormData(componentRef.formGroup.value));
           this.facadeService.submitSession('user123', history.state.formData);
           this.header.toggle();
           break;

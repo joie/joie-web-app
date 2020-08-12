@@ -1,0 +1,14 @@
+  <h4>Upcoming sessions</h4>
+  <mat-divider></mat-divider>
+
+  <div fxLayout="row wrap"
+       fxLayoutGap="16px grid"
+       fxLayoutAlign="flex-start">
+    <ng-container *ngFor="let session of sessions">
+
+      <app-event-card fxFlex="0 1 calc(33.3% - 8px)"
+                      [session]="session"></app-event-card>
+
+    </ng-container>
+
+  </div>

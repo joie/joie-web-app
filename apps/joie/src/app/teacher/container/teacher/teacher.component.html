@@ -1,6 +1,22 @@
-<app-header [teacher$]="teacher$"></app-header>
+<header>
 
-<app-side-nav [tabs$]="tabs$"></app-side-nav>
+  <app-header [teacher$]="teacher$"></app-header>
 
-<router-outlet (deactivate)="onDeactivate($event)"
-               class="tabs-outlet"></router-outlet>
+</header>
+<main>
+  <section>
+    <div class="container">
+      <aside>
+        <app-side-nav [tabs$]="tabs$"></app-side-nav>
+
+      </aside>
+      <div class="section-context">
+
+        <router-outlet class="tabs-outlet"></router-outlet>
+        <router-outlet name="dashboard-dialog"></router-outlet>
+
+      </div>
+    </div>
+  </section>
+
+</main>

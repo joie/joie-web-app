@@ -1,0 +1,9 @@
+  <span fxLayout="row"
+        fxLayoutGap="auto"
+        fxLayoutAlign="space-around center">
+    <div class="stat-item"
+         *ngFor="let stat of stats">
+      <h3>{{ stat.value }}</h3>
+      <h4>{{ stat.title }}</h4>
+    </div>
+  </span>

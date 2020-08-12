@@ -11,6 +11,7 @@ const routes: Routes = [
     children: [
       { path: 'list', component: SessionListComponent },
       { path: 'add', component: NewSessionFormComponent },
+      { path: 'edit', component: NewSessionFormComponent }, // todo this route gonna have preloaded form data from router state, the component is better to be called SessionFormComponent;
     ],
   },
 ];

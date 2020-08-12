@@ -13,32 +13,7 @@ import { TeacherFacadeService } from '../service/teacher-facade.service';
 })
 export class TeacherNotificationsComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
-  toggleBlocks: ToggleBlock[] = [
-    {
-      title: 'Session reminders',
-      allChecked: true,
-      toggles: [
-        { name: 'Email', isChecked: false },
-        { name: 'Push notification', isChecked: false },
-      ],
-    },
-    {
-      title: 'Account activity',
-      allChecked: false,
-      toggles: [
-        { name: 'New registration', isChecked: false },
-        { name: 'New follow', isChecked: false },
-      ],
-    },
-    {
-      title: 'Newsletter and promotions',
-      allChecked: false,
-      toggles: [
-        { name: 'Weekly Newsletter', isChecked: false },
-        { name: 'Free sessions, promos, events', isChecked: false },
-      ],
-    },
-  ];
+  toggleBlocks: ToggleBlock[];
 
   constructor(
     private fb: FormBuilder,
@@ -65,32 +40,35 @@ export class TeacherNotificationsComponent implements OnInit, OnDestroy {
     //     },
     //   },
     //   });
-
-    this.formGroup = this.fb.group({ settings: new FormGroup({}) });
-    let settingFormGroup = this.fb.group({});
-    this.toggleBlocks.forEach((block) => {
-      let blockFormGroup = new FormGroup({});
-      blockFormGroup.addControl('all', new FormControl(block.allChecked));
-
-      block.toggles.forEach((toggle) => {
-        blockFormGroup.addControl(
-          this.convertToKey(toggle.name),
-          new FormControl(block.allChecked ? true : toggle.isChecked)
-        );
-      });
-      settingFormGroup.setControl(
-        this.convertToKey(block.title),
-        blockFormGroup
-      );
-    });
-    this.formGroup.setControl('settings', settingFormGroup);
-    // todo maybe rm tis setting control? if the final data flow decision would be to submit from here - better add the settings key in another way
   }
   ngOnInit(): void {
     this.teacherFacadeService
       .getNotificationSettings('user123')
       .pipe(take(1))
-      .subscribe((settings) => (this.toggleBlocks = settings));
+      .subscribe((settings) => {
+        this.toggleBlocks = settings;
+        this.formGroup = this.fb.group({
+          settings: new FormGroup({}),
+        });
+        let settingFormGroup = this.fb.group({});
+        this.toggleBlocks.forEach((block) => {
+          let blockFormGroup = new FormGroup({});
+          blockFormGroup.addControl('all', new FormControl(block.allChecked));
+
+          block.toggles.forEach((toggle) => {
+            blockFormGroup.addControl(
+              this.convertToKey(toggle.name),
+              new FormControl(block.allChecked ? true : toggle.isChecked)
+            );
+          });
+          settingFormGroup.setControl(
+            this.convertToKey(block.title),
+            blockFormGroup
+          );
+        });
+        this.formGroup.setControl('settings', settingFormGroup);
+        // todo maybe rm tis setting control? if the final data flow decision would be to submit from here - better add the settings key in another way
+      });
   }
 
   ngOnDestroy(): void {
