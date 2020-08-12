@@ -53,9 +53,6 @@ export class TeacherFacadeService {
     return this.teacherDataService.postMessage(id, event, message);
   }
 
-  // getTeacherEvents() { // todo events will probably come inside the TeacherData
-  //   return this.teacherDataService.getTeacherEvents();
-  // }
   getNotificationSettings(id: string) {
     // todo this should be definetely abstracted into some account service
     return this.notificationsApiService.getNotificationSettings(id);

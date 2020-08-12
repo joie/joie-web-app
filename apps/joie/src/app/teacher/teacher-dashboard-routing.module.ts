@@ -8,10 +8,6 @@ import { DialogRouterComponent } from '../shared/components/dialog-router/dialog
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'info',
-  },
-  {
-    path: 'info',
     component: TeacherDashboardComponent,
     children: [],
   },
@@ -22,7 +18,7 @@ const routes: Routes = [
       dialogComponent: MessagePopupComponent,
       matDialogConfig: { width: '500px' },
     },
-    outlet: 'teacherdashboardpopup',
+    outlet: 'dashboard-dialog',
   },
   {
     path: 'events',
@@ -31,16 +27,7 @@ const routes: Routes = [
       dialogComponent: SessionsListPopupComponent,
       matDialogConfig: { width: '500px' },
     },
-    outlet: 'teacherdashboardpopup',
-  },
-  {
-    path: 'new-session',
-    component: DialogRouterComponent,
-    data: {
-      dialogComponent: SessionsListPopupComponent, // todo replace
-      matDialogConfig: { width: '500px' },
-    },
-    outlet: 'teacherdashboardpopup',
+    outlet: 'dashboard-dialog',
   },
 ];
 

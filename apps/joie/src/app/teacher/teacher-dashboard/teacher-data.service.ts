@@ -18,18 +18,11 @@ export class TeacherDataService {
     return of(dashboardInfoMock);
   }
 
-  // todo teacher event should be a part of session or contain a refrence to it
-  postMessage(id: string, event: TeacherEvent, message: string) {
+  postMessage(id: string, session, message: string) {
     return of(true);
   }
 
   getSessions(userId: string) {
     return of(sessionsMock);
   }
-  // getTeacherEvents(
-  //   userId = 123,
-  //   limit: number = 3
-  // ): Observable<TeacherEvent[]> {
-  //   return of(dashboardInfoMock.events);
-  // }
 }

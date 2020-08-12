@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Stat } from '../../../../models/teacher.model';
 
 @Component({
   selector: 'app-stats',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./stats.component.scss'],
 })
 export class StatsComponent implements OnInit {
-  @Input() stats; // TODO interface
+  @Input() stats: Stat[];
   constructor() {}
 
   ngOnInit(): void {}

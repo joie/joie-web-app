@@ -50,7 +50,7 @@ export class EventCalendarComponent implements OnInit {
       [
         '/teacher',
         'dashboard',
-        { outlets: { teacherdashboardpopup: ['events'] } },
+        { outlets: { ['dashboard-dialog']: ['events'] } },
       ],
       { state: { sessions: sessions } }
     );

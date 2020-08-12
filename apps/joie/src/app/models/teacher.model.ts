@@ -1,7 +1,7 @@
 import { TeacherEvent } from './event.model';
 
 export interface Teacher {
-  id: string; // todo yet
+  id: string;
   firstName: string;
   lastName: string;
   stats: Stat[];
