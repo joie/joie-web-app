@@ -146,7 +146,7 @@ export const sessionsMock = [
     },
     promo: 'BOHEMIANRAPSODY',
     relatedSessions: [''],
-    url: '//this comes from server',
+    url: '//this comes from server', // todo url should refer to the session's page
   },
   {
     format: 'Live streaming',

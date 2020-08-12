@@ -1,5 +1,4 @@
 import { sessionsMock } from './../teacher.mocks';
-import { TeacherEvent } from '../../models/event.model';
 import { Injectable } from '@angular/core';
 import { navTabs, dashboardInfoMock } from '../teacher.mocks';
 import { of, Observable } from 'rxjs';

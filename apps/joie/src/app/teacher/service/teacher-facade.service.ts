@@ -49,8 +49,8 @@ export class TeacherFacadeService {
     return this.teacherDataService.getSessions(id);
   }
 
-  postMesage(id: string, event: TeacherEvent, message: string) {
-    return this.teacherDataService.postMessage(id, event, message);
+  postMesage(id: string, session, message: string) {
+    return this.teacherDataService.postMessage(id, session, message);
   }
 
   getNotificationSettings(id: string) {

@@ -4,7 +4,11 @@
        fxLayoutAlign="flex-start">
     <ng-container *ngFor="let session of sessions">
 
-      <app-event-card [session]="session"></app-event-card>
+      <mat-card [routerLink]="session.url">
+        <p>
+          <strong>{{ session.type }}</strong>{{ ' ' + session.name }}
+        </p>
+      </mat-card>
 
     </ng-container>
 
