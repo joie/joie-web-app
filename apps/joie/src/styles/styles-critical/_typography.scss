@@ -31,12 +31,13 @@ $joie-typography: mat-typography-config(
   // $display-3: mat-typography-level(75px, 0.95, $normal),
   // $display-2:
   //   mat-typography-level(45px, 48px, $normal, $letter-spacing: -0.005em),
-  // $display-1: mat-typography-level(34px, 40px, $normal),
 
-  $headline: mat-typography-level(math.round(ms(7)), calc(1ex / 0.47), map.get($font-weights, "600")),
-  $title: mat-typography-level(math.round(ms(4)), calc(1ex / 0.47), map.get($font-weights, "500")),
-  $subheading-2: mat-typography-level(math.round(ms(3)), 1.225, map.get($font-weights, "500")),
-  $subheading-1: mat-typography-level(math.round(ms(2)), 1, map.get($font-weights, "500")),
+  $display-1: mat-typography-level(math.round(ms(13)), calc(1ex / 0.49), map.get($font-weights, "600")),
+
+  $headline: mat-typography-level(math.round(ms(8)), calc(1ex / 0.47), map.get($font-weights, "600")),
+  $title: mat-typography-level(math.round(ms(6)), calc(1ex / 0.47), map.get($font-weights, "500")),
+  $subheading-2: mat-typography-level(math.round(ms(5)), 1.225, map.get($font-weights, "500")),
+  $subheading-1: mat-typography-level(math.round(ms(4)), 1, map.get($font-weights, "500")),
   $body-2: mat-typography-level(math.round(ms(1)), 24px, map.get($font-weights, "normal")),
   $body-1: mat-typography-level(math.round(ms(0)), 1.625, map.get($font-weights, "normal")),
   $caption: mat-typography-level(math.round(ms(-1)), 1.25, map.get($font-weights, "500")),
