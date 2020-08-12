@@ -1,6 +1,6 @@
+import { TeacherNotificationsComponent } from './teacher-notifications.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { TeacherNotificationsComponent } from './teacher-notifications/teacher-notifications.component';
 
 const routes: Routes = [
   {

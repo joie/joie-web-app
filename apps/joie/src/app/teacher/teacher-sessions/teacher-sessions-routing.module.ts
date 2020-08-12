@@ -1,8 +1,8 @@
-import { TeacherSessionsComponent } from './teacher-sessions/teacher-sessions.component';
+import { TeacherSessionsComponent } from './teacher-sessions.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SessionListComponent } from '../sessions/components/session-list/session-list.component';
-import { SessionFormComponent } from './teacher-sessions/components/session-form/session-form.component';
+import { SessionListComponent } from '../../sessions/components/session-list/session-list.component';
+import { SessionFormComponent } from './components/session-form/session-form.component';
 
 const routes: Routes = [
   {
