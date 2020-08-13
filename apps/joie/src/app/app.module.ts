@@ -16,9 +16,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
+import { KalutraIntegrationService } from './services/kaltura-integration.service';
 
 @NgModule({
-  declarations: [AppComponent, ],
+  declarations: [AppComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -33,11 +34,12 @@ import { AuthModule } from './auth/auth.module';
       enabled: environment.production,
     }),
     BrowserAnimationsModule,
-	HttpClientModule,
-	KalturaClientModule,
+    HttpClientModule,
+    KalturaClientModule,
   ],
   providers: [
-	KalturaClient,
+    KalturaClient,
+    KalutraIntegrationService,
     //   {
     //     provide: SETTINGS,
     //     useValue: environment.production

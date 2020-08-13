@@ -12,6 +12,18 @@ import { Component, OnInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SAVE_DRAFT } from '../../teacher-sessions.component';
+import {
+  KalturaClient,
+  UploadTokenUploadAction,
+  KalturaSessionType,
+  SessionStartAction,
+  UploadTokenAddAction,
+  KalturaUploadToken,
+  MediaAddAction,
+  KalturaMediaType,
+  KalturaMediaEntry,
+} from 'kaltura-ngx-client';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-new-session-form',
@@ -37,7 +49,8 @@ export class NewSessionFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private kalturaClient: KalturaClient
   ) {
     this.formGroup = this.formBuilder.group({
       format: ['', Validators.required],
@@ -76,6 +89,40 @@ export class NewSessionFormComponent implements OnInit {
 
   restoreFormValue(formData) {
     this.formGroup.patchValue(formData);
+  }
+
+  fileUpload(fileInputEvent: any) {
+    const fileData = fileInputEvent.target.files[0] as File;
+
+    this.kalturaClient
+      .request(
+        new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() })
+      )
+      .subscribe((uploadTokenReponse) => {
+        this.kalturaClient
+          .request(
+            new UploadTokenUploadAction({
+              uploadTokenId: uploadTokenReponse.id,
+              fileData: fileInputEvent.target.files[0],
+              resume: false,
+              finalChunk: true,
+              resumeAt: -1,
+            })
+          )
+          .subscribe((result) => {
+            // TODO - take values from the form
+            const entry = new KalturaMediaEntry();
+            entry.name = 'hardcoded-1';
+            entry.mediaType = KalturaMediaType.video;
+            entry.description = '';
+
+            this.kalturaClient
+              .request(new MediaAddAction({ entry }))
+              .subscribe((result) => {
+                // TODO - make entry to firebase, use downloadUrl,thumbnailUrl
+              });
+          });
+      });
   }
 
   get goalControls() {

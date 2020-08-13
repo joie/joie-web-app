@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelectModule,
     MatChipsModule,
     MatIconModule,
+    FlexLayoutModule,
   ],
 })
 export class TeacherSessionsModule {}

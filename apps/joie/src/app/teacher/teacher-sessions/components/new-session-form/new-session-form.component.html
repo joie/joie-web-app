@@ -1,28 +1,33 @@
 <form [formGroup]="formGroup">
-
-  <mat-label class="block">Session format and type</mat-label>
-  <mat-radio-group name="format"
-                   formControlName="format">
-    <mat-radio-button *ngFor="let format of sessionFormatOptions"
-                      [value]="format">{{format}}</mat-radio-button>
+  <mat-label class="title-primary">Session format and type</mat-label>
+  <mat-radio-group name="format" formControlName="format">
+    <mat-radio-button
+      *ngFor="let format of sessionFormatOptions"
+      [value]="format"
+      >{{ format }}</mat-radio-button
+    >
   </mat-radio-group>
 
-  <mat-radio-group name="type"
-                   formControlName="type">
+  <mat-radio-group name="type" formControlName="type">
     <ng-container *ngFor="let type of sessionTypeOptions; let i = index">
-      <mat-radio-button *ngIf="i < sessionTypeOptions.length -1 || i === sessionTypeOptions.length -1  && isLiveStreaming()"
-                        [value]="type">{{type}}</mat-radio-button>
+      <mat-radio-button
+        *ngIf="
+          i < sessionTypeOptions.length - 1 ||
+          (i === sessionTypeOptions.length - 1 && isLiveStreaming())
+        "
+        [value]="type"
+        >{{ type }}</mat-radio-button
+      >
     </ng-container>
   </mat-radio-group>
 
-  <mat-label class="block">Session information</mat-label>
+  <mat-label class="title-primary">Session information</mat-label>
 
   <mat-form-field appearance="fill">
     <mat-label>Session pillar</mat-label>
     <mat-select formControlName="pillar">
-      <mat-option *ngFor="let pillar of sessionPillars"
-                  [value]="pillar">
-        {{pillar}}
+      <mat-option *ngFor="let pillar of sessionPillars" [value]="pillar">
+        {{ pillar }}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -30,9 +35,8 @@
   <mat-form-field appearance="fill">
     <mat-label>Session level</mat-label>
     <mat-select formControlName="level">
-      <mat-option *ngFor="let level of sessionLevels"
-                  [value]="level">
-        {{level}}
+      <mat-option *ngFor="let level of sessionLevels" [value]="level">
+        {{ level }}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -40,121 +44,127 @@
   <mat-form-field appearance="fill">
     <mat-label>Session activity</mat-label>
     <mat-select formControlName="activity">
-      <mat-option *ngFor="let activity of sessionActivities"
-                  [value]="activity">
-        {{activity}}
+      <mat-option *ngFor="let activity of sessionActivities" [value]="activity">
+        {{ activity }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
-
   <mat-form-field appearance="fill">
     <mat-label>Session name</mat-label>
-    <input formControlName="name"
-           matInput>
+    <input formControlName="name" matInput />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Session description</mat-label>
-    <textarea formControlName="description"
-              matInput></textarea>
+    <textarea formControlName="description" matInput></textarea>
   </mat-form-field>
 
   <h3>Session goals (add one goal in line)</h3>
-  <section *ngFor="let goal of goalControls; let i = index"
-           formArrayName="goals">
-    <button *ngIf="i > 0"
-            mat-icon-button
-            (click)="removeGoal(i)">
+  <section
+    *ngFor="let goal of goalControls; let i = index"
+    formArrayName="goals"
+  >
+    <button *ngIf="i > 0" mat-icon-button (click)="removeGoal(i)">
       <mat-icon>delete</mat-icon>
     </button>
     <mat-form-field>
       <mat-label>Session goal</mat-label>
-      <input type="text"
-             matInput
-             [formControlName]="i">
+      <input type="text" matInput [formControlName]="i" />
     </mat-form-field>
-
   </section>
-  <button (click)="addGoal()">Add
-    goal</button>
-
+  <button (click)="addGoal()">Add goal</button>
 
   <h3>Need to know (add one comment in line)</h3>
-  <section *ngFor="let comment of commentControls; let i = index"
-           formArrayName="comments">
-
-    <button *ngIf="i > 0"
-            mat-icon-button
-            (click)="removeComment(i)">
+  <section
+    *ngFor="let comment of commentControls; let i = index"
+    formArrayName="comments"
+  >
+    <button *ngIf="i > 0" mat-icon-button (click)="removeComment(i)">
       <mat-icon>delete</mat-icon>
     </button>
 
     <mat-form-field>
       <mat-label>Comment</mat-label>
-      <input type="text"
-             matInput
-             [formControlName]="i">
+      <input type="text" matInput [formControlName]="i" />
     </mat-form-field>
   </section>
-  <button (click)="addComment()">Add
-    comment</button>
+  <button (click)="addComment()">Add comment</button>
 
-  <mat-label class="block">Session image and intro video </mat-label>
+  <!-- TODO - IN PROGRESS -->
+  <div>
+    <div class="title-primary">Session video</div>
+    <div>
+      <input
+        hidden="true"
+        type="file"
+        #uploadControl
+        (change)="fileUpload($event)"
+      />
+
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="uploadControl.click()"
+        type="button"
+      >
+        <i class="feather icon-plus-circle i-20"></i> Upload a video
+      </button>
+    </div>
+  </div>
+
+  <mat-label class="title-primary">Session image and intro video </mat-label>
   <p>// TODO after kaltura implementation</p>
 
-  <mat-label class="block">Session details</mat-label>
+  <mat-label class="title-primary">Session details</mat-label>
 
   <mat-form-field appearance="fill">
     <mat-label>Session price (USD)</mat-label>
-    <input formControlName="price"
-           matInput>
-    <p class="input-label">At the moment, Joie using USD as it's currency.</p>
+    <input formControlName="price" matInput />
+    <mat-hint>At the moment, Joie using USD as it's currency.</mat-hint>
   </mat-form-field>
 
-  <mat-form-field *ngIf="formGroup.value.format !== 'On demand' && formGroup.value.type !== 'Coaching'"
-                  appearance="fill">
+  <mat-form-field
+    *ngIf="
+      formGroup.value.format !== 'On demand' &&
+      formGroup.value.type !== 'Coaching'
+    "
+    appearance="fill"
+  >
     <mat-label>Number of students</mat-label>
-    <input formControlName="maxStudents"
-           matInput>
-    <p class="input-label">This type of session is limited to {{studentLimitForSessionType()}}.</p>
+    <input formControlName="maxStudents" matInput />
+    <mat-hint
+      >This type of session is limited to
+      {{ studentLimitForSessionType() }}.</mat-hint
+    >
   </mat-form-field>
 
-  <div *ngIf="isLiveStreaming()"
-       formGroupName="dateTimeDuration">
+  <div *ngIf="isLiveStreaming()" formGroupName="dateTimeDuration">
     <h3>Date, time and duration</h3>
 
     <mat-form-field>
       <mat-label>Date</mat-label>
-      <input type="date"
-             matInput
-             formControlName="date">
+      <input type="date" matInput formControlName="date" />
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Time</mat-label>
-      <input type="time"
-             matInput
-             formControlName="time">
+      <input type="time" matInput formControlName="time" />
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Duration</mat-label>
-      <input type="number"
-             matInput
-             formControlName="duration">
+      <input type="number" matInput formControlName="duration" />
     </mat-form-field>
   </div>
 
-  <mat-form-field *ngIf="formGroup.value.type === 'Course'"
-                  appearance="fill">
+  <mat-form-field *ngIf="formGroup.value.type === 'Course'" appearance="fill">
     <mat-label>Repeat</mat-label>
     <mat-icon>repeat</mat-icon>
 
     <mat-select formControlName="repeat">
-      <mat-option *ngFor="let option of repeatOptions"
-                  [value]="option">
-        {{option}}
+      <mat-option *ngFor="let option of repeatOptions" [value]="option">
+        {{ option }}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -162,76 +172,56 @@
   <ng-container *ngIf="formGroup.value.type === 'Coaching'">
     <h3>Available time slots</h3>
 
-    <section formArrayName="availableTimeSlots"
-             *ngFor="let slot of slotControls; let i = index;">
+    <section
+      formArrayName="availableTimeSlots"
+      *ngFor="let slot of slotControls; let i = index"
+    >
       <div [formGroupName]="i">
-
-        <button *ngIf="i > 0"
-                mat-icon-button
-                (click)="removeTimeSlot(i)">
+        <button *ngIf="i > 0" mat-icon-button (click)="removeTimeSlot(i)">
           <mat-icon>delete</mat-icon>
         </button>
 
         <mat-form-field>
           <mat-label>Date</mat-label>
-          <input type="date"
-                 matInput
-                 formControlName="date">
+          <input type="date" matInput formControlName="date" />
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Time</mat-label>
-          <input type="time"
-                 matInput
-                 formControlName="time">
+          <input type="time" matInput formControlName="time" />
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Duration</mat-label>
-          <input type="number"
-                 matInput
-                 formControlName="duration">
+          <input type="number" matInput formControlName="duration" />
         </mat-form-field>
       </div>
     </section>
-    <button (click)="addTimeSlot()">Add
-      a time slot</button>
-
+    <button (click)="addTimeSlot()">Add a time slot</button>
   </ng-container>
 
-  <mat-label class="block">Upsell and promos (optional)</mat-label>
+  <mat-label class="title-primary">Upsell and promos (optional)</mat-label>
   <mat-form-field>
     <mat-label>Special offer promotion</mat-label>
-    <input type="text"
-           matInput
-           formControlName="promo">
+    <input type="text" matInput formControlName="promo" />
   </mat-form-field>
 
-
-  <button (click)="addRelatedSession()">Add
-    session</button>
-  <section formArrayName="relatedSessions"
-           *ngFor="let session of relatedSessionControl; let i = index;">
-
-    <button *ngIf="i > 0"
-            mat-icon-button
-            (click)="removeRelatedSession(i)">
+  <button (click)="addRelatedSession()">Add session</button>
+  <section
+    formArrayName="relatedSessions"
+    *ngFor="let session of relatedSessionControl; let i = index"
+  >
+    <button *ngIf="i > 0" mat-icon-button (click)="removeRelatedSession(i)">
       <mat-icon>delete</mat-icon>
     </button>
 
     <mat-form-field>
       <mat-label>Related session (add a link)</mat-label>
-      <input type="url"
-             matInput
-             [formControlName]="i">
+      <input type="url" matInput [formControlName]="i" />
     </mat-form-field>
-
   </section>
 
-  <button type="button"
-          (click)="cancelAdding()">Delete</button>
-  <button type='button'
-          (click)="saveFormDraft()">Save as draft</button>
-  <button type='submit'
-          (click)="submitSession()">Publish</button>
+  <button type="button" (click)="cancelAdding()">Delete</button>
+  <button type="button" (click)="saveFormDraft()">Save as draft</button>
+  <button type="submit" (click)="submitSession()">Publish</button>
 </form>
