@@ -21,6 +21,7 @@ export class TeacherProfileComponent implements OnInit {
     'You will lose access lose access to your students.',
     ' But mostly, you will be missed',
   ];
+
   constructor() {}
 
   ngOnInit(): void {

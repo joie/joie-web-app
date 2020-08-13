@@ -1,4 +1,4 @@
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileDeleteComponent } from './components/profile-delete/profile-delete.component';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
@@ -12,8 +12,9 @@ import { MatDividerModule } from '@angular/material/divider';
     ProfileInfoComponent,
     ProfileBankingComponent,
     ProfileNotificationSetingsComponent,
+    ProfileDeleteComponent,
   ],
   imports: [SharedModule, MatSlideToggleModule, MatDividerModule],
-  exports: [ProfileNotificationSetingsComponent],
+  exports: [ProfileNotificationSetingsComponent, ProfileDeleteComponent],
 })
 export class ProfileModule {}

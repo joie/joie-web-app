@@ -22,4 +22,7 @@ export class ProfileService {
     // todo return this.http.post
     return of(true);
   }
+
+  closeAccount() {}
+  contactSupport() {}
 }

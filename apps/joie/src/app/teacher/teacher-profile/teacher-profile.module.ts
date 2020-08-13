@@ -1,3 +1,4 @@
+import { ProfileModule } from './../../profile/profile.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import { SharedModule } from '../../shared/shared.module';
     ReactiveFormsModule,
     MatDividerModule,
     MatIconModule,
+    ProfileModule,
   ],
 })
 export class TeacherProfileModule {}
