@@ -1,7 +1,6 @@
 import { TeacherSessionsDataService } from './../teacher-sessions/teacher-sessions-data.service';
 import { Injectable, Injector } from '@angular/core';
 import { TeacherDataService } from '../teacher-dashboard/teacher-data.service';
-import { NotificationsApiService } from '../teacher-notifications/notifications-api.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,15 +13,6 @@ export class TeacherFacadeService {
       this._teacherDataService = this.injector.get(TeacherDataService);
     }
     return this._teacherDataService;
-  }
-  private _notificationsApiService: NotificationsApiService;
-  public get notificationsApiService(): NotificationsApiService {
-    if (!this._notificationsApiService) {
-      this._notificationsApiService = this.injector.get(
-        NotificationsApiService
-      );
-      return this._notificationsApiService;
-    }
   }
 
   private _teacherSessionsDataService: TeacherSessionsDataService;
@@ -50,18 +40,6 @@ export class TeacherFacadeService {
 
   postMesage(id: string, session, message: string) {
     return this.teacherDataService.postMessage(id, session, message);
-  }
-
-  getNotificationSettings(id: string) {
-    // todo this should be definetely abstracted into some account service
-    return this.notificationsApiService.getNotificationSettings(id);
-  }
-  // todo to account service
-  submitNotificationSettings(id: string, settings): Observable<Boolean> {
-    return this.notificationsApiService.submitNotificationSettings(
-      id,
-      settings
-    );
   }
 
   submitSession(id: string, session) {

@@ -25,4 +25,5 @@ export class ProfileService {
 
   closeAccount() {}
   contactSupport() {}
+  submitProfileChanges() {}
 }

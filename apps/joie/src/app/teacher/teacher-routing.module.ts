@@ -36,6 +36,13 @@ const routes: Routes = [
             (m) => m.TeacherProfileModule
           ),
       },
+      {
+        path: 'banking',
+        loadChildren: () =>
+          import('./teacher-banking/teacher-banking.module').then(
+            (m) => m.TeacherBankingModule
+          ),
+      },
     ],
   },
 ];

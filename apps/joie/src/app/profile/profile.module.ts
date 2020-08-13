@@ -6,6 +6,10 @@ import { ProfileBankingComponent } from './components/profile-banking/profile-ba
 import { ProfileNotificationSetingsComponent } from './components/profile-notification-setings/profile-notification-setings.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -14,7 +18,21 @@ import { MatDividerModule } from '@angular/material/divider';
     ProfileNotificationSetingsComponent,
     ProfileDeleteComponent,
   ],
-  imports: [SharedModule, MatSlideToggleModule, MatDividerModule],
-  exports: [ProfileNotificationSetingsComponent, ProfileDeleteComponent],
+  imports: [
+    SharedModule,
+    MatSlideToggleModule,
+    MatDividerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+  ],
+  exports: [
+    ProfileNotificationSetingsComponent,
+    ProfileDeleteComponent,
+    ProfileInfoComponent,
+    ProfileBankingComponent,
+  ],
 })
 export class ProfileModule {}
