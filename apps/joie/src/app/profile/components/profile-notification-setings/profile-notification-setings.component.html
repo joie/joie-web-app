@@ -1,0 +1,27 @@
+<form [formGroup]="formGroup">
+
+  <div formGroupName="settings">
+    <section [formGroupName]="convertToKey(block.title)"
+             *ngFor="let block of settingBlocks; let i = index">
+      <mat-divider *ngIf="i > 0"></mat-divider>
+      <div class="toggles-block">
+
+        <mat-slide-toggle [checked]="block.allChecked"
+                          formControlName="all"
+                          (toggleChange)="toggleBlock(convertToKey(block.title))">
+          <h3>{{block.title}}</h3>
+        </mat-slide-toggle>
+
+        <section *ngFor="let toggle of block.toggles">
+          <mat-slide-toggle (toggleChange)="toggleSlider(convertToKey(block.title), convertToKey(toggle.name))"
+                            [formControlName]="convertToKey(toggle.name)"
+                            [checked]="block.allChecked ? true : toggle.isChecked">{{toggle.name}}
+          </mat-slide-toggle>
+        </section>
+
+      </div>
+    </section>
+
+  </div>
+
+</form>
