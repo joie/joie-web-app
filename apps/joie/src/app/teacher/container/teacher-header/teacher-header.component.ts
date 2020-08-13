@@ -3,11 +3,11 @@ import { Teacher } from '../../../models/teacher.model';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  selector: 'app-teacher-header',
+  templateUrl: './teacher-header.component.html',
+  styleUrls: ['./teacher-header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class TeacherHeaderComponent implements OnInit {
   @Input() teacher$: Observable<Teacher>;
 
   constructor() {}

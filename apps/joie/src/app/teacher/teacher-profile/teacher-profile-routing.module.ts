@@ -1,4 +1,4 @@
-import { TeacherProfileComponent } from './teacher-profile/teacher-profile.component';
+import { TeacherProfileComponent } from './teacher-profile.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
