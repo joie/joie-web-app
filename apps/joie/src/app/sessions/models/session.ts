@@ -2,14 +2,14 @@ import { Price, Duration } from '../../models';
 import { firestore as FireStore } from 'firebase';
 
 export interface Session {
-  id: number | string;
+  readonly id: number | string;
   title: string;
   publishedDate: FireStore.Timestamp;
   duration: Duration;
   courseType: CourseType;
   level: CourseLevel;
   price: Price;
-  activities: string[];
+  activities: string[]; // ! @aravindfz shouldn't this be set to Activities type?
   sessionType: SessionType;
   pillar: Pillar;
   description: string;

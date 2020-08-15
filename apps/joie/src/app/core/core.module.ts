@@ -13,6 +13,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { UserLinksComponent } from './components/user-links/user-links.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { UserLinksComponent } from './components/user-links/user-links.component
     HeaderComponent,
     NavigationComponent,
     UserLinksComponent,
+    SearchComponent,
   ],
   imports: [
     RouterModule,

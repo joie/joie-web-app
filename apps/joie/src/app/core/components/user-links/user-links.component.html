@@ -1,12 +1,12 @@
-<div *ngIf="afAuth.authState | async; let user; else: showLogin">
-  <h1>Hello {{ user.displayName }}!</h1>
+<ng-container *ngIf="afAuth.authState | async; let user; else: showLogin">
+  <span>{{ user.displayName }}!</span>
 
-  <button (click)="logout()">Logout</button>
-</div>
-
+  <button mat-button (click)="logout()">Log out</button>
+</ng-container>
 
 <ng-template #showLogin>
-  <a
+  <button
+    mat-button
     [routerLink]="[
       {
         outlets: {
@@ -14,8 +14,9 @@
         }
       }
     ]"
-    >Log in</a
   >
+    Log in
+  </button>
 </ng-template>
 
 <!-- <ng-container *ngIf="user$; else loadingBlock">

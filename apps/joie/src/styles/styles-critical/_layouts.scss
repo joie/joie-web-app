@@ -2,6 +2,8 @@
 
 .container {
   --max-inline-size: 1365px;
+  width: 100%;
+  inline-size: 100%;
   max-width: var(--max-inline-size);
   max-inline-size: var(--max-inline-size);
   margin: 0 auto;
