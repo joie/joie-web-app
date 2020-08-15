@@ -1,4 +1,17 @@
 <header>
-  <app-user-links></app-user-links>
+  <div class="container">
+    <div class="header-top-bar layout-flex layout-spacing-inline-lg">
+      <img alt="Joie logo" class="logo" src="assets/images/logo-joie.svg" />
+      <app-search class="search"></app-search>
+      <app-user-links class="user"></app-user-links>
+      <span class="join-button">
+        <button mat-flat-button color="primary">
+          Join our community
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
   <app-navigation></app-navigation>
 </header>

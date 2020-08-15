@@ -13,3 +13,7 @@
 @include mat-stepper-theme($joie-theme);
 @include mat-icon-theme($joie-theme);
 @include mat-list-theme($joie-theme);
+@include mat-radio-theme($joie-theme);
+@include mat-checkbox-theme($joie-theme);
+@include mat-select-theme($joie-theme);
+@include mat-divider-theme($joie-theme);

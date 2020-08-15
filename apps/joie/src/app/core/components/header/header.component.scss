@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+.header-top-bar {
+  $block-size: 90px;
+  block-size: $block-size;
+  height: $block-size;
+
+  > .logo {
+    height: 37px;
+  }
+  > .search {
+  }
+  > .user {
+    margin-left: auto;
+    margin-inline-start: auto;
+  }
+  > .join-button {
+  }
+}

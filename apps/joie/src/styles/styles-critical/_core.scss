@@ -40,6 +40,10 @@ body {
   font-feature-settings: 'tnum' off; /* tabular figures: on or off */
   font-feature-settings: 'onum' off; /* old-style-figures: on or off */
   font-feature-settings: 'ss01' off; /* alternate glyphs (stylistic Set): on or off */
+
+  @supports (font-size-adjust: 1) {
+    font-size-adjust: 0.5;
+  }
 }
 
 hr {

@@ -2,13 +2,13 @@
   <a
     *ngFor="let link of links"
     mat-tab-link
-    [routerLink]="['/', link]"
+    [routerLink]="link.path"
     routerLinkActive
     #rla="routerLinkActive"
     [active]="rla.isActive"
     disableRipple="true"
   >
-    {{ link }}
+    {{ link.name }}
   </a>
   <a mat-tab-link disabled>Disabled Link</a>
 </nav>

@@ -2,6 +2,8 @@
 
 .container {
   --max-inline-size: 1365px;
+  width: 100%;
+  inline-size: 100%;
   max-width: var(--max-inline-size);
   max-inline-size: var(--max-inline-size);
   margin: 0 auto;
@@ -13,53 +15,66 @@
   }
 }
 
-.grid {
-  $size: (
-    'sm': 10px,
-    'md': 20px,
-    'lg': 30px,
-  );
-
-  display: grid;
-
-  &#{&}-spacing-block {
-    grid-row-gap: var(--row-gap, map.get($size, md));
-    &#{&}-sm {
-      --row-gap: map.get($size, sm);
+$space-row-variable-name: --gutter-row;
+$space-column-variable-name: --gutter-column;
+$size: (
+  'sm': 10px,
+  'md': 20px,
+  'lg': 30px,
+);
+.layout {
+  &-spacing-block {
+    &-sm {
+      #{$space-row-variable-name}: #{map.get($size, sm)};
     }
-    &#{&}-md {
-      --row-gap: map.get($size, md);
+    &-md {
+      #{$space-row-variable-name}: #{map.get($size, md)};
     }
-    &#{&}-lg {
-      --row-gap: map.get($size, lg);
+    &-lg {
+      #{$space-row-variable-name}: #{map.get($size, lg)};
     }
   }
-  &[class*='grid-spacing-inline'i] {
-    grid-column-gap: var(--column-gap, map.get($size, md));
-    &#{&}-sm {
-      --column-gap: map.get($size, sm);
+  &-spacing-inline {
+    &-sm {
+      #{$space-column-variable-name}: #{map.get($size, sm)};
     }
-    &#{&}-md {
-      --column-gap: map.get($size, md);
+    &-md {
+      #{$space-column-variable-name}: #{map.get($size, md)};
     }
-    &#{&}-lg {
-      --column-gap: map.get($size, lg);
+    &-lg {
+      #{$space-column-variable-name}: #{map.get($size, lg)};
     }
   }
 
-  &#{&}-features-inline {
-    width: 100%;
-    // place-items: center;
-    // display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, auto));
-    // grid-gap: 20px;
-    // display: flex;
-    // flex-wrap: wrap;
-    // justify-content: center;
-    // > * {
-    //   flex: 0 1 auto;
-    //   margin: 5px;
-    // }
+  &-flex {
+    display: flex;
+    place-items: center;
+    > * + * {
+      margin-left: var(#{$space-column-variable-name});
+      margin-inline-start: var(#{$space-column-variable-name});
+      margin-bottom: var(#{$space-row-variable-name});
+      margin-block-end: var(#{$space-row-variable-name});
+    }
+  }
+
+  &-grid {
+    display: grid;
+    grid-gap: var(#{$space-row-variable-name}, 0)
+      var(#{$space-column-variable-name}, 0);
+    &#{&}-inline-features {
+      width: 100%;
+      // place-items: center;
+      // display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+      // grid-gap: 20px;
+      // display: flex;
+      // flex-wrap: wrap;
+      // justify-content: center;
+      // > * {
+      //   flex: 0 1 auto;
+      //   margin: 5px;
+      // }
+    }
   }
 }
 

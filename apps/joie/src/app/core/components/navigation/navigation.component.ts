@@ -6,6 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent {
-  links = ['home', 'posts', 'author', 'account', 'sessions', 'contact'];
+  links = [
+    { name: 'home', path: ['/', 'home'] },
+    { name: 'posts', path: ['/', 'posts'] },
+    { name: 'author', path: ['/', 'author'] },
+    { name: 'account', path: ['/', 'account'] },
+    { name: 'sessions', path: ['/', 'sessions'] },
+    { name: 'contact', path: ['/', 'contact'] },
+    { name: 'onboarding/teacher', path: ['/', 'onboarding', 'teacher'] },
+    { name: 'onboarding/student', path: ['/', 'onboarding', 'student'] },
+    { name: 'teacher', path: ['/', 'teacher'] },
+  ];
   activeLink = this.links[0];
 }

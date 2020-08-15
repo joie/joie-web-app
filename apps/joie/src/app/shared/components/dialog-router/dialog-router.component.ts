@@ -23,9 +23,9 @@ export class DialogRouterComponent implements OnInit {
       this.route.snapshot.data.dialogComponent,
       {
         ...this.route.snapshot.data.matDialogConfig,
-        position: {
-          bottom: '0px',
-        },
+        // position: {
+        //   bottom: '0px',
+        // },
       }
     );
 
