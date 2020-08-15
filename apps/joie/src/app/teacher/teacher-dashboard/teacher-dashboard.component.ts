@@ -1,9 +1,7 @@
-import { SessionListComponent } from './../../sessions/components/session-list/session-list.component';
 import { Component, OnInit } from '@angular/core';
 import { TeacherFacadeService } from '../service/teacher-facade.service';
 import { Observable } from 'rxjs';
 import { Teacher } from '../../models/teacher.model';
-import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-teacher-dashboard',

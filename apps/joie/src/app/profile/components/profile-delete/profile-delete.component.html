@@ -1,0 +1,19 @@
+<mat-divider></mat-divider>
+
+<h2>
+  Close my account
+</h2>
+
+<mat-icon>mail</mat-icon> <a (click)="handleContactSupport()">Contact support@joie.co</a>
+
+<p>Closing your account will take between 14-20 business days, due to our payment policy. During this time, your account
+  will not be visible to Joie's students</p>
+
+<p>As a reminder, if you close your account</p>
+<ul>
+  <li *ngFor='let bullet of bullets'>{{bullet}}</li>
+</ul>
+
+<button (click)="handleCloseAccount()">
+  Close my account
+</button>

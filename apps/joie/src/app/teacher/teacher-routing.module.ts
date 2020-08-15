@@ -11,29 +11,36 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () =>
-          import('./teacher-dashboard.module').then(
+          import('./teacher-dashboard/teacher-dashboard.module').then(
             (m) => m.TeacherDashboardModule
           ),
       },
       {
         path: 'sessions',
         loadChildren: () =>
-          import('./teacher-sessions.module').then(
+          import('./teacher-sessions/teacher-sessions.module').then(
             (m) => m.TeacherSessionsModule
           ),
       },
       {
         path: 'email and notifications',
         loadChildren: () =>
-          import('./teacher-notifications.module').then(
+          import('./teacher-notifications/teacher-notifications.module').then(
             (m) => m.TeacherNotificationsModule
           ),
       },
       {
         path: 'profile',
         loadChildren: () =>
-          import('./teacher-profile.module').then(
+          import('./teacher-profile/teacher-profile.module').then(
             (m) => m.TeacherProfileModule
+          ),
+      },
+      {
+        path: 'banking',
+        loadChildren: () =>
+          import('./teacher-banking/teacher-banking.module').then(
+            (m) => m.TeacherBankingModule
           ),
       },
     ],

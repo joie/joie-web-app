@@ -1,28 +1,23 @@
-import { Profile } from '../../models/profile.model';
-import { Form } from '@angular/forms';
+import { ProfileService } from './../../profile.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Profile } from '../../../models/profile.model';
+import { Form } from '@angular/forms';
 
 @Component({
-  selector: 'joie-teacher-profile',
-  templateUrl: './teacher-profile.component.html',
-  styleUrls: ['./teacher-profile.component.scss'],
+  selector: 'app-profile-info',
+  templateUrl: './profile-info.component.html',
+  styleUrls: ['./profile-info.component.scss'],
 })
-export class TeacherProfileComponent implements OnInit {
+export class ProfileInfoComponent implements OnInit {
   @ViewChild('form') form: Form;
-  profileData: Profile = null; //todo -> @input()
+  profileData: Profile = null;
   profile: Profile = {
     name: '',
     email: '',
     password: '',
     timezone: '',
   };
-  bullets = [
-    'You will no longer be able to login',
-    'You will lose access lose access to your students.',
-    ' But mostly, you will be missed',
-  ];
-
-  constructor() {}
+  constructor(private profileService: ProfileService) {}
 
   ngOnInit(): void {
     this.profileData = {
@@ -35,10 +30,9 @@ export class TeacherProfileComponent implements OnInit {
       this.profile[key] = this.profileData[key];
     });
   }
-
-  handleCloseAccount() {}
-
-  handleContactSupport() {}
-
   handleSendResetEmail() {}
+
+  submitProfileChanges() {
+    this.profileService.submitProfileChanges();
+  }
 }
