@@ -1,13 +1,12 @@
-import { ToggleBlock } from './../../models/toggle.model';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { notificationSettingsMock } from '../teacher.mocks';
+import { notificationSettingsMock } from './profile.mocks';
+import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class NotificationsApiService {
+export class ProfileService {
   constructor(private httpClient: HttpClient) {}
 
   getNotificationSettings(id: string = 'user123') {
@@ -23,4 +22,8 @@ export class NotificationsApiService {
     // todo return this.http.post
     return of(true);
   }
+
+  closeAccount() {}
+  contactSupport() {}
+  submitProfileChanges() {}
 }

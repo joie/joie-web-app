@@ -1,3 +1,4 @@
+import { ProfileModule } from './../../profile/profile.module';
 import { NgModule } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDividerModule } from '@angular/material/divider';
@@ -7,11 +8,6 @@ import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [TeacherNotificationsComponent],
-  imports: [
-    SharedModule,
-    TeacherNotificationsRoutingModule,
-    MatSlideToggleModule,
-    MatDividerModule,
-  ],
+  imports: [SharedModule, TeacherNotificationsRoutingModule, ProfileModule],
 })
 export class TeacherNotificationsModule {}
