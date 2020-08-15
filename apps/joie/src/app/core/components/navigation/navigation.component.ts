@@ -13,7 +13,7 @@ export class NavigationComponent {
     { name: 'account', path: ['/', 'account'] },
     { name: 'sessions', path: ['/', 'sessions'] },
     { name: 'contact', path: ['/', 'contact'] },
-    { name: 'onboarding/teacher', path: ['/', 'onboarding', 'teacher'] },
+    { name: 'Join as a teacher', path: ['/', 'onboarding', 'teacher'] },
     { name: 'onboarding/student', path: ['/', 'onboarding', 'student'] },
     { name: 'teacher', path: ['/', 'teacher'] },
   ];
