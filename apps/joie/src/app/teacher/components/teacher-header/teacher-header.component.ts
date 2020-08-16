@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./teacher-header.component.scss'],
 })
 export class TeacherHeaderComponent implements OnInit {
-  @Input() teacher$: Observable<Teacher>;
+  // @Input() teacher$: Observable<Teacher>;
 
   constructor() {}
 
