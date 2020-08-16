@@ -30,10 +30,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSortModule } from '@angular/material/sort';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
-import { MatTabsModule } from '@angular/material-experimental/mdc-tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   imports: [
@@ -50,7 +49,6 @@ import { MatDividerModule } from '@angular/material/divider';
     MatToolbarModule,
     MatListModule,
     MatTabsModule,
-    MatDividerModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
@@ -88,7 +86,6 @@ import { MatDividerModule } from '@angular/material/divider';
     MatToolbarModule,
     MatListModule,
     MatTabsModule,
-    MatDividerModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
