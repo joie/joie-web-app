@@ -1,0 +1,15 @@
+<header class="header">
+  <ng-template [cdkPortalOutlet]="headerComponentPortal"></ng-template>
+</header>
+
+<div class="container">
+  <div class="grid">
+    <div>
+      <ng-template [cdkPortalOutlet]="sidenavComponentPortal"></ng-template>
+    </div>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
