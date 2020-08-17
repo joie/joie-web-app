@@ -1,13 +1,11 @@
 section.my-calendar-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  margin-top: 32px;
   height: 560px;
 }
 
 .tools-panel {
-  margin-top: 32px;
   width: 480px;
-  height: 320px;
+  height: 560px;
   button {
     width: max-content;
     background: none;
@@ -18,7 +16,7 @@ section.my-calendar-section {
 
 .calendar-box {
   width: 480px;
-  height: 320px;
+  height: 560px;
 }
 mat-calendar {
   .scheduled {
