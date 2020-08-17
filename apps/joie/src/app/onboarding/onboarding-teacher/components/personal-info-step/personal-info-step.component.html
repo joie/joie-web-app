@@ -1,46 +1,55 @@
-<p>
-  Joie is looking for passionate teachers, experts and coaches who believe in
-  our philosophy, and interested in growing together. Fill out this form to help
-  us learn more about you.
-</p>
-<h3>Personal Information</h3>
-<form [formGroup]="formGroup">
-  <mat-form-field appearance="outline">
-    <mat-label>First name</mat-label>
-    <input
-      matInput
-      placeholder="first name"
-      formControlName="firstNameCtrl"
-      required
-    />
-  </mat-form-field>
+<div class="container container-condense">
+  <h4>
+    Joie is looking for passionate teachers, experts and coaches who believe in
+    our philosophy, and interested in growing together. Fill out this form to
+    help us learn more about you.
+  </h4>
+  <h3>Personal Information</h3>
+</div>
+<div class="container container-ultra-condense">
+  <form [formGroup]="formGroup" class="layout-grid layout-spacing-block-sm">
+    <mat-form-field appearance="outline">
+      <mat-label>First name</mat-label>
+      <input
+        matInput
+        placeholder="first name"
+        formControlName="firstNameCtrl"
+        required
+      />
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Last name</mat-label>
-    <input
-      matInput
-      placeholder="last name"
-      formControlName="lastNameCtrl"
-      required
-    />
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last name</mat-label>
+      <input
+        matInput
+        placeholder="last name"
+        formControlName="lastNameCtrl"
+        required
+      />
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Email</mat-label>
-    <input matInput placeholder="email" formControlName="emailCtrl" required />
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="email"
+        formControlName="emailCtrl"
+        required
+      />
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Phone number</mat-label>
-    <input
-      matInput
-      placeholder="phone number"
-      formControlName="phoneNumberCtrl"
-      required
-    />
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Phone number</mat-label>
+      <input
+        matInput
+        placeholder="phone number"
+        formControlName="phoneNumberCtrl"
+        required
+      />
+    </mat-form-field>
 
-  <button mat-stroked-button matStepperNext>
-    Next
-  </button>
-</form>
+    <button mat-flat-button color="primary" [disabled]="formGroup.invalid" matStepperNext>
+      Next
+    </button>
+  </form>
+</div>

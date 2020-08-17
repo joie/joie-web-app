@@ -1,0 +1,9 @@
+.header {
+  margin: 50px auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-column-gap: 50px;
+}

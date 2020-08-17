@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { DbService } from './db.service';
 import { Session } from '../models/session.model';
 import { Observable } from 'rxjs';
+import { QueryFn } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,9 @@ import { Observable } from 'rxjs';
 export class SessionsFacade {
   constructor(private db: DbService) {}
 
-  getSessions() {
-    return this.db.get$<Session>('sessions') as Observable<Session[]>;
+  getSessions(queryFn?: QueryFn) {
+    console.log('calling query', queryFn);
+    return this.db.get$<Session>('sessions', queryFn) as Observable<Session[]>;
   }
 
   getSession(id: string) {

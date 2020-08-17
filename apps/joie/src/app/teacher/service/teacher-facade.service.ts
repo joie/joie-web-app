@@ -1,4 +1,4 @@
-import { TeacherSessionsDataService } from './../teacher-sessions/teacher-sessions-data.service';
+import { TeacherSessionsDataService } from '../teacher-sessions/services/teacher-sessions-data.service';
 import { Injectable, Injector } from '@angular/core';
 import { TeacherDataService } from '../teacher-dashboard/teacher-data.service';
 import { Observable } from 'rxjs';

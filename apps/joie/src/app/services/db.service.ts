@@ -4,6 +4,7 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
   AngularFirestoreCollection,
+  QueryFn,
 } from '@angular/fire/firestore';
 import { Observable, of, from } from 'rxjs';
 import { __, split, modulo, pipe, length, equals } from 'ramda';
@@ -27,10 +28,10 @@ export class DbService {
     return pipe(split('/'), length, isOdd, equals(0));
   }
 
-  get$<T>(path: string): Observable<T> | Observable<T[]> {
+  get$<T>(path: string, queryFn?: QueryFn): Observable<T> | Observable<T[]> {
     return (this.isCollection(path)
       ? this.afs.doc<T>(path)
-      : this.afs.collection<T>(path)
+      : this.afs.collection<T>(path, queryFn)
     ).valueChanges();
     // return this.afs.doc<T>(path).valueChanges();
     // return this.afs.collection<T>(path).valueChanges();

@@ -7,6 +7,9 @@
   max-width: var(--max-inline-size);
   max-inline-size: var(--max-inline-size);
   margin: 0 auto;
+  &#{&}-fluid {
+    --max-inline-size: 96%;
+  }
   &#{&}-condense {
     --max-inline-size: 990px;
   }

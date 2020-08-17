@@ -5,10 +5,11 @@
 <form [formGroup]="formGroup">
   <label formArrayName="sessionTypesCtrl"
          *ngFor="let sessionType of sessionTypesFormArray.value; let i = index">
-    <mat-checkbox (change)="handleCheck(entry(sessionType)[0], entry(sessionType)[1], i)"
-                  [formControlName]="i">{{
+    <input type="checkbox"
+           (change)="handleCheck(entry(sessionType)[0], entry(sessionType)[1], i)"
+           [formControlName]="i" />{{
       entry(sessionType)[0]
-    }}</mat-checkbox>
+    }}
   </label>
 
   <mat-form-field appearance="outline">

@@ -8,6 +8,7 @@ import { DialogRouterComponent } from './components/dialog-router/dialog-router.
 import { FigureImageComponent } from './components/figure-image/figure-image.component';
 
 import { MaterialModule } from '../core/material.module';
+
 @NgModule({
   declarations: [
     PaymentSourceComponent,
@@ -24,7 +25,8 @@ import { MaterialModule } from '../core/material.module';
     VideoComponent,
     DialogRouterComponent,
     FigureImageComponent,
-    MaterialModule, // ! remove in favour of individual importing
+    // ! remove in favour of individual importing
+    MaterialModule,
   ],
 })
 export class SharedModule {}

@@ -1,12 +1,12 @@
 $background: #fff;
 $foreground: #323232;
-$dark-dividers: #E0E0E0;
+$dark-dividers: black;
 $dark-secondary-text: #686868;
 
 // Foreground palette for light themes.
 $joie-light-theme-foreground: (
   // base: black,
-    divider: $dark-dividers,
+  divider: $dark-dividers,
   dividers: $dark-dividers,
   // disabled: $dark-disabled-text,
     // disabled-button: rgba(black, 0.26),
