@@ -1,4 +1,4 @@
-import { SessionListComponent } from './session-list.component';
+import { SessionListComponent } from './components/session-list/session-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DialogRouterComponent } from '../shared/components/dialog-router/dialog-router.component';

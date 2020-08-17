@@ -6,12 +6,15 @@ import {
   Activities,
   Repeat,
 } from '../../../../sessions/models/session';
-import { CANCEL, SUBMIT } from '../../teacher-sessions.component';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SAVE_DRAFT } from '../../teacher-sessions.component';
+import {
+  SAVE_DRAFT,
+  CANCEL,
+  SUBMIT,
+} from '../../containers/teacher-sessions/teacher-sessions.component';
 
 @Component({
   selector: 'app-session-form',

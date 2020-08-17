@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
-import { TeacherComponent } from './container/teacher/teacher.component';
+import { TeacherComponent } from './containers/teacher/teacher.component'; // ! don't need it anymore?
+import { TeacherSidenavComponent } from './components/teacher-sidenav/teacher-sidenav.component';
+import { MainLayoutComponent } from '../common/components/main-layout/main-layout.component';
+import { TeacherHeaderComponent } from './components/teacher-header/teacher-header.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: TeacherComponent,
+    component: MainLayoutComponent,
+    data: {
+      headerComponent: TeacherHeaderComponent,
+      sidenavComponent: TeacherSidenavComponent,
+    },
     children: [
       {
         path: 'dashboard',

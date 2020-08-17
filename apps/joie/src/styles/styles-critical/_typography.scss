@@ -42,7 +42,7 @@ $joie-typography: mat-typography-config(
   $body-1: mat-typography-level(math.round(ms(0)), calc(1ex / 0.32), map.get($font-weights, "normal")),
   $caption: mat-typography-level(math.round(ms(-1)), calc(1ex / 0.32), map.get($font-weights, "500")),
   $button: mat-typography-level(inherit, 1, map.get($font-weights, "600")),
-  $input: mat-typography-level(inherit, 1, map.get($font-weights, "normal")),
+  $input: mat-typography-level(inherit, 1.2, map.get($font-weights, "normal")),
 );
 
 // @include mat-base-typography($joie-typography);

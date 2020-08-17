@@ -10,13 +10,13 @@
              [(ngModel)]="profile.name"
              [disabled]="true"
              name="name">
-      <button mat-raised-button
-              (click)="name.disabled = !name.disabled">Edit</button>
     </mat-form-field>
+    <button mat-raised-button
+            (click)="name.disabled = !name.disabled">Edit</button>
   </span>
 
   <span class="flex-row">
-    <label>Email</label>
+    <mat-label>Email</mat-label>
     <mat-form-field>
       <input matInput
              id="email"
@@ -24,9 +24,9 @@
              name="email"
              [disabled]="true"
              #email>
-      <button mat-raised-button
-              (click)="email.disabled = !email.disabled">Edit</button>
     </mat-form-field>
+    <button mat-raised-button
+            (click)="email.disabled = !email.disabled">Edit</button>
   </span>
 
   <span class="flex-row">
@@ -38,9 +38,9 @@
              name="password"
              [disabled]="true"
              type="password">
-      <button mat-raised-button
-              (click)="handleSendResetEmail()">Send email to reset password</button>
     </mat-form-field>
+    <button mat-raised-button
+            (click)="handleSendResetEmail()">Send email to reset password</button>
   </span>
 
 
@@ -53,9 +53,9 @@
              name="timezone"
              [disabled]="true"
              #timezone>
-      <button mat-raised-button
-              (click)="timezone.disabled = !timezone.disabled">Change Time Zone</button>
     </mat-form-field>
+    <button mat-raised-button
+            (click)="timezone.disabled = !timezone.disabled">Change Time Zone</button>
   </span>
 
 </form>

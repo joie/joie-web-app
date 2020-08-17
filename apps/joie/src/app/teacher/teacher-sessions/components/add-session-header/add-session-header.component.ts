@@ -1,7 +1,10 @@
-import { CANCEL, SUBMIT } from '../../teacher-sessions.component';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SAVE_DRAFT } from '../../teacher-sessions.component';
+import {
+  SAVE_DRAFT,
+  CANCEL,
+  SUBMIT,
+} from '../../containers/teacher-sessions/teacher-sessions.component';
 
 @Component({
   selector: 'app-add-session-header',

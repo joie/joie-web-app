@@ -1,20 +1,25 @@
-<section class="my-calendar-section">
-  <div class="container">
-    <div class="tools-panel"
-         fxLayout="column"
-         fxLayoutGap="16px">
+<section class="my-calendar-section layout-flex layout-spacing-inline-md">
+  <div>
+
+    <div class="tools-panel">
       <h3>My calendar</h3>
       <mat-divider></mat-divider>
 
 
-      <button (click)="redirectToNewSession('add')">
-        <mat-icon>add</mat-icon>Add a session
-      </button>
+      <mat-list>
 
+        <mat-list-item>
+          <button (click)="redirectToNewSession('add')">
+            <mat-icon>add</mat-icon>Add a session
+          </button>
+        </mat-list-item>
 
-      <button (click)="viewSessionsList()">
-        <mat-icon>visibility</mat-icon>View all sessions
-      </button>
+        <mat-list-item>
+          <button (click)="viewSessionsList()">
+            <mat-icon>visibility</mat-icon>View all sessions
+          </button>
+        </mat-list-item>
+      </mat-list>
 
 
     </div>
