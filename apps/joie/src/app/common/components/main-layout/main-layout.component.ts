@@ -15,6 +15,7 @@ export class MainLayoutComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     const { sidenavComponent, headerComponent } = this.route.snapshot.data;
+    console.log(this.route.snapshot.data);
     this.sidenavComponentPortal = new ComponentPortal(sidenavComponent);
     this.headerComponentPortal = new ComponentPortal(headerComponent);
   }

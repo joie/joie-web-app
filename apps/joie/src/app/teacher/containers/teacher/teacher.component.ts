@@ -9,14 +9,11 @@ import { Teacher } from '../../../models/teacher.model';
   styleUrls: ['./teacher.component.scss'],
 })
 export class TeacherComponent implements OnInit {
-  tabs$: Observable<string[]>;
   teacher$: Observable<Teacher>;
 
-  // todo add avatar
-
   constructor(private facadeService: TeacherFacadeService) {}
+
   ngOnInit(): void {
-    this.tabs$ = this.facadeService.getMenuTabs();
     this.teacher$ = this.facadeService.getTeacher('user123');
   }
 }

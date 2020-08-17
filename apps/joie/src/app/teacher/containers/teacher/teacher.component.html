@@ -1,22 +1,4 @@
-<header>
-
-  <!-- <app-teacher-header [teacher$]="teacher$"></app-teacher-header> -->
-
-</header>
-<main>
-  <section>
-    <div class="container">
-      <aside>
-        <app-teacher-side-nav [tabs$]="tabs$"></app-teacher-side-nav>
-
-      </aside>
-      <div class="section-context">
-
-        <router-outlet class="tabs-outlet"></router-outlet>
-        <router-outlet name="dashboard-dialog"></router-outlet>
-
-      </div>
-    </div>
-  </section>
-
-</main>
+<div class="container">
+  <router-outlet class="tabs-outlet"></router-outlet>
+  <router-outlet name="dashboard-dialog"></router-outlet>
+</div>
