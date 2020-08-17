@@ -4,7 +4,6 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 
@@ -16,7 +15,6 @@ import { MatChipsModule } from '@angular/material/chips';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatCheckboxModule,
     MatChipsModule,
   ],
 })

@@ -11,10 +11,10 @@
 
   <label formArrayName="focusGroupsCtrl"
          *ngFor="let group of groupsFormArray.value; let i = index">
-    <mat-checkbox (change)="handleCheck(entry(group)[0], entry(group)[1], i)"
-                  [formControlName]="i">
-      {{entry(group)[0]}}
-    </mat-checkbox>
+    <input type="checkbox"
+           (change)="handleCheck(entry(group)[0], entry(group)[1], i)"
+           [formControlName]="i" />
+    {{entry(group)[0]}}
   </label>
 
   <button mat-button
