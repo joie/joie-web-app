@@ -10,11 +10,10 @@ import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Router, ActivatedRoute } from '@angular/router';
-import {
-  SAVE_DRAFT,
-  CANCEL,
-  SUBMIT,
-} from '../../containers/teacher-sessions/teacher-sessions.component';
+
+export const SAVE_DRAFT = 'SAVE_DRAFT';
+export const CANCEL = 'CANCEL';
+export const SUBMIT = 'SUBMIT';
 
 @Component({
   selector: 'app-session-form',
