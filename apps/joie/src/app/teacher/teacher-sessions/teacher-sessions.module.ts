@@ -11,11 +11,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { TeacherSessionsComponent } from './containers/teacher-sessions/teacher-sessions.component';
-import { SessionFormComponent } from './components/session-form/session-form.component';
 import { SessionListModule } from '../../session-list/session-list.module';
 
 @NgModule({
-  declarations: [TeacherSessionsComponent, SessionFormComponent],
+  declarations: [TeacherSessionsComponent],
   imports: [
     TeacherSessionsRoutingModule,
     SessionListModule,
