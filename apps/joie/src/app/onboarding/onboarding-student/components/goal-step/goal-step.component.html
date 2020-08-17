@@ -7,11 +7,11 @@
 <form [formGroup]="formGroup">
   <label formArrayName="goalsCtrl"
          *ngFor="let goal of goalsFormArray.value; let i = index">
-    <mat-checkbox [checked]="entry(goal)[1]"
-                  [formControlName]="i"
-                  (change)="handleCheck(entry(goal)[0], entry(goal)[1], i)">
-      {{ entry(goal)[0] }}
-    </mat-checkbox>
+    <input type="checkbox"
+           [checked]="entry(goal)[1]"
+           [formControlName]="i"
+           (change)="handleCheck(entry(goal)[0], entry(goal)[1], i)" />
+    {{ entry(goal)[0] }}
   </label>
 
   <button mat-button
