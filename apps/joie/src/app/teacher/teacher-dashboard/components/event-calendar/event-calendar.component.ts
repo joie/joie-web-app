@@ -1,9 +1,11 @@
+import { CourseType } from './../../../../sessions/models/session';
 import {
   MatCalendar,
   MatCalendarCellCssClasses,
 } from '@angular/material/datepicker';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NativeDateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-event-calendar',
@@ -22,23 +24,36 @@ export class EventCalendarComponent implements OnInit {
     // this.onSelect(this.datesArray);
   }
 
-  onSelect(date) {
+  onSelect(date: Date) {
     let key = this.dateToKey(date);
 
     if (this.eventMap[key]) {
       this.viewSessionsList(this.eventMap[key]);
     } else {
-      this.redirectToNewSession('add');
+      let dateStr =
+        date.getFullYear() +
+        '-' +
+        ('0' + (date.getMonth() + 1)).slice(-2) +
+        '-' +
+        ('0' + date.getDate()).slice(-2);
+
+      // let dateStr =
+      this.redirectToNewSession('add', {
+        format: CourseType.LiveStreaming,
+        dateTimeDuration: {
+          date: dateStr,
+        },
+      });
     }
     // this.selectedDate = event; // todo dont need it yet
   }
 
   redirectToNewSession(action, sessionData = null) {
     let extras = {
-      state: { action: action },
+      state: { action: action, session: {} },
     };
     if (sessionData) {
-      Object.assign(extras, sessionData);
+      extras.state.session = sessionData;
     }
     this.router.navigate(['teacher', 'sessions'], extras);
   }

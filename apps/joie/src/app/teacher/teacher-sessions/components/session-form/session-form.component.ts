@@ -71,11 +71,13 @@ export class SessionFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.formGroup);
-  }
-
-  restoreFormValue(formData) {
-    this.formGroup.patchValue(formData);
+    // todo change to | async subscription if switching to tdf
+    this.route.data.subscribe((session) => {
+      let { formData } = session;
+      if (formData) {
+        this.formGroup.patchValue(formData);
+      }
+    });
   }
 
   get goalControls() {

@@ -25,15 +25,8 @@ export class TeacherSessionsComponent implements OnInit {
   onHeaderToggle(e) {}
 
   ngOnInit(): void {
-    // todo open session list component is in the router-outlet, so we might want to navigate there with it's data fetched
-    /*
-    this.facadeService.getSessionsByTeacher(id).subscribe(response => {
-    this.router.navigate('list', {relTo:this, state: response})
-    })
-    */
-    const dashboardAction = history.state.action;
+    const dashboardAction = history.state.action; // todo unclear yet if we gonna move session form to root so leaving the navigation like this yet, later it will change; Removing the patch value logic here and onActivate - resolver will handle
     if (dashboardAction) {
-      this.sessionDraft = history.state.session;
       this.router.navigate([dashboardAction], {
         relativeTo: this.route,
       });
