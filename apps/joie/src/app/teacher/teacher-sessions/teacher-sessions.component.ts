@@ -15,7 +15,6 @@ export const SUBMIT = 'SUBMIT';
 })
 export class TeacherSessionsComponent implements OnInit {
   @ViewChild('header') header: AddSessionHeaderComponent;
-  sessionDraft = null; // type as session model
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -57,10 +56,6 @@ export class TeacherSessionsComponent implements OnInit {
     const formGroup = componentRef.formGroup;
     if (formGroup) {
       this.header.toggle();
-      // if (this.sessionDraft) {
-      //   formGroup.patchValue(this.sessionDraft);
-      //   this.sessionDraft = null; // todo maybe nulling isn't a must, let it be, why
-      // }
     }
   }
   onDeactivate(componentRef) {
@@ -68,8 +63,7 @@ export class TeacherSessionsComponent implements OnInit {
       let { operation } = history.state;
       switch (operation) {
         case SAVE_DRAFT:
-          // this.sessionDraft = componentRef.formGroup.value;
-          // todo save draft to somewhere persistent
+          // todo saved to localStorage from form. this 'reducer' can be removed after switching to tdf
           this.header.toggle();
           break;
         case CANCEL:

@@ -19,7 +19,6 @@ export class SessionFormResolverService implements Resolve<any> {
     //todo replace any to Session when form is ready
 
     //todo when db added, fetch from there in appropriate cases
-    // let session = history.state.session ? history.state.session : {};
     let { session } = history.state || null;
 
     if (!session) {
@@ -28,13 +27,6 @@ export class SessionFormResolverService implements Resolve<any> {
         session = JSON.parse(sessionDraftStr);
       }
     }
-
-    // let sessionDraftStr = localStorage.getItem('sessionDraft');
-    // console.log(sessionDraftStr);
-    // if (sessionDraftStr) {
-    //   return JSON.parse(sessionDraftStr);
-    // }
-
     return session ? session : {};
   }
 }
