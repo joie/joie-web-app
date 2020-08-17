@@ -13,8 +13,8 @@ export class EventCardComponent implements OnInit {
   ngOnInit(): void {}
 
   handleEdit() {
-    this.router.navigate(['teacher', 'sessions'], {
-      state: { action: 'edit', session: this.session },
-    });
+    // this.router.navigate(['teacher', 'sessions'], { //todo uncoment when tdf session form ready, change url
+    //   state: { action: 'edit', session: this.session },
+    // });
   }
 }
