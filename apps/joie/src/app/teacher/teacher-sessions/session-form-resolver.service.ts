@@ -16,10 +16,25 @@ export class SessionFormResolverService implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    //todo replace to Session when form is ready
-    let session = history.state.session ? history.state.session : {};
-    //todo when db added, fetch from there in appropriate cases
+    //todo replace any to Session when form is ready
 
-    return session;
+    //todo when db added, fetch from there in appropriate cases
+    // let session = history.state.session ? history.state.session : {};
+    let { session } = history.state || null;
+
+    if (!session) {
+      let sessionDraftStr = localStorage.getItem('sessionDraft');
+      if (sessionDraftStr) {
+        session = JSON.parse(sessionDraftStr);
+      }
+    }
+
+    // let sessionDraftStr = localStorage.getItem('sessionDraft');
+    // console.log(sessionDraftStr);
+    // if (sessionDraftStr) {
+    //   return JSON.parse(sessionDraftStr);
+    // }
+
+    return session ? session : {};
   }
 }

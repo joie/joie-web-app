@@ -160,6 +160,7 @@ export class SessionFormComponent implements OnInit {
     });
   }
   saveFormDraft() {
+    localStorage.setItem('sessionDraft', JSON.stringify(this.formGroup.value));
     this.router.navigate(['list'], {
       relativeTo: this.route.parent,
       state: { operation: SAVE_DRAFT },

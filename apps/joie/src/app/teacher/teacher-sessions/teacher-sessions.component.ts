@@ -57,10 +57,10 @@ export class TeacherSessionsComponent implements OnInit {
     const formGroup = componentRef.formGroup;
     if (formGroup) {
       this.header.toggle();
-      if (this.sessionDraft) {
-        formGroup.patchValue(this.sessionDraft);
-        this.sessionDraft = null; // todo maybe nulling isn't a must, let it be, why
-      }
+      // if (this.sessionDraft) {
+      //   formGroup.patchValue(this.sessionDraft);
+      //   this.sessionDraft = null; // todo maybe nulling isn't a must, let it be, why
+      // }
     }
   }
   onDeactivate(componentRef) {
@@ -68,7 +68,7 @@ export class TeacherSessionsComponent implements OnInit {
       let { operation } = history.state;
       switch (operation) {
         case SAVE_DRAFT:
-          this.sessionDraft = componentRef.formGroup.value;
+          // this.sessionDraft = componentRef.formGroup.value;
           // todo save draft to somewhere persistent
           this.header.toggle();
           break;
