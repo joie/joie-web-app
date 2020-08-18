@@ -22,7 +22,7 @@ export class MessagePopupComponent implements OnInit {
         this.router.navigate([
           '/teacher',
           'dashboard',
-          { outlets: { ['dashboard-dialog']: null } },
+          { outlets: { ['popup']: null } },
         ])
       );
   }

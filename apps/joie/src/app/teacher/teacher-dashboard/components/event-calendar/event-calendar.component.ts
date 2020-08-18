@@ -45,11 +45,7 @@ export class EventCalendarComponent implements OnInit {
 
   viewSessionsList(sessions = this.sessions) {
     this.router.navigate(
-      [
-        '/teacher',
-        'dashboard',
-        { outlets: { ['dashboard-dialog']: ['events'] } },
-      ],
+      ['/teacher', 'dashboard', { outlets: { ['popup']: ['sessions'] } }],
       { state: { sessions: sessions } }
     );
   }
