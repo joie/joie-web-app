@@ -14,7 +14,7 @@ import { TeacherSessionsComponent } from './containers/teacher-sessions/teacher-
 import { AddSessionHeaderComponent } from './components/add-session-header/add-session-header.component';
 import { SessionFormComponent } from './components/session-form/session-form.component';
 import { SessionListModule } from '../../session-list/session-list.module';
-import { SessionFormMetadataModule } from '../../session-form-metadata/session-form-metadata.module';
+import { SessionFormModule } from '../../session-form/session-form.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { SessionFormMetadataModule } from '../../session-form-metadata/session-f
   ],
   imports: [
     TeacherSessionsRoutingModule,
-    SessionFormMetadataModule,
+    SessionFormModule,
     SessionListModule,
     MatDividerModule,
     MatInputModule,

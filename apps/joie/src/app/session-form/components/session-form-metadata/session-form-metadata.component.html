@@ -1,0 +1,45 @@
+{{ sessionForm.value | json }}
+<ng-container [formGroup]="sessionForm">
+  <div
+    class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Format</mat-label>
+      <select matNativeControl required>
+        <option value="on-demand">On Demand</option>
+        <option value="streaming">Streaming</option>
+      </select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Type</mat-label>
+      <select matNativeControl required formControlName="type">
+        <option
+          *ngFor="let type of sessionTypes"
+          [value]="type.value | lowercase"
+          >{{ type.name }}
+        </option>
+      </select>
+    </mat-form-field>
+  </div>
+
+  <!-- ! always show this -->
+  <mat-form-field appearance="outline">
+    <mat-label>Title</mat-label>
+    <input
+      formControlName="title"
+      matInput
+      placeholder="e.g. Best session"
+      required
+    />
+  </mat-form-field>
+
+  <!-- ! show only when type/format chosen -->
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea
+      formControlName="description"
+      matInput
+      placeholder="e.g. Best session"
+    ></textarea>
+  </mat-form-field>
+</ng-container>

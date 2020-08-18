@@ -1,0 +1,54 @@
+<div class="container">
+  <h4>
+    Create a session
+  </h4>
+  <form [formGroup]="sessionForm" class="layout-grid layout-spacing-block-sm">
+    <app-session-form-metadata
+      class="layout-grid layout-spacing-block-sm"
+    ></app-session-form-metadata>
+    <button mat-button color="primary">Show all fields...</button>
+    <app-session-form-time-slots
+      *ngIf="isCoaching"
+      class="layout-grid layout-spacing-block-sm"
+    ></app-session-form-time-slots>
+    <!--
+
+    <mat-form-field appearance="outline">
+      <mat-label>Last name</mat-label>
+      <input
+        matInput
+        placeholder="last name"
+        formControlName="lastNameCtrl"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="email"
+        formControlName="emailCtrl"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Phone number</mat-label>
+      <input
+        matInput
+        placeholder="phone number"
+        formControlName="phoneNumberCtrl"
+        required
+      />
+    </mat-form-field> -->
+
+    <!-- <button
+      mat-flat-button
+      color="primary"
+      [disabled]="formGroup.invalid"
+    >
+      Next
+    </button> -->
+  </form>
+</div>

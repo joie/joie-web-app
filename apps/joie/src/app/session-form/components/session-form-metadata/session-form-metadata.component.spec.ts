@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SessionFormMetadataComponent } from './session-form-metadata.component';
 
-describe('SessionFormMetadataComponent', () => {
+describe('MetadataComponent', () => {
   let component: SessionFormMetadataComponent;
   let fixture: ComponentFixture<SessionFormMetadataComponent>;
 
