@@ -20,7 +20,7 @@ const routes: Routes = [
           matDialogConfig: EnrollDialogConfigResolver,
         },
         data: { dialogComponent: SessionEnrollDialogComponent },
-        outlet: 'sessionpopup',
+        outlet: 'popup',
         canActivate: [AuthGuard, PaymentSourceGuard],
       },
       {
@@ -33,7 +33,7 @@ const routes: Routes = [
         //! guard if already logged in
         // ...canActivate(redirectUnauthorizedToLogin),
         // ...canActivate(redirectLoggedInToItems)
-        outlet: 'sessionpopup',
+        outlet: 'popup',
       },
     ],
   },

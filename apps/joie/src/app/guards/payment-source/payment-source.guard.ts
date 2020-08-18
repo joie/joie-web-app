@@ -23,7 +23,7 @@ export class PaymentSourceGuard implements CanActivate {
         'dashboard',
         {
           outlets: {
-            sessionpopup: ['add-payment-source'],
+            popup: ['add-payment-source'],
           },
         },
       ],

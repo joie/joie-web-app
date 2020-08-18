@@ -30,15 +30,16 @@ export class DialogRouterComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed with:', result);
-      console.log(this.route.parent.snapshot.params);
+      // console.log('The dialog was closed with:', result);
+      // console.log(this.route.parent.snapshot.params);
 
       const redirectUrl = result?.redirectUrl;
       console.log(redirectUrl);
       if (redirectUrl) {
         this.router.navigateByUrl(redirectUrl);
       } else {
-        this.router.navigate([{ outlets: { popup: null } }]);
+        console.log(2);
+        this.router.navigate([{ primary: ['/'], outlets: { popup: null } }]);
         // this.router.navigate([
         //   this.route.parent.snapshot.params,
         //   { outlets: { popup: null } },
