@@ -14,7 +14,16 @@ export class DialogRouterComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
+  // get primaryRoute() {
+  //   let route = this.route;
+  //   while (route.outlet != 'primary') {
+  //     route = route.parent;
+  //   }
+  //   return route;
+  // }
+
   ngOnInit(): void {
+    console.log(this.route.snapshot);
     this.openDialog();
   }
 
@@ -38,8 +47,7 @@ export class DialogRouterComponent implements OnInit {
       if (redirectUrl) {
         this.router.navigateByUrl(redirectUrl);
       } else {
-        console.log(2);
-        this.router.navigate([{ primary: ['/'], outlets: { popup: null } }]);
+        this.router.navigate([{ outlets: { popup: null } }]);
         // this.router.navigate([
         //   this.route.parent.snapshot.params,
         //   { outlets: { popup: null } },

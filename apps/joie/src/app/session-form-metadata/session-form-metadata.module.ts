@@ -5,10 +5,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 
 import { SessionFormMetadataComponent } from './components/session-form-metadata/session-form-metadata.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [SessionFormMetadataComponent],
-  imports: [SharedModule, MatFormFieldModule, MatSelectModule, MatInputModule],
+  imports: [
+    SharedModule,
+    RouterModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+  ],
   exports: [SessionFormMetadataComponent],
 })
 export class SessionFormMetadataModule {}
