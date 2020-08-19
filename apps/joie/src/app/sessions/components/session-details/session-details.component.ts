@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Session } from '../../models';
 import { SessionService } from '../../services/session.service';
+import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-handshake.service';
 
 @Component({
   templateUrl: './session-details.component.html',
@@ -16,8 +17,9 @@ export class SessionDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private sessionService: SessionService
-  ) {}
+    private sessionService: SessionService,
+    private kalturaApiHandShakeService: KalturaApiHandShakeService,
+  ) { }
 
   ngOnInit() {
     this.activatedRoute.params
@@ -37,5 +39,10 @@ export class SessionDetailsComponent implements OnInit, OnDestroy {
     this.sessionService
       .getSession(this.courseId)
       .subscribe((session) => (this.session = session as Session));
+  }
+
+  liveSession() {
+    this.kalturaApiHandShakeService
+      .temporaryLivestreamPage();
   }
 }
