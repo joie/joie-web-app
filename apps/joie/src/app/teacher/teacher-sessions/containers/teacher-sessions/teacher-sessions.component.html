@@ -1,5 +1,14 @@
-<a mat-raised-button
-   color="accent">
+<a
+  mat-raised-button
+  color="accent"
+  [routerLink]="[
+    {
+      outlets: {
+        popup: ['create']
+      }
+    }
+  ]"
+>
   <mat-icon>add</mat-icon> Add Session
 </a>
 

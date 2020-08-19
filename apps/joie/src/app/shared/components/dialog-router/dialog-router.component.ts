@@ -14,7 +14,16 @@ export class DialogRouterComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
+  // get primaryRoute() {
+  //   let route = this.route;
+  //   while (route.outlet != 'primary') {
+  //     route = route.parent;
+  //   }
+  //   return route;
+  // }
+
   ngOnInit(): void {
+    console.log(this.route.snapshot);
     this.openDialog();
   }
 
@@ -30,8 +39,8 @@ export class DialogRouterComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed with:', result);
-      console.log(this.route.parent.snapshot.params);
+      // console.log('The dialog was closed with:', result);
+      // console.log(this.route.parent.snapshot.params);
 
       const redirectUrl = result?.redirectUrl;
       console.log(redirectUrl);

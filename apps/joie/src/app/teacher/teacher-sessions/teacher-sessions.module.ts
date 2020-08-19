@@ -12,11 +12,13 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { TeacherSessionsComponent } from './containers/teacher-sessions/teacher-sessions.component';
 import { SessionListModule } from '../../session-list/session-list.module';
+import { SessionFormModule } from '../../session-form/session-form.module';
 
 @NgModule({
   declarations: [TeacherSessionsComponent],
   imports: [
     TeacherSessionsRoutingModule,
+    SessionFormModule,
     SessionListModule,
     MatDividerModule,
     MatInputModule,

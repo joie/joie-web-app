@@ -12,7 +12,7 @@ export class MainLayoutComponent {
   sidenavComponentPortal: ComponentPortal<any>;
 
   constructor(private route: ActivatedRoute) {
-    const { sidenavComponent, headerComponent } = route.snapshot.data;
+    const { sidenavComponent, headerComponent } = this.route.snapshot.data;
     this.sidenavComponentPortal = new ComponentPortal(sidenavComponent);
     this.headerComponentPortal = new ComponentPortal(headerComponent);
   }

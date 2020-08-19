@@ -38,11 +38,11 @@ export enum SessionType {
 }
 
 export enum Pillar {
-  Movement = 'JoieMovement',
-  Emotions = 'JoieEmotions',
-  Connections = 'JoieConnections',
-  Spirit = 'JoieSpirit',
-  Professional = 'JoieProfessional',
+  movement = 'JoieMovement',
+  emotions = 'JoieEmotions',
+  connections = 'JoieConnections',
+  spirit = 'JoieSpirit',
+  professional = 'JoieProfessional',
 }
 
 export enum Activities {
