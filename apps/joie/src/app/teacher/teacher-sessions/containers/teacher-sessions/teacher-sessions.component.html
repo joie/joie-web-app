@@ -1,8 +1,6 @@
-<!-- <app-add-session-header #header
-                        (onHeaderToggle)="onHeaderToggle($event)"></app-add-session-header>
-<router-outlet (activate)="onActivate($event)"
-               (deactivate)="onDeactivate($event)"></router-outlet> -->
-
-<a mat-raised-button color="accent"> <mat-icon>add</mat-icon> Add Session </a>
+<a mat-raised-button
+   color="accent">
+  <mat-icon>add</mat-icon> Add Session
+</a>
 
 <app-session-list [queryFn]="boundQueryFn"></app-session-list>

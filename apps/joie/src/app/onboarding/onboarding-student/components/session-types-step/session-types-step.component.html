@@ -7,8 +7,8 @@
 <form [formGroup]="formGroup">
   <label formArrayName="sessionTypesCtrl"
          *ngFor="let sessionType of sessionTypesArray.value; let i = index">
-    <input type="checkbox "
-           handleCheck(entry(sessionType)[0],
+    <input type="checkbox"
+           (change)="handleCheck(entry(sessionType)[0],
            entry(sessionType)[1],
            i)"
            [formControlName]="i" />{{ entry(sessionType)[0] }}
