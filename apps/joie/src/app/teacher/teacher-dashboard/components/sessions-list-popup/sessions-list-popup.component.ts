@@ -1,3 +1,4 @@
+import { TeacherFacadeService } from './../../../service/teacher-facade.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -11,11 +12,20 @@ export class SessionsListPopupComponent implements OnInit {
   sessions;
   constructor(
     private matDialogRef: MatDialogRef<SessionsListPopupComponent>,
-    private router: Router
+    private router: Router,
+    private facadeService: TeacherFacadeService
   ) {}
-  // todo when session-page ready each card should have a routerLink to redirect to the apropriate session's page
+
   ngOnInit(): void {
-    this.sessions = history.state.sessions;
+    let { sessions } = history.state;
+    if (sessions) {
+      this.sessions = sessions;
+    } else {
+      this.facadeService.getSessions('user123').subscribe((sessions) => {
+        this.sessions = sessions;
+      });
+    }
+    // this.sessions = history.state.sessions; // todo need more persistent source (bug on refresh)
 
     this.matDialogRef
       .afterClosed()
