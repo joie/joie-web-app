@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
+
+export type ControlTuple = [string, FormControl];
 
 @Injectable()
 export class SessionFormService {
@@ -11,5 +13,18 @@ export class SessionFormService {
 
   getControl(name: string) {
     return this.sessionForm.get(name)?.value;
+  }
+
+  addControls(controls: ControlTuple[]) {
+    controls.forEach(([name, control]) => {
+      this.sessionForm.get(name) ?? this.sessionForm.addControl(name, control);
+    });
+    console.log(this.sessionForm.value);
+  }
+
+  removeControls(controls: ControlTuple[]) {
+    controls.forEach(([name]) => {
+      this.sessionForm.removeControl(name);
+    });
   }
 }

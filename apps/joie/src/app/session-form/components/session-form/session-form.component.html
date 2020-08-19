@@ -6,11 +6,21 @@
     <app-session-form-metadata
       class="layout-grid layout-spacing-block-sm"
     ></app-session-form-metadata>
-    <button mat-button color="primary">Show all fields...</button>
-    <app-session-form-time-slots
-      *ngIf="isCoaching"
-      class="layout-grid layout-spacing-block-sm"
-    ></app-session-form-time-slots>
+    <button
+      mat-button
+      color="primary"
+      (click)="showAllFields = true"
+      *ngIf="!showAllFields"
+    >
+      Show all fields...
+    </button>
+    <ng-container *ngIf="showAllFields">
+      <app-session-form-time-slots
+        *ngIf="isCoaching"
+        class="layout-grid layout-spacing-block-sm"
+      >
+      </app-session-form-time-slots>
+    </ng-container>
     <!--
 
     <mat-form-field appearance="outline">

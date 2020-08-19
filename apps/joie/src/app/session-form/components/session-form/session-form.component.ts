@@ -9,6 +9,8 @@ import { SessionType } from '../../../sessions/models/session';
   styleUrls: ['./session-form.component.scss'],
 })
 export class SessionFormComponent implements OnInit {
+  showAllFields: boolean;
+
   constructor(private sessionFormService: SessionFormService) {}
 
   get sessionForm() {
