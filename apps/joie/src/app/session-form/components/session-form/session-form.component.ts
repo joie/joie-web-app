@@ -9,6 +9,7 @@ import { SessionType } from '../../../sessions/models/session';
   styleUrls: ['./session-form.component.scss'],
 })
 export class SessionFormComponent implements OnInit {
+  layoutClass = 'layout-grid layout-spacing-block-sm';
   showAllFields: boolean;
 
   constructor(private sessionFormService: SessionFormService) {}

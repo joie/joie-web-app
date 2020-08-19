@@ -2,9 +2,9 @@
   <h4>
     Create a session
   </h4>
-  <form [formGroup]="sessionForm" class="layout-grid layout-spacing-block-sm">
+  <form [formGroup]="sessionForm" [class]="layoutClass">
     <app-session-form-metadata
-      class="layout-grid layout-spacing-block-sm"
+      [class]="layoutClass"
     ></app-session-form-metadata>
     <button
       mat-button
@@ -17,9 +17,11 @@
     <ng-container *ngIf="showAllFields">
       <app-session-form-time-slots
         *ngIf="isCoaching"
-        class="layout-grid layout-spacing-block-sm"
+        [class]="layoutClass"
       >
       </app-session-form-time-slots>
+      <app-session-form-attributes [class]="layoutClass">
+      </app-session-form-attributes>
     </ng-container>
     <!--
 

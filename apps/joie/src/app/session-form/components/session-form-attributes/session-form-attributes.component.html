@@ -1,0 +1,10 @@
+<ng-container [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Pillars</mat-label>
+    <select matNativeControl required formControlName="pillar">
+      <option *ngFor="let pillar of pillarKeys" [value]="pillar">{{
+        pillarEnum[pillar]
+      }}</option>
+    </select>
+  </mat-form-field>
+</ng-container>

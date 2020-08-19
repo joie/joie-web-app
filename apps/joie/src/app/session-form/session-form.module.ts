@@ -10,9 +10,10 @@ import { SessionFormMetadataComponent } from './components/session-form-metadata
 import { SessionFormService } from './services/session-form.service';
 import { SessionFormTimeSlotsComponent } from './components/session-form-time-slots/session-form-time-slots.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { SessionFormAttributesComponent } from './components/session-form-attributes/session-form-attributes.component';
 
 @NgModule({
-  declarations: [SessionFormComponent, SessionFormMetadataComponent, SessionFormTimeSlotsComponent],
+  declarations: [SessionFormComponent, SessionFormMetadataComponent, SessionFormTimeSlotsComponent, SessionFormAttributesComponent],
   imports: [
     SharedModule,
     RouterModule,
