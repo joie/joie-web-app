@@ -28,7 +28,7 @@ export class SessionService {
         amount: 10,
         unit: DurationUnits.m,
       },
-      pillar: Pillar.Movement,
+      pillar: Pillar.movement,
       price: {
         display: 180,
         currency: 'USD',

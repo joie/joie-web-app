@@ -17,7 +17,6 @@ export class SessionListComponent implements OnInit {
   constructor(private sessionsFacade: SessionsFacade) {}
 
   ngOnInit(): void {
-    console.log(1, this.queryFn);
     this.sessions$ = this.sessionsFacade.getSessions(this.queryFn);
   }
 }

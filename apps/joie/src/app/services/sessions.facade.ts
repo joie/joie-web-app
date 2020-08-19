@@ -11,7 +11,6 @@ export class SessionsFacade {
   constructor(private db: DbService) {}
 
   getSessions(queryFn?: QueryFn) {
-    console.log('calling query', queryFn);
     return this.db.get$<Session>('sessions', queryFn) as Observable<Session[]>;
   }
 
