@@ -18,16 +18,16 @@ const routes: Routes = [
       dialogComponent: MessagePopupComponent,
       matDialogConfig: { width: '500px' },
     },
-    outlet: 'dashboard-dialog',
+    outlet: 'popup',
   },
   {
-    path: 'events',
+    path: 'sessions',
     component: DialogRouterComponent,
     data: {
       dialogComponent: SessionsListPopupComponent,
       matDialogConfig: { width: '500px' },
     },
-    outlet: 'dashboard-dialog',
+    outlet: 'popup',
   },
 ];
 

@@ -40,16 +40,12 @@ export class EventCalendarComponent implements OnInit {
     if (sessionData) {
       Object.assign(extras, sessionData);
     }
-    this.router.navigate(['teacher', 'sessions'], extras);
+    // this.router.navigate(['teacher', 'sessions'], extras); //todo uncoment when tdf session form ready, change url
   }
 
   viewSessionsList(sessions = this.sessions) {
     this.router.navigate(
-      [
-        '/teacher',
-        'dashboard',
-        { outlets: { ['dashboard-dialog']: ['events'] } },
-      ],
+      ['/teacher', 'dashboard', { outlets: { ['popup']: ['sessions'] } }],
       { state: { sessions: sessions } }
     );
   }
@@ -87,10 +83,4 @@ export class EventCalendarComponent implements OnInit {
     let space = new RegExp(' ', 'g');
     return date.toString().replace(space, '_');
   }
-
-  myDateFilter = (d: Date): boolean => {
-    const day = d.getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6; //todo shall we filter days? sat sun?
-  };
 }

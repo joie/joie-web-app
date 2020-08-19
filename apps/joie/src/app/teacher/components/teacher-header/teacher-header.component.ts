@@ -1,3 +1,4 @@
+import { TeacherFacadeService } from './../../service/teacher-facade.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Teacher } from '../../../models/teacher.model';
 import { Observable } from 'rxjs';
@@ -8,9 +9,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./teacher-header.component.scss'],
 })
 export class TeacherHeaderComponent implements OnInit {
-  // @Input() teacher$: Observable<Teacher>;
+  teacher$: Observable<Teacher>;
 
-  constructor() {}
+  constructor(private facadeService: TeacherFacadeService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.teacher$ = this.facadeService.getTeacher('user123');
+  }
 }
