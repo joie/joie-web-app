@@ -26,4 +26,8 @@ export class SessionFormComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  log() {
+    console.log(this.sessionForm.value);
+  }
 }

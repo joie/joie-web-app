@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import {
+  FormBuilder,
+  Validators,
+  FormControl,
+  FormArray,
+} from '@angular/forms';
 
-export type ControlTuple = [string, FormControl];
+export type ControlTuple = [string, FormControl | FormArray];
 
 @Injectable()
 export class SessionFormService {
