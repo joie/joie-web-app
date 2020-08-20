@@ -1,3 +1,4 @@
+import { navTabs } from './../../teacher.mocks';
 import { TeacherFacadeService } from './../../service/teacher-facade.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,10 +9,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./teacher-sidenav.component.scss'],
 })
 export class TeacherSidenavComponent implements OnInit {
-  tabs$: Observable<string[]>;
+  tabs: string[] = navTabs;
   constructor(private facadeService: TeacherFacadeService) {}
 
-  ngOnInit(): void {
-    this.tabs$ = this.facadeService.getMenuTabs();
-  }
+  ngOnInit(): void {}
 }

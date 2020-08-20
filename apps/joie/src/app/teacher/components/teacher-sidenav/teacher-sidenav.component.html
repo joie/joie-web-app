@@ -1,5 +1,5 @@
 <mat-nav-list>
   <a mat-list-item
-     *ngFor="let tab of tabs$ | async"
+     *ngFor="let tab of tabs"
      [routerLink]="'/teacher/' + tab.toLowerCase()">{{tab}}</a>
 </mat-nav-list>
