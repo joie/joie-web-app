@@ -32,6 +32,7 @@ export class DialogRouterComponent implements OnInit {
       this.route.snapshot.data.dialogComponent,
       {
         ...this.route.snapshot.data.matDialogConfig,
+        maxHeight: '99vh',
         // position: {
         //   bottom: '0px',
         // },

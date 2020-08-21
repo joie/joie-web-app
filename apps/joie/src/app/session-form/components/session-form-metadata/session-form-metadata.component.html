@@ -1,5 +1,5 @@
-{{ sessionForm.value | json }}
-<ng-container [formGroup]="sessionForm">
+{{ form.value | json }}
+<ng-container [formGroup]="form">
   <div
     class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
   >
@@ -13,11 +13,9 @@
     <mat-form-field appearance="outline">
       <mat-label>Type</mat-label>
       <select matNativeControl required formControlName="type">
-        <option
-          *ngFor="let type of sessionTypes"
-          [value]="type.value | lowercase"
-          >{{ type.name }}
-        </option>
+        <option *ngFor="let type of sessionTypeKeys" [value]="type">{{
+          sessionTypeEnum[type]
+        }}</option>
       </select>
     </mat-form-field>
   </div>

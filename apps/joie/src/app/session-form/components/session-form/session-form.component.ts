@@ -20,8 +20,8 @@ export class SessionFormComponent implements OnInit {
 
   get isCoaching() {
     return (
-      this.sessionFormService.getControl('type') ===
-      SessionType.Coaching.toLowerCase()
+      SessionType[this.sessionFormService.getControl('type')] ===
+      SessionType.coaching
     );
   }
 
