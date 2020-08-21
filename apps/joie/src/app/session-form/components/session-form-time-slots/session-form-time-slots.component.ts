@@ -1,21 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
-import {
-  SessionFormService,
-  ControlTuple,
-} from '../../services/session-form.service';
+import { Component } from '@angular/core';
+import {  FormGroup, FormControl, FormArray  } from '@angular/forms';
+import { SessionFormExtenderComponent } from '../../common/session-form-extender/session-form-extender.component';
+import { SessionFormService } from '../../services/session-form.service';
 
 @Component({
   selector: 'app-session-form-time-slots',
   templateUrl: './session-form-time-slots.component.html',
   styleUrls: ['./session-form-time-slots.component.scss'],
 })
-export class SessionFormTimeSlotsComponent implements OnInit, OnDestroy {
-  controls: ControlTuple[] = [
-    ['time-slots', new FormArray([this.createTimeSlot()])],
-  ];
-
-  constructor(private sessionFormService: SessionFormService) {}
+export class SessionFormTimeSlotsComponent extends SessionFormExtenderComponent {
+  constructor(private sessionFormService: SessionFormService) {
+   super(sessionFormService);
+    this.controls = [ ['time-slots', new FormArray([this.createTimeSlot()])]];
+  }
 
   get form(): FormGroup {
     return this.sessionFormService.sessionForm;

@@ -1,39 +1,34 @@
-import { CourseLevel, Activities } from './../../../sessions/models/session';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Pillar } from '../../../sessions/models/session';
+import { Component } from '@angular/core';
+import { Pillar, CourseLevel, Activities } from '../../../sessions/models/session';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
-import {
-  SessionFormService,
-  ControlTuple,
-} from '../../services/session-form.service';
+import { SessionFormService } from '../../services/session-form.service';
+import { SessionFormExtenderComponent } from '../../common/session-form-extender/session-form-extender.component';
 
 @Component({
   selector: 'app-session-form-attributes',
   templateUrl: './session-form-attributes.component.html',
   styleUrls: ['./session-form-attributes.component.scss'],
 })
-export class SessionFormAttributesComponent implements OnInit, OnDestroy {
-  controls: ControlTuple[] = [
-    ['pillar', new FormControl(null)],
-    ['level', new FormControl(null)],
-    ['activity', new FormControl(null)],
-    ['goals', new FormArray([this.createFormControl()])],
-    ['comments', new FormArray([this.createFormControl()])],
-  ];
+
+export class SessionFormAttributesComponent extends SessionFormExtenderComponent {
   pillarEnum = Pillar;
   levelEnum = CourseLevel;
   activityEnum = Activities;
 
-  constructor(private sessionFormService: SessionFormService) {}
-
-  get form(): FormGroup {
-    return this.sessionFormService.sessionForm;
+  constructor(sessionFormService: SessionFormService) {
+    super(sessionFormService);
+    this.controls = [
+      ['pillar', new FormControl(null)],
+      ['level', new FormControl(null)],
+      ['activity', new FormControl(null)],
+      ['goals', new FormArray([this.createFormControl()])],
+      ['comments', new FormArray([this.createFormControl()])]];
   }
 
   get pillarKeys(): Array<string> {
     return Object.keys(this.pillarEnum);
   }
-
+    
   get levelKeys(): Array<string> {
     return Object.keys(this.levelEnum);
   }

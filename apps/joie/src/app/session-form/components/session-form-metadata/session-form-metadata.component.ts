@@ -1,30 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SessionFormService } from '../../services/session-form.service';
 import { SessionType } from '../../../sessions/models/session';
 import { FormControl, Validators } from '@angular/forms';
+import { SessionFormExtenderComponent } from '../../common/session-form-extender/session-form-extender.component';
 
 @Component({
   selector: 'app-session-form-metadata',
   templateUrl: './session-form-metadata.component.html',
   styleUrls: ['./session-form-metadata.component.scss'],
 })
-export class SessionFormMetadataComponent implements OnInit {
-  sessionTypes = [
-    { value: SessionType.Class, name: 'Class' },
-    { value: SessionType.Workshop, name: 'Workshop' },
-    { value: SessionType.Course, name: 'Course' },
-    { value: SessionType.Lecture, name: 'Lecture' },
-    { value: SessionType.Coaching, name: '1:1 Coaching' },
-  ];
+export class SessionFormMetadataComponent extends SessionFormExtenderComponent {
+  sessionTypeEnum = SessionType;
 
-  constructor(private sessionFormService: SessionFormService) {
-    this.sessionForm.addControl('type', new FormControl(null, Validators.required));
-    this.sessionForm.addControl('description', new FormControl(null));
+  constructor(sessionFormService: SessionFormService) {
+    super(sessionFormService);
+    this.controls = [
+      ['type', new FormControl(null, Validators.required)],
+      ['description', new FormControl(null)],
+    ];
   }
 
-  get sessionForm() {
-    return this.sessionFormService.sessionForm;
+  get sessionTypeKeys(): Array<string> {
+    return Object.keys(this.sessionTypeEnum);
   }
-
-  ngOnInit(): void {}
 }
