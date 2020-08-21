@@ -35,9 +35,6 @@
     </select>
   </mat-form-field>
 
-  <!-- session name here ? or it's a 'title' field in form-metadata ?   -->
-  <!-- description field also here or at meta ? -->
-
   <h3>Session goals (add one goal in line)</h3>
   <ng-container *ngFor="let goal of goalsFormArray.controls; let i = index"
                 formArrayName="goals">

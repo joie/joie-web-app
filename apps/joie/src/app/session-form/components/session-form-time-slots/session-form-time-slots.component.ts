@@ -11,16 +11,9 @@ import {
   styleUrls: ['./session-form-time-slots.component.scss'],
 })
 export class SessionFormTimeSlotsComponent implements OnInit, OnDestroy {
-  // controls: ControlTuple[] = [['time-slot', new FormControl(null)]];
   controls: ControlTuple[] = [
     ['time-slots', new FormArray([this.createTimeSlot()])],
-  ]; // todo instead of wrapping it in brackets here, could do it when passing controlls to service or better change it at upper level
-
-  myFilter(d: Date | null): boolean {
-    const day = (d || new Date()).getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
-  }
+  ];
 
   constructor(private sessionFormService: SessionFormService) {}
 

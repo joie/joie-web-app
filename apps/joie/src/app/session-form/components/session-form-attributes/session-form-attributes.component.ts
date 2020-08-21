@@ -70,7 +70,7 @@ export class SessionFormAttributesComponent implements OnInit, OnDestroy {
     formArray.removeAt(i);
   }
 
-  private createFormControl() {
+  createFormControl() {
     return new FormControl('');
   }
 }

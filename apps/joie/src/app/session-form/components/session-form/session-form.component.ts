@@ -1,5 +1,5 @@
+import { CourseType } from './../../../sessions/models/session';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { SessionFormService } from '../../services/session-form.service';
 import { SessionType } from '../../../sessions/models/session';
 
@@ -22,6 +22,13 @@ export class SessionFormComponent implements OnInit {
     return (
       this.sessionFormService.getControl('type') ===
       SessionType.Coaching.toLowerCase()
+    );
+  }
+
+  get isLivestreaming() {
+    return (
+      this.sessionFormService.getControl('format') ===
+      CourseType.LiveStreaming.toLowerCase()
     );
   }
 
