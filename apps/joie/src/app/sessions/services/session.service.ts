@@ -34,7 +34,7 @@ export class SessionService {
         currency: 'USD',
       },
       publishedDate: '07-19-2020',
-      sessionType: SessionType.Workshop,
+      sessionType: SessionType.workshop,
       title: 'Full Body Stretch / Yoga for STRESS & ANXIETY Relief',
       activities: ['Yoga'],
       author: {

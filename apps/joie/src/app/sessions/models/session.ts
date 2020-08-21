@@ -30,11 +30,11 @@ export enum CourseLevel {
 }
 
 export enum SessionType {
-  Class = 'Class',
-  Workshop = 'Workshop',
-  Course = 'Course',
-  Lecture = 'Lecture',
-  Coaching = 'Coaching',
+  class = 'Class',
+  workshop = 'Workshop',
+  course = 'Course',
+  lecture = 'Lecture',
+  coaching = '1:1 Coaching',
 }
 
 export enum Pillar {
