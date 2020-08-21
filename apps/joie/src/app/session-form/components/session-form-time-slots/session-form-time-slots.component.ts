@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {  FormGroup, FormControl, FormArray  } from '@angular/forms';
+import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { SessionFormExtenderComponent } from '../../common/session-form-extender/session-form-extender.component';
 import { SessionFormService } from '../../services/session-form.service';
 
@@ -9,9 +9,9 @@ import { SessionFormService } from '../../services/session-form.service';
   styleUrls: ['./session-form-time-slots.component.scss'],
 })
 export class SessionFormTimeSlotsComponent extends SessionFormExtenderComponent {
-  constructor(private sessionFormService: SessionFormService) {
-   super(sessionFormService);
-    this.controls = [ ['time-slots', new FormArray([this.createTimeSlot()])]];
+  constructor(sessionFormService: SessionFormService) {
+    super(sessionFormService);
+    this.controls = [['time-slots', new FormArray([this.createTimeSlot()])]];
   }
 
   get form(): FormGroup {

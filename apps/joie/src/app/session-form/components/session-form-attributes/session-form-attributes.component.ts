@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { Pillar, CourseLevel, Activities } from '../../../sessions/models/session';
+import {
+  Pillar,
+  CourseLevel,
+  Activities,
+} from '../../../sessions/models/session';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { SessionFormService } from '../../services/session-form.service';
 import { SessionFormExtenderComponent } from '../../common/session-form-extender/session-form-extender.component';
@@ -9,7 +13,6 @@ import { SessionFormExtenderComponent } from '../../common/session-form-extender
   templateUrl: './session-form-attributes.component.html',
   styleUrls: ['./session-form-attributes.component.scss'],
 })
-
 export class SessionFormAttributesComponent extends SessionFormExtenderComponent {
   pillarEnum = Pillar;
   levelEnum = CourseLevel;
@@ -22,13 +25,14 @@ export class SessionFormAttributesComponent extends SessionFormExtenderComponent
       ['level', new FormControl(null)],
       ['activity', new FormControl(null)],
       ['goals', new FormArray([this.createFormControl()])],
-      ['comments', new FormArray([this.createFormControl()])]];
+      ['comments', new FormArray([this.createFormControl()])],
+    ];
   }
 
   get pillarKeys(): Array<string> {
     return Object.keys(this.pillarEnum);
   }
-    
+
   get levelKeys(): Array<string> {
     return Object.keys(this.levelEnum);
   }

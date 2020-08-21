@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SessionFormService } from '../../services/session-form.service';
 import { SessionType } from '../../../sessions/models/session';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { SessionFormExtenderComponent } from '../../common/session-form-extender/session-form-extender.component';
 
 @Component({
@@ -22,5 +22,9 @@ export class SessionFormMetadataComponent extends SessionFormExtenderComponent {
 
   get sessionTypeKeys(): Array<string> {
     return Object.keys(this.sessionTypeEnum);
+  }
+
+  get form(): FormGroup {
+    return this.sessionFormService.sessionForm;
   }
 }
