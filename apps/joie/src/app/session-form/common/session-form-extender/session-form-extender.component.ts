@@ -1,9 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {
-  ControlTuple,
-  SessionFormService,
-} from '../../services/session-form.service';
+import { ControlTuple, SessionFormService } from '../../services/session-form.service';
 
 @Component({
   template: '',

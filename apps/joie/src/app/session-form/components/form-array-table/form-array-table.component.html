@@ -1,17 +1,20 @@
 <p>form-array-table works!</p>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+{{ values | json }}
+<table mat-table [dataSource]="values" class="mat-elevation-z1">
   <ng-container matColumnDef="value">
-    <th mat-header-cell *matHeaderCellDef>Date</th>
-    <td mat-cell *matCellDef="let element">
-      <mat-form-field>
-        <mat-label>Date</mat-label>
-        <input type="date" matInput [formControl]="element.date" />
-      </mat-form-field>
+    <th mat-header-cell *matHeaderCellDef>Value</th>
+    <td mat-cell *matCellDef="let item">{{ item }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let i = index">
+      <button mat-icon-button (click)="remove.emit(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </td>
-    <td mat-footer-cell *matFooterCellDef>new date here</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
 </table>

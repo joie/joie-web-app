@@ -14,7 +14,13 @@ import { SessionFormAttributesComponent } from './components/session-form-attrib
 import { FormArrayTableComponent } from './components/form-array-table/form-array-table.component';
 
 @NgModule({
-  declarations: [SessionFormComponent, SessionFormMetadataComponent, SessionFormTimeSlotsComponent, SessionFormAttributesComponent, FormArrayTableComponent],
+  declarations: [
+    SessionFormComponent,
+    SessionFormMetadataComponent,
+    SessionFormTimeSlotsComponent,
+    SessionFormAttributesComponent,
+    FormArrayTableComponent,
+  ],
   imports: [
     SharedModule,
     RouterModule,

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormArray } from '@angular/forms';
 
 @Component({
@@ -7,11 +7,8 @@ import { FormArray } from '@angular/forms';
   styleUrls: ['./form-array-table.component.scss'],
 })
 export class FormArrayTableComponent {
-  @Input() controls: FormArray;
-  displayedColumns: string[] = ['value'];
-  dataSource = this.controls;
+  @Input() values: FormArray;
+  @Output() remove = new EventEmitter();
 
-  remove(i: number): void {
-    this.controls.removeAt(i);
-  }
+  displayedColumns: string[] = ['value', 'action'];
 }

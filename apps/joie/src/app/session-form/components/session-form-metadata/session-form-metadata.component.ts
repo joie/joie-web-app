@@ -15,7 +15,7 @@ export class SessionFormMetadataComponent extends SessionFormExtenderComponent {
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
     this.controls = [
-      ['type', new FormControl(null, Validators.required)],
+      ['type', new FormControl('coaching', Validators.required)],
       ['description', new FormControl(null)],
     ];
   }
@@ -23,5 +23,4 @@ export class SessionFormMetadataComponent extends SessionFormExtenderComponent {
   get sessionTypeKeys(): Array<string> {
     return Object.keys(this.sessionTypeEnum);
   }
-
 }
