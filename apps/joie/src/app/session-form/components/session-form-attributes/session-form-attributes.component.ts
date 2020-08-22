@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  Pillar,
-  CourseLevel,
-  Activities,
-} from '../../../sessions/models/session';
+import { Pillar, CourseLevel, Activities } from '../../../sessions/models/session';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { SessionFormService } from '../../services/session-form.service';
 import { SessionFormExtenderComponent } from '../../common/session-form-extender/session-form-extender.component';
@@ -24,8 +20,8 @@ export class SessionFormAttributesComponent extends SessionFormExtenderComponent
       ['pillar', new FormControl(null)],
       ['level', new FormControl(null)],
       ['activity', new FormControl(null)],
-      ['goals', new FormArray([this.createFormControl()])],
-      ['comments', new FormArray([this.createFormControl()])],
+      ['goals', new FormArray([new FormControl(null)])],
+      ['comments', new FormArray([new FormControl(null)])],
     ];
   }
 
@@ -42,34 +38,18 @@ export class SessionFormAttributesComponent extends SessionFormExtenderComponent
   }
 
   get goalsFormArray() {
-    return this.controls.filter(
-      (control) => control[0] === 'goals'
-    )[0][1] as FormArray;
+    return this.controls.filter((control) => control[0] === 'goals')[0][1] as FormArray;
   }
 
   get commentsFormArray() {
-    return this.controls.filter(
-      (control) => control[0] === 'comments'
-    )[0][1] as FormArray;
-  }
-
-  ngOnInit(): void {
-    this.sessionFormService.addControls(this.controls);
-  }
-
-  ngOnDestroy(): void {
-    this.sessionFormService.removeControls(this.controls);
+    return this.controls.filter((control) => control[0] === 'comments')[0][1] as FormArray;
   }
 
   addFormControll(formArray: FormArray) {
-    formArray.push(this.createFormControl());
+    formArray.push(new FormControl(null));
   }
 
   removeControl(formArray: FormArray, i: number) {
     formArray.removeAt(i);
-  }
-
-  createFormControl() {
-    return new FormControl('');
   }
 }

@@ -24,7 +24,4 @@ export class SessionFormMetadataComponent extends SessionFormExtenderComponent {
     return Object.keys(this.sessionTypeEnum);
   }
 
-  get form(): FormGroup {
-    return this.sessionFormService.sessionForm;
-  }
 }

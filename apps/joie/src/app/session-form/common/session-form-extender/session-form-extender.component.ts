@@ -15,7 +15,7 @@ export class SessionFormExtenderComponent implements OnInit, OnDestroy {
     // as described in https://angular.io/guide/dependency-injection-in-action#keep-constructors-simple
     // Unfortunately, Angular cannot inject the service directly into the base class. You must provide
     // the service again for this component, then pass it down to the base class inside the constructor.
-    public sessionFormService: SessionFormService
+    private sessionFormService: SessionFormService
   ) {}
 
   get form(): FormGroup {

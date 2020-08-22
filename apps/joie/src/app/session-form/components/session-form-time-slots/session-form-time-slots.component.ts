@@ -3,45 +3,31 @@ import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { SessionFormExtenderComponent } from '../../common/session-form-extender/session-form-extender.component';
 import { SessionFormService } from '../../services/session-form.service';
 
+const newTimeSlot = () =>
+  new FormGroup({
+    date: new FormControl(null),
+    time: new FormControl(null),
+    duration: new FormControl(null),
+  });
+
 @Component({
   selector: 'app-session-form-time-slots',
   templateUrl: './session-form-time-slots.component.html',
   styleUrls: ['./session-form-time-slots.component.scss'],
 })
 export class SessionFormTimeSlotsComponent extends SessionFormExtenderComponent {
+  #timeSlotsFormArray = new FormArray([newTimeSlot()]);
+
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
-    this.controls = [['time-slots', new FormArray([this.createTimeSlot()])]];
-  }
-
-  get form(): FormGroup {
-    return this.sessionFormService.sessionForm;
-  }
-
-  get timeSlotsFormArray() {
-    return this.controls[0][1] as FormArray;
-  }
-
-  ngOnInit(): void {
-    this.sessionFormService.addControls(this.controls);
-  }
-
-  ngOnDestroy(): void {
-    this.sessionFormService.removeControls(this.controls);
-  }
-  createTimeSlot(): FormGroup {
-    return new FormGroup({
-      date: new FormControl(''),
-      time: new FormControl(''),
-      duration: new FormControl(''),
-    });
+    this.controls = [['time-slots', this.#timeSlotsFormArray]];
   }
 
   addTimeSlot(): void {
-    this.timeSlotsFormArray.push(this.createTimeSlot());
+    this.#timeSlotsFormArray.push(newTimeSlot());
   }
 
-  removeTimeSlot(i) {
-    this.timeSlotsFormArray.removeAt(i);
+  removeTimeSlot(i: number): void {
+    this.#timeSlotsFormArray.removeAt(i);
   }
 }
