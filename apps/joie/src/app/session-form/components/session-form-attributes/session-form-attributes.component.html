@@ -23,7 +23,7 @@
   </mat-form-field>
 
   <h3>Session goals (add one goal in line)</h3>
-  <ng-container *ngFor="let goal of goalsFormArray; let i = index" formArrayName="goals">
+  <ng-container *ngFor="let goal of goalsFormArray.controls; let i = index" formArrayName="goals">
     <button *ngIf="i > 0" mat-icon-button (click)="removeControl(goalsFormArray, i)">
       <mat-icon>delete</mat-icon>
     </button>
@@ -32,10 +32,13 @@
       <input type="text" matInput [formControlName]="i" />
     </mat-form-field>
   </ng-container>
-  <button (click)="addFormControll(goalsFormArray)">Add goal</button>
+  <button mat-button (click)="addFormControll(goalsFormArray)">Add goal</button>
 
   <h3>Need to know (add one comment in line)</h3>
-  <ng-container *ngFor="let comment of commentsFormArray; let i = index" formArrayName="comments">
+  <ng-container
+    *ngFor="let comment of commentsFormArray.controls; let i = index"
+    formArrayName="comments"
+  >
     <button *ngIf="i > 0" mat-icon-button (click)="removeControl(commentsFormArray, i)">
       <mat-icon>delete</mat-icon>
     </button>
@@ -45,5 +48,5 @@
     </mat-form-field>
   </ng-container>
 
-  <button (click)="addFormControll(commentsFormArray)">Add comment</button>
+  <button mat-button (click)="addFormControll(commentsFormArray)">Add comment</button>
 </ng-container>

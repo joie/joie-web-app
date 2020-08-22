@@ -1,37 +1,30 @@
 <ng-container [formGroup]="form">
-
   <h3>Available time slots</h3>
 
-  <ng-container formArrayName="time-slots"
-                *ngFor="let slot of timeSlotsFormArray.controls; let i = index;">
-    <mat-icon *ngIf="i > 0"
-              mat-icon-button
-              (click)="removeTimeSlot(i)">delete</mat-icon>
-    <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
-         [formGroupName]="i">
-
+  <ng-container
+    formArrayName="time-slots"
+    *ngFor="let slot of timeSlotsFormArray.controls; let i = index"
+  >
+    <mat-icon *ngIf="i > 0" mat-icon-button (click)="removeTimeSlot(i)">delete</mat-icon>
+    <div
+      class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
+      [formGroupName]="i"
+    >
       <mat-form-field>
         <mat-label>Date</mat-label>
-        <input type="date"
-               matInput
-               formControlName="date">
+        <input type="date" matInput formControlName="date" />
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Time</mat-label>
-        <input type="time"
-               matInput
-               formControlName="time">
+        <input type="time" matInput formControlName="time" />
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Duration</mat-label>
-        <input type="number"
-               matInput
-               formControlName="duration">
+        <input type="number" matInput formControlName="duration" />
       </mat-form-field>
     </div>
   </ng-container>
-  <button (click)="addTimeSlot()">Add
-    a time slot</button>
+  <button (click)="addTimeSlot()">Add a time slot</button>
 </ng-container>
