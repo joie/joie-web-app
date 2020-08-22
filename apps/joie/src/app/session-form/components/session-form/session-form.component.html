@@ -1,26 +1,17 @@
-<div mat-dialog-content
-     class="container">
+<div mat-dialog-content class="container">
   <h4>
     Create a session
   </h4>
-  <button matButton
-          mat-button-outlined
-          (click)="log()">Log form</button>
-  <form [formGroup]="sessionForm"
-        [class]="layoutClass">
+  {{ sessionForm.value | json }}
+  <form [formGroup]="sessionForm" [class]="layoutClass">
     <app-session-form-metadata [class]="layoutClass"></app-session-form-metadata>
-    <button mat-button
-            color="primary"
-            (click)="showAllFields = true"
-            *ngIf="!showAllFields">
+    <button mat-button color="primary" (click)="showAllFields = true" *ngIf="!showAllFields">
       Show all fields...
     </button>
     <ng-container *ngIf="showAllFields">
-      <app-session-form-time-slots *ngIf="isCoaching"
-                                   [class]="layoutClass">
+      <app-session-form-time-slots *ngIf="isCoaching" [class]="layoutClass">
       </app-session-form-time-slots>
-      <app-session-form-attributes [class]="layoutClass">
-      </app-session-form-attributes>
+      <app-session-form-attributes [class]="layoutClass"> </app-session-form-attributes>
     </ng-container>
   </form>
 </div>

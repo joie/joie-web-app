@@ -16,7 +16,7 @@ const newTimeSlot = () =>
   styleUrls: ['./session-form-time-slots.component.scss'],
 })
 export class SessionFormTimeSlotsComponent extends SessionFormExtenderComponent {
-  protected timeSlotsFormArray = new FormArray([newTimeSlot()]);
+  readonly timeSlotsFormArray = new FormArray([newTimeSlot()]);
 
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);

@@ -4,6 +4,20 @@ import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { SessionFormService } from '../../services/session-form.service';
 import { SessionFormExtenderComponent } from '../../common/session-form-extender/session-form-extender.component';
 
+const newGoal = () =>
+  new FormGroup({
+    date: new FormControl(null),
+    time: new FormControl(null),
+    duration: new FormControl(null),
+  });
+
+const newComment = () =>
+  new FormGroup({
+    date: new FormControl(null),
+    time: new FormControl(null),
+    duration: new FormControl(null),
+  });
+
 @Component({
   selector: 'app-session-form-attributes',
   templateUrl: './session-form-attributes.component.html',
@@ -13,6 +27,9 @@ export class SessionFormAttributesComponent extends SessionFormExtenderComponent
   pillarEnum = Pillar;
   levelEnum = CourseLevel;
   activityEnum = Activities;
+
+  readonly goalsFormArray = new FormArray([new FormControl(null)]);
+  readonly commentsFormArray = new FormArray([new FormControl(null)]);
 
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
@@ -35,14 +52,6 @@ export class SessionFormAttributesComponent extends SessionFormExtenderComponent
 
   get activityKeys(): Array<string> {
     return Object.keys(this.activityEnum);
-  }
-
-  get goalsFormArray() {
-    return this.controls.filter((control) => control[0] === 'goals')[0][1] as FormArray;
-  }
-
-  get commentsFormArray() {
-    return this.controls.filter((control) => control[0] === 'comments')[0][1] as FormArray;
   }
 
   addFormControll(formArray: FormArray) {

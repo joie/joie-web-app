@@ -18,8 +18,8 @@ export interface Session {
 }
 
 export enum CourseType {
-  OnDemand = 'On demand',
-  LiveStreaming = 'Live streaming',
+  onDemand = 'On demand',
+  liveStreaming = 'Live streaming',
 }
 
 export enum CourseLevel {
