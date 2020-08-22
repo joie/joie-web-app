@@ -21,7 +21,7 @@ export class SessionService {
     return (of({
       id: 1,
       level: CourseLevel.Beginner,
-      courseType: CourseType.OnDemand,
+      courseType: CourseType.onDemand,
       description:
         'Training to become an Iyengar Yoga teacher generally takes between 3-5 years and thus attracts only deeply dedicated practitioners. This, in combination with a certification process that evelopment combination with a certification processacross the globe,',
       duration: {

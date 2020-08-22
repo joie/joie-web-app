@@ -26,10 +26,6 @@ export class TeacherFacadeService {
   }
   constructor(private injector: Injector) {}
 
-  getMenuTabs() {
-    return this.teacherDataService.getMenuTabs();
-  }
-
   getTeacher(id: string) {
     return this.teacherDataService.getTeacher(id);
   }

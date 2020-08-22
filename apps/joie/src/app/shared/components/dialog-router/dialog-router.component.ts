@@ -8,11 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./dialog-router.component.scss'],
 })
 export class DialogRouterComponent implements OnInit {
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    public dialog: MatDialog
-  ) {}
+  constructor(private route: ActivatedRoute, private router: Router, public dialog: MatDialog) {}
 
   // get primaryRoute() {
   //   let route = this.route;
@@ -28,16 +24,13 @@ export class DialogRouterComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(
-      this.route.snapshot.data.dialogComponent,
-      {
-        ...this.route.snapshot.data.matDialogConfig,
-        maxHeight: '99vh',
-        // position: {
-        //   bottom: '0px',
-        // },
-      }
-    );
+    const dialogRef = this.dialog.open(this.route.snapshot.data.dialogComponent, {
+      ...this.route.snapshot.data.matDialogConfig,
+      height: '99vh',
+      // position: {
+      //   bottom: '0px',
+      // },
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       // console.log('The dialog was closed with:', result);

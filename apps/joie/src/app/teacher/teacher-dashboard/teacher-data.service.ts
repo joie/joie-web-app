@@ -1,6 +1,6 @@
 import { sessionsMock } from './../teacher.mocks';
 import { Injectable } from '@angular/core';
-import { navTabs, dashboardInfoMock } from '../teacher.mocks';
+import { dashboardInfoMock } from '../teacher.mocks';
 import { of, Observable } from 'rxjs';
 import { Teacher } from '../../models/teacher.model';
 
@@ -10,11 +10,8 @@ import { Teacher } from '../../models/teacher.model';
 export class TeacherDataService {
   constructor() {}
 
-  getMenuTabs() {
-    return of(navTabs);
-  }
   getTeacher(userId = '123'): Observable<Teacher> {
-    return of(dashboardInfoMock);
+    return of(dashboardInfoMock); // todo should be moved to a feture root level service. Directly to facade?
   }
 
   postMessage(id: string, session, message: string) {
@@ -22,6 +19,6 @@ export class TeacherDataService {
   }
 
   getSessions(userId: string) {
-    return of(sessionsMock);
+    return of(sessionsMock); // todo should be moved to a feture root level service. Directly to facade?
   }
 }

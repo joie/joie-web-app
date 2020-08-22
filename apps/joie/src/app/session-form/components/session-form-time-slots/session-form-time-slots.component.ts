@@ -1,7 +1,14 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { SessionFormExtenderComponent } from '../../common/session-form-extender/session-form-extender.component';
 import { SessionFormService } from '../../services/session-form.service';
+
+const newTimeSlot = () =>
+  new FormGroup({
+    date: new FormControl(null),
+    time: new FormControl(null),
+    duration: new FormControl(null),
+  });
 
 @Component({
   selector: 'app-session-form-time-slots',
@@ -9,14 +16,18 @@ import { SessionFormService } from '../../services/session-form.service';
   styleUrls: ['./session-form-time-slots.component.scss'],
 })
 export class SessionFormTimeSlotsComponent extends SessionFormExtenderComponent {
-  myFilter(d: Date | null): boolean {
-    const day = (d || new Date()).getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
-  }
+  readonly timeSlotsFormArray = new FormArray([newTimeSlot()]);
 
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
-    this.controls = [['time-slot', new FormControl(null)]];
+    this.controls = [['time-slots', this.timeSlotsFormArray]];
+  }
+
+  addTimeSlot(): void {
+    this.timeSlotsFormArray.push(newTimeSlot());
+  }
+
+  removeTimeSlot(i: number): void {
+    this.timeSlotsFormArray.removeAt(i);
   }
 }

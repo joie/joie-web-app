@@ -1,66 +1,17 @@
-<div class="container">
+<div mat-dialog-content class="container">
   <h4>
     Create a session
   </h4>
+  {{ sessionForm.value | json }}
   <form [formGroup]="sessionForm" [class]="layoutClass">
-    <app-session-form-metadata
-      [class]="layoutClass"
-    ></app-session-form-metadata>
-    <button
-      mat-button
-      color="primary"
-      (click)="showAllFields = true"
-      *ngIf="!showAllFields"
-    >
+    <app-session-form-metadata [class]="layoutClass"></app-session-form-metadata>
+    <button mat-button color="primary" (click)="showAllFields = true" *ngIf="!showAllFields">
       Show all fields...
     </button>
     <ng-container *ngIf="showAllFields">
-      <app-session-form-time-slots
-        *ngIf="isCoaching"
-        [class]="layoutClass"
-      >
+      <app-session-form-time-slots *ngIf="isCoaching" [class]="layoutClass">
       </app-session-form-time-slots>
-      <app-session-form-attributes [class]="layoutClass">
-      </app-session-form-attributes>
+      <app-session-form-attributes [class]="layoutClass"> </app-session-form-attributes>
     </ng-container>
-    <!--
-
-    <mat-form-field appearance="outline">
-      <mat-label>Last name</mat-label>
-      <input
-        matInput
-        placeholder="last name"
-        formControlName="lastNameCtrl"
-        required
-      />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Email</mat-label>
-      <input
-        matInput
-        placeholder="email"
-        formControlName="emailCtrl"
-        required
-      />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Phone number</mat-label>
-      <input
-        matInput
-        placeholder="phone number"
-        formControlName="phoneNumberCtrl"
-        required
-      />
-    </mat-form-field> -->
-
-    <!-- <button
-      mat-flat-button
-      color="primary"
-      [disabled]="formGroup.invalid"
-    >
-      Next
-    </button> -->
   </form>
 </div>

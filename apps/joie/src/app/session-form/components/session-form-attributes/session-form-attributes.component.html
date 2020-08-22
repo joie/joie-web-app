@@ -2,9 +2,48 @@
   <mat-form-field appearance="outline">
     <mat-label>Pillars</mat-label>
     <select matNativeControl required formControlName="pillar">
-      <option *ngFor="let pillar of pillarKeys" [value]="pillar">{{
-        pillarEnum[pillar]
+      <option *ngFor="let pillar of pillarKeys" [value]="pillar">{{ pillarEnum[pillar] }}</option>
+    </select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Levels</mat-label>
+    <select matNativeControl required formControlName="level">
+      <option *ngFor="let level of levelKeys" [value]="level">{{ levelEnum[level] }}</option>
+    </select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Activities</mat-label>
+    <select matNativeControl required formControlName="activity">
+      <option *ngFor="let activity of activityKeys" [value]="activity">{{
+        activityEnum[activity]
       }}</option>
     </select>
   </mat-form-field>
+
+  <h3>Session goals (add one goal in line)</h3>
+  <ng-container *ngFor="let goal of goalsFormArray; let i = index" formArrayName="goals">
+    <button *ngIf="i > 0" mat-icon-button (click)="removeControl(goalsFormArray, i)">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <mat-form-field appearance="outline">
+      <mat-label>Session goal</mat-label>
+      <input type="text" matInput [formControlName]="i" />
+    </mat-form-field>
+  </ng-container>
+  <button (click)="addFormControll(goalsFormArray)">Add goal</button>
+
+  <h3>Need to know (add one comment in line)</h3>
+  <ng-container *ngFor="let comment of commentsFormArray; let i = index" formArrayName="comments">
+    <button *ngIf="i > 0" mat-icon-button (click)="removeControl(commentsFormArray, i)">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <mat-form-field appearance="outline">
+      <mat-label>Comment</mat-label>
+      <input type="text" matInput [formControlName]="i" />
+    </mat-form-field>
+  </ng-container>
+
+  <button (click)="addFormControll(commentsFormArray)">Add comment</button>
 </ng-container>

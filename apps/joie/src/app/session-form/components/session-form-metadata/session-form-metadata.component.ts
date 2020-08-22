@@ -23,4 +23,5 @@ export class SessionFormMetadataComponent extends SessionFormExtenderComponent {
   get sessionTypeKeys(): Array<string> {
     return Object.keys(this.sessionTypeEnum);
   }
+
 }
