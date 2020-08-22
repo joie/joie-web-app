@@ -16,18 +16,18 @@ const newTimeSlot = () =>
   styleUrls: ['./session-form-time-slots.component.scss'],
 })
 export class SessionFormTimeSlotsComponent extends SessionFormExtenderComponent {
-  #timeSlotsFormArray = new FormArray([newTimeSlot()]);
+  protected timeSlotsFormArray = new FormArray([newTimeSlot()]);
 
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
-    this.controls = [['time-slots', this.#timeSlotsFormArray]];
+    this.controls = [['time-slots', this.timeSlotsFormArray]];
   }
 
   addTimeSlot(): void {
-    this.#timeSlotsFormArray.push(newTimeSlot());
+    this.timeSlotsFormArray.push(newTimeSlot());
   }
 
   removeTimeSlot(i: number): void {
-    this.#timeSlotsFormArray.removeAt(i);
+    this.timeSlotsFormArray.removeAt(i);
   }
 }
