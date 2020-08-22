@@ -1,8 +1,12 @@
 name: Build and Deploy
 
 on:
-  push:
-    branches: [ live, release/* ]
+  release:
+    types: [published]
+
+# on:
+#   push:
+#     branches: [ live, release/* ]
 
 jobs:
   build:
