@@ -14,7 +14,7 @@ export class SessionFormComponent {
 
   constructor(private sessionFormService: SessionFormService) {}
 
-  get sessionForm() {
+  get form() {
     return this.sessionFormService.sessionForm;
   }
 
@@ -24,5 +24,9 @@ export class SessionFormComponent {
 
   get isLivestreaming() {
     return SessionType[this.sessionFormService.getControl('format')] === CourseType.liveStreaming;
+  }
+
+  onSubmit() {
+    console.log(this.sessionFormService.sessionForm.value);
   }
 }

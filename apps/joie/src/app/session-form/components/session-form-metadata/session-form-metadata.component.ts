@@ -14,10 +14,10 @@ export class SessionFormMetadataComponent extends SessionFormExtenderComponent {
 
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
-    this.controls = [
+    this.addFormControls([
       ['type', new FormControl('coaching', Validators.required)],
       ['description', new FormControl(null)],
-    ];
+    ]);
   }
 
   get sessionTypeKeys(): Array<string> {

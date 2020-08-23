@@ -1,12 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ControlTuple, SessionFormService } from '../../services/session-form.service';
 
 @Component({
   template: '',
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class SessionFormExtenderComponent implements OnInit, OnDestroy {
-  protected controls: ControlTuple[];
+  private _controls: ControlTuple[];
 
   constructor(
     // as described in https://angular.io/guide/dependency-injection-in-action#keep-constructors-simple
@@ -15,15 +16,17 @@ export class SessionFormExtenderComponent implements OnInit, OnDestroy {
     private sessionFormService: SessionFormService
   ) {}
 
+  protected addFormControls(controls: ControlTuple[]) {
+    this.sessionFormService.addControls(controls);
+  }
+
   get form(): FormGroup {
     return this.sessionFormService.sessionForm;
   }
 
-  ngOnInit(): void {
-    this.sessionFormService.addControls(this.controls);
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
-    this.sessionFormService.removeControls(this.controls);
+    this.sessionFormService.removeControls(this._controls);
   }
 }

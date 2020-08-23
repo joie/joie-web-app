@@ -1,34 +1,36 @@
 <ng-container [formGroup]="form">
   <h3>Available time slots</h3>
 
-  <app-form-array-table
-    [values]="timeSlotValues"
-    (remove)="removeTimeSlot($event)"
-  ></app-form-array-table>
+  <app-form-array-table [values]="timeSlotValues" (remove)="removeTimeSlot($event)">
+    <!-- <ng-container [formArrayName]="TIME_LOTS" (ngSubmit)="addTimeSlot()">
+      <ng-container [formGroupName]="timeSlotsFormArray.length - 1">
+        <mat-form-field>
+          <mat-label>Date</mat-label>
+          <input type="date" matInput formControlName="date" />
+        </mat-form-field>
 
-  <div
-    class="layout-grid layout-grid-inline-features layout-spacing-inline-sm layout-spacing-block-sm"
-    [formArrayName]="TIME_LOTS"
-  >
-    <mat-form-field>
-      <mat-label>Date</mat-label>
-      <input type="date" matInput formControlName="date" [formControlName]="2" />
-    </mat-form-field>
+        <mat-form-field>
+          <mat-label>Time</mat-label>
+          <input type="time" matInput formControlName="time" />
+        </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Time</mat-label>
-      <input type="time" matInput formControlName="time" />
-    </mat-form-field>
+        <mat-form-field>
+          <mat-label>Repeat</mat-label>
+          <select matNativeControl formControlName="recurring">
+            <option *ngFor="let recurring of recurringKeys" [value]="recurring">{{
+              recurringEnum[recurring]
+            }}</option>
+          </select>
+        </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Repeat</mat-label>
-      <select matNativeControl formControlName="recurring">
-        <option *ngFor="let recurring of recurringKeys" [value]="recurring">{{
-          recurringEnum[recurring]
-        }}</option>
-      </select>
-    </mat-form-field>
+        <button mat-flat-button color="primary">Add a time slot</button>
+      </ng-container>
+    </ng-container> -->
 
-    <button mat-flat-button color="primary" (click)="addTimeSlot()">Add a time slot</button>
-  </div>
+    <app-time-slot-form #timeSlotForm (add)="addTimeSlot($event)"></app-time-slot-form>
+
+    <button mat-icon-button slot="suffix" color="primary" (click)="timeSlotForm.submit()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </app-form-array-table>
 </ng-container>
