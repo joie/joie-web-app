@@ -10,7 +10,7 @@ import { SessionType } from '../../../sessions/models/session';
 })
 export class SessionFormComponent {
   layoutClass = 'layout-grid layout-spacing-block-sm';
-  showAllFields: boolean = true;
+  showAllFields: boolean;
 
   constructor(private sessionFormService: SessionFormService) {}
 

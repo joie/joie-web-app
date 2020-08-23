@@ -15,7 +15,7 @@ export class SessionFormMetadataComponent extends SessionFormExtenderComponent {
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
     this.addFormControls([
-      ['type', new FormControl('coaching', Validators.required)],
+      ['type', new FormControl(null, Validators.required)],
       ['description', new FormControl(null)],
     ]);
   }
