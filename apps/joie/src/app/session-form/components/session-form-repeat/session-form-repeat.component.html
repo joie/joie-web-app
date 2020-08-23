@@ -1,0 +1,13 @@
+<ng-container [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Repeat</mat-label>
+    <mat-icon>repeat</mat-icon>
+
+    <mat-select formControlName="repeat">
+      <mat-option *ngFor="let repeatOption of repeatKeys"
+                  [value]="repeatOption">
+        {{repeatOption}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-container>
