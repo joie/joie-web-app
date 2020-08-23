@@ -32,37 +32,37 @@
   </mat-form-field>
 
   <h3>Session goals (add one goal in line)</h3>
-  <ng-container *ngFor="let goal of goalsFormArray.controls; let i = index"
-                formArrayName="goals">
-    <button *ngIf="i > 0"
-            mat-icon-button
-            (click)="removeControl(goalsFormArray, i)">
-      <mat-icon>delete</mat-icon>
+
+  <app-form-array-table [values]="formArrayValues(GOALS)"
+                        (remove)="removeControl(goalsFormArray, $event)">
+    <app-simple-form-input #goalsSimpleForm
+                           (add)="addFormControl(goalsFormArray, $event)"></app-simple-form-input>
+    <button mat-icon-button
+            slot="suffix"
+            color="primary"
+            aria-label="Example icon button with a home icon"
+            (click)="goalsSimpleForm.submit()">
+      <mat-icon aria-hidden="false"
+                aria-label="Example home icon"
+                slot="suffix">home</mat-icon>
     </button>
-    <mat-form-field appearance="outline">
-      <mat-label>Session goal</mat-label>
-      <input type="text"
-             matInput
-             [formControlName]="i" />
-    </mat-form-field>
-  </ng-container>
-  <button (click)="addFormControll(goalsFormArray)">Add goal</button>
+  </app-form-array-table>
+
 
   <h3>Need to know (add one comment in line)</h3>
-  <ng-container *ngFor="let comment of commentsFormArray.controls; let i = index"
-                formArrayName="comments">
-    <button *ngIf="i > 0"
-            mat-icon-button
-            (click)="removeControl(commentsFormArray, i)">
-      <mat-icon>delete</mat-icon>
+  <app-form-array-table [values]="formArrayValues(COMMENTS)"
+                        (remove)="removeControl(commentsFormArray, $event)">
+    <app-simple-form-input #commentsSimpleForm
+                           (add)="addFormControl(commentsFormArray, $event)"></app-simple-form-input>
+    <button mat-icon-button
+            slot="suffix"
+            color="primary"
+            aria-label="Example icon button with a home icon"
+            (click)="commentsSimpleForm.submit()">
+      <mat-icon aria-hidden="false"
+                aria-label="Example home icon"
+                slot="suffix">home</mat-icon>
     </button>
-    <mat-form-field appearance="outline">
-      <mat-label>Comment</mat-label>
-      <input type="text"
-             matInput
-             [formControlName]="i" />
-    </mat-form-field>
-  </ng-container>
+  </app-form-array-table>
 
-  <button (click)="addFormControll(commentsFormArray)">Add comment</button>
 </ng-container>

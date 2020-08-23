@@ -14,7 +14,7 @@ export class SessionFormComponent {
 
   constructor(private sessionFormService: SessionFormService) {}
 
-  get sessionForm() {
+  get form() {
     return this.sessionFormService.sessionForm;
   }
 
@@ -28,5 +28,9 @@ export class SessionFormComponent {
 
   get isCourse() {
     return SessionType[this.sessionFormService.getControl('type')] == SessionType.course;
+  }
+
+  onSubmit() {
+    console.log(this.sessionFormService.sessionForm.value);
   }
 }

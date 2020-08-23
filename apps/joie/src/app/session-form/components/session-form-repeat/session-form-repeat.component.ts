@@ -13,10 +13,10 @@ export class SessionFormRepeatComponent extends SessionFormExtenderComponent {
   repeatEnum = Repeat;
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
-    this.controls = [
+    this.addFormControls([
       ['repeat', new FormControl(null)],
       ['numberOfSessions', new FormControl(null)],
-    ];
+    ]);
   }
 
   get repeatKeys() {

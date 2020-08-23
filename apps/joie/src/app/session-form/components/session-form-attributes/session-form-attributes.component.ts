@@ -14,18 +14,21 @@ export class SessionFormAttributesComponent extends SessionFormExtenderComponent
   levelEnum = CourseLevel;
   activityEnum = Activities;
 
+  GOALS = 'goals';
+  COMMENTS = 'comments';
+
   readonly goalsFormArray = new FormArray([new FormControl(null)]);
-  readonly commentsFormArray = new FormArray([new FormControl(null)]);
+  readonly commentsFormArray = new FormArray([]);
 
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
-    this.controls = [
+    this.addFormControls([
       ['pillar', new FormControl(null)],
       ['level', new FormControl(null)],
       ['activity', new FormControl(null)],
-      ['goals', this.goalsFormArray],
-      ['comments', this.commentsFormArray],
-    ];
+      [this.GOALS, new FormArray([new FormControl(null)])],
+      [this.COMMENTS, new FormArray([new FormControl(null)])],
+    ]);
   }
 
   get pillarKeys(): Array<string> {
@@ -40,8 +43,12 @@ export class SessionFormAttributesComponent extends SessionFormExtenderComponent
     return Object.keys(this.activityEnum);
   }
 
-  addFormControll(formArray: FormArray) {
-    formArray.push(new FormControl(null));
+  formArrayValues(array: string) {
+    return this[`${array}FormArray`].controls.map(({ value }) => value);
+  }
+
+  addFormControl(formArray: FormArray, value: string) {
+    formArray.push(new FormControl(value));
   }
 
   removeControl(formArray: FormArray, i: number) {

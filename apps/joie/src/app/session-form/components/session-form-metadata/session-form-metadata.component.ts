@@ -15,11 +15,11 @@ export class SessionFormMetadataComponent extends SessionFormExtenderComponent {
   sessionFormatEnum = CourseType;
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
-    this.controls = [
+    this.addFormControls([
       ['format', new FormControl(null, Validators.required)],
       ['type', new FormControl(null, Validators.required)],
       ['description', new FormControl(null)],
-    ];
+    ]);
   }
 
   get sessionTypeKeys(): Array<string> {

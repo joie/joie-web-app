@@ -1,12 +1,12 @@
 <ng-container [formGroup]="form">
   <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md">
     <mat-form-field appearance="outline">
-      <mat-label>Format</mat-label>
       <select matNativeControl
               required
               formControlName="format">
         <option *ngFor="let format of sessionFormatKeys"
                 [value]="sessionFormatEnum[format]">{{sessionFormatEnum[format]}}</option>
+
       </select>
     </mat-form-field>
     <mat-form-field appearance="outline">
@@ -28,7 +28,8 @@
     <input formControlName="title"
            matInput
            placeholder="e.g. Best session"
-           required />
+           required
+           cdkFocusInitial />
   </mat-form-field>
 
   <!-- ! show only when type/format chosen -->

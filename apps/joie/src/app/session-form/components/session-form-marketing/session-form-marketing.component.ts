@@ -13,9 +13,9 @@ export class SessionFormMarketingComponent extends SessionFormExtenderComponent 
 
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
-    this.controls = [
+    this.addFormControls([
       ['promo', new FormControl(null)],
       // ['relatedSessions', this.relatedSessions] // todo after formArrayComponent ready
-    ];
+    ]);
   }
 }
