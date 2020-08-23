@@ -14,14 +14,13 @@ export class SessionFormMetadataComponent extends SessionFormExtenderComponent {
 
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
-    this.controls = [
+    this.addFormControls([
       ['type', new FormControl(null, Validators.required)],
       ['description', new FormControl(null)],
-    ];
+    ]);
   }
 
   get sessionTypeKeys(): Array<string> {
     return Object.keys(this.sessionTypeEnum);
   }
-
 }

@@ -8,12 +8,25 @@ import { SessionFormComponent } from './components/session-form/session-form.com
 import { RouterModule } from '@angular/router';
 import { SessionFormMetadataComponent } from './components/session-form-metadata/session-form-metadata.component';
 import { SessionFormService } from './services/session-form.service';
-import { SessionFormTimeSlotsComponent } from './components/session-form-time-slots/session-form-time-slots.component';
+import {
+  SessionFormTimeSlotsComponent,
+  TimeSlotFormComponent,
+} from './components/session-form-time-slots/session-form-time-slots.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SessionFormAttributesComponent } from './components/session-form-attributes/session-form-attributes.component';
+import { FormArrayTableComponent } from './components/form-array-table/form-array-table.component';
+import { SimpleFormInputComponent } from './components/simple-form-input/simple-form-input.component';
 
 @NgModule({
-  declarations: [SessionFormComponent, SessionFormMetadataComponent, SessionFormTimeSlotsComponent, SessionFormAttributesComponent],
+  declarations: [
+    SessionFormComponent,
+    SessionFormMetadataComponent,
+    SessionFormTimeSlotsComponent,
+    TimeSlotFormComponent,
+    SessionFormAttributesComponent,
+    FormArrayTableComponent,
+    SimpleFormInputComponent,
+  ],
   imports: [
     SharedModule,
     RouterModule,

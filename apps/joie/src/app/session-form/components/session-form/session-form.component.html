@@ -1,17 +1,20 @@
-<div mat-dialog-content class="container">
-  <h4>
-    Create a session
-  </h4>
-  {{ sessionForm.value | json }}
-  <form [formGroup]="sessionForm" [class]="layoutClass">
-    <app-session-form-metadata [class]="layoutClass"></app-session-form-metadata>
-    <button mat-button color="primary" (click)="showAllFields = true" *ngIf="!showAllFields">
-      Show all fields...
-    </button>
-    <ng-container *ngIf="showAllFields">
-      <app-session-form-time-slots *ngIf="isCoaching" [class]="layoutClass">
-      </app-session-form-time-slots>
-      <app-session-form-attributes [class]="layoutClass"> </app-session-form-attributes>
-    </ng-container>
-  </form>
-</div>
+<form [formGroup]="form">
+  <h2 mat-dialog-title>Create a session</h2>
+  <mat-dialog-content class="mat-typography">
+    <!-- {{ form.value | json }} -->
+    <div [class]="layoutClass">
+      <app-session-form-metadata [class]="layoutClass"></app-session-form-metadata>
+      <button mat-button color="primary" (click)="showAllFields = true" *ngIf="!showAllFields">
+        Show all fields...
+      </button>
+      <ng-container *ngIf="showAllFields">
+        <app-session-form-time-slots *ngIf="isCoaching" [class]="layoutClass">
+        </app-session-form-time-slots>
+        <app-session-form-attributes [class]="layoutClass"></app-session-form-attributes>
+      </ng-container>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="primary">Submit</button>
+  </mat-dialog-actions>
+</form>
