@@ -10,7 +10,9 @@ import { FormControl, FormArray, Validators } from '@angular/forms';
 })
 export class SessionFormMarketingComponent extends SessionFormExtenderComponent {
   readonly relatedSessionsArray = new FormArray([]);
-  readonly validators: Validators[] = [Validators.minLength(5)];
+  readonly validators: Validators[] = [
+    Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'),
+  ];
 
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
