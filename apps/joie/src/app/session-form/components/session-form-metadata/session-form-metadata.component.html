@@ -3,9 +3,10 @@
     <mat-form-field appearance="outline">
       <mat-label>Format</mat-label>
       <select matNativeControl
-              required>
-        <option value="on-demand">On Demand</option>
-        <option value="streaming">Streaming</option>
+              required
+              formControlName="format">
+        <option *ngFor="let format of sessionFormatKeys"
+                [value]="sessionFormatEnum[format]">{{sessionFormatEnum[format]}}</option>
       </select>
     </mat-form-field>
     <mat-form-field appearance="outline">
