@@ -31,7 +31,7 @@
     </select>
   </mat-form-field>
 
-  <h3>Session goals (add one goal in line)</h3>
+  <h4>Session goals (add one goal in line)</h4>
 
   <app-form-array-table [values]="formArrayValues(GOALS)"
                         (remove)="removeControl(goalsFormArray, $event)">
@@ -49,7 +49,7 @@
   </app-form-array-table>
 
 
-  <h3>Need to know (add one comment in line)</h3>
+  <h4>Need to know (add one comment in line)</h4>
   <app-form-array-table [values]="formArrayValues(COMMENTS)"
                         (remove)="removeControl(commentsFormArray, $event)">
     <app-simple-form-input #commentsSimpleForm

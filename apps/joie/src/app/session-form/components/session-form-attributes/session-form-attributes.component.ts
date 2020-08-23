@@ -17,7 +17,7 @@ export class SessionFormAttributesComponent extends SessionFormExtenderComponent
   GOALS = 'goals';
   COMMENTS = 'comments';
 
-  readonly goalsFormArray = new FormArray([new FormControl(null)]);
+  readonly goalsFormArray = new FormArray([]);
   readonly commentsFormArray = new FormArray([]);
 
   constructor(sessionFormService: SessionFormService) {

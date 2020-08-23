@@ -9,13 +9,25 @@ import { FormControl, FormArray } from '@angular/forms';
   styleUrls: ['./session-form-marketing.component.scss'],
 })
 export class SessionFormMarketingComponent extends SessionFormExtenderComponent {
-  readonly relatedSessions = new FormArray([new FormControl(null)]);
+  readonly relatedSessionsArray = new FormArray([]);
 
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
     this.addFormControls([
       ['promo', new FormControl(null)],
-      // ['relatedSessions', this.relatedSessions] // todo after formArrayComponent ready
+      ['relatedSessions', new FormArray([new FormControl(null)])],
     ]);
+  }
+
+  sessionsArrayValues() {
+    return this.relatedSessionsArray.controls.map(({ value }) => value);
+  }
+
+  addFormControl(value: string) {
+    this.relatedSessionsArray.push(new FormControl(value));
+  }
+
+  removeControl(i: number) {
+    this.relatedSessionsArray.removeAt(i);
   }
 }

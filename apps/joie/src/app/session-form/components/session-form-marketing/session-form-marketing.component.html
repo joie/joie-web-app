@@ -9,24 +9,20 @@
   </mat-form-field>
 
 
-  <!-- // todo after formArrayComponent ready -->
-  <!-- <button (click)="addRelatedSession()">Add
-    session</button>
-  <section formArrayName="relatedSessions"
-           *ngFor="let session of relatedSessionControl; let i = index;">
-
-    <button *ngIf="i > 0"
-            mat-icon-button
-            (click)="removeRelatedSession(i)">
-      <mat-icon>delete</mat-icon>
+  <h4>Related sessions(add up to 3)</h4>
+  <app-form-array-table [values]="sessionsArrayValues()"
+                        (remove)="removeControl($event)">
+    <app-simple-form-input #relatedSessionsForm
+                           (add)="addFormControl($event)"></app-simple-form-input>
+    <button mat-icon-button
+            slot="suffix"
+            color="primary"
+            aria-label="add"
+            (click)="relatedSessionsForm.submit()">
+      <mat-icon aria-hidden="false"
+                aria-label="add"
+                slot="suffix">add</mat-icon>
     </button>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Related session (add a link)</mat-label>
-      <input type="url"
-             matInput
-             [formControlName]="i">
-    </mat-form-field>
-  </section> -->
+  </app-form-array-table>
 
 </ng-container>
