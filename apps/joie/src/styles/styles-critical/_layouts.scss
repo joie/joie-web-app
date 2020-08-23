@@ -8,7 +8,7 @@
   max-inline-size: var(--max-inline-size);
   margin: 0 auto;
   &#{&}-fluid {
-    --max-inline-size: 96%;
+    --max-inline-size: calc(100% - var(--joie-gutter) * 2);
   }
   &#{&}-condense {
     --max-inline-size: 990px;
@@ -62,8 +62,7 @@ $size: (
 
   &-grid {
     display: grid;
-    grid-gap: var(#{$space-row-variable-name}, 0)
-      var(#{$space-column-variable-name}, 0);
+    grid-gap: var(#{$space-row-variable-name}, 0) var(#{$space-column-variable-name}, 0);
     &#{&}-inline-features {
       width: 100%;
       // place-items: center;

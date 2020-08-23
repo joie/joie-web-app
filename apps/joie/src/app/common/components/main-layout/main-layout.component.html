@@ -2,7 +2,7 @@
   <ng-template [cdkPortalOutlet]="headerComponentPortal"></ng-template>
 </header>
 
-<div class="container">
+<div class="container container-fluid">
   <div class="grid">
     <div>
       <ng-template [cdkPortalOutlet]="sidenavComponentPortal"></ng-template>
@@ -11,7 +11,6 @@
     <main>
       <router-outlet></router-outlet>
       <router-outlet name="popup"></router-outlet>
-
     </main>
   </div>
 </div>

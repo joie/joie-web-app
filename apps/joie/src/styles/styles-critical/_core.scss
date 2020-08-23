@@ -13,10 +13,8 @@ $primary-map: map.get(theme.$joie-theme, primary);
   --joie-color-primary: #{mat-color($primary-map, text)};
   --joie-color-divider: #{mat-color($foreground-map, divider)};
   --joie-color-secondary-text: #{mat-color($foreground-map, secondary-text)};
-  --joie-color-surface: #{color.adjust(
-      mat-color($background-map, background),
-      $lightness: -5
-    )};
+  --joie-color-surface: #{color.adjust(mat-color($background-map, background), $lightness: -5)};
+  --joie-gutter: 16px;
 }
 
 body {

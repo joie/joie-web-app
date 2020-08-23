@@ -4,6 +4,6 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-column-gap: 50px;
+  grid-template-columns: max(20vw, 140px) auto;
+  grid-column-gap: max(3vw, 20px);
 }
