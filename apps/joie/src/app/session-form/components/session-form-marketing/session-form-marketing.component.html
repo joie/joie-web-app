@@ -1,0 +1,32 @@
+<ng-container [formGroup]="form">
+
+  <mat-label class="block">Upsell and promos (optional)</mat-label>
+  <mat-form-field appearance="outline">
+    <mat-label>Special offer promotion</mat-label>
+    <input type="text"
+           matInput
+           formControlName="promo">
+  </mat-form-field>
+
+
+  <!-- // todo after formArrayComponent ready -->
+  <!-- <button (click)="addRelatedSession()">Add
+    session</button>
+  <section formArrayName="relatedSessions"
+           *ngFor="let session of relatedSessionControl; let i = index;">
+
+    <button *ngIf="i > 0"
+            mat-icon-button
+            (click)="removeRelatedSession(i)">
+      <mat-icon>delete</mat-icon>
+    </button>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Related session (add a link)</mat-label>
+      <input type="url"
+             matInput
+             [formControlName]="i">
+    </mat-form-field>
+  </section> -->
+
+</ng-container>
