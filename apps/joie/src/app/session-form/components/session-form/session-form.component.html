@@ -21,13 +21,13 @@
       <ng-container *ngIf="isLivestreaming">
         <!-- date-time-duration -->
         <ng-container *ngIf="isCourse">
-          <app-session-form-repeat></app-session-form-repeat>
+          <app-session-form-repeat [class]="layoutClass"></app-session-form-repeat>
 
         </ng-container>
       </ng-container>
 
       <app-session-form-attributes [class]="layoutClass"> </app-session-form-attributes>
-      <app-session-form-marketing></app-session-form-marketing>
+      <app-session-form-marketing [class]="layoutClass"></app-session-form-marketing>
     </ng-container>
   </form>
 </div>
