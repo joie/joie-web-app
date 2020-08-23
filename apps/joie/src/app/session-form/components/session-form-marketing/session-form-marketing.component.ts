@@ -1,7 +1,7 @@
 import { SessionFormExtenderComponent } from './../../common/session-form-extender/session-form-extender.component';
 import { Component, OnInit } from '@angular/core';
 import { SessionFormService } from '../../services/session-form.service';
-import { FormControl, FormArray } from '@angular/forms';
+import { FormControl, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-session-form-marketing',
@@ -10,6 +10,7 @@ import { FormControl, FormArray } from '@angular/forms';
 })
 export class SessionFormMarketingComponent extends SessionFormExtenderComponent {
   readonly relatedSessionsArray = new FormArray([]);
+  readonly validators: Validators[] = [Validators.minLength(5)];
 
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Pillar, CourseLevel, Activities } from '../../../sessions/models/session';
-import { FormControl, FormArray } from '@angular/forms';
+import { FormControl, FormArray, Validators } from '@angular/forms';
 import { SessionFormService } from '../../services/session-form.service';
 import { SessionFormExtenderComponent } from '../../common/session-form-extender/session-form-extender.component';
 
@@ -19,6 +19,8 @@ export class SessionFormAttributesComponent extends SessionFormExtenderComponent
 
   readonly goalsFormArray = new FormArray([]);
   readonly commentsFormArray = new FormArray([]);
+
+  readonly validators = [Validators.minLength(5)];
 
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);

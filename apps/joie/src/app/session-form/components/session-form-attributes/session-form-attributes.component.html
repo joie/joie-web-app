@@ -36,6 +36,7 @@
   <app-form-array-table [values]="formArrayValues(GOALS)"
                         (remove)="removeControl(goalsFormArray, $event)">
     <app-simple-form-input #goalsSimpleForm
+                           [validators]="validators"
                            (add)="addFormControl(goalsFormArray, $event)"></app-simple-form-input>
     <button mat-icon-button
             slot="suffix"
@@ -53,6 +54,7 @@
   <app-form-array-table [values]="formArrayValues(COMMENTS)"
                         (remove)="removeControl(commentsFormArray, $event)">
     <app-simple-form-input #commentsSimpleForm
+                           [validators]="validators"
                            (add)="addFormControl(commentsFormArray, $event)"></app-simple-form-input>
     <button mat-icon-button
             slot="suffix"

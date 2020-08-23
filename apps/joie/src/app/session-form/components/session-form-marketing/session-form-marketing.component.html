@@ -13,6 +13,7 @@
   <app-form-array-table [values]="sessionsArrayValues()"
                         (remove)="removeControl($event)">
     <app-simple-form-input #relatedSessionsForm
+                           [validators]="validators"
                            (add)="addFormControl($event)"></app-simple-form-input>
     <button mat-icon-button
             slot="suffix"
