@@ -23,7 +23,11 @@ export class SessionFormComponent {
   }
 
   get isLivestreaming() {
-    return SessionType[this.sessionFormService.getControl('format')] === CourseType.liveStreaming;
+    return this.sessionFormService.getControl('format') == CourseType.liveStreaming;
+  }
+
+  get isCourse() {
+    return SessionType[this.sessionFormService.getControl('type')] == SessionType.course;
   }
 
   onSubmit() {

@@ -1,18 +1,23 @@
 <ng-container [formGroup]="form">
-  <div
-    class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
-  >
+  <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md">
     <mat-form-field appearance="outline">
       <mat-label>Format</mat-label>
-      <select matNativeControl required>
-        <option value="on-demand">On Demand</option>
-        <option value="streaming">Streaming</option>
+
+      <select matNativeControl
+              required
+              formControlName="format">
+        <option *ngFor="let format of sessionFormatKeys"
+                [value]="sessionFormatEnum[format]">{{sessionFormatEnum[format]}}</option>
+
       </select>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Type</mat-label>
-      <select matNativeControl required formControlName="type">
-        <option *ngFor="let type of sessionTypeKeys" [value]="type">{{
+      <select matNativeControl
+              required
+              formControlName="type">
+        <option *ngFor="let type of sessionTypeKeys"
+                [value]="type">{{
           sessionTypeEnum[type]
         }}</option>
       </select>
@@ -22,18 +27,18 @@
   <!-- ! always show this -->
   <mat-form-field appearance="outline">
     <mat-label>Title</mat-label>
-    <input
-      formControlName="title"
-      matInput
-      placeholder="e.g. Best session"
-      required
-      cdkFocusInitial
-    />
+    <input formControlName="title"
+           matInput
+           placeholder="e.g. Best session"
+           required
+           cdkFocusInitial />
   </mat-form-field>
 
   <!-- ! show only when type/format chosen -->
   <mat-form-field appearance="outline">
     <mat-label>Description</mat-label>
-    <textarea formControlName="description" matInput placeholder="e.g. Best session"></textarea>
+    <textarea formControlName="description"
+              matInput
+              placeholder="e.g. Best session"></textarea>
   </mat-form-field>
 </ng-container>

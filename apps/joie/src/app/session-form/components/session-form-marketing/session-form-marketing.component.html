@@ -1,0 +1,29 @@
+<ng-container [formGroup]="form">
+
+  <mat-label class="block">Upsell and promos (optional)</mat-label>
+  <mat-form-field appearance="outline">
+    <mat-label>Special offer promotion</mat-label>
+    <input type="text"
+           matInput
+           formControlName="promo">
+  </mat-form-field>
+
+
+  <h4>Related sessions(add up to 3)</h4>
+  <app-form-array-table [values]="sessionsArrayValues()"
+                        (remove)="removeControl($event)">
+    <app-simple-form-input #relatedSessionsForm
+                           [validators]="validators"
+                           (add)="addFormControl($event)"></app-simple-form-input>
+    <button mat-icon-button
+            slot="suffix"
+            color="primary"
+            aria-label="add"
+            (click)="relatedSessionsForm.submit()">
+      <mat-icon aria-hidden="false"
+                aria-label="add"
+                slot="suffix">add</mat-icon>
+    </button>
+  </app-form-array-table>
+
+</ng-container>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Pillar, CourseLevel, Activities } from '../../../sessions/models/session';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { FormControl, FormArray, Validators } from '@angular/forms';
 import { SessionFormService } from '../../services/session-form.service';
 import { SessionFormExtenderComponent } from '../../common/session-form-extender/session-form-extender.component';
 
@@ -17,8 +17,10 @@ export class SessionFormAttributesComponent extends SessionFormExtenderComponent
   GOALS = 'goals';
   COMMENTS = 'comments';
 
-  readonly goalsFormArray = new FormArray([new FormControl(null)]);
+  readonly goalsFormArray = new FormArray([]);
   readonly commentsFormArray = new FormArray([]);
+
+  readonly validators = [Validators.minLength(5)];
 
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
@@ -28,6 +30,7 @@ export class SessionFormAttributesComponent extends SessionFormExtenderComponent
       ['activity', new FormControl(null)],
       [this.GOALS, new FormArray([new FormControl(null)])],
       [this.COMMENTS, new FormArray([new FormControl(null)])],
+      ['price', new FormControl(null)],
     ]);
   }
 

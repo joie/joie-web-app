@@ -1,35 +1,16 @@
 <ng-container [formGroup]="form">
   <h3>Available time slots</h3>
 
-  <app-form-array-table [values]="timeSlotValues" (remove)="removeTimeSlot($event)">
-    <!-- <ng-container [formArrayName]="TIME_LOTS" (ngSubmit)="addTimeSlot()">
-      <ng-container [formGroupName]="timeSlotsFormArray.length - 1">
-        <mat-form-field>
-          <mat-label>Date</mat-label>
-          <input type="date" matInput formControlName="date" />
-        </mat-form-field>
+  <app-form-array-table [values]="timeSlotValues"
+                        (remove)="removeTimeSlot($event)">
 
-        <mat-form-field>
-          <mat-label>Time</mat-label>
-          <input type="time" matInput formControlName="time" />
-        </mat-form-field>
+    <app-time-slot-form #timeSlotForm
+                        (add)="addTimeSlot($event)"></app-time-slot-form>
 
-        <mat-form-field>
-          <mat-label>Repeat</mat-label>
-          <select matNativeControl formControlName="recurring">
-            <option *ngFor="let recurring of recurringKeys" [value]="recurring">{{
-              recurringEnum[recurring]
-            }}</option>
-          </select>
-        </mat-form-field>
-
-        <button mat-flat-button color="primary">Add a time slot</button>
-      </ng-container>
-    </ng-container> -->
-
-    <app-time-slot-form #timeSlotForm (add)="addTimeSlot($event)"></app-time-slot-form>
-
-    <button mat-icon-button slot="suffix" color="primary" (click)="timeSlotForm.submit()">
+    <button mat-icon-button
+            slot="suffix"
+            color="primary"
+            (click)="timeSlotForm.submit()">
       <mat-icon>add</mat-icon>
     </button>
   </app-form-array-table>

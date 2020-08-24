@@ -1,3 +1,4 @@
+import { CourseType } from './../../../sessions/models/session';
 import { Component } from '@angular/core';
 import { SessionFormService } from '../../services/session-form.service';
 import { SessionType } from '../../../sessions/models/session';
@@ -11,10 +12,11 @@ import { SessionFormExtenderComponent } from '../../common/session-form-extender
 })
 export class SessionFormMetadataComponent extends SessionFormExtenderComponent {
   sessionTypeEnum = SessionType;
-
+  sessionFormatEnum = CourseType;
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
     this.addFormControls([
+      ['format', new FormControl(null, Validators.required)],
       ['type', new FormControl(null, Validators.required)],
       ['description', new FormControl(null)],
     ]);
@@ -22,5 +24,9 @@ export class SessionFormMetadataComponent extends SessionFormExtenderComponent {
 
   get sessionTypeKeys(): Array<string> {
     return Object.keys(this.sessionTypeEnum);
+  }
+
+  get sessionFormatKeys(): Array<string> {
+    return Object.keys(this.sessionFormatEnum);
   }
 }

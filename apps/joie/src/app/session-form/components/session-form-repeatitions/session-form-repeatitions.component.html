@@ -1,0 +1,21 @@
+<ng-container [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Repeat</mat-label>
+    <mat-icon>repeat</mat-icon>
+
+    <mat-select formControlName="repeat">
+      <mat-option *ngFor="let repeatOption of repeatKeys"
+                  [value]="repeatOption">
+        {{repeatOption}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Number of sessions</mat-label>
+    <input matInput
+           placeholder="e.g. 5"
+           formControlName="numberOfSessions"
+           required>
+  </mat-form-field>
+</ng-container>

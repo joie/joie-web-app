@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild, Input } from '@angular/core';
 import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 
 @Component({
@@ -10,10 +10,11 @@ export class SimpleFormInputComponent {
   @ViewChild('documentEditForm') private _documentEditForm: FormGroupDirective;
   @ViewChild('textInput') _textInput: ElementRef;
 
+  @Input() validators: Validators[];
   @Output() add = new EventEmitter<string>();
 
   form = this.fb.group({
-    text: [null, Validators.minLength(5)],
+    text: ['', Validators.minLength(5)],
   });
 
   constructor(private fb: FormBuilder) {}
