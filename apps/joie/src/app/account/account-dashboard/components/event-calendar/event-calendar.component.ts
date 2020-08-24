@@ -39,7 +39,7 @@ export class EventCalendarComponent implements OnInit {
     }
     this.router.navigate(
       [
-        '/teacher',
+        '/teacher', // todo old route
         'sessions',
         {
           outlets: {

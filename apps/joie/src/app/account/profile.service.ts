@@ -28,7 +28,7 @@ export class ProfileService {
 
   // todo to account-dashboard service
   getTeacher(userId = '123'): Observable<Teacher> {
-    return of(dashboardInfoMock); // todo should be moved to a feture root level service. Directly to facade?
+    return of(dashboardInfoMock);
   }
 
   postMessage(id: string, session, message: string) {
@@ -36,6 +36,6 @@ export class ProfileService {
   }
 
   getSessions(userId: string) {
-    return of(sessionsMock); // todo should be moved to a feture root level service. Directly to facade?
+    return of(sessionsMock);
   }
 }

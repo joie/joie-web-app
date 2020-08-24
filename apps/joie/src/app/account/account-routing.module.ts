@@ -1,5 +1,3 @@
-import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
-import { AccountSessionsComponent } from './account-sessions/account-sessions.component';
 import { AccountNotificationSetingsComponent } from './account-notification-setings/account-notification-setings.component';
 import { AccountHeaderComponent } from './components/account-header/account-header.component';
 import { AccountSidenavComponent } from './components/account-sidenav/account-sidenav.component';
@@ -9,8 +7,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AccountProfileComponent } from './account-profile/account-profile.component';
 import { AccountBankingComponent } from './account-banking/account-banking.component';
-import { DialogRouterComponent } from '../shared/components/dialog-router/dialog-router.component';
-import { SessionFormComponent } from '../session-form/components/session-form/session-form.component';
 
 const routes: Routes = [
   // { path: '', component: AccountDashboardComponent }
@@ -22,21 +18,17 @@ const routes: Routes = [
       sidenavComponent: AccountSidenavComponent,
     },
     children: [
-      { path: 'dashboard', component: AccountDashboardComponent },
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('./account-dashboard/account-dashboard.module').then(
+            (m) => m.AccountDashboardModule
+          ),
+      },
       {
         path: 'sessions',
-        component: AccountSessionsComponent,
-        children: [
-          {
-            path: 'create',
-            component: DialogRouterComponent,
-            data: {
-              dialogComponent: SessionFormComponent,
-              matDialogConfig: { width: '100%', maxWidth: 900 },
-            },
-            outlet: 'popup',
-          },
-        ],
+        loadChildren: () =>
+          import('./account-sessions/account-sessions.module').then((m) => m.AccountSessionsModule),
       },
 
       { path: 'profile', component: AccountProfileComponent },

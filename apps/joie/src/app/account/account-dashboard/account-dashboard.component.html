@@ -1,10 +1,8 @@
 <div *ngIf="teacher$ | async as teacher">
-
   <header>
     <app-stats [stats]="teacher.stats"></app-stats>
   </header>
   <main *ngIf="sessions$ | async as sessions">
-
 
     <section class="container">
       <app-event-calendar [sessions]="sessions"></app-event-calendar>
