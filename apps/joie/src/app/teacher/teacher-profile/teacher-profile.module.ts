@@ -1,4 +1,4 @@
-import { ProfileModule } from './../../profile/profile.module';
+import { ProfileModule } from './../../account/profile.module';
 import { TeacherProfileRoutingModule } from './teacher-profile-routing.module';
 import { NgModule } from '@angular/core';
 import { TeacherProfileComponent } from './teacher-profile.component';
