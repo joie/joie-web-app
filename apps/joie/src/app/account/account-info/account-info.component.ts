@@ -1,14 +1,14 @@
-import { ProfileService } from './../../profile.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Profile } from '../../../models/profile.model';
 import { Form } from '@angular/forms';
+import { Profile } from '../../models/profile.model';
+import { ProfileService } from '../profile.service';
 
 @Component({
-  selector: 'app-profile-info',
-  templateUrl: './profile-info.component.html',
-  styleUrls: ['./profile-info.component.scss'],
+  selector: 'app-account-info',
+  templateUrl: './account-info.component.html',
+  styleUrls: ['./account-info.component.scss'],
 })
-export class ProfileInfoComponent implements OnInit {
+export class AccountInfoComponent implements OnInit {
   @ViewChild('form') form: Form;
   profileData: Profile = null;
   profile: Profile = {

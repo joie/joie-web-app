@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileNotificationSetingsComponent } from './profile-notification-setings.component';
+import { ProfileNotificationSetingsComponent } from './account-notification-setings.component';
 
 describe('ProfileNotificationSetingsComponent', () => {
   let component: ProfileNotificationSetingsComponent;
@@ -8,9 +8,8 @@ describe('ProfileNotificationSetingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfileNotificationSetingsComponent ]
-    })
-    .compileComponents();
+      declarations: [ProfileNotificationSetingsComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

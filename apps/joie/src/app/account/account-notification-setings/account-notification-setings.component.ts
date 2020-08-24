@@ -1,21 +1,18 @@
 import { mapValues } from 'lodash';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { ProfileService } from './../../profile.service';
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
+import { ProfileService } from '../profile.service';
 
 @Component({
-  selector: 'app-profile-notification-setings',
-  templateUrl: './profile-notification-setings.component.html',
-  styleUrls: ['./profile-notification-setings.component.scss'],
+  selector: 'app-account-notification-setings',
+  templateUrl: './account-notification-setings.component.html',
+  styleUrls: ['./account-notification-setings.component.scss'],
 })
-export class ProfileNotificationSetingsComponent implements OnInit {
+export class AccountNotificationSetingsComponent implements OnInit {
   formGroup: FormGroup;
   settingBlocks;
-  constructor(
-    private fb: FormBuilder,
-    private profileService: ProfileService
-  ) {}
+  constructor(private fb: FormBuilder, private profileService: ProfileService) {}
 
   ngOnInit(): void {
     this.profileService
@@ -36,25 +33,19 @@ export class ProfileNotificationSetingsComponent implements OnInit {
               new FormControl(block.allChecked ? true : toggle.isChecked)
             );
           });
-          settingFormGroup.setControl(
-            this.convertToKey(block.title),
-            blockFormGroup
-          );
+          settingFormGroup.setControl(this.convertToKey(block.title), blockFormGroup);
         });
         this.formGroup.setControl('settings', settingFormGroup);
         // todo maybe rm tis setting control? if the final data flow decision would be to submit from here - better add the settings key in another way
       });
   }
 
-  convertToKey = (title) =>
-    title.toLowerCase().replace(' ', '_').replace(',', '');
+  convertToKey = (title) => title.toLowerCase().replace(' ', '_').replace(',', '');
 
   toggleBlock(block) {
     let prevVal = this.formGroup.value['settings'][block];
     this.formGroup.controls;
-    this.formGroup
-      .get(['settings', block])
-      .setValue(mapValues(prevVal, (val) => !val));
+    this.formGroup.get(['settings', block]).setValue(mapValues(prevVal, (val) => !val));
   }
 
   toggleSlider(blockKey, toggleKey) {

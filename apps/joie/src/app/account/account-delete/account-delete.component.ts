@@ -1,12 +1,12 @@
-import { ProfileService } from './../../profile.service';
+import { ProfileService } from './../profile.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-profile-delete',
-  templateUrl: './profile-delete.component.html',
-  styleUrls: ['./profile-delete.component.scss'],
+  selector: 'app-account-delete',
+  templateUrl: './account-delete.component.html',
+  styleUrls: ['./account-delete.component.scss'],
 })
-export class ProfileDeleteComponent implements OnInit {
+export class AccountDeleteComponent implements OnInit {
   bullets = [
     'You will no longer be able to login',
     'You will lose access lose access to your students.',
