@@ -1,7 +1,4 @@
-import {
-  MatCalendar,
-  MatCalendarCellCssClasses,
-} from '@angular/material/datepicker';
+import { MatCalendar, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -40,14 +37,24 @@ export class EventCalendarComponent implements OnInit {
     if (sessionData) {
       Object.assign(extras, sessionData);
     }
-    // this.router.navigate(['teacher', 'sessions'], extras); //todo uncoment when tdf session form ready, change url
+    this.router.navigate(
+      [
+        '/teacher',
+        'sessions',
+        {
+          outlets: {
+            popup: ['create'],
+          },
+        },
+      ],
+      extras
+    );
   }
 
   viewSessionsList(sessions = this.sessions) {
-    this.router.navigate(
-      ['/teacher', 'dashboard', { outlets: { ['popup']: ['sessions'] } }],
-      { state: { sessions: sessions } }
-    );
+    this.router.navigate(['/teacher', 'dashboard', { outlets: { ['popup']: ['sessions'] } }], {
+      state: { sessions: sessions },
+    });
   }
   dateClass() {
     return (date: Date): MatCalendarCellCssClasses => {

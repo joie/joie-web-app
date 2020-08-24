@@ -18,6 +18,7 @@ export class SessionFormExtenderComponent implements OnInit, OnDestroy {
 
   protected addFormControls(controls: ControlTuple[]) {
     this.sessionFormService.addControls(controls);
+    this._controls = controls;
   }
 
   get form(): FormGroup {
