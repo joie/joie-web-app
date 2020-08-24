@@ -1,3 +1,4 @@
+import { AccountNotificationSetingsComponent } from './account-notification-setings/account-notification-setings.component';
 import { AccountHeaderComponent } from './components/account-header/account-header.component';
 import { AccountSidenavComponent } from './components/account-sidenav/account-sidenav.component';
 import { MainLayoutComponent } from './../common/components/main-layout/main-layout.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
       headerComponent: AccountHeaderComponent,
       sidenavComponent: AccountSidenavComponent,
     },
+    children: [{ path: 'email and notifications', component: AccountNotificationSetingsComponent }],
   },
 ];
 
