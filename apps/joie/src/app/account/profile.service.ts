@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { notificationSettingsMock } from './profile.mocks';
+import { notificationSettingsMock, dashboardInfoMock } from './profile.mocks';
 import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
+import { Teacher } from '../models/teacher.model';
+import { sessionsMock } from '../teacher/teacher.mocks';
 
 @Injectable({
   providedIn: 'root',
@@ -15,10 +17,7 @@ export class ProfileService {
   }
 
   // todo interface settings
-  submitNotificationSettings(
-    id: string = 'user123',
-    settings
-  ): Observable<Boolean> {
+  submitNotificationSettings(id: string = 'user123', settings): Observable<Boolean> {
     // todo return this.http.post
     return of(true);
   }
@@ -26,4 +25,17 @@ export class ProfileService {
   closeAccount() {}
   contactSupport() {}
   submitProfileChanges() {}
+
+  // todo to account-dashboard service
+  getTeacher(userId = '123'): Observable<Teacher> {
+    return of(dashboardInfoMock); // todo should be moved to a feture root level service. Directly to facade?
+  }
+
+  postMessage(id: string, session, message: string) {
+    return of(true);
+  }
+
+  getSessions(userId: string) {
+    return of(sessionsMock); // todo should be moved to a feture root level service. Directly to facade?
+  }
 }

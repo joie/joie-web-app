@@ -1,0 +1,39 @@
+<section class="my-calendar-section layout-flex layout-spacing-inline-md">
+  <div>
+
+    <div class="tools-panel">
+      <h3>My calendar</h3>
+      <mat-divider></mat-divider>
+
+
+      <mat-list>
+
+        <mat-list-item>
+          <button (click)="redirectToNewSession('add')">
+            <mat-icon>add</mat-icon>Add a session
+          </button>
+        </mat-list-item>
+
+        <mat-list-item>
+          <button (click)="viewSessionsList()">
+            <mat-icon>visibility</mat-icon>View all sessions
+          </button>
+        </mat-list-item>
+      </mat-list>
+
+
+    </div>
+  </div>
+
+  <div class='calendar-box container'>
+    <mat-calendar #calendar
+                  class="calendar"
+                  [selected]="selectedDate"
+                  [startAt]="startAt"
+                  (selectedChange)="onSelect($event)"
+                  [dateClass]="dateClass()">
+    </mat-calendar>
+  </div>
+
+
+</section>

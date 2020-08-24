@@ -1,3 +1,4 @@
+import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
 import { AccountSessionsComponent } from './account-sessions/account-sessions.component';
 import { AccountNotificationSetingsComponent } from './account-notification-setings/account-notification-setings.component';
 import { AccountHeaderComponent } from './components/account-header/account-header.component';
@@ -6,7 +7,6 @@ import { MainLayoutComponent } from './../common/components/main-layout/main-lay
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AccountDashboardComponent } from './containers/account-dashboard/account-dashboard.component';
 import { AccountProfileComponent } from './account-profile/account-profile.component';
 import { AccountBankingComponent } from './account-banking/account-banking.component';
 import { DialogRouterComponent } from '../shared/components/dialog-router/dialog-router.component';
@@ -22,6 +22,7 @@ const routes: Routes = [
       sidenavComponent: AccountSidenavComponent,
     },
     children: [
+      { path: 'dashboard', component: AccountDashboardComponent },
       {
         path: 'sessions',
         component: AccountSessionsComponent,

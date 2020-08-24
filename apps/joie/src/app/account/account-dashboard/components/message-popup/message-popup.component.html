@@ -1,0 +1,12 @@
+<form ng-submit="sendMessage()">
+  <mat-form-field>
+    <mat-label>Message to event participants</mat-label>
+    <input matInput
+           required
+           name="message"
+           [(ngModel)]="message">
+  </mat-form-field>
+
+  <button matButton
+          type='submit'>Send to participants</button>
+</form>
