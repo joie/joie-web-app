@@ -1,0 +1,21 @@
+.splash {
+  background-image: url('/assets/images/splash.png');
+  background-repeat: no-repeat;
+  min-height: 746px;
+  width: 100%;
+  .splash-container {
+    position: absolute;
+    top: 25%;
+  }
+}
+
+.pillar {
+  min-width: 250px;
+  max-width: 250px;
+}
+
+@media screen and (max-width: 600px) {
+  .splash-container {
+    position: relative !important;
+  }
+}

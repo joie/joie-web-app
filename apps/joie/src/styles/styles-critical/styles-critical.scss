@@ -1,12 +1,15 @@
 @charset "UTF-8";
 
-@import "~normalize.css/normalize.css";
-@import "font";
-@import "typography";
-@import "core";
-@import "layouts";
+@import '~normalize.css/normalize.css';
+@import 'font';
+@import 'typography';
+@import 'core';
+@import 'layouts';
 
-@import "joie-icons";
+@import 'joie-icons';
+
+@import '~@angular/material/theming';
+@import 'theme-custom-palettes';
 
 .box {
   padding: 20px;
@@ -38,6 +41,10 @@
 
 .text-muted-dk {
   opacity: 0.7;
+}
+
+.text-primary {
+  color: mat-color($joie-primary, 500) !important;
 }
 
 .text-dark {
@@ -125,4 +132,3 @@
     padding: 10px;
   }
 }
-
