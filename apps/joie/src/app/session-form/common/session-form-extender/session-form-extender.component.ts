@@ -7,7 +7,7 @@ import { ControlTuple, SessionFormService } from '../../services/session-form.se
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class SessionFormExtenderComponent implements OnInit, OnDestroy {
-  private _controls: ControlTuple[];
+  #controls: ControlTuple[];
 
   constructor(
     // as described in https://angular.io/guide/dependency-injection-in-action#keep-constructors-simple
@@ -18,7 +18,7 @@ export class SessionFormExtenderComponent implements OnInit, OnDestroy {
 
   protected addFormControls(controls: ControlTuple[]) {
     this.sessionFormService.addControls(controls);
-    this._controls = controls;
+    this.#controls = controls;
   }
 
   get form(): FormGroup {
@@ -28,6 +28,6 @@ export class SessionFormExtenderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   ngOnDestroy(): void {
-    this.sessionFormService.removeControls(this._controls);
+    this.sessionFormService.removeControls(this.#controls);
   }
 }

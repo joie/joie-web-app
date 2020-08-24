@@ -1,20 +1,8 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  FormArray,
-  Validators,
-  FormBuilder,
-  FormGroupDirective,
-} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { Recurring } from '../../../sessions/models';
 import { SessionFormExtenderComponent } from '../../common/session-form-extender/session-form-extender.component';
 import { SessionFormService } from '../../services/session-form.service';
-
-enum Recurring {
-  day = 'every day',
-  week = 'every week',
-  month = 'every month',
-}
 
 const newTimeSlot = ({ date, time, recurring }) =>
   new FormGroup({
@@ -50,63 +38,5 @@ export class SessionFormTimeSlotsComponent extends SessionFormExtenderComponent 
 
   removeTimeSlot(i: number): void {
     this.timeSlotsFormArray.removeAt(i);
-  }
-}
-
-@Component({
-  selector: 'app-time-slot-form',
-  template: `
-    <form
-      (ngSubmit)="submit()"
-      [formGroup]="form"
-      #documentEditForm="ngForm"
-      class="layout-grid layout-grid-inline-features layout-spacing-inline-sm layout-spacing-block-sm"
-    >
-      <!-- ! TODO: date & time should be extracted to an independent component with a controlValueAccessor to merge both to a single timestamp -->
-      <mat-form-field>
-        <mat-label>Date</mat-label>
-        <input type="date" matInput formControlName="date" />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Time</mat-label>
-        <input type="time" matInput formControlName="time" />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Repeat</mat-label>
-        <select matNativeControl formControlName="recurring">
-          <option *ngFor="let recurring of recurringKeys" [value]="recurring">{{
-            recurringEnum[recurring]
-          }}</option>
-        </select>
-      </mat-form-field>
-    </form>
-  `,
-})
-export class TimeSlotFormComponent {
-  @ViewChild('documentEditForm') private _documentEditForm: FormGroupDirective;
-  @Output() add = new EventEmitter();
-  recurringEnum = Recurring;
-
-  form = this.fb.group({
-    date: [null, Validators.required],
-    time: [null, Validators.required],
-    recurring: [null],
-  });
-
-  constructor(private fb: FormBuilder) {}
-
-  get recurringKeys(): Array<string> {
-    return Object.keys(Recurring);
-  }
-
-  submit() {
-    if (this.form.invalid) {
-      return;
-    }
-    const { value } = this.form;
-    this.add.emit(value);
-    this.form.reset();
   }
 }

@@ -6,7 +6,7 @@ export interface Session {
   title: string;
   publishedDate: FireStore.Timestamp;
   duration: Duration;
-  courseType: CourseType;
+  courseType: SessionFormat;
   level: CourseLevel;
   price: Price;
   activities: string[]; // ! @aravindfz shouldn't this be set to Activities type?
@@ -17,7 +17,7 @@ export interface Session {
   recommendationPercentage: number;
 }
 
-export enum CourseType {
+export enum SessionFormat {
   onDemand = 'On demand',
   liveStreaming = 'Live streaming',
 }
@@ -70,7 +70,7 @@ export enum Activities {
   FINANACIAL_STABILITY = 'Final Stability',
   SATISFACTION_AT_WORK = 'Satisfaction at Work',
 }
-export enum Repeat {
+export enum Recurring {
   Daily = 'Daily',
   Weekly = 'Weekly',
   BiWeekly = 'Bi-weekly',

@@ -14,23 +14,27 @@ export class SessionFormAttributesComponent extends SessionFormExtenderComponent
   levelEnum = CourseLevel;
   activityEnum = Activities;
 
+  PILLAR = 'pillar';
+  LEVEL = 'level';
+  ACTIVITY = 'activity';
   GOALS = 'goals';
   COMMENTS = 'comments';
+  PRICE = 'price';
 
   readonly goalsFormArray = new FormArray([]);
   readonly commentsFormArray = new FormArray([]);
 
-  readonly validators = [Validators.minLength(5)];
+  readonly sfiValidators = [Validators.minLength(5)];
 
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
     this.addFormControls([
-      ['pillar', new FormControl(null)],
-      ['level', new FormControl(null)],
-      ['activity', new FormControl(null)],
+      [this.PILLAR, new FormControl(null)],
+      [this.LEVEL, new FormControl(null)],
+      [this.ACTIVITY, new FormControl(null)],
       [this.GOALS, new FormArray([new FormControl(null)])],
       [this.COMMENTS, new FormArray([new FormControl(null)])],
-      ['price', new FormControl(null)],
+      [this.PRICE, new FormControl(null)],
     ]);
   }
 

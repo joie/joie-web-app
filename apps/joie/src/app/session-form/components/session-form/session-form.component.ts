@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SessionFormService } from '../../services/session-form.service';
-import { CourseType } from './../../../sessions/models/session';
+import { SessionFormat } from './../../../sessions/models/session';
 import { SessionType } from '../../../sessions/models/session';
 
 @Component({
@@ -23,7 +23,7 @@ export class SessionFormComponent {
   }
 
   get isLivestreaming() {
-    return this.sessionFormService.getControl('format') == CourseType.liveStreaming;
+    return this.sessionFormService.getControl('format') == SessionFormat.liveStreaming;
   }
 
   get isCourse() {

@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
-import {
-  Session,
-  CourseLevel,
-  CourseType,
-  Pillar,
-  SessionType,
-} from '../models';
+import { Session, CourseLevel, SessionFormat, Pillar, SessionType } from '../models';
 import { DurationUnits } from '../../models';
 import { firestore } from 'firebase';
 import { DbService } from '../../services/db.service';
@@ -21,7 +15,7 @@ export class SessionService {
     return (of({
       id: 1,
       level: CourseLevel.Beginner,
-      courseType: CourseType.onDemand,
+      courseType: SessionFormat.onDemand,
       description:
         'Training to become an Iyengar Yoga teacher generally takes between 3-5 years and thus attracts only deeply dedicated practitioners. This, in combination with a certification process that evelopment combination with a certification processacross the globe,',
       duration: {

@@ -1,4 +1,4 @@
-import { CourseType } from './../../../sessions/models/session';
+import { SessionFormat } from './../../../sessions/models/session';
 import { Component } from '@angular/core';
 import { SessionFormService } from '../../services/session-form.service';
 import { SessionType } from '../../../sessions/models/session';
@@ -12,9 +12,12 @@ import { SessionFormExtenderComponent } from '../../common/session-form-extender
 })
 export class SessionFormMetadataComponent extends SessionFormExtenderComponent {
   sessionTypeEnum = SessionType;
-  sessionFormatEnum = CourseType;
+  sessionFormatEnum = SessionFormat;
+  typeSelectedValue: string;
+
   constructor(sessionFormService: SessionFormService) {
     super(sessionFormService);
+
     this.addFormControls([
       ['format', new FormControl(null, Validators.required)],
       ['type', new FormControl(null, Validators.required)],
