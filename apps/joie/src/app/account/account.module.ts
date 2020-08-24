@@ -15,6 +15,10 @@ import { AccountDeleteComponent } from './account-delete/account-delete.componen
 import { AccountNotificationSetingsComponent } from './account-notification-setings/account-notification-setings.component';
 import { AccountInfoComponent } from './account-info/account-info.component';
 import { AccountBankingComponent } from './account-banking/account-banking.component';
+import { AccountProfileComponent } from './account-profile/account-profile.component';
+import { AccountSessionsComponent } from './account-sessions/account-sessions.component';
+import { SessionFormModule } from '../session-form/session-form.module';
+import { SessionListModule } from '../session-list/session-list.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,8 @@ import { AccountBankingComponent } from './account-banking/account-banking.compo
     AccountDeleteComponent,
     AccountSidenavComponent,
     AccountHeaderComponent,
+    AccountProfileComponent,
+    AccountSessionsComponent,
   ],
   imports: [
     SharedModule,
@@ -36,6 +42,8 @@ import { AccountBankingComponent } from './account-banking/account-banking.compo
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    SessionFormModule, //
+    SessionListModule, // todo maybe sessions need separate module
   ],
   exports: [
     AccountNotificationSetingsComponent,
