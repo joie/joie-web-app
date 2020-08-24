@@ -14,9 +14,9 @@ import { TimeSlotFormComponent } from './components/session-form-time-slots/sess
 import { MatNativeDateModule } from '@angular/material/core';
 import { SessionFormAttributesComponent } from './components/session-form-attributes/session-form-attributes.component';
 import { SessionFormMarketingComponent } from './components/session-form-marketing/session-form-marketing.component';
-import { SessionFormRepeatComponent } from './components/session-form-repeat/session-form-repeat.component';
 import { FormArrayTableComponent } from './components/form-array-table/form-array-table.component';
 import { SimpleFormInputComponent } from './components/simple-form-input/simple-form-input.component';
+import { SessionFormRepeatitionsComponent } from './components/session-form-repeatitions/session-form-repeatitions.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { SimpleFormInputComponent } from './components/simple-form-input/simple-
     SessionFormTimeSlotsComponent,
     SessionFormAttributesComponent,
     SessionFormMarketingComponent,
-    SessionFormRepeatComponent,
+    SessionFormRepeatitionsComponent,
     FormArrayTableComponent,
     SimpleFormInputComponent,
     TimeSlotFormComponent,
