@@ -15,7 +15,6 @@ import { SessionFormAttributesComponent } from './components/session-form-attrib
 import { SessionFormMarketingComponent } from './components/session-form-marketing/session-form-marketing.component';
 import { FormArrayTableComponent } from './components/form-array-table/form-array-table.component';
 import { SimpleFormInputComponent } from './components/simple-form-input/simple-form-input.component';
-import { SessionFormRepeatitionsComponent } from './components/session-form-repeatitions/session-form-repeatitions.component';
 import { RecurringDateTimePickerComponent } from './components/recurring-date-time-picker/recurring-date-time-picker.component';
 
 @NgModule({
@@ -25,7 +24,6 @@ import { RecurringDateTimePickerComponent } from './components/recurring-date-ti
     SessionFormTimeSlotsComponent,
     SessionFormAttributesComponent,
     SessionFormMarketingComponent,
-    SessionFormRepeatitionsComponent,
     FormArrayTableComponent,
     SimpleFormInputComponent,
     RecurringDateTimePickerComponent,
