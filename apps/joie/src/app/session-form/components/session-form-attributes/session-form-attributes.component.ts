@@ -30,6 +30,7 @@ export class SessionFormAttributesComponent extends SessionFormExtenderComponent
       ['activity', new FormControl(null)],
       [this.GOALS, new FormArray([new FormControl(null)])],
       [this.COMMENTS, new FormArray([new FormControl(null)])],
+      ['price', new FormControl(null)],
     ]);
   }
 
