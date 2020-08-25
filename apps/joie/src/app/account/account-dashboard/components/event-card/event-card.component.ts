@@ -1,20 +1,13 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-event-card',
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss'],
 })
-export class EventCardComponent implements OnInit {
+export class EventCardComponent {
   @Input() cdkCopyToClipboard: string;
   @Input() session;
   constructor(private router: Router) {}
-  ngOnInit(): void {}
-
-  handleEdit() {
-    // this.router.navigate(['teacher', 'sessions'], { //todo uncoment when tdf session form ready, change url
-    //   state: { action: 'edit', session: this.session },
-    // });
-  }
 }

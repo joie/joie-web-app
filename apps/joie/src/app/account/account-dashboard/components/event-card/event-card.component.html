@@ -8,7 +8,7 @@
 
 
   <a [routerLink]="[
-      '/teacher',
+      '/account',
       'dashboard',
       { outlets: { 'popup': ['message'] } }
     ]">
@@ -20,7 +20,6 @@
 
 
   <button class="bottom"
-          (click)="handleEdit()"
           mat-raised-button>
     <mat-icon>edit</mat-icon>Edit
   </button>

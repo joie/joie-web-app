@@ -39,7 +39,7 @@ export class EventCalendarComponent implements OnInit {
     }
     this.router.navigate(
       [
-        '/teacher', // todo old route
+        '/account',
         'sessions',
         {
           outlets: {
@@ -52,7 +52,7 @@ export class EventCalendarComponent implements OnInit {
   }
 
   viewSessionsList(sessions = this.sessions) {
-    this.router.navigate(['/teacher', 'dashboard', { outlets: { ['popup']: ['sessions'] } }], {
+    this.router.navigate(['/account', 'dashboard', { outlets: { ['popup']: ['sessions'] } }], {
       state: { sessions: sessions },
     });
   }
