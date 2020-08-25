@@ -21,6 +21,7 @@ export class SessionFormMetadataComponent extends SessionFormExtenderComponent {
     this.addFormControls([
       ['format', new FormControl(null, Validators.required)],
       ['type', new FormControl(null, Validators.required)],
+      ['title', new FormControl(null, Validators.required)],
       ['description', new FormControl(null)],
     ]);
   }

@@ -1,18 +1,11 @@
 import { Injectable } from '@angular/core';
-import {
-  FormBuilder,
-  Validators,
-  FormControl,
-  FormArray,
-} from '@angular/forms';
+import { FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 
 export type ControlTuple = [string, FormControl | FormArray];
 
 @Injectable()
 export class SessionFormService {
-  sessionForm = this.fb.group({
-    title: ['lorem ipsum', Validators.required],
-  });
+  sessionForm = this.fb.group({});
 
   constructor(private fb: FormBuilder) {}
 
