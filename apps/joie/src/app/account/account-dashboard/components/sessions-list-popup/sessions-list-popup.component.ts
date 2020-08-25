@@ -1,4 +1,4 @@
-import { ProfileService } from './../../../profile.service';
+import { AccountService } from '../../../account.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ export class SessionsListPopupComponent implements OnInit {
   constructor(
     private matDialogRef: MatDialogRef<SessionsListPopupComponent>,
     private router: Router,
-    private accountService: ProfileService
+    private accountService: AccountService
   ) {}
 
   ngOnInit(): void {

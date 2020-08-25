@@ -1,6 +1,6 @@
 import { Teacher } from './../../models/teacher.model';
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from '../profile.service';
+import { AccountService } from '../account.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,7 +12,7 @@ export class AccountDashboardComponent implements OnInit {
   teacher$: Observable<Teacher>; // todo yet only teacher is supposed to have a dashboard
   sessions$; //todo interface
 
-  constructor(private accountService: ProfileService) {}
+  constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
     this.teacher$ = this.accountService.getTeacher('user123');

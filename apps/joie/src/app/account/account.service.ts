@@ -8,7 +8,7 @@ import { sessionsMock } from '../teacher/teacher.mocks';
 @Injectable({
   providedIn: 'root',
 })
-export class ProfileService {
+export class AccountService {
   constructor(private httpClient: HttpClient) {}
 
   getNotificationSettings(id: string = 'user123') {

@@ -2,7 +2,7 @@ import { mapValues } from 'lodash';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { ProfileService } from '../profile.service';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-account-notification-setings',
@@ -12,10 +12,10 @@ import { ProfileService } from '../profile.service';
 export class AccountNotificationSetingsComponent implements OnInit {
   formGroup: FormGroup;
   settingBlocks;
-  constructor(private fb: FormBuilder, private profileService: ProfileService) {}
+  constructor(private fb: FormBuilder, private accountService: AccountService) {}
 
   ngOnInit(): void {
-    this.profileService
+    this.accountService
       .getNotificationSettings('user123')
       .pipe(take(1))
       .subscribe((settings) => {

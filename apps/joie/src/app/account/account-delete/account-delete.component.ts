@@ -1,4 +1,4 @@
-import { ProfileService } from './../profile.service';
+import { AccountService } from '../account.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,15 +12,15 @@ export class AccountDeleteComponent implements OnInit {
     'You will lose access lose access to your students.',
     ' But mostly, you will be missed',
   ]; //todo :CloseAccBullets
-  constructor(private profileService: ProfileService) {}
+  constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {}
 
   handleCloseAccount() {
-    this.profileService.closeAccount();
+    this.accountService.closeAccount();
   }
 
   handleContactSupport() {
-    this.profileService.contactSupport();
+    this.accountService.contactSupport();
   }
 }

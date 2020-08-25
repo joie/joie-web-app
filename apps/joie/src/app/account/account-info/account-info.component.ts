@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Form } from '@angular/forms';
 import { Profile } from '../../models/profile.model';
-import { ProfileService } from '../profile.service';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-account-info',
@@ -17,10 +17,11 @@ export class AccountInfoComponent implements OnInit {
     password: '',
     timezone: '',
   };
-  constructor(private profileService: ProfileService) {}
+  constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
     this.profileData = {
+      // todo replace
       name: 'raja ram',
       email: 'raja@tip.goa',
       password: 'kirimbo124',
@@ -33,6 +34,6 @@ export class AccountInfoComponent implements OnInit {
   handleSendResetEmail() {}
 
   submitProfileChanges() {
-    this.profileService.submitProfileChanges();
+    this.accountService.submitProfileChanges();
   }
 }
