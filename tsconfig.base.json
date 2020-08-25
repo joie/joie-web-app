@@ -11,11 +11,10 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "paths": {},
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@joie/dyna-form": ["libs/dyna-form/src/index.ts"]
+    },
     "rootDir": "."
   },
   "angularCompilerOptions": {
