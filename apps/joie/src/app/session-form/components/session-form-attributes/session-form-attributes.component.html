@@ -71,7 +71,17 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Session price (USD)</mat-label>
-    <input [formControlName]="PRICE" matInput />
+    <input
+      type="number"
+      inputmode="numeric"
+      min="0.00"
+      max="10000.00"
+      step="0.01"
+      autocomplete="transaction-amount"
+      [formControlName]="PRICE"
+      matInput
+    />
+    <span matPrefix>$&nbsp;</span>
+    <mat-hint>At the moment, Joie uses USD as its currency.</mat-hint>
   </mat-form-field>
-  <p>At the moment, Joie using USD as it's currency.</p>
 </ng-container>
