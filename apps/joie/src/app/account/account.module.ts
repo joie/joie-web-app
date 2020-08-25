@@ -15,6 +15,7 @@ import { AccountNotificationSetingsComponent } from './account-notification-seti
 import { AccountInfoComponent } from './account-info/account-info.component';
 import { AccountBankingComponent } from './account-banking/account-banking.component';
 import { AccountProfileComponent } from './account-profile/account-profile.component';
+import { MainLayoutComponent } from '../common/components/main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AccountProfileComponent } from './account-profile/account-profile.compo
     AccountNotificationSetingsComponent,
     AccountDeleteComponent,
     AccountSidenavComponent,
+    MainLayoutComponent,
     AccountHeaderComponent,
     AccountProfileComponent,
   ],
