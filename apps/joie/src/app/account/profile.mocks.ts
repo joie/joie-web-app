@@ -40,7 +40,7 @@ export const notificationSettingsMock = [
   },
 ];
 
-export const teacherProfileMock: Profile = {
+export const profileInfoMock: Profile = {
   name: 'raja ram',
   email: 'raja@tip.goa',
   password: 'kirimbo124',

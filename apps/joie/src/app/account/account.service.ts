@@ -1,5 +1,6 @@
+import { getUser } from './../../../../../functions/src/stripe';
 import { Injectable } from '@angular/core';
-import { notificationSettingsMock, dashboardInfoMock } from './profile.mocks';
+import { notificationSettingsMock, dashboardInfoMock, profileInfoMock } from './profile.mocks';
 import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { Teacher } from '../models/teacher.model';
@@ -10,6 +11,10 @@ import { sessionsMock } from '../teacher/teacher.mocks';
 })
 export class AccountService {
   constructor(private httpClient: HttpClient) {}
+
+  getUser(id: string) {
+    return of(profileInfoMock);
+  }
 
   getNotificationSettings(id: string = 'user123') {
     // todo return this.httpClient.get()
@@ -26,7 +31,7 @@ export class AccountService {
   contactSupport() {}
   submitProfileChanges() {}
 
-  // todo to account-dashboard service
+  // for dashboard
   getTeacher(userId = '123'): Observable<Teacher> {
     return of(dashboardInfoMock);
   }
@@ -38,4 +43,6 @@ export class AccountService {
   getSessions(userId: string) {
     return of(sessionsMock);
   }
+
+  //
 }

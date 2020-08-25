@@ -10,7 +10,6 @@ import { AccountService } from '../account.service';
 })
 export class AccountInfoComponent implements OnInit {
   @ViewChild('form') form: Form;
-  profileData: Profile = null;
   profile: Profile = {
     name: '',
     email: '',
@@ -20,15 +19,8 @@ export class AccountInfoComponent implements OnInit {
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
-    this.profileData = {
-      // todo replace
-      name: 'raja ram',
-      email: 'raja@tip.goa',
-      password: 'kirimbo124',
-      timezone: '(GMT +5:30 hours) Goa, India',
-    }; // came from input or fetched right here
-    Object.keys(this.profileData).forEach((key) => {
-      this.profile[key] = this.profileData[key];
+    this.accountService.getUser('user123').subscribe((user) => {
+      this.profile = user;
     });
   }
   handleSendResetEmail() {}

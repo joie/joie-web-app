@@ -15,15 +15,12 @@ export class AccountNotificationSetingsComponent implements OnInit {
   constructor(private fb: FormBuilder, private accountService: AccountService) {}
 
   ngOnInit(): void {
-    this.accountService
+    this.accountService // todo need to refactor it to smth less disgusting
       .getNotificationSettings('user123')
       .pipe(take(1))
       .subscribe((settings) => {
         this.settingBlocks = settings;
-        this.formGroup = this.fb.group({
-          settings: new FormGroup({}),
-        });
-        let settingFormGroup = this.fb.group({});
+        this.formGroup = this.fb.group({});
         this.settingBlocks.forEach((block) => {
           let blockFormGroup = new FormGroup({});
           blockFormGroup.addControl('all', new FormControl(block.allChecked));
@@ -33,24 +30,22 @@ export class AccountNotificationSetingsComponent implements OnInit {
               new FormControl(block.allChecked ? true : toggle.isChecked)
             );
           });
-          settingFormGroup.setControl(this.convertToKey(block.title), blockFormGroup);
+          this.formGroup.setControl(this.convertToKey(block.title), blockFormGroup);
         });
-        this.formGroup.setControl('settings', settingFormGroup);
-        // todo maybe rm tis setting control? if the final data flow decision would be to submit from here - better add the settings key in another way
       });
   }
 
   convertToKey = (title) => title.toLowerCase().replace(' ', '_').replace(',', '');
 
   toggleBlock(block) {
-    let prevVal = this.formGroup.value['settings'][block];
-    this.formGroup.controls;
-    this.formGroup.get(['settings', block]).setValue(mapValues(prevVal, (val) => !val));
+    let prevVal = this.formGroup.value[block];
+
+    this.formGroup.get([block]).setValue(mapValues(prevVal, (val) => !val)); // todo bug when toggling block
   }
 
   toggleSlider(blockKey, toggleKey) {
-    let prevVal = this.formGroup.value['settings'][blockKey][toggleKey];
-    this.formGroup.get(['settings', blockKey]).patchValue({
+    let prevVal = this.formGroup.value[blockKey][toggleKey];
+    this.formGroup.get([blockKey]).patchValue({
       [toggleKey]: !prevVal,
     });
   }
