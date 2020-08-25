@@ -1,5 +1,5 @@
-import { navTabs } from './../../../teacher/teacher.mocks';
 import { Component, OnInit } from '@angular/core';
+import { navTabs } from '../../account.mocks';
 
 @Component({
   selector: 'app-account-sidenav',

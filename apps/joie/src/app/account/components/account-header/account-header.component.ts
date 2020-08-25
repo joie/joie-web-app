@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { dashboardInfoMock } from '../../../teacher/teacher.mocks';
 import { of } from 'rxjs';
+import { dashboardInfoMock } from '../../account.mocks';
 
 @Component({
   selector: 'app-account-header',

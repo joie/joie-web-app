@@ -49,10 +49,6 @@ const routes: Routes = [
     loadChildren: () => import('./sessions/sessions.module').then((m) => m.SessionsModule),
   },
   {
-    path: 'teacher',
-    loadChildren: () => import('./teacher/teacher.module').then((m) => m.TeacherModule),
-  },
-  {
     path: 'onboarding',
     children: [
       {

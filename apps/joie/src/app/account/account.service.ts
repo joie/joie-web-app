@@ -1,10 +1,9 @@
-import { getUser } from './../../../../../functions/src/stripe';
 import { Injectable } from '@angular/core';
 import { notificationSettingsMock, dashboardInfoMock, profileInfoMock } from './profile.mocks';
 import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { Teacher } from '../models/teacher.model';
-import { sessionsMock } from '../teacher/teacher.mocks';
+import { sessionsMock } from './account.mocks';
 
 @Injectable({
   providedIn: 'root',

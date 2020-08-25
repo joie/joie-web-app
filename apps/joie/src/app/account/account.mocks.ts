@@ -1,13 +1,7 @@
 import { EventTypes } from '../models/event.model';
 import { Profile } from '../models/profile.model';
 
-export const navTabs = [
-  'Dashboard',
-  'Sessions',
-  'Profile',
-  'Banking',
-  'Email and notifications',
-];
+export const navTabs = ['Dashboard', 'Sessions', 'Profile', 'Banking', 'Email and notifications'];
 
 // teacher schould be :
 /*
