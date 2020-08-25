@@ -2,10 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QuicklinkStrategy } from 'ngx-quicklink';
 import { canActivate, AngularFireAuthGuard } from '@angular/fire/auth-guard';
-import {
-  authorOnly,
-  redirectUnauthorizedToLogin,
-} from './common/guards/auth-guards-pipes';
+import { authorOnly, redirectUnauthorizedToLogin } from './common/guards/auth-guards-pipes';
 
 import { PageNotFoundComponent } from './core/containers/page-not-found/page-not-found.component';
 
@@ -22,8 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'posts',
-    loadChildren: () =>
-      import('./posts/posts.module').then((m) => m.PostsModule),
+    loadChildren: () => import('./posts/posts.module').then((m) => m.PostsModule),
   },
   // {
   //   path: 'author',
@@ -43,21 +39,18 @@ const routes: Routes = [
   // },
   {
     path: 'account',
-    loadChildren: () =>
-      import('./account/account.module').then((m) => m.AccountModule),
+    loadChildren: () => import('./account/account.module').then((m) => m.AccountModule),
     // TODO uncomment this when angularfire fixes their zone issue
     // https://github.com/angular/angularfire/issues/2367
     ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'sessions',
-    loadChildren: () =>
-      import('./sessions/sessions.module').then((m) => m.SessionsModule),
+    loadChildren: () => import('./sessions/sessions.module').then((m) => m.SessionsModule),
   },
   {
     path: 'teacher',
-    loadChildren: () =>
-      import('./teacher/teacher.module').then((m) => m.TeacherModule),
+    loadChildren: () => import('./teacher/teacher.module').then((m) => m.TeacherModule),
   },
   {
     path: 'onboarding',
@@ -65,23 +58,22 @@ const routes: Routes = [
       {
         path: 'teacher',
         loadChildren: () =>
-          import(
-            './onboarding/onboarding-teacher/onboarding-teacher.module'
-          ).then((m) => m.OnboardingTeacherModule),
+          import('./onboarding/onboarding-teacher/onboarding-teacher.module').then(
+            (m) => m.OnboardingTeacherModule
+          ),
       },
       {
         path: 'student',
         loadChildren: () =>
-          import(
-            './onboarding/onboarding-student/onboarding-student.module'
-          ).then((m) => m.OnboardingStudentModule),
+          import('./onboarding/onboarding-student/onboarding-student.module').then(
+            (m) => m.OnboardingStudentModule
+          ),
       },
     ],
   },
   {
     path: 'contact',
-    loadChildren: () =>
-      import('./contact/contact.module').then((m) => m.ContactModule),
+    loadChildren: () => import('./contact/contact.module').then((m) => m.ContactModule),
   },
   { path: '**', component: PageNotFoundComponent },
 ];
@@ -89,7 +81,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      preloadingStrategy: QuicklinkStrategy,
+      // preloadingStrategy: QuicklinkStrategy,
       paramsInheritanceStrategy: 'always',
     }),
   ],
