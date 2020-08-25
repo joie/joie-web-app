@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ErrorHandler } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Session } from '../../models';
+import { Session, SessionDetails } from '../../models';
 import { SessionService } from '../../services/session.service';
 import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-handshake.service';
 
@@ -13,7 +13,15 @@ import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-
 export class SessionDetailsComponent implements OnInit, OnDestroy {
   courseId = 123;
   session: Session;
-  private stop$ = new Subject();
+  // TODO - default assignment will be removed after integration
+  isLiveSession = true; // if false vod player is visible
+  sessionDetails: SessionDetails = { eventId: 6059661, userId: 'test' };
+  sessionType = 2;
+  role = 'adminRole';
+  userContextualRole = 0;
+  entryId = '1_0v7lxhb8';
+
+  private destroy$ = new Subject();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,16 +31,12 @@ export class SessionDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.activatedRoute.params
-      .pipe(takeUntil(this.stop$))
+      .pipe(takeUntil(this.destroy$))
       .subscribe((params) => {
         // TODO - remove this 1234 after integrating with backend
         this.courseId = params.courseId || 1234;
       });
     this.loadData();
-  }
-
-  ngOnDestroy() {
-    this.stop$.next();
   }
 
   loadData() {
@@ -41,8 +45,14 @@ export class SessionDetailsComponent implements OnInit, OnDestroy {
       .subscribe((session) => (this.session = session as Session));
   }
 
+  // TODO - to be removed after the integration
   liveSession() {
     this.kalturaApiHandShakeService
       .temporaryLivestreamPage();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

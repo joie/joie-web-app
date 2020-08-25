@@ -4,4 +4,5 @@ export const kalturaConfig = {
   clientSecret: 'dbd317b69a5164bad9222d6ffad98a2e',
   eventTags: 'vcprovider:newrow',
   resourceTags: 'custom_rec_auto_start:1,custom_rs_show_participant:1',
+  targetId: 'kalturaVodPlayer',
 };
