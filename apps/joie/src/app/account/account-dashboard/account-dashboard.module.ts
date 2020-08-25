@@ -36,7 +36,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ClipboardModule,
     MatCardModule,
     MatListModule,
-    MatListModule,
     MatInputModule,
     MatFormFieldModule,
     MatDividerModule,

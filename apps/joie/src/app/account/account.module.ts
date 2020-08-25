@@ -15,9 +15,6 @@ import { AccountNotificationSetingsComponent } from './account-notification-seti
 import { AccountInfoComponent } from './account-info/account-info.component';
 import { AccountBankingComponent } from './account-banking/account-banking.component';
 import { AccountProfileComponent } from './account-profile/account-profile.component';
-import { AccountSessionsComponent } from './account-sessions/account-sessions.component';
-import { SessionFormModule } from '../session-form/session-form.module';
-import { SessionListModule } from '../session-list/session-list.module';
 
 @NgModule({
   declarations: [

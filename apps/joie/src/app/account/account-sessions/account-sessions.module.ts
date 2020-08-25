@@ -2,11 +2,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { AccountSessionsComponent } from './account-sessions.component';
 import { SharedModule } from '../../shared/shared.module';
-import { SessionFormModule } from '../../session-form/session-form.module';
 import { SessionListModule } from '../../session-list/session-list.module';
+import { AccountSessionsRoutingModule } from './account-sessions-routing.module';
 
 @NgModule({
   declarations: [AccountSessionsComponent],
-  imports: [SharedModule, SessionFormModule, SessionListModule, MatIconModule, SessionFormModule],
+  imports: [SharedModule, AccountSessionsRoutingModule, SessionListModule, MatIconModule],
 })
 export class AccountSessionsModule {}
