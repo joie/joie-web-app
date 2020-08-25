@@ -7,8 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SessionFormComponent } from './components/session-form/session-form.component';
 import { RouterModule } from '@angular/router';
 import { SessionFormMetadataComponent } from './components/session-form-metadata/session-form-metadata.component';
-import { SessionFormService } from './services/session-form.service';
-import { SessionFormTimeSlotsComponent } from './components/session-form-time-slots/session-form-time-slots.component';
+import { SessionFormDateTimeSlotsComponent } from './components/session-form-date-time-slots/session-form-date-time-slots.component';
 
 import { MatNativeDateModule } from '@angular/material/core';
 import { SessionFormAttributesComponent } from './components/session-form-attributes/session-form-attributes.component';
@@ -17,16 +16,20 @@ import { FormArrayTableComponent } from './components/form-array-table/form-arra
 import { SimpleFormInputComponent } from './components/simple-form-input/simple-form-input.component';
 import { RecurringDateTimePickerComponent } from './components/recurring-date-time-picker/recurring-date-time-picker.component';
 
+import { DynaFormModule } from '../../../../../libs/dyna-form';
+import { SessionFormDateTimeComponent } from './components/session-form-date-time/session-form-date-time.component';
+
 @NgModule({
   declarations: [
     SessionFormComponent,
     SessionFormMetadataComponent,
-    SessionFormTimeSlotsComponent,
+    SessionFormDateTimeSlotsComponent,
     SessionFormAttributesComponent,
     SessionFormMarketingComponent,
     FormArrayTableComponent,
     SimpleFormInputComponent,
     RecurringDateTimePickerComponent,
+    SessionFormDateTimeComponent,
   ],
   imports: [
     SharedModule,
@@ -35,8 +38,8 @@ import { RecurringDateTimePickerComponent } from './components/recurring-date-ti
     MatSelectModule,
     MatInputModule,
     MatNativeDateModule,
+    DynaFormModule,
   ],
   exports: [SessionFormComponent],
-  providers: [SessionFormService],
 })
 export class SessionFormModule {}

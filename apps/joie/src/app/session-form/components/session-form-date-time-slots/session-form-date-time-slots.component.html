@@ -4,7 +4,7 @@
   <app-form-array-table [values]="timeSlotValues" (remove)="removeTimeSlot($event)">
     <app-recurring-date-time-picker
       #timeSlotForm
-      (add)="addTimeSlot($event)"
+      (submission)="addTimeSlot($event)"
     ></app-recurring-date-time-picker>
 
     <button mat-icon-button slot="suffix" color="primary" (click)="timeSlotForm.submit()">

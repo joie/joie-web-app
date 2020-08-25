@@ -122,10 +122,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/joie/tsconfig.app.json",
-              "apps/joie/tsconfig.spec.json"
-            ],
+            "tsConfig": ["apps/joie/tsconfig.app.json", "apps/joie/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         },
@@ -155,10 +152,49 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/joie-e2e/tsconfig.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
+        }
+      }
+    },
+    "dyna-form": {
+      "projectType": "library",
+      "root": "libs/dyna-form",
+      "sourceRoot": "libs/dyna-form/src",
+      "prefix": "joie",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/dyna-form/tsconfig.lib.json",
+            "project": "libs/dyna-form/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/dyna-form/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/dyna-form/tsconfig.lib.json", "libs/dyna-form/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/dyna-form/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/dyna-form/jest.config.js",
+            "tsConfig": "libs/dyna-form/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/dyna-form/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
         }
       }
     }
@@ -167,5 +203,10 @@
   "cli": {
     "defaultCollection": "@ngrx/schematics",
     "analytics": false
+  },
+  "schematics": {
+    "@nrwl/angular:library": {
+      "strict": true
+    }
   }
 }

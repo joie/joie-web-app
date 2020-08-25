@@ -1,36 +1,30 @@
 import { Component } from '@angular/core';
-import { SessionFormService } from '../../services/session-form.service';
 import { SessionFormat } from './../../../sessions/models/session';
 import { SessionType } from '../../../sessions/models/session';
+import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/lib/dyna-form-base.component';
 
 @Component({
   selector: 'app-session-form',
   templateUrl: './session-form.component.html',
   styleUrls: ['./session-form.component.scss'],
 })
-export class SessionFormComponent {
+export class SessionFormComponent extends DynaFormBaseComponent {
   layoutClass = 'layout-grid layout-spacing-block-sm';
   showAllFields: boolean;
 
-  constructor(private sessionFormService: SessionFormService) {}
-
-  get form() {
-    return this.sessionFormService.sessionForm;
-  }
-
   get isCoaching() {
-    return SessionType[this.sessionFormService.getControl('type')] === SessionType.coaching;
+    return SessionType[this.getFormControl('type').value] === SessionType.coaching;
   }
 
   get isLivestreaming() {
-    return this.sessionFormService.getControl('format') == SessionFormat.liveStreaming;
+    return this.getFormControl('format').value === SessionFormat.liveStreaming;
   }
 
   get isCourse() {
-    return SessionType[this.sessionFormService.getControl('type')] == SessionType.course;
+    return SessionType[this.getFormControl('type').value] === SessionType.course;
   }
 
   onSubmit() {
-    console.log(this.sessionFormService.sessionForm.value);
+    console.log(this.form.value);
   }
 }

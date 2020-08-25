@@ -3,14 +3,6 @@
     class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
   >
     <mat-form-field appearance="outline">
-      <mat-label>Format</mat-label>
-      <mat-select required [disabled]="typeSelectedValue == 'coaching'" formControlName="format">
-        <mat-option *ngFor="let format of sessionFormatKeys" [value]="sessionFormatEnum[format]">
-          {{ sessionFormatEnum[format] }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
       <mat-label>Type</mat-label>
       <mat-select required formControlName="type" [(ngModel)]="typeSelectedValue">
         <mat-option *ngFor="let type of sessionTypeKeys" [value]="type">{{
@@ -18,9 +10,31 @@
         }}</mat-option>
       </mat-select>
       <mat-hint *ngIf="typeSelectedValue == 'coaching'"
-        >Coaching '<i>type</i>' auto-sets '<i>format</i>' to live streaming
+        >Coaching '<kbd>type</kbd>' auto-sets '<kbd>format</kbd>' to live streaming
       </mat-hint>
     </mat-form-field>
+    <mat-radio-group
+      aria-label="Select an option"
+      required
+      [disabled]="typeSelectedValue == 'coaching'"
+      formControlName="format"
+    >
+      <mat-radio-button
+        *ngFor="let format of sessionFormatKeys"
+        [value]="sessionFormatEnum[format]"
+      >
+        {{ sessionFormatEnum[format] }}
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>Format</mat-label>
+      <mat-select required [disabled]="typeSelectedValue == 'coaching'" formControlName="format">
+        <mat-option *ngFor="let format of sessionFormatKeys" [value]="sessionFormatEnum[format]">
+          {{ sessionFormatEnum[format] }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
   </div>
   <!-- ! always show this -->
   <mat-form-field appearance="outline">

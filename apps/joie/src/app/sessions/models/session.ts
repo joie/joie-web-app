@@ -1,10 +1,10 @@
 import { Price, Duration } from '../../models';
-import { firestore as FireStore } from 'firebase';
+import { firestore } from 'firebase';
 
 export interface Session {
   readonly id: number | string;
   title: string;
-  publishedDate: FireStore.Timestamp;
+  publishedDate: firestore.Timestamp;
   duration: Duration;
   courseType: SessionFormat;
   level: CourseLevel;

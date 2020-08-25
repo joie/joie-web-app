@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <h2 mat-dialog-title>Create a session</h2>
   <mat-dialog-content class="mat-typography">
     <!-- {{ form.value | json }} -->
@@ -8,14 +8,16 @@
         Show all fields...
       </button>
       <ng-container *ngIf="showAllFields">
-        <app-session-form-time-slots *ngIf="isCoaching" [class]="layoutClass">
-        </app-session-form-time-slots>
+        <app-session-form-date-time-slots
+          *ngIf="isCoaching"
+          [class]="layoutClass"
+        ></app-session-form-date-time-slots>
 
         <!-- date-time-duration -->
-        <app-recurring-date-time-picker
+        <app-session-form-date-time
           *ngIf="isLivestreaming && !isCoaching"
           [class]="layoutClass"
-        ></app-recurring-date-time-picker>
+        ></app-session-form-date-time>
 
         <app-session-form-attributes [class]="layoutClass"> </app-session-form-attributes>
         <app-session-form-marketing [class]="layoutClass"></app-session-form-marketing>
