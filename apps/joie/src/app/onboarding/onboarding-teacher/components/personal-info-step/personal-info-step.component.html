@@ -7,48 +7,44 @@
   <h3>Personal Information</h3>
 </div>
 <div class="container container-ultra-condense">
-  <form [formGroup]="formGroup" class="layout-grid layout-spacing-block-sm">
+  <form [formGroup]="formGroup"
+        class="layout-grid layout-spacing-block-sm">
     <mat-form-field appearance="outline">
       <mat-label>First name</mat-label>
-      <input
-        matInput
-        placeholder="first name"
-        formControlName="firstNameCtrl"
-        required
-      />
+      <input matInput
+             placeholder="first name"
+             formControlName="firstNameCtrl"
+             required />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Last name</mat-label>
-      <input
-        matInput
-        placeholder="last name"
-        formControlName="lastNameCtrl"
-        required
-      />
+      <input matInput
+             placeholder="last name"
+             formControlName="lastNameCtrl"
+             required />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input
-        matInput
-        placeholder="email"
-        formControlName="emailCtrl"
-        required
-      />
+      <input matInput
+             placeholder="email"
+             formControlName="emailCtrl"
+             required />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Phone number</mat-label>
-      <input
-        matInput
-        placeholder="phone number"
-        formControlName="phoneNumberCtrl"
-        required
-      />
+      <input matInput
+             placeholder="phone number"
+             formControlName="phoneNumberCtrl"
+             required />
     </mat-form-field>
 
-    <button mat-flat-button color="primary" [disabled]="formGroup.invalid" matStepperNext>
+    <button mat-flat-button
+            color="primary"
+            [disabled]="formGroup.invalid"
+            matStepperNext>
       Next
     </button>
   </form>
