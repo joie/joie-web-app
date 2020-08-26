@@ -8,14 +8,14 @@ import { Component } from '@angular/core';
 export class NavigationComponent {
   links = [
     { name: 'home', path: ['/', 'home'] },
-    { name: 'posts', path: ['/', 'posts'] },
-    { name: 'author', path: ['/', 'author'] },
+    // { name: 'posts', path: ['/', 'posts'] },
+    // { name: 'author', path: ['/', 'author'] },
     { name: 'account', path: ['/', 'account'] },
     { name: 'sessions', path: ['/', 'sessions'] },
     { name: 'contact', path: ['/', 'contact'] },
     { name: 'Join as a teacher', path: ['/', 'onboarding', 'teacher'] },
     { name: 'onboarding/student', path: ['/', 'onboarding', 'student'] },
-    { name: 'teacher', path: ['/', 'teacher'] },
+    // { name: 'teacher', path: ['/', 'teacher'] },
   ];
   activeLink = this.links[0];
 }
