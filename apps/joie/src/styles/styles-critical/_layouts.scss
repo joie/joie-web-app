@@ -77,6 +77,14 @@ $size: (
       //   margin: 5px;
       // }
     }
+    &#{&}-template-columns {
+      &-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+      &-3 {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
   }
 }
 

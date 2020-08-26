@@ -1,16 +1,22 @@
-<h3>Your value to our students</h3>
-<p>
-  Finally, {{ teachersName }} where do you see your added value to the students?
-</p>
-<form [formGroup]="formGroup" (ngSubmit)="submitFormsData()">
-  <mat-form-field appearance="outline">
-    <textarea
-      matInput
-      formControlName="addedValDescriptionCtrl"
-      required
-    ></textarea>
-  </mat-form-field>
-  <button mat-button>
-    Submit your application
-  </button>
-</form>
+<div class="continer container-condense">
+  <h3>Your value to our students</h3>
+  <p>
+    Finally, {{ teachersName }} where do you see your added value to the students?
+  </p>
+</div>
+<div class="container container-ultra-condense">
+  <form [formGroup]="formGroup"
+        (ngSubmit)="submitFormsData()"
+        class="layout-grid">
+
+    <button mat-button>
+      Submit your application
+    </button>
+    <mat-form-field appearance="outline">
+      <textarea matInput
+                formControlName="addedValDescriptionCtrl"
+                required></textarea>
+    </mat-form-field>
+  </form>
+
+</div>
