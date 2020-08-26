@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SessionFormService } from './session-form.service';
+import { DynaFormService } from './dyna-form.service';
 
-describe('SessionFormService', () => {
-  let service: SessionFormService;
+describe('DynaFormService', () => {
+  let service: DynaFormService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SessionFormService);
+    service = TestBed.inject(DynaFormService);
   });
 
   it('should be created', () => {

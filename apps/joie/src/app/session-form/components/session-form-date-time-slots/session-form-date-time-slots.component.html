@@ -1,0 +1,14 @@
+<ng-container [formGroup]="form">
+  <h3>Available time slots</h3>
+
+  <app-form-array-table [values]="timeSlotValues" (remove)="removeTimeSlot($event)">
+    <app-recurring-date-time-picker
+      #timeSlotForm
+      (submission)="addTimeSlot($event)"
+    ></app-recurring-date-time-picker>
+
+    <button mat-icon-button slot="suffix" color="primary" (click)="timeSlotForm.submit()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </app-form-array-table>
+</ng-container>

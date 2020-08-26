@@ -1,36 +1,39 @@
 import { Component } from '@angular/core';
 import { Pillar, CourseLevel, Activities } from '../../../sessions/models/session';
 import { FormControl, FormArray, Validators } from '@angular/forms';
-import { SessionFormService } from '../../services/session-form.service';
-import { SessionFormExtenderComponent } from '../../common/session-form-extender/session-form-extender.component';
+import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/lib/dyna-form-base.component';
 
 @Component({
   selector: 'app-session-form-attributes',
   templateUrl: './session-form-attributes.component.html',
   styleUrls: ['./session-form-attributes.component.scss'],
 })
-export class SessionFormAttributesComponent extends SessionFormExtenderComponent {
+export class SessionFormAttributesComponent extends DynaFormBaseComponent {
   pillarEnum = Pillar;
   levelEnum = CourseLevel;
   activityEnum = Activities;
 
+  PILLAR = 'pillar';
+  LEVEL = 'level';
+  ACTIVITY = 'activity';
   GOALS = 'goals';
   COMMENTS = 'comments';
+  PRICE = 'price';
 
   readonly goalsFormArray = new FormArray([]);
   readonly commentsFormArray = new FormArray([]);
 
-  readonly validators = [Validators.minLength(5)];
+  readonly sfiValidators = [Validators.minLength(5)];
 
-  constructor(sessionFormService: SessionFormService) {
-    super(sessionFormService);
+  constructor() {
+    super();
     this.addFormControls([
-      ['pillar', new FormControl(null)],
-      ['level', new FormControl(null)],
-      ['activity', new FormControl(null)],
+      [this.PILLAR, new FormControl(null)],
+      [this.LEVEL, new FormControl(null)],
+      [this.ACTIVITY, new FormControl(null)],
       [this.GOALS, new FormArray([new FormControl(null)])],
       [this.COMMENTS, new FormArray([new FormControl(null)])],
-      ['price', new FormControl(null)],
+      [this.PRICE, new FormControl(null)],
     ]);
   }
 

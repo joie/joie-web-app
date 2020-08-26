@@ -1,0 +1,27 @@
+<form
+  (ngSubmit)="submit()"
+  [formGroup]="form"
+  #documentEditForm="ngForm"
+  class="layout-grid layout-grid-inline-features layout-spacing-inline-sm layout-spacing-block-sm"
+>
+  <!-- ! TODO: date & time should be extracted to an independent component with a controlValueAccessor to merge both to a single timestamp -->
+  <mat-form-field>
+    <mat-label>Date</mat-label>
+    <input type="date" matInput formControlName="date" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Time</mat-label>
+    <input type="time" matInput formControlName="time" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Repeat</mat-label>
+    <mat-select formControlName="recurring">
+      <mat-option>-- None --</mat-option>
+      <mat-option *ngFor="let recurring of recurringKeys" [value]="recurring">{{
+        recurringEnum[recurring]
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
