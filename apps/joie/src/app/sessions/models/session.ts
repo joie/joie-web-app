@@ -45,7 +45,7 @@ export enum Pillar {
   professional = 'JoieProfessional',
 }
 
-export enum MovementActivities {
+export enum JoieMovement {
   excersise = 'Excersice',
   energy = 'Energy',
   diet = 'Diet',

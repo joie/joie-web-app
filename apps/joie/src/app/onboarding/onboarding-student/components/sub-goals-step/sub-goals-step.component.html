@@ -7,9 +7,8 @@
 
 <form [formGroup]="formGroup">
   <div class="subgoals-flexbox">
-    <app-sub-goals-box *ngFor="let goal of goals"
-                       [title]="goal.title"
-                       [subgoalsData]="goal.subgoals"
+    <app-sub-goals-box *ngFor="let pillar of selectedPillars"
+                       [pillar]="pillar"
                        [parentFormGroup]="formGroup"></app-sub-goals-box>
   </div>
 

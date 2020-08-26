@@ -1,4 +1,12 @@
 import {
+  JoieMovement,
+  MovementActivities,
+  EmotionsActivities,
+  ConnectionsActivities,
+  ProfessionalActivities,
+  SpiritActivities,
+} from './../../../../sessions/models/session';
+import {
   Component,
   ViewChildren,
   QueryList,
@@ -19,6 +27,31 @@ export class SubGoalsStepComponent implements AfterViewInit {
   @ViewChildren(SubGoalsBoxComponent) subgoalBoxes: QueryList<SubGoalsBoxComponent>;
   formGroup: FormGroup;
   boxesFormGroup: FormGroup = new FormGroup({});
+  selectedPillars = [];
+
+  // movementEnum = MovementActivities;
+  // emotionsEnum = EmotionsActivities;
+  // connectionsEnum = ConnectionsActivities;
+  // professionalEnum = ProfessionalActivities;
+  // spiritEnum = SpiritActivities;
+
+  // activities = [];
+  // get movementKeys() {
+  //   return Object.keys(this.movementEnum);
+  // }
+  // get emotionsKeys() {
+  //   return Object.keys(this.emotionsEnum);
+  // }
+  // get connectionsKeys() {
+  //   return Object.keys(this.connectionsEnum);
+  // }
+  // get professionalKeys() {
+  //   return Object.keys(this.professionalEnum);
+  // }
+  // get spiritKeys() {
+  //   return Object.keys(this.spiritEnum);
+  // }
+
   goals = [
     {
       title: 'JoieConnections',
@@ -45,7 +78,10 @@ export class SubGoalsStepComponent implements AfterViewInit {
   ) {
     this.formGroup = this.formBuilder.group({
       subgoalsCtrl: this.boxesFormGroup,
+      activities: new FormArray([]),
     });
+
+    this.selectedPillars = history.state.student.pillars;
   }
 
   submit() {
@@ -54,7 +90,7 @@ export class SubGoalsStepComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     const subgoalSets = this.subgoalBoxes.toArray(); //first i pass data to build low level forms, than i add a top-level control to it here
     subgoalSets.forEach((set) => {
-      this.boxesFormGroup.addControl(set.title, set.formGroup);
+      // this.boxesFormGroup.addControl(set.title, set.formGroup); // todo very important part !!
     });
   }
 }
