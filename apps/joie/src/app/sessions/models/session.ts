@@ -45,6 +45,48 @@ export enum Pillar {
   professional = 'JoieProfessional',
 }
 
+export enum MovementActivities {
+  excersise = 'Excersice',
+  energy = 'Energy',
+  diet = 'Diet',
+  nutrition = 'Nutrition',
+}
+
+export enum EmotionsActivities {
+  self_regulation = 'Self-regulation',
+  self_care = 'Self-care',
+  relaxation = 'Relaxation',
+  stress_reduction = 'Stress Reduction',
+  inner_strength = 'Inner Strength',
+}
+
+export enum ConnectionsActivities {
+  social_interactions = 'Social Interactions',
+  friendships = 'Friendships',
+  parenting = 'Parenting',
+  relationships = 'Relationships',
+  dating = 'Dating',
+}
+
+export enum SpiritActivities {
+  seek_meaning = 'Seek Meaning',
+  individual_purpose = 'Individual Purpose',
+  faith = 'Faith',
+  values = 'Values',
+  ethic_and_morals = 'Ethic and morals',
+}
+export enum ProfessionalActivities {
+  professional_development = 'Professional Development',
+  financial_stability = 'Financial stability',
+  satisfaction_at_work = 'Satisfactions at Work',
+}
+
+export enum MovementActivities {}
+// excersise = 'Excersice',
+// energy = 'Energy',
+// diet = 'Diet',
+// nutrition = 'Nutrition',
+
 export enum Activities {
   YOGA = 'Yoga',
   MEDITATION = 'Meditation',
@@ -52,7 +94,7 @@ export enum Activities {
   NUTRITION = 'Nutrition',
   DIET = 'Diet',
   SELF_REGULATION = 'Self-regulation',
-  SELF_CATE = 'Self-care',
+  SELF_CARE = 'Self-care',
   RELAXATION = 'Relaxation',
   STRESS_REDUCTION = 'Stress Reduction',
   INNER_STRENGTH = 'Inner Strength',
