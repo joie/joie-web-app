@@ -14,9 +14,19 @@ import { database } from 'firebase';
 @Component({
   selector: 'app-sub-goals-box',
   template: `<div class="box-with-badge">
-    <!-- <h3>{{ title }}</h3> -->
+    <h3>{{ pillar }}</h3>
     <form [formGroup]="formGroup">
       <mat-form-field>
+        <mat-chip-list [multiple]="true" [selectable]="true">
+          <label
+            formArrayName="activities"
+            *ngFor="let activity of activitiesFormArray.controls; let i = index"
+          >
+            <mat-chip #chip="matChip" [formControlName]="i" [selectable]="true">
+              <!-- {{ activity | json }}} -->
+            </mat-chip>
+          </label>
+        </mat-chip-list>
         <!-- <mat-chip-list [multiple]="true" [selectable]="true">
           <label
             *ngFor="let subgoal of subgoalsFormArray.value; let i = index"
@@ -86,6 +96,7 @@ export class SubGoalsBoxComponent implements OnInit {
       activities: new FormArray([]),
     });
     // console.log(this.activityKeys);
+    // this.addActivityChips();
   }
 
   addActivityChips() {
@@ -105,6 +116,15 @@ export class SubGoalsBoxComponent implements OnInit {
   //   }
   // }
 
+  submit() {
+    const selectedActivityTitles = this.formGroup.value.activities
+      .map((checked, i) => (checked ? this.pillar[this.activityKeys[i]] : null))
+      .filter((v) => v !== null);
+
+    console.log(selectedActivityTitles);
+    return { activities: selectedActivityTitles };
+  }
+
   ngOnInit(): void {
     // let student = history.state.student || null;
     // if (student && 'subgoalsCtrl' in student) {
@@ -115,6 +135,8 @@ export class SubGoalsBoxComponent implements OnInit {
     // this.formGroup.setParent(this.parentFormGroup);
     console.log(this.pillar);
     this.addActivityChips();
+
+    console.log(this.formGroup);
   }
 
   // get subgoalsFormArray() {
