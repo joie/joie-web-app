@@ -19,7 +19,6 @@
   <label formArrayName="pillars"
          *ngFor="let pillar of pillarFormArray.controls; let i = index">
     <input type="checkbox"
-           (change)="submit()"
            [formControlName]="i">
     {{pillarEnum[pillarKeys[i]]}}
 

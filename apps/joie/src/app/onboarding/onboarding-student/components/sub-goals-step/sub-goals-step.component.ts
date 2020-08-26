@@ -16,9 +16,7 @@ import { SubGoalsBoxComponent } from './sub-goals-box/sub-goals-box.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SubGoalsStepComponent implements AfterViewInit {
-  @ViewChildren(SubGoalsBoxComponent) subgoalBoxes: QueryList<
-    SubGoalsBoxComponent
-  >;
+  @ViewChildren(SubGoalsBoxComponent) subgoalBoxes: QueryList<SubGoalsBoxComponent>;
   formGroup: FormGroup;
   boxesFormGroup: FormGroup = new FormGroup({});
   goals = [
@@ -50,6 +48,9 @@ export class SubGoalsStepComponent implements AfterViewInit {
     });
   }
 
+  submit() {
+    return { activities: [] };
+  }
   ngAfterViewInit(): void {
     const subgoalSets = this.subgoalBoxes.toArray(); //first i pass data to build low level forms, than i add a top-level control to it here
     subgoalSets.forEach((set) => {

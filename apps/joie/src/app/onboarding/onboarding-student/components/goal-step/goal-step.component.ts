@@ -51,7 +51,8 @@ export class GoalStepComponent implements OnInit {
       .map((checked, i) => (checked ? this.pillarEnum[this.pillarKeys[i]] : null))
       .filter((v) => v !== null);
 
-    return selectedPillarTitles;
+    console.log(selectedPillarTitles);
+    return { pillars: selectedPillarTitles };
   }
 
   ngOnInit(): void {
