@@ -1,0 +1,6 @@
+<ng-container>
+  <h1 *ngIf="user$ | async as user">
+    Welcome, {{ user.firstName + " " + user.lastName }}
+  </h1>
+  <h3>Manage your profile, sessions, and banking on Joie //todo add avatar</h3>
+</ng-container>

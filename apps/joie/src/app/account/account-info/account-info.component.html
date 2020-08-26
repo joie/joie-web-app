@@ -1,0 +1,61 @@
+<form #form="ngForm"
+      *ngIf="profile">
+
+  <span class="flex-row">
+    <mat-label>Name</mat-label>
+    <mat-form-field>
+      <input matInput
+             id="name"
+             #name
+             [(ngModel)]="profile.name"
+             [disabled]="true"
+             name="name">
+    </mat-form-field>
+    <button mat-raised-button
+            (click)="name.disabled = !name.disabled">Edit</button>
+  </span>
+
+  <span class="flex-row">
+    <mat-label>Email</mat-label>
+    <mat-form-field>
+      <input matInput
+             id="email"
+             [(ngModel)]="profile.email"
+             name="email"
+             [disabled]="true"
+             #email>
+    </mat-form-field>
+    <button mat-raised-button
+            (click)="email.disabled = !email.disabled">Edit</button>
+  </span>
+
+  <span class="flex-row">
+    <mat-label>Password</mat-label>
+    <mat-form-field>
+      <input matInput
+             id="password"
+             [(ngModel)]="profile.password"
+             name="password"
+             [disabled]="true"
+             type="password">
+    </mat-form-field>
+    <button mat-raised-button
+            (click)="handleSendResetEmail()">Send email to reset password</button>
+  </span>
+
+
+  <span class="flex-row">
+    <mat-label>Timezone</mat-label>
+    <mat-form-field>
+      <input matInput
+             id="timezone"
+             [(ngModel)]="profile.timezone"
+             name="timezone"
+             [disabled]="true"
+             #timezone>
+    </mat-form-field>
+    <button mat-raised-button
+            (click)="timezone.disabled = !timezone.disabled">Change Time Zone</button>
+  </span>
+
+</form>
