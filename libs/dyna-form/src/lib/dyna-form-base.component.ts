@@ -1,18 +1,16 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl } from '@angular/forms';
 import { AppInjector } from './app-injector';
-import { NgFormsManager } from '@ngneat/forms-manager';
-import { map } from 'rxjs/operators';
 import { DynaFormService } from './services/dyna-form.service';
 
 export type ControlTuple = [string, FormControl | FormArray];
 
 @Component({
   template: '',
+  // providers: [DynaFormService],
 })
 export class DynaFormBaseComponent implements OnDestroy {
-  #controls: ControlTuple[];
-
+  #controls?: ControlTuple[];
   private dynaFormService: DynaFormService;
   // private builder: FormBuilder;
   // private formsManager: NgFormsManager;
@@ -20,6 +18,8 @@ export class DynaFormBaseComponent implements OnDestroy {
   constructor() {
     const injector = AppInjector.getInjector();
     this.dynaFormService = injector.get(DynaFormService);
+    // this.init = this.dynaFormService.init;
+
     // this.builder = injector.get(FormBuilder);
     // this.formsManager = injector.get(NgFormsManager);
 
@@ -49,7 +49,7 @@ export class DynaFormBaseComponent implements OnDestroy {
     controls.forEach(([name, control]) => {
       // add new control if is undefined or null
       this.dynaFormService.form.addControl(name, control);
-      console.log(this.form.value);
+      // console.log(this.form.value);
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild, OnDestroy, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { Recurring } from '../../../sessions/models';
 import { Subject } from 'rxjs';
@@ -14,7 +14,7 @@ const dateTimeToDateObj = (date: string, time: string) => new Date(`${date} ${ti
 })
 export class RecurringDateTimePickerComponent implements OnDestroy {
   @ViewChild('documentEditForm') private _documentEditForm: FormGroupDirective;
-  @ViewChild('datePicker') datePicker: ElementRef;
+  @ViewChild('datePicker') _datePicker: ElementRef;
   @Output() submission = new EventEmitter();
   @Output() formChange = new EventEmitter();
   recurringEnum = Recurring;
@@ -61,6 +61,6 @@ export class RecurringDateTimePickerComponent implements OnDestroy {
 
     this.submission.emit(this.normalizeValue(this.form.value));
     this.form.reset();
-    this.datePicker.nativeElement.focus();
+    this._datePicker.nativeElement.focus();
   }
 }

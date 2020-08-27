@@ -4,7 +4,7 @@ import { DynaFormService } from './services/dyna-form.service';
 
 @NgModule({
   imports: [],
-  providers: [DynaFormService],
+  // providers: [DynaFormService],
 })
 export class DynaFormModule {
   constructor(injector: Injector) {

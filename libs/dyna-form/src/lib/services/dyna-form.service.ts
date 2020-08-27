@@ -1,9 +1,14 @@
-import { Injectable } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Injectable, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
-@Injectable()
-export class DynaFormService {
-  form = this.fb.group({});
-
-  constructor(private fb: FormBuilder) {}
+@Injectable({ providedIn: 'root' })
+export class DynaFormService implements OnDestroy {
+  form?: FormGroup;
+  constructor(private fb: FormBuilder) {
+    console.log('service constructed');
+    this.form = this.fb.group({});
+  }
+  ngOnDestroy() {
+    console.log('SERVICE DESTROYED');
+  }
 }

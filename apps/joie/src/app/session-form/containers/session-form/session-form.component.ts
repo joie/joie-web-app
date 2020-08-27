@@ -8,7 +8,7 @@ import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/l
   templateUrl: './session-form.component.html',
   styleUrls: ['./session-form.component.scss'],
 })
-export class SessionFormComponent extends DynaFormBaseComponent implements OnDestroy {
+export class SessionFormComponent extends DynaFormBaseComponent {
   layoutClass = 'layout-grid layout-spacing-block-sm';
   showAllFields: boolean;
 
@@ -26,9 +26,5 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnDes
 
   onSubmit() {
     console.log(this.form.value);
-  }
-
-  ngOnDestroy() {
-    console.log('SESSION FORM');
   }
 }
