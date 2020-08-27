@@ -7,7 +7,7 @@ import { StudentOnboardingService } from '../../service/student-onboarding.servi
   styleUrls: ['./welcome-step.component.scss'],
 })
 export class WelcomeStepComponent implements OnInit {
-  name = 'heregoesthename';
+  name = 'NAME';
   constructor(public onboardingService: StudentOnboardingService) {}
 
   ngOnInit(): void {}
