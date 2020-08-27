@@ -46,11 +46,10 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
   }
 
   selectionChanged(event: any) {
-    Object.assign(this.student, this.currentFormGroup.value); //todo remove later
+    // Object.assign(this.student, this.currentFormGroup.value); //todo remove later
     if (!this.hasForm()) {
       Object.assign(this.student, this.selectedStepRef.submit());
     }
-    console.log(this.student);
     this.selectedStep = event.selectedIndex;
     this.router.navigate([this.steps[this.selectedStep]], {
       state: { student: this.student },

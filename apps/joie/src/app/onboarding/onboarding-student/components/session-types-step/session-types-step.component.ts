@@ -51,7 +51,7 @@ export class SessionTypesStepComponent implements OnInit {
     const selectedTypes = this.formGroup.value.sessionTypes
       .map((checked, i) => (checked ? this.typesEnum[this.typeKeys[i]] : null))
       .filter((v) => v !== null);
-    return selectedTypes;
+    return { sessionTypes: selectedTypes };
   }
   ngOnInit(): void {
     // let student = history.state.student || null;
