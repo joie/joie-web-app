@@ -1,15 +1,14 @@
-import { Pillar, JoieMovement } from './../../../../../sessions/models/session';
+import {
+  Pillar,
+  JoieMovement,
+  JoieEmotions,
+  JoieConnections,
+  JoieProfessional,
+  JoieSpirit,
+} from './../../../../../sessions/models/session';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
-import {
-  ConnectionsActivities,
-  MovementActivities,
-  EmotionsActivities,
-  ProfessionalActivities,
-  SpiritActivities,
-} from '../../../../../sessions/models/session';
-import { database } from 'firebase';
 
 @Component({
   selector: 'app-sub-goals-box',
@@ -17,16 +16,18 @@ import { database } from 'firebase';
     <h3>{{ pillar }}</h3>
     <form [formGroup]="formGroup">
       <mat-form-field>
-        <mat-chip-list [multiple]="true" [selectable]="true">
-          <label
-            formArrayName="activities"
-            *ngFor="let activity of activitiesFormArray.controls; let i = index"
-          >
-            <mat-chip #chip="matChip" [formControlName]="i" [selectable]="true">
-              <!-- {{ activity | json }}} -->
+        <mat-chip-list formArrayName="activities" [multiple]="true" [selectable]="true">
+          <label *ngFor="let activity of activitiesFormArray.controls; let i = index">
+            <mat-chip
+              #chip="matChip"
+              [selectable]="true"
+              (click)="handleSelect(i, activitiesEnum[activityKeys[i]])"
+            >
+              {{ activitiesEnum[activityKeys[i]] }}
             </mat-chip>
           </label>
         </mat-chip-list>
+        <button (click)="submit()">submit</button>
         <!-- <mat-chip-list [multiple]="true" [selectable]="true">
           <label
             *ngFor="let subgoal of subgoalsFormArray.value; let i = index"
@@ -51,14 +52,27 @@ export class SubGoalsBoxComponent implements OnInit {
   // @Input() subgoalsData;
   @Input() pillar;
   @Input() parentFormGroup;
-  JoieMovement = JoieMovement;
   public formGroup: FormGroup;
   get keys() {
     return Object.keys(this.pillar);
   }
 
+  get activitiesEnum() {
+    switch (this.pillar) {
+      case Pillar.movement:
+        return JoieMovement;
+      case Pillar.emotions:
+        return JoieEmotions;
+      case Pillar.connections:
+        return JoieConnections;
+      case Pillar.professional:
+        return JoieProfessional;
+      case Pillar.spirit:
+        return JoieSpirit;
+    }
+  }
   get activityKeys() {
-    return Object.keys(this.pillar);
+    return Object.keys(this.activitiesEnum);
   }
 
   get activitiesFormArray() {
@@ -92,7 +106,7 @@ export class SubGoalsBoxComponent implements OnInit {
   // }
   constructor(private formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
-      subgoals: new FormArray([], atLeastOneIsCheckedValidator()),
+      // subgoals: new FormArray([], atLeastOneIsCheckedValidator()),
       activities: new FormArray([]),
     });
     // console.log(this.activityKeys);
@@ -100,6 +114,8 @@ export class SubGoalsBoxComponent implements OnInit {
   }
 
   addActivityChips() {
+    console.log('pillar', this.pillar);
+    console.log(this.activityKeys);
     this.activityKeys.forEach(() => this.activitiesFormArray.push(new FormControl(false)));
     console.log(this.activitiesFormArray);
   }
@@ -116,9 +132,15 @@ export class SubGoalsBoxComponent implements OnInit {
   //   }
   // }
 
+  handleSelect(index, activity) {
+    this.activitiesFormArray.controls[index].patchValue(activity);
+    // this.formGroup.controls.activities.setValue(activity);
+  }
+
   submit() {
+    console.log(this.formGroup.value.activities);
     const selectedActivityTitles = this.formGroup.value.activities
-      .map((checked, i) => (checked ? this.pillar[this.activityKeys[i]] : null))
+      .map((selected, i) => (selected ? this.activitiesEnum[this.activityKeys[i]] : null))
       .filter((v) => v !== null);
 
     console.log(selectedActivityTitles);

@@ -1,12 +1,4 @@
 import {
-  JoieMovement,
-  MovementActivities,
-  EmotionsActivities,
-  ConnectionsActivities,
-  ProfessionalActivities,
-  SpiritActivities,
-} from './../../../../sessions/models/session';
-import {
   Component,
   ViewChildren,
   QueryList,
@@ -85,7 +77,7 @@ export class SubGoalsStepComponent implements AfterViewInit {
   }
 
   submit() {
-    return { activities: [] };
+    console.log(this.formGroup);
   }
   ngAfterViewInit(): void {
     const subgoalSets = this.subgoalBoxes.toArray(); //first i pass data to build low level forms, than i add a top-level control to it here
