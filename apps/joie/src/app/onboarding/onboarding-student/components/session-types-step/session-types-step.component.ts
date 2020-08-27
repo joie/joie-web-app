@@ -16,11 +16,6 @@ export enum SessionTypes { //todo do we need this enum wherever in the app?
 })
 export class SessionTypesStepComponent implements OnInit {
   formGroup: FormGroup;
-  // sessionTypesData = [
-  //   { sessionType: 'On-demand sessions', isChecked: false },
-  //   { sessionType: 'Live streaming sessions', isChecked: false },
-  //   { sessionType: '1:1 coaching sessions', isChecked: false },
-  // ];
   typesEnum = SessionTypes;
   get typeKeys() {
     return Object.keys(this.typesEnum);
@@ -35,11 +30,7 @@ export class SessionTypesStepComponent implements OnInit {
     public onboardingService: StudentOnboardingService
   ) {
     this.formGroup = this._formBuilder.group({
-      sessionTypes: new FormArray([]),
-      // sessionTypesCtrl: new FormArray(
-      //   [],
-      //   [atLeastOneIsCheckedValidator(), notMoreThanOneIsCheckedValidator()]
-      // ),
+      sessionTypes: new FormArray([]), // todo validators
     });
     this.addTypeCheckboxes();
   }
@@ -54,38 +45,6 @@ export class SessionTypesStepComponent implements OnInit {
     return { sessionTypes: selectedTypes };
   }
   ngOnInit(): void {
-    // let student = history.state.student || null;
-    // if (student && 'sessionTypesCtrl' in student) {
-    //   this.addCheckboxesFromCache(student.sessionTypesCtrl);
-    // } else {
-    //   this.addCheckboxes();
-    // }
+    // todo restoreFromCache();
   }
-
-  // get sessionTypesArray() {
-  //   return this.formGroup.controls.sessionTypesCtrl as FormArray;
-  // }
-
-  // entry(obj) {
-  //   return Object.entries(obj)[0];
-  // }
-
-  // handleCheck(sessionType, isChecked, index) {
-  //   this.sessionTypesArray.controls[index].patchValue({
-  //     [sessionType]: !isChecked,
-  //   });
-  // }
-
-  // private addCheckboxesFromCache(sessionTypes) {
-  //   sessionTypes.forEach((sessionType) => {
-  //     let entries = this.entry(sessionType);
-  //     this.sessionTypesArray.push(new FormControl({ [entries[0]]: entries[1] }));
-  //   });
-  // }
-
-  // private addCheckboxes() {
-  //   this.sessionTypesData.forEach(({ sessionType, isChecked }) =>
-  //     this.sessionTypesArray.push(new FormControl({ [sessionType]: isChecked }))
-  //   );
-  // }
 }
