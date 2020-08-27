@@ -11,24 +11,7 @@ import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-sub-goals-box',
-  template: `<div class="box-with-badge">
-    <h3>{{ pillar }}</h3>
-    <form [formGroup]="formGroup">
-      <mat-form-field>
-        <mat-chip-list formArrayName="activities" [multiple]="true" [selectable]="true">
-          <label *ngFor="let activity of activitiesFormArray.controls; let i = index">
-            <mat-chip
-              #chip="matChip"
-              [selectable]="true"
-              (click)="handleSelect(i, activitiesEnum[activityKeys[i]])"
-            >
-              {{ activitiesEnum[activityKeys[i]] }}
-            </mat-chip>
-          </label>
-        </mat-chip-list>
-      </mat-form-field>
-    </form>
-  </div>`,
+  templateUrl: './sub-goals-box.component.html',
   styleUrls: ['./sub-goals-box.component.scss'],
 })
 export class SubGoalsBoxComponent implements OnInit {
