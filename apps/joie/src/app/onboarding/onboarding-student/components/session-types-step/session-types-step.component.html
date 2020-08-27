@@ -5,6 +5,13 @@
   one describes the best type of session for you?
 </p>
 <form [formGroup]="formGroup">
+
+  <label formArrayName="sessionTypes"
+         *ngFor="let type of typesFormArray.controls; let i = index">
+    <input type="checkbox"
+           [formControlName]="i">
+    {{typesEnum[typeKeys[i]]}}
+  </label>
   <!-- <label formArrayName="sessionTypesCtrl"
          *ngFor="let sessionType of sessionTypesArray.value; let i = index">
     <input type="checkbox"
