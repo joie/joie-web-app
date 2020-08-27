@@ -77,10 +77,20 @@ export class SubGoalsStepComponent implements AfterViewInit {
   }
 
   submit() {
-    console.log(this.formGroup);
+    let selectedActivities = [];
+    console.log(this.subgoalBoxes.toArray());
+    let activityBoxes = this.subgoalBoxes.toArray();
+    activityBoxes.forEach((box) => {
+      console.log(box.submit());
+      selectedActivities = selectedActivities.concat(box.submit());
+    });
+
+    console.log('sela', selectedActivities);
+    return { activities: selectedActivities };
   }
   ngAfterViewInit(): void {
     const subgoalSets = this.subgoalBoxes.toArray(); //first i pass data to build low level forms, than i add a top-level control to it here
+    console.log(subgoalSets);
     subgoalSets.forEach((set) => {
       // this.boxesFormGroup.addControl(set.title, set.formGroup); // todo very important part !!
     });

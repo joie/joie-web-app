@@ -144,7 +144,7 @@ export class SubGoalsBoxComponent implements OnInit {
       .filter((v) => v !== null);
 
     console.log(selectedActivityTitles);
-    return { activities: selectedActivityTitles };
+    return selectedActivityTitles;
   }
 
   ngOnInit(): void {
