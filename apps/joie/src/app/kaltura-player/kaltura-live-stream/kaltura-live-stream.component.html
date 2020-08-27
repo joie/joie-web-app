@@ -1,0 +1,8 @@
+<ng-container *ngIf="isLoading; else liveStreamTemplate">
+  <div style="width: 100%; height: 500px; text-align: center;">Please wait</div>
+</ng-container>
+
+<ng-template #liveStreamTemplate>
+  <iframe wmode=transparent allow="microphone *; camera *; speakers *; usermedia *; autoplay *; fullscreen *;"
+    style="width: 100%; height: 500px;" [src]='videoUrl'></iframe>
+</ng-template>

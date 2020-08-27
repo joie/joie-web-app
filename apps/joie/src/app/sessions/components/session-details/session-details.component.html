@@ -2,21 +2,11 @@
   <div fxLayout="column" fxLayoutGap="20px" fxFlex="70%">
     <div class="text-center">JoieSprit</div>
     <div class="text-center text-xl">{{ session.title }}</div>
-    <div
-      fxLayout="row"
-      class="text-center"
-      fxLayoutGap="20px"
-      fxLayoutAlign="center center"
-    >
+    <div fxLayout="row" class="text-center" fxLayoutGap="20px" fxLayoutAlign="center center">
       <img src="" class="author-image" width="40px" height="40px" />
       <div class="text-lg">{{ session.author.name }}</div>
     </div>
-    <div
-      fxLayout="row"
-      fxLayoutAlign="space-between"
-      fxLayoutGap="20px"
-      fxLayout.xs="column"
-    >
+    <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px" fxLayout.xs="column">
       <div>
         <i class="feather icon-calendar i-20"></i>
         {{ session.publishedDate }}
@@ -46,20 +36,20 @@
     </div>
 
     <div>
-     <app-kaltura-player></app-kaltura-player>
+      <ng-container *ngIf="isLiveSession; else vodPlayer">
+        <app-live-stream-player [sessionDetails]="sessionDetails" [sessionType]="sessionType"
+          [role]="role" [userContextualRole]="userContextualRole"></app-live-stream-player>
+      </ng-container>
     </div>
-
-    <button mat-button (click)="liveSession()">Join in Live Session</button>
+    <ng-template #vodPlayer>
+      <app-vod-player [entryId]="entryId"></app-vod-player>
+    </ng-template>
 
     <div>
       <mat-tab-group>
         <mat-tab label="What you will learn">
           <div fxLayout="column" class="p" fxLayoutGap="20px">
-            <div
-              fxLayout="row"
-              fxLayoutAlign="space-between"
-              fxLayout.xs="column"
-            >
+            <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.xs="column">
               <div fxLayout="row" fxLayoutGap="10px">
                 <i class="feather icon-compass i-20"></i>
                 <div fxLayout="column" fxLayoutAlign="flex-start">
@@ -120,18 +110,9 @@
 </div>
 
 <div fxLayout="row" fxLayoutAlign="space-between">
-  <app-session-card
-    [session]="session"
-    showThumbnail="true"
-  ></app-session-card>
+  <app-session-card [session]="session" showThumbnail="true"></app-session-card>
 
-  <app-session-card
-    [session]="session"
-    showThumbnail="true"
-  ></app-session-card>
+  <app-session-card [session]="session" showThumbnail="true"></app-session-card>
 
-  <app-session-card
-    [session]="session"
-    showThumbnail="true"
-  ></app-session-card>
+  <app-session-card [session]="session" showThumbnail="true"></app-session-card>
 </div>
