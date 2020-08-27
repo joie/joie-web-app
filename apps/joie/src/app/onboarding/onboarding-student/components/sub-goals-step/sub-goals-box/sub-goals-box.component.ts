@@ -7,22 +7,20 @@ import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIs
   template: `<div class="box-with-badge">
     <h3>{{ title }}</h3>
     <form [formGroup]="formGroup">
-      <mat-form-field>
-        <mat-chip-list [multiple]="true" [selectable]="true">
-          <label
-            *ngFor="let subgoal of subgoalsFormArray.value; let i = index"
-            formArrayName="subgoals"
+      <mat-chip-list [multiple]="true" [selectable]="true">
+        <label
+          *ngFor="let subgoal of subgoalsFormArray.value; let i = index"
+          formArrayName="subgoals"
+        >
+          <mat-chip
+            #chip="matChip"
+            [selected]="entry(subgoal)[1]"
+            [selectable]="true"
+            (click)="handleSelect(entry(subgoal)[0], entry(subgoal)[1], i)"
+            >{{ entry(subgoal)[0] }}</mat-chip
           >
-            <mat-chip
-              #chip="matChip"
-              [selected]="entry(subgoal)[1]"
-              [selectable]="true"
-              (click)="handleSelect(entry(subgoal)[0], entry(subgoal)[1], i)"
-              >{{ entry(subgoal)[0] }}</mat-chip
-            >
-          </label>
-        </mat-chip-list>
-      </mat-form-field>
+        </label>
+      </mat-chip-list>
     </form>
   </div>`,
   styleUrls: ['./sub-goals-box.component.scss'],
@@ -65,9 +63,7 @@ export class SubGoalsBoxComponent implements OnInit {
   private addCheckboxesFromCache(subgoals) {
     subgoals.forEach((goal) => {
       let entries = this.entry(goal);
-      this.subgoalsFormArray.push(
-        new FormControl({ [entries[0]]: entries[1] })
-      );
+      this.subgoalsFormArray.push(new FormControl({ [entries[0]]: entries[1] }));
     });
   }
 
