@@ -1,50 +1,62 @@
 <div class="container container-condense">
   <h4>
-    Joie is looking for passionate teachers, experts and coaches who believe in
-    our philosophy, and interested in growing together. Fill out this form to
-    help us learn more about you.
+    Joie is looking for passionate teachers, experts and coaches who believe in our philosophy, and
+    interested in growing together. Fill out this form to help us learn more about you.
   </h4>
   <h3>Personal Information</h3>
 </div>
 <div class="container container-ultra-condense">
-  <form [formGroup]="formGroup"
-        class="layout-grid layout-spacing-block-sm">
+  <form [formGroup]="formGroup" class="layout-grid layout-spacing-block-sm" autocomplete="on">
     <mat-form-field appearance="outline">
       <mat-label>First name</mat-label>
-      <input matInput
-             placeholder="first name"
-             formControlName="firstNameCtrl"
-             required />
+      <input
+        matInput
+        type="text"
+        placeholder="first name"
+        name="first-name"
+        formControlName="firstNameCtrl"
+        required
+      />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Last name</mat-label>
-      <input matInput
-             placeholder="last name"
-             formControlName="lastNameCtrl"
-             required />
+      <input
+        matInput
+        type="text"
+        placeholder="last name"
+        name="family-name"
+        formControlName="lastNameCtrl"
+        required
+      />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput
-             placeholder="email"
-             formControlName="emailCtrl"
-             required />
+      <input
+        matInput
+        type="email"
+        placeholder="email"
+        name="email"
+        formControlName="emailCtrl"
+        required
+      />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Phone number</mat-label>
-      <input matInput
-             placeholder="phone number"
-             formControlName="phoneNumberCtrl"
-             required />
+      <input
+        matInput
+        name="tel"
+        type="tel"
+        autocomplete="tel"
+        placeholder="phone number"
+        formControlName="phoneNumberCtrl"
+        required
+      />
     </mat-form-field>
 
-    <button mat-flat-button
-            color="primary"
-            [disabled]="formGroup.invalid"
-            matStepperNext>
+    <button mat-flat-button color="primary" [disabled]="formGroup.invalid" matStepperNext>
       Continue
     </button>
   </form>

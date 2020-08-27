@@ -7,31 +7,29 @@
 
 <div class="container container-ultra-condense">
   <form [formGroup]="formGroup">
-    <div class="layout-grid layout-grid-template-columns-2 layout-spacing-inline-sm layout-spacing-block-md">
-      <label formArrayName="sessionTypesCtrl"
-             class="grid-item"
-             *ngFor="let sessionType of sessionTypesFormArray.value; let i = index">
-        <input type="checkbox"
-               (change)="handleCheck(entry(sessionType)[0], entry(sessionType)[1], i)"
-               [formControlName]="i" />{{
-      entry(sessionType)[0]
-    }}
+    <div
+      class="layout-grid layout-grid-inline-features layout-spacing-inline-sm layout-spacing-block-md"
+    >
+      <label
+        formArrayName="sessionTypesCtrl"
+        class="grid-item"
+        *ngFor="let sessionType of sessionTypesFormArray.value; let i = index"
+      >
+        <input
+          type="checkbox"
+          (change)="handleCheck(entry(sessionType)[0], entry(sessionType)[1], i)"
+          [formControlName]="i"
+        />{{ entry(sessionType)[0] }}
       </label>
     </div>
 
-
     <div class="layout-grid">
       <mat-form-field appearance="outline">
-        <textarea matInput
-                  formControlName="teachingPortfolioUrlCtrl"
-                  required></textarea>
+        <textarea matInput formControlName="teachingPortfolioUrlCtrl" required></textarea>
       </mat-form-field>
-      <button mat-button
-              matStepperNext>
+      <button mat-button matStepperNext>
         Continue
       </button>
     </div>
-
   </form>
-
 </div>
