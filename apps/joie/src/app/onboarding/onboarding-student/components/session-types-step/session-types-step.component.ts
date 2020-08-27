@@ -4,12 +4,8 @@ import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@ang
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
+import { SessionTypes } from '../../models/student';
 
-export enum SessionTypes { //todo do we need this enum wherever in the app?
-  ondemand = 'On-demand sessions',
-  livestreaming = 'Live streaming sessions',
-  coaching = '1:1 coaching sessions',
-}
 @Component({
   selector: 'app-session-types-step',
   templateUrl: './session-types-step.component.html',

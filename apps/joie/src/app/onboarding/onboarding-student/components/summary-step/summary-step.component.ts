@@ -1,3 +1,4 @@
+import { Student } from './../../models/student';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./summary-step.component.scss'],
 })
 export class SummaryStepComponent implements OnInit {
-  student; // todo add interface
+  student: Student;
   name = 'NAME';
 
   constructor(public activatedRoute: ActivatedRoute) {

@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
-interface Student {}
+import { Student } from '../../models/student';
 
 @Component({
   selector: 'app-student-onboarding-stepper',
@@ -9,7 +8,7 @@ interface Student {}
   styleUrls: ['./student-onboarding-stepper.component.scss'],
 })
 export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit {
-  student = {} as Student;
+  student: Partial<Student>;
   public steps: string[];
   public selectedStep: number = 0;
   public selectedStepRef = null; // todo element ref
