@@ -1,16 +1,17 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { KalturaApiHandShakeService } from '../kaltura-api-handshake.service';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 declare var kWidget;
+
+@UntilDestroy()
 @Component({
   selector: 'app-live-stream-player',
   templateUrl: './kaltura-live-stream.component.html',
-  styleUrls: ['./kaltura-live-stream.component.scss']
+  styleUrls: ['./kaltura-live-stream.component.scss'],
 })
-export class KalturaLiveStreamPlayerComponent implements OnInit, OnDestroy {
+export class KalturaLiveStreamPlayerComponent implements OnInit {
   @Input() width = 600;
   @Input() height = 400;
   @Input() isLiveSession: boolean;
@@ -20,32 +21,32 @@ export class KalturaLiveStreamPlayerComponent implements OnInit, OnDestroy {
   @Input() userContextualRole: number;
   isLoading = true;
   videoUrl: SafeResourceUrl;
-  private destroy$ = new Subject();
 
-  constructor(private kalturaApiHandShakeService: KalturaApiHandShakeService, private domSanitizer: DomSanitizer) { }
+  constructor(
+    private kalturaApiHandShakeService: KalturaApiHandShakeService,
+    private domSanitizer: DomSanitizer
+  ) {}
 
   ngOnInit() {
-    this.kalturaApiHandShakeService
-      .getKalturaSession();
+    this.kalturaApiHandShakeService.getKalturaSession();
     this.openLiveStreamSession();
   }
 
   openLiveStreamSession() {
-    this.kalturaApiHandShakeService.createSession(this.sessionDetails, this.role, this.sessionType, this.userContextualRole)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(result => {
-        this.isLoading = false;
-        const url = `https://${KalturaApiHandShakeService.partnerId}.kaf.kaltura.com/virtualEvent/launch?ks=${result}`;
-        this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
-      },
-        error => {
-          console.log(`KalturaLiveStreamPlayerComponent : openLiveStreamSession() :: ${error} while fetching session`);
-        });
+    this.kalturaApiHandShakeService
+      .createSession(this.sessionDetails, this.role, this.sessionType, this.userContextualRole)
+      .pipe(untilDestroyed(this))
+      .subscribe(
+        (result) => {
+          this.isLoading = false;
+          const url = `https://${KalturaApiHandShakeService.partnerId}.kaf.kaltura.com/virtualEvent/launch?ks=${result}`;
+          this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+        },
+        (error) => {
+          console.log(
+            `KalturaLiveStreamPlayerComponent : openLiveStreamSession() :: ${error} while fetching session`
+          );
+        }
+      );
   }
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
 }

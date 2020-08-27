@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { SessionFormat } from './../../../sessions/models/session';
 import { SessionType } from '../../../sessions/models/session';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/lib/dyna-form-base.component';
@@ -8,7 +8,7 @@ import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/l
   templateUrl: './session-form.component.html',
   styleUrls: ['./session-form.component.scss'],
 })
-export class SessionFormComponent extends DynaFormBaseComponent {
+export class SessionFormComponent extends DynaFormBaseComponent implements OnDestroy {
   layoutClass = 'layout-grid layout-spacing-block-sm';
   showAllFields: boolean;
 
@@ -26,5 +26,9 @@ export class SessionFormComponent extends DynaFormBaseComponent {
 
   onSubmit() {
     console.log(this.form.value);
+  }
+
+  ngOnDestroy() {
+    console.log('SESSION FORM');
   }
 }
