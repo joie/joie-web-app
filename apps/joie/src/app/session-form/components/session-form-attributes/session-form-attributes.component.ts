@@ -27,14 +27,14 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
 
   constructor() {
     super();
-    this.addFormControls([
+    this.controls = [
       [this.PILLAR, new FormControl(null)],
       [this.LEVEL, new FormControl(null)],
       [this.ACTIVITY, new FormControl(null)],
-      [this.GOALS, new FormArray([new FormControl(null)])],
-      [this.COMMENTS, new FormArray([new FormControl(null)])],
+      [this.GOALS, this.goalsFormArray],
+      [this.COMMENTS, this.commentsFormArray],
       [this.PRICE, new FormControl(null)],
-    ]);
+    ];
   }
 
   get pillarKeys(): Array<string> {
@@ -53,11 +53,11 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
     return this[`${array}FormArray`].controls.map(({ value }) => value);
   }
 
-  addFormControl(formArray: FormArray, value: string) {
-    formArray.push(new FormControl(value));
-  }
-
   removeControl(formArray: FormArray, i: number) {
     formArray.removeAt(i);
+  }
+
+  addGoalOrComment(formArray: FormArray, value: string) {
+    formArray.push(new FormControl(value));
   }
 }

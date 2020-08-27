@@ -1,7 +1,14 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  {{ form.value | json }}
+
   <h2 mat-dialog-title>Create a session</h2>
-  <mat-dialog-content class="mat-typography">
-    <!-- {{ form.value | json }} -->
+  <mat-dialog-content>
+    <app-session-form-marketing [class]="layoutClass"></app-session-form-marketing>
+    <app-session-form-date-time-slots [class]="layoutClass"></app-session-form-date-time-slots>
+    <app-session-form-attributes [class]="layoutClass"> </app-session-form-attributes>
+  </mat-dialog-content>
+
+  <!-- <mat-dialog-content class="mat-typography">
     <div [class]="layoutClass">
       <app-session-form-metadata [class]="layoutClass"></app-session-form-metadata>
       <button mat-button color="primary" (click)="showAllFields = true" *ngIf="!showAllFields">
@@ -13,17 +20,16 @@
           [class]="layoutClass"
         ></app-session-form-date-time-slots>
 
-        <!-- date-time-duration -->
         <app-session-form-date-time
           *ngIf="isLivestreaming && !isCoaching"
           [class]="layoutClass"
         ></app-session-form-date-time>
 
-        <app-session-form-attributes [class]="layoutClass"> </app-session-form-attributes>
         <app-session-form-marketing [class]="layoutClass"></app-session-form-marketing>
+        <app-session-form-attributes [class]="layoutClass"> </app-session-form-attributes>
       </ng-container>
     </div>
-  </mat-dialog-content>
+  </mat-dialog-content> -->
   <mat-dialog-actions align="end">
     <button mat-flat-button color="primary">Submit</button>
   </mat-dialog-actions>

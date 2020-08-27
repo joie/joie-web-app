@@ -11,7 +11,7 @@ export class SimpleFormInputComponent {
   @ViewChild('textInput') _textInput: ElementRef;
 
   @Input() validators: Validators[];
-  @Output() add = new EventEmitter<string>();
+  @Output() submission = new EventEmitter<string>();
 
   form = this.fb.group({
     text: ['', Validators.minLength(5)],
@@ -23,12 +23,12 @@ export class SimpleFormInputComponent {
     return this.form.get('text');
   }
 
-  submit() {
+  onSubmit() {
     if (this.form.invalid) {
       return;
     }
     const { value } = this.textControl;
-    this.add.emit(value);
+    this.submission.emit(value);
     this.form.reset();
     this._textInput.nativeElement.focus();
   }
