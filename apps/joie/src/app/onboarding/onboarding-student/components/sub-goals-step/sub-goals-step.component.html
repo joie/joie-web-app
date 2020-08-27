@@ -9,11 +9,9 @@
   <div class="subgoals-flexbox">
     <app-sub-goals-box #boxes
                        *ngFor="let pillar of selectedPillars"
-                       [pillar]="pillar"
-                       [parentFormGroup]="formGroup"></app-sub-goals-box>
+                       [pillar]="pillar"></app-sub-goals-box>
   </div>
 
-  <button (click)="submit()">sub</button>
   <button mat-button
           matStepperNext>
     Continue

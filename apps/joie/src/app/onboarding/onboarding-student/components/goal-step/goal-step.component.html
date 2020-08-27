@@ -5,17 +5,6 @@
   later.
 </p>
 <form [formGroup]="formGroup">
-  <!-- <label formArrayName="goalsCtrl"
-         *ngFor="let goal of goalsFormArray.value; let i = index">
-    <input type="checkbox"
-           [checked]="entry(goal)[1]"
-           [formControlName]="i"
-           (change)="handleCheck(entry(goal)[0], entry(goal)[1], i)" />
-    {{ entry(goal)[0] }}
-  </label> -->
-
-  ///////////////////
-
   <label formArrayName="pillars"
          *ngFor="let pillar of pillarFormArray.controls; let i = index">
     <input type="checkbox"
@@ -23,8 +12,6 @@
     {{pillarEnum[pillarKeys[i]]}}
 
   </label>
-
-  <button (click)="submit()">sub</button>
 
   <button mat-button
           matStepperNext>
