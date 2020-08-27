@@ -11,7 +11,7 @@ interface Student {}
 })
 export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit {
   student = {} as Student;
-  currentFormGroup = new FormGroup({});
+  // currentFormGroup = new FormGroup({});
   public steps: string[];
   public selectedStep: number = 0;
   public selectedStepRef; // todo element ref
@@ -34,11 +34,12 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
   onActivate(componentRef) {
     if (!this.hasForm()) {
       // welcome step doesn't have form; so does not the summary step
-      this.currentFormGroup = componentRef.formGroup;
+      // this.currentFormGroup = componentRef.formGroup;
       this.selectedStepRef = componentRef;
-    } else {
-      this.currentFormGroup = new FormGroup({});
     }
+    // else {
+    // this.currentFormGroup = new FormGroup({});
+    // }
   }
 
   hasForm() {
@@ -46,7 +47,6 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
   }
 
   selectionChanged(event: any) {
-    // Object.assign(this.student, this.currentFormGroup.value); //todo remove later
     if (!this.hasForm()) {
       Object.assign(this.student, this.selectedStepRef.submit());
     }
