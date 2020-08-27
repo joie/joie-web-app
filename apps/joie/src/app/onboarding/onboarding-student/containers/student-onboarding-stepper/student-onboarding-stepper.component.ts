@@ -8,7 +8,7 @@ import { Student } from '../../models/student';
   styleUrls: ['./student-onboarding-stepper.component.scss'],
 })
 export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit {
-  student: Partial<Student>;
+  student: Partial<Student> = {};
   public steps: string[];
   public selectedStep: number = 0;
   public selectedStepRef = null; // todo element ref

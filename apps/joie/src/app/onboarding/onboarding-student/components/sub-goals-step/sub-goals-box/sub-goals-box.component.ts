@@ -51,7 +51,13 @@ export class SubGoalsBoxComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addActivityChips();
+    let student = history.state.student || null;
+    console.log(student);
+    if (student && student.activities) {
+      this.addActivityChipsFromCache(student.activities);
+    } else {
+      this.addActivityChips();
+    }
   }
 
   isValid() {
@@ -71,5 +77,14 @@ export class SubGoalsBoxComponent implements OnInit {
 
   private addActivityChips() {
     this.activityKeys.forEach(() => this.activitiesFormArray.push(new FormControl(false)));
+  }
+  private addActivityChipsFromCache(activities) {
+    this.activityKeys.forEach((key) => {
+      if (activities.includes(this.activitiesEnum[key])) {
+        this.activitiesFormArray.push(new FormControl(true));
+      } else {
+        this.activitiesFormArray.push(new FormControl(false));
+      }
+    });
   }
 }

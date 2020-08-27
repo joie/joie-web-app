@@ -1,5 +1,5 @@
 import { Student } from './../../models/student';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -7,16 +7,12 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './summary-step.component.html',
   styleUrls: ['./summary-step.component.scss'],
 })
-export class SummaryStepComponent implements OnInit {
+export class SummaryStepComponent {
   student: Student;
   name = 'NAME';
 
   constructor(public activatedRoute: ActivatedRoute) {
     this.student = history.state.student;
-  }
-
-  ngOnInit(): void {
-    // todo restoreFromCache()
   }
 
   submitData() {

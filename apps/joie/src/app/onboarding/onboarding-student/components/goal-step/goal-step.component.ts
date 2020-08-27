@@ -1,5 +1,6 @@
+import { Student } from './../../models/student';
 import { Pillar } from './../../../../sessions/models/session';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
@@ -9,7 +10,7 @@ import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChe
   templateUrl: './goal-step.component.html',
   styleUrls: ['./goal-step.component.scss'],
 })
-export class GoalStepComponent {
+export class GoalStepComponent implements OnInit {
   formGroup: FormGroup;
   pillarEnum = Pillar;
 
@@ -28,7 +29,14 @@ export class GoalStepComponent {
     this.formGroup = this._formBuilder.group({
       pillars: new FormArray([]),
     });
-    this.addPillarCheckboxes();
+  }
+  ngOnInit(): void {
+    let student = history.state.student || null;
+    if (student && student.pillars) {
+      this.addPillarCheckboxesFromCache(student.pillars);
+    } else {
+      this.addPillarCheckboxes();
+    }
   }
 
   isValid() {
@@ -39,13 +47,21 @@ export class GoalStepComponent {
     const selectedPillarTitles = this.formGroup.value.pillars
       .map((checked, i) => (checked ? this.pillarEnum[this.pillarKeys[i]] : null))
       .filter((v) => v !== null);
-
-    console.log(selectedPillarTitles);
     return { pillars: selectedPillarTitles };
   }
 
   private addPillarCheckboxes() {
     this.pillarKeys.forEach(() => this.pillarFormArray.push(new FormControl(false)));
     console.log(this.pillarFormArray);
+  }
+
+  private addPillarCheckboxesFromCache(pillars) {
+    this.pillarKeys.forEach((key) => {
+      if (pillars.includes(this.pillarEnum[key])) {
+        this.pillarFormArray.push(new FormControl(true));
+      } else {
+        this.pillarFormArray.push(new FormControl(false));
+      }
+    });
   }
 }

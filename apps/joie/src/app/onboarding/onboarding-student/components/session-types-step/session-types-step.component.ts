@@ -1,4 +1,3 @@
-import { length } from 'ramda';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
@@ -14,6 +13,7 @@ import { SessionTypes } from '../../models/student';
 export class SessionTypesStepComponent implements OnInit {
   formGroup: FormGroup;
   typesEnum = SessionTypes;
+
   get typeKeys() {
     return Object.keys(this.typesEnum);
   }
@@ -29,11 +29,15 @@ export class SessionTypesStepComponent implements OnInit {
     this.formGroup = this._formBuilder.group({
       sessionTypes: new FormArray([]), // todo validators
     });
-    this.addTypeCheckboxes();
   }
 
   ngOnInit(): void {
-    // todo restoreFromCache();
+    let student = history.state.student || null;
+    if (student && student.sessionTypes) {
+      this.addTypeCheckboxesFromCache(student.sessionTypes);
+    } else {
+      this.addTypeCheckboxes();
+    }
   }
 
   isValid() {
@@ -48,5 +52,15 @@ export class SessionTypesStepComponent implements OnInit {
 
   private addTypeCheckboxes() {
     this.typeKeys.forEach(() => this.typesFormArray.push(new FormControl(false)));
+  }
+
+  private addTypeCheckboxesFromCache(sessionTypes) {
+    this.typeKeys.forEach((key) => {
+      if (sessionTypes.includes(this.typesEnum[key])) {
+        this.typesFormArray.push(new FormControl(true));
+      } else {
+        this.typesFormArray.push(new FormControl(false));
+      }
+    });
   }
 }
