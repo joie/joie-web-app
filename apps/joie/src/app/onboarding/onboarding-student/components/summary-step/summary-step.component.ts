@@ -29,14 +29,14 @@ export class SummaryStepComponent implements OnInit {
 
   getDataForPrinting() {
     this.dataToPrint = {
-      goals: this.mapAndFilter(this.student.goalsCtrl),
-      subgoals: [],
+      // goals: this.mapAndFilter(this.student.goalsCtrl),
+      // subgoals: [],
       sessionTypes: this.mapAndFilter(this.student.sessionTypesCtrl),
     };
 
-    Object.values(this.student.subgoalsCtrl).forEach((subgoal) => {
-      this.dataToPrint.subgoals.push(this.mapAndFilter(subgoal['subgoals']));
-    });
+    // Object.values(this.student.subgoalsCtrl).forEach((subgoal) => {
+    //   this.dataToPrint.subgoals.push(this.mapAndFilter(subgoal['subgoals']));
+    // });
   }
 
   submitData() {

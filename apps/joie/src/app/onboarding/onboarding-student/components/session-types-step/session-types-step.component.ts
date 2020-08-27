@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  FormArray,
-  FormControl,
-  Validators,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
@@ -31,6 +25,10 @@ export class SessionTypesStepComponent implements OnInit {
         [atLeastOneIsCheckedValidator(), notMoreThanOneIsCheckedValidator()]
       ),
     });
+  }
+
+  submit() {
+    return { sessionTypes: ['pseudo', 'array'] };
   }
   ngOnInit(): void {
     let student = history.state.student || null;
@@ -58,9 +56,7 @@ export class SessionTypesStepComponent implements OnInit {
   private addCheckboxesFromCache(sessionTypes) {
     sessionTypes.forEach((sessionType) => {
       let entries = this.entry(sessionType);
-      this.sessionTypesArray.push(
-        new FormControl({ [entries[0]]: entries[1] })
-      );
+      this.sessionTypesArray.push(new FormControl({ [entries[0]]: entries[1] }));
     });
   }
 
