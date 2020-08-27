@@ -1,5 +1,3 @@
-import { TeacherEvent } from './event.model';
-
 export interface Teacher {
   id: string;
   firstName: string;

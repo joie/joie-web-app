@@ -1,26 +1,34 @@
-<h1>What will help you stay motivated?</h1>
-<p>
-  We all need diffrent types of support. Joie offers 3 types of learning styles
-  to help you persist on your journey, and give you the support you need. Which
-  one describes the best type of session for you?
-</p>
-<form [formGroup]="formGroup">
+<div class="container container-condense">
+  <h1>What will help you stay motivated?</h1>
+  <p>
+    We all need diffrent types of support. Joie offers 3 types of learning styles
+    to help you persist on your journey, and give you the support you need. Which
+    one describes the best type of session for you?
+  </p>
+</div>
 
-  <label formArrayName="sessionTypes"
-         *ngFor="let type of typesFormArray.controls; let i = index">
-    <input type="checkbox"
-           [formControlName]="i">
-    {{typesEnum[typeKeys[i]]}}
-  </label>
+<div class="container container-ultra-condense">
+  <form [formGroup]="formGroup"
+        class="layout-grid layout-grid-inline-features layout-spacing-inline-sm">
+    <label formArrayName="sessionTypes"
+           *ngFor="let type of typesFormArray.controls; let i = index">
+      <input type="checkbox"
+             [formControlName]="i">
+      {{typesEnum[typeKeys[i]]}}
+    </label>
+  </form>
 
-  <button mat-button
-          matStepperNext>
-    Continue
-  </button>
+  <div class="layout-grid">
+    <button mat-button
+            matStepperNext>
+      Continue
+    </button>
 
-  <button mat-button
-          mat-raised-button
-          (click)="onboardingService.skipOnboarding()">
-    Skip for now.
-  </button>
-</form>
+    <button mat-button
+            mat-raised-button
+            (click)="onboardingService.skipOnboarding()">
+      Skip for now.
+    </button>
+  </div>
+
+</div>

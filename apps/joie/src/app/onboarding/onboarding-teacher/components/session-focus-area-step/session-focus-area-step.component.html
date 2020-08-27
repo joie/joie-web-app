@@ -1,24 +1,34 @@
-<h3>Your market</h3>
-<p>
-  What's your niche, the area you focus on in your sessions?
-</p>
-<form [formGroup]="formGroup">
-  <mat-form-field appearance="outline">
-    <textarea matInput
-              formControlName="sessionAreaCtrl"
-              required></textarea>
-  </mat-form-field>
+<div class="container container-condense">
+  <h3>Your market</h3>
+  <p>
+    What's your niche, the area you focus on in your sessions?
+  </p>
+</div>
 
-  <label formArrayName="focusGroupsCtrl"
-         *ngFor="let group of groupsFormArray.value; let i = index">
-    <input type="checkbox"
-           (change)="handleCheck(entry(group)[0], entry(group)[1], i)"
-           [formControlName]="i" />
-    {{entry(group)[0]}}
-  </label>
+<div class="container container-ultra-condense">
+  <form [formGroup]="formGroup"
+        class="layout-grid">
+    <mat-form-field appearance="outline">
+      <textarea matInput
+                formControlName="sessionAreaCtrl"
+                required></textarea>
+    </mat-form-field>
+    <p>For which group your content design for?</p>
+    <mat-list class="layout-grid">
+      <mat-list-item *ngFor="let group of groupsFormArray.value; let i = index">
+        <label formArrayName="focusGroupsCtrl">
+          <input type="checkbox"
+                 (change)="handleCheck(entry(group)[0], entry(group)[1], i)"
+                 [formControlName]="i" />
+          {{entry(group)[0]}}
+        </label>
+      </mat-list-item>
+    </mat-list>
+  </form>
 
   <button mat-button
           matStepperNext>
-    Next
+    Continue
   </button>
-</form>
+
+</div>

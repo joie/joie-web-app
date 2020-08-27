@@ -210,24 +210,16 @@ export class KalturaApiHandShakeService {
    */
   createSession(
     sessionCreationDetails: any, role: string = Roles.viewer, type: number = KalturaSessionType.user,
-    userCtxRole: number = UserContextualRole.guest) {
+    userCtxRole: number = UserContextualRole.guest): Observable<any> {
 
     const { userId, eventId } = sessionCreationDetails;
     const privileges = `eventId:${eventId},role:${role},userContextualRole:${userCtxRole}`;
 
-    this.kaltura
+    return this.kaltura
       .request(new SessionStartAction({
         secret: KalturaApiHandShakeService.clientSecret, type,
         partnerId: KalturaApiHandShakeService.partnerId, expiry: this.expiry, privileges, userId
-      }))
-      .subscribe(result => {
-        console.log(result);
-        const url = `https://${KalturaApiHandShakeService.partnerId}.kaf.kaltura.com/virtualEvent/launch?ks=${result}`;
-        window.open(url, '_blank');
-      },
-        error => {
-          throwError(error);
-        });
+      }));
   }
 
   // TODO to be removed after integrated with session component

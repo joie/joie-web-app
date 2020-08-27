@@ -1,24 +1,28 @@
-<h1>What will be your first step on your journey?</h1>
-<p>
-  Taking small steps will help you see progress, gain self-confidence, stay
-  motivated, and take pride in the achievment. Let's set some smaller targets on
-  the way to reach your goal.
-</p>
+<div class="container container-condense">
+  <h1>What will be your first step on your journey?</h1>
+  <p>
+    Taking small steps will help you see progress, gain self-confidence, stay
+    motivated, and take pride in the achievment. Let's set some smaller targets on
+    the way to reach your goal.
+  </p>
+</div>
 
-<form [formGroup]="formGroup">
-  <div class="subgoals-flexbox">
+<div class="container container-ultra-condense">
+  <form [formGroup]="formGroup"
+        class="layout-grid layout-grid-inline-features layout-spacing-inline-md">
     <app-sub-goals-box #boxes
                        *ngFor="let pillar of selectedPillars"
                        [pillar]="pillar"></app-sub-goals-box>
+  </form>
+  <div class="layout-grid">
+    <button mat-button
+            matStepperNext>
+      Continue
+    </button>
+
+    <button mat-raised-button
+            (click)="onboardingService.skipOnboarding()">
+      Skip for now.
+    </button>
   </div>
-
-  <button mat-button
-          matStepperNext>
-    Continue
-  </button>
-
-  <button mat-raised-button
-          (click)="onboardingService.skipOnboarding()">
-    Skip for now.
-  </button>
-</form>
+</div>

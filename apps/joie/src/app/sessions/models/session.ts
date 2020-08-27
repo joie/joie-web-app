@@ -17,6 +17,11 @@ export interface Session {
   recommendationPercentage: number;
 }
 
+export interface SessionDetails {
+  eventId: number;
+  userId: string;
+}
+
 export enum SessionFormat {
   onDemand = 'On demand',
   liveStreaming = 'Live streaming',

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { KalturaVodPlayerComponent } from './kaltura-vod-player.component';
 
-import { KalturaPlayerComponent } from './kaltura-player.component';
 
-describe('KalturaPlayerComponent', () => {
-  let component: KalturaPlayerComponent;
-  let fixture: ComponentFixture<KalturaPlayerComponent>;
+describe('KalturaVodPlayerComponent', () => {
+  let component: KalturaVodPlayerComponent;
+  let fixture: ComponentFixture<KalturaVodPlayerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ KalturaPlayerComponent ]
+      declarations: [ KalturaVodPlayerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(KalturaPlayerComponent);
+    fixture = TestBed.createComponent(KalturaVodPlayerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
