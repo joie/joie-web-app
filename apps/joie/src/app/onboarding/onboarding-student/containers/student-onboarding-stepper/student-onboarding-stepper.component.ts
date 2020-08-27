@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup } from '@angular/forms';
 
 interface Student {}
 
@@ -11,10 +10,9 @@ interface Student {}
 })
 export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit {
   student = {} as Student;
-  // currentFormGroup = new FormGroup({});
   public steps: string[];
   public selectedStep: number = 0;
-  public selectedStepRef; // todo element ref
+  public selectedStepRef = null; // todo element ref
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -32,22 +30,20 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
   }
 
   onActivate(componentRef) {
-    if (!this.hasForm()) {
-      // welcome step doesn't have form; so does not the summary step
-      // this.currentFormGroup = componentRef.formGroup;
+    if (this.hasForm()) {
       this.selectedStepRef = componentRef;
+    } else {
+      this.selectedStepRef = null;
     }
-    // else {
-    // this.currentFormGroup = new FormGroup({});
-    // }
   }
 
   hasForm() {
-    return [0, this.steps.length - 1].includes(this.selectedStep);
+    return ![0, this.steps.length - 1].includes(this.selectedStep);
   }
 
   selectionChanged(event: any) {
-    if (!this.hasForm()) {
+    if (this.selectedStepRef) {
+      console.log(this.selectedStepRef);
       Object.assign(this.student, this.selectedStepRef.submit());
     }
     this.selectedStep = event.selectedIndex;
