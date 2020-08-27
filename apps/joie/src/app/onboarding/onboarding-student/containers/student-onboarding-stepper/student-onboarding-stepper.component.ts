@@ -11,7 +11,7 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
   student: Partial<Student> = {};
   public steps: string[];
   public selectedStep: number = 0;
-  public selectedStepRef = null; // todo element ref
+  public selectedStepRef = null;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 

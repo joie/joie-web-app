@@ -52,7 +52,6 @@ export class SubGoalsBoxComponent implements OnInit {
 
   ngOnInit(): void {
     let student = history.state.student || null;
-    console.log(student);
     if (student && student.activities) {
       this.addActivityChipsFromCache(student.activities);
     } else {

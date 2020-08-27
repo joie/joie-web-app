@@ -27,7 +27,7 @@ export class SessionTypesStepComponent implements OnInit {
     public onboardingService: StudentOnboardingService
   ) {
     this.formGroup = this._formBuilder.group({
-      sessionTypes: new FormArray([]), // todo validators
+      sessionTypes: new FormArray([]),
     });
   }
 

@@ -52,7 +52,6 @@ export class GoalStepComponent implements OnInit {
 
   private addPillarCheckboxes() {
     this.pillarKeys.forEach(() => this.pillarFormArray.push(new FormControl(false)));
-    console.log(this.pillarFormArray);
   }
 
   private addPillarCheckboxesFromCache(pillars) {
