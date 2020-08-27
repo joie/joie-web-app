@@ -19,6 +19,7 @@ export class SubGoalsStepComponent {
   @ViewChildren(SubGoalsBoxComponent) activityBoxes: QueryList<SubGoalsBoxComponent>;
   formGroup: FormGroup;
   selectedPillars = [];
+  afterViewInit = false;
 
   constructor(
     public onboardingService: StudentOnboardingService,
@@ -29,6 +30,10 @@ export class SubGoalsStepComponent {
     });
 
     this.selectedPillars = history.state.student.pillars;
+  }
+
+  isValid() {
+    return this.activityBoxes ? this.activityBoxes.toArray().every((box) => box.isValid()) : false;
   }
 
   submit() {

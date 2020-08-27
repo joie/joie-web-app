@@ -8,7 +8,6 @@ import {
 } from './../../../../../sessions/models/session';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
-import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
 
 @Component({
   selector: 'app-sub-goals-box',
@@ -35,6 +34,7 @@ import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIs
 export class SubGoalsBoxComponent implements OnInit {
   @Input() pillar;
   public formGroup: FormGroup;
+  afterViewInit = false;
   get keys() {
     return Object.keys(this.pillar);
   }
@@ -63,16 +63,16 @@ export class SubGoalsBoxComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
-      activities: new FormArray([]), //todo upd validator
+      activities: new FormArray([]),
     });
   }
 
-  addActivityChips() {
-    this.activityKeys.forEach(() => this.activitiesFormArray.push(new FormControl(false)));
+  ngOnInit(): void {
+    this.addActivityChips();
   }
 
-  handleSelect(index, activity) {
-    this.activitiesFormArray.controls[index].patchValue(activity);
+  isValid() {
+    return this.submit().length > 0;
   }
 
   submit() {
@@ -82,7 +82,11 @@ export class SubGoalsBoxComponent implements OnInit {
     return selectedActivityTitles;
   }
 
-  ngOnInit(): void {
-    this.addActivityChips();
+  handleSelect(index, activity) {
+    this.activitiesFormArray.controls[index].patchValue(activity);
+  }
+
+  private addActivityChips() {
+    this.activityKeys.forEach(() => this.activitiesFormArray.push(new FormControl(false)));
   }
 }

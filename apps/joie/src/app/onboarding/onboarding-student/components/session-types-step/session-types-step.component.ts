@@ -1,3 +1,4 @@
+import { length } from 'ramda';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
@@ -34,17 +35,22 @@ export class SessionTypesStepComponent implements OnInit {
     });
     this.addTypeCheckboxes();
   }
-  private addTypeCheckboxes() {
-    this.typeKeys.forEach(() => this.typesFormArray.push(new FormControl(false)));
+
+  ngOnInit(): void {
+    // todo restoreFromCache();
   }
 
+  isValid() {
+    return this.submit().sessionTypes.length === 1;
+  }
   submit() {
     const selectedTypes = this.formGroup.value.sessionTypes
       .map((checked, i) => (checked ? this.typesEnum[this.typeKeys[i]] : null))
       .filter((v) => v !== null);
     return { sessionTypes: selectedTypes };
   }
-  ngOnInit(): void {
-    // todo restoreFromCache();
+
+  private addTypeCheckboxes() {
+    this.typeKeys.forEach(() => this.typesFormArray.push(new FormControl(false)));
   }
 }

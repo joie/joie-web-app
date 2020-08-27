@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class SummaryStepComponent implements OnInit {
   student; // todo add interface
   name = 'NAME';
-  // dataToPrint;
+
   constructor(public activatedRoute: ActivatedRoute) {
     this.student = history.state.student;
   }

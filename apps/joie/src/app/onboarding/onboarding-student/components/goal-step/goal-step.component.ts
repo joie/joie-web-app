@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-goal-step',
@@ -24,18 +23,16 @@ export class GoalStepComponent {
 
   constructor(
     private _formBuilder: FormBuilder,
-    public onboardingService: StudentOnboardingService,
-    private router: Router
+    public onboardingService: StudentOnboardingService
   ) {
     this.formGroup = this._formBuilder.group({
-      pillars: new FormArray([]), // todo validator
+      pillars: new FormArray([]),
     });
     this.addPillarCheckboxes();
   }
 
-  private addPillarCheckboxes() {
-    this.pillarKeys.forEach(() => this.pillarFormArray.push(new FormControl(false)));
-    console.log(this.pillarFormArray);
+  isValid() {
+    return this.submit().pillars.length > 0;
   }
 
   submit() {
@@ -45,5 +42,10 @@ export class GoalStepComponent {
 
     console.log(selectedPillarTitles);
     return { pillars: selectedPillarTitles };
+  }
+
+  private addPillarCheckboxes() {
+    this.pillarKeys.forEach(() => this.pillarFormArray.push(new FormControl(false)));
+    console.log(this.pillarFormArray);
   }
 }

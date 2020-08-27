@@ -2,7 +2,8 @@
                         linear
                         (selectionChange)="selectionChanged($event)">
   <mat-step *ngFor="let step of steps; let i = index"
-            [label]="step">
+            [label]="step"
+            [completed]="isCompleted()">
     <router-outlet (activate)="onActivate($event)"
                    *ngIf="i === selectedStep"></router-outlet>
   </mat-step>

@@ -41,6 +41,9 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
     return ![0, this.steps.length - 1].includes(this.selectedStep);
   }
 
+  isCompleted() {
+    return this.selectedStepRef ? this.selectedStepRef.isValid() : true;
+  }
   selectionChanged(event: any) {
     if (this.selectedStepRef) {
       console.log(this.selectedStepRef);
