@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { SessionFormat } from './../../../sessions/models/session';
 import { SessionType } from '../../../sessions/models/session';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/lib/dyna-form-base.component';

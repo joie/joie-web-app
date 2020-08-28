@@ -16,11 +16,11 @@ const newTimeSlot = ({ dateTime, recurring }) =>
 })
 export class SessionFormDateTimeSlotsComponent extends DynaFormBaseComponent {
   readonly timeSlotsFormArray = new FormArray([]);
-  DATE_TIME_LOTS = 'dateTimeSlots';
+  DATE_TIME_SLOTS = 'dateTimeSlots';
 
   constructor() {
     super();
-    this.addFormControls([[this.DATE_TIME_LOTS, this.timeSlotsFormArray]]);
+    this.controls = [[this.DATE_TIME_SLOTS, this.timeSlotsFormArray]];
   }
 
   get timeSlotValues() {

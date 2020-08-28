@@ -35,14 +35,14 @@
     <app-simple-form-input
       #goalsSimpleForm
       [validators]="sfiValidators"
-      (add)="addFormControl(goalsFormArray, $event)"
+      (submission)="addGoalOrComment(goalsFormArray, $event)"
     ></app-simple-form-input>
     <button
       mat-icon-button
       slot="suffix"
       color="primary"
       aria-label="Example icon button with a home icon"
-      (click)="goalsSimpleForm.submit()"
+      (click)="goalsSimpleForm.onSubmit()"
     >
       <mat-icon aria-hidden="false" aria-label="Example home icon" slot="suffix">home</mat-icon>
     </button>
@@ -56,14 +56,14 @@
     <app-simple-form-input
       #commentsSimpleForm
       [validators]="sfiValidators"
-      (add)="addFormControl(commentsFormArray, $event)"
+      (submission)="addGoalOrComment(commentsFormArray, $event)"
     ></app-simple-form-input>
     <button
       mat-icon-button
       slot="suffix"
       color="primary"
       aria-label="Example icon button with a home icon"
-      (click)="commentsSimpleForm.submit()"
+      (click)="commentsSimpleForm.onSubmit()"
     >
       <mat-icon aria-hidden="false" aria-label="Example home icon" slot="suffix">home</mat-icon>
     </button>

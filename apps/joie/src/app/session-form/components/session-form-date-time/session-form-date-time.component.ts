@@ -12,7 +12,7 @@ export class SessionFormDateTimeComponent extends DynaFormBaseComponent {
   constructor() {
     super();
 
-    this.addFormControls([[this.WHEN, new FormControl(null)]]);
+    this.controls = [[this.WHEN, new FormControl(null)]];
   }
   setDateTime(value: Date) {
     this.getFormControl(this.WHEN).patchValue(value);

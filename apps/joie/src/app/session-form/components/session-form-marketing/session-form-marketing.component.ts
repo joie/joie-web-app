@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormArray, Validators } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/lib/dyna-form-base.component';
 
@@ -15,17 +15,17 @@ export class SessionFormMarketingComponent extends DynaFormBaseComponent {
 
   constructor() {
     super();
-    this.addFormControls([
+    this.controls = [
       ['promo', new FormControl(null)],
-      ['relatedSessions', new FormArray([new FormControl(null)])],
-    ]);
+      ['relatedSessions', this.relatedSessionsArray],
+    ];
   }
 
   sessionsArrayValues() {
     return this.relatedSessionsArray.controls.map(({ value }) => value);
   }
 
-  addFormControl(value: string) {
+  addRelatedSession(value: string) {
     this.relatedSessionsArray.push(new FormControl(value));
   }
 

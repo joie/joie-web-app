@@ -10,14 +10,14 @@
     <app-simple-form-input
       #relatedSessionsForm
       [validators]="sfiValidators"
-      (add)="addFormControl($event)"
+      (submission)="addRelatedSession($event)"
     ></app-simple-form-input>
     <button
       mat-icon-button
       slot="suffix"
       color="primary"
       aria-label="add"
-      (click)="relatedSessionsForm.submit()"
+      (click)="relatedSessionsForm.onSubmit()"
     >
       <mat-icon aria-hidden="false" aria-label="add" slot="suffix">add</mat-icon>
     </button>
