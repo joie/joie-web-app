@@ -1,4 +1,10 @@
 <div class="box-with-badge">
+  <img
+    [src]="'/assets/images/' + (pillar | lowercase | slice: 4) + '.png'"
+    width="25"
+    height="25"
+  />
+
   <h3>
     Joie<span class="text-primary">{{ pillar | slice: 4 }}</span>
   </h3>
