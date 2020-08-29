@@ -1,34 +1,34 @@
 <div class="container container-condense">
   <h2>What brings you to Joie?</h2>
   <p>
-    Setting goal gives you long-term vision and short-term motivation to stay
-    focused. We reccomend picking 1-2 pillars to get started. You can explore more
-    later.
+    Setting goal gives you long-term vision and short-term motivation to stay focused. We reccomend
+    picking 1-2 pillars to get started. You can explore more later.
   </p>
 </div>
 <div class="container container-condense">
-  <form [formGroup]="formGroup"
-        class="layout-grid layout-grid-inline-features layout-spacing-inline-md">
-    <label formArrayName="pillars"
-           *ngFor="let pillar of pillarFormArray.controls; let i = index">
-      <input type="checkbox"
-             [formControlName]="i">
-      {{pillarEnum[pillarKeys[i]]}}
-
-    </label>
+  <form
+    [formGroup]="formGroup"
+    class="layout-grid layout-grid-inline-features layout-spacing-inline-md"
+  >
+    <div
+      class="box box-shadow text-center"
+      *ngFor="let pillar of pillarFormArray.controls; let i = index"
+    >
+      <img [src]="'/assets/images/' + pillarKeys[i] + '.png'" width="100" height="100" />
+      <label formArrayName="pillars">
+        <input type="checkbox" [formControlName]="i" />
+        {{ pillarEnum[pillarKeys[i]] }}
+      </label>
+    </div>
   </form>
 
   <div class="layout-grid">
-    <button mat-button
-            matStepperNext>
+    <button mat-button matStepperNext>
       Continue
     </button>
 
-    <button mat-button
-            mat-raised-button
-            (click)="onboardingService.skipOnboarding()">
+    <button mat-button mat-raised-button (click)="onboardingService.skipOnboarding()">
       Skip for now.
     </button>
   </div>
-
 </div>
