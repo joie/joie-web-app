@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GoalStepComponent } from './pillar-step.component';
+import { PillarStepComponent } from './pillar-step.component';
 
-describe('GoalStepComponent', () => {
-  let component: GoalStepComponent;
-  let fixture: ComponentFixture<GoalStepComponent>;
+describe('PillarStepComponent', () => {
+  let component: PillarStepComponent;
+  let fixture: ComponentFixture<PillarStepComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [GoalStepComponent],
+      declarations: [PillarStepComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GoalStepComponent);
+    fixture = TestBed.createComponent(PillarStepComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

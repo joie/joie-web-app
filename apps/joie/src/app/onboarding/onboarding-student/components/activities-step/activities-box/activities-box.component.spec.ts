@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubGoalsBoxComponent } from './activities-box.component';
+import { ActivitiesBoxComponent } from './activities-box.component';
 
-describe('SubGoalsBoxComponent', () => {
-  let component: SubGoalsBoxComponent;
-  let fixture: ComponentFixture<SubGoalsBoxComponent>;
+describe('ActivitiesBoxComponent', () => {
+  let component: ActivitiesBoxComponent;
+  let fixture: ComponentFixture<ActivitiesBoxComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SubGoalsBoxComponent],
+      declarations: [ActivitiesBoxComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SubGoalsBoxComponent);
+    fixture = TestBed.createComponent(ActivitiesBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
