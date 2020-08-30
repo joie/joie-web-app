@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GoalStepComponent } from './goal-step.component';
+import { GoalStepComponent } from './pillar-step.component';
 
 describe('GoalStepComponent', () => {
   let component: GoalStepComponent;
@@ -8,9 +8,8 @@ describe('GoalStepComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GoalStepComponent ]
-    })
-    .compileComponents();
+      declarations: [GoalStepComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

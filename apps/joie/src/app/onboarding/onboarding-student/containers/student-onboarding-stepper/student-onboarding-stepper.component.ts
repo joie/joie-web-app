@@ -2,7 +2,6 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Student } from '../../models/student';
 import { AuthService } from '../../../../auth-state/services/auth/auth.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-student-onboarding-stepper',

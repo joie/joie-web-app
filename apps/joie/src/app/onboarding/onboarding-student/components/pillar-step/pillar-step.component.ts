@@ -1,16 +1,15 @@
-import { Student } from './../../models/student';
-import { Pillar } from './../../../../sessions/models/session';
+import { Pillar } from '../../../../sessions/models/session';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 
 @Component({
-  selector: 'app-goal-step',
-  templateUrl: './goal-step.component.html',
-  styleUrls: ['./goal-step.component.scss'],
+  selector: 'app-pillar-step',
+  templateUrl: './pillar-step.component.html',
+  styleUrls: ['./pillar-step.component.scss'],
 })
-export class GoalStepComponent implements OnInit {
+export class PillarStepComponent implements OnInit {
   formGroup: FormGroup;
   pillarEnum = Pillar;
 
