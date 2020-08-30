@@ -7,16 +7,13 @@
 </div>
 
 <div class="container container-ultra-condense">
-  <form
-    [formGroup]="formGroup"
-    class="layout-grid layout-grid-inline-features layout-spacing-inline-md"
-  >
+  <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md">
     <app-activities-box
       #boxes
       *ngFor="let pillar of selectedPillars"
       [pillar]="pillar"
     ></app-activities-box>
-  </form>
+  </div>
   <div class="layout-grid">
     <button mat-button matStepperNext>
       Continue

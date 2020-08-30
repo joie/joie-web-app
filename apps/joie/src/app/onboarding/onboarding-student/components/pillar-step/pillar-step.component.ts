@@ -26,7 +26,7 @@ export class PillarStepComponent implements OnInit {
     public onboardingService: StudentOnboardingService
   ) {
     this.formGroup = this._formBuilder.group({
-      pillars: new FormArray([]),
+      pillars: new FormArray([], atLeastOneIsCheckedValidator()),
     });
   }
   ngOnInit(): void {

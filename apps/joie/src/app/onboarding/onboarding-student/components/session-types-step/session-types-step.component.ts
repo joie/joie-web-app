@@ -27,7 +27,10 @@ export class SessionTypesStepComponent implements OnInit {
     public onboardingService: StudentOnboardingService
   ) {
     this.formGroup = this._formBuilder.group({
-      sessionTypes: new FormArray([]),
+      sessionTypes: new FormArray(
+        [],
+        [atLeastOneIsCheckedValidator(), notMoreThanOneIsCheckedValidator()]
+      ),
     });
   }
 
@@ -41,7 +44,7 @@ export class SessionTypesStepComponent implements OnInit {
   }
 
   isValid() {
-    return this.submit().sessionTypes.length === 1;
+    return this.formGroup.valid;
   }
   submit() {
     const selectedTypes = this.formGroup.value.sessionTypes

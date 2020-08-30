@@ -7,7 +7,15 @@ import {
   JoieSpirit,
 } from '../../../../../sessions/models/session';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  FormArray,
+  Validators,
+  ValidatorFn,
+} from '@angular/forms';
+import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
 
 @Component({
   selector: 'app-activities-box',
@@ -46,7 +54,7 @@ export class ActivitiesBoxComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
-      activities: new FormArray([]),
+      activities: new FormArray([], [atLeastOneIsCheckedValidator()]),
     });
   }
 
@@ -57,10 +65,6 @@ export class ActivitiesBoxComponent implements OnInit {
     } else {
       this.addActivityChips();
     }
-  }
-
-  isValid() {
-    return this.submit().length > 0;
   }
 
   submit() {
@@ -76,6 +80,8 @@ export class ActivitiesBoxComponent implements OnInit {
     } else {
       this.activitiesFormArray.controls[index].patchValue(false);
     }
+    console.log(this.formGroup.valid);
+    console.log(atLeastOneIsCheckedValidator());
   }
 
   private addActivityChips() {

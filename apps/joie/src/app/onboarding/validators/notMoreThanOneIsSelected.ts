@@ -1,12 +1,12 @@
 import { ValidatorFn, FormArray } from '@angular/forms';
 
 export function notMoreThanOneIsCheckedValidator(maxRequired = 1): ValidatorFn {
-  return function validate(formGroup: FormArray) {
+  return function validate(formArray: FormArray) {
     let checked = 0;
-    formGroup.controls.forEach((control) => {
-      const isChecked = Object.values(control.value)[0];
+    Object.keys(formArray.controls).forEach((key) => {
+      const control = formArray.controls[key];
 
-      if (isChecked) {
+      if (control.value) {
         checked++;
       }
     });

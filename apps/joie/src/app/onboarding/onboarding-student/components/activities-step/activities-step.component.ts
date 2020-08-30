@@ -1,6 +1,5 @@
 import { Component, ViewChildren, QueryList, ChangeDetectionStrategy } from '@angular/core';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { ActivitiesBoxComponent } from './activities-box/activities-box.component';
 
 @Component({
@@ -11,23 +10,17 @@ import { ActivitiesBoxComponent } from './activities-box/activities-box.componen
 })
 export class ActivitiesStepComponent {
   @ViewChildren(ActivitiesBoxComponent) activityBoxes: QueryList<ActivitiesBoxComponent>;
-  formGroup: FormGroup;
   selectedPillars = [];
   afterViewInit = false;
 
-  constructor(
-    public onboardingService: StudentOnboardingService,
-    private formBuilder: FormBuilder
-  ) {
-    this.formGroup = this.formBuilder.group({
-      activities: new FormArray([]),
-    });
-
+  constructor(public onboardingService: StudentOnboardingService) {
     this.selectedPillars = history.state.student.pillars;
   }
 
   isValid() {
-    return this.activityBoxes ? this.activityBoxes.toArray().every((box) => box.isValid()) : false;
+    return this.activityBoxes
+      ? this.activityBoxes.toArray().every((box) => box.formGroup.valid)
+      : false;
   }
 
   submit() {
