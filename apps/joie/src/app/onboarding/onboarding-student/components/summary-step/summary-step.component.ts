@@ -9,10 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SummaryStepComponent {
   student: Student;
-  name = 'NAME';
+  displayName;
 
   constructor(public activatedRoute: ActivatedRoute) {
     this.student = history.state.student;
+    this.displayName = history.state.displayName;
   }
 
   submitData() {

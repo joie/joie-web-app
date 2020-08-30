@@ -7,8 +7,10 @@ import { StudentOnboardingService } from '../../service/student-onboarding.servi
   styleUrls: ['./welcome-step.component.scss'],
 })
 export class WelcomeStepComponent implements OnInit {
-  name = 'NAME';
+  displayName;
   constructor(public onboardingService: StudentOnboardingService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.displayName = history.state.displayName;
+  }
 }
