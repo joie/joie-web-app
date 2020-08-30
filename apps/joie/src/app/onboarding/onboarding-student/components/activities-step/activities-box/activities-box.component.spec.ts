@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubGoalsBoxComponent } from './sub-goals-box.component';
+import { SubGoalsBoxComponent } from './activities-box.component';
 
 describe('SubGoalsBoxComponent', () => {
   let component: SubGoalsBoxComponent;
@@ -8,9 +8,8 @@ describe('SubGoalsBoxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubGoalsBoxComponent ]
-    })
-    .compileComponents();
+      declarations: [SubGoalsBoxComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

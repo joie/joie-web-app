@@ -1,7 +1,7 @@
 import { Component, ViewChildren, QueryList, ChangeDetectionStrategy } from '@angular/core';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { SubGoalsBoxComponent } from './sub-goals-box/sub-goals-box.component';
+import { ActivitiesBoxComponent } from './activities-box/activities-box.component';
 
 @Component({
   selector: 'app-activities-step',
@@ -10,7 +10,7 @@ import { SubGoalsBoxComponent } from './sub-goals-box/sub-goals-box.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActivitiesStepComponent {
-  @ViewChildren(SubGoalsBoxComponent) activityBoxes: QueryList<SubGoalsBoxComponent>; //todo rename
+  @ViewChildren(ActivitiesBoxComponent) activityBoxes: QueryList<ActivitiesBoxComponent>;
   formGroup: FormGroup;
   selectedPillars = [];
   afterViewInit = false;

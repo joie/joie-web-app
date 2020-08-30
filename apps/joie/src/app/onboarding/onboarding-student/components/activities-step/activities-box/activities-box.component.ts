@@ -10,11 +10,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 
 @Component({
-  selector: 'app-sub-goals-box',
-  templateUrl: './sub-goals-box.component.html',
-  styleUrls: ['./sub-goals-box.component.scss'],
+  selector: 'app-activities-box',
+  templateUrl: './activities-box.component.html',
+  styleUrls: ['./activities-box.component.scss'],
 })
-export class SubGoalsBoxComponent implements OnInit {
+export class ActivitiesBoxComponent implements OnInit {
   @Input() pillar;
   public formGroup: FormGroup;
   afterViewInit = false;
