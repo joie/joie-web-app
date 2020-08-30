@@ -61,6 +61,8 @@ export class ActivitiesBoxComponent implements OnInit {
   ngOnInit(): void {
     let student = history.state.student || null;
     if (student && student.activities) {
+      this.formGroup.controls['activities'].markAsTouched();
+
       this.addActivityChipsFromCache(student.activities);
     } else {
       this.addActivityChips();

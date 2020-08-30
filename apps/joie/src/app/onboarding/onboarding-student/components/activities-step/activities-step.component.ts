@@ -20,7 +20,9 @@ export class ActivitiesStepComponent {
   isValid() {
     return this.activityBoxes
       ? this.activityBoxes.toArray().every((box) => box.formGroup.valid)
-      : false;
+      : false; // todo problem here
+    // in case there's cache and forms are valid, it throws expressionChangeAfterChecked,
+    // cause first check happens before pillars build their forms
   }
 
   submit() {

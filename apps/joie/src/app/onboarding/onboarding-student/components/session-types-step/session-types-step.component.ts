@@ -37,6 +37,7 @@ export class SessionTypesStepComponent implements OnInit {
   ngOnInit(): void {
     let student = history.state.student || null;
     if (student && student.sessionTypes) {
+      this.formGroup.controls['sessionTypes'].markAsTouched();
       this.addTypeCheckboxesFromCache(student.sessionTypes);
     } else {
       this.addTypeCheckboxes();

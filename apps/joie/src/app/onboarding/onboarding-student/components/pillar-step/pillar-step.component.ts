@@ -32,6 +32,7 @@ export class PillarStepComponent implements OnInit {
   ngOnInit(): void {
     let student = history.state.student || null;
     if (student && student.pillars) {
+      this.formGroup.controls['pillars'].markAsTouched();
       this.addPillarCheckboxesFromCache(student.pillars);
     } else {
       this.addPillarCheckboxes();
