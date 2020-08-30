@@ -1,22 +1,16 @@
-import {
-  Component,
-  ViewChildren,
-  QueryList,
-  AfterViewInit,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, ViewChildren, QueryList, ChangeDetectionStrategy } from '@angular/core';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { SubGoalsBoxComponent } from './sub-goals-box/sub-goals-box.component';
 
 @Component({
-  selector: 'app-sub-goals-step',
-  templateUrl: './sub-goals-step.component.html',
-  styleUrls: ['./sub-goals-step.component.scss'],
+  selector: 'app-activities-step',
+  templateUrl: './activities-step.component.html',
+  styleUrls: ['./activities-step.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SubGoalsStepComponent {
-  @ViewChildren(SubGoalsBoxComponent) activityBoxes: QueryList<SubGoalsBoxComponent>;
+export class ActivitiesStepComponent {
+  @ViewChildren(SubGoalsBoxComponent) activityBoxes: QueryList<SubGoalsBoxComponent>; //todo rename
   formGroup: FormGroup;
   selectedPillars = [];
   afterViewInit = false;

@@ -5,7 +5,7 @@ import {
   JoieConnections,
   JoieProfessional,
   JoieSpirit,
-} from './../../../../../sessions/models/session';
+} from '../../../../../sessions/models/session';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 
