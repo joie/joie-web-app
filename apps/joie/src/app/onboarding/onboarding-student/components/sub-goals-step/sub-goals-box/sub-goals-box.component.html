@@ -10,12 +10,15 @@
   </h3>
   <form [formGroup]="formGroup">
     <mat-form-field>
-      <mat-chip-list formArrayName="activities" [multiple]="true" [selectable]="true">
+      <mat-chip-list formArrayName="activities" multiple>
         <label *ngFor="let activity of activitiesFormArray.controls; let i = index">
           <mat-chip
             #chip="matChip"
             [selectable]="true"
-            (click)="handleSelect(i, activitiesEnum[activityKeys[i]])"
+            (click)="
+              chip.selected = !chip.selected; handleSelect(i, activitiesEnum[activityKeys[i]])
+            "
+            color="primary"
           >
             {{ activitiesEnum[activityKeys[i]] }}
           </mat-chip>
