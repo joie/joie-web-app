@@ -1,11 +1,7 @@
 mat-chip {
   width: auto;
   border: 1px solid #48d1cc;
-}
-mat-chip.mat-chip-selected {
-  border: 1px solid blue;
-}
-
-h3 {
-  margin-bottom: 5px;
+  &.mat-chip-selected {
+    border: 1px solid blue;
+  }
 }

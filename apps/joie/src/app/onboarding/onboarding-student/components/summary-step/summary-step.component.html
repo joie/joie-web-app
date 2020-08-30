@@ -1,23 +1,21 @@
 <div class="container container-condense">
   <h2>For now, {{ name }}, your journey will start with:</h2>
   <div class="layout-grid layout-grid-inline-features">
-    <div class="box-with-badge">
-      <label>Exploring the pillars:</label>
-      <h4>{{ student.pillars.join(' and ')  }}</h4>
-      <label>You will start with the following smaller steps:</label>
+    <mat-card>
+      <p class="text-primary">Exploring the pillars:</p>
+      <h4>{{ student.pillars.join(' and ') }}</h4>
+      <p class="text-primary">You will start with the following smaller steps:</p>
       <h4>{{ student.activities.join(' and ') }}</h4>
-      <label>And you will explore:</label>
+      <p class="text-primary">And you will explore:</p>
       <h4>{{ student.sessionTypes.join(' and ') }}</h4>
-    </div>
+    </mat-card>
   </div>
   <div class="container container-ultra-condense">
     <p>
-      And don't worry! You can always update it later. We have good feeling about
-      this, {{ name }}!
+      And don't worry! You can always update it later. We have good feeling about this, {{ name }}!
     </p>
-    <button mat-raised-button
-            (click)="submitData()">
+    <button mat-raised-button (click)="submitData()">
       Now, let's find your first session!
     </button>
-
   </div>
+</div>
