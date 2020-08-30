@@ -70,8 +70,12 @@ export class ActivitiesBoxComponent implements OnInit {
     return selectedActivityTitles;
   }
 
-  handleSelect(index, activity) {
-    this.activitiesFormArray.controls[index].patchValue(activity);
+  handleSelect(index, activity, selected) {
+    if (selected) {
+      this.activitiesFormArray.controls[index].patchValue(activity);
+    } else {
+      this.activitiesFormArray.controls[index].patchValue(false);
+    }
   }
 
   private addActivityChips() {

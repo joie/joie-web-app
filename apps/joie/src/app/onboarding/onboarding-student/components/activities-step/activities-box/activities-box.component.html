@@ -16,9 +16,9 @@
             #chip="matChip"
             [selectable]="true"
             (click)="
-              chip.selected = !chip.selected; handleSelect(i, activitiesEnum[activityKeys[i]])
+              chip.selected = !chip.selected;
+              handleSelect(i, activitiesEnum[activityKeys[i]], chip.selected)
             "
-            color="primary"
           >
             {{ activitiesEnum[activityKeys[i]] }}
           </mat-chip>
