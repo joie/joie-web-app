@@ -5,11 +5,8 @@ import { DynaFormService } from './services/dyna-form.service';
 
 export type ControlTuple = [string, FormControl | FormArray];
 
-@Component({
-  template: '',
-  // providers: [DynaFormService],
-})
-export class DynaFormBaseComponent implements OnDestroy {
+@Component({ template: '' })
+export abstract class DynaFormBaseComponent implements OnDestroy {
   #controls?: ControlTuple[];
   private dynaFormService: DynaFormService;
   // private builder: FormBuilder;
@@ -67,5 +64,3 @@ export class DynaFormBaseComponent implements OnDestroy {
     });
   }
 }
-
-export const newComp = () => DynaFormBaseComponent;
