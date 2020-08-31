@@ -5,9 +5,17 @@ import { HomeDashboardComponent } from './containers/home-dashboard/home-dashboa
 import { SessionListModule } from '../session-list/session-list.module';
 import { MaterialModule } from '../core/material.module';
 import { KalturaPlayerModule } from '../kaltura-player/kaltura-player.module';
+import { SharedModule } from '../shared/shared.module';
+import { PillarKeywordEmphasisPipe } from './pipes/pillar-keyword-emphasis/pillar-keyword-emphasis.pipe';
 
 @NgModule({
-  declarations: [HomeDashboardComponent],
-  imports: [HomeRoutingModule, SessionListModule, MaterialModule, KalturaPlayerModule],
+  declarations: [HomeDashboardComponent, PillarKeywordEmphasisPipe],
+  imports: [
+    SharedModule,
+    HomeRoutingModule,
+    SessionListModule,
+    MaterialModule,
+    KalturaPlayerModule,
+  ],
 })
 export class HomeModule {}

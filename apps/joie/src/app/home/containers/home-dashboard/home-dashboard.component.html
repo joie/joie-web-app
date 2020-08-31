@@ -1,163 +1,180 @@
-<div class="splash p margin-bottom-20">
-  <div class="splash-container">
-    <div class="text-xl">Find Your Joie In Life.</div>
-    <div class="text-xl margin-bottom-20">One Step At A Time.</div>
-    <h3 class="text-md margin-bottom-20">
-      Joie pairs you with world-class teachers to help you <br />
-      build a healthier and happier life – one step at a time.
-    </h3>
+<header class="hero">
+  <!-- <app-figure-image
+    src="/assets/images/splash.png"
+    alt="todo replace"
+    [style.--width]="16"
+    [style.--height]="9"
+  >
+  </app-figure-image> -->
+  <div class="container">
+    <div class="mat-display-1">Find Your Joie In Life.<br />One Step At A Time.</div>
+    <h1>
+      Joie pairs you with world-class teachers to help you build a healthier and happier life – one
+      step at a time.
+    </h1>
     <button mat-raised-button color="primary">Start your journey with us</button>
   </div>
-</div>
-
-<div class="margin-bottom-20" fxLayout="column">
-  <div class="text-xl text-center margin-bottom-20">Explore Our Pillars</div>
-  <div class="text-md text-center margin-bottom-20">
-    Our online platform helps you find the right programs to help you reach your goals faster and
-    covers a variety of topics related to holistic health and wellness. What brings you to Joie
-    today?
-  </div>
-  <div
-    fxLayout="row"
-    fxLayoutAlign="center space-between"
-    fxLayout.xs="column"
-    fxLayoutAlign.xs="center center"
-    fxLayoutGap="20px"
-  >
-    <div class="box box-shadow text-center pillar">
-      <img src="/assets/images/movement.png" width="100" height="100" />
-      <div>Joie<span class="text-primary">Movement</span></div>
-      <div>Exercise, Energy, Diet, and Nutrition.</div>
-    </div>
-
-    <div class="box box-shadow text-center pillar">
-      <img src="/assets/images/emotions.png" width="100" height="100" />
-      <div>Joie<span class="text-primary">Emotions</span></div>
-      <div>Self-Regulation, Self-care, Relaxation, Stress Reduction, and Inner Strength.</div>
-    </div>
-
-    <div class="box box-shadow text-center pillar">
-      <img src="/assets/images/connections.png" width="100" height="100" />
-      <div>Joie<span class="text-primary">Connections</span></div>
-      <div>Social interactions, Friendships, Parenting, and Relationships.</div>
-    </div>
-
-    <div class="box box-shadow text-center pillar">
-      <img src="/assets/images/spirit.png" width="100" height="100" />
-      <div>Joie<span class="text-primary">Spirit</span></div>
-      <div>Seek Meaning, Individual Purpose, Faith, Values, Ethics and Morals.</div>
-    </div>
-
-    <div class="box box-shadow text-center pillar">
-      <img src="/assets/images/professional.png" width="100" height="100" />
-      <div>Joie<span class="text-primary">Professional</span></div>
-      <div>Satisfaction at Work, Professional Development, and Financial Stability.</div>
-    </div>
-  </div>
-</div>
-
-<div>
-  <div class="text-xl text-center margin-bottom-20">Take your first step</div>
-  <div class="text-md text-center margin-bottom-20">
-    Explore our full library of Live-Streaming and On-Demand Videos, Workshops, Courses and 1:1
-    Coaching from leading experts in holistic health and wellness.
-  </div>
-  <app-session-list></app-session-list>
-</div>
-
-<div class="margin-bottom-20">
-  <div class="text-xl text-center margin-bottom-20">What Joie Offers You</div>
-  <div class="text-md text-center margin-bottom-20">
-    <!-- TODO Change the url -->
-    <!-- <app-kaltura-player></app-kaltura-player> -->
-  </div>
-
-  <div
-    fxLayout="row"
-    fxLayoutAlign="center space-between"
-    fxLayout.xs="column"
-    fxLayoutAlign.xs="center center"
-    fxLayoutGap="20px"
-  >
-    <div class="text-center">
-      <img src="/assets/images/learning.png" width="100" height="100" />
-      <div>3 types of learning experiences.</div>
-      <div>
-        Joie offers 3 types of learning experience: on-demand, group, and 1:1 coaching, to help you
-        find the learning style that fits your need, reach your goals faster, stay motivated, and
-        progress at your own pace.
+</header>
+<main>
+  <section>
+    <div class="container">
+      <div class="section-context">
+        <div class="text-center">
+          <h2>Explore Our Pillars</h2>
+          <h4>
+            Our online platform helps you find the right programs to help you reach your goals
+            faster and covers a variety of topics related to holistic health and wellness. What
+            brings you to Joie today?
+          </h4>
+          <div
+            class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
+          >
+            <mat-card class="text-center" *ngFor="let pillar of homePillars">
+              <img [src]="pillar?.imgUrl" alt="icon figure for {{ pillar.title }}" />
+              <h4 [innerHTML]="pillar.title | pillarKeywordEmphasis"></h4>
+              <p>{{ pillar.description }}</p>
+            </mat-card>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="text-center">
-      <img src="/assets/images/connection.png" width="100" height="100" />
-      <div>
-        Personal Connection. Our Teachers are here for you
-      </div>
-      <div>
-        Your journey does not finish at the end of your session. Our teachers are here to answer
-        questions, give advice, and support through your journey.
-      </div>
-    </div>
-
-    <div class="text-center">
-      <img src="/assets/images/wellness.png" width="100" height="100" />
-      <div>Holistic Wellness. One Step at a Time.</div>
-      <div>
-        Our philosophy based on the understanding that each of the five pillars of holistic wellness
-        plays a pivotal role in your overall well-being and life-balance. We invite you to grow with
-        us, one step at a time.
+  <section>
+    <div class="container">
+      <div class="section-context">
+        <div class="text-center">
+          <h2>Take your first step</h2>
+          <h4>
+            Explore our full library of Live-Streaming and On-Demand Videos, Workshops, Courses and
+            1:1 Coaching from leading experts in holistic health and wellness.
+          </h4>
+          <app-session-list></app-session-list>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="text-center">
-      <img src="/assets/images/empowerment.png" width="100" height="100" />
-      <div>Empowerment. Our Northen Star.</div>
-      <div>
-        Our inspiration is to empower those around us. We act with fairness and respect, try to make
-        decisions not only based on profit, and make sure to give back to our community. Yes, we are
-        trying to live in harmony with our old friend - Karma.
+  <section>
+    <div class="container">
+      <div class="section-context">
+        <div class="text-center">
+          <h2>What Joie Offers You</h2>
+
+          <!-- TODO Change the url -->
+          <!-- <app-video-player></app-video-player> -->
+
+          <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md">
+            <div *ngFor="let advantage of homeJoieAdvantages">
+              <img [src]="advantage.imgUrl" width="100" height="100" />
+              <div>{{ advantage.title }}</div>
+              <div>
+                {{ advantage.description }}
+              </div>
+            </div>
+            <!-- <div>
+              <img src="/assets/images/learning.png" width="100" height="100" />
+              <div>3 types of learning experiences.</div>
+              <div>
+                Joie offers 3 types of learning experience: on-demand, group, and 1:1 coaching, to
+                help you find the learning style that fits your need, reach your goals faster, stay
+                motivated, and progress at your own pace.
+              </div>
+            </div>
+
+            <div>
+              <img src="/assets/images/connection.png" width="100" height="100" />
+              <div>
+                Personal Connection. Our Teachers are here for you
+              </div>
+              <div>
+                Your journey does not finish at the end of your session. Our teachers are here to
+                answer questions, give advice, and support through your journey.
+              </div>
+            </div>
+
+            <div>
+              <img src="/assets/images/wellness.png" width="100" height="100" />
+              <div>Holistic Wellness. One Step at a Time.</div>
+              <div>
+                Our philosophy based on the understanding that each of the five pillars of holistic
+                wellness plays a pivotal role in your overall well-being and life-balance. We invite
+                you to grow with us, one step at a time.
+              </div>
+            </div>
+
+            <div>
+              <img src="/assets/images/empowerment.png" width="100" height="100" />
+              <div>Empowerment. Our Northen Star.</div>
+              <div>
+                Our inspiration is to empower those around us. We act with fairness and respect, try
+                to make decisions not only based on profit, and make sure to give back to our
+                community. Yes, we are trying to live in harmony with our old friend - Karma.
+              </div>
+            </div>
+
+            <div>
+              <img src="/assets/images/world.png" width="100" height="100" />
+              <div>Making the world a smaller place. Just for you.</div>
+              <div>
+                Joie provides you with an access to world-class experts teaching a variety of topics
+                in holistic health and wellness. Learn from anywhere with instant access to
+                on-demand and live-streaming trainings and workshops.
+              </div>
+            </div> -->
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="text-center">
-      <img src="/assets/images/world.png" width="100" height="100" />
-      <div>Making the world a smaller place. Just for you.</div>
-      <div>
-        Joie provides you with an access to world-class experts teaching a variety of topics in
-        holistic health and wellness. Learn from anywhere with instant access to on-demand and
-        live-streaming trainings and workshops.
+  <section>
+    <div class="container">
+      <div class="section-context">
+        <div class="text-center">
+          <div>
+            <button mat-raised-button color="primary">Like what you see? Join Joie</button>
+          </div>
+          <div>
+            <button mat-button>Want to teach with us? Apply Now!</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<div class="text-center margin-bottom-20">
-  <div>
-    <button mat-raised-button color="primary">Like what you see? Join Joie</button>
-  </div>
-  <div>
-    <button mat-button>Want to teach with us? Apply Now!</button>
-  </div>
-</div>
+  <section>
+    <div class="container">
+      <div class="section-context">
+        <div class="text-center">
+          <div>Learn From Our Leading Teachers</div>
+          <div>
+            Joie hand-picked teachers with a unique teaching approach, who put their hearts and
+            souls into their sessions, identifying with our philosophy, and having the desire to
+            help you live a happier life.
+          </div>
 
-<div class="margin-bottom-20">
-  <div class="text-xl text-center margin-bottom-20">Learn From Our Leading Teachers</div>
-  <div class="text-md text-center margin-bottom-20">
-    Joie hand-picked teachers with a unique teaching approach, who put their hearts and souls into
-    their sessions, identifying with our philosophy, and having the desire to help you live a
-    happier life.
-  </div>
+          <!--TODO Get List of teachers-->
 
-  <!--TODO Get List of teachers-->
+          <div>
+            <button mat-raised-button color="primary">
+              See yourself a part of Joie? Apply Now!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="text-center">
-    <button mat-raised-button color="primary">See yourself a part of Joie? Apply Now!</button>
-  </div>
-</div>
+  <section>
+    <div class="container">
+      <div class="section-context">
+        <div class="text-center">
+          <div>Fresh From our blog</div>
 
-<div>
-  <div class="text-xl text-center margin-bottom-20">Fresh From our blog</div>
-
-  <!--TODO Get List of blog posts-->
-</div>
+          <!--TODO Get List of blog posts-->
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

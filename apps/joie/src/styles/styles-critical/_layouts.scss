@@ -82,6 +82,8 @@ $size: (
 
 main {
   > section {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px;
     --block-gutter: 60px;
     padding: var(--block-gutter) 0;
     &.section-block-start-offset {
