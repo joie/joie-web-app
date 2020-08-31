@@ -19,23 +19,21 @@
 <main>
   <section>
     <div class="container">
-      <div class="section-context">
-        <div class="text-center">
-          <h2>Explore Our Pillars</h2>
-          <h4>
-            Our online platform helps you find the right programs to help you reach your goals
-            faster and covers a variety of topics related to holistic health and wellness. What
-            brings you to Joie today?
-          </h4>
-          <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md">
-            <mat-card class="text-center"
-                      *ngFor="let pillar of homePillars">
-              <img [src]="pillar?.imgUrl"
-                   alt="icon figure for {{ pillar.title }}" />
-              <h4 [innerHTML]="pillar.title | pillarKeywordEmphasis"></h4>
-              <p>{{ pillar.description }}</p>
-            </mat-card>
-          </div>
+      <div class="section-context text-center">
+        <h2>Explore Our Pillars</h2>
+        <h4>
+          Our online platform helps you find the right programs to help you reach your goals faster
+          and covers a variety of topics related to holistic health and wellness. What brings you to
+          Joie today?
+        </h4>
+        <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md">
+          <mat-card class="text-center"
+                    *ngFor="let pillar of homePillars">
+            <img [src]="pillar?.imgUrl"
+                 alt="icon figure for {{ pillar.title }}" />
+            <h4 [innerHTML]="pillar.title | pillarKeywordEmphasis"></h4>
+            <p>{{ pillar.description }}</p>
+          </mat-card>
         </div>
       </div>
     </div>
@@ -43,90 +41,36 @@
 
   <section>
     <div class="container">
-      <div class="section-context">
-        <div class="text-center">
-          <h2>Take your first step</h2>
-          <h4>
-            Explore our full library of Live-Streaming and On-Demand Videos, Workshops, Courses and
-            1:1 Coaching from leading experts in holistic health and wellness.
-          </h4>
-          <app-session-list></app-session-list>
-        </div>
+      <div class="section-context text-center">
+        <h2>Take your first step</h2>
+        <h4>
+          Explore our full library of Live-Streaming and On-Demand Videos, Workshops, Courses and
+          1:1 Coaching from leading experts in holistic health and wellness.
+        </h4>
+        <app-session-list></app-session-list>
       </div>
     </div>
   </section>
 
   <section>
     <div class="container">
-      <div class="section-context">
-        <div class="text-center">
-          <h2>What Joie Offers You</h2>
+      <div class="section-context text-center">
+        <h2>What Joie Offers You</h2>
 
-          <!-- TODO Change the url -->
-          <!-- <app-video-player></app-video-player> -->
+        <!-- TODO Change the url -->
+        <!-- <app-video-player></app-video-player> -->
 
-          <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md">
-            <mat-card class="mat-elevation-z0"
-                      *ngFor="let advantage of homeJoieAdvantages">
-              <img [src]="advantage.imgUrl"
-                   width="100"
-                   height="100" />
-              <div>{{ advantage.title }}</div>
-              <div>
-                {{ advantage.description }}
-              </div>
-            </mat-card>
-            <!-- <div>
-              <img src="/assets/images/learning.png" width="100" height="100" />
-              <div>3 types of learning experiences.</div>
-              <div>
-                Joie offers 3 types of learning experience: on-demand, group, and 1:1 coaching, to
-                help you find the learning style that fits your need, reach your goals faster, stay
-                motivated, and progress at your own pace.
-              </div>
-            </div>
-
+        <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md">
+          <mat-card class="mat-elevation-z0"
+                    *ngFor="let advantage of homeJoieAdvantages">
+            <img [src]="advantage.imgUrl"
+                 width="100"
+                 height="100" />
+            <div>{{ advantage.title }}</div>
             <div>
-              <img src="/assets/images/connection.png" width="100" height="100" />
-              <div>
-                Personal Connection. Our Teachers are here for you
-              </div>
-              <div>
-                Your journey does not finish at the end of your session. Our teachers are here to
-                answer questions, give advice, and support through your journey.
-              </div>
+              {{ advantage.description }}
             </div>
-
-            <div>
-              <img src="/assets/images/wellness.png" width="100" height="100" />
-              <div>Holistic Wellness. One Step at a Time.</div>
-              <div>
-                Our philosophy based on the understanding that each of the five pillars of holistic
-                wellness plays a pivotal role in your overall well-being and life-balance. We invite
-                you to grow with us, one step at a time.
-              </div>
-            </div>
-
-            <div>
-              <img src="/assets/images/empowerment.png" width="100" height="100" />
-              <div>Empowerment. Our Northen Star.</div>
-              <div>
-                Our inspiration is to empower those around us. We act with fairness and respect, try
-                to make decisions not only based on profit, and make sure to give back to our
-                community. Yes, we are trying to live in harmony with our old friend - Karma.
-              </div>
-            </div>
-
-            <div>
-              <img src="/assets/images/world.png" width="100" height="100" />
-              <div>Making the world a smaller place. Just for you.</div>
-              <div>
-                Joie provides you with an access to world-class experts teaching a variety of topics
-                in holistic health and wellness. Learn from anywhere with instant access to
-                on-demand and live-streaming trainings and workshops.
-              </div>
-            </div> -->
-          </div>
+          </mat-card>
         </div>
       </div>
     </div>
@@ -134,15 +78,13 @@
 
   <section>
     <div class="container">
-      <div class="section-context">
-        <div class="text-center">
-          <div>
-            <button mat-raised-button
-                    color="primary">Like what you see? Join Joie</button>
-          </div>
-          <div>
-            <button mat-button>Want to teach with us? Apply Now!</button>
-          </div>
+      <div class="section-context text-center">
+        <div>
+          <button mat-raised-button
+                  color="primary">Like what you see? Join Joie</button>
+        </div>
+        <div>
+          <button mat-button>Want to teach with us? Apply Now!</button>
         </div>
       </div>
     </div>
@@ -150,23 +92,22 @@
 
   <section>
     <div class="container">
-      <div class="section-context">
-        <div class="text-center">
-          <div>Learn From Our Leading Teachers</div>
-          <div>
-            Joie hand-picked teachers with a unique teaching approach, who put their hearts and
-            souls into their sessions, identifying with our philosophy, and having the desire to
-            help you live a happier life.
-          </div>
+      <div class="section-context text-center">
+        <div>Learn From Our Leading Teachers</div>
+        <div>
+          Joie hand-picked teachers with a unique teaching approach, who put their hearts and souls
+          into their sessions, identifying with our philosophy, and having the desire to help you
+          live a happier life.
+        </div>
 
-          <!--TODO Get List of teachers-->
+        <!--TODO Get List of teachers-->
 
-          <div>
-            <button mat-raised-button
-                    color="primary">
-              See yourself a part of Joie? Apply Now!
-            </button>
-          </div>
+        <div>
+          <button mat-raised-button
+                  color="primary">
+            See yourself a part of Joie? Apply Now!
+          </button>
+
         </div>
       </div>
     </div>
@@ -174,12 +115,10 @@
 
   <section>
     <div class="container">
-      <div class="section-context">
-        <div class="text-center">
-          <div>Fresh From our blog</div>
+      <div class="section-context text-center">
+        <div>Fresh From our blog</div>
 
-          <!--TODO Get List of blog posts-->
-        </div>
+        <!--TODO Get List of blog posts-->
       </div>
     </div>
   </section>

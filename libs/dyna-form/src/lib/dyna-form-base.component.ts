@@ -67,3 +67,5 @@ export class DynaFormBaseComponent implements OnDestroy {
     });
   }
 }
+
+export const newComp = () => DynaFormBaseComponent;
