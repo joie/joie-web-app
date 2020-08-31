@@ -31,7 +31,7 @@
           >
             <mat-card class="text-center" *ngFor="let pillar of homePillars">
               <img [src]="pillar?.imgUrl" alt="icon figure for {{ pillar.title }}" />
-              <h4>{{ pillar.title }}</h4>
+              <h4 [innerHTML]="pillar.title | pillarKeywordEmphasis"></h4>
               <p>{{ pillar.description }}</p>
             </mat-card>
           </div>
@@ -61,10 +61,8 @@
         <div class="text-center">
           <h2>What Joie Offers You</h2>
 
-          <div>
-            <!-- TODO Change the url -->
-            <app-kaltura-player></app-kaltura-player>
-          </div>
+          <!-- TODO Change the url -->
+          <!-- <app-video-player></app-video-player> -->
 
           <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md">
             <div>
