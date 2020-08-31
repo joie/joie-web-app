@@ -1,7 +1,7 @@
 import { Price, Duration } from '../../models';
 import { firestore } from 'firebase';
 
-export interface Session {
+export interface SessionInfo {
   readonly id: number | string;
   title: string;
   publishedDate: firestore.Timestamp;
@@ -14,8 +14,11 @@ export interface Session {
   pillar: Pillar;
   description: string;
   author?: Author;
-  recommendationPercentage: number;
+  recommendationPercentage?: number;
+  eventId: number;
+  resourceId: number;
 }
+
 
 export interface SessionDetails {
   eventId: number;

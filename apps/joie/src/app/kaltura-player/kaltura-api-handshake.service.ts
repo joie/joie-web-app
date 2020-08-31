@@ -37,37 +37,6 @@ export class KalturaApiHandShakeService {
       }))
       .subscribe(ks => {
         this.kaltura.setDefaultRequestOptions({ ks });
-
-        // to get all attachments
-        // this.getAllMediaList();
-
-
-        // to create a resource
-        // this.createScheduleResource();
-
-
-        // to get all created resources
-        // this.getScheduleResourceList();
-
-
-        // to schedule an event
-        // this.createScheduleEvent();
-
-
-        // to get all scheduled events
-        // this.getScheduleEventList()
-
-
-        // to combine event with a resource
-        // this.createScheduleEventResource();
-
-        // to join in a live stream session
-        // const sessionCreationDetails = {
-        //   eventId: 4553802,
-        //   userId: 'Joie',
-        // };
-
-        // this.createSession(sessionCreationDetails, Roles.admin, KalturaSessionType.admin, UserContextualRole.instructor);
       },
         error => {
           console.error(`failed to create session with the following error 'SessionStartAction'`);
@@ -220,31 +189,5 @@ export class KalturaApiHandShakeService {
         secret: KalturaApiHandShakeService.clientSecret, type,
         partnerId: KalturaApiHandShakeService.partnerId, expiry: this.expiry, privileges, userId
       }));
-  }
-
-  // TODO to be removed after integrated with session component
-  temporaryLivestreamPage() {
-    // to create a live stream event session
-    const eventCreationDetails = {
-      resourceName: 'Live session',
-      scheduleResourceType: 3,
-      summary: 'Live session',
-      entryIds: '1007',
-      templateEntryId: '1007',
-      description: 'Testing API',
-      startDate: new Date(1597684800),
-      endDate: new Date(1597771200),
-      tags: 'custom_rec_auto_start:1,custom_rs_show_participant:1',
-    };
-    this.createLiveStreamEntry(eventCreationDetails)
-      .subscribe(res => {
-        this.createSession({
-            eventId: res.eventId,
-            userId: 'Joie APP',
-          }, Roles.admin, KalturaSessionType.admin, UserContextualRole.instructor);
-      },
-        error => {
-          throwError(error);
-        });
   }
 }
