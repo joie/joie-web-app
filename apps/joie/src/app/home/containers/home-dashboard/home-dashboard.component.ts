@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { homePillars } from './home-pillars';
 import { homeJoieAdvantages } from './home-joie-advantages';
 
@@ -6,10 +6,9 @@ import { homeJoieAdvantages } from './home-joie-advantages';
   templateUrl: './home-dashboard.component.html',
   styleUrls: ['./home-dashboard.component.scss'],
 })
-export class HomeDashboardComponent implements OnInit {
+export class HomeDashboardComponent {
   homePillars = homePillars;
   homeJoieAdvantages = homeJoieAdvantages;
-  constructor() {}
-
-  ngOnInit(): void {}
+  layoutClass =
+    'layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md';
 }
