@@ -1,3 +1,4 @@
+import { length } from 'ramda';
 import { Component, ViewChildren, QueryList, ChangeDetectionStrategy } from '@angular/core';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { ActivitiesBoxComponent } from './activities-box/activities-box.component';
@@ -18,11 +19,13 @@ export class ActivitiesStepComponent {
   }
 
   isValid() {
+    if (history.state.student.activities) {
+      // case restored from cache. Step is cached only if completed, so if it has activities - it was completed.
+      return true;
+    }
     return this.activityBoxes
       ? this.activityBoxes.toArray().every((box) => box.formGroup.valid)
-      : false; // todo problem here
-    // in case there's cache and forms are valid, it throws expressionChangeAfterChecked,
-    // cause first check happens before pillars build their forms
+      : false;
   }
 
   submit() {

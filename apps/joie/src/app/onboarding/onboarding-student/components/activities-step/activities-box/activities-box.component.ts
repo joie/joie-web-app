@@ -78,8 +78,6 @@ export class ActivitiesBoxComponent implements OnInit {
     } else {
       this.activitiesFormArray.controls[index].patchValue(false);
     }
-    console.log(this.formGroup.valid);
-    console.log(atLeastOneIsCheckedValidator());
   }
 
   private addActivityChips() {
