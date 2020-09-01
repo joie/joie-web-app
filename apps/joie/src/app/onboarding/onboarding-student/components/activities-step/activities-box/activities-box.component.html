@@ -13,6 +13,7 @@
         <label *ngFor="let activity of activitiesFormArray.controls; let i = index">
           <mat-chip #chip="matChip"
                     [selectable]="true"
+                    [selected]="activity.value"
                     (click)="
               chip.selected = !chip.selected;
               handleSelect(i, chip.selected)
