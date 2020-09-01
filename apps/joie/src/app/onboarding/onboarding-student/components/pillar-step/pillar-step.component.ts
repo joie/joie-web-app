@@ -9,7 +9,7 @@ import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChe
   templateUrl: './pillar-step.component.html',
   styleUrls: ['./pillar-step.component.scss'],
 })
-export class PillarStepComponent implements OnInit {
+export class PillarStepComponent {
   formGroup: FormGroup;
   pillarEnum = Pillar;
 
@@ -28,6 +28,10 @@ export class PillarStepComponent implements OnInit {
     this.formGroup = this._formBuilder.group({
       pillars: new FormArray([], atLeastOneIsCheckedValidator()),
     });
+    this.fillFormArray();
+  }
+
+  fillFormArray() {
     let student = history.state.student || null;
     if (student && student.pillars) {
       this.formGroup.controls['pillars'].markAsTouched();
@@ -35,15 +39,6 @@ export class PillarStepComponent implements OnInit {
     } else {
       this.addPillarCheckboxes();
     }
-  }
-  ngOnInit(): void {
-    // let student = history.state.student || null;
-    // if (student && student.pillars) {
-    //   this.formGroup.controls['pillars'].markAsTouched();
-    //   this.addPillarCheckboxesFromCache(student.pillars);
-    // } else {
-    //   this.addPillarCheckboxes();
-    // }
   }
 
   isValid() {

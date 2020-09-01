@@ -10,7 +10,7 @@ import { SessionTypes } from '../../models/student';
   templateUrl: './session-types-step.component.html',
   styleUrls: ['./session-types-step.component.scss'],
 })
-export class SessionTypesStepComponent implements OnInit {
+export class SessionTypesStepComponent {
   formGroup: FormGroup;
   typesEnum = SessionTypes;
 
@@ -32,6 +32,10 @@ export class SessionTypesStepComponent implements OnInit {
         [atLeastOneIsCheckedValidator(), notMoreThanOneIsCheckedValidator()]
       ),
     });
+    this.fillFormArray();
+  }
+
+  fillFormArray() {
     let student = history.state.student || null;
     if (student && student.sessionTypes) {
       this.formGroup.controls['sessionTypes'].markAsTouched();
@@ -40,8 +44,6 @@ export class SessionTypesStepComponent implements OnInit {
       this.addTypeCheckboxes();
     }
   }
-
-  ngOnInit(): void {}
 
   isValid() {
     return this.formGroup.valid;

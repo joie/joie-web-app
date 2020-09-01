@@ -55,6 +55,10 @@ export class ActivitiesBoxComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.fillFormArray();
+  }
+
+  fillFormArray() {
     let student = history.state.student || null;
     if (student && student.activities) {
       this.formGroup.controls['activities'].markAsTouched();
@@ -83,6 +87,7 @@ export class ActivitiesBoxComponent implements OnInit {
   private addActivityChips() {
     this.activityKeys.forEach(() => this.activitiesFormArray.push(new FormControl(false)));
   }
+
   private addActivityChipsFromCache(activities) {
     this.activityKeys.forEach((key) => {
       if (activities.includes(this.activitiesEnum[key])) {

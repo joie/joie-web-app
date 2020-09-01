@@ -53,7 +53,6 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
   }
   selectionChanged(event: any) {
     if (this.selectedStepRef) {
-      console.log(this.selectedStepRef);
       Object.assign(this.student, this.selectedStepRef.submit());
     }
     this.selectedStep = event.selectedIndex;
