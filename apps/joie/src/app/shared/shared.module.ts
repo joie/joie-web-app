@@ -5,11 +5,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PaymentSourceComponent } from './components/payment-source/payment-source.component';
 import { DialogRouterComponent } from './components/dialog-router/dialog-router.component';
 import { FigureImageComponent } from './components/figure-image/figure-image.component';
+import { IconComponent } from './components/icon/icon.component';
 
 import { MaterialModule } from '../core/material.module';
 
 @NgModule({
-  declarations: [PaymentSourceComponent, DialogRouterComponent, FigureImageComponent],
+  declarations: [
+    PaymentSourceComponent,
+    DialogRouterComponent,
+    FigureImageComponent,
+    IconComponent,
+  ],
   imports: [CommonModule, QuicklinkModule, ReactiveFormsModule, MaterialModule],
   exports: [
     CommonModule,
@@ -20,6 +26,7 @@ import { MaterialModule } from '../core/material.module';
     FigureImageComponent,
     // ! remove in favour of individual importing
     MaterialModule,
+    IconComponent,
   ],
 })
 export class SharedModule {}
