@@ -5,8 +5,4 @@ import { Injectable } from '@angular/core';
 })
 export class StudentOnboardingService {
   constructor() {}
-
-  skipOnboarding() {
-    console.log('saving data and skipping onvoarding here');
-  }
 }

@@ -8,19 +8,19 @@
 
 <div class="container container-ultra-condense">
   <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md">
-    <app-activities-box
-      #boxes
-      *ngFor="let pillar of selectedPillars"
-      [pillar]="pillar"
-    ></app-activities-box>
+    <app-activities-box #boxes
+                        *ngFor="let pillar of selectedPillars"
+                        [pillar]="pillar"></app-activities-box>
   </div>
   <div class="layout-grid">
-    <button mat-button matStepperNext>
+    <button mat-button
+            mat-raised-button
+            matStepperNext>
       Continue
     </button>
 
-    <button mat-raised-button (click)="onboardingService.skipOnboarding()">
+    <a routerLink="/home">
       Skip for now.
-    </button>
+    </a>
   </div>
 </div>

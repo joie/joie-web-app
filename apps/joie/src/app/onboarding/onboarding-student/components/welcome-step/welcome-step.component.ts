@@ -1,5 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { StudentOnboardingService } from '../../service/student-onboarding.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-welcome-step',
@@ -8,7 +7,7 @@ import { StudentOnboardingService } from '../../service/student-onboarding.servi
 })
 export class WelcomeStepComponent implements OnInit {
   displayName;
-  constructor(public onboardingService: StudentOnboardingService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.displayName = history.state.displayName;

@@ -8,27 +8,30 @@
 </div>
 
 <div class="container container-ultra-condense">
-  <form
-    [formGroup]="formGroup"
-    class="layout-grid layout-grid-inline-features layout-spacing-inline-sm"
-  >
+  <form [formGroup]="formGroup"
+        class="layout-grid layout-grid-inline-features layout-spacing-inline-sm">
     <mat-card *ngFor="let type of typesFormArray.controls; let i = index">
-      <img src="/assets/images/empowerment.png" width="100" height="100" />
+      <img src="/assets/images/empowerment.png"
+           width="100"
+           height="100" />
 
       <label formArrayName="sessionTypes">
-        <input type="checkbox" [formControlName]="i" />
+        <input type="checkbox"
+               [formControlName]="i" />
         {{ typesEnum[typeKeys[i]] }}
       </label>
     </mat-card>
   </form>
 
   <div class="layout-grid">
-    <button mat-button matStepperNext>
+    <button mat-button
+            mat-raised-button
+            matStepperNext>
       Continue
     </button>
 
-    <button mat-button mat-raised-button (click)="onboardingService.skipOnboarding()">
+    <a routerLink="/home">
       Skip for now.
-    </button>
+    </a>
   </div>
 </div>

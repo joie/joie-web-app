@@ -4,10 +4,11 @@
   programs and reach the goals faster
 </p>
 
-<button mat-button matStepperNext>
+<button mat-button
+        mat-raised-button
+        matStepperNext>
   Let's begin
 </button>
 
-<button mat-button mat-raised-button (click)="onboardingService.skipOnboarding()">
-  Not now, I would like to explore.
-</button>
+
+<a routerLink="/home"> Not now, I would like to explore.</a>
