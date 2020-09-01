@@ -28,8 +28,6 @@ export class PillarStepComponent implements OnInit {
     this.formGroup = this._formBuilder.group({
       pillars: new FormArray([], atLeastOneIsCheckedValidator()),
     });
-  }
-  ngOnInit(): void {
     let student = history.state.student || null;
     if (student && student.pillars) {
       this.formGroup.controls['pillars'].markAsTouched();
@@ -38,9 +36,18 @@ export class PillarStepComponent implements OnInit {
       this.addPillarCheckboxes();
     }
   }
+  ngOnInit(): void {
+    // let student = history.state.student || null;
+    // if (student && student.pillars) {
+    //   this.formGroup.controls['pillars'].markAsTouched();
+    //   this.addPillarCheckboxesFromCache(student.pillars);
+    // } else {
+    //   this.addPillarCheckboxes();
+    // }
+  }
 
   isValid() {
-    return this.submit().pillars.length > 0;
+    return this.formGroup.valid;
   }
 
   submit() {
