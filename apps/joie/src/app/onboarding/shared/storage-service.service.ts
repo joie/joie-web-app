@@ -20,7 +20,7 @@ export class StorageServiceService {
         } else {
           const valueEntries = Object.entries(newValue)[0];
           const subscription = this.storage
-            .set(featureKey, { [valueEntries[0]]: valueEntries[1] })
+            .set(featureKey, { ...prevValue, [valueEntries[0]]: valueEntries[1] })
             .pipe(take(1))
             .subscribe();
         }
