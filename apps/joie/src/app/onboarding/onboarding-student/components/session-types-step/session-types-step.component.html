@@ -26,7 +26,7 @@
   <div class="layout-grid">
     <p>
       And don't worry! You can always update it later. We have good feeling about this,
-      {{ (authService.state$ | async).displayName }}!
+      {{ (authService.state$ | async)?.displayName }}!
     </p>
     <button mat-raised-button
             (click)="finishOnboarding()">
