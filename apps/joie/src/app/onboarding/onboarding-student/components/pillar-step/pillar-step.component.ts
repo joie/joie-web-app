@@ -1,6 +1,6 @@
-import { take, skip } from 'rxjs/operators';
+import { skip } from 'rxjs/operators';
 import { Pillar } from '../../../../sessions/models/session';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
@@ -35,9 +35,9 @@ export class PillarStepComponent {
     this.fillFormArray();
 
     //skipping form initialization
-    this.formGroup.valueChanges.subscribe(() =>
-      this.storage.setItemSubscribe(USER_ONBOARDING, this.submit())
-    );
+    this.formGroup.valueChanges
+      .pipe(skip(this.pillarKeys.length))
+      .subscribe(() => this.storage.setItemSubscribe(USER_ONBOARDING, this.submit()));
   }
 
   fillFormArray() {
