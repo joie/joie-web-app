@@ -1,19 +1,23 @@
 import { AuthService } from './../../../../auth-state/services/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
 import { SessionTypes } from '../../models/student';
+import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
+import { skip } from 'rxjs/operators';
 
+export const SESSION_TYPES = 'sessionTypes';
 @Component({
   selector: 'app-session-types-step',
   templateUrl: './session-types-step.component.html',
   styleUrls: ['./session-types-step.component.scss'],
 })
-export class SessionTypesStepComponent {
+export class SessionTypesStepComponent implements OnDestroy {
   formGroup: FormGroup;
   typesEnum = SessionTypes;
+  formValueChanges$;
 
   get typeKeys() {
     return Object.keys(this.typesEnum);
@@ -23,7 +27,12 @@ export class SessionTypesStepComponent {
     return this.formGroup.controls.sessionTypes as FormArray;
   }
 
-  constructor(private _formBuilder: FormBuilder, public authService: AuthService) {
+  constructor(
+    private _formBuilder: FormBuilder,
+    public authService: AuthService,
+    public onboardingService: StudentOnboardingService,
+    private storage: StorageServiceService
+  ) {
     this.formGroup = this._formBuilder.group({
       sessionTypes: new FormArray(
         [],
@@ -31,16 +40,29 @@ export class SessionTypesStepComponent {
       ),
     });
     this.fillFormArray();
+
+    //subscribe to value chan ges skip form init
+    this.formValueChanges$ = this.formGroup.valueChanges
+      .pipe(skip(this.typeKeys.length))
+      .subscribe(() => this.storage.setItemSubscribe(USER_ONBOARDING, this.submit()));
+  }
+  ngOnDestroy(): void {
+    this.formValueChanges$.unsubscribe();
   }
 
   fillFormArray() {
-    let student = history.state.student || null;
-    if (student && student.sessionTypes) {
-      this.formGroup.controls['sessionTypes'].markAsTouched();
-      this.addTypeCheckboxesFromCache(student.sessionTypes);
-    } else {
-      this.addTypeCheckboxes();
-    }
+    this.storage.getItem(USER_ONBOARDING).subscribe((res) => {
+      let pillarsFromCache = res ? res[SESSION_TYPES] : null;
+      if (pillarsFromCache) {
+        this.formGroup.controls[SESSION_TYPES].markAsTouched();
+      }
+      this.onboardingService.addCheckboxes(
+        this.typeKeys,
+        this.typesFormArray,
+        this.typesEnum,
+        pillarsFromCache
+      );
+    });
   }
 
   isValid() {
@@ -53,19 +75,7 @@ export class SessionTypesStepComponent {
     return { sessionTypes: selectedTypes };
   }
 
-  finishOnboarding() {}
-
-  private addTypeCheckboxes() {
-    this.typeKeys.forEach(() => this.typesFormArray.push(new FormControl(false)));
-  }
-
-  private addTypeCheckboxesFromCache(sessionTypes) {
-    this.typeKeys.forEach((key) => {
-      if (sessionTypes.includes(this.typesEnum[key])) {
-        this.typesFormArray.push(new FormControl(true));
-      } else {
-        this.typesFormArray.push(new FormControl(false));
-      }
-    });
+  finishOnboarding() {
+    //todo implement
   }
 }
