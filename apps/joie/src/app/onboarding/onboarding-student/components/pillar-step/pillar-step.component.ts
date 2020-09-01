@@ -32,9 +32,10 @@ export class PillarStepComponent {
     this.formGroup = this._formBuilder.group({
       pillars: new FormArray([], atLeastOneIsCheckedValidator()),
     });
+    // onboardingService.addCheckboxes(this.pillarKeys, this.pillarFormArray, this.pillarEnum);
     this.fillFormArray();
 
-    //skipping form initialization
+    //subscribe to value chan ges skip form init
     this.formGroup.valueChanges
       .pipe(skip(this.pillarKeys.length))
       .subscribe(() => this.storage.setItemSubscribe(USER_ONBOARDING, this.submit()));
@@ -44,9 +45,21 @@ export class PillarStepComponent {
     this.storage.getItem(USER_ONBOARDING).subscribe((res) => {
       if (res && res[PILLARS]) {
         this.formGroup.controls[PILLARS].markAsTouched();
-        this.addPillarCheckboxesFromCache(res[PILLARS]);
+        // this.addPillarCheckboxesFromCache(res[PILLARS]);
+        this.onboardingService.addCheckboxes(
+          this.pillarKeys,
+          this.pillarFormArray,
+          this.pillarEnum,
+          res[PILLARS]
+        );
       } else {
-        this.addPillarCheckboxes();
+        // this.addPillarCheckboxes();
+        this.onboardingService.addCheckboxes(
+          this.pillarKeys,
+          this.pillarFormArray,
+          this.pillarEnum,
+          null
+        );
       }
     });
   }
@@ -63,7 +76,7 @@ export class PillarStepComponent {
   }
 
   private addPillarCheckboxes() {
-    this.pillarKeys.forEach(() => this.pillarFormArray.push(new FormControl(false)));
+    this.pillarKeys.forEach(() => this.pillarFormArray.push(new FormControl('dick')));
   }
 
   private addPillarCheckboxesFromCache(pillars) {
