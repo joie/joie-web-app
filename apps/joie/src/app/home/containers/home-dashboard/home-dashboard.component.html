@@ -55,9 +55,9 @@
     <div class="container">
       <div class="section-context text-center">
         <h2>What Joie Offers You</h2>
-
-        <!-- TODO Change the url -->
-        <!-- <app-video-player></app-video-player> -->
+        <div class="video-player-container">
+          <app-video-player [entryId]="entryId"></app-video-player>
+        </div>
 
         <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md">
           <mat-card class="mat-elevation-z0" *ngFor="let advantage of homeJoieAdvantages">
