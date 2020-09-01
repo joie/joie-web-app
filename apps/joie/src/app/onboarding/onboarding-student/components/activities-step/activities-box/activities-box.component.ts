@@ -25,10 +25,6 @@ import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIs
 export class ActivitiesBoxComponent implements OnInit {
   @Input() pillar;
   public formGroup: FormGroup;
-  afterViewInit = false;
-  get keys() {
-    return Object.keys(this.pillar);
-  }
 
   get activitiesEnum() {
     switch (this.pillar) {
