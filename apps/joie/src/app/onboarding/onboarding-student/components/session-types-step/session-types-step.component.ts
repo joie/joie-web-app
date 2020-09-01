@@ -32,9 +32,6 @@ export class SessionTypesStepComponent implements OnInit {
         [atLeastOneIsCheckedValidator(), notMoreThanOneIsCheckedValidator()]
       ),
     });
-  }
-
-  ngOnInit(): void {
     let student = history.state.student || null;
     if (student && student.sessionTypes) {
       this.formGroup.controls['sessionTypes'].markAsTouched();
@@ -43,6 +40,8 @@ export class SessionTypesStepComponent implements OnInit {
       this.addTypeCheckboxes();
     }
   }
+
+  ngOnInit(): void {}
 
   isValid() {
     return this.formGroup.valid;
