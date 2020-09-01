@@ -1,9 +1,12 @@
+import { take, skip } from 'rxjs/operators';
 import { Pillar } from '../../../../sessions/models/session';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
+import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
 
+export const PILLARS = 'pillars';
 @Component({
   selector: 'app-pillar-step',
   templateUrl: './pillar-step.component.html',
@@ -23,22 +26,29 @@ export class PillarStepComponent {
 
   constructor(
     private _formBuilder: FormBuilder,
-    public onboardingService: StudentOnboardingService
+    public onboardingService: StudentOnboardingService,
+    private storage: StorageServiceService
   ) {
     this.formGroup = this._formBuilder.group({
       pillars: new FormArray([], atLeastOneIsCheckedValidator()),
     });
     this.fillFormArray();
+
+    //skipping form initialization
+    this.formGroup.valueChanges.subscribe(() =>
+      this.storage.setItemSubscribe(USER_ONBOARDING, this.submit())
+    );
   }
 
   fillFormArray() {
-    let student = history.state.student || null;
-    if (student && student.pillars) {
-      this.formGroup.controls['pillars'].markAsTouched();
-      this.addPillarCheckboxesFromCache(student.pillars);
-    } else {
-      this.addPillarCheckboxes();
-    }
+    this.storage.getItem(USER_ONBOARDING).subscribe((res) => {
+      if (res && res[PILLARS]) {
+        this.formGroup.controls[PILLARS].markAsTouched();
+        this.addPillarCheckboxesFromCache(res[PILLARS]);
+      } else {
+        this.addPillarCheckboxes();
+      }
+    });
   }
 
   isValid() {
