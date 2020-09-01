@@ -29,10 +29,6 @@ const routes: Routes = [
         path: 'session-types',
         component: SessionTypesStepComponent,
       },
-      {
-        path: 'summary',
-        component: SummaryStepComponent,
-      },
     ],
   },
 ];

@@ -1,3 +1,4 @@
+import { AuthService } from './../../../../auth-state/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
@@ -22,10 +23,7 @@ export class SessionTypesStepComponent {
     return this.formGroup.controls.sessionTypes as FormArray;
   }
 
-  constructor(
-    private _formBuilder: FormBuilder,
-    public onboardingService: StudentOnboardingService
-  ) {
+  constructor(private _formBuilder: FormBuilder, public authService: AuthService) {
     this.formGroup = this._formBuilder.group({
       sessionTypes: new FormArray(
         [],
@@ -54,6 +52,8 @@ export class SessionTypesStepComponent {
       .filter((v) => v !== null);
     return { sessionTypes: selectedTypes };
   }
+
+  finishOnboarding() {}
 
   private addTypeCheckboxes() {
     this.typeKeys.forEach(() => this.typesFormArray.push(new FormControl(false)));
