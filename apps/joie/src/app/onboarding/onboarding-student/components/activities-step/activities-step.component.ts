@@ -1,7 +1,8 @@
-import { length } from 'ramda';
+import { PILLARS } from './../pillar-step/pillar-step.component';
 import { Component, ViewChildren, QueryList, ChangeDetectionStrategy } from '@angular/core';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { ActivitiesBoxComponent } from './activities-box/activities-box.component';
+import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
 
 @Component({
   selector: 'app-activities-step',
@@ -14,8 +15,16 @@ export class ActivitiesStepComponent {
   selectedPillars = [];
   afterViewInit = false;
 
-  constructor(public onboardingService: StudentOnboardingService) {
+  constructor(
+    public onboardingService: StudentOnboardingService,
+    private storage: StorageServiceService
+  ) {
+    // this.selectedPillars = ['JoieMovement', 'JoeSpirit'];
     this.selectedPillars = history.state.student.pillars;
+    // this.storage.getItem(USER_ONBOARDING).subscribe((featureCache) => {
+    //   this.selectedPillars = featureCache[PILLARS];
+    //   console.log(this.selectedPillars);
+    // });
   }
 
   isValid() {

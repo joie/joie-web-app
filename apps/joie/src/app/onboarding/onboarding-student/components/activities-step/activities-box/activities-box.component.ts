@@ -6,7 +6,7 @@ import {
   JoieProfessional,
   JoieSpirit,
 } from '../../../../../sessions/models/session';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -16,15 +16,20 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
+import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
+import { skip } from 'rxjs/operators';
+import { StudentOnboardingService } from '../../../service/student-onboarding.service';
 
+export const ACTIVITIES = 'activities';
 @Component({
   selector: 'app-activities-box',
   templateUrl: './activities-box.component.html',
   styleUrls: ['./activities-box.component.scss'],
 })
-export class ActivitiesBoxComponent implements OnInit {
+export class ActivitiesBoxComponent implements OnInit, OnDestroy {
   @Input() pillar;
   public formGroup: FormGroup;
+  formValueChanges$;
 
   get activitiesEnum() {
     switch (this.pillar) {
@@ -48,25 +53,41 @@ export class ActivitiesBoxComponent implements OnInit {
     return this.formGroup.controls.activities as FormArray;
   }
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    public onboardingService: StudentOnboardingService,
+    private storage: StorageServiceService
+  ) {
     this.formGroup = this.formBuilder.group({
       activities: new FormArray([], [atLeastOneIsCheckedValidator()]),
     });
   }
+  ngOnDestroy(): void {
+    this.formValueChanges$.unsubscribe();
+  }
 
   ngOnInit(): void {
+    this.formValueChanges$ = this.formGroup.valueChanges
+      .pipe(skip(this.activityKeys.length))
+      .subscribe(() =>
+        this.storage.setItemSubscribe(USER_ONBOARDING, { activities: this.submit() })
+      );
     this.fillFormArray();
   }
 
   fillFormArray() {
-    let student = history.state.student || null;
-    if (student && student.activities) {
-      this.formGroup.controls['activities'].markAsTouched();
-
-      this.addActivityChipsFromCache(student.activities);
-    } else {
-      this.addActivityChips();
-    }
+    this.storage.getItem(USER_ONBOARDING).subscribe((res) => {
+      let activitiesFromCache = res ? res[ACTIVITIES] : null;
+      if (activitiesFromCache) {
+        this.formGroup.controls[ACTIVITIES].markAsTouched();
+      }
+      this.onboardingService.addCheckboxes(
+        this.activityKeys,
+        this.activitiesFormArray,
+        this.activitiesEnum,
+        activitiesFromCache
+      );
+    });
   }
 
   submit() {
@@ -82,19 +103,5 @@ export class ActivitiesBoxComponent implements OnInit {
     } else {
       this.activitiesFormArray.controls[index].patchValue(false);
     }
-  }
-
-  private addActivityChips() {
-    this.activityKeys.forEach(() => this.activitiesFormArray.push(new FormControl(false)));
-  }
-
-  private addActivityChipsFromCache(activities) {
-    this.activityKeys.forEach((key) => {
-      if (activities.includes(this.activitiesEnum[key])) {
-        this.activitiesFormArray.push(new FormControl(true));
-      } else {
-        this.activitiesFormArray.push(new FormControl(false));
-      }
-    });
   }
 }
