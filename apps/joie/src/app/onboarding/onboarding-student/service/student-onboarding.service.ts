@@ -13,6 +13,5 @@ export class StudentOnboardingService {
     } else {
       keys.forEach(() => formArray.push(new FormControl(false)));
     }
-    console.log(formArray);
   }
 }

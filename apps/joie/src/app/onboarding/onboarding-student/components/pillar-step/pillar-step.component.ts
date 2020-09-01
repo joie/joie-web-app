@@ -46,22 +46,16 @@ export class PillarStepComponent implements OnDestroy {
 
   fillFormArray() {
     this.storage.getItem(USER_ONBOARDING).subscribe((res) => {
-      if (res && res[PILLARS]) {
+      let pillarsFromCache = res ? res[PILLARS] : null;
+      if (pillarsFromCache) {
         this.formGroup.controls[PILLARS].markAsTouched();
-        this.onboardingService.addCheckboxes(
-          this.pillarKeys,
-          this.pillarFormArray,
-          this.pillarEnum,
-          res[PILLARS]
-        );
-      } else {
-        this.onboardingService.addCheckboxes(
-          this.pillarKeys,
-          this.pillarFormArray,
-          this.pillarEnum,
-          null
-        );
       }
+      this.onboardingService.addCheckboxes(
+        this.pillarKeys,
+        this.pillarFormArray,
+        this.pillarEnum,
+        pillarsFromCache
+      );
     });
   }
 
