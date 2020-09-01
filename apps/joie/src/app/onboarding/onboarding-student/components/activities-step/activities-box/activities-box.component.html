@@ -1,25 +1,22 @@
 <mat-card>
-  <img
-    [src]="'/assets/images/' + (pillar | lowercase | slice: 4) + '.png'"
-    width="25"
-    height="25"
-  />
+  <img [src]="'/assets/images/' + (pillar | lowercase | slice: 4) + '.png'"
+       width="25"
+       height="25" />
 
   <h3>
     Joie<span class="text-primary">{{ pillar | slice: 4 }}</span>
   </h3>
   <form [formGroup]="formGroup">
     <mat-form-field>
-      <mat-chip-list formArrayName="activities" multiple>
+      <mat-chip-list formArrayName="activities"
+                     multiple>
         <label *ngFor="let activity of activitiesFormArray.controls; let i = index">
-          <mat-chip
-            #chip="matChip"
-            [selectable]="true"
-            (click)="
+          <mat-chip #chip="matChip"
+                    [selectable]="true"
+                    (click)="
               chip.selected = !chip.selected;
-              handleSelect(i, activitiesEnum[activityKeys[i]], chip.selected)
-            "
-          >
+              handleSelect(i, chip.selected)
+            ">
             {{ activitiesEnum[activityKeys[i]] }}
           </mat-chip>
         </label>
