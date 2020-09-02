@@ -17,7 +17,7 @@
              name="first-name"
              formControlName="firstNameCtrl"
              required />
-      <mat-error *ngIf="firstName.invalid">{{showErrorMessage(firstName)}}</mat-error>
+      <mat-error *ngIf="firstName.invalid">{{onboardingService.showErrorMessage(firstName)}}</mat-error>
 
     </mat-form-field>
 
@@ -29,7 +29,7 @@
              name="family-name"
              formControlName="lastNameCtrl"
              required />
-      <mat-error *ngIf="lastName.invalid">{{showErrorMessage(lastName)}}</mat-error>
+      <mat-error *ngIf="lastName.invalid">{{onboardingService.showErrorMessage(lastName)}}</mat-error>
 
     </mat-form-field>
 
@@ -41,7 +41,7 @@
              name="email"
              formControlName="emailCtrl"
              required />
-      <mat-error *ngIf="email.invalid">{{showErrorMessage(email)}}</mat-error>
+      <mat-error *ngIf="email.invalid">{{onboardingService.showErrorMessage(email)}}</mat-error>
 
     </mat-form-field>
 
@@ -54,7 +54,7 @@
              placeholder="phone number"
              formControlName="phoneNumberCtrl"
              required />
-      <mat-error *ngIf="phone.invalid">{{showErrorMessage(phone)}}</mat-error>
+      <mat-error *ngIf="phone.invalid">{{onboardingService.showErrorMessage(phone)}}</mat-error>
 
     </mat-form-field>
 

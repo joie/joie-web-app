@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { OnboardingService } from '../../../shared/onboarding.service';
 
 export const FIRST_NAME = 'firstNameCtrl';
 export const LAST_NAME = 'lastNameCtrl';
@@ -28,7 +29,7 @@ export class PersonalInfoStepComponent implements OnInit {
   get phone() {
     return this.formGroup.get(PHONE);
   }
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder, public onboardingService: OnboardingService) {
     this.formGroup = this._formBuilder.group({
       firstNameCtrl: [
         '',
@@ -54,27 +55,6 @@ export class PersonalInfoStepComponent implements OnInit {
     let teacher = history.state.teacher || null;
     if (teacher && 'firstNameCtrl' in teacher) {
       this.initFormWithCachedData(teacher);
-    }
-  }
-
-  showErrorMessage(formControl) {
-    let errors = formControl.errors;
-
-    let errorKeys = Object.keys(errors);
-    switch (errorKeys[0]) {
-      case 'required':
-        return 'required';
-      case 'email':
-        return 'Email is not valid';
-      case 'minlength':
-        return `Should be longer than ${errors[errorKeys[0]].requiredLength} symbols`;
-      case 'maxlength':
-        return `Should be less than ${errors[errorKeys[0]].requiredLength} symbols`;
-
-      case 'pattern':
-        return 'Field is not valid';
-      default:
-        return 'default  err msg';
     }
   }
 
