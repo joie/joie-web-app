@@ -1,7 +1,9 @@
+import { OnboardingService } from './../../../shared/onboarding.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TeacherOnboardingApiService } from '../../services/teacher-onboarding-api.service';
 
+export const ADDED_VALUE = 'addedValDescriptionCtrl';
 @Component({
   selector: 'app-why-joie-step',
   templateUrl: './why-joie-step.component.html',
@@ -11,15 +13,17 @@ export class WhyJoieStepComponent implements OnInit {
   teachersName;
   formGroup: FormGroup;
 
+  get addedValue() {
+    return this.formGroup.get(ADDED_VALUE);
+  }
+
   constructor(
     private _formBuilder: FormBuilder,
+    public onboardingService: OnboardingService,
     private apiService: TeacherOnboardingApiService
   ) {
     this.formGroup = this._formBuilder.group({
-      addedValDescriptionCtrl: [
-        '',
-        [Validators.required, Validators.minLength(100)],
-      ],
+      addedValDescriptionCtrl: ['', [Validators.required, Validators.minLength(50)]],
     });
   }
 
@@ -40,8 +44,6 @@ export class WhyJoieStepComponent implements OnInit {
   }
 
   private initFormWithCachedData(teacher) {
-    this.formGroup.controls['addedValDescriptionCtrl'].setValue(
-      teacher.addedValDescriptionCtrl
-    );
+    this.formGroup.controls['addedValDescriptionCtrl'].setValue(teacher.addedValDescriptionCtrl);
   }
 }

@@ -16,6 +16,9 @@
       <textarea matInput
                 formControlName="addedValDescriptionCtrl"
                 required></textarea>
+      <mat-error *ngIf="addedValue.invalid">{{onboardingService.showErrorMessage(addedValue)}}
+      </mat-error>
+
     </mat-form-field>
   </form>
 
