@@ -16,9 +16,13 @@ export class OnboardingService {
       case 'email':
         return 'Email is not valid';
       case 'minlength':
-        return `Should be longer than ${errors[errorKeys[0]].requiredLength} symbols`;
+        return `Should be longer than ${
+          errors[errorKeys[0]].requiredLength
+        } symbols. Actual length ${errors[errorKeys[0]].actualLength}`;
       case 'maxlength':
-        return `Should be less than ${errors[errorKeys[0]].requiredLength} symbols`;
+        return `Should be less than ${errors[errorKeys[0]].requiredLength} symbols. Actual length ${
+          errors[errorKeys[0]].actualLength
+        }`;
 
       case 'pattern':
         return 'Field is not valid';
