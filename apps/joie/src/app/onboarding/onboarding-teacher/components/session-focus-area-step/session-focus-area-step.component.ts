@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormArray,
-  FormControl,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
+// todo add validation error messages after refactoring the checkboxes part
 
 @Component({
   selector: 'app-session-focus-area-step',
@@ -68,9 +63,7 @@ export class SessionFocusAreaStepComponent {
   }
 
   private initFormWithCachedData(teacher) {
-    this.formGroup.controls['sessionAreaCtrl'].setValue(
-      teacher.sessionAreaCtrl
-    );
+    this.formGroup.controls['sessionAreaCtrl'].setValue(teacher.sessionAreaCtrl);
     this.addCheckboxesFromCache(teacher.focusGroupsCtrl);
   }
 }

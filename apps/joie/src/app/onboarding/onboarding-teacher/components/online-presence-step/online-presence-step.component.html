@@ -1,33 +1,39 @@
 <div class="container container-condense">
   <h3>Your market</h3>
   <p>
-    What's your niche, the area you focus on in your sessions?
+    What type of sessions are you interested in teaching?
+    <br>
+    <small>(You can pick as many as you like)</small>
   </p>
 </div>
 
 <div class="container container-ultra-condense">
   <form [formGroup]="formGroup">
-    <div
-      class="layout-grid layout-grid-inline-features layout-spacing-inline-sm layout-spacing-block-md"
-    >
-      <label
-        formArrayName="sessionTypesCtrl"
-        class="grid-item"
-        *ngFor="let sessionType of sessionTypesFormArray.value; let i = index"
-      >
-        <input
-          type="checkbox"
-          (change)="handleCheck(entry(sessionType)[0], entry(sessionType)[1], i)"
-          [formControlName]="i"
-        />{{ entry(sessionType)[0] }}
+    <div class="layout-grid layout-grid-inline-features layout-spacing-inline-sm layout-spacing-block-md">
+      <label formArrayName="sessionTypesCtrl"
+             class="grid-item"
+             *ngFor="let sessionType of sessionTypesFormArray.value; let i = index">
+        <input type="checkbox"
+               (change)="handleCheck(entry(sessionType)[0], entry(sessionType)[1], i)"
+               [formControlName]="i" />{{ entry(sessionType)[0] }}
       </label>
     </div>
 
+    <p>
+      Where can we learn more about your teaching style?
+      <br>
+      <small>Share a link to a website, social media profile, or video channel to help us learn about your teaching
+        style.
+      </small>
+    </p>
     <div class="layout-grid">
       <mat-form-field appearance="outline">
-        <textarea matInput formControlName="teachingPortfolioUrlCtrl" required></textarea>
+        <textarea matInput
+                  formControlName="teachingPortfolioUrlCtrl"
+                  required></textarea>
       </mat-form-field>
-      <button mat-button matStepperNext>
+      <button mat-button
+              matStepperNext>
         Continue
       </button>
     </div>
