@@ -12,6 +12,7 @@ export const ADDED_VALUE = 'addedValDescriptionCtrl';
 export class WhyJoieStepComponent implements OnInit {
   teachersName;
   formGroup: FormGroup;
+  afterSubmit = false;
 
   get addedValue() {
     return this.formGroup.get(ADDED_VALUE);
@@ -28,11 +29,10 @@ export class WhyJoieStepComponent implements OnInit {
   }
 
   submitFormsData(): void {
-    if (this.formGroup) {
-      this.apiService.submitTeacherAccountData(
-        Object.assign(history.state.teacher, this.formGroup.value)
-      );
-    }
+    this.afterSubmit = true;
+    this.apiService.submitTeacherAccountData(
+      Object.assign(history.state.teacher, this.formGroup.value)
+    );
   }
 
   ngOnInit() {
