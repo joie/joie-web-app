@@ -27,6 +27,8 @@
   </form>
 
   <button mat-button
+          mat-flat-button
+          [disabled]="formGroup.invalid"
           matStepperNext>
     Continue
   </button>

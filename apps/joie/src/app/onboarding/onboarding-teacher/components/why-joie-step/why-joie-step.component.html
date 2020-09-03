@@ -20,7 +20,8 @@
         </mat-form-field>
 
         <button mat-button
-                mat-raised-button>
+                mat-flat-button
+                [disabled]="formGroup.invalid">
           Submit your application
         </button>
       </form>
