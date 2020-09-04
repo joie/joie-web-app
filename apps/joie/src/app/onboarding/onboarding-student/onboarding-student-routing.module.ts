@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { StudentOnboardingStepperComponent } from './containers/student-onboarding-stepper/student-onboarding-stepper.component';
 import { SessionTypesStepComponent } from './components/session-types-step/session-types-step.component';
 import { WelcomeStepComponent } from './components/welcome-step/welcome-step.component';
-import { SummaryStepComponent } from './components/summary-step/summary-step.component';
 import { PillarStepComponent } from './components/pillar-step/pillar-step.component';
 import { ActivitiesStepComponent } from './components/activities-step/activities-step.component';
 
