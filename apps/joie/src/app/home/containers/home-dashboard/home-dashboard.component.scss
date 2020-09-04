@@ -1,21 +1,18 @@
-.splash {
+@use "../../../../styles/styles-critical/layouts";
+
+.hero {
   background-image: url('/assets/images/splash.png');
-  background-repeat: no-repeat;
-  min-height: 746px;
-  width: 100%;
-  .splash-container {
-    position: absolute;
-    top: 25%;
+  background-size: cover;
+  background-position: left;
+  padding: 120px 0;
+  @media (min-width: layouts.$layout-breakpoint-xs) {
+    &-context {
+      max-inline-size: layouts.$layout-breakpoint-xs;
+      max-width: layouts.$layout-breakpoint-xs;
+    }
   }
 }
 
-.pillar {
-  min-width: 250px;
-  max-width: 250px;
-}
-
-@media screen and (max-width: 600px) {
-  .splash-container {
-    position: relative !important;
-  }
+.video-player-container{
+  width: 75%;
 }
