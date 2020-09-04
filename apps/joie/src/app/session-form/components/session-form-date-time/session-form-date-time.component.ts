@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/lib/dyna-form-base.component';
 import { FormControl } from '@angular/forms';
+import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/lib/dyna-form-base.component';
 
 @Component({
   selector: 'app-session-form-date-time',
@@ -12,7 +12,7 @@ export class SessionFormDateTimeComponent extends DynaFormBaseComponent {
   constructor() {
     super();
 
-    this.controls = [[this.WHEN, new FormControl(null)]];
+    this.addControls([[this.WHEN, new FormControl(null)]]);
   }
   setDateTime(value: Date) {
     this.getFormControl(this.WHEN).patchValue(value);
