@@ -15,10 +15,10 @@ export class SessionFormMarketingComponent extends DynaFormBaseComponent {
 
   constructor() {
     super();
-    this.controls = [
+    this.addControls([
       ['promo', new FormControl(null)],
       ['relatedSessions', this.relatedSessionsArray],
-    ];
+    ]);
   }
 
   sessionsArrayValues() {
