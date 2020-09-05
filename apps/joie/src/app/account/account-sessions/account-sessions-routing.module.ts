@@ -11,7 +11,7 @@ const routes: Routes = [
     component: DialogRouterComponent,
     data: {
       dialogComponent: SessionFormComponent,
-      matDialogConfig: { width: '100%', maxWidth: 900 },
+      matDialogConfig: { panelClass: 'dialog-as-drawer', width: '100%', maxWidth: 900 },
     },
     outlet: 'popup',
   },
