@@ -16,15 +16,12 @@ export class SessionFormMetadataComponent extends DynaFormBaseComponent {
   constructor() {
     super();
 
-    this.addControls(
-      [
-        ['format', new FormControl(null, Validators.required)],
-        ['type', new FormControl(null, Validators.required)],
-        ['title', new FormControl(null, Validators.required)],
-        ['description', new FormControl(null)],
-      ],
-      { preserveOnDestroy: true }
-    );
+    this.addControls([
+      ['format', new FormControl(null, Validators.required)],
+      ['type', new FormControl(null, Validators.required)],
+      ['title', new FormControl(null, Validators.required)],
+      ['description', new FormControl(null)],
+    ]);
   }
 
   get sessionTypeKeys(): Array<string> {
