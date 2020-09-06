@@ -16,8 +16,8 @@ export class StudentOnboardingFormService {
     this.form = this.fb.group({});
     this.form.valueChanges.subscribe((value) => {
       console.log(value);
-      // this.storageService.getItem(USER_ONBOARDING)
-      this.storageService.setItemSubscribe(USER_ONBOARDING + '-' + Object.keys(value)[0], value);
+      let key = USER_ONBOARDING + '-' + Object.keys(value)[0];
+      this.storageService.setItemSubscribe(USER_ONBOARDING + '-' + key, value);
     });
   }
   ngOnDestroy() {

@@ -63,7 +63,7 @@ export class PillarListComponent implements OnInit {
 
   get selectedPillars() {
     return this.form.value.pillars
-      .map((checked, i) => (checked ? this.pillarEnum[this.pillarKeys[i]] : null))
+      .map((checked, i) => (checked ? this.pillarKeys[i] : null))
       .filter((v) => v !== null);
   }
 
