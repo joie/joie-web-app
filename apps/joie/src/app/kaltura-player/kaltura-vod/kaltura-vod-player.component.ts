@@ -4,9 +4,9 @@ import { environment } from '../../../environments/environment';
 declare var kWidget;
 
 @Component({
-  selector: 'app-vod-player',
+  selector: 'app-video-player',
   templateUrl: './kaltura-vod-player.component.html',
-  styleUrls: ['./kaltura-vod-player.component.scss']
+  styleUrls: ['./kaltura-vod-player.component.scss'],
 })
 export class KalturaVodPlayerComponent implements OnInit, OnDestroy {
   static readonly targetId = environment.kalturaConfig.targetId;
@@ -28,13 +28,10 @@ export class KalturaVodPlayerComponent implements OnInit, OnDestroy {
       flashvars: {},
       entry_id: this.entryId,
     };
-    this.kWidget
-      .embed(this.kalturaConfiguration);
+    this.kWidget.embed(this.kalturaConfiguration);
   }
 
   ngOnDestroy() {
-    this.kWidget
-      .destroy(KalturaVodPlayerComponent.targetId);
+    this.kWidget.destroy(KalturaVodPlayerComponent.targetId);
   }
-
 }

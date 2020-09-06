@@ -12,17 +12,16 @@ import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/l
 export class SessionFormMetadataComponent extends DynaFormBaseComponent {
   sessionTypeEnum = SessionType;
   sessionFormatEnum = SessionFormat;
-  typeSelectedValue: string;
 
   constructor() {
     super();
 
-    this.controls = [
+    this.addControls([
       ['format', new FormControl(null, Validators.required)],
       ['type', new FormControl(null, Validators.required)],
       ['title', new FormControl(null, Validators.required)],
       ['description', new FormControl(null)],
-    ];
+    ]);
   }
 
   get sessionTypeKeys(): Array<string> {

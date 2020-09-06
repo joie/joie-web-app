@@ -1,20 +1,35 @@
 @use 'sass:map';
 
+$layout-breakpoint-xs: 700px;
+$layout-breakpoint-sm: 960px;
+$layout-breakpoint-lg: 1365px;
+
+body {
+  padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px)
+    env(safe-area-inset-bottom, 20px) env(safe-area-inset-left, 20px);
+}
+
 .container {
-  --max-inline-size: 1365px;
+  // --max-inline-size: #{$max-inline-size};
+  --container-inline-size: 100%;
+  --max-inline-size: calc(var(--container-inline-size) - var(--joie-gutter) * 2);
+
   width: 100%;
   inline-size: 100%;
   max-width: var(--max-inline-size);
   max-inline-size: var(--max-inline-size);
   margin: 0 auto;
-  &#{&}-fluid {
-    --max-inline-size: calc(100% - var(--joie-gutter) * 2);
-  }
-  &#{&}-condense {
-    --max-inline-size: 990px;
-  }
-  &#{&}-ultra-condense {
-    --max-inline-size: 700px;
+
+  @media (min-width: $layout-breakpoint-lg) {
+    &:not(&-fluid) {
+      --container-inline-size: calc(#{$layout-breakpoint-lg});
+    }
+    &#{&}-condense {
+      --container-inline-size: #{$layout-breakpoint-sm};
+    }
+    &#{&}-ultra-condense {
+      --container-inline-size: #{$layout-breakpoint-xs};
+    }
   }
 }
 
@@ -82,6 +97,8 @@ $size: (
 
 main {
   > section {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px;
     --block-gutter: 60px;
     padding: var(--block-gutter) 0;
     &.section-block-start-offset {
@@ -94,5 +111,13 @@ main {
       display: grid;
       grid-row-gap: 35px;
     }
+  }
+}
+
+.dialog-as-drawer {
+  align-self: stretch;
+  .mat-dialog-content {
+    flex-grow: 1;
+    max-height: initial;
   }
 }

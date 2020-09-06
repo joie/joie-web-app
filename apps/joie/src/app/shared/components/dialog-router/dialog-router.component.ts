@@ -27,9 +27,9 @@ export class DialogRouterComponent implements OnInit {
     const dialogRef = this.dialog.open(this.route.snapshot.data.dialogComponent, {
       ...this.route.snapshot.data.matDialogConfig,
       // height: '99vh',
-      // position: {
-      //   bottom: '0px',
-      // },
+      position: {
+        right: '0px',
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

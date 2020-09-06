@@ -10,7 +10,7 @@
 <main>
   <section>
     <div class="container">
-      <div class="section-context">
+      <div class="section-context text-center">
         <h1 class="mat-display-1">Get in touch</h1>
 
         <h2>
@@ -21,10 +21,7 @@
           class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
         >
           <mat-card class="text-center" *ngFor="let option of contactOptions">
-            <img
-              [src]="option?.imgUrl"
-              alt="icon figure for {{ option.title }}"
-            />
+            <img [src]="option?.imgUrl" alt="icon figure for {{ option.title }}" />
             <h4>{{ option.title }}</h4>
             <p>{{ option.description }}</p>
           </mat-card>
@@ -50,8 +47,7 @@
     <div class="container">
       <div class="section-context">
         <h2>
-          This is where all the fun happens. Join and bring a friend. It is
-          hilarious!
+          This is where all the fun happens. Join and bring a friend. It is hilarious!
         </h2>
       </div>
     </div>

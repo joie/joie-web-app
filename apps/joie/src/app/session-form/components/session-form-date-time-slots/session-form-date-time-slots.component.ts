@@ -20,7 +20,7 @@ export class SessionFormDateTimeSlotsComponent extends DynaFormBaseComponent {
 
   constructor() {
     super();
-    this.controls = [[this.DATE_TIME_SLOTS, this.timeSlotsFormArray]];
+    this.addControls([[this.DATE_TIME_SLOTS, this.timeSlotsFormArray]]);
   }
 
   get timeSlotValues() {
