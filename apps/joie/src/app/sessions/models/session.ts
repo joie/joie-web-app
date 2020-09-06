@@ -14,11 +14,11 @@ export interface SessionInfo {
   pillar: Pillar;
   description: string;
   author?: Author;
-  recommendationPercentage?: number;
   eventId: number;
   resourceId: number;
+  recommendationPercentage: number;
+  thumbnailImage: string;
 }
-
 
 export interface SessionDetails {
   eventId: number;

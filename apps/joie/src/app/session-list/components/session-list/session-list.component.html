@@ -1,40 +1,19 @@
 <ng-container *ngIf="sessions$ | async as sessions">
   <mat-card class="card" *ngFor="let session of sessions">
-    <img mat-card-image src="https://picsum.photos/200/200" alt="Photo of a Shiba Inu" />
+    <img mat-card-image src="https://picsum.photos/200/200" />
+
     <mat-card-title>
-      <a routerLink="/sessions/first-session">{{ session.title }}</a>
+      <a routerLink="/sessions/{{ session.id }}">{{ session.title }}</a>
     </mat-card-title>
-    <mat-card-subtitle>{{ session.date }}</mat-card-subtitle>
+
+    <mat-card-subtitle>
+      <h5>{{ session.author?.name }}</h5>
+    </mat-card-subtitle>
+
     <mat-card-content>
-      <a
-        [routerLink]="[
-          {
-            outlets: {
-              popup: ['enroll', session.id]
-            }
-          }
-        ]"
-        ><button mat-button>Enroll in session</button></a
-      >
-      <a
-        [routerLink]="[
-          {
-            outlets: {
-              popup: ['add-payment-source']
-            }
-          }
-        ]"
-        ><button mat-button>pay</button></a
-      >
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-        Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
-        originally bred for hunting.
-      </p>
+      <p>{{ session.description }}</p>
+
+      <h5>Price : {{ session?.price?.display | currency: session?.price?.currency }}</h5>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
   </mat-card>
 </ng-container>
