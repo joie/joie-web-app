@@ -41,22 +41,33 @@ export class PillarStepComponent implements AfterViewInit, OnDestroy {
     //   this.formValueChanges$ = this.formGroup.valueChanges
     //     .pipe(skip(this.pillarKeys.length))
     //     .subscribe(() => this.storage.setItemSubscribe(USER_ONBOARDING, this.submit()));
+    this.getCachedValues();
   }
   ngAfterViewInit(): void {
     this.pillarList.form.valueChanges.subscribe(() => {
       console.log(this.pillarList.selectedPillars);
+
+      this.setControls(this.pillarList.selectedPillars);
       // this.onboardingFormService.removeControl(PILLARS);
 
-      let selectedPillarsObj = {};
-      this.pillarList.selectedPillars.forEach((pillar) =>
-        Object.assign(selectedPillarsObj, { [pillar]: new FormArray([]) })
-      );
-      this.onboardingFormService.addControl([PILLARS, new FormGroup(selectedPillarsObj)]);
+      // let selectedPillarsObj = {};
+      // this.pillarList.selectedPillars.forEach((pillar) =>
+      //   Object.assign(selectedPillarsObj, { [pillar]: new FormArray([]) })
+      // );
+      // this.onboardingFormService.setControl([PILLARS, new FormGroup(selectedPillarsObj)]);
 
       // this.onboardingFormService.
       // let selectedPillarsFormGroup = new FormGroup(selectedPillarsObj);
       // this.onboardingFormService.addControls([[PILLARS, selectedPillarsFormGroup]]);
     });
+  }
+
+  setControls(controls) {
+    let selectedPillarsObj = {};
+    controls.forEach((pillar) =>
+      Object.assign(selectedPillarsObj, { [pillar]: new FormArray([]) })
+    );
+    this.onboardingFormService.setControl([PILLARS, new FormGroup(selectedPillarsObj)]);
   }
 
   ngOnDestroy(): void {
@@ -65,6 +76,17 @@ export class PillarStepComponent implements AfterViewInit, OnDestroy {
 
   log() {
     console.log(this.onboardingFormService.form);
+  }
+
+  getCachedValues() {
+    this.storage.getItem(USER_ONBOARDING + '-' + PILLARS).subscribe((res) => {
+      console.log(res);
+      let pillarsFromCache = res ? res[PILLARS] : null;
+      if (pillarsFromCache) {
+        console.log('12', pillarsFromCache);
+        this.setControls([PILLARS, pillarsFromCache]);
+      }
+    });
   }
 
   // fillFormArray() {
