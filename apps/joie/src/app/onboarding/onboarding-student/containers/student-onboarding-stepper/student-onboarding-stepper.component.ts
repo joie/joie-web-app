@@ -22,7 +22,7 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
   }
 
   ngAfterViewInit() {
-    let step = this.steps[0];
+    const step = this.steps[0];
     this.router.navigate([step], {
       relativeTo: this.route,
     });
