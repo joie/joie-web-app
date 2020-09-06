@@ -10,22 +10,25 @@ export const USER_ONBOARDING = 'user-onboarding';
 export class StorageServiceService {
   constructor(private storage: StorageMap) {}
 
-  setItemSubscribe(featureKey, newValue): void {
-    this.storage
-      .get(featureKey)
-      .pipe(take(1))
-      .subscribe((prevValue: object) => {
-        if (!prevValue) {
-          const subscription = this.storage.set(featureKey, newValue).pipe(take(1)).subscribe();
-        } else {
-          const valueEntries = Object.entries(newValue)[0];
-          const subscription = this.storage
-            .set(featureKey, { ...prevValue, [valueEntries[0]]: valueEntries[1] })
-            .pipe(take(1))
-            .subscribe();
-        }
-      });
+  setItemSubscribe(key, newVal) {
+    this.storage.set(key, newVal).subscribe();
   }
+  // setItemSubscribe(key, newValue): void {
+  //   this.storage
+  //     .get(key)
+  //     .pipe(take(1))
+  //     .subscribe((prevValue: object) => {
+  //       if (!prevValue) {
+  //         const subscription = this.storage.set(key, newValue).pipe(take(1)).subscribe();
+  //       } else {
+  //         const valueEntries = Object.entries(newValue)[0];
+  //         const subscription = this.storage
+  //           .set(key, { ...prevValue, [valueEntries[0]]: valueEntries[1] })
+  //           .pipe(take(1))
+  //           .subscribe();
+  //       }
+  //     });
+  // }
   getItem(featureKey): Observable<any> {
     return this.storage.get(featureKey);
   }

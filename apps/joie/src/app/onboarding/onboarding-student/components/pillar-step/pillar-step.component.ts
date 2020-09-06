@@ -28,9 +28,9 @@ export class PillarStepComponent implements AfterViewInit, OnDestroy {
   // }
 
   constructor(
-    private _formBuilder: FormBuilder,
+    // private _formBuilder: FormBuilder,
     public onboardingService: StudentOnboardingService,
-    private storage: StorageServiceService,
+    // private storage: StorageServiceService,
     private onboardingFormService: StudentOnboardingFormService
   ) {
     // this.formGroup = this._formBuilder.group({
@@ -41,7 +41,7 @@ export class PillarStepComponent implements AfterViewInit, OnDestroy {
     //   this.formValueChanges$ = this.formGroup.valueChanges
     //     .pipe(skip(this.pillarKeys.length))
     //     .subscribe(() => this.storage.setItemSubscribe(USER_ONBOARDING, this.submit()));
-    this.getCachedValues();
+    // this.getCachedValues();
   }
   ngAfterViewInit(): void {
     this.pillarList.form.valueChanges.subscribe(() => {
@@ -78,16 +78,16 @@ export class PillarStepComponent implements AfterViewInit, OnDestroy {
     console.log(this.onboardingFormService.form);
   }
 
-  getCachedValues() {
-    this.storage.getItem(USER_ONBOARDING + '-' + PILLARS).subscribe((res) => {
-      console.log(res);
-      let pillarsFromCache = res ? res[PILLARS] : null;
-      if (pillarsFromCache) {
-        console.log('12', pillarsFromCache);
-        this.setControls([PILLARS, pillarsFromCache]);
-      }
-    });
-  }
+  // getCachedValues() {
+  //   this.storage.getItem(USER_ONBOARDING + '-' + PILLARS).subscribe((res) => {
+  //     console.log(res);
+  //     let pillarsFromCache = res ? res[PILLARS] : null;
+  //     if (pillarsFromCache) {
+  //       console.log('12', pillarsFromCache);
+  //       this.setControls([PILLARS, pillarsFromCache]);
+  //     }
+  //   });
+  // }
 
   // fillFormArray() {
   //   this.storage.getItem(USER_ONBOARDING).subscribe((res) => {
@@ -105,7 +105,7 @@ export class PillarStepComponent implements AfterViewInit, OnDestroy {
   // }
 
   isValid() {
-    return this.onboardingFormService.form.valid;
+    return true; // todo for now
     // return this.formGroup.valid;
   }
 

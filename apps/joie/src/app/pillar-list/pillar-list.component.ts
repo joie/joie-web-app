@@ -1,3 +1,7 @@
+import {
+  StorageServiceService,
+  USER_ONBOARDING,
+} from './../onboarding/shared/storage-service.service';
 import { StudentOnboardingService } from './../onboarding/onboarding-student/service/student-onboarding.service';
 
 import { FormGroup, FormArray } from '@angular/forms';
@@ -45,6 +49,7 @@ export class PillarListComponent implements OnInit {
   form: FormGroup;
   pillars = pillars;
   pillarEnum = Pillar;
+  controlKey = USER_ONBOARDING + '-' + PILLARS;
   @Input() selectable = false;
   @Input() descriptions = false;
   @Input() layoutClass;
@@ -67,7 +72,10 @@ export class PillarListComponent implements OnInit {
       .filter((v) => v !== null);
   }
 
-  constructor(private onboardingService: StudentOnboardingService) {
+  constructor(
+    private onboardingService: StudentOnboardingService,
+    private storage: StorageServiceService
+  ) {
     this.form = new FormGroup({ [PILLARS]: new FormArray([]) });
     this.onboardingService.addCheckboxes(
       this.pillarKeys,
@@ -75,6 +83,18 @@ export class PillarListComponent implements OnInit {
       this.pillarEnum,
       null
     ); //last param for cached values list
+
+    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
+      if (cacheValue) {
+        this.form.patchValue({ [PILLARS]: cacheValue });
+      }
+    });
+
+    this.form.valueChanges.subscribe((value) => {
+      console.log('val at pillar-lisr', value);
+      console.log('val at pillar-lisr', value[PILLARS]);
+      this.storage.setItemSubscribe(this.controlKey, value[PILLARS]);
+    });
   }
 
   ngOnInit(): void {

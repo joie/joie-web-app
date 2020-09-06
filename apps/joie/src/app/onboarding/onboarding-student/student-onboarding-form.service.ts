@@ -14,11 +14,11 @@ export class StudentOnboardingFormService {
   constructor(private fb: FormBuilder, private storageService: StorageServiceService) {
     console.log('service constructed');
     this.form = this.fb.group({});
-    this.form.valueChanges.subscribe((value) => {
-      console.log(value);
-      let key = USER_ONBOARDING + '-' + Object.keys(value)[0];
-      this.storageService.setItemSubscribe(USER_ONBOARDING + '-' + key, value);
-    });
+    // this.form.valueChanges.subscribe((value) => {
+    //   console.log(value);
+    //   let key = USER_ONBOARDING + '-' + Object.keys(value)[0];
+    //   this.storageService.setItemSubscribe(USER_ONBOARDING + '-' + key, value);
+    // });
   }
   ngOnDestroy() {
     console.log('SERVICE DESTROYED');
