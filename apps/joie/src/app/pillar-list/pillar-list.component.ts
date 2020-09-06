@@ -47,6 +47,7 @@ export class PillarListComponent implements OnInit {
   pillarEnum = Pillar;
   @Input() selectable = false;
   @Input() descriptions = false;
+  @Input() layoutClass;
 
   get subForm() {
     return this.form;
@@ -58,6 +59,12 @@ export class PillarListComponent implements OnInit {
 
   get pillarKeys() {
     return Object.keys(this.pillarEnum);
+  }
+
+  get selectedPillars() {
+    return this.form.value.pillars
+      .map((checked, i) => (checked ? this.pillarEnum[this.pillarKeys[i]] : null))
+      .filter((v) => v !== null);
   }
 
   constructor(private onboardingService: StudentOnboardingService) {
@@ -73,5 +80,9 @@ export class PillarListComponent implements OnInit {
   ngOnInit(): void {
     console.log('init');
     console.log(pillars);
+  }
+
+  log() {
+    console.log(this.selectedPillars);
   }
 }
