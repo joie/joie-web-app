@@ -17,18 +17,13 @@ export class StudentOnboardingFormService {
     console.log('SERVICE DESTROYED');
   }
 
-  addControls(controls: ControlTuple[]) {
-    this.#controls = controls;
-    controls.forEach(([name, control]) => {
-      // add new control if is undefined or null
-      this.form.addControl(name, control);
-      // console.log(this.form.value);
-    });
+  addControl(control: ControlTuple) {
+    console.log(control);
+    this.form.setControl(control[0], control[1]);
+    // this.#controls = controls;
   }
 
-  private removeControls() {
-    this.#controls.forEach(([name]) => {
-      this.form.removeControl(name);
-    });
+  removeControl(name) {
+    this.form.removeControl(name);
   }
 }

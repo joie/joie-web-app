@@ -1,9 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormArray, FormControl } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { AppInjector } from './app-injector';
 import { DynaFormService } from './services/dyna-form.service';
 
-export type ControlTuple = [string, FormControl | FormArray];
+export type ControlTuple = [string, FormControl | FormArray | FormGroup];
 
 interface AddControlsOptions {
   preserveOnDestroy: boolean;
