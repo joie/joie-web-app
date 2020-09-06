@@ -1,4 +1,3 @@
-import { PILLARS } from './../pillar-step/pillar-step.component';
 import { Component, ViewChildren, QueryList, ChangeDetectionStrategy } from '@angular/core';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { ActivitiesBoxComponent } from './activities-box/activities-box.component';
