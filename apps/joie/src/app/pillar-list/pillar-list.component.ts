@@ -38,10 +38,14 @@ const pillars = [
   providers: [PillarKeywordEmphasisPipe],
 })
 export class PillarListComponent implements OnInit {
-  form: FormGroup;
+  _form: FormGroup;
   pillars = pillars;
   @Input() selectable = false;
   @Input() descriptions = false;
+
+  get form() {
+    return this.form;
+  }
   constructor() {}
 
   ngOnInit(): void {
