@@ -1,6 +1,6 @@
 import { Pillar } from '../../../sessions/models/session';
 
-export const homePillars = [
+export const pillars = [
   {
     imgUrl: '/assets/images/movement.png',
     title: Pillar.movement,

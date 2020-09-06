@@ -28,7 +28,7 @@
         <div
           class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
         >
-          <mat-card class="text-center" *ngFor="let pillar of homePillars">
+          <mat-card class="text-center" *ngFor="let pillar of pillars">
             <img [src]="pillar?.imgUrl" alt="icon figure for {{ pillar.title }}" />
             <h4 [innerHTML]="pillar.title | pillarKeywordEmphasis"></h4>
             <p>{{ pillar.description }}</p>
