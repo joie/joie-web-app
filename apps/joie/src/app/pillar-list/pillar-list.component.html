@@ -1,0 +1,13 @@
+  <!-- <form [formGroup]="form" -->
+  <mat-card *ngFor="let pillar of pillars; let i = index">
+    <img [src]="pillar?.imgUrl"
+         alt="icon figure for {{ pillar?.title }}" />
+    <!-- <label formArrayName="pillars"> -->
+    <!-- <input type="checkbox"
+             [formControlName]="i" /> -->
+    <div>
+      <h4 [innerHTML]="pillar?.title | pillarKeywordEmphasis"></h4>
+    </div>
+    <!-- </label> -->
+  </mat-card>
+  <!-- </form> -->
