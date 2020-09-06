@@ -1,4 +1,6 @@
-import { FormGroup } from '@angular/forms';
+import { StudentOnboardingService } from './../onboarding/onboarding-student/service/student-onboarding.service';
+
+import { FormGroup, FormArray } from '@angular/forms';
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { PillarKeywordEmphasisPipe } from '../home/pipes/pillar-keyword-emphasis/pillar-keyword-emphasis.pipe';
 import { Pillar } from '../sessions/models/session';
@@ -30,6 +32,8 @@ const pillars = [
   },
 ];
 
+export const PILLARS = 'pillars';
+
 @Component({
   selector: 'app-pillar-list',
   templateUrl: './pillar-list.component.html',
@@ -38,15 +42,33 @@ const pillars = [
   providers: [PillarKeywordEmphasisPipe],
 })
 export class PillarListComponent implements OnInit {
-  _form: FormGroup;
+  form: FormGroup;
   pillars = pillars;
+  pillarEnum = Pillar;
   @Input() selectable = false;
   @Input() descriptions = false;
 
-  get form() {
+  get subForm() {
     return this.form;
   }
-  constructor() {}
+
+  get pillarsFormArray() {
+    return this.form.get(PILLARS);
+  }
+
+  get pillarKeys() {
+    return Object.keys(this.pillarEnum);
+  }
+
+  constructor(private onboardingService: StudentOnboardingService) {
+    this.form = new FormGroup({ [PILLARS]: new FormArray([]) });
+    this.onboardingService.addCheckboxes(
+      this.pillarKeys,
+      this.pillarsFormArray,
+      this.pillarEnum,
+      null
+    ); //last param for cached values list
+  }
 
   ngOnInit(): void {
     console.log('init');

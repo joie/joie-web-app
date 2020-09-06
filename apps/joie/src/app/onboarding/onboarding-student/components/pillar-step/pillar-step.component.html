@@ -6,7 +6,9 @@
   </p>
 </div>
 <div class="container container-condense">
-  <form
+  <app-pillar-list [selectable]="true"
+                   class="layout-grid layout-grid-inline-features layout-spacing-inline-md"></app-pillar-list>
+  <!-- <form
     [formGroup]="formGroup"
     class="layout-grid layout-grid-inline-features layout-spacing-inline-md"
   >
@@ -19,10 +21,12 @@
         </div>
       </label>
     </mat-card>
-  </form>
+  </form> -->
 
   <div class="layout-grid">
-    <button mat-button mat-raised-button matStepperNext>
+    <button mat-button
+            mat-raised-button
+            matStepperNext>
       Continue
     </button>
 
