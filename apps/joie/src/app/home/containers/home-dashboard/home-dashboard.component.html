@@ -12,7 +12,8 @@
       Joie pairs you with world-class teachers to help you build a healthier and happier life – one
       step at a time.
     </h1>
-    <button mat-raised-button color="primary">Start your journey with us</button>
+    <button mat-raised-button
+            color="primary">Start your journey with us</button>
   </div>
 </header>
 <main>
@@ -25,7 +26,10 @@
           and covers a variety of topics related to holistic health and wellness. What brings you to
           Joie today?
         </h4>
-        <div
+        <app-pillar-list
+                         class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md">
+        </app-pillar-list>
+        <!-- <div
           class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
         >
           <mat-card class="text-center" *ngFor="let pillar of pillars">
@@ -33,7 +37,7 @@
             <h4 [innerHTML]="pillar.title | pillarKeywordEmphasis"></h4>
             <p>{{ pillar.description }}</p>
           </mat-card>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
@@ -60,8 +64,11 @@
         </div>
 
         <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md">
-          <mat-card class="mat-elevation-z0" *ngFor="let advantage of homeJoieAdvantages">
-            <img [src]="advantage.imgUrl" width="100" height="100" />
+          <mat-card class="mat-elevation-z0"
+                    *ngFor="let advantage of homeJoieAdvantages">
+            <img [src]="advantage.imgUrl"
+                 width="100"
+                 height="100" />
             <div>{{ advantage.title }}</div>
             <div>
               {{ advantage.description }}
@@ -76,7 +83,8 @@
     <div class="container">
       <div class="section-context text-center">
         <div>
-          <button mat-raised-button color="primary">Like what you see? Join Joie</button>
+          <button mat-raised-button
+                  color="primary">Like what you see? Join Joie</button>
         </div>
         <div>
           <button mat-button>Want to teach with us? Apply Now!</button>
@@ -98,7 +106,8 @@
         <!--TODO Get List of teachers-->
 
         <div>
-          <button mat-raised-button color="primary">
+          <button mat-raised-button
+                  color="primary">
             See yourself a part of Joie? Apply Now!
           </button>
         </div>
