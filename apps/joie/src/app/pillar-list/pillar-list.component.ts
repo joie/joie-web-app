@@ -40,6 +40,8 @@ const pillars = [
 export class PillarListComponent implements OnInit {
   form: FormGroup;
   pillars = pillars;
+  @Input() selectable = false;
+  @Input() descriptions = false;
   constructor() {}
 
   ngOnInit(): void {

@@ -9,5 +9,7 @@
       <h4 [innerHTML]="pillar?.title | pillarKeywordEmphasis"></h4>
     </div>
     <!-- </label> -->
+    <p *ngIf="descriptions">{{ pillar.description }}</p>
+
   </mat-card>
   <!-- </form> -->
