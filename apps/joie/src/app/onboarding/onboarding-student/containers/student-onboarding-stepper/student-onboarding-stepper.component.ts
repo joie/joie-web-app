@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ɵConsole } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Student } from '../../models/student';
 
@@ -7,15 +7,13 @@ import { Student } from '../../models/student';
   templateUrl: './student-onboarding-stepper.component.html',
   styleUrls: ['./student-onboarding-stepper.component.scss'],
 })
-export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit {
+export class StudentOnboardingStepperComponent implements AfterViewInit {
   student: Partial<Student> = {};
   public steps: string[];
   public selectedStep: number = 0;
   public selectedStepRef = null;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
+  constructor(private router: Router, private route: ActivatedRoute) {
     this.steps = this.route.snapshot.routeConfig.children.map((child) => {
       return child.path;
     });

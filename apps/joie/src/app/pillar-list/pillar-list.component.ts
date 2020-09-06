@@ -91,16 +91,11 @@ export class PillarListComponent implements OnInit {
     });
 
     this.form.valueChanges.subscribe((value) => {
-      console.log('val at pillar-lisr', value);
-      console.log('val at pillar-lisr', value[PILLARS]);
       this.storage.setItemSubscribe(this.controlKey, value[PILLARS]);
     });
   }
 
-  ngOnInit(): void {
-    console.log('init');
-    console.log(pillars);
-  }
+  ngOnInit(): void {}
 
   log() {
     console.log(this.selectedPillars);

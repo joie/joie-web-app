@@ -3,7 +3,6 @@ import { Pillar } from '../../../../sessions/models/session';
 import { Component, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
-import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { StudentOnboardingFormService } from '../../student-onboarding-form.service';
 
 @Component({
@@ -47,7 +46,6 @@ export class PillarStepComponent implements AfterViewInit, OnDestroy {
   }
 
   isValid() {
-    return Object.keys(this.onboardingFormService.form.value.pillars).length > 0; // todo for now
-    // return this.formGroup.valid;
+    return Object.keys(this.onboardingFormService.form.get(PILLARS).value).length > 0;
   }
 }
