@@ -1,7 +1,9 @@
+import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
 import { Component, ViewChildren, QueryList, ChangeDetectionStrategy } from '@angular/core';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { ActivitiesBoxComponent } from './activities-box/activities-box.component';
 import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
+import { Pillar } from '../../../../sessions/models/session';
 
 @Component({
   selector: 'app-activities-step',
@@ -13,13 +15,15 @@ export class ActivitiesStepComponent {
   @ViewChildren(ActivitiesBoxComponent) activityBoxes: QueryList<ActivitiesBoxComponent>;
   selectedPillars = [];
   afterViewInit = false;
+  pillarEnum = Pillar;
 
   constructor(
     public onboardingService: StudentOnboardingService,
-    private storage: StorageServiceService
+    private storage: StorageServiceService,
+    private formService: StudentOnboardingFormService
   ) {
     // this.selectedPillars = ['JoieMovement', 'JoeSpirit'];
-    this.selectedPillars = history.state.student.pillars;
+    this.selectedPillars = Object.keys(this.formService.form.value.pillars);
     // this.storage.getItem(USER_ONBOARDING).subscribe((featureCache) => {
     //   this.selectedPillars = featureCache[PILLARS];
     //   console.log(this.selectedPillars);
