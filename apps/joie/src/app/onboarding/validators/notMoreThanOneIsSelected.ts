@@ -10,9 +10,10 @@ export function notMoreThanOneIsCheckedValidator(maxRequired = 1): ValidatorFn {
         checked++;
       }
     });
+
     if (checked > maxRequired) {
       return {
-        requireCheckboxToBeChecked: true,
+        requireNotMoreThanOneCheckboxToBeChecked: true,
       };
     }
 

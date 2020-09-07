@@ -49,7 +49,7 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
   }
 
   hasForm() {
-    return ![0, this.steps.length - 1].includes(this.selectedStep);
+    return this.selectedStep != 0;
   }
 
   log() {
