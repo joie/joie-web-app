@@ -4,9 +4,9 @@
        height="25" />
 
   <h4 [innerHTML]="pillarEnum[pillar] | pillarKeywordEmphasis"></h4>
-  <form [formGroup]="formGroup">
+  <form [formGroup]="form">
     <mat-form-field>
-      <mat-chip-list formArrayName="activities"
+      <mat-chip-list [formArrayName]="pillar"
                      multiple>
         <label *ngFor="let activity of activitiesFormArray.controls; let i = index">
           <mat-chip #chip="matChip"

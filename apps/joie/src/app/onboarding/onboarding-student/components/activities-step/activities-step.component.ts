@@ -1,5 +1,11 @@
 import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
-import { Component, ViewChildren, QueryList, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ViewChildren,
+  QueryList,
+  ChangeDetectionStrategy,
+  AfterViewInit,
+} from '@angular/core';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { ActivitiesBoxComponent } from './activities-box/activities-box.component';
 import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
@@ -11,7 +17,7 @@ import { Pillar } from '../../../../sessions/models/session';
   styleUrls: ['./activities-step.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ActivitiesStepComponent {
+export class ActivitiesStepComponent implements AfterViewInit {
   @ViewChildren(ActivitiesBoxComponent) activityBoxes: QueryList<ActivitiesBoxComponent>;
   selectedPillars = [];
   afterViewInit = false;
@@ -29,15 +35,20 @@ export class ActivitiesStepComponent {
     //   console.log(this.selectedPillars);
     // });
   }
+  ngAfterViewInit(): void {
+    this.activityBoxes.toArray().forEach((box) => {
+      box.subForm.valueChanges.subscribe((changedValue) => {
+        console.log(changedValue);
+      });
+    });
+  }
 
   isValid() {
     if (history.state.student.activities) {
       // case restored from cache. Step is cached only if completed, so if it has activities - it was completed.
       return true;
     }
-    return this.activityBoxes
-      ? this.activityBoxes.toArray().every((box) => box.formGroup.valid)
-      : false;
+    return this.activityBoxes ? this.activityBoxes.toArray().every((box) => box.form.valid) : false;
   }
 
   submit() {

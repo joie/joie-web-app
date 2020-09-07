@@ -29,7 +29,7 @@ export const ACTIVITIES = 'activities';
 })
 export class ActivitiesBoxComponent implements OnInit, OnDestroy {
   @Input() pillar;
-  public formGroup: FormGroup;
+  public form: FormGroup;
   formValueChanges$;
   pillarEnum = Pillar;
   controlKey;
@@ -54,7 +54,11 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy {
   }
 
   get activitiesFormArray() {
-    return this.formGroup.controls.activities as FormArray;
+    return this.form.controls[this.pillar] as FormArray;
+  }
+
+  get subForm() {
+    return this.form;
   }
 
   constructor(
@@ -63,9 +67,9 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy {
     private storage: StorageServiceService,
     private formService: StudentOnboardingFormService
   ) {
-    this.formGroup = this.formBuilder.group({
-      activities: new FormArray([], [atLeastOneIsCheckedValidator()]),
-    });
+    // this.form = this.formBuilder.group({
+    //   activities: new FormArray([], [atLeastOneIsCheckedValidator()]),
+    // });
 
     // this.storage.getItem(USER_ONBOARDING + '-' + PILLARS).subscribe((cachedVal) => {
     //   if (cachedVal && cachedVal) {
@@ -80,6 +84,9 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log('pillar', this.pillar);
+    this.form = this.formBuilder.group({
+      [this.pillar]: new FormArray([], [atLeastOneIsCheckedValidator()]),
+    });
     this.controlKey = USER_ONBOARDING + '-' + PILLARS + '-' + this.pillar;
 
     this.onboardingService.addCheckboxes(
@@ -113,7 +120,7 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy {
   // }
 
   submit() {
-    const selectedActivityTitles = this.formGroup.value.activities
+    const selectedActivityTitles = this.form.value.activities
       .map((selected, i) => (selected ? this.activitiesEnum[this.activityKeys[i]] : null))
       .filter((v) => v !== null);
     return selectedActivityTitles;
