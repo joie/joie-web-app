@@ -120,7 +120,7 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy {
   // }
 
   submit() {
-    const selectedActivityTitles = this.form.value.activities
+    const selectedActivityTitles = this.form.value[this.pillar]
       .map((selected, i) => (selected ? this.activitiesEnum[this.activityKeys[i]] : null))
       .filter((v) => v !== null);
     return selectedActivityTitles;
