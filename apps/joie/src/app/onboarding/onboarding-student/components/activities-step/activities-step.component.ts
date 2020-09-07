@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { ActivitiesBoxComponent } from './activities-box/activities-box.component';
-import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
+import { StorageServiceService } from '../../../shared/storage-service.service';
 import { Pillar } from '../../../../sessions/models/session';
 import { PILLARS } from '../../../../pillar-list/pillar-list.component';
 import { merge } from 'lodash';
@@ -32,10 +32,6 @@ export class ActivitiesStepComponent implements AfterViewInit {
     private formService: StudentOnboardingFormService
   ) {
     this.selectedPillars = Object.keys(this.formService.form.value.pillars);
-    // this.storage.getItem(USER_ONBOARDING).subscribe((featureCache) => {
-    //   this.selectedPillars = featureCache[PILLARS];
-    //   console.log(this.selectedPillars);
-    // });
   }
 
   get pillarsForm() {

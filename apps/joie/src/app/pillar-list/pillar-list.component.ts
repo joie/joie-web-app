@@ -77,12 +77,7 @@ export class PillarListComponent {
     private storage: StorageServiceService
   ) {
     this.form = new FormGroup({ [PILLARS]: new FormArray([]) });
-    this.onboardingService.addCheckboxes(
-      this.pillarKeys,
-      this.pillarsFormArray,
-      this.pillarEnum,
-      null //last param for cached values
-    );
+    this.onboardingService.addCheckboxes(this.pillarKeys, this.pillarsFormArray);
 
     // restoring cache in this way helps to render the pillars without waiting for storage and in case if no cache this works better
     this.storage.getItem(this.controlKey).subscribe((cacheValue) => {

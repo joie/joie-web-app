@@ -62,17 +62,11 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit 
   ) {}
 
   ngOnInit(): void {
-    console.log('pillar', this.pillar);
     this.form = this.formBuilder.group({
       [this.pillar]: new FormArray([], [atLeastOneIsCheckedValidator()]),
     });
 
-    this.onboardingService.addCheckboxes(
-      this.activityKeys,
-      this.activitiesFormArray,
-      this.activitiesEnum,
-      this.cachedValues // form values in format string[]
-    );
+    this.onboardingService.addCheckboxes(this.activityKeys, this.activitiesFormArray);
 
     this.controlKey = USER_ONBOARDING + '-' + PILLARS + '-' + this.pillar;
 
@@ -87,10 +81,8 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit 
     this.formValueChanges$ = this.form.valueChanges
       .pipe(skip(1)) //todo skiping patching with cache change
       .subscribe((changedVal) => {
-        console.log('change occures', changedVal);
         this.storage.setItemSubscribe(this.controlKey, changedVal[this.pillar]);
       });
-    console.log(this.form.value[this.pillar]);
   }
 
   ngOnDestroy(): void {

@@ -52,11 +52,6 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
     return this.selectedStep != 0;
   }
 
-  log() {
-    console.log('form val', this.formService.form.value);
-    console.log('form', this.formService.form);
-  }
-
   isCompleted() {
     return this.selectedStepRef ? this.selectedStepRef.isValid() : true;
   }

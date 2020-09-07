@@ -4,13 +4,14 @@ import { Component, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { StudentOnboardingFormService } from '../../student-onboarding-form.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-pillar-step',
   templateUrl: './pillar-step.component.html',
   styleUrls: ['./pillar-step.component.scss'],
 })
-export class PillarStepComponent implements AfterViewInit, OnDestroy {
+export class PillarStepComponent implements AfterViewInit {
   @ViewChild('pillarList') pillarList: PillarListComponent;
   pillarEnum = Pillar;
   formValueChanges$;
@@ -24,7 +25,7 @@ export class PillarStepComponent implements AfterViewInit, OnDestroy {
     private onboardingFormService: StudentOnboardingFormService
   ) {}
   ngAfterViewInit(): void {
-    this.pillarList.form.valueChanges.subscribe(() => {
+    this.pillarList.form.valueChanges.pipe(take(1)).subscribe(() => {
       this.setControls(this.pillarList.selectedPillars);
     });
   }
@@ -35,10 +36,6 @@ export class PillarStepComponent implements AfterViewInit, OnDestroy {
       Object.assign(selectedPillarsObj, { [pillar]: new FormArray([]) })
     );
     this.onboardingFormService.setControl([PILLARS, new FormGroup(selectedPillarsObj)]);
-  }
-
-  ngOnDestroy(): void {
-    // this.formValueChanges$.unsubscribe();
   }
 
   isValid() {

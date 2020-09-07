@@ -1,7 +1,7 @@
 import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
 import { AuthService } from './../../../../auth-state/services/auth/auth.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
+import { Component, OnDestroy } from '@angular/core';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
@@ -44,12 +44,7 @@ export class SessionTypesStepComponent implements OnDestroy {
 
     this.formService.setControl([SESSION_TYPES, new FormArray([])]);
 
-    this.onboardingService.addCheckboxes(
-      this.typeKeys,
-      this.typesFormArray,
-      this.typesEnum,
-      null //todo
-    );
+    this.onboardingService.addCheckboxes(this.typeKeys, this.typesFormArray);
 
     this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
       if (cacheValue) {
@@ -57,41 +52,17 @@ export class SessionTypesStepComponent implements OnDestroy {
       }
     });
 
-    this.form.valueChanges.subscribe((value) => {
-      console.log({ [SESSION_TYPES]: this.submit() });
+    this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
       if (this.form.valid) {
         this.storage.setItemSubscribe(this.controlKey, value[SESSION_TYPES]);
         merge(this.formService.form.value, { [SESSION_TYPES]: this.submit() });
       }
     });
-
-    // this.fillFormArray();
-
-    //subscribe to value chan ges skip form init
-    // this.formValueChanges$ =
-
-    // this.formGroup.valueChanges
-    // .pipe(skip(this.typeKeys.length))
-    // .subscribe(() => this.storage.setItemSubscribe(USER_ONBOARDING, this.submit()));
   }
+
   ngOnDestroy(): void {
-    // this.formValueChanges$.unsubscribe();
+    this.formValueChanges$.unsubscribe();
   }
-
-  // fillFormArray() {
-  //   this.storage.getItem(USER_ONBOARDING).subscribe((res) => {
-  //     let pillarsFromCache = res ? res[SESSION_TYPES] : null;
-  //     if (pillarsFromCache) {
-  //       this.formGroup.controls[SESSION_TYPES].markAsTouched();
-  //     }
-  //     this.onboardingService.addCheckboxes(
-  //       this.typeKeys,
-  //       this.typesFormArray,
-  //       this.typesEnum,
-  //       pillarsFromCache
-  //     );
-  //   });
-  // }
 
   isValid() {
     return this.form.valid;
