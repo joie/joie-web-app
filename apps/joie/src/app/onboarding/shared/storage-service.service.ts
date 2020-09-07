@@ -29,7 +29,11 @@ export class StorageServiceService {
   //       }
   //     });
   // }
-  getItem(featureKey): Observable<any> {
-    return this.storage.get(featureKey);
+  getItem(key): Observable<any> {
+    return this.storage.get(key);
+  }
+
+  removeItemSubscribe(key) {
+    this.storage.delete(key).subscribe(); //optimize subscriptions
   }
 }

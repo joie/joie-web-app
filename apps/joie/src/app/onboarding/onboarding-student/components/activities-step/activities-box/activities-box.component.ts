@@ -6,7 +6,7 @@ import {
   JoieProfessional,
   JoieSpirit,
 } from '../../../../../sessions/models/session';
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -20,6 +20,7 @@ import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/stora
 import { StudentOnboardingService } from '../../../service/student-onboarding.service';
 import { StudentOnboardingFormService } from '../../../student-onboarding-form.service';
 import { PILLARS } from '../../../../../pillar-list/pillar-list.component';
+import { skip } from 'rxjs/operators';
 
 export const ACTIVITIES = 'activities';
 @Component({
@@ -27,7 +28,7 @@ export const ACTIVITIES = 'activities';
   templateUrl: './activities-box.component.html',
   styleUrls: ['./activities-box.component.scss'],
 })
-export class ActivitiesBoxComponent implements OnInit, OnDestroy {
+export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() pillar;
   public form: FormGroup;
   formValueChanges$;
@@ -78,31 +79,55 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy {
     // });
     console.log('pillar', this.pillar);
   }
-  ngOnDestroy(): void {
-    this.formValueChanges$.unsubscribe();
-  }
 
   ngOnInit(): void {
     console.log('pillar', this.pillar);
     this.form = this.formBuilder.group({
       [this.pillar]: new FormArray([], [atLeastOneIsCheckedValidator()]),
     });
-    this.controlKey = USER_ONBOARDING + '-' + PILLARS + '-' + this.pillar;
 
+    /// add this.formva.ue.acitivitues tto last patram mayhbe it works
     this.onboardingService.addCheckboxes(
       this.activityKeys,
       this.activitiesFormArray,
       this.activitiesEnum,
-      null //cache
+      null // form values in format string[]
     );
 
-    // this.formValueChanges$ = this.formGroup.valueChanges
-    //   .pipe(skip(this.activityKeys.length))
-    //   .subscribe(() =>
-    //     this.storage.setItemSubscribe(USER_ONBOARDING, { activities: this.submit() })
-    //   );
-    // this.fillFormArray();
+    this.controlKey = USER_ONBOARDING + '-' + PILLARS + '-' + this.pillar;
+
+    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
+      if (cacheValue) {
+        console.log('value gets patched by following cache: ', cacheValue);
+        this.activitiesFormArray.setValue(cacheValue);
+      }
+    });
   }
+
+  ngAfterViewInit(): void {
+    this.formValueChanges$ = this.form.valueChanges
+      .pipe(skip(1)) //todo skiping patching with cache change
+      .subscribe((changedVal) => {
+        console.log('change occures', changedVal);
+        this.storage.setItemSubscribe(this.controlKey, changedVal[this.pillar]);
+      });
+    console.log(this.form.value[this.pillar]);
+  }
+  ngOnDestroy(): void {
+    // this.formValueChanges$.unsubscribe();
+  }
+  // this.formValueChanges$ = this.form.valueChanges
+  //   // .pipe(skip(this.activityKeys.length)) //todo +
+  //   .subscribe((changedVal) => {
+  //     this.storage.setItemSubscribe(this.controlKey, changedVal[this.pillar]);
+  //   });
+
+  // this.formValueChanges$ = this.formGroup.valueChanges
+  //   .pipe(skip(this.activityKeys.length))
+  //   .subscribe(() =>
+  //     this.storage.setItemSubscribe(USER_ONBOARDING, { activities: this.submit() })
+  //   );
+  // this.fillFormArray();
 
   // fillFormArray() {
   //   this.storage.getItem(USER_ONBOARDING).subscribe((res) => {
