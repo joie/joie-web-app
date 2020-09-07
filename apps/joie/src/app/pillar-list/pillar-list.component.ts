@@ -5,7 +5,7 @@ import {
 import { StudentOnboardingService } from './../onboarding/onboarding-student/service/student-onboarding.service';
 
 import { FormGroup, FormArray } from '@angular/forms';
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { PillarKeywordEmphasisPipe } from '../home/pipes/pillar-keyword-emphasis/pillar-keyword-emphasis.pipe';
 import { Pillar } from '../sessions/models/session';
 const pillars = [
@@ -45,7 +45,7 @@ export const PILLARS = 'pillars';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [PillarKeywordEmphasisPipe],
 })
-export class PillarListComponent implements OnInit {
+export class PillarListComponent {
   form: FormGroup;
   pillars = pillars;
   pillarEnum = Pillar;
@@ -81,9 +81,10 @@ export class PillarListComponent implements OnInit {
       this.pillarKeys,
       this.pillarsFormArray,
       this.pillarEnum,
-      null
-    ); //last param for cached values list
+      null //last param for cached values
+    );
 
+    // restoring cache in this way helps to render the pillars without waiting for storage and in case if no cache this works better
     this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
       if (cacheValue) {
         this.form.patchValue({ [PILLARS]: cacheValue });
@@ -93,11 +94,5 @@ export class PillarListComponent implements OnInit {
     this.form.valueChanges.subscribe((value) => {
       this.storage.setItemSubscribe(this.controlKey, value[PILLARS]);
     });
-  }
-
-  ngOnInit(): void {}
-
-  log() {
-    console.log(this.selectedPillars);
   }
 }

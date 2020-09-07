@@ -41,10 +41,6 @@ export class PillarStepComponent implements AfterViewInit, OnDestroy {
     // this.formValueChanges$.unsubscribe();
   }
 
-  log() {
-    console.log(this.onboardingFormService.form);
-  }
-
   isValid() {
     return Object.keys(this.onboardingFormService.form.get(PILLARS).value).length > 0;
   }

@@ -1,3 +1,4 @@
+import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
 import { Component, AfterViewInit, ɵConsole } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Student } from '../../models/student';
@@ -13,7 +14,11 @@ export class StudentOnboardingStepperComponent implements AfterViewInit {
   public selectedStep: number = 0;
   public selectedStepRef = null;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private formService: StudentOnboardingFormService
+  ) {
     this.steps = this.route.snapshot.routeConfig.children.map((child) => {
       return child.path;
     });
@@ -36,6 +41,11 @@ export class StudentOnboardingStepperComponent implements AfterViewInit {
 
   hasForm() {
     return ![0, this.steps.length - 1].includes(this.selectedStep);
+  }
+
+  log() {
+    console.log('form val', this.formService.form.value);
+    console.log('form', this.formService.form);
   }
 
   isCompleted() {
