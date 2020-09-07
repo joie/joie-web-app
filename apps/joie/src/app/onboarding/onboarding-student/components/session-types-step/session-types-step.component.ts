@@ -1,3 +1,4 @@
+import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
 import { AuthService } from './../../../../auth-state/services/auth/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
@@ -6,8 +7,7 @@ import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChe
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
 import { SessionTypes } from '../../models/student';
 import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
-import { skip } from 'rxjs/operators';
-
+import { merge } from 'lodash';
 export const SESSION_TYPES = 'sessionTypes';
 @Component({
   selector: 'app-session-types-step',
@@ -32,7 +32,8 @@ export class SessionTypesStepComponent implements OnDestroy {
     private _formBuilder: FormBuilder,
     public authService: AuthService,
     public onboardingService: StudentOnboardingService,
-    private storage: StorageServiceService
+    private storage: StorageServiceService,
+    private formService: StudentOnboardingFormService
   ) {
     this.form = this._formBuilder.group({
       sessionTypes: new FormArray(
@@ -40,6 +41,8 @@ export class SessionTypesStepComponent implements OnDestroy {
         [atLeastOneIsCheckedValidator(), notMoreThanOneIsCheckedValidator()]
       ),
     });
+
+    this.formService.setControl([SESSION_TYPES, new FormArray([])]);
 
     this.onboardingService.addCheckboxes(
       this.typeKeys,
@@ -55,7 +58,11 @@ export class SessionTypesStepComponent implements OnDestroy {
     });
 
     this.form.valueChanges.subscribe((value) => {
-      this.storage.setItemSubscribe(this.controlKey, value[SESSION_TYPES]);
+      console.log({ [SESSION_TYPES]: this.submit() });
+      if (this.form.valid) {
+        this.storage.setItemSubscribe(this.controlKey, value[SESSION_TYPES]);
+        merge(this.formService.form.value, { [SESSION_TYPES]: this.submit() });
+      }
     });
 
     // this.fillFormArray();
@@ -87,14 +94,13 @@ export class SessionTypesStepComponent implements OnDestroy {
   // }
 
   isValid() {
-    console.log(this.form);
     return this.form.valid;
   }
   submit() {
     const selectedTypes = this.form.value.sessionTypes
       .map((checked, i) => (checked ? this.typesEnum[this.typeKeys[i]] : null))
       .filter((v) => v !== null);
-    return { sessionTypes: selectedTypes };
+    return selectedTypes;
   }
 
   finishOnboarding() {
