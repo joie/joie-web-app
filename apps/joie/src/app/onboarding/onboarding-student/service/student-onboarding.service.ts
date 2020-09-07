@@ -10,7 +10,7 @@ export class StudentOnboardingService {
   addCheckboxes(keys, formArray, dataEnum, values) {
     console.log(values);
     if (values && values.length > 0) {
-      keys.forEach((key) => formArray.push(new FormControl(values.includes(key))));
+      values.forEach((value) => formArray.push(value));
     } else {
       keys.forEach(() => formArray.push(new FormControl(false)));
     }
