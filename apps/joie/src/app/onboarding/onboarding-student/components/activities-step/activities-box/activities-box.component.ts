@@ -17,8 +17,9 @@ import {
 } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
 import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
-import { skip } from 'rxjs/operators';
 import { StudentOnboardingService } from '../../../service/student-onboarding.service';
+import { StudentOnboardingFormService } from '../../../student-onboarding-form.service';
+import { PILLARS } from '../../../../../pillar-list/pillar-list.component';
 
 export const ACTIVITIES = 'activities';
 @Component({
@@ -30,9 +31,11 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy {
   @Input() pillar;
   public formGroup: FormGroup;
   formValueChanges$;
+  pillarEnum = Pillar;
+  controlKey;
 
   get activitiesEnum() {
-    switch (this.pillar) {
+    switch (this.pillarEnum[this.pillar]) {
       case Pillar.movement:
         return JoieMovement;
       case Pillar.emotions:
@@ -45,6 +48,7 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy {
         return JoieSpirit;
     }
   }
+
   get activityKeys() {
     return Object.keys(this.activitiesEnum);
   }
@@ -56,39 +60,57 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     public onboardingService: StudentOnboardingService,
-    private storage: StorageServiceService
+    private storage: StorageServiceService,
+    private formService: StudentOnboardingFormService
   ) {
     this.formGroup = this.formBuilder.group({
       activities: new FormArray([], [atLeastOneIsCheckedValidator()]),
     });
+
+    // this.storage.getItem(USER_ONBOARDING + '-' + PILLARS).subscribe((cachedVal) => {
+    //   if (cachedVal && cachedVal) {
+    //     console.log(cachedVal); //gettin cache here
+    //   }
+    // });
+    console.log('pillar', this.pillar);
   }
   ngOnDestroy(): void {
     this.formValueChanges$.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.formValueChanges$ = this.formGroup.valueChanges
-      .pipe(skip(this.activityKeys.length))
-      .subscribe(() =>
-        this.storage.setItemSubscribe(USER_ONBOARDING, { activities: this.submit() })
-      );
-    this.fillFormArray();
+    console.log('pillar', this.pillar);
+    this.controlKey = USER_ONBOARDING + '-' + PILLARS + '-' + this.pillar;
+
+    this.onboardingService.addCheckboxes(
+      this.activityKeys,
+      this.activitiesFormArray,
+      this.activitiesEnum,
+      null //cache
+    );
+
+    // this.formValueChanges$ = this.formGroup.valueChanges
+    //   .pipe(skip(this.activityKeys.length))
+    //   .subscribe(() =>
+    //     this.storage.setItemSubscribe(USER_ONBOARDING, { activities: this.submit() })
+    //   );
+    // this.fillFormArray();
   }
 
-  fillFormArray() {
-    this.storage.getItem(USER_ONBOARDING).subscribe((res) => {
-      let activitiesFromCache = res ? res[ACTIVITIES] : null;
-      if (activitiesFromCache) {
-        this.formGroup.controls[ACTIVITIES].markAsTouched();
-      }
-      this.onboardingService.addCheckboxes(
-        this.activityKeys,
-        this.activitiesFormArray,
-        this.activitiesEnum,
-        activitiesFromCache
-      );
-    });
-  }
+  // fillFormArray() {
+  //   this.storage.getItem(USER_ONBOARDING).subscribe((res) => {
+  //     let activitiesFromCache = res ? res[ACTIVITIES] : null;
+  //     if (activitiesFromCache) {
+  //       this.formGroup.controls[ACTIVITIES].markAsTouched();
+  //     }
+  //     this.onboardingService.addCheckboxes(
+  //       this.activityKeys,
+  //       this.activitiesFormArray,
+  //       this.activitiesEnum,
+  //       activitiesFromCache
+  //     );
+  //   });
+  // }
 
   submit() {
     const selectedActivityTitles = this.formGroup.value.activities

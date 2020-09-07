@@ -7,6 +7,6 @@ import { PillarKeywordEmphasisPipe } from './pipes/pillar-keyword-emphasis/pilla
 @NgModule({
   declarations: [PillarListComponent, PillarKeywordEmphasisPipe],
   imports: [SharedModule],
-  exports: [PillarListComponent],
+  exports: [PillarListComponent, PillarKeywordEmphasisPipe],
 })
 export class PillarListModule {}

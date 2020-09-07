@@ -3,9 +3,7 @@
        width="25"
        height="25" />
 
-  <h3>
-    Joie<span class="text-primary">{{ pillar | slice: 4 }}</span>
-  </h3>
+  <h4 [innerHTML]="pillarEnum[pillar] | pillarKeywordEmphasis"></h4>
   <form [formGroup]="formGroup">
     <mat-form-field>
       <mat-chip-list formArrayName="activities"
