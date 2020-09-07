@@ -1,8 +1,8 @@
 import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
-import { Component, AfterViewInit, ɵConsole, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Preferences } from '../../models/student';
-import { FormArray, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { PILLARS } from '../../../../pillar-list/pillar-list.component';
 
 @Component({
@@ -30,7 +30,7 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
   }
 
   setControls() {
-    this.formService.setControl([PILLARS, new FormGroup({})]); //todo gotta add all controls here for validation
+    this.formService.setControl([PILLARS, new FormGroup({})]);
   }
 
   ngAfterViewInit() {
@@ -56,12 +56,8 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
     return this.selectedStepRef ? this.selectedStepRef.isValid() : true;
   }
   selectionChanged(event: any) {
-    // if (this.selectedStepRef) {
-    //   Object.assign(this.preferences, this.selectedStepRef.submit());
-    // }
     this.selectedStep = event.selectedIndex;
     this.router.navigate([this.steps[this.selectedStep]], {
-      state: { student: this.formService.form.value }, //todo get off student
       relativeTo: this.route,
     });
   }

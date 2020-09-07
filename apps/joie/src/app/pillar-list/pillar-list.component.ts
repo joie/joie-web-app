@@ -8,6 +8,7 @@ import { FormGroup, FormArray } from '@angular/forms';
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { PillarKeywordEmphasisPipe } from '../home/pipes/pillar-keyword-emphasis/pillar-keyword-emphasis.pipe';
 import { Pillar } from '../sessions/models/session';
+import { skip } from 'rxjs/operators';
 const pillars = [
   {
     imgUrl: '/assets/images/movement.png',
@@ -86,8 +87,10 @@ export class PillarListComponent {
       }
     });
 
-    this.form.valueChanges.subscribe((value) => {
-      this.storage.setItemSubscribe(this.controlKey, value[PILLARS]);
-    });
+    this.form.valueChanges
+      .pipe(skip(1)) //todo skiping 1 not to set same value to cache
+      .subscribe((value) => {
+        this.storage.setItemSubscribe(this.controlKey, value[PILLARS]);
+      });
   }
 }

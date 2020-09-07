@@ -8,6 +8,7 @@ import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreTha
 import { SessionTypes } from '../../models/student';
 import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
 import { merge } from 'lodash';
+import { skip } from 'rxjs/operators';
 export const SESSION_TYPES = 'sessionTypes';
 @Component({
   selector: 'app-session-types-step',
@@ -52,12 +53,14 @@ export class SessionTypesStepComponent implements OnDestroy {
       }
     });
 
-    this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
-      if (this.form.valid) {
-        this.storage.setItemSubscribe(this.controlKey, value[SESSION_TYPES]);
-        merge(this.formService.form.value, { [SESSION_TYPES]: this.submit() });
-      }
-    });
+    this.formValueChanges$ = this.form.valueChanges
+      .pipe(skip(1)) //todo skiping 1 not to set same value to cache
+      .subscribe((value) => {
+        if (this.form.valid) {
+          this.storage.setItemSubscribe(this.controlKey, value[SESSION_TYPES]);
+          merge(this.formService.form.value, { [SESSION_TYPES]: this.submit() });
+        }
+      });
   }
 
   ngOnDestroy(): void {

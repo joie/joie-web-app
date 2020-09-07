@@ -79,7 +79,7 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit 
 
   ngAfterViewInit(): void {
     this.formValueChanges$ = this.form.valueChanges
-      .pipe(skip(1)) //todo skiping patching with cache change
+      .pipe(skip(1)) //todo skiping 1 not to set same value to cache
       .subscribe((changedVal) => {
         this.storage.setItemSubscribe(this.controlKey, changedVal[this.pillar]);
       });
