@@ -81,7 +81,9 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit 
     this.formValueChanges$ = this.form.valueChanges
       .pipe(skip(1)) //todo skiping 1 not to set same value to cache
       .subscribe((changedVal) => {
-        this.storage.setItemSubscribe(this.controlKey, changedVal[this.pillar]);
+        if (this.form.valid) {
+          this.storage.setItemSubscribe(this.controlKey, changedVal[this.pillar]);
+        }
       });
   }
 
@@ -90,10 +92,9 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   submit() {
-    const selectedActivityTitles = this.form.value[this.pillar]
+    return this.form.value[this.pillar]
       .map((selected, i) => (selected ? this.activitiesEnum[this.activityKeys[i]] : null))
       .filter((v) => v !== null);
-    return selectedActivityTitles;
   }
 
   handleSelect(index, selected) {

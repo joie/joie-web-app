@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
 import {
   Component,
@@ -38,11 +38,12 @@ export class ActivitiesStepComponent implements AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.activityBoxes.toArray().forEach((box) => {
-      box.subForm.valueChanges.subscribe((changedValue) => {
-        this.pillarsForm.get(box.pillar).reset();
-        merge(this.formService.form.value, {
-          [PILLARS]: { [box.pillar]: box.submit() },
-        }); //todo not the best way to set value but the only one worked for me
+      box.subForm.valueChanges.subscribe(() => {
+        let activityFormArray = this.formService.getActivityFormArray(box.pillar);
+        activityFormArray.clear();
+        box.submit().forEach((value) => {
+          activityFormArray.push(new FormControl(value));
+        });
       });
     });
   }
