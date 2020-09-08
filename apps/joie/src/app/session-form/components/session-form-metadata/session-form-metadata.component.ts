@@ -4,14 +4,14 @@ import { SessionType } from '../../../sessions/models/session';
 import { FormControl, Validators } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/lib/dyna-form-base.component';
 
-@Dyna({
-  controls: [
-    ['format', new FormControl(null, Validators.required)],
-    ['type', new FormControl(null, Validators.required)],
-    ['title', new FormControl(null, Validators.required)],
-    ['description', new FormControl(null)],
-  ],
-})
+// @Dyna({
+//   controls: [
+//     ['format', new FormControl(null, Validators.required)],
+//     ['type', new FormControl(null, Validators.required)],
+//     ['title', new FormControl(null, Validators.required)],
+//     ['description', new FormControl(null)],
+//   ],
+// })
 @Component({
   selector: 'app-session-form-metadata',
   templateUrl: './session-form-metadata.component.html',
@@ -41,13 +41,13 @@ export class SessionFormMetadataComponent extends DynaFormBaseComponent {
   }
 }
 
-function Dyna(config) {
-  return function (target) {
-    console.log(target);
-    Object.defineProperty(
-      target.prototype,
-      'addControls',
-      { value: () => config.course } // 2
-    );
-  };
-}
+// function Dyna(config) {
+//   return function (target) {
+//     console.log(target);
+//     Object.defineProperty(
+//       target.prototype,
+//       'addControls',
+//       { value: () => config.course } // 2
+//     );
+//   };
+// }
