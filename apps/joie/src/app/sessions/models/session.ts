@@ -16,74 +16,38 @@ export interface Session {
   author?: Author;
   recommendationPercentage: number;
 }
-
 export interface SessionDetails {
+  // @pratheeshkumarrd is this Kaltura Related data? should we explicitly state it?
   eventId: number;
   userId: string;
 }
 
 export enum SessionFormat {
-  onDemand = 'On demand',
-  liveStreaming = 'Live streaming',
+  OnDemand = 'onDemand',
+  LiveStreaming = 'liveStreaming',
 }
 
 export enum CourseLevel {
-  Beginner = 'Beginner',
-  Intermediate = 'Intermediate',
-  Advanced = 'Advanced',
-  All_levels = 'All levels',
+  Beginner = 'beginner',
+  Intermediate = 'intermediate',
+  Advanced = 'advanced',
+  All = 'all',
 }
 
 export enum SessionType {
-  class = 'Class',
-  workshop = 'Workshop',
-  course = 'Course',
-  lecture = 'Lecture',
-  coaching = '1:1 Coaching',
+  Class = 'class',
+  Workshop = 'workshop',
+  Course = 'course',
+  Lecture = 'lecture',
+  Coaching = 'coaching',
 }
 
 export enum Pillar {
-  movement = 'JoieMovement',
-  emotions = 'JoieEmotions',
-  connections = 'JoieConnections',
-  spirit = 'JoieSpirit',
-  professional = 'JoieProfessional',
-}
-
-export enum JoieMovement {
-  excersise = 'Excersice',
-  energy = 'Energy',
-  diet = 'Diet',
-  nutrition = 'Nutrition',
-}
-
-export enum JoieEmotions {
-  self_regulation = 'Self-regulation',
-  self_care = 'Self-care',
-  relaxation = 'Relaxation',
-  stress_reduction = 'Stress Reduction',
-  inner_strength = 'Inner Strength',
-}
-
-export enum JoieConnections {
-  social_interactions = 'Social Interactions',
-  friendships = 'Friendships',
-  parenting = 'Parenting',
-  relationships = 'Relationships',
-  dating = 'Dating',
-}
-
-export enum JoieSpirit {
-  seek_meaning = 'Seek Meaning',
-  individual_purpose = 'Individual Purpose',
-  faith = 'Faith',
-  values = 'Values',
-  ethic_and_morals = 'Ethic and morals',
-}
-export enum JoieProfessional {
-  professional_development = 'Professional Development',
-  financial_stability = 'Financial stability',
-  satisfaction_at_work = 'Satisfactions at Work',
+  Movement = 'movement',
+  Emotions = 'emotions',
+  Connections = 'connections',
+  Spirit = 'spirit',
+  Professional = 'professional',
 }
 
 // export enum MovementActivities {}

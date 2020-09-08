@@ -5,7 +5,7 @@ import {
   JoieConnections,
   JoieProfessional,
   JoieSpirit,
-} from '../../../../../sessions/models/session';
+} from '../../../../../sessions/models';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
@@ -33,15 +33,15 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy {
 
   get activitiesEnum() {
     switch (this.pillar) {
-      case Pillar.movement:
+      case Pillar.Movement:
         return JoieMovement;
-      case Pillar.emotions:
+      case Pillar.Emotions:
         return JoieEmotions;
-      case Pillar.connections:
+      case Pillar.Connections:
         return JoieConnections;
-      case Pillar.professional:
+      case Pillar.Professional:
         return JoieProfessional;
-      case Pillar.spirit:
+      case Pillar.Spirit:
         return JoieSpirit;
     }
   }

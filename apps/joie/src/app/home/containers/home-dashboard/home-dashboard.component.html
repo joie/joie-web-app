@@ -30,7 +30,7 @@
         >
           <mat-card class="text-center" *ngFor="let pillar of pillars">
             <img [src]="pillar?.imgUrl" alt="icon figure for {{ pillar.title }}" />
-            <h4 [innerHTML]="pillar.title | pillarKeywordEmphasis"></h4>
+            <h4 [innerHTML]="pillar.title | joiePrefix"></h4>
             <p>{{ pillar.description }}</p>
           </mat-card>
         </div>

@@ -6,10 +6,10 @@ import { SessionListModule } from '../session-list/session-list.module';
 import { MaterialModule } from '../core/material.module';
 import { KalturaPlayerModule } from '../kaltura-player/kaltura-player.module';
 import { SharedModule } from '../shared/shared.module';
-import { PillarKeywordEmphasisPipe } from './pipes/pillar-keyword-emphasis/pillar-keyword-emphasis.pipe';
+import { JoiePrefixPipe } from './pipes/joie-prefix/joie-prefix.pipe';
 
 @NgModule({
-  declarations: [HomeDashboardComponent, PillarKeywordEmphasisPipe],
+  declarations: [HomeDashboardComponent, JoiePrefixPipe],
   imports: [
     SharedModule,
     HomeRoutingModule,
