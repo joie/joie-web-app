@@ -9,7 +9,9 @@ import { SessionTypes } from '../../models/student';
 import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
 import { merge } from 'lodash';
 import { skip } from 'rxjs/operators';
+import { sessionTypesData } from './sessionTypesData';
 export const SESSION_TYPES = 'sessionTypes';
+
 @Component({
   selector: 'app-session-types-step',
   templateUrl: './session-types-step.component.html',
@@ -18,6 +20,7 @@ export const SESSION_TYPES = 'sessionTypes';
 export class SessionTypesStepComponent implements OnDestroy {
   form: FormGroup;
   typesEnum = SessionTypes;
+  sessionTypesData = sessionTypesData;
   formValueChanges$;
   controlKey = USER_ONBOARDING + '-' + SESSION_TYPES;
 

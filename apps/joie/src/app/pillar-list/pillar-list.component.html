@@ -5,8 +5,8 @@
   <form [formGroup]="form"
         [class]="layoutClass">
     <mat-card *ngFor="let pillar of pillars; let i = index">
-      <img [src]="pillar?.imgUrl"
-           alt="icon figure for {{ pillar?.title }}" />
+      <app-icon class="joie-icon joie-icon-backdrop"
+                [name]="pillar.icon"></app-icon>
       <label formArrayName="pillars">
         <input type="checkbox"
                [formControlName]="i" />
@@ -24,8 +24,8 @@
   <div [class]="
              layoutClass">
     <mat-card *ngFor="let pillar of pillars; let i = index">
-      <img [src]="pillar?.imgUrl"
-           alt="icon figure for {{ pillar?.title }}" />
+      <app-icon class="joie-icon joie-icon-backdrop"
+                [name]="pillar.icon"></app-icon>
 
       <div>
         <h4 [innerHTML]="pillar?.title | pillarKeywordEmphasis"></h4>

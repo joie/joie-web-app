@@ -11,9 +11,8 @@
   <form [formGroup]="form"
         class="layout-grid layout-grid-inline-features layout-spacing-inline-sm">
     <mat-card *ngFor="let type of typesFormArray.controls; let i = index">
-      <img src="/assets/images/empowerment.png"
-           width="100"
-           height="100" />
+      <app-icon class="joie-icon joie-icon-backdrop"
+                [name]="sessionTypesData[i].icon"></app-icon>
 
       <label formArrayName="sessionTypes">
         <input type="checkbox"

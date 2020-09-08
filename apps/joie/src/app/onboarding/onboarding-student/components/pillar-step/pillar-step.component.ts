@@ -1,6 +1,6 @@
 import { PillarListComponent, PILLARS } from './../../../../pillar-list/pillar-list.component';
 import { Pillar } from '../../../../sessions/models/session';
-import { Component, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { StudentOnboardingFormService } from '../../student-onboarding-form.service';

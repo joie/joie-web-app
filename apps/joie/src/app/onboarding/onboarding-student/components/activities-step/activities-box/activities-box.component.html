@@ -1,8 +1,6 @@
 <mat-card>
-  <img [src]="'/assets/images/' + (pillar | lowercase | slice: 4) + '.png'"
-       width="25"
-       height="25" />
-
+  <app-icon class="joie-icon joie-icon-backdrop"
+            [name]="pillar"></app-icon>
   <h4 [innerHTML]="pillarEnum[pillar] | pillarKeywordEmphasis"></h4>
   <form [formGroup]="form">
     <mat-form-field>
