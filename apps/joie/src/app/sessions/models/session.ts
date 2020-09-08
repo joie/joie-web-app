@@ -1,7 +1,7 @@
 import { Price, Duration } from '../../models';
 import { firestore } from 'firebase';
 
-export interface Session {
+export interface SessionInfo {
   readonly id: number | string;
   title: string;
   publishedDate: firestore.Timestamp;
@@ -14,7 +14,10 @@ export interface Session {
   pillar: Pillar;
   description: string;
   author?: Author;
+  eventId: number;
+  resourceId: number;
   recommendationPercentage: number;
+  thumbnailImage: string;
 }
 export interface SessionDetails {
   // @pratheeshkumarrd is this Kaltura Related data? should we explicitly state it?

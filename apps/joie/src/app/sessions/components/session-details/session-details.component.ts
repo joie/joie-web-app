@@ -1,48 +1,70 @@
 import { Component, OnInit, ErrorHandler } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
+
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Session, SessionDetails } from '../../models';
-import { SessionService } from '../../services/session.service';
-import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-handshake.service';
+
+import { SessionDetails, SessionInfo } from '../../models';
+
+import { SessionsFacade } from '../../../services/sessions.facade';
+
+import { AngularFireAuth } from '@angular/fire/auth';
+import { combineLatest } from 'rxjs';
 
 @UntilDestroy()
 @Component({
   templateUrl: './session-details.component.html',
+
   styleUrls: ['./session-details.component.scss'],
 })
 export class SessionDetailsComponent implements OnInit {
-  courseId = 123;
-  session: Session;
+  sessionId: string;
+
+  session: SessionInfo;
+
   // TODO - default assignment will be removed after integration
+
   isLiveSession = true; // if false vod player is visible
-  sessionDetails: SessionDetails = { eventId: 6059661, userId: 'test' };
+
+  sessionDetails: SessionDetails = { eventId: 6507501, userId: 'test 123' };
+
   sessionType = 2;
+
   role = 'adminRole';
+
   userContextualRole = 0;
+
   entryId = '1_0v7lxhb8';
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private sessionService: SessionService,
-    private kalturaApiHandShakeService: KalturaApiHandShakeService
+
+    private sessionsFacade: SessionsFacade,
+
+    private afAuth: AngularFireAuth
   ) {}
 
   ngOnInit() {
     this.activatedRoute.params.pipe(untilDestroyed(this)).subscribe((params) => {
-      // TODO - remove this 1234 after integrating with backend
-      this.courseId = params.courseId || 1234;
+      this.sessionId = params.sessionId;
     });
+
     this.loadData();
   }
 
   loadData() {
-    this.sessionService
-      .getSession(this.courseId)
-      .subscribe((session) => (this.session = session as Session));
-  }
+    combineLatest([
+      this.afAuth.authState.pipe(untilDestroyed(this)),
+      this.sessionsFacade.getSession(this.sessionId),
+    ])
+      .pipe(untilDestroyed(this))
+      .subscribe(([authResponse, session]) => {
+        this.sessionDetails = {
+          eventId: session.eventId,
+          userId: authResponse.displayName,
+        };
 
-  // TODO - to be removed after the integration
-  liveSession() {
-    this.kalturaApiHandShakeService.temporaryLivestreamPage();
+        this.session = session as SessionInfo;
+      });
   }
 }

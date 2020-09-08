@@ -19,6 +19,7 @@ import { DynaFormModule } from '../../../../../libs/dyna-form';
 import { SessionFormDateTimeComponent } from './components/session-form-date-time/session-form-date-time.component';
 import { SessionFormComponent } from './containers/session-form/session-form.component';
 import { DynaFormService } from '../../../../../libs/dyna-form/src/lib/services/dyna-form.service';
+import { KalturaPlayerModule } from '../kaltura-player/kaltura-player.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { DynaFormService } from '../../../../../libs/dyna-form/src/lib/services/
     MatInputModule,
     MatNativeDateModule,
     DynaFormModule,
+    KalturaPlayerModule,
   ],
   exports: [SessionFormComponent],
 })

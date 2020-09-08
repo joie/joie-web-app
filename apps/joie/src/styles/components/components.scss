@@ -18,3 +18,15 @@
 @include mat-select-theme($joie-theme);
 @include mat-divider-theme($joie-theme);
 @include mat-datepicker-theme($joie-theme);
+
+.mat-card {
+  padding: var(--joie-gutter);
+}
+
+.mat-card-image {
+  &#{&} {
+    --gutter-negative: calc(-1 * var(--joie-gutter));
+    width: calc(100% + var(--joie-gutter) * 2);
+    margin: 0 var(--gutter-negative) var(--joie-gutter) var(--gutter-negative);
+  }
+}
