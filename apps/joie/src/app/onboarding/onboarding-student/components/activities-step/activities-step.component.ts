@@ -18,7 +18,6 @@ import { merge } from 'lodash';
   selector: 'app-activities-step',
   templateUrl: './activities-step.component.html',
   styleUrls: ['./activities-step.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActivitiesStepComponent implements AfterViewInit {
   @ViewChildren(ActivitiesBoxComponent) activityBoxes: QueryList<ActivitiesBoxComponent>;
