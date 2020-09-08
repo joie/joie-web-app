@@ -6,19 +6,13 @@ import {
   JoieProfessional,
   JoieSpirit,
 } from '../../../../../sessions/models';
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  FormArray,
-  Validators,
-  ValidatorFn,
-} from '@angular/forms';
+import { Component, Input, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
 import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
-import { skip } from 'rxjs/operators';
 import { StudentOnboardingService } from '../../../service/student-onboarding.service';
+import { PILLARS } from '../../../../../pillar-list/pillar-list.component';
+import { skip } from 'rxjs/operators';
 
 export const ACTIVITIES = 'activities';
 @Component({
@@ -26,13 +20,16 @@ export const ACTIVITIES = 'activities';
   templateUrl: './activities-box.component.html',
   styleUrls: ['./activities-box.component.scss'],
 })
-export class ActivitiesBoxComponent implements OnInit, OnDestroy {
+export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() pillar;
-  public formGroup: FormGroup;
+  public form: FormGroup;
   formValueChanges$;
+  pillarEnum = Pillar;
+  controlKey;
+  cachedValues = null;
 
   get activitiesEnum() {
-    switch (this.pillar) {
+    switch (this.pillarEnum[this.pillar]) {
       case Pillar.Movement:
         return JoieMovement;
       case Pillar.Emotions:
@@ -45,53 +42,55 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy {
         return JoieSpirit;
     }
   }
+
   get activityKeys() {
     return Object.keys(this.activitiesEnum);
   }
 
   get activitiesFormArray() {
-    return this.formGroup.controls.activities as FormArray;
+    return this.form.controls[this.pillar] as FormArray;
+  }
+
+  get subForm() {
+    return this.form;
   }
 
   constructor(
     private formBuilder: FormBuilder,
     public onboardingService: StudentOnboardingService,
     private storage: StorageServiceService
-  ) {
-    this.formGroup = this.formBuilder.group({
-      activities: new FormArray([], [atLeastOneIsCheckedValidator()]),
+  ) {}
+
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      [this.pillar]: new FormArray([], [atLeastOneIsCheckedValidator()]),
+    });
+
+    this.onboardingService.addCheckboxes(this.activityKeys, this.activitiesFormArray);
+
+    this.controlKey = USER_ONBOARDING + '-' + PILLARS + '-' + this.pillar;
+
+    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
+      if (cacheValue) {
+        this.activitiesFormArray.setValue(cacheValue);
+      }
     });
   }
+
+  ngAfterViewInit(): void {
+    this.formValueChanges$ = this.form.valueChanges
+      .pipe(skip(1)) //todo skiping 1 not to set same value to cache
+      .subscribe((changedVal) => {
+        this.storage.setItemSubscribe(this.controlKey, changedVal[this.pillar]);
+      });
+  }
+
   ngOnDestroy(): void {
     this.formValueChanges$.unsubscribe();
   }
 
-  ngOnInit(): void {
-    this.formValueChanges$ = this.formGroup.valueChanges
-      .pipe(skip(this.activityKeys.length))
-      .subscribe(() =>
-        this.storage.setItemSubscribe(USER_ONBOARDING, { activities: this.submit() })
-      );
-    this.fillFormArray();
-  }
-
-  fillFormArray() {
-    this.storage.getItem(USER_ONBOARDING).subscribe((res) => {
-      let activitiesFromCache = res ? res[ACTIVITIES] : null;
-      if (activitiesFromCache) {
-        this.formGroup.controls[ACTIVITIES].markAsTouched();
-      }
-      this.onboardingService.addCheckboxes(
-        this.activityKeys,
-        this.activitiesFormArray,
-        this.activitiesEnum,
-        activitiesFromCache
-      );
-    });
-  }
-
   submit() {
-    const selectedActivityTitles = this.formGroup.value.activities
+    const selectedActivityTitles = this.form.value[this.pillar]
       .map((selected, i) => (selected ? this.activitiesEnum[this.activityKeys[i]] : null))
       .filter((v) => v !== null);
     return selectedActivityTitles;

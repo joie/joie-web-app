@@ -1,5 +1,5 @@
 import { Pillar, Activities } from './../../../sessions/models/session';
-export interface Student {
+export interface Preferences {
   pillars: Pillar[];
   activities: Activities[];
   sessionTypes: SessionTypes[];

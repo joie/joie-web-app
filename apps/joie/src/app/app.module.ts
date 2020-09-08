@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
+import { PillarListComponent } from './pillar-list/pillar-list.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -50,5 +51,6 @@ import { AuthModule } from './auth/auth.module';
     //   },
   ],
   bootstrap: [AppComponent],
+  exports: [],
 })
 export class AppModule {}

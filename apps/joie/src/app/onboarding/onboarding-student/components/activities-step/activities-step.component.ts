@@ -1,49 +1,54 @@
-import { PILLARS } from './../pillar-step/pillar-step.component';
-import { Component, ViewChildren, QueryList, ChangeDetectionStrategy } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
+import {
+  Component,
+  ViewChildren,
+  QueryList,
+  ChangeDetectionStrategy,
+  AfterViewInit,
+} from '@angular/core';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { ActivitiesBoxComponent } from './activities-box/activities-box.component';
-import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
+import { StorageServiceService } from '../../../shared/storage-service.service';
+import { Pillar } from '../../../../sessions/models/session';
+import { PILLARS } from '../../../../pillar-list/pillar-list.component';
+import { merge } from 'lodash';
 
 @Component({
   selector: 'app-activities-step',
   templateUrl: './activities-step.component.html',
   styleUrls: ['./activities-step.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ActivitiesStepComponent {
+export class ActivitiesStepComponent implements AfterViewInit {
   @ViewChildren(ActivitiesBoxComponent) activityBoxes: QueryList<ActivitiesBoxComponent>;
   selectedPillars = [];
   afterViewInit = false;
+  pillarEnum = Pillar;
 
   constructor(
     public onboardingService: StudentOnboardingService,
-    private storage: StorageServiceService
+    private storage: StorageServiceService,
+    private formService: StudentOnboardingFormService
   ) {
-    // this.selectedPillars = ['JoieMovement', 'JoeSpirit'];
-    this.selectedPillars = history.state.student.pillars;
-    // this.storage.getItem(USER_ONBOARDING).subscribe((featureCache) => {
-    //   this.selectedPillars = featureCache[PILLARS];
-    //   console.log(this.selectedPillars);
-    // });
+    this.selectedPillars = Object.keys(this.formService.form.value.pillars);
+  }
+
+  get pillarsForm() {
+    return this.formService.form.controls[PILLARS] as FormGroup;
+  }
+  ngAfterViewInit(): void {
+    this.activityBoxes.toArray().forEach((box) => {
+      box.subForm.valueChanges.subscribe((changedValue) => {
+        this.pillarsForm.get(box.pillar).reset();
+        merge(this.formService.form.value, {
+          [PILLARS]: { [box.pillar]: box.submit() },
+        }); //todo not the best way to set value but the only one worked for me
+      });
+    });
   }
 
   isValid() {
-    if (history.state.student.activities) {
-      // case restored from cache. Step is cached only if completed, so if it has activities - it was completed.
-      return true;
-    }
-    return this.activityBoxes
-      ? this.activityBoxes.toArray().every((box) => box.formGroup.valid)
-      : false;
-  }
-
-  submit() {
-    let selectedActivities = [];
-    let activityBoxes = this.activityBoxes.toArray();
-    activityBoxes.forEach((box) => {
-      selectedActivities = selectedActivities.concat(box.submit());
-    });
-
-    return { activities: selectedActivities };
+    return this.activityBoxes ? this.activityBoxes.toArray().every((box) => box.form.valid) : false;
   }
 }

@@ -1,19 +1,18 @@
-import { skip } from 'rxjs/operators';
+import { PillarListComponent, PILLARS } from './../../../../pillar-list/pillar-list.component';
 import { Pillar } from '../../../../sessions/models/session';
-import { Component, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { Component, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { FormGroup, FormArray } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
-import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
-import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
+import { StudentOnboardingFormService } from '../../student-onboarding-form.service';
+import { take } from 'rxjs/operators';
 
-export const PILLARS = 'pillars';
 @Component({
   selector: 'app-pillar-step',
   templateUrl: './pillar-step.component.html',
   styleUrls: ['./pillar-step.component.scss'],
 })
-export class PillarStepComponent implements OnDestroy {
-  formGroup: FormGroup;
+export class PillarStepComponent implements AfterViewInit {
+  @ViewChild('pillarList') pillarList: PillarListComponent;
   pillarEnum = Pillar;
   formValueChanges$;
 
@@ -21,52 +20,25 @@ export class PillarStepComponent implements OnDestroy {
     return Object.keys(Pillar);
   }
 
-  get pillarFormArray() {
-    return this.formGroup.controls.pillars as FormArray;
-  }
-
   constructor(
-    private _formBuilder: FormBuilder,
     public onboardingService: StudentOnboardingService,
-    private storage: StorageServiceService
-  ) {
-    this.formGroup = this._formBuilder.group({
-      pillars: new FormArray([], atLeastOneIsCheckedValidator()),
+    private onboardingFormService: StudentOnboardingFormService
+  ) {}
+  ngAfterViewInit(): void {
+    this.pillarList.form.valueChanges.pipe(take(1)).subscribe(() => {
+      this.setControls(this.pillarList.selectedPillars);
     });
-    this.fillFormArray();
-
-    //subscribe to value chan ges skip form init
-    this.formValueChanges$ = this.formGroup.valueChanges
-      .pipe(skip(this.pillarKeys.length))
-      .subscribe(() => this.storage.setItemSubscribe(USER_ONBOARDING, this.submit()));
-  }
-  ngOnDestroy(): void {
-    this.formValueChanges$.unsubscribe();
   }
 
-  fillFormArray() {
-    this.storage.getItem(USER_ONBOARDING).subscribe((res) => {
-      let pillarsFromCache = res ? res[PILLARS] : null;
-      if (pillarsFromCache) {
-        this.formGroup.controls[PILLARS].markAsTouched();
-      }
-      this.onboardingService.addCheckboxes(
-        this.pillarKeys,
-        this.pillarFormArray,
-        this.pillarEnum,
-        pillarsFromCache
-      );
-    });
+  setControls(controls) {
+    let selectedPillarsObj = {};
+    controls.forEach((pillar) =>
+      Object.assign(selectedPillarsObj, { [pillar]: new FormArray([]) })
+    );
+    this.onboardingFormService.setControl([PILLARS, new FormGroup(selectedPillarsObj)]);
   }
 
   isValid() {
-    return this.formGroup.valid;
-  }
-
-  submit() {
-    const selectedPillarTitles = this.formGroup.value.pillars
-      .map((checked, i) => (checked ? this.pillarEnum[this.pillarKeys[i]] : null))
-      .filter((v) => v !== null);
-    return { pillars: selectedPillarTitles };
+    return Object.keys(this.onboardingFormService.form.get(PILLARS).value).length > 0;
   }
 }

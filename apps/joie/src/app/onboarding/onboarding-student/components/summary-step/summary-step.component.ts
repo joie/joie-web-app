@@ -1,4 +1,4 @@
-import { Student } from './../../models/student';
+import { Preferences } from './../../models/student';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./summary-step.component.scss'],
 })
 export class SummaryStepComponent {
-  student: Student;
+  student: Preferences;
   displayName;
 
   constructor(public activatedRoute: ActivatedRoute) {

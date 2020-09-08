@@ -20,16 +20,16 @@ export class SessionFormMetadataComponent extends DynaFormBaseComponent {
   constructor() {
     super();
 
-    this.controls = [
+    this.addControls([
       ['format', new FormControl(null, Validators.required)],
       ['type', new FormControl(null, Validators.required)],
       ['title', new FormControl(null, Validators.required)],
       ['description', new FormControl(null)],
-    ];
+    ]);
   }
 
   get coachingSelected() {
-    return this.typeSelectedValue === SessionType.Coaching;
+    return this.form.get('type').value === SessionType.Coaching;
   }
 
   asIsOrder(a, b) {

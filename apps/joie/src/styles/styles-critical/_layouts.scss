@@ -113,3 +113,11 @@ main {
     }
   }
 }
+
+.dialog-as-drawer {
+  align-self: stretch;
+  .mat-dialog-content {
+    flex-grow: 1;
+    max-height: initial;
+  }
+}

@@ -3,17 +3,15 @@
        width="25"
        height="25" />
 
-  <h3>
-    Joie<span class="text-primary">{{ pillar | slice: 4 }}</span>
-  </h3>
-  <form [formGroup]="formGroup">
+  <h4 [innerHTML]="pillarEnum[pillar] | pillarKeywordEmphasis"></h4>
+  <form [formGroup]="form">
     <mat-form-field>
-      <mat-chip-list formArrayName="activities"
+      <mat-chip-list [formArrayName]="pillar"
                      multiple>
         <label *ngFor="let activity of activitiesFormArray.controls; let i = index">
           <mat-chip #chip="matChip"
                     [selectable]="true"
-                    [selected]="activity.value"
+                    [selected]="form.value[pillar][i]"
                     (click)="
               chip.selected = !chip.selected;
               handleSelect(i, chip.selected)

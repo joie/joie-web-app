@@ -1,13 +1,14 @@
+import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
 import { AuthService } from './../../../../auth-state/services/auth/auth.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
+import { Component, OnDestroy } from '@angular/core';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
 import { SessionTypes } from '../../models/student';
 import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
+import { merge } from 'lodash';
 import { skip } from 'rxjs/operators';
-
 export const SESSION_TYPES = 'sessionTypes';
 @Component({
   selector: 'app-session-types-step',
@@ -15,64 +16,65 @@ export const SESSION_TYPES = 'sessionTypes';
   styleUrls: ['./session-types-step.component.scss'],
 })
 export class SessionTypesStepComponent implements OnDestroy {
-  formGroup: FormGroup;
+  form: FormGroup;
   typesEnum = SessionTypes;
   formValueChanges$;
+  controlKey = USER_ONBOARDING + '-' + SESSION_TYPES;
 
   get typeKeys() {
     return Object.keys(this.typesEnum);
   }
 
   get typesFormArray() {
-    return this.formGroup.controls.sessionTypes as FormArray;
+    return this.form.controls.sessionTypes as FormArray;
   }
 
   constructor(
     private _formBuilder: FormBuilder,
     public authService: AuthService,
     public onboardingService: StudentOnboardingService,
-    private storage: StorageServiceService
+    private storage: StorageServiceService,
+    private formService: StudentOnboardingFormService
   ) {
-    this.formGroup = this._formBuilder.group({
+    this.form = this._formBuilder.group({
       sessionTypes: new FormArray(
         [],
         [atLeastOneIsCheckedValidator(), notMoreThanOneIsCheckedValidator()]
       ),
     });
-    this.fillFormArray();
 
-    //subscribe to value chan ges skip form init
-    this.formValueChanges$ = this.formGroup.valueChanges
-      .pipe(skip(this.typeKeys.length))
-      .subscribe(() => this.storage.setItemSubscribe(USER_ONBOARDING, this.submit()));
+    this.formService.setControl([SESSION_TYPES, new FormArray([])]);
+
+    this.onboardingService.addCheckboxes(this.typeKeys, this.typesFormArray);
+
+    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
+      if (cacheValue) {
+        this.form.patchValue({ [SESSION_TYPES]: cacheValue });
+      }
+    });
+
+    this.formValueChanges$ = this.form.valueChanges
+      .pipe(skip(1)) //todo skiping 1 not to set same value to cache
+      .subscribe((value) => {
+        if (this.form.valid) {
+          this.storage.setItemSubscribe(this.controlKey, value[SESSION_TYPES]);
+          merge(this.formService.form.value, { [SESSION_TYPES]: this.submit() });
+        }
+      });
   }
+
   ngOnDestroy(): void {
     this.formValueChanges$.unsubscribe();
   }
 
-  fillFormArray() {
-    this.storage.getItem(USER_ONBOARDING).subscribe((res) => {
-      let pillarsFromCache = res ? res[SESSION_TYPES] : null;
-      if (pillarsFromCache) {
-        this.formGroup.controls[SESSION_TYPES].markAsTouched();
-      }
-      this.onboardingService.addCheckboxes(
-        this.typeKeys,
-        this.typesFormArray,
-        this.typesEnum,
-        pillarsFromCache
-      );
-    });
-  }
-
   isValid() {
-    return this.formGroup.valid;
+    return this.form.valid;
   }
   submit() {
-    const selectedTypes = this.formGroup.value.sessionTypes
+    const selectedTypes = this.form.value.sessionTypes
       .map((checked, i) => (checked ? this.typesEnum[this.typeKeys[i]] : null))
       .filter((v) => v !== null);
-    return { sessionTypes: selectedTypes };
+    return selectedTypes;
   }
 
   finishOnboarding() {

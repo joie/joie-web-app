@@ -6,23 +6,15 @@
   </p>
 </div>
 <div class="container container-condense">
-  <form
-    [formGroup]="formGroup"
-    class="layout-grid layout-grid-inline-features layout-spacing-inline-md"
-  >
-    <mat-card *ngFor="let pillar of pillarFormArray.controls; let i = index">
-      <img [src]="'/assets/images/' + pillarKeys[i] + '.png'" width="100" height="100" />
-      <label formArrayName="pillars">
-        <input type="checkbox" [formControlName]="i" />
-        <div>
-          Joie<span class="text-primary">{{ pillarKeys[i] | titlecase }}</span>
-        </div>
-      </label>
-    </mat-card>
-  </form>
+  <app-pillar-list #pillarList
+                   [selectable]="true"
+                   layoutClass="layout-grid layout-grid-inline-features layout-spacing-inline-md
+                   layout-spacing-block-md"></app-pillar-list>
 
   <div class="layout-grid">
-    <button mat-button mat-raised-button matStepperNext>
+    <button mat-button
+            mat-raised-button
+            matStepperNext>
       Continue
     </button>
 

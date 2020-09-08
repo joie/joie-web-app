@@ -27,14 +27,14 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
 
   constructor() {
     super();
-    this.controls = [
+    this.addControls([
       [this.PILLAR, new FormControl(null)],
       [this.LEVEL, new FormControl(null)],
       [this.ACTIVITY, new FormControl(null)],
       [this.GOALS, this.goalsFormArray],
       [this.COMMENTS, this.commentsFormArray],
       [this.PRICE, new FormControl(null)],
-    ];
+    ]);
   }
 
   get pillarKeys(): Array<string> {

@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { StorageMap } from '@ngx-pwa/local-storage';
-import { take } from 'rxjs/operators';
 
 export const USER_ONBOARDING = 'user-onboarding';
 @Injectable({
@@ -10,23 +9,15 @@ export const USER_ONBOARDING = 'user-onboarding';
 export class StorageServiceService {
   constructor(private storage: StorageMap) {}
 
-  setItemSubscribe(featureKey, newValue): void {
-    this.storage
-      .get(featureKey)
-      .pipe(take(1))
-      .subscribe((prevValue: object) => {
-        if (!prevValue) {
-          const subscription = this.storage.set(featureKey, newValue).pipe(take(1)).subscribe();
-        } else {
-          const valueEntries = Object.entries(newValue)[0];
-          const subscription = this.storage
-            .set(featureKey, { ...prevValue, [valueEntries[0]]: valueEntries[1] })
-            .pipe(take(1))
-            .subscribe();
-        }
-      });
+  setItemSubscribe(key, newVal) {
+    this.storage.set(key, newVal).subscribe();
   }
-  getItem(featureKey): Observable<any> {
-    return this.storage.get(featureKey);
+
+  getItem(key): Observable<any> {
+    return this.storage.get(key);
+  }
+
+  removeItemSubscribe(key) {
+    this.storage.delete(key).subscribe(); //optimize subscriptions
   }
 }

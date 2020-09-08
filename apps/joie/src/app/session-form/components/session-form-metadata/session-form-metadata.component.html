@@ -5,7 +5,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Type</mat-label>
 
-      <mat-select required formControlName="type" [(ngModel)]="typeSelectedValue">
+      <mat-select required formControlName="type">
         <mat-option
           *ngFor="let type of sessionTypeLiteralMap | keyvalue: asIsOrder"
           [value]="type.key"

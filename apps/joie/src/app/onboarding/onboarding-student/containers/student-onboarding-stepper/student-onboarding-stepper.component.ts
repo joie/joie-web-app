@@ -1,6 +1,9 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Student } from '../../models/student';
+import { Preferences } from '../../models/student';
+import { FormGroup } from '@angular/forms';
+import { PILLARS } from '../../../../pillar-list/pillar-list.component';
 
 @Component({
   selector: 'app-student-onboarding-stepper',
@@ -8,17 +11,26 @@ import { Student } from '../../models/student';
   styleUrls: ['./student-onboarding-stepper.component.scss'],
 })
 export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit {
-  student: Partial<Student> = {};
+  preferences: Partial<Preferences> = {};
   public steps: string[];
   public selectedStep: number = 0;
   public selectedStepRef = null;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private formService: StudentOnboardingFormService
+  ) {
     this.steps = this.route.snapshot.routeConfig.children.map((child) => {
       return child.path;
     });
+  }
+  ngOnInit(): void {
+    this.setControls();
+  }
+
+  setControls() {
+    this.formService.setControl([PILLARS, new FormGroup({})]);
   }
 
   ngAfterViewInit() {
@@ -37,19 +49,15 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
   }
 
   hasForm() {
-    return ![0, this.steps.length - 1].includes(this.selectedStep);
+    return this.selectedStep != 0;
   }
 
   isCompleted() {
     return this.selectedStepRef ? this.selectedStepRef.isValid() : true;
   }
   selectionChanged(event: any) {
-    if (this.selectedStepRef) {
-      Object.assign(this.student, this.selectedStepRef.submit());
-    }
     this.selectedStep = event.selectedIndex;
     this.router.navigate([this.steps[this.selectedStep]], {
-      state: { student: this.student },
       relativeTo: this.route,
     });
   }
