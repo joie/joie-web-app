@@ -6,15 +6,14 @@
   </p>
 </div>
 <div class="container container-condense">
-  <app-pillar-list #pillarList
-                   [selectable]="true"
-                   layoutClass="layout-grid layout-grid-inline-features layout-spacing-inline-md
-                   layout-spacing-block-md"></app-pillar-list>
+  <app-pillar-list
+    #pillarList
+    [selectable]="true"
+    class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
+  ></app-pillar-list>
 
   <div class="layout-grid">
-    <button mat-button
-            mat-raised-button
-            matStepperNext>
+    <button mat-button mat-raised-button matStepperNext>
       Continue
     </button>
 
