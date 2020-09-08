@@ -24,14 +24,8 @@
         {{ session?.level }}
       </div>
       <div>
-        <!-- TODO implement price pipe based on the logged in user-->
         <i class="feather icon-tag i-20"></i>
-        {{ session?.price?.currency + session?.price?.display }}
-      </div>
-      <div>
-        <i class="feather icon-send i-20"></i>
-        <!-- Implement share component -->
-        Share
+        {{ session?.price?.display | currency: session?.price?.currency }}
       </div>
     </div>
 

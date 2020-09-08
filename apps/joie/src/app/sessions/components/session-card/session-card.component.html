@@ -26,8 +26,7 @@
     <div>{{ session?.author?.name }}</div>
 
     <div fxLayout="row" fxLayoutAlign="space-between">
-      <!-- TODO implement price pipe based on the logged in user-->
-      <div>Price {{ session?.price?.currency + session?.price?.display }}</div>
+      <div>{{ session?.price?.display | currency: session?.price?.currency }}</div>
 
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <i class="feather icon-more-horizontal"></i>
@@ -48,12 +47,7 @@
     <div>
       {{ session?.title }}
     </div>
-    <div
-      fxLayout="row"
-      class="text-center"
-      fxLayoutGap="20px"
-      fxLayoutAlign="center center"
-    >
+    <div fxLayout="row" class="text-center" fxLayoutGap="20px" fxLayoutAlign="center center">
       <img src="" class="author-image" width="40px" height="40px" />
       <div class="text-lg">{{ session?.author.name }}</div>
     </div>

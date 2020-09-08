@@ -6,7 +6,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { SessionsRoutingModule } from './sessions-routing.module';
 
 import { SessionsDashboardComponent } from './containers/sessions-dashboard/sessions-dashboard.component';
-import { SessionComponent } from './containers/session/session.component';
 import { SessionEnrollDialogComponent } from './components/session-enroll-dialog/session-enroll-dialog.component';
 import { SessionDetailsComponent } from './components/session-details/session-details.component';
 import { SessionCardComponent } from './components/session-card/session-card.component';
@@ -16,7 +15,6 @@ import { SessionListModule } from '../session-list/session-list.module';
 @NgModule({
   declarations: [
     SessionsDashboardComponent,
-    SessionComponent,
     SessionEnrollDialogComponent,
     SessionDetailsComponent,
     SessionCardComponent,
