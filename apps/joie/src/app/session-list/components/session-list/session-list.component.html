@@ -1,10 +1,6 @@
 <ng-container *ngIf="sessions$ | async as sessions">
   <mat-card class="card" *ngFor="let session of sessions">
-    <img
-      mat-card-image
-      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-      alt="Photo of a Shiba Inu"
-    />
+    <img mat-card-image src="https://picsum.photos/200/200" alt="Photo of a Shiba Inu" />
     <mat-card-title>
       <a routerLink="/sessions/first-session">{{ session.title }}</a>
     </mat-card-title>
@@ -31,9 +27,9 @@
         ><button mat-button>pay</button></a
       >
       <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz
-        breeds of dog from Japan. A small, agile dog that copes very well with
-        mountainous terrain, the Shiba Inu was originally bred for hunting.
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+        Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+        originally bred for hunting.
       </p>
     </mat-card-content>
     <mat-card-actions>
