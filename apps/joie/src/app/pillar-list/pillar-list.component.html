@@ -1,36 +1,27 @@
 <div *ngIf="selectable; then selectablePillars; else nonSelectablePillars"></div>
 
-<ng-template #selectablePillars
-             class="container container-condense">
-  <form [formGroup]="form"
-        [class]="layoutClass">
+<ng-template #selectablePillars class="container container-condense">
+  <form [formGroup]="form" [class]="layoutClass">
     <mat-card *ngFor="let pillar of pillars; let i = index">
-      <img [src]="pillar?.imgUrl"
-           alt="icon figure for {{ pillar?.title }}" />
+      <img [src]="pillar?.imgUrl" alt="icon figure for {{ pillar?.title }}" />
       <label formArrayName="pillars">
-        <input type="checkbox"
-               [formControlName]="i" />
+        <input type="checkbox" [formControlName]="i" />
       </label>
 
       <div>
-        <h4 [innerHTML]="pillar?.title | pillarKeywordEmphasis"></h4>
+        <h4 [innerHTML]="pillar?.title"></h4>
       </div>
     </mat-card>
   </form>
 </ng-template>
 
-<ng-template #nonSelectablePillars
-             class="container container-condense">
-  <div [class]="
-             layoutClass">
-    <mat-card *ngFor="let pillar of pillars; let i = index">
-      <img [src]="pillar?.imgUrl"
-           alt="icon figure for {{ pillar?.title }}" />
+<ng-template #nonSelectablePillars class="container container-condense">
+  <mat-card *ngFor="let pillar of pillars; let i = index">
+    <img [src]="pillar?.imgUrl" alt="icon figure for {{ pillar?.title }}" />
 
-      <div>
-        <h4 [innerHTML]="pillar?.title | pillarKeywordEmphasis"></h4>
-      </div>
-      <p>{{ pillar.description }}</p>
-    </mat-card>
-  </div>
+    <div>
+      <h4 [innerHTML]="pillar?.title"></h4>
+    </div>
+    <p>{{ pillar.description }}</p>
+  </mat-card>
 </ng-template>
