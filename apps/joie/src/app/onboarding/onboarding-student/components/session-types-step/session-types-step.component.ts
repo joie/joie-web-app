@@ -7,8 +7,6 @@ import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChe
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
 import { SessionTypes } from '../../models/student';
 import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
-import { merge } from 'lodash';
-import { skip } from 'rxjs/operators';
 import { sessionTypesData } from './sessionTypesData';
 export const SESSION_TYPES = 'sessionTypes';
 
@@ -30,6 +28,12 @@ export class SessionTypesStepComponent implements OnDestroy {
 
   get typesFormArray() {
     return this.form.controls.sessionTypes as FormArray;
+  }
+
+  get values() {
+    return this.form.value.sessionTypes
+      .map((checked, i) => (checked ? this.typesEnum[this.typeKeys[i]] : null))
+      .filter((v) => v !== null);
   }
 
   constructor(
@@ -57,14 +61,13 @@ export class SessionTypesStepComponent implements OnDestroy {
     });
 
     this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
-      let sessionTypesValues = this.submit();
       this.formService.sessionTypesFormArray.clear();
-      sessionTypesValues.forEach((value) => {
+      this.values.forEach((value) => {
         this.formService.sessionTypesFormArray.push(new FormControl(value));
       });
 
       if (this.form.valid) {
-        // not caching invalid values
+        // not caching invalid value
         this.storage.setItemSubscribe(this.controlKey, value[SESSION_TYPES]);
       }
     });
@@ -76,11 +79,6 @@ export class SessionTypesStepComponent implements OnDestroy {
 
   isValid() {
     return this.form.valid;
-  }
-  submit() {
-    return this.form.value.sessionTypes
-      .map((checked, i) => (checked ? this.typesEnum[this.typeKeys[i]] : null))
-      .filter((v) => v !== null);
   }
 
   finishOnboarding() {

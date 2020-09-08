@@ -41,7 +41,7 @@ export class ActivitiesStepComponent implements AfterViewInit {
       box.subForm.valueChanges.subscribe(() => {
         let activityFormArray = this.formService.getActivityFormArray(box.pillar);
         activityFormArray.clear();
-        box.submit().forEach((value) => {
+        box.values.forEach((value) => {
           activityFormArray.push(new FormControl(value));
         });
       });
