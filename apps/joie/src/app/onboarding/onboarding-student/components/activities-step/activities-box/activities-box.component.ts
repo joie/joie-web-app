@@ -12,7 +12,6 @@ import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIs
 import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
 import { StudentOnboardingService } from '../../../service/student-onboarding.service';
 import { PILLARS } from '../../../../../pillar-list/pillar-list.component';
-import { skip } from 'rxjs/operators';
 
 export const ACTIVITIES = 'activities';
 @Component({
@@ -55,6 +54,12 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit 
     return this.form;
   }
 
+  get values() {
+    return this.form.value[this.pillar]
+      .map((selected, i) => (selected ? this.activitiesEnum[this.activityKeys[i]] : null))
+      .filter((v) => v !== null);
+  }
+
   constructor(
     private formBuilder: FormBuilder,
     public onboardingService: StudentOnboardingService,
@@ -78,22 +83,15 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   ngAfterViewInit(): void {
-    this.formValueChanges$ = this.form.valueChanges
-      .pipe(skip(1)) //todo skiping 1 not to set same value to cache
-      .subscribe((changedVal) => {
+    this.formValueChanges$ = this.form.valueChanges.subscribe((changedVal) => {
+      if (this.form.valid) {
         this.storage.setItemSubscribe(this.controlKey, changedVal[this.pillar]);
-      });
+      }
+    });
   }
 
   ngOnDestroy(): void {
     this.formValueChanges$.unsubscribe();
-  }
-
-  submit() {
-    const selectedActivityTitles = this.form.value[this.pillar]
-      .map((selected, i) => (selected ? this.activitiesEnum[this.activityKeys[i]] : null))
-      .filter((v) => v !== null);
-    return selectedActivityTitles;
   }
 
   handleSelect(index, selected) {

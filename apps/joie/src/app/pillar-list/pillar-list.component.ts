@@ -32,7 +32,7 @@ export class PillarListComponent {
   }
 
   get pillarsFormArray() {
-    return this.form.get(PILLARS);
+    return this.form.get(PILLARS) as FormArray;
   }
 
   get pillarKeys() {

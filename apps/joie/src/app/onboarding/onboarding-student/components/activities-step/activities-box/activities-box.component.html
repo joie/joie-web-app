@@ -1,10 +1,5 @@
 <mat-card>
-  <img
-    [src]="'/assets/images/' + (pillar | lowercase | slice: 4) + '.png'"
-    width="25"
-    height="25"
-  />
-
+  <app-icon class="joie-icon joie-icon-backdrop" [name]="pillar"></app-icon>
   <h4 [innerHTML]="pillarEnum[pillar]"></h4>
   <form [formGroup]="form">
     <mat-form-field>
@@ -12,6 +7,7 @@
         <label *ngFor="let activity of activitiesFormArray.controls; let i = index">
           <mat-chip
             #chip="matChip"
+            class="mat-elevation-z1"
             [selectable]="true"
             [selected]="form.value[pillar][i]"
             (click)="chip.selected = !chip.selected; handleSelect(i, chip.selected)"

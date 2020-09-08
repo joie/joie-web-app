@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { pillars } from './pillars';
 import { homeJoieAdvantages } from './home-joie-advantages';
 
 @Component({
@@ -7,7 +6,6 @@ import { homeJoieAdvantages } from './home-joie-advantages';
   styleUrls: ['./home-dashboard.component.scss'],
 })
 export class HomeDashboardComponent {
-  pillars = pillars;
   homeJoieAdvantages = homeJoieAdvantages;
   layoutClass =
     'layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md';
