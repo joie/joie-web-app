@@ -1,7 +1,7 @@
-<section class="my-calendar-section layout-flex layout-spacing-inline-md">
+<div class="layout-columns-md">
   <div>
 
-    <div class="tools-panel">
+    <div>
       <h3>My calendar</h3>
       <mat-divider></mat-divider>
 
@@ -25,9 +25,8 @@
     </div>
   </div>
 
-  <div class='calendar-box container'>
+  <div class='container'>
     <mat-calendar #calendar
-                  class="calendar"
                   [selected]="selectedDate"
                   [startAt]="startAt"
                   (selectedChange)="onSelect($event)"
@@ -36,4 +35,4 @@
   </div>
 
 
-</section>
+</div>
