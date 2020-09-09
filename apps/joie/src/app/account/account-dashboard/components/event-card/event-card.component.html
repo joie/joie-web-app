@@ -1,11 +1,11 @@
-<mat-card class="event-card">
+<mat-card>
   <h4>{{ session.dateTimeDuration.time }} pm</h4>
   <mat-icon class="copy-url"
             [cdkCopyToClipboard]="session.url">link</mat-icon>
+
   <p>
     <strong>{{ session.type }}</strong>{{ ' ' + session.name }}
   </p>
-
 
   <a [routerLink]="[
       '/account',
