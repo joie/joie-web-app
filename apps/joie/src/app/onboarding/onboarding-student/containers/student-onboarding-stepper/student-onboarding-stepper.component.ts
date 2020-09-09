@@ -1,5 +1,11 @@
 import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  OnInit,
+  ChangeDetectorRef,
+  AfterViewChecked,
+} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Preferences } from '../../models/student';
 import { FormGroup } from '@angular/forms';
@@ -10,7 +16,7 @@ import { PILLARS } from '../../../../pillar-list/pillar-list.component';
   templateUrl: './student-onboarding-stepper.component.html',
   styleUrls: ['./student-onboarding-stepper.component.scss'],
 })
-export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit {
+export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit, AfterViewChecked {
   preferences: Partial<Preferences> = {};
   public steps: string[];
   public selectedStep: number = 0;
@@ -19,12 +25,14 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private formService: StudentOnboardingFormService
+    private formService: StudentOnboardingFormService,
+    private cdRef: ChangeDetectorRef
   ) {
     this.steps = this.route.snapshot.routeConfig.children.map((child) => {
       return child.path;
     });
   }
+
   ngOnInit(): void {
     this.setControls();
   }
@@ -38,6 +46,10 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit 
     this.router.navigate([step], {
       relativeTo: this.route,
     });
+  }
+
+  ngAfterViewChecked(): void {
+    this.cdRef.detectChanges();
   }
 
   onActivate(componentRef) {
