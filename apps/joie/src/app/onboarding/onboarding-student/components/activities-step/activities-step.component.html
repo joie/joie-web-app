@@ -7,20 +7,22 @@
 </div>
 
 <div class="container container-ultra-condense">
-  <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md">
+  <div class="layout-columns-sm">
     <app-activities-box #boxes
                         *ngFor="let pillar of selectedPillars"
-                        [pillar]="pillar"></app-activities-box>
+                        [pillar]="pillar | titlecase"></app-activities-box>
   </div>
-  <div class="layout-grid">
-    <button mat-button
-            mat-raised-button
-            matStepperNext>
-      Continue
-    </button>
-
-    <a routerLink="/home">
-      Skip for now.
-    </a>
+  <div class="layout-columns-md">
+    <div>
+      <button mat-button
+              mat-raised-button
+              matStepperNext>
+        Continue
+      </button>
+      <br>
+      <a routerLink="/home">
+        Skip for now.
+      </a>
+    </div>
   </div>
 </div>

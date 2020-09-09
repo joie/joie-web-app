@@ -22,10 +22,10 @@ export class PillarStepComponent implements AfterViewInit {
 
   constructor(
     public onboardingService: StudentOnboardingService,
-    private onboardingFormService: StudentOnboardingFormService
+    private formService: StudentOnboardingFormService
   ) {}
   ngAfterViewInit(): void {
-    this.pillarList.form.valueChanges.pipe(take(1)).subscribe(() => {
+    this.pillarList.form.valueChanges.subscribe(() => {
       this.setControls(this.pillarList.selectedPillars);
     });
   }
@@ -35,10 +35,10 @@ export class PillarStepComponent implements AfterViewInit {
     controls.forEach((pillar) =>
       Object.assign(selectedPillarsObj, { [pillar]: new FormArray([]) })
     );
-    this.onboardingFormService.setControl([PILLARS, new FormGroup(selectedPillarsObj)]);
+    this.formService.setControl([PILLARS, new FormGroup(selectedPillarsObj)]);
   }
 
   isValid() {
-    return Object.keys(this.onboardingFormService.form.get(PILLARS).value).length > 0;
+    return Object.keys(this.formService.form.get(PILLARS).value).length > 0;
   }
 }

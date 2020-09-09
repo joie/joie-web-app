@@ -1,17 +1,17 @@
 <mat-card>
-  <app-icon class="joie-icon joie-icon-backdrop" [name]="pillar"></app-icon>
-  <h4 [innerHTML]="pillarEnum[pillar]"></h4>
+  <app-icon class="joie-icon joie-icon-backdrop"
+            [name]="pillar| lowercase"></app-icon>
+  <h4 [innerHTML]="pillar"></h4>
   <form [formGroup]="form">
     <mat-form-field>
-      <mat-chip-list [formArrayName]="pillar" multiple>
+      <mat-chip-list [formArrayName]="pillar"
+                     multiple>
         <label *ngFor="let activity of activitiesFormArray.controls; let i = index">
-          <mat-chip
-            #chip="matChip"
-            class="mat-elevation-z1"
-            [selectable]="true"
-            [selected]="form.value[pillar][i]"
-            (click)="chip.selected = !chip.selected; handleSelect(i, chip.selected)"
-          >
+          <mat-chip #chip="matChip"
+                    class="mat-elevation-z1"
+                    [selectable]="true"
+                    [selected]="form.value[pillar][i]"
+                    (click)="chip.selected = !chip.selected; handleSelect(i, chip.selected)">
             {{ activitiesEnum[activityKeys[i]] }}
           </mat-chip>
         </label>

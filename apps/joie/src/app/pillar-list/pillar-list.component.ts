@@ -25,7 +25,6 @@ export class PillarListComponent {
   controlKey = USER_ONBOARDING + '-' + PILLARS;
   @Input() selectable = false;
   @Input() descriptions = false;
-  @Input() layoutClass;
 
   get subForm() {
     return this.form;
@@ -41,7 +40,7 @@ export class PillarListComponent {
 
   get selectedPillars() {
     return this.form.value.pillars
-      .map((checked, i) => (checked ? this.pillarKeys[i] : null))
+      .map((checked, i) => (checked ? this.pillarKeys[i].toLowerCase() : null))
       .filter((v) => v !== null);
   }
 
