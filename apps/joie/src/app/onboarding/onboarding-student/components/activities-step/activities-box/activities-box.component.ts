@@ -10,8 +10,8 @@ import { Component, Input, OnInit, OnDestroy, AfterViewInit } from '@angular/cor
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
 import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
-import { StudentOnboardingService } from '../../../service/student-onboarding.service';
 import { PILLARS } from '../../../../../pillar-list/pillar-list.component';
+import { OnboardingService } from '../../../../shared/onboarding.service';
 
 export const ACTIVITIES = 'activities';
 @Component({
@@ -62,7 +62,7 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit 
 
   constructor(
     private formBuilder: FormBuilder,
-    public onboardingService: StudentOnboardingService,
+    public onboardingService: OnboardingService,
     private storage: StorageServiceService
   ) {}
 

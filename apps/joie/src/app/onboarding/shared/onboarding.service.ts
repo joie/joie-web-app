@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -27,5 +28,9 @@ export class OnboardingService {
       default:
         return 'default  err msg';
     }
+  }
+
+  addCheckboxes(keys, formArray) {
+    keys.forEach(() => formArray.push(new FormControl(false)));
   }
 }
