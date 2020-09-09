@@ -25,7 +25,6 @@ export class PillarListComponent {
   controlKey = USER_ONBOARDING + '-' + PILLARS;
   @Input() selectable = false;
   @Input() descriptions = false;
-  @Input() layoutClass;
 
   get subForm() {
     return this.form;

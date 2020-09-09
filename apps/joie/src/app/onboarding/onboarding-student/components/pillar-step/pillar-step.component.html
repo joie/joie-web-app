@@ -6,19 +6,22 @@
   </p>
 </div>
 <div class="container container-condense">
-  <app-pillar-list
-    #pillarList
-    [selectable]="true"
-    class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
-  ></app-pillar-list>
+  <app-pillar-list #pillarList
+                   [selectable]="true"
+                   class="layout-columns-sm"></app-pillar-list>
 
-  <div class="layout-grid">
-    <button mat-button mat-raised-button matStepperNext>
-      Continue
-    </button>
+  <div class="layout-columns-md">
 
-    <a routerLink="/home">
-      Skip for now.
-    </a>
+    <div>
+      <button mat-button
+              mat-raised-button
+              matStepperNext>
+        Continue
+      </button>
+      <br>
+      <a routerLink="/home">
+        Skip for now.
+      </a>
+    </div>
   </div>
 </div>
