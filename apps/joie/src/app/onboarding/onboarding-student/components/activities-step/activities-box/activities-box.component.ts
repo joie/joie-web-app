@@ -28,8 +28,6 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit 
   cachedValues = null;
 
   get activitiesEnum() {
-    // console.log(this.pillarEnum);
-    // console.log(this.pillar);
     switch (this.pillarEnum[this.pillar]) {
       case Pillar.Movement:
         return JoieMovement;
