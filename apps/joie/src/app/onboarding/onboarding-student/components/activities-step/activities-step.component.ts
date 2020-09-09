@@ -1,23 +1,17 @@
 import { FormGroup, FormControl } from '@angular/forms';
 import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
-import {
-  Component,
-  ViewChildren,
-  QueryList,
-  ChangeDetectionStrategy,
-  AfterViewInit,
-} from '@angular/core';
+import { Component, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { ActivitiesBoxComponent } from './activities-box/activities-box.component';
-import { StorageServiceService } from '../../../shared/storage-service.service';
 import { Pillar } from '../../../../sessions/models/session';
 import { PILLARS } from '../../../../pillar-list/pillar-list.component';
-import { merge } from 'lodash';
+import { LowerCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-activities-step',
   templateUrl: './activities-step.component.html',
   styleUrls: ['./activities-step.component.scss'],
+  providers: [LowerCasePipe],
 })
 export class ActivitiesStepComponent implements AfterViewInit {
   @ViewChildren(ActivitiesBoxComponent) activityBoxes: QueryList<ActivitiesBoxComponent>;
@@ -27,8 +21,8 @@ export class ActivitiesStepComponent implements AfterViewInit {
 
   constructor(
     public onboardingService: StudentOnboardingService,
-    private storage: StorageServiceService,
-    private formService: StudentOnboardingFormService
+    private formService: StudentOnboardingFormService,
+    private lowercasePipe: LowerCasePipe
   ) {
     this.selectedPillars = Object.keys(this.formService.form.value.pillars);
   }
@@ -39,7 +33,9 @@ export class ActivitiesStepComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.activityBoxes.toArray().forEach((box) => {
       box.subForm.valueChanges.subscribe(() => {
-        let activityFormArray = this.formService.getActivityFormArray(box.pillar);
+        let activityFormArray = this.formService.getActivityFormArray(
+          this.lowercasePipe.transform(box.pillar)
+        );
         activityFormArray.clear();
         box.values.forEach((value) => {
           activityFormArray.push(new FormControl(value));
