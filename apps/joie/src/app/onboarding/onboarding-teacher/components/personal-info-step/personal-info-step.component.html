@@ -13,7 +13,7 @@
       <mat-label>First name</mat-label>
       <input matInput
              type="text"
-             placeholder="first name"
+             placeholder="First Name"
              name="first-name"
              formControlName="firstNameCtrl"
              required />
@@ -25,7 +25,7 @@
       <mat-label>Last name</mat-label>
       <input matInput
              type="text"
-             placeholder="last name"
+             placeholder="Last Name"
              name="family-name"
              formControlName="lastNameCtrl"
              required />
@@ -37,7 +37,7 @@
       <mat-label>Email</mat-label>
       <input matInput
              type="email"
-             placeholder="email"
+             placeholder="Email"
              name="email"
              formControlName="emailCtrl"
              required />
@@ -51,7 +51,7 @@
              name="tel"
              type="tel"
              autocomplete="tel"
-             placeholder="phone number"
+             placeholder="Phone Number"
              formControlName="phoneNumberCtrl"
              required />
       <mat-error *ngIf="phone.invalid">{{onboardingService.showErrorMessage(phone)}}</mat-error>
