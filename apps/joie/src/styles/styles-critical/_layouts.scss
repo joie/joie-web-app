@@ -1,5 +1,7 @@
 @use 'sass:map';
 
+$headings: 'h1, h2, h3, h4, h5, h6';
+
 $layout-breakpoint-xs: 700px;
 $layout-breakpoint-sm: 960px;
 $layout-breakpoint-lg: 1365px;
@@ -13,6 +15,12 @@ $layout-breakpoint-lg: 1365px;
 body {
   padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px)
     env(safe-area-inset-bottom, 20px) env(safe-area-inset-left, 20px);
+}
+
+#{$headings} {
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .container {
@@ -41,27 +49,53 @@ body {
 
 [class*='layout-columns'] {
   $column-items-min-inline-size-variable-name: --column-items-min-inline-size;
-  $items-min-inline-size: (
+  $items-min-inline-sizes: (
     'sm': 150px,
     'md': 250px,
     'lg': 350px,
   );
+  @each $key, $value in $items-min-inline-sizes {
+    @at-root [class~='layout-columns-#{$key}'i] {
+      #{$column-items-min-inline-size-variable-name}: #{map.get($items-min-inline-sizes, #{$key})};
+    }
+  }
   width: 100%;
   inline-size: 100%;
   display: grid;
   grid-template-columns: repeat(
     auto-fit,
     minmax(
-      var(#{$column-items-min-inline-size-variable-name}, #{map.get($items-min-inline-size, lg)}),
+      var(#{$column-items-min-inline-size-variable-name}, #{map.get($items-min-inline-sizes, lg)}),
       auto
     )
   );
-  gap: var(--joie-gutter);
-  @each $key, $value in $items-min-inline-size {
-    @at-root [class~='layout-columns-#{$key}'i] {
-      #{$column-items-min-inline-size-variable-name}: #{map.get($items-min-inline-size, #{$key})};
+  grid-column-gap: var(--joie-gutter);
+}
+
+[class*='layout-rows'] {
+  $row-spacing-size-variable-name: --row-spacing-size;
+  $spacing-sizes: (
+    'sm': calc(var(--joie-gutter) * 2),
+    'md': calc(var(--joie-gutter) * 3),
+    'lg': calc(var(--joie-gutter) * 4),
+  );
+  @each $key, $value in $spacing-sizes {
+    @at-root [class~='layout-rows-#{$key}'i] {
+      #{$row-spacing-size-variable-name}: #{map.get($spacing-sizes, #{$key})};
     }
   }
+  display: grid;
+  grid-row-gap: var(#{$row-spacing-size-variable-name}, #{map.get($spacing-sizes, md)});
+  > {
+    #{$headings} {
+      margin: 0;
+    }
+  }
+}
+
+.layout-center {
+  place-content: center;
+  place-items: center;
 }
 
 // $space-row-variable-name: --gutter-row;
@@ -130,18 +164,18 @@ main {
   > section {
     content-visibility: auto;
     contain-intrinsic-size: 500px;
-    --block-gutter: 60px;
-    padding: var(--block-gutter) 0;
+    --section-block-gutter: 60px;
+    padding: var(--section-block-gutter) 0;
     &.section-block-start-offset {
       padding-top: 0;
-      margin-top: calc(-1 * var(--block-gutter));
+      margin-top: calc(-1 * var(--section-block-gutter));
     }
 
-    .section-context {
-      place-items: center;
-      display: grid;
-      grid-row-gap: 35px;
-    }
+    // .section-context {
+    //   place-items: center;
+    //   display: grid;
+    //   grid-row-gap: 35px;
+    // }
   }
 }
 
