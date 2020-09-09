@@ -16,7 +16,7 @@ export class SessionFocusAreaStepComponent {
     { group: 'Youth (15-24)', isChecked: false },
     { group: 'Adults (25-64)', isChecked: false }, //todo when refactoring make this checkbox selected by default - adult is the most popular choice
     { group: 'Eldery (65+)', isChecked: false },
-    { group: 'All of the above', isChecked: true },
+    { group: 'All of the above', isChecked: false },
   ];
   constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({

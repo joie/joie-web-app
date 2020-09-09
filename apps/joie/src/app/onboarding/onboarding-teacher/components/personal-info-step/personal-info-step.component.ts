@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { OnboardingService } from '../../../shared/onboarding.service';
+import { lettersRegExPattern, numbersRegExPattern } from '../../../../models/regex';
 
 export const FIRST_NAME = 'firstNameCtrl';
 export const LAST_NAME = 'lastNameCtrl';
@@ -33,11 +34,11 @@ export class PersonalInfoStepComponent implements OnInit {
     this.formGroup = this._formBuilder.group({
       firstNameCtrl: [
         '',
-        [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z][a-zA-Z ]+')],
+        [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)],
       ],
       lastNameCtrl: [
         '',
-        [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z][a-zA-Z ]+')],
+        [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)],
       ],
       emailCtrl: ['', [Validators.required, Validators.email]],
       phoneNumberCtrl: [
@@ -46,7 +47,7 @@ export class PersonalInfoStepComponent implements OnInit {
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(7),
-          Validators.pattern('^[0-9]*$'),
+          Validators.pattern(numbersRegExPattern),
         ],
       ],
     });

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
+import { urlRegExPattern } from '../../../../models/regex';
 
 // todo add validation error messages after refactoring the checkboxes part
 // todo when refactoring checkboxes part, create an enum for sessionTypes (diffrent from the existing ones), and comment out courses fields (we dont have courses yet)
@@ -21,13 +22,7 @@ export class OnlinePresenceStepComponent implements OnInit {
   ];
   constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
-      teachingPortfolioUrlCtrl: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'),
-        ],
-      ],
+      teachingPortfolioUrlCtrl: ['', [Validators.required, Validators.pattern(urlRegExPattern)]],
       sessionTypesCtrl: new FormArray([], atLeastOneIsCheckedValidator()),
     });
   }
