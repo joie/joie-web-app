@@ -1,7 +1,6 @@
 import { FormGroup, FormControl } from '@angular/forms';
 import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
 import { Component, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
-import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { ActivitiesBoxComponent } from './activities-box/activities-box.component';
 import { Pillar } from '../../../../sessions/models/session';
 import { PILLARS } from '../../../../pillar-list/pillar-list.component';
@@ -20,7 +19,6 @@ export class ActivitiesStepComponent implements AfterViewInit {
   pillarEnum = Pillar;
 
   constructor(
-    public onboardingService: StudentOnboardingService,
     private formService: StudentOnboardingFormService,
     private lowercasePipe: LowerCasePipe
   ) {
