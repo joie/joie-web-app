@@ -25,11 +25,7 @@
           and covers a variety of topics related to holistic health and wellness. What brings you to
           Joie today?
         </h4>
-        <app-pillar-list
-          [descriptions]="true"
-          [selectable]="false"
-          class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
-        >
+        <app-pillar-list [descriptions]="true" [selectable]="false" class="layout-columns-sm">
         </app-pillar-list>
         <!-- <div
           class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
@@ -52,7 +48,7 @@
           Explore our full library of Live-Streaming and On-Demand Videos, Workshops, Courses and
           1:1 Coaching from leading experts in holistic health and wellness.
         </h4>
-        <app-session-list></app-session-list>
+        <app-session-list class="layout-columns-sm"></app-session-list>
       </div>
     </div>
   </section>
@@ -65,7 +61,7 @@
           <app-video-player [entryId]="entryId"></app-video-player>
         </div>
 
-        <div class="layout-grid layout-grid-inline-features layout-spacing-inline-md">
+        <div class="layout-columns-sm">
           <mat-card class="mat-elevation-z0" *ngFor="let advantage of homeJoieAdvantages">
             <app-icon class="joie-icon joie-icon-backdrop" [name]="advantage.icon"></app-icon>
             <div>{{ advantage.title }}</div>
