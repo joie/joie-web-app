@@ -36,3 +36,31 @@ hr {
   border-width: 1px 0 0;
   border-style: solid;
 }
+
+.joie-icon {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  inline-size: 100px;
+  block-size: 100px;
+  &#{&}-backdrop {
+    position: relative;
+
+    &::before {
+      content: '';
+      background-color: #ddecea;
+      position: absolute;
+      height: inherit;
+      width: inherit;
+      inline-size: inherit;
+      block-size: inherit;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+    }
+    > :first-child {
+      position: relative;
+    }
+  }
+}

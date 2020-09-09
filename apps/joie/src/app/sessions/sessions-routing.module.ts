@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { EnrollDialogConfigResolver } from './resolvers/enroll-dialog-config.resolver';
 import { SessionsDashboardComponent } from './containers/sessions-dashboard/sessions-dashboard.component';
-import { SessionComponent } from './containers/session/session.component';
 import { DialogRouterComponent } from '../shared/components/dialog-router/dialog-router.component';
 import { SessionEnrollDialogComponent } from './components/session-enroll-dialog/session-enroll-dialog.component';
 
@@ -47,7 +46,7 @@ const routes: Routes = [
   },
   {
     path: ':sessionId',
-    component: SessionComponent,
+    component: SessionDetailsComponent,
   },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];

@@ -1,37 +1,37 @@
 <div class="container container-condense">
   <h1>What will help you stay motivated?</h1>
   <p>
-    We all need diffrent types of support. Joie offers 3 types of learning styles
-    to help you persist on your journey, and give you the support you need. Which
-    one describes the best type of session for you?
+    We all need diffrent types of support. Joie offers 3 types of learning styles to help you
+    persist on your journey, and give you the support you need. Which one describes the best type of
+    session for you?
   </p>
 </div>
 
 <div class="container container-ultra-condense">
-  <form [formGroup]="formGroup"
-        class="layout-grid layout-grid-inline-features layout-spacing-inline-sm">
-    <div formArrayName="sessionTypesCtrl"
-         *ngFor="let sessionType of sessionTypesArray.value; let i = index">
-      <input type="checkbox"
-             (change)="handleCheck(entry(sessionType)[0],
-           entry(sessionType)[1],
-           i)"
-             [formControlName]="i">
-      {{ entry(sessionType)[0] }}
-    </div>
+  <form [formGroup]="form"
+        class="layout-columns-sm">
+    <mat-card *ngFor="let type of typesFormArray.controls; let i = index">
+      <app-icon class="joie-icon joie-icon-backdrop"
+                [name]="sessionTypesData[i].icon"></app-icon>
+
+      <label formArrayName="sessionTypes">
+        <input type="checkbox"
+               [formControlName]="i" />
+        {{ typesEnum[typeKeys[i]] }}
+      </label>
+    </mat-card>
   </form>
 
-  <div class="layout-grid">
-    <button mat-button
-            matStepperNext>
-      Continue
-    </button>
-
-    <button mat-button
-            mat-raised-button
-            (click)="onboardingService.skipOnboarding()">
-      Skip for now.
-    </button>
+  <div class="layout-columns-md">
+    <div>
+      <p>
+        And don't worry! You can always update it later. We have good feeling about this,
+        {{ (authService.state$ | async)?.displayName }}!
+      </p>
+      <button mat-raised-button
+              (click)="finishOnboarding()">
+        Now, let's find your first session!
+      </button>
+    </div>
   </div>
-
 </div>

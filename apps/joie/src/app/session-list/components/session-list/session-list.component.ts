@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SessionsFacade } from '../../../services/sessions.facade';
-import { Session } from '../../../models';
 import { QueryFn } from '@angular/fire/firestore';
+import { SessionInfo } from '../../../sessions/models';
 
 @Component({
   selector: 'app-session-list',
@@ -12,7 +12,7 @@ import { QueryFn } from '@angular/fire/firestore';
 export class SessionListComponent implements OnInit {
   @Input() queryFn: QueryFn;
 
-  sessions$: Observable<Session[]>;
+  sessions$: Observable<SessionInfo[]>;
 
   constructor(private sessionsFacade: SessionsFacade) {}
 

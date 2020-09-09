@@ -50,5 +50,6 @@ import { AuthModule } from './auth/auth.module';
     //   },
   ],
   bootstrap: [AppComponent],
+  exports: [],
 })
 export class AppModule {}

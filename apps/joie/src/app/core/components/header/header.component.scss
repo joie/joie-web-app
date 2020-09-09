@@ -6,11 +6,15 @@
   $block-size: 90px;
   block-size: $block-size;
   height: $block-size;
+  display: flex;
+  align-items: center;
+  gap: var(--joie-gutter);
 
   > .logo {
     height: 37px;
   }
   > .search {
+    flex-basis: 400px;
   }
   > .user {
     margin-left: auto;

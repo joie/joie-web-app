@@ -1,52 +1,38 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormArray, FormControl } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { AppInjector } from './app-injector';
 import { DynaFormService } from './services/dyna-form.service';
 
-export type ControlTuple = [string, FormControl | FormArray];
+export type ControlTuple = [string, FormControl | FormArray | FormGroup];
+
+interface AddControlsOptions {
+  preserveOnDestroy: boolean;
+}
 
 @Component({ template: '' })
 export abstract class DynaFormBaseComponent implements OnDestroy {
   #controls?: ControlTuple[];
   private dynaFormService: DynaFormService;
-  // private builder: FormBuilder;
-  // private formsManager: NgFormsManager;
-
+  addControlsOptions: AddControlsOptions;
   constructor() {
     const injector = AppInjector.getInjector();
     this.dynaFormService = injector.get(DynaFormService);
-    // this.init = this.dynaFormService.init;
-
-    // this.builder = injector.get(FormBuilder);
-    // this.formsManager = injector.get(NgFormsManager);
-
-    // this.form = this.builder.group({ name: ['yinon'] });
-    // this.form.addControl('workplace', new FormControl('vonage'));
-
-    // const skills = new FormArray([]);
-
-    // /** Or inside a FormGroup */
-    // const config = new FormGroup({
-    //   skills: new FormArray([]),
-    // });
-    // this.formsManager
-    //   .upsert('skills', skills, { arrControlFactory: (value) => new FormControl(value) })
-    //   .upsert('config', config, {
-    //     arrControlFactory: { skills: (value) => new FormControl(value) },
-    //   });
-    // this.formsManager.upsert('onboarding', this.form, { persistState: true });
-    // this.formsManager
-    //   .valueChanges('onboarding')
-    //   // .pipe(map(() => this.form.value))
-    //   .subscribe(console.log);
   }
 
-  set controls(controls: ControlTuple[]) {
+  addControls(controls: ControlTuple[], options?: AddControlsOptions) {
     this.#controls = controls;
     controls.forEach(([name, control]) => {
       // add new control if is undefined or null
-      this.dynaFormService.form.addControl(name, control);
+      this.form.addControl(name, control);
       // console.log(this.form.value);
+    });
+
+    this.addControlsOptions = options;
+  }
+
+  private removeControls() {
+    this.#controls.forEach(([name]) => {
+      this.form.removeControl(name);
     });
   }
 
@@ -59,8 +45,8 @@ export abstract class DynaFormBaseComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.#controls.forEach(([name]) => {
-      this.form.removeControl(name);
-    });
+    if (!this.addControlsOptions?.preserveOnDestroy) {
+      this.removeControls();
+    }
   }
 }

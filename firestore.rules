@@ -58,17 +58,31 @@ service cloud.firestore {
 
 		match /users/{uid} {
       allow read: if request.auth.uid == uid;
+     	// stripe extension
+      match /checkout_sessions/{id} {
+        allow read, write: if request.auth.uid == uid;
+      }
+      match /subscriptions/{id} {
+        allow read, write: if request.auth.uid == uid;
+      }
     }
 
 		// match /stripe_customers/{uid} {
     //   allow read: if request.auth.uid == uid;
     // }
 
-		match /posts/{post} {
+		// match /posts/{post} {
+    //   allow read: if true;
+    //   allow create: if isSignedIn() && isClaim('author');
+    //   allow update, delete: if isSignedIn() && isClaim('author') && isOwner(request.resource.data.uid);
+    // }
+
+		match /sessions/{session} {
       allow read: if true;
-      allow create: if isSignedIn() && isClaim('author');
-      allow update, delete: if isSignedIn() && isClaim('author') && isOwner(request.resource.data.uid);
+      allow create: if isSignedIn() && isClaim('teacher');
+      allow update, delete: if isSignedIn() && isClaim('teacher') && isOwner(request.resource.data.uid);
     }
+
 
     // match /sellers/{document=**} {
     //   allow read: if true;

@@ -1,16 +1,14 @@
-<h3>Hi {{ name }}, welcome to Joie</h3>
+<h3>Hi {{ (authService.state$ | async)?.displayName }}, welcome to Joie</h3>
 <p>
-  Before you start your journey to happiness, we have 3 questions to help you
-  find the right programs and reach the goals faster
+  Before you start your journey to happiness, we have 3 questions to help you find the right
+  programs and reach the goals faster
 </p>
 
 <button mat-button
+        mat-raised-button
         matStepperNext>
   Let's begin
 </button>
 
-<button mat-button
-        mat-raised-button
-        (click)="onboardingService.skipOnboarding()">
-  Not now, I would like to explore.
-</button>
+
+<a routerLink="/home"> Not now, I would like to explore.</a>
