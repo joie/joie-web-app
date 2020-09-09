@@ -46,7 +46,7 @@ hr {
   &#{&}-backdrop {
     position: relative;
 
-    &::after {
+    &::before {
       content: '';
       background-color: #ddecea;
       position: absolute;
@@ -57,8 +57,10 @@ hr {
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      z-index: -1;
       border-radius: 50%;
+    }
+    > :first-child {
+      position: relative;
     }
   }
 }

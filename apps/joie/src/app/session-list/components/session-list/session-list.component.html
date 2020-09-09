@@ -1,7 +1,10 @@
 <ng-container *ngIf="sessions$ | async as sessions">
   <mat-card class="card" *ngFor="let session of sessions">
-    <img mat-card-image src="https://picsum.photos/200/200" />
-
+    <img
+      mat-card-image
+      src="https://source.unsplash.com/random"
+      alt="Thumbnail photo of a session"
+    />
     <mat-card-title>
       <a routerLink="/sessions/{{ session.id }}">{{ session.title }}</a>
     </mat-card-title>
@@ -13,7 +16,34 @@
     <mat-card-content>
       <p>{{ session.description }}</p>
 
-      <h5>Price : {{ session?.price?.display | currency: session?.price?.currency }}</h5>
+      <span
+        >Price : <i>{{ session?.price?.display | currency: session?.price?.currency }}</i></span
+      >
     </mat-card-content>
+
+    <mat-card-actions>
+      <a
+        [routerLink]="[
+          {
+            outlets: {
+              popup: ['enroll', session.id]
+            }
+          }
+        ]"
+        mat-button
+        >Enroll in session</a
+      >
+      <a
+        [routerLink]="[
+          {
+            outlets: {
+              popup: ['add-payment-source']
+            }
+          }
+        ]"
+        mat-button
+        >pay</a
+      >
+    </mat-card-actions>
   </mat-card>
 </ng-container>

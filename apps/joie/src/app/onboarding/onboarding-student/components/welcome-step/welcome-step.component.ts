@@ -1,14 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { StudentOnboardingService } from '../../service/student-onboarding.service';
+import { AuthService } from './../../../../auth-state/services/auth/auth.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-welcome-step',
   templateUrl: './welcome-step.component.html',
   styleUrls: ['./welcome-step.component.scss'],
 })
-export class WelcomeStepComponent implements OnInit {
-  name = 'heregoesthename';
-  constructor(public onboardingService: StudentOnboardingService) {}
-
-  ngOnInit(): void {}
+export class WelcomeStepComponent {
+  constructor(public authService: AuthService) {}
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class StudentOnboardingService {
   constructor() {}
 
-  skipOnboarding() {
-    console.log('saving data and skipping onvoarding here');
+  addCheckboxes(keys, formArray) {
+    keys.forEach(() => formArray.push(new FormControl(false)));
   }
 }

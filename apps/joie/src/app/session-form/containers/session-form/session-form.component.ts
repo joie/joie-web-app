@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SessionFormat } from './../../../sessions/models/session';
 import { SessionType } from '../../../sessions/models/session';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/lib/dyna-form-base.component';
@@ -18,7 +18,8 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
 
   constructor(
     private sessionsFacade: SessionsFacade,
-    private kalturaApiHandShakeService: KalturaApiHandShakeService) {
+    private kalturaApiHandShakeService: KalturaApiHandShakeService
+  ) {
     super();
   }
 
@@ -27,15 +28,15 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   }
 
   get isCoaching() {
-    return SessionType[this.getFormControl('type').value] === SessionType.coaching;
+    return SessionType[this.getFormControl('type').value] === SessionType.Coaching;
   }
 
   get isLivestreaming() {
-    return this.getFormControl('format').value === SessionFormat.liveStreaming;
+    return this.getFormControl('format').value === SessionFormat.LiveStreaming;
   }
 
   get isCourse() {
-    return SessionType[this.getFormControl('type').value] === SessionType.course;
+    return SessionType[this.getFormControl('type').value] === SessionType.Course;
   }
 
   onSubmit() {
@@ -50,28 +51,35 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
       templateEntryId: currentDate,
       description: this.form.value.description,
       startDate: new Date(currentDate), // TODO: start date will be populated based on the user selected date
-      endDate: new Date(currentDate + (60 * 60 * 1000)), // TODO: end date will be populated based on the user selected date
+      endDate: new Date(currentDate + 60 * 60 * 1000), // TODO: end date will be populated based on the user selected date
       tags: environment.kalturaConfig.resourceTags,
     };
-    this.kalturaApiHandShakeService.createLiveStreamEntry(eventCreationDetails)
-      .subscribe(sessionRes => {
+    this.kalturaApiHandShakeService.createLiveStreamEntry(eventCreationDetails).subscribe(
+      (sessionRes) => {
         this.sessionsFacade
-          .postSession('sessions', { ...this.form.value, resourceId: sessionRes.resourceId, eventId: sessionRes.eventId })
-          .subscribe((session) => {
-            this.showLoader = false;
-          },
+          .postSession('sessions', {
+            ...this.form.value,
+            resourceId: sessionRes.resourceId,
+            eventId: sessionRes.eventId,
+          })
+          .subscribe(
+            (session) => {
+              this.showLoader = false;
+            },
             (error) => {
               this.showLoader = false;
               console.log(
                 `Session creation form : submit() :: ${error} while inserting session details`
               );
-            });
-      },
-        (error) => {
-          this.showLoader = false;
-          console.log(
-            `Kaltura Session creation: createLiveStreamEntry() :: ${error} while creating session`
+            }
           );
-        });
+      },
+      (error) => {
+        this.showLoader = false;
+        console.log(
+          `Kaltura Session creation: createLiveStreamEntry() :: ${error} while creating session`
+        );
+      }
+    );
   }
 }

@@ -4,26 +4,29 @@
   >
     <mat-form-field appearance="outline">
       <mat-label>Type</mat-label>
+
       <mat-select required formControlName="type">
-        <mat-option *ngFor="let type of sessionTypeKeys" [value]="type">{{
-          sessionTypeEnum[type]
-        }}</mat-option>
+        <mat-option
+          *ngFor="let type of sessionTypeLiteralMap | keyvalue: asIsOrder"
+          [value]="type.key"
+          >{{ type.value | titlecase }}</mat-option
+        >
       </mat-select>
-      <mat-hint *ngIf="form.get('type').value == 'coaching'"
+      <mat-hint *ngIf="coachingSelected"
         >Coaching '<kbd>type</kbd>' auto-sets '<kbd>format</kbd>' to live streaming
       </mat-hint>
     </mat-form-field>
     <mat-radio-group
       aria-label="Select an option"
       required
-      [disabled]="form.get('type').value == 'coaching'"
+      [disabled]="coachingSelected"
       formControlName="format"
     >
       <mat-radio-button
-        *ngFor="let format of sessionFormatKeys"
-        [value]="sessionFormatEnum[format]"
+        *ngFor="let format of sessionFormatLiteralMap | keyvalue: asIsOrder"
+        [value]="format.key"
       >
-        {{ sessionFormatEnum[format] }}
+        {{ format.value | titlecase }}
       </mat-radio-button>
     </mat-radio-group>
 

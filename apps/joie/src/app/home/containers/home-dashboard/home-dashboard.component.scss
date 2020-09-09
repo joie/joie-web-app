@@ -1,7 +1,7 @@
 @use "../../../../styles/styles-critical/layouts";
 
 .hero {
-  background-image: url('/assets/images/splash.png');
+  background-image: url('https://source.unsplash.com/random');
   background-size: cover;
   background-position: left;
   padding: 120px 0;
@@ -13,6 +13,6 @@
   }
 }
 
-.video-player-container{
+.video-player-container {
   width: 75%;
 }

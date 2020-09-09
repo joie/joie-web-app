@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Preferences } from './../../models/student';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -6,37 +7,13 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './summary-step.component.html',
   styleUrls: ['./summary-step.component.scss'],
 })
-export class SummaryStepComponent implements OnInit {
-  student; // todo add interface
-  name = 'heregoesthename';
-  dataToPrint;
-  constructor(public activatedRoute: ActivatedRoute) {}
+export class SummaryStepComponent {
+  student: Preferences;
+  displayName;
 
-  ngOnInit(): void {
+  constructor(public activatedRoute: ActivatedRoute) {
     this.student = history.state.student;
-    console.log(this.student);
-    this.getDataForPrinting();
-  }
-
-  mapAndFilter(array: {}[]): string[] {
-    return array
-      .map((item) => {
-        let itemKeyVal = Object.entries(item)[0];
-        return itemKeyVal[1] ? itemKeyVal[0] : null;
-      })
-      .filter(Boolean);
-  }
-
-  getDataForPrinting() {
-    this.dataToPrint = {
-      goals: this.mapAndFilter(this.student.goalsCtrl),
-      subgoals: [],
-      sessionTypes: this.mapAndFilter(this.student.sessionTypesCtrl),
-    };
-
-    Object.values(this.student.subgoalsCtrl).forEach((subgoal) => {
-      this.dataToPrint.subgoals.push(this.mapAndFilter(subgoal['subgoals']));
-    });
+    this.displayName = history.state.displayName;
   }
 
   submitData() {

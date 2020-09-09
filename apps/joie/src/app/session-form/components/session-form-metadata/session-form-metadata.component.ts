@@ -1,7 +1,10 @@
-import { SessionFormat } from './../../../sessions/models/session';
 import { Component } from '@angular/core';
-import { SessionType } from '../../../sessions/models/session';
 import { FormControl, Validators } from '@angular/forms';
+import {
+  SessionFormatLiteralsMap,
+  SessionType,
+  SessionTypeLiteralsMap,
+} from '../../../sessions/models';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/lib/dyna-form-base.component';
 
 // @Dyna({
@@ -18,8 +21,9 @@ import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/l
   styleUrls: ['./session-form-metadata.component.scss'],
 })
 export class SessionFormMetadataComponent extends DynaFormBaseComponent {
-  sessionTypeEnum = SessionType;
-  sessionFormatEnum = SessionFormat;
+  sessionTypeLiteralMap = SessionTypeLiteralsMap;
+  sessionFormatLiteralMap = SessionFormatLiteralsMap;
+  typeSelectedValue: string;
 
   constructor() {
     super();
@@ -32,13 +36,20 @@ export class SessionFormMetadataComponent extends DynaFormBaseComponent {
     ]);
   }
 
-  get sessionTypeKeys(): Array<string> {
-    return Object.keys(this.sessionTypeEnum);
+  get coachingSelected() {
+    return this.form.get('type').value === SessionType.Coaching;
   }
 
-  get sessionFormatKeys(): Array<string> {
-    return Object.keys(this.sessionFormatEnum);
+  asIsOrder(a, b) {
+    return 1;
   }
+  // get sessionTypeKeys(): Array<string> {
+  //   return this.sessionTypeMap.keys();
+  // }
+
+  // get sessionFormatKeys(): Array<string> {
+  //   return Object.keys(this.sessionFormatEnum);
+  // }
 }
 
 // function Dyna(config) {

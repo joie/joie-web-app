@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubGoalsStepComponent } from './sub-goals-step.component';
+import { PillarListComponent } from './pillar-list.component';
 
-describe('SubGoalsStepComponent', () => {
-  let component: SubGoalsStepComponent;
-  let fixture: ComponentFixture<SubGoalsStepComponent>;
+describe('PillarListComponent', () => {
+  let component: PillarListComponent;
+  let fixture: ComponentFixture<PillarListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubGoalsStepComponent ]
+      declarations: [ PillarListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SubGoalsStepComponent);
+    fixture = TestBed.createComponent(PillarListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

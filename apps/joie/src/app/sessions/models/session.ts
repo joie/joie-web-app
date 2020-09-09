@@ -19,39 +19,45 @@ export interface SessionInfo {
   recommendationPercentage: number;
   thumbnailImage: string;
 }
-
 export interface SessionDetails {
+  // @pratheeshkumarrd is this Kaltura Related data? should we explicitly state it?
   eventId: number;
   userId: string;
 }
 
 export enum SessionFormat {
-  onDemand = 'On demand',
-  liveStreaming = 'Live streaming',
+  OnDemand = 'onDemand',
+  LiveStreaming = 'liveStreaming',
 }
 
 export enum CourseLevel {
-  Beginner = 'Beginner',
-  Intermediate = 'Intermediate',
-  Advanced = 'Advanced',
-  All_levels = 'All levels',
+  Beginner = 'beginner',
+  Intermediate = 'intermediate',
+  Advanced = 'advanced',
+  All = 'all',
 }
 
 export enum SessionType {
-  class = 'Class',
-  workshop = 'Workshop',
-  course = 'Course',
-  lecture = 'Lecture',
-  coaching = '1:1 Coaching',
+  Class = 'class',
+  Workshop = 'workshop',
+  Course = 'course',
+  Lecture = 'lecture',
+  Coaching = 'coaching',
 }
 
 export enum Pillar {
-  movement = 'JoieMovement',
-  emotions = 'JoieEmotions',
-  connections = 'JoieConnections',
-  spirit = 'JoieSpirit',
-  professional = 'JoieProfessional',
+  Movement = 'movement',
+  Emotions = 'emotions',
+  Connections = 'connections',
+  Spirit = 'spirit',
+  Professional = 'professional',
 }
+
+// export enum MovementActivities {}
+// excersise = 'Excersice',
+// energy = 'Energy',
+// diet = 'Diet',
+// nutrition = 'Nutrition',
 
 export enum Activities {
   YOGA = 'Yoga',
@@ -60,7 +66,7 @@ export enum Activities {
   NUTRITION = 'Nutrition',
   DIET = 'Diet',
   SELF_REGULATION = 'Self-regulation',
-  SELF_CATE = 'Self-care',
+  SELF_CARE = 'Self-care',
   RELAXATION = 'Relaxation',
   STRESS_REDUCTION = 'Stress Reduction',
   INNER_STRENGTH = 'Inner Strength',
