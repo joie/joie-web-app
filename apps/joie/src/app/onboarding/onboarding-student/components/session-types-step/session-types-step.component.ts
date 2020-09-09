@@ -82,6 +82,6 @@ export class SessionTypesStepComponent implements OnDestroy {
   }
 
   finishOnboarding() {
-    //todo implement
+    console.log(this.formService.form.value);
   }
 }
