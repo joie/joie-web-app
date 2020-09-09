@@ -18,8 +18,9 @@
       <div class="layout-columns-md">
         <mat-card class="layout-center"
                   *ngFor="let option of contactOptions">
-          <img [src]="option?.imgUrl"
-               alt="icon figure for {{ option.title }}" />
+
+          <app-icon class="joie-icon joie-icon-backdrop"
+                    [name]="option.icon"></app-icon>
           <h4>{{ option.title }}</h4>
           <p>{{ option.description }}</p>
         </mat-card>
