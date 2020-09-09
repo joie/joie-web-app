@@ -1,16 +1,14 @@
 <header>
-  <app-figure-image
-    src="https://source.unsplash.com/p7w95B7b2PM"
-    caption="Photo by Priscilla Du Preez on Unsplash"
-    alt="cover image for teacher onboarding of happy people"
-    [style.--width]="16"
-    [style.--height]="5"
-  ></app-figure-image>
+  <app-figure-image src="https://source.unsplash.com/p7w95B7b2PM"
+                    caption="Photo by Priscilla Du Preez on Unsplash"
+                    alt="cover image for teacher onboarding of happy people"
+                    [style.--width]="16"
+                    [style.--height]="5"></app-figure-image>
 </header>
 <main>
   <section>
     <div class="container">
-      <div class="section-context text-center">
+      <div class="layout-center">
         <h1>
           Partner with Joie on our mission to help people live a happier life.
         </h1>
@@ -19,7 +17,9 @@
           Joie will help you grow your online business, expand your reach, and optimize your income
           so that you could do what you do best - Teach.
         </h4>
-        <button mat-flat-button color="primary" routerLink="aboard">
+        <button mat-flat-button
+                color="primary"
+                routerLink="aboard">
           Apply Now
         </button>
       </div>
@@ -27,13 +27,14 @@
   </section>
   <section>
     <div class="container container-condense">
-      <div class="section-context">
+      <div class="layout-rows-md">
         <h3>
           See what other teachers say about partnering with us
         </h3>
 
         <figure class="quote">
-          <img src="" alt="" />
+          <img src=""
+               alt="" />
           <blockquote>
             With Joie, the world is your classroom. You can reach new markets and connect with
             students around the globe from your camera or desk. We provide an internationally
@@ -48,9 +49,9 @@
     </div>
   </section>
   <section>
-    <div class="section-context">
+    <div class="layout-rows-md">
       <div class="container">
-        <div class="text-center">
+        <div class="layout-center">
           <h1>Why Joie?</h1>
           <h4>
             Joie value proposition based on comprehensive market research to answer the most common
@@ -61,9 +62,11 @@
       </div>
       <div class="container container-condense">
         <ul>
-          <li class="joie-list-item" *ngFor="let item of list">
+          <li class="joie-list-item"
+              *ngFor="let item of list">
             <figure class="joie-list-item-figure">
-              <app-icon class="joie-icon joie-icon-backdrop" [name]="item.icon"></app-icon>
+              <app-icon class="joie-icon joie-icon-backdrop"
+                        [name]="item.icon"></app-icon>
             </figure>
             <h4 class="joie-list-name">{{ item.name }}</h4>
             <p class="joie-list-description">{{ item.description }}</p>
