@@ -4,6 +4,12 @@ $layout-breakpoint-xs: 700px;
 $layout-breakpoint-sm: 960px;
 $layout-breakpoint-lg: 1365px;
 
+:root {
+  --layout-breakpoint-xs: #{$layout-breakpoint-xs};
+  --layout-breakpoint-sm: #{$layout-breakpoint-sm};
+  --layout-breakpoint-lg: #{$layout-breakpoint-lg};
+}
+
 body {
   padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px)
     env(safe-area-inset-bottom, 20px) env(safe-area-inset-left, 20px);
@@ -33,67 +39,92 @@ body {
   }
 }
 
-$space-row-variable-name: --gutter-row;
-$space-column-variable-name: --gutter-column;
-$size: (
-  'sm': 10px,
-  'md': 20px,
-  'lg': 30px,
-);
-.layout {
-  &-spacing-block {
-    &-sm {
-      #{$space-row-variable-name}: #{map.get($size, sm)};
-    }
-    &-md {
-      #{$space-row-variable-name}: #{map.get($size, md)};
-    }
-    &-lg {
-      #{$space-row-variable-name}: #{map.get($size, lg)};
-    }
-  }
-  &-spacing-inline {
-    &-sm {
-      #{$space-column-variable-name}: #{map.get($size, sm)};
-    }
-    &-md {
-      #{$space-column-variable-name}: #{map.get($size, md)};
-    }
-    &-lg {
-      #{$space-column-variable-name}: #{map.get($size, lg)};
-    }
-  }
-
-  &-flex {
-    display: flex;
-    place-items: center;
-    > * + * {
-      margin-left: var(#{$space-column-variable-name});
-      margin-inline-start: var(#{$space-column-variable-name});
-      margin-bottom: var(#{$space-row-variable-name});
-      margin-block-end: var(#{$space-row-variable-name});
-    }
-  }
-
-  &-grid {
-    display: grid;
-    grid-gap: var(#{$space-row-variable-name}, 0) var(#{$space-column-variable-name}, 0);
-    &#{&}-inline-features {
-      width: 100%;
-      // place-items: center;
-      // display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, auto));
-      // grid-gap: 20px;
-      // display: flex;
-      // flex-wrap: wrap;
-      // justify-content: center;
-      // > * {
-      //   flex: 0 1 auto;
-      //   margin: 5px;
-      // }
+[class*='layout-columns'] {
+  $column-items-min-inline-size-variable-name: --column-items-min-inline-size;
+  $items-min-inline-size: (
+    'sm': 150px,
+    'md': 250px,
+    'lg': 350px,
+  );
+  width: 100%;
+  inline-size: 100%;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(
+      var(#{$column-items-min-inline-size-variable-name}, #{map.get($items-min-inline-size, lg)}),
+      auto
+    )
+  );
+  gap: var(--joie-gutter);
+  @each $key, $value in $items-min-inline-size {
+    @at-root [class~='layout-columns-#{$key}'i] {
+      #{$column-items-min-inline-size-variable-name}: #{map.get($items-min-inline-size, #{$key})};
     }
   }
 }
+
+// $space-row-variable-name: --gutter-row;
+// $space-column-variable-name: --gutter-column;
+// $size: (
+//   'sm': 10px,
+//   'md': 20px,
+//   'lg': 30px,
+// );
+// .layout {
+//   &-spacing-block {
+//     &-sm {
+//       #{$space-row-variable-name}: #{map.get($size, sm)};
+//     }
+//     &-md {
+//       #{$space-row-variable-name}: #{map.get($size, md)};
+//     }
+//     &-lg {
+//       #{$space-row-variable-name}: #{map.get($size, lg)};
+//     }
+//   }
+//   &-spacing-inline {
+//     &-sm {
+//       #{$space-column-variable-name}: #{map.get($size, sm)};
+//     }
+//     &-md {
+//       #{$space-column-variable-name}: #{map.get($size, md)};
+//     }
+//     &-lg {
+//       #{$space-column-variable-name}: #{map.get($size, lg)};
+//     }
+//   }
+
+//   &-flex {
+//     display: flex;
+//     place-items: center;
+//     > * + * {
+//       margin-left: var(#{$space-column-variable-name});
+//       margin-inline-start: var(#{$space-column-variable-name});
+//       margin-bottom: var(#{$space-row-variable-name});
+//       margin-block-end: var(#{$space-row-variable-name});
+//     }
+//   }
+
+//   &-grid {
+//     display: grid;
+//     grid-gap: var(#{$space-row-variable-name}, 0) var(#{$space-column-variable-name}, 0);
+//     &#{&}-inline-features {
+//       width: 100%;
+//       // place-items: center;
+//       // display: grid;
+//       grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+//       // grid-gap: 20px;
+//       // display: flex;
+//       // flex-wrap: wrap;
+//       // justify-content: center;
+//       // > * {
+//       //   flex: 0 1 auto;
+//       //   margin: 5px;
+//       // }
+//     }
+//   }
+// }
 
 main {
   > section {
