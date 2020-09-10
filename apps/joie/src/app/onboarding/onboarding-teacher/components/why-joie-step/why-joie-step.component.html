@@ -2,7 +2,7 @@
     <div class="continer container-condense">
       <h3>Your value to our students</h3>
       <p>
-        Finally, {{ teachersName }} where do you see your added value to the students?
+        Finally, {{(authService.state$ | async)?.displayName }} where do you see your added value to the students?
       </p>
     </div>
     <div class="container container-ultra-condense">

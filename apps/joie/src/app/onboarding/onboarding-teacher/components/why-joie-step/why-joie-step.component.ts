@@ -1,3 +1,4 @@
+import { AuthService } from './../../../../auth-state/services/auth/auth.service';
 import { OnboardingService } from './../../../shared/onboarding.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -10,7 +11,6 @@ export const ADDED_VALUE = 'addedValDescriptionCtrl';
   styleUrls: ['./why-joie-step.component.scss'],
 })
 export class WhyJoieStepComponent implements OnInit {
-  teachersName;
   formGroup: FormGroup;
   afterSubmit = false;
 
@@ -19,6 +19,7 @@ export class WhyJoieStepComponent implements OnInit {
   }
 
   constructor(
+    public authService: AuthService,
     private _formBuilder: FormBuilder,
     public onboardingService: OnboardingService,
     private apiService: TeacherOnboardingApiService
@@ -37,7 +38,6 @@ export class WhyJoieStepComponent implements OnInit {
 
   ngOnInit() {
     let teacher = history.state.teacher;
-    this.teachersName = teacher.firstNameCtrl;
     if ('addedValDescriptionCtrl' in teacher) {
       this.initFormWithCachedData(teacher);
     }

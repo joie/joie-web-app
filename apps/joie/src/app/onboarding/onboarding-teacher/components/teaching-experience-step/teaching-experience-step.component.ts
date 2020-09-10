@@ -1,3 +1,4 @@
+import { AuthService } from './../../../../auth-state/services/auth/auth.service';
 import { OnboardingService } from './../../../shared/onboarding.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -10,7 +11,6 @@ export const TEACHING_EXPERIENCE = 'teachingExpCtrl';
   styleUrls: ['./teaching-experience-step.component.scss'],
 })
 export class TeachingExperienceStepComponent implements OnInit {
-  teachersName;
   formGroup: FormGroup;
 
   get teachingExp() {
@@ -18,6 +18,7 @@ export class TeachingExperienceStepComponent implements OnInit {
   }
 
   constructor(
+    public authService: AuthService,
     private _formBuilder: FormBuilder,
     public activatedRoute: ActivatedRoute,
     public onboardingService: OnboardingService
@@ -32,7 +33,6 @@ export class TeachingExperienceStepComponent implements OnInit {
 
   ngOnInit() {
     let teacher = history.state.teacher;
-    this.teachersName = teacher.firstNameCtrl;
     if ('teachingExpCtrl' in history.state.teacher) {
       this.initFormWithCachedData(teacher);
     }
