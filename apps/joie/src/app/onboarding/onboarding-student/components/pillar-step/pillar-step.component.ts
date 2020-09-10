@@ -22,10 +22,12 @@ export class PillarStepComponent implements OnDestroy, AfterViewInit {
   constructor(private formService: StudentOnboardingFormService) {}
 
   ngOnDestroy(): void {
-    this.formValueChanges$.unsubscribe();
+    if (this.formValueChanges$) {
+      this.formValueChanges$.unsubscribe();
+    }
   }
   ngAfterViewInit(): void {
-    this.pillarList.form.valueChanges.subscribe(() => {
+    this.formValueChanges$ = this.pillarList.form.valueChanges.subscribe(() => {
       this.setControls(this.pillarList.selectedPillars);
     });
   }
