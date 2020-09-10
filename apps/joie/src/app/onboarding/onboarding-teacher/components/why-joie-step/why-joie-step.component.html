@@ -7,8 +7,7 @@
     </div>
     <div class="container container-ultra-condense">
       <form *ngIf="!afterSubmit"
-            [formGroup]="formGroup"
-            (ngSubmit)="submitFormsData()"
+            [formGroup]="form"
             class="layout-grid">
 
         <mat-form-field appearance="outline">
@@ -21,7 +20,8 @@
 
         <button mat-button
                 mat-flat-button
-                [disabled]="formGroup.invalid">
+                (ngSubmit)="submitFormsData()"
+                [disabled]="form.invalid">
           Submit your application
         </button>
       </form>

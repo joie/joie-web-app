@@ -21,7 +21,9 @@ export class OnboardingService {
           errors[errorKeys[0]].requiredLength
         } symbols. Actual length ${errors[errorKeys[0]].actualLength}`;
       case 'maxlength':
-        return `Should be less than ${errors[errorKeys[0]].requiredLength}`;
+        return `The text entered exceeds the maximum length. ${
+          errors[errorKeys[0]].requiredLength
+        }`;
 
       case 'pattern':
         return 'Field is not valid';

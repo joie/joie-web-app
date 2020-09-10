@@ -14,7 +14,6 @@ export class OnboardingStepperComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private formService: TeacherOnboardingFormService,
     private cdRef: ChangeDetectorRef
   ) {
     this.steps = this.route.snapshot.routeConfig.children.map((child) => {
@@ -22,10 +21,6 @@ export class OnboardingStepperComponent implements OnInit {
     });
   }
 
-  log() {
-    console.log('form ', this.formService.form);
-    console.log('value ', this.formService.form.value);
-  }
   ngOnInit() {
     let step = this.steps[0];
     this.router.navigate([step], {

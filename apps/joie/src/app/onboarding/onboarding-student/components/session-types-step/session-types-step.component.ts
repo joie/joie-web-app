@@ -8,6 +8,9 @@ import { SessionTypes } from '../../models/student';
 import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
 import { sessionTypesData } from './sessionTypesData';
 import { OnboardingService } from '../../../shared/onboarding.service';
+import { Subscription } from 'rxjs';
+
+export const SESSION_TYPES_KEY = 'session-types';
 export const SESSION_TYPES = 'sessionTypes';
 
 @Component({
@@ -19,8 +22,8 @@ export class SessionTypesStepComponent implements OnDestroy {
   form: FormGroup;
   typesEnum = SessionTypes;
   sessionTypesData = sessionTypesData;
-  formValueChanges$;
-  controlKey = USER_ONBOARDING + '-' + SESSION_TYPES;
+  formValueChanges$: Subscription;
+  controlKey = USER_ONBOARDING + '-' + SESSION_TYPES_KEY;
 
   get typeKeys() {
     return Object.keys(this.typesEnum);

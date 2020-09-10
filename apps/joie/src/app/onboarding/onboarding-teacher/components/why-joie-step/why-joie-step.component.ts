@@ -1,49 +1,77 @@
 import { AuthService } from './../../../../auth-state/services/auth/auth.service';
 import { OnboardingService } from './../../../shared/onboarding.service';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnDestroy } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { TeacherOnboardingApiService } from '../../services/teacher-onboarding-api.service';
+import { Subscription } from 'rxjs';
+import { TEACHER_ONBOARDING, StorageServiceService } from '../../../shared/storage-service.service';
+import { TeacherOnboardingFormService } from '../../services/teacher-onboarding-form.service';
 
+export const WHY_JOIE = 'why-joie';
 export const ADDED_VALUE = 'addedValue';
 @Component({
   selector: 'app-why-joie-step',
   templateUrl: './why-joie-step.component.html',
   styleUrls: ['./why-joie-step.component.scss'],
 })
-export class WhyJoieStepComponent implements OnInit {
-  formGroup: FormGroup;
+export class WhyJoieStepComponent implements OnDestroy {
+  form: FormGroup;
   afterSubmit = false;
+  formValueChanges$: Subscription;
+  controlKey = TEACHER_ONBOARDING + '-' + WHY_JOIE;
 
   get addedValue() {
-    return this.formGroup.get(ADDED_VALUE);
+    return this.form.get(ADDED_VALUE);
   }
 
   constructor(
     public authService: AuthService,
     private _formBuilder: FormBuilder,
     public onboardingService: OnboardingService,
-    private apiService: TeacherOnboardingApiService
+    private apiService: TeacherOnboardingApiService,
+    private formService: TeacherOnboardingFormService,
+    private storage: StorageServiceService
   ) {
-    this.formGroup = this._formBuilder.group({
+    this.form = this._formBuilder.group({
       addedValue: ['', [Validators.required, Validators.minLength(50)]],
     });
+
+    this.initForm();
+  }
+
+  ngOnDestroy() {
+    this.formValueChanges$.unsubscribe();
+  }
+
+  initForm() {
+    this.formService.setControl([ADDED_VALUE, new FormControl()]);
+    this.getCache();
+    this.subscribeToValueChanges();
+  }
+
+  getCache() {
+    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
+      if (cacheValue) {
+        this.form.patchValue(cacheValue);
+      }
+    });
+  }
+
+  subscribeToValueChanges() {
+    this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
+      this.formService.form.patchValue(value);
+      if (this.form.valid) {
+        // not caching invalid value
+        this.storage.setItemSubscribe(this.controlKey, value);
+      }
+    });
+  }
+  isValid() {
+    return this.form.valid;
   }
 
   submitFormsData(): void {
     this.afterSubmit = true;
-    this.apiService.submitTeacherAccountData(
-      Object.assign(history.state.teacher, this.formGroup.value)
-    );
-  }
-
-  ngOnInit() {
-    let teacher = history.state.teacher;
-    if ('addedValue' in teacher) {
-      this.initFormWithCachedData(teacher);
-    }
-  }
-
-  private initFormWithCachedData(teacher) {
-    this.formGroup.controls['addedValue'].setValue(teacher.addedValue);
+    this.apiService.submitTeacherAccountData(this.formService.form.value);
   }
 }

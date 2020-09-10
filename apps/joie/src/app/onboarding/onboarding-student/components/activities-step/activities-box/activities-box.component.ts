@@ -12,6 +12,7 @@ import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIs
 import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
 import { PILLARS } from '../../../../../pillar-list/pillar-list.component';
 import { OnboardingService } from '../../../../shared/onboarding.service';
+import { Subscription } from 'rxjs';
 
 export const ACTIVITIES = 'activities';
 @Component({
@@ -22,9 +23,9 @@ export const ACTIVITIES = 'activities';
 export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() pillar;
   public form: FormGroup;
-  formValueChanges$;
+  formValueChanges$: Subscription;
   pillarEnum = Pillar;
-  controlKey;
+  controlKey: string;
   cachedValues = null;
 
   get activitiesEnum() {
