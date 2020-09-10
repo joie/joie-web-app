@@ -21,14 +21,6 @@ const DEFAULT_CHECKBOX = 'ADULTS';
   styleUrls: ['./session-focus-area-step.component.scss'],
 })
 export class SessionFocusAreaStepComponent implements OnDestroy {
-  // formGroup: FormGroup;
-  // focusGroupsData = [
-  //   { group: 'Children (6-14)', isChecked: false },
-  //   { group: 'Youth (15-24)', isChecked: false },
-  //   { group: 'Adults (25-64)', isChecked: false }, //todo when refactoring make this checkbox selected by default - adult is the most popular choice
-  //   { group: 'Eldery (65+)', isChecked: false },
-  //   { group: 'All of the above', isChecked: false },
-  // ];
   form: FormGroup;
   groupsEnum = AgeGroups;
   formValueChanges$;
@@ -63,6 +55,14 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
       ),
     });
 
+    this.initForm();
+  }
+
+  ngOnDestroy(): void {
+    this.formValueChanges$.unsubscribe();
+  }
+
+  initForm() {
     this.formService.setControls([
       [GROUPS, new FormArray([])],
       [SESSION_AREA, new FormControl()],
@@ -70,6 +70,12 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
 
     this.onboardingService.addCheckboxes(this.groupKeys, this.groupsFormArray);
 
+    this.getCache();
+
+    this.subscribeToValueChanges();
+  }
+
+  getCache() {
     this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
       if (cacheValue) {
         this.form.patchValue(cacheValue);
@@ -77,7 +83,9 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
         this.preselectDefaultCheckbox();
       }
     });
+  }
 
+  subscribeToValueChanges() {
     this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
       console.log(value);
 
@@ -93,22 +101,6 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
         this.storage.setItemSubscribe(this.controlKey, value);
       }
     });
-
-    // let teacher = history.state.teacher || null;
-    // if (teacher && 'ageGroups' in teacher) {
-    //   this.initFormWithCachedData(teacher);
-    // } else {
-    //   this.addCheckboxes();
-    // }
-  }
-
-  log() {
-    console.log(this.form.value);
-    console.log(this.values);
-  }
-
-  ngOnDestroy(): void {
-    this.formValueChanges$.unsubscribe();
   }
 
   preselectDefaultCheckbox() {
@@ -116,36 +108,4 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
       this.groupsFormArray.get([this.groupKeys.indexOf(this.defaultCheckbox)]).patchValue(true);
     }
   }
-
-  // get groupsFormArray() {
-  //   return this.form.controls.ageGroups as FormArray;
-  // }
-
-  // entry(obj) {
-  // return Object.entries(obj)[0];
-  // }
-
-  // handleCheck(group, isChecked, index) {
-  //   this.groupsFormArray.controls[index].patchValue({
-  //     [group]: !isChecked,
-  //   });
-  // }
-
-  // private addCheckboxes() {
-  //   this.focusGroupsData.forEach(({ group, isChecked }) =>
-  //     this.groupsFormArray.push(new FormControl({ [group]: isChecked }))
-  //   );
-  // }
-
-  // private addCheckboxesFromCache(groups) {
-  //   groups.forEach((group) => {
-  //     let entries = this.entry(group);
-  //     this.groupsFormArray.push(new FormControl({ [entries[0]]: entries[1] }));
-  //   });
-  // }
-
-  // private initFormWithCachedData(teacher) {
-  //   this.formGroup.controls['sessionArea'].setValue(teacher.sessionArea);
-  //   this.addCheckboxesFromCache(teacher.ageGroups);
-  // }
 }
