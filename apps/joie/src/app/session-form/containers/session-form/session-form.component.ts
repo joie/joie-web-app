@@ -28,7 +28,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   }
 
   get isCoaching() {
-    return SessionType[this.getFormControl('type').value] === SessionType.Coaching;
+    return this.getFormControl('type').value === SessionType.Coaching;
   }
 
   get isLivestreaming() {
