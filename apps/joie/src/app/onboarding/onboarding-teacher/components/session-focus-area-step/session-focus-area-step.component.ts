@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormArray,
-  FormControl,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
+// todo add validation error messages after refactoring the checkboxes part
 
 @Component({
   selector: 'app-session-focus-area-step',
@@ -19,7 +14,7 @@ export class SessionFocusAreaStepComponent {
   focusGroupsData = [
     { group: 'Children (6-14)', isChecked: false },
     { group: 'Youth (15-24)', isChecked: false },
-    { group: 'Adults (25-64)', isChecked: false },
+    { group: 'Adults (25-64)', isChecked: false }, //todo when refactoring make this checkbox selected by default - adult is the most popular choice
     { group: 'Eldery (65+)', isChecked: false },
     { group: 'All of the above', isChecked: false },
   ];
@@ -68,9 +63,7 @@ export class SessionFocusAreaStepComponent {
   }
 
   private initFormWithCachedData(teacher) {
-    this.formGroup.controls['sessionAreaCtrl'].setValue(
-      teacher.sessionAreaCtrl
-    );
+    this.formGroup.controls['sessionAreaCtrl'].setValue(teacher.sessionAreaCtrl);
     this.addCheckboxesFromCache(teacher.focusGroupsCtrl);
   }
 }
