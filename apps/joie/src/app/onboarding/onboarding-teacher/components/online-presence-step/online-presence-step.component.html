@@ -8,14 +8,13 @@
 </div>
 
 <div class="container container-ultra-condense">
-  <form [formGroup]="formGroup">
+  <form [formGroup]="form">
     <div class="layout-grid layout-grid-inline-features layout-spacing-inline-sm layout-spacing-block-md">
       <label formArrayName="sessionTypes"
              class="grid-item"
-             *ngFor="let sessionType of sessionTypesFormArray.value; let i = index">
+             *ngFor="let sessionType of typesFormArray.controls; let i = index">
         <input type="checkbox"
-               (change)="handleCheck(entry(sessionType)[0], entry(sessionType)[1], i)"
-               [formControlName]="i" />{{ entry(sessionType)[0] }}
+               [formControlName]="i" /> {{ typesEnum[typeKeys[i]] }}
       </label>
     </div>
 
@@ -34,7 +33,7 @@
       </mat-form-field>
       <button mat-button
               mat-flat-button
-              [disabled]="formGroup.invalid"
+              [disabled]="form.invalid"
               matStepperNext>
         Continue
       </button>
