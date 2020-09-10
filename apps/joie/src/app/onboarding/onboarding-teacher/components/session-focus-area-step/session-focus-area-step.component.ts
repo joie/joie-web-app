@@ -68,6 +68,12 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
 
     this.onboardingService.addCheckboxes(this.groupKeys, this.groupsFormArray);
 
+    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
+      if (cacheValue) {
+        this.form.patchValue(cacheValue);
+      }
+    });
+
     this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
       console.log(value);
 
