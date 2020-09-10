@@ -1,3 +1,4 @@
+import { TeacherOnboardingFormService } from './../../services/teacher-onboarding-form.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TeacherOnboarding } from '../../../../models/teacher.model';
@@ -12,8 +13,16 @@ export class OnboardingStepperComponent implements OnInit {
   public steps: string[];
   public selectedStep: number = 0;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private formService: TeacherOnboardingFormService
+  ) {}
 
+  log() {
+    console.log('form ', this.formService.form);
+    console.log('value ', this.formService.form.value);
+  }
   ngOnInit() {
     this.steps = this.route.snapshot.routeConfig.children.map((child) => {
       return child.path;

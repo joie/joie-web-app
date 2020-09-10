@@ -1,3 +1,4 @@
+import { TeacherOnboardingFormService } from './../../services/teacher-onboarding-form.service';
 import { OnboardingService } from './../../../shared/onboarding.service';
 import { AgeGroups } from './../../../../models/teacher.model';
 import { Component, OnDestroy } from '@angular/core';
@@ -6,7 +7,8 @@ import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreTha
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 // todo add validation error messages after refactoring the checkboxes part
 
-const GROUPS = 'ageGroups';
+export const GROUPS = 'ageGroups';
+export const SESSION_AREA = 'sessionArea';
 @Component({
   selector: 'app-session-focus-area-step',
   templateUrl: './session-focus-area-step.component.html',
@@ -38,7 +40,11 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
     ).filter((v) => v !== null);
   }
 
-  constructor(private _formBuilder: FormBuilder, private onboardingService: OnboardingService) {
+  constructor(
+    private _formBuilder: FormBuilder,
+    private onboardingService: OnboardingService,
+    private formService: TeacherOnboardingFormService
+  ) {
     this.form = this._formBuilder.group({
       sessionArea: ['', [Validators.required, Validators.minLength(10)]],
       ageGroups: new FormArray(
@@ -46,6 +52,11 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
         // [atLeastOneIsCheckedValidator(), notMoreThanOneIsCheckedValidator()]
       ),
     });
+
+    this.formService.setControls([
+      [GROUPS, new FormArray([])],
+      [SESSION_AREA, new FormControl()],
+    ]);
 
     this.onboardingService.addCheckboxes(this.groupKeys, this.groupsFormArray);
 
