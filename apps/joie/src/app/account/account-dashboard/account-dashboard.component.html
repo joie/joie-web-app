@@ -1,15 +1,18 @@
-<div *ngIf="teacher$ | async as teacher">
-  <header>
-    <app-stats [stats]="teacher.stats"></app-stats>
-  </header>
-  <main *ngIf="sessions$ | async as sessions">
+<main>
+  <section>
+    <div *ngIf="teacher$ | async as teacher"
+         class="
+       layout-rows-md">
+      <app-stats [stats]="teacher.stats"></app-stats>
+    </div>
+  </section>
 
-    <section class="container">
-      <app-event-calendar [sessions]="sessions"></app-event-calendar>
-    </section>
+  <section class="container">
+    <app-event-calendar [sessions]="sessions$ | async"></app-event-calendar>
+  </section>
 
-    <section>
-      <app-events-list [sessions]="sessions"></app-events-list>
-    </section>
+  <section>
+    <app-events-list [sessions]="sessions$ | async"></app-events-list>
+  </section>
 
-  </main>
+</main>

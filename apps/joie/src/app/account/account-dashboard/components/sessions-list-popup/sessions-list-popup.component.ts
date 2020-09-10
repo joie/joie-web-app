@@ -30,7 +30,7 @@ export class SessionsListPopupComponent implements OnInit {
     this.matDialogRef
       .afterClosed()
       .subscribe(() =>
-        this.router.navigate(['/teacher', 'dashboard', { outlets: { ['popup']: null } }])
+        this.router.navigate(['/account', 'dashboard', { outlets: { ['popup']: null } }])
       );
   }
 }

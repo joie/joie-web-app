@@ -142,6 +142,6 @@ export const sessionsMock = [
     },
     promo: 'BOHEMIANRAPSODY',
     relatedSessions: [''],
-    url: '//this comes from server',
+    url: '// todo this should be a combination of session-page route and id',
   },
 ];

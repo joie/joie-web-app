@@ -12,37 +12,31 @@
       Joie pairs you with world-class teachers to help you build a healthier and happier life – one
       step at a time.
     </h1>
-    <button mat-raised-button color="primary">Start your journey with us</button>
+    <button mat-raised-button
+            color="primary">Start your journey with us</button>
   </div>
 </header>
 <main>
   <section>
     <div class="container">
-      <div class="section-context text-center">
+      <div class="layout-rows-md layout-center text-center">
         <h2>Explore Our Pillars</h2>
         <h4>
           Our online platform helps you find the right programs to help you reach your goals faster
           and covers a variety of topics related to holistic health and wellness. What brings you to
           Joie today?
         </h4>
-        <app-pillar-list [descriptions]="true" [selectable]="false" class="layout-columns-sm">
+        <app-pillar-list [descriptions]="true"
+                         [selectable]="false"
+                         class="layout-columns-sm">
         </app-pillar-list>
-        <!-- <div
-          class="layout-grid layout-grid-inline-features layout-spacing-inline-md layout-spacing-block-md"
-        >
-          <mat-card class="text-center" *ngFor="let pillar of pillars">
-            <img [src]="pillar?.imgUrl" alt="icon figure for {{ pillar.title }}" />
-            <h4 [innerHTML]="pillar.title | joiePrefix"></h4>
-            <p>{{ pillar.description }}</p>
-          </mat-card>
-        </div> -->
       </div>
     </div>
   </section>
 
   <section>
     <div class="container">
-      <div class="section-context text-center">
+      <div class="layout-rows-md layout-center text-center">
         <h2>Take your first step</h2>
         <h4>
           Explore our full library of Live-Streaming and On-Demand Videos, Workshops, Courses and
@@ -62,8 +56,10 @@
         </div>
 
         <div class="layout-columns-sm">
-          <mat-card class="mat-elevation-z0" *ngFor="let advantage of homeJoieAdvantages">
-            <app-icon class="joie-icon joie-icon-backdrop" [name]="advantage.icon"></app-icon>
+          <mat-card class="mat-elevation-z0"
+                    *ngFor="let advantage of homeJoieAdvantages">
+            <app-icon class="joie-icon joie-icon-backdrop"
+                      [name]="advantage.icon"></app-icon>
             <div>{{ advantage.title }}</div>
             <div>
               {{ advantage.description }}
@@ -76,20 +72,17 @@
 
   <section>
     <div class="container">
-      <div class="section-context text-center">
-        <div>
-          <button mat-raised-button color="primary">Like what you see? Join Joie</button>
-        </div>
-        <div>
-          <button mat-button>Want to teach with us? Apply Now!</button>
-        </div>
+      <div class="layout-rows-md layout-center text-center">
+        <button mat-raised-button
+                color="primary">Like what you see? Join Joie</button>
+        <button mat-button>Want to teach with us? Apply Now!</button>
       </div>
     </div>
   </section>
 
   <section>
     <div class="container">
-      <div class="section-context text-center">
+      <div class="layout-rows-md layout-center text-center">
         <div>Learn From Our Leading Teachers</div>
         <div>
           Joie hand-picked teachers with a unique teaching approach, who put their hearts and souls
@@ -99,18 +92,17 @@
 
         <!--TODO Get List of teachers-->
 
-        <div>
-          <button mat-raised-button color="primary">
-            See yourself a part of Joie? Apply Now!
-          </button>
-        </div>
+        <button mat-raised-button
+                color="primary">
+          See yourself a part of Joie? Apply Now!
+        </button>
       </div>
     </div>
   </section>
 
   <section>
     <div class="container">
-      <div class="section-context text-center">
+      <div class="layout-rows-md layout-center text-center">
         <div>Fresh From our blog</div>
 
         <!--TODO Get List of blog posts-->

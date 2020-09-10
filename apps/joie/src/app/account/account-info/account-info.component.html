@@ -1,7 +1,8 @@
 <form #form="ngForm"
-      *ngIf="profile">
+      *ngIf="profile"
+      class="layout-rows-sm">
 
-  <span class="flex-row">
+  <span>
     <mat-label>Name</mat-label>
     <mat-form-field>
       <input matInput
@@ -15,7 +16,7 @@
             (click)="name.disabled = !name.disabled">Edit</button>
   </span>
 
-  <span class="flex-row">
+  <span>
     <mat-label>Email</mat-label>
     <mat-form-field>
       <input matInput
@@ -29,7 +30,7 @@
             (click)="email.disabled = !email.disabled">Edit</button>
   </span>
 
-  <span class="flex-row">
+  <span>
     <mat-label>Password</mat-label>
     <mat-form-field>
       <input matInput
@@ -44,7 +45,7 @@
   </span>
 
 
-  <span class="flex-row">
+  <span>
     <mat-label>Timezone</mat-label>
     <mat-form-field>
       <input matInput
