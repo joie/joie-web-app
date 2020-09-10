@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { StorageMap } from '@ngx-pwa/local-storage';
 
 export const USER_ONBOARDING = 'user-onboarding';
+export const TEACHER_ONBOARDING = 'teacher-onboarding';
 @Injectable({
   providedIn: 'root',
 })

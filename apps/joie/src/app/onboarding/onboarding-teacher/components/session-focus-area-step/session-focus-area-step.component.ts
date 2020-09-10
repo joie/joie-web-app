@@ -1,3 +1,7 @@
+import {
+  StorageServiceService,
+  TEACHER_ONBOARDING,
+} from './../../../shared/storage-service.service';
 import { TeacherOnboardingFormService } from './../../services/teacher-onboarding-form.service';
 import { OnboardingService } from './../../../shared/onboarding.service';
 import { AgeGroups } from './../../../../models/teacher.model';
@@ -7,6 +11,7 @@ import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreTha
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 // todo add validation error messages after refactoring the checkboxes part
 
+export const MARKET = 'market'; //step cache key, probably should be a step name also // todo
 export const GROUPS = 'ageGroups';
 export const SESSION_AREA = 'sessionArea';
 @Component({
@@ -26,6 +31,7 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
   form: FormGroup;
   groupsEnum = AgeGroups;
   formValueChanges$;
+  controlKey = TEACHER_ONBOARDING + '-' + MARKET;
 
   get groupKeys() {
     return Object.keys(this.groupsEnum);
@@ -44,7 +50,8 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
   constructor(
     private _formBuilder: FormBuilder,
     private onboardingService: OnboardingService,
-    private formService: TeacherOnboardingFormService
+    private formService: TeacherOnboardingFormService,
+    private storage: StorageServiceService
   ) {
     this.form = this._formBuilder.group({
       sessionArea: ['', [Validators.required, Validators.minLength(10)]],
@@ -71,6 +78,10 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
       this.formService.form.patchValue({
         [SESSION_AREA]: value[SESSION_AREA],
       });
+      if (this.form.valid) {
+        // not caching invalid value
+        this.storage.setItemSubscribe(this.controlKey, value);
+      }
     });
 
     // let teacher = history.state.teacher || null;
