@@ -100,4 +100,8 @@ export class PersonalInfoStepComponent implements OnDestroy {
       }
     });
   }
+
+  isValid() {
+    return this.form.valid;
+  }
 }
