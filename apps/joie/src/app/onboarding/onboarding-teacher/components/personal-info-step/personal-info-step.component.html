@@ -6,7 +6,7 @@
   <h3>Personal Information</h3>
 </div>
 <div class="container container-ultra-condense">
-  <form [formGroup]="formGroup"
+  <form [formGroup]="form"
         class="layout-grid layout-spacing-block-sm"
         autocomplete="on">
     <mat-form-field appearance="outline">
@@ -59,7 +59,7 @@
     </mat-form-field>
 
     <button mat-flat-button
-            [disabled]="formGroup.invalid"
+            [disabled]="form.invalid"
             matStepperNext>
       Continue
     </button>

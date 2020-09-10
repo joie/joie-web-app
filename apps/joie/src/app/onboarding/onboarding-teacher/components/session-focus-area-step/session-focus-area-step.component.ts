@@ -9,6 +9,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
+import { Subscription } from 'rxjs';
 // todo add validation error messages after refactoring the checkboxes part
 
 export const MARKET = 'market'; //step cache key, probably should be a step name also // todo
@@ -23,7 +24,7 @@ const DEFAULT_CHECKBOX = 'ADULTS';
 export class SessionFocusAreaStepComponent implements OnDestroy {
   form: FormGroup;
   groupsEnum = AgeGroups;
-  formValueChanges$;
+  formValueChanges$: Subscription;
   controlKey = TEACHER_ONBOARDING + '-' + MARKET;
   defaultCheckbox = DEFAULT_CHECKBOX;
 

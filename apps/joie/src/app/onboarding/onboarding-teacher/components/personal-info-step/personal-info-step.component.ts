@@ -1,9 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import {
+  StorageServiceService,
+  TEACHER_ONBOARDING,
+} from './../../../shared/storage-service.service';
+import { Component, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { OnboardingService } from '../../../shared/onboarding.service';
 import { lettersRegExPattern, numbersRegExPattern } from '../../../../models/regex';
+import { TeacherOnboardingFormService } from '../../services/teacher-onboarding-form.service';
+import { Subscription } from 'rxjs';
 
+export const PERSONAL = 'personal';
 export const FIRST_NAME = 'firstName';
 export const LAST_NAME = 'lastName';
 export const EMAIL = 'email';
@@ -13,25 +19,31 @@ export const PHONE = 'phone';
   selector: 'app-personal-info-step',
   templateUrl: './personal-info-step.component.html',
   styleUrls: ['./personal-info-step.component.scss'],
-  providers: [Location, { provide: LocationStrategy, useClass: PathLocationStrategy }],
 })
-export class PersonalInfoStepComponent implements OnInit {
-  formGroup: FormGroup;
+export class PersonalInfoStepComponent implements OnDestroy {
+  form: FormGroup;
+  controlKey = TEACHER_ONBOARDING + '-' + PERSONAL;
+  formValueChanges$: Subscription;
 
   get firstName() {
-    return this.formGroup.get(FIRST_NAME);
+    return this.form.get(FIRST_NAME);
   }
   get lastName() {
-    return this.formGroup.get(LAST_NAME);
+    return this.form.get(LAST_NAME);
   }
   get email() {
-    return this.formGroup.get(EMAIL);
+    return this.form.get(EMAIL);
   }
   get phone() {
-    return this.formGroup.get(PHONE);
+    return this.form.get(PHONE);
   }
-  constructor(private _formBuilder: FormBuilder, public onboardingService: OnboardingService) {
-    this.formGroup = this._formBuilder.group({
+  constructor(
+    private _formBuilder: FormBuilder,
+    public onboardingService: OnboardingService,
+    private formService: TeacherOnboardingFormService,
+    private storage: StorageServiceService
+  ) {
+    this.form = this._formBuilder.group({
       firstName: [
         '',
         [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)],
@@ -51,15 +63,41 @@ export class PersonalInfoStepComponent implements OnInit {
         ],
       ],
     });
+
+    this.initForm();
   }
-  ngOnInit(): void {
-    let teacher = history.state.teacher || null;
-    if (teacher && 'firstName' in teacher) {
-      this.initFormWithCachedData(teacher);
-    }
+  ngOnDestroy(): void {
+    this.formValueChanges$.unsubscribe();
   }
 
-  private initFormWithCachedData(teacher) {
-    this.formGroup.patchValue(teacher);
+  initForm() {
+    this.formService.setControls([
+      [FIRST_NAME, new FormControl()],
+      [LAST_NAME, new FormControl()],
+      [EMAIL, new FormControl()],
+      [PHONE, new FormControl()],
+    ]);
+
+    this.getCache();
+
+    this.subscribeToValueChanges();
+  }
+
+  getCache() {
+    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
+      if (cacheValue) {
+        this.form.patchValue(cacheValue);
+      }
+    });
+  }
+
+  subscribeToValueChanges() {
+    this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
+      this.formService.form.patchValue(value);
+      if (this.form.valid) {
+        // not caching invalid value
+        this.storage.setItemSubscribe(this.controlKey, value);
+      }
+    });
   }
 }
