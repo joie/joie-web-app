@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormArray,
-  FormControl,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
+import { urlRegExPattern } from '../../../../models/regex';
 
+// todo add validation error messages after refactoring the checkboxes part
+// todo when refactoring checkboxes part, create an enum for sessionTypes (diffrent from the existing ones), and comment out courses fields (we dont have courses yet)
 @Component({
   selector: 'app-online-presence-step',
   templateUrl: './online-presence-step.component.html',
@@ -25,15 +22,7 @@ export class OnlinePresenceStepComponent implements OnInit {
   ];
   constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
-      teachingPortfolioUrlCtrl: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'
-          ),
-        ],
-      ],
+      teachingPortfolioUrlCtrl: ['', [Validators.required, Validators.pattern(urlRegExPattern)]],
       sessionTypesCtrl: new FormArray([], atLeastOneIsCheckedValidator()),
     });
   }
@@ -63,9 +52,7 @@ export class OnlinePresenceStepComponent implements OnInit {
   private addCheckboxesFromCache(sessionTypes) {
     sessionTypes.forEach((type) => {
       let entries = this.entry(type);
-      this.sessionTypesFormArray.push(
-        new FormControl({ [entries[0]]: entries[1] })
-      );
+      this.sessionTypesFormArray.push(new FormControl({ [entries[0]]: entries[1] }));
     });
   }
 
@@ -76,9 +63,7 @@ export class OnlinePresenceStepComponent implements OnInit {
   }
 
   private initFormWithCachedData(teacher) {
-    this.formGroup.controls['teachingPortfolioUrlCtrl'].setValue(
-      teacher.teachingPortfolioUrlCtrl
-    );
+    this.formGroup.controls['teachingPortfolioUrlCtrl'].setValue(teacher.teachingPortfolioUrlCtrl);
     this.addCheckboxesFromCache(teacher.sessionTypesCtrl);
   }
 }

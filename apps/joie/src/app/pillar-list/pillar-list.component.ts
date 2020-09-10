@@ -1,8 +1,8 @@
+import { OnboardingService } from './../onboarding/shared/onboarding.service';
 import {
   StorageServiceService,
   USER_ONBOARDING,
 } from './../onboarding/shared/storage-service.service';
-import { StudentOnboardingService } from './../onboarding/onboarding-student/service/student-onboarding.service';
 
 import { FormGroup, FormArray } from '@angular/forms';
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
@@ -45,7 +45,7 @@ export class PillarListComponent {
   }
 
   constructor(
-    private onboardingService: StudentOnboardingService,
+    private onboardingService: OnboardingService,
     private storage: StorageServiceService
   ) {
     this.form = new FormGroup({ [PILLARS]: new FormArray([]) });

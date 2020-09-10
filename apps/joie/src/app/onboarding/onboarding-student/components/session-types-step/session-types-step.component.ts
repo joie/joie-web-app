@@ -2,12 +2,12 @@ import { StudentOnboardingFormService } from './../../student-onboarding-form.se
 import { AuthService } from './../../../../auth-state/services/auth/auth.service';
 import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
-import { StudentOnboardingService } from '../../service/student-onboarding.service';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
 import { SessionTypes } from '../../models/student';
 import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
 import { sessionTypesData } from './sessionTypesData';
+import { OnboardingService } from '../../../shared/onboarding.service';
 export const SESSION_TYPES = 'sessionTypes';
 
 @Component({
@@ -39,7 +39,7 @@ export class SessionTypesStepComponent implements OnDestroy {
   constructor(
     private _formBuilder: FormBuilder,
     public authService: AuthService,
-    public onboardingService: StudentOnboardingService,
+    public onboardingService: OnboardingService,
     private storage: StorageServiceService,
     private formService: StudentOnboardingFormService
   ) {

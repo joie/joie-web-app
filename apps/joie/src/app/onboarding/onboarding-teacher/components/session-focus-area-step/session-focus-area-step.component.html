@@ -24,11 +24,11 @@
         </label>
       </mat-list-item>
     </mat-list>
+    <button mat-button
+            mat-flat-button
+            [disabled]="formGroup.invalid"
+            matStepperNext>
+      Continue
+    </button>
   </form>
-
-  <button mat-button
-          matStepperNext>
-    Continue
-  </button>
-
 </div>

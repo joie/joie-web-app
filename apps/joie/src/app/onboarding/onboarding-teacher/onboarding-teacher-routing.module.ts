@@ -20,23 +20,23 @@ const routes: Routes = [
     component: OnboardingStepperComponent,
     children: [
       {
-        path: 'personal-info',
+        path: 'Personal information',
         component: PersonalInfoStepComponent,
       },
       {
-        path: 'teaching-experience',
+        path: 'Teaching experience',
         component: TeachingExperienceStepComponent,
       },
       {
-        path: 'focus-area',
+        path: 'Your market',
         component: SessionFocusAreaStepComponent,
       },
       {
-        path: 'online-presence',
+        path: 'Your teaching style',
         component: OnlinePresenceStepComponent,
       },
       {
-        path: 'value-to-students',
+        path: 'Why Joie',
         component: WhyJoieStepComponent,
       },
     ],
