@@ -16,6 +16,12 @@ export class TeacherOnboardingFormService {
   setControl(control: ControlTuple) {
     this.form.setControl(control[0], control[1]);
   }
+
+  setControls(controls: ControlTuple[]) {
+    controls.forEach((control) => {
+      this.setControl(control);
+    });
+  }
   removeControl(name) {
     this.form.removeControl(name);
   }
