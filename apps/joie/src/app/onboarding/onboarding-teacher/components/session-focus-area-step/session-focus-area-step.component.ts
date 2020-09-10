@@ -7,7 +7,6 @@ import { OnboardingService } from './../../../shared/onboarding.service';
 import { AgeGroups } from './../../../../models/teacher.model';
 import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
-import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { Subscription } from 'rxjs';
 // todo add validation error messages after refactoring the checkboxes part
@@ -50,10 +49,7 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
   ) {
     this.form = this._formBuilder.group({
       sessionArea: ['', [Validators.required, Validators.minLength(10)]],
-      ageGroups: new FormArray(
-        []
-        // [atLeastOneIsCheckedValidator(), notMoreThanOneIsCheckedValidator()]
-      ),
+      ageGroups: new FormArray([], [atLeastOneIsCheckedValidator()]),
     });
 
     this.initForm();
@@ -88,8 +84,6 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
 
   subscribeToValueChanges() {
     this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
-      console.log(value);
-
       this.formService.ageGroupsFormArray.clear();
       this.values.forEach((value) => {
         this.formService.ageGroupsFormArray.push(new FormControl(value));
@@ -108,5 +102,9 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
     if (this.defaultCheckbox) {
       this.groupsFormArray.get([this.groupKeys.indexOf(this.defaultCheckbox)]).patchValue(true);
     }
+  }
+
+  isValid() {
+    return this.form.valid;
   }
 }
