@@ -8,12 +8,10 @@
   </section>
 
   <section class="container">
-    <div class="layout-rows-md">
-      <app-event-calendar [sessions]="sessions$ | async"></app-event-calendar>
-    </div>
+    <app-event-calendar [sessions]="sessions$ | async"></app-event-calendar>
   </section>
 
-  <section class="layout-rows-md">
+  <section>
     <app-events-list [sessions]="sessions$ | async"></app-events-list>
   </section>
 
