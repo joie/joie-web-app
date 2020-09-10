@@ -5,6 +5,18 @@ export interface Teacher {
   stats: Stat[];
 }
 
+export interface TeacherOnboarding {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  sessionArea: string;
+  ageGroups: Array<string>;
+  sesionTypes: Array<string>;
+  experience: string;
+  portfolio: string;
+  addedValue: string;
+}
 export interface Stat {
   title: string;
   value: number | string;

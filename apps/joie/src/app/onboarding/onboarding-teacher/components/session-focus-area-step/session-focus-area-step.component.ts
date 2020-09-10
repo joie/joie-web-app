@@ -20,15 +20,15 @@ export class SessionFocusAreaStepComponent {
   ];
   constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
-      sessionAreaCtrl: ['', [Validators.required, Validators.minLength(10)]],
-      focusGroupsCtrl: new FormArray(
+      sessionArea: ['', [Validators.required, Validators.minLength(10)]],
+      ageGroups: new FormArray(
         [],
         [atLeastOneIsCheckedValidator(), notMoreThanOneIsCheckedValidator()]
       ),
     });
 
     let teacher = history.state.teacher || null;
-    if (teacher && 'focusGroupsCtrl' in teacher) {
+    if (teacher && 'ageGroups' in teacher) {
       this.initFormWithCachedData(teacher);
     } else {
       this.addCheckboxes();
@@ -36,7 +36,7 @@ export class SessionFocusAreaStepComponent {
   }
 
   get groupsFormArray() {
-    return this.formGroup.controls.focusGroupsCtrl as FormArray;
+    return this.formGroup.controls.ageGroups as FormArray;
   }
 
   entry(obj) {
@@ -63,7 +63,7 @@ export class SessionFocusAreaStepComponent {
   }
 
   private initFormWithCachedData(teacher) {
-    this.formGroup.controls['sessionAreaCtrl'].setValue(teacher.sessionAreaCtrl);
-    this.addCheckboxesFromCache(teacher.focusGroupsCtrl);
+    this.formGroup.controls['sessionArea'].setValue(teacher.sessionArea);
+    this.addCheckboxesFromCache(teacher.ageGroups);
   }
 }

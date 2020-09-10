@@ -4,10 +4,10 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import { OnboardingService } from '../../../shared/onboarding.service';
 import { lettersRegExPattern, numbersRegExPattern } from '../../../../models/regex';
 
-export const FIRST_NAME = 'firstNameCtrl';
-export const LAST_NAME = 'lastNameCtrl';
-export const EMAIL = 'emailCtrl';
-export const PHONE = 'phoneNumberCtrl';
+export const FIRST_NAME = 'firstName';
+export const LAST_NAME = 'lastName';
+export const EMAIL = 'email';
+export const PHONE = 'phone';
 
 @Component({
   selector: 'app-personal-info-step',
@@ -32,16 +32,16 @@ export class PersonalInfoStepComponent implements OnInit {
   }
   constructor(private _formBuilder: FormBuilder, public onboardingService: OnboardingService) {
     this.formGroup = this._formBuilder.group({
-      firstNameCtrl: [
+      firstName: [
         '',
         [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)],
       ],
-      lastNameCtrl: [
+      lastName: [
         '',
         [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)],
       ],
-      emailCtrl: ['', [Validators.required, Validators.email]],
-      phoneNumberCtrl: [
+      email: ['', [Validators.required, Validators.email]],
+      phone: [
         '',
         [
           Validators.required,
@@ -54,7 +54,7 @@ export class PersonalInfoStepComponent implements OnInit {
   }
   ngOnInit(): void {
     let teacher = history.state.teacher || null;
-    if (teacher && 'firstNameCtrl' in teacher) {
+    if (teacher && 'firstName' in teacher) {
       this.initFormWithCachedData(teacher);
     }
   }

@@ -22,13 +22,13 @@ export class OnlinePresenceStepComponent implements OnInit {
   ];
   constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
-      teachingPortfolioUrlCtrl: ['', [Validators.required, Validators.pattern(urlRegExPattern)]],
-      sessionTypesCtrl: new FormArray([], atLeastOneIsCheckedValidator()),
+      portfolio: ['', [Validators.required, Validators.pattern(urlRegExPattern)]],
+      sessionTypes: new FormArray([], atLeastOneIsCheckedValidator()),
     });
   }
   ngOnInit(): void {
     let teacher = history.state.teacher || null;
-    if (teacher && 'sessionTypesCtrl' in teacher) {
+    if (teacher && 'sessionTypes' in teacher) {
       this.initFormWithCachedData(teacher);
     } else {
       this.addCheckboxes();
@@ -36,7 +36,7 @@ export class OnlinePresenceStepComponent implements OnInit {
   }
 
   get sessionTypesFormArray() {
-    return this.formGroup.controls.sessionTypesCtrl as FormArray;
+    return this.formGroup.controls.sessionTypes as FormArray;
   }
 
   entry(obj) {
@@ -63,7 +63,7 @@ export class OnlinePresenceStepComponent implements OnInit {
   }
 
   private initFormWithCachedData(teacher) {
-    this.formGroup.controls['teachingPortfolioUrlCtrl'].setValue(teacher.teachingPortfolioUrlCtrl);
-    this.addCheckboxesFromCache(teacher.sessionTypesCtrl);
+    this.formGroup.controls['portfolio'].setValue(teacher.portfolio);
+    this.addCheckboxesFromCache(teacher.sessionTypes);
   }
 }

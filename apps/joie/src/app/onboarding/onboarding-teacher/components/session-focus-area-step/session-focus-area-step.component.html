@@ -10,13 +10,13 @@
         class="layout-grid">
     <mat-form-field appearance="outline">
       <textarea matInput
-                formControlName="sessionAreaCtrl"
+                formControlName="sessionArea"
                 required></textarea>
     </mat-form-field>
     <p>For which group your content design for?</p>
     <mat-list class="layout-grid">
       <mat-list-item *ngFor="let group of groupsFormArray.value; let i = index">
-        <label formArrayName="focusGroupsCtrl">
+        <label formArrayName="ageGroups">
           <input type="checkbox"
                  (change)="handleCheck(entry(group)[0], entry(group)[1], i)"
                  [formControlName]="i" />

@@ -10,7 +10,7 @@
 <div class="container container-ultra-condense">
   <form [formGroup]="formGroup">
     <div class="layout-grid layout-grid-inline-features layout-spacing-inline-sm layout-spacing-block-md">
-      <label formArrayName="sessionTypesCtrl"
+      <label formArrayName="sessionTypes"
              class="grid-item"
              *ngFor="let sessionType of sessionTypesFormArray.value; let i = index">
         <input type="checkbox"
@@ -29,7 +29,7 @@
     <div class="layout-grid">
       <mat-form-field appearance="outline">
         <textarea matInput
-                  formControlName="teachingPortfolioUrlCtrl"
+                  formControlName="portfolio"
                   required></textarea>
       </mat-form-field>
       <button mat-button

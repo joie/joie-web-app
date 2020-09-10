@@ -1,25 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
-interface Teacher {
-  firstNameCtrl: string;
-  lastNameCtrl: string;
-  emailCtrl: string;
-  phoneNumberCtrl: string;
-  sessionAreaCtrl: string;
-  focusGroupsCtrl: Array<string>;
-  sesionTypesCtrl: Array<string>;
-  teachingEpCtrl: string;
-  teachingPortfolioUrlCtrl: string;
-  addedValueDescriptionCtrl: string;
-}
+import { TeacherOnboarding } from '../../../../models/teacher.model';
 
 @Component({
   templateUrl: './onboarding-stepper.component.html',
   styleUrls: ['./onboarding-stepper.component.scss'],
 })
 export class OnboardingStepperComponent implements OnInit {
-  teacher = {} as Teacher;
+  teacher = {} as TeacherOnboarding;
   currentFormGroup = { status: 'INVALID', value: {} };
   public steps: string[];
   public selectedStep: number = 0;
