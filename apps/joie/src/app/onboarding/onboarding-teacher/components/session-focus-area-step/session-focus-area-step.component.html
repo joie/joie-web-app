@@ -6,7 +6,7 @@
 </div>
 
 <div class="container container-ultra-condense">
-  <form [formGroup]="formGroup"
+  <form [formGroup]="form"
         class="layout-grid">
     <mat-form-field appearance="outline">
       <textarea matInput
@@ -15,20 +15,21 @@
     </mat-form-field>
     <p>For which group your content design for?</p>
     <mat-list class="layout-grid">
-      <mat-list-item *ngFor="let group of groupsFormArray.value; let i = index">
+      <mat-list-item *ngFor="let group of groupsFormArray.controls; let i = index">
         <label formArrayName="ageGroups">
           <input type="checkbox"
-                 (change)="handleCheck(entry(group)[0], entry(group)[1], i)"
                  [formControlName]="i" />
-          {{entry(group)[0]}}
+          {{groupsEnum[groupKeys[i]]}}
         </label>
       </mat-list-item>
     </mat-list>
     <button mat-button
             mat-flat-button
-            [disabled]="formGroup.invalid"
+            [disabled]="form.invalid"
             matStepperNext>
       Continue
     </button>
+
+    <button (click)="log()">log</button>
   </form>
 </div>
