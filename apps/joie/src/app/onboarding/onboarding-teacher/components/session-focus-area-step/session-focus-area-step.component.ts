@@ -14,6 +14,7 @@ import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChe
 export const MARKET = 'market'; //step cache key, probably should be a step name also // todo
 export const GROUPS = 'ageGroups';
 export const SESSION_AREA = 'sessionArea';
+const DEFAULT_CHECKBOX = 'ADULTS';
 @Component({
   selector: 'app-session-focus-area-step',
   templateUrl: './session-focus-area-step.component.html',
@@ -32,6 +33,7 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
   groupsEnum = AgeGroups;
   formValueChanges$;
   controlKey = TEACHER_ONBOARDING + '-' + MARKET;
+  defaultCheckbox = DEFAULT_CHECKBOX;
 
   get groupKeys() {
     return Object.keys(this.groupsEnum);
@@ -71,6 +73,8 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
     this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
       if (cacheValue) {
         this.form.patchValue(cacheValue);
+      } else {
+        this.preselectDefaultCheckbox();
       }
     });
 
@@ -103,7 +107,15 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
     console.log(this.values);
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.formValueChanges$.unsubscribe();
+  }
+
+  preselectDefaultCheckbox() {
+    if (this.defaultCheckbox) {
+      this.groupsFormArray.get([this.groupKeys.indexOf(this.defaultCheckbox)]).patchValue(true);
+    }
+  }
 
   // get groupsFormArray() {
   //   return this.form.controls.ageGroups as FormArray;
