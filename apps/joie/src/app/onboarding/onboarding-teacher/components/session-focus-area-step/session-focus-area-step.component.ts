@@ -25,6 +25,7 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
   // ];
   form: FormGroup;
   groupsEnum = AgeGroups;
+  formValueChanges$;
 
   get groupKeys() {
     return Object.keys(this.groupsEnum);
@@ -59,6 +60,18 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
     ]);
 
     this.onboardingService.addCheckboxes(this.groupKeys, this.groupsFormArray);
+
+    this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
+      console.log(value);
+
+      this.formService.ageGroupsFormArray.clear();
+      this.values.forEach((value) => {
+        this.formService.ageGroupsFormArray.push(new FormControl(value));
+      });
+      this.formService.form.patchValue({
+        [SESSION_AREA]: value[SESSION_AREA],
+      });
+    });
 
     // let teacher = history.state.teacher || null;
     // if (teacher && 'ageGroups' in teacher) {
