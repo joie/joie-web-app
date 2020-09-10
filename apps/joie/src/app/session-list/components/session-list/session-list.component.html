@@ -1,10 +1,12 @@
 <ng-container *ngIf="sessions$ | async as sessions">
   <mat-card class="card" *ngFor="let session of sessions">
-    <img
-      mat-card-image
+    <app-figure-image
       src="https://source.unsplash.com/random"
       alt="Thumbnail photo of a session"
-    />
+      [style.--width]="3"
+      [style.--height]="2"
+    ></app-figure-image>
+
     <mat-card-title>
       <a routerLink="/sessions/{{ session.id }}">{{ session.title }}</a>
     </mat-card-title>

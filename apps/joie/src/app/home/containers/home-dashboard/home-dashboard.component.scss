@@ -1,15 +1,26 @@
 @use "../../../../styles/styles-critical/layouts";
 
-.hero {
-  background-image: url('https://source.unsplash.com/random');
-  background-size: cover;
-  background-position: left;
+.layout-hero {
   padding: 120px 0;
-  @media (min-width: layouts.$layout-breakpoint-xs) {
-    &-context {
-      max-inline-size: layouts.$layout-breakpoint-xs;
-      max-width: layouts.$layout-breakpoint-xs;
-    }
+  position: relative;
+  // @media (min-width: layouts.$layout-breakpoint-xs) {
+  //   &-context {
+  //     max-inline-size: layouts.$layout-breakpoint-xs;
+  //     max-width: layouts.$layout-breakpoint-xs;
+  //   }
+  // }
+  &::before {
+    content: '';
+    background-image: url('https://source.unsplash.com/r2nJPbEYuSQ');
+    background-size: cover;
+    background-position: left;
+    transform: scaleX(-1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
   }
 }
 
