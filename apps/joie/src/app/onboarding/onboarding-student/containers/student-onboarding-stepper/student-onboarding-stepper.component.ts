@@ -17,7 +17,6 @@ import { PILLARS } from '../../../../pillar-list/pillar-list.component';
   styleUrls: ['./student-onboarding-stepper.component.scss'],
 })
 export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit, AfterViewChecked {
-  preferences: Partial<Preferences> = {};
   public steps: string[];
   public selectedStep: number = 0;
   public selectedStepRef = null;
