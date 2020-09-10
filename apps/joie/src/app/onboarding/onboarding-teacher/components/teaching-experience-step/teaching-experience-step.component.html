@@ -6,19 +6,20 @@
   </p>
 </div>
 <div class="container container-ultra-condense">
-  <form [formGroup]="formGroup">
+  <form [formGroup]="form">
 
     <div class="layout-grid">
       <mat-form-field appearance="outline">
         <textarea matInput
                   formControlName="experience"
                   required></textarea>
-        <mat-error *ngIf="teachingExp.invalid">{{onboardingService.showErrorMessage(teachingExp)}}</mat-error>
+        <mat-error *ngIf="experienceControl.invalid">{{onboardingService.showErrorMessage(experienceControl)}}
+        </mat-error>
 
       </mat-form-field>
       <button mat-button
               mat-flat-button
-              [disabled]="formGroup.invalid"
+              [disabled]="form.invalid"
               matStepperNext>
         Continue
       </button>
