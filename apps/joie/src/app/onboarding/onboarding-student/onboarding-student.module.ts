@@ -1,4 +1,3 @@
-import { PillarListModule } from './../../pillar-list/pillar-list.module';
 import { NgModule } from '@angular/core';
 
 import { OnboardingStudentRoutingModule } from './onboarding-student-routing.module';
@@ -10,6 +9,7 @@ import { WelcomeStepComponent } from './components/welcome-step/welcome-step.com
 import { PillarStepComponent } from './components/pillar-step/pillar-step.component';
 import { ActivitiesStepComponent } from './components/activities-step/activities-step.component';
 import { ActivitiesBoxComponent } from './components/activities-step/activities-box/activities-box.component';
+import { PillarListModule } from './../../pillar-list/pillar-list.module';
 
 @NgModule({
   declarations: [

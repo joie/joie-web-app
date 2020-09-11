@@ -12,7 +12,6 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./session-form.component.scss'],
 })
 export class SessionFormComponent extends DynaFormBaseComponent implements OnInit {
-  layoutClass = 'layout-grid layout-spacing-block-sm';
   showAllFields: boolean;
   showLoader = false;
 

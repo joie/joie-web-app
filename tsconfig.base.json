@@ -15,7 +15,9 @@
     "paths": {
       "@joie/dyna-form": ["libs/dyna-form/src/index.ts"]
     },
-    "rootDir": "."
+    "rootDir": ".",
+    "forceConsistentCasingInFileNames": true,
+    "removeComments": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

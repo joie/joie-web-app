@@ -1,9 +1,4 @@
-<form
-  (ngSubmit)="onSubmit()"
-  [formGroup]="form"
-  #documentEditForm="ngForm"
-  class="layout-grid layout-grid-inline-features layout-spacing-inline-sm layout-spacing-block-sm"
->
+<form (ngSubmit)="onSubmit()" [formGroup]="form" #documentEditForm="ngForm" class="layout-columns">
   <!-- ! TODO: date & time should be extracted to an independent component with a controlValueAccessor to merge both to a single timestamp -->
   <mat-form-field>
     <mat-label>Date</mat-label>

@@ -6,28 +6,24 @@
 </div>
 
 <div class="container container-ultra-condense">
-  <form [formGroup]="formGroup"
-        class="layout-grid">
+  <form [formGroup]="formGroup">
     <mat-form-field appearance="outline">
-      <textarea matInput
-                formControlName="sessionAreaCtrl"
-                required></textarea>
+      <textarea matInput formControlName="sessionAreaCtrl" required></textarea>
     </mat-form-field>
     <p>For which group your content design for?</p>
-    <mat-list class="layout-grid">
+    <mat-list>
       <mat-list-item *ngFor="let group of groupsFormArray.value; let i = index">
         <label formArrayName="focusGroupsCtrl">
-          <input type="checkbox"
-                 (change)="handleCheck(entry(group)[0], entry(group)[1], i)"
-                 [formControlName]="i" />
-          {{entry(group)[0]}}
+          <input
+            type="checkbox"
+            (change)="handleCheck(entry(group)[0], entry(group)[1], i)"
+            [formControlName]="i"
+          />
+          {{ entry(group)[0] }}
         </label>
       </mat-list-item>
     </mat-list>
-    <button mat-button
-            mat-flat-button
-            [disabled]="formGroup.invalid"
-            matStepperNext>
+    <button mat-button mat-flat-button [disabled]="formGroup.invalid" matStepperNext>
       Continue
     </button>
   </form>
