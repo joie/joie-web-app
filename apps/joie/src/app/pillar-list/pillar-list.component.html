@@ -1,15 +1,11 @@
 <div *ngIf="selectable; then selectablePillars; else nonSelectablePillars"></div>
 
-<ng-template #selectablePillars
-             class="container container-condense">
-  <form [formGroup]="form"
-        class="layout-columns-sm">
+<ng-template #selectablePillars class="container-condense">
+  <form [formGroup]="form" class="layout-columns-sm">
     <mat-card *ngFor="let pillar of pillars; let i = index">
-      <app-icon class="joie-icon joie-icon-backdrop"
-                [name]="pillar.icon"></app-icon>
+      <app-icon class="joie-icon joie-icon-backdrop" [name]="pillar.icon"></app-icon>
       <label formArrayName="pillars">
-        <input type="checkbox"
-               [formControlName]="i" />
+        <input type="checkbox" [formControlName]="i" />
       </label>
 
       <div>
@@ -19,11 +15,9 @@
   </form>
 </ng-template>
 
-<ng-template #nonSelectablePillars
-             class="container container-condense">
+<ng-template #nonSelectablePillars class="container-condense">
   <mat-card *ngFor="let pillar of pillars; let i = index">
-    <app-icon class="joie-icon joie-icon-backdrop"
-              [name]="pillar.icon"></app-icon>
+    <app-icon class="joie-icon joie-icon-backdrop" [name]="pillar.icon"></app-icon>
 
     <div>
       <h4 [innerHTML]="pillar?.title"></h4>

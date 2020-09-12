@@ -3,3 +3,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+.address-details {
+  align-content: space-evenly;
+  margin-left: var(--joie-gutter);
+  margin-inline-start: var(--joie-gutter);
+}
