@@ -5,9 +5,4 @@ import { Component, Input } from '@angular/core';
   templateUrl: './figure-image.component.html',
   styleUrls: ['./figure-image.component.scss'],
 })
-export class FigureImageComponent {
-  @Input() src: string;
-  @Input() alt: string;
-  @Input() caption: string;
-
-}
+export class FigureImageComponent {}
