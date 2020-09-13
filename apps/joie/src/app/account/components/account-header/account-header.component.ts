@@ -9,7 +9,5 @@ import { Component, OnInit } from '@angular/core';
 export class AccountHeaderComponent implements OnInit {
   constructor(public authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.authService.state$.subscribe((d) => console.log(d));
-  }
+  ngOnInit(): void {}
 }

@@ -1,8 +1,10 @@
 <ng-container [formGroup]="form">
   <mat-form-field appearance="outline">
     <mat-label>Pillars</mat-label>
-    <mat-select required [formControlName]="PILLAR">
-      <mat-option *ngFor="let pillar of pillarKeys" [value]="pillar">{{
+    <mat-select required
+                [formControlName]="PILLAR">
+      <mat-option *ngFor="let pillar of pillarKeys"
+                  [value]="pillar">{{
         pillarEnum[pillar]
       }}</mat-option>
     </mat-select>
@@ -10,8 +12,10 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Levels</mat-label>
-    <mat-select required [formControlName]="LEVEL">
-      <mat-option *ngFor="let level of levelKeys" [value]="level">{{
+    <mat-select required
+                [formControlName]="LEVEL">
+      <mat-option *ngFor="let level of levelKeys"
+                  [value]="level">{{
         levelEnum[level]
       }}</mat-option>
     </mat-select>
@@ -19,8 +23,10 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Activities</mat-label>
-    <mat-select required [formControlName]="ACTIVITY">
-      <mat-option *ngFor="let activity of activityKeys" [value]="activity">{{
+    <mat-select required
+                [formControlName]="ACTIVITY">
+      <mat-option *ngFor="let activity of activityKeys"
+                  [value]="activity">{{
         activityEnum[activity]
       }}</mat-option>
     </mat-select>
@@ -28,60 +34,61 @@
 
   <h4>Session goals (add one goal in line)</h4>
 
-  <app-form-array-table
-    [values]="formArrayValues(GOALS)"
-    (remove)="removeControl(goalsFormArray, $event)"
-  >
-    <app-simple-form-input
-      #goalsSimpleForm
-      [validators]="sfiValidators"
-      (submission)="addGoalOrComment(goalsFormArray, $event)"
-    ></app-simple-form-input>
-    <button
-      mat-icon-button
-      slot="suffix"
-      color="primary"
-      aria-label="Example icon button with a home icon"
-      (click)="goalsSimpleForm.onSubmit()"
-    >
-      <mat-icon aria-hidden="false" aria-label="Example home icon" slot="suffix">home</mat-icon>
+  <app-form-array-table [values]="formArrayValues(GOALS)"
+                        (remove)="removeControl(goalsFormArray, $event)">
+    <app-simple-form-input #goalsSimpleForm
+                           [validators]="sfiValidators"
+                           (submission)="addGoalOrComment(goalsFormArray, $event)"></app-simple-form-input>
+    <button mat-icon-button
+            slot="suffix"
+            color="primary"
+            aria-label="Example icon button with a home icon"
+            (click)="goalsSimpleForm.onSubmit()">
+      <mat-icon aria-hidden="false"
+                aria-label="Example home icon"
+                slot="suffix">home</mat-icon>
     </button>
   </app-form-array-table>
 
   <h4>Need to know (add one comment in line)</h4>
-  <app-form-array-table
-    [values]="formArrayValues(COMMENTS)"
-    (remove)="removeControl(commentsFormArray, $event)"
-  >
-    <app-simple-form-input
-      #commentsSimpleForm
-      [validators]="sfiValidators"
-      (submission)="addGoalOrComment(commentsFormArray, $event)"
-    ></app-simple-form-input>
-    <button
-      mat-icon-button
-      slot="suffix"
-      color="primary"
-      aria-label="Example icon button with a home icon"
-      (click)="commentsSimpleForm.onSubmit()"
-    >
-      <mat-icon aria-hidden="false" aria-label="Example home icon" slot="suffix">home</mat-icon>
+  <app-form-array-table [values]="formArrayValues(COMMENTS)"
+                        (remove)="removeControl(commentsFormArray, $event)">
+    <app-simple-form-input #commentsSimpleForm
+                           [validators]="sfiValidators"
+                           (submission)="addGoalOrComment(commentsFormArray, $event)"></app-simple-form-input>
+    <button mat-icon-button
+            slot="suffix"
+            color="primary"
+            aria-label="Example icon button with a home icon"
+            (click)="commentsSimpleForm.onSubmit()">
+      <mat-icon aria-hidden="false"
+                aria-label="Example home icon"
+                slot="suffix">home</mat-icon>
     </button>
   </app-form-array-table>
 
   <mat-form-field appearance="outline">
     <mat-label>Session price (USD)</mat-label>
-    <input
-      type="number"
-      inputmode="numeric"
-      min="0.00"
-      max="10000.00"
-      step="0.01"
-      autocomplete="transaction-amount"
-      [formControlName]="PRICE"
-      matInput
-    />
+    <input type="number"
+           inputmode="numeric"
+           min="0.00"
+           max="10000.00"
+           step="0.01"
+           autocomplete="transaction-amount"
+           [formControlName]="PRICE"
+           matInput />
     <span matPrefix>$&nbsp;</span>
     <mat-hint>At the moment, Joie uses USD as its currency.</mat-hint>
   </mat-form-field>
+
+  <mat-form-field *ngIf="isLivestreaming"
+                  appearance="outline">
+    <mat-label>Number of students</mat-label>
+    <input type="number"
+           inputmode="numeric"
+           [formControlName]="LIMIT"
+           matInput />
+    <mat-hint>This type of session is limited to {{UPPER_LIMIT}} students</mat-hint>
+  </mat-form-field>
+
 </ng-container>
