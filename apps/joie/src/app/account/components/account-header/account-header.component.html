@@ -1,6 +1,11 @@
-<ng-container>
-  <h1 *ngIf="user$ | async as user">
-    Welcome, {{ user.firstName + " " + user.lastName }}
+<ng-container *ngIf="authService.state$ | async as user">
+  <img alt="user avatar"
+       width="100"
+       height="100"
+       [src]="user.photoURL" />
+
+  <h1>
+    Welcome, {{user.displayName }}
   </h1>
-  <h3>Manage your profile, sessions, and banking on Joie //todo add avatar</h3>
+  <h3>Manage your profile, sessions, and banking on Joie</h3>
 </ng-container>
