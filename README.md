@@ -1,4 +1,6 @@
-# Joie Web App ![Build and Deploy](https://github.com/joie/joie-web-app/workflows/Build%20and%20Deploy/badge.svg)
+# Joie Web App
+[![GitHub Super-Linter](https://github.com/joie/joie-web-app/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+![Build and Deploy](https://github.com/joie/joie-web-app/workflows/Build%20and%20Deploy/badge.svg)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
 

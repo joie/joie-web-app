@@ -1,5 +1,29 @@
-.address-section {
+@use '../../../../styles/styles-critical/layouts';
+
+main > section.address-section {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
   padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  app-contact-map {
+    flex-basis: 100%;
+    @media (min-width: layouts.$layout-breakpoint-lg) {
+      flex-basis: 50%;
+    }
+  }
+
+  .address-details {
+    @media (min-width: layouts.$layout-breakpoint-lg) {
+      margin-left: var(--joie-gutter);
+      margin-inline-start: var(--joie-gutter);
+    }
+    align-self: center;
+  }
 }
+
+// .address-details {
+//   align-content: space-evenly;
+//   margin-left: var(--joie-gutter);
+//   margin-inline-start: var(--joie-gutter);
+// }

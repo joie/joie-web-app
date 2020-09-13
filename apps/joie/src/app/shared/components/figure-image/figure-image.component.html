@@ -1,8 +1,8 @@
 <figure>
   <picture>
-    <img [src]="src" [alt]="alt" />
+    <ng-content></ng-content>
   </picture>
   <figcaption class="mat-caption">
-    {{ caption }}
+    <ng-content select="[slot=caption]"></ng-content>
   </figcaption>
 </figure>

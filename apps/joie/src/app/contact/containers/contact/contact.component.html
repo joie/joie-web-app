@@ -1,26 +1,27 @@
 <header>
-  <app-figure-image src="https://source.unsplash.com/u3ajSXhZM_U"
-                    caption="Photo by Jason Leung on Unsplash"
-                    alt="cover image of scattered pink letters for contact page"
-                    [style.--width]="3"
-                    [style.--height]="1"></app-figure-image>
+  <app-figure-image [style.--width]="3" [style.--height]="1">
+    <img
+      src="https://source.unsplash.com/u3ajSXhZM_U"
+      alt="cover image of scattered pink letters for contact page"
+    />
+    <span slot="caption"
+      >Photo by <a href="https://unsplash.com/@readysetfreddy">Freddy Castro </a> on
+      <a href="https://unsplash.com/photos/u3ajSXhZM_U" target="_blank" rel="noopener"
+        >Unsplash</a
+      ></span
+    >
+  </app-figure-image>
 </header>
 <main>
   <section>
-    <div class="container">
-      <div class="layout-rows-md layout-center text-center">
-        <h1 class="
-           mat-display-1">Get in touch</h1>
-        <h2>
-          Here's how you can reach us. We love them all.
-        </h2>
-      </div>
-      <div class="layout-columns-md">
-        <mat-card class="layout-center"
-                  *ngFor="let option of contactOptions">
-
-          <app-icon class="joie-icon joie-icon-backdrop"
-                    [name]="option.icon"></app-icon>
+    <div class="container text-center">
+      <h1 class="mat-display-1">Get in touch</h1>
+      <h2>
+        Here's how you can reach us. We love them all.
+      </h2>
+      <div class="layout-columns-md layout-center">
+        <mat-card class="layout-center" *ngFor="let option of contactOptions">
+          <app-icon class="joie-icon joie-icon-backdrop" [name]="option.icon"></app-icon>
           <h4>{{ option.title }}</h4>
           <p>{{ option.description }}</p>
         </mat-card>
@@ -28,19 +29,19 @@
     </div>
   </section>
   <section>
-    <div class="container">
+    <div class="container text-center">
       <h3>Use the form below to drop us an email.</h3>
     </div>
   </section>
   <section class="section-block-start-offset">
-    <div class="container container-ultra-condense">
+    <div class="container-ultra-condense">
       <mat-card class="mat-elevation-z1">
         <app-contact-form></app-contact-form>
       </mat-card>
     </div>
   </section>
   <section>
-    <div class="container">
+    <div class="container text-center">
       <h2>
         This is where all the fun happens. Join and bring a friend. It is hilarious!
       </h2>
@@ -48,22 +49,35 @@
   </section>
   <section class="address-section">
     <app-contact-map></app-contact-map>
-    <div>
-      <address>
-        Our office:<br />
-        36 Blue Jays Way, Toronto,<br />
-        Ontario, Canada.<br />
-        M5V3T3
-      </address>
+    <div class="layout-rows-xs address-details">
+      <div>
+        <h4>Our office:</h4>
+        <address>
+          36 Blue Jays Way, Toronto,<br />
+          Ontario, Canada.<br />
+          M5V3T3
+        </address>
+      </div>
 
-      <p>
-        Business development
-        <a href="mailto:jason@joie.co">jason@joie.co</a>
-      </p>
-      <p>
-        Product development
-        <a href="mailto:dikla@joie.co">dikla@joie.co</a>
-      </p>
+      <div>
+        <h4>
+          Business development
+        </h4>
+
+        <address>
+          <a href="mailto:jason@joie.co">jason@joie.co</a>
+        </address>
+      </div>
+
+      <div>
+        <h4>
+          Product development
+        </h4>
+
+        <address>
+          <a href="mailto:dikla@joie.co">dikla@joie.co</a>
+        </address>
+      </div>
     </div>
   </section>
   <section>

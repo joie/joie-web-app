@@ -2,24 +2,24 @@
 <mat-dialog-content class="mat-typography">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <!-- {{ form.value | json }} -->
-    <div [class]="layoutClass">
-      <app-session-form-metadata [class]="layoutClass"></app-session-form-metadata>
+    <div class="layout-rows">
+      <app-session-form-metadata class="layout-rows"></app-session-form-metadata>
       <button mat-button color="primary" (click)="showAllFields = true" *ngIf="!showAllFields">
         Show all fields...
       </button>
       <ng-container *ngIf="showAllFields">
         <app-session-form-date-time-slots
           *ngIf="isCoaching"
-          [class]="layoutClass"
+          class="layout-rows"
         ></app-session-form-date-time-slots>
 
         <app-session-form-date-time
           *ngIf="isLivestreaming && !isCoaching"
-          [class]="layoutClass"
+          class="layout-rows"
         ></app-session-form-date-time>
 
-        <app-session-form-marketing [class]="layoutClass"></app-session-form-marketing>
-        <app-session-form-attributes [class]="layoutClass"> </app-session-form-attributes>
+        <app-session-form-marketing class="layout-rows"></app-session-form-marketing>
+        <app-session-form-attributes class="layout-rows"> </app-session-form-attributes>
       </ng-container>
     </div>
   </form>

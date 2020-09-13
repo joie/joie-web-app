@@ -12,8 +12,7 @@
       Joie pairs you with world-class teachers to help you build a healthier and happier life – one
       step at a time.
     </h1>
-    <button mat-raised-button
-            color="primary">Start your journey with us</button>
+    <button mat-raised-button color="primary">Start your journey with us</button>
   </div>
 </header>
 <main>
@@ -26,9 +25,7 @@
           and covers a variety of topics related to holistic health and wellness. What brings you to
           Joie today?
         </h4>
-        <app-pillar-list [descriptions]="true"
-                         [selectable]="false"
-                         class="layout-columns-sm">
+        <app-pillar-list [descriptions]="true" [selectable]="false" class="layout-columns-sm">
         </app-pillar-list>
       </div>
     </div>
@@ -55,15 +52,13 @@
           <app-video-player [entryId]="entryId"></app-video-player>
         </div>
 
-        <div class="layout-columns-sm">
-          <mat-card class="mat-elevation-z0"
-                    *ngFor="let advantage of homeJoieAdvantages">
-            <app-icon class="joie-icon joie-icon-backdrop"
-                      [name]="advantage.icon"></app-icon>
-            <div>{{ advantage.title }}</div>
-            <div>
+        <div class="layout-columns-sm text-center">
+          <mat-card class="mat-elevation-z0" *ngFor="let advantage of homeJoieAdvantages">
+            <app-icon class="joie-icon joie-icon-backdrop" [name]="advantage.icon"></app-icon>
+            <h4>{{ advantage.title }}</h4>
+            <p>
               {{ advantage.description }}
-            </div>
+            </p>
           </mat-card>
         </div>
       </div>
@@ -73,8 +68,7 @@
   <section>
     <div class="container">
       <div class="layout-rows-md layout-center text-center">
-        <button mat-raised-button
-                color="primary">Like what you see? Join Joie</button>
+        <button mat-raised-button color="primary">Like what you see? Join Joie</button>
         <button mat-button>Want to teach with us? Apply Now!</button>
       </div>
     </div>
@@ -92,8 +86,7 @@
 
         <!--TODO Get List of teachers-->
 
-        <button mat-raised-button
-                color="primary">
+        <button mat-raised-button color="primary">
           See yourself a part of Joie? Apply Now!
         </button>
       </div>

@@ -1,7 +1,7 @@
 {
   "npmScope": "joie",
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "live"
   },
   "implicitDependencies": {
     "angular.json": "*",

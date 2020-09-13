@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 
-
 @Component({
   selector: 'app-contact-map',
   templateUrl: './contact-map.component.html',
@@ -83,8 +82,8 @@ export class ContactMapComponent {
   //   });
   // }
 
-  openInfo(marker: MapMarker, content) {
-    this.infoContent = content;
-    this.info.open(marker);
-  }
+  // openInfo(marker: MapMarker, content) {
+  //   this.infoContent = content;
+  //   this.info.open(marker);
+  // }
 }

@@ -1,4 +1,4 @@
-import { PillarListComponent, PILLARS } from './../../../../pillar-list/pillar-list.component';
+import { PillarListComponent, PILLARS } from '../../../../pillar-list/pillar-list.component';
 import { Pillar } from '../../../../sessions/models/session';
 import { Component, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';

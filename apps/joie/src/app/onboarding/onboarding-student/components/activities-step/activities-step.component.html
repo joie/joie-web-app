@@ -1,4 +1,4 @@
-<div class="container container-condense">
+<div class="container-condense">
   <h1>What will be your first step on your journey?</h1>
   <p>
     Taking small steps will help you see progress, gain self-confidence, stay motivated, and take
@@ -6,20 +6,20 @@
   </p>
 </div>
 
-<div class="container container-ultra-condense">
+<div class="container-ultra-condense">
   <div class="layout-columns-sm">
-    <app-activities-box #boxes
-                        *ngFor="let pillar of selectedPillars"
-                        [pillar]="pillar | titlecase"></app-activities-box>
+    <app-activities-box
+      #boxes
+      *ngFor="let pillar of selectedPillars"
+      [pillar]="pillar | titlecase"
+    ></app-activities-box>
   </div>
   <div class="layout-columns-md">
     <div>
-      <button mat-button
-              mat-raised-button
-              matStepperNext>
+      <button mat-button mat-raised-button matStepperNext>
         Continue
       </button>
-      <br>
+      <br />
       <a routerLink="/home">
         Skip for now.
       </a>
