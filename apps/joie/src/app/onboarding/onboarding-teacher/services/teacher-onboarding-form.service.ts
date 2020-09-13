@@ -22,8 +22,6 @@ export class TeacherOnboardingFormService {
     this.form = this.fb.group({});
   }
 
-  ngOnDestroy() {}
-
   setControl(control: ControlTuple) {
     this.form.setControl(control[0], control[1]);
   }

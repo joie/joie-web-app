@@ -19,6 +19,6 @@ export class StorageServiceService {
   }
 
   removeItemSubscribe(key) {
-    this.storage.delete(key).subscribe(); //optimize subscriptions
+    this.storage.delete(key).subscribe();
   }
 }

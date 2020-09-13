@@ -7,12 +7,12 @@ import { Location } from '@angular/common';
   providedIn: 'root',
 })
 export class OnboardingService {
-  constructor(private _location: Location) {}
+  constructor(private location: Location) {}
 
   showErrorMessage(formControl) {
-    let errors = formControl.errors;
+    const errors = formControl.errors;
 
-    let errorKeys = Object.keys(errors);
+    const errorKeys = Object.keys(errors);
     switch (errorKeys[0]) {
       case 'required':
         return 'required';
@@ -61,6 +61,6 @@ export class OnboardingService {
   }
 
   navigateToPrevStep() {
-    this._location.back();
+    this.location.back();
   }
 }
