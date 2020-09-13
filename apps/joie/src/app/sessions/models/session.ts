@@ -81,7 +81,7 @@ export enum Activities {
   ETHICS = 'Ethics',
   MORALS = 'Morals',
   PROFESSIONAL_DEVELOPMENT = 'Professional Development',
-  FINANACIAL_STABILITY = 'Final Stability',
+  FINANACIAL_STABILITY = 'Financial Stability',
   SATISFACTION_AT_WORK = 'Satisfaction at Work',
 }
 export enum Recurring {
