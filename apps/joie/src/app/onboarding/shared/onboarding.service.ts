@@ -1,12 +1,13 @@
 import { numbersRegExPattern, lettersRegExPattern, urlRegExPattern } from './../../models/regex';
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OnboardingService {
-  constructor() {}
+  constructor(private _location: Location) {}
 
   showErrorMessage(formControl) {
     let errors = formControl.errors;
@@ -57,5 +58,9 @@ export class OnboardingService {
       default:
         return 'dismatching pattern';
     }
+  }
+
+  navigateToPrevStep() {
+    this._location.back();
   }
 }

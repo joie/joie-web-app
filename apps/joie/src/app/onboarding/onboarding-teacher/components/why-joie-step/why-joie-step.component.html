@@ -1,5 +1,8 @@
 <ng-container *ngIf="!afterSubmit">
   <div class="container-condense">
+    <button mat-button
+            mat-flat-button
+            (click)="onboardingService.navigateToPrevStep()">{{ '< Back'}}</button>
     <h3>Your value to our students</h3>
     <p>
       Finally, {{(authService.state$ | async)?.displayName }} where do you see your added value to the students?
