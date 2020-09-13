@@ -2,11 +2,13 @@
 
 $headings: 'h1, h2, h3, h4, h5, h6';
 
+$layout-breakpoint-xxs: 400px;
 $layout-breakpoint-xs: 700px;
 $layout-breakpoint-sm: 960px;
 $layout-breakpoint-lg: 1365px;
 
 :root {
+  --layout-breakpoint-xxs: #{$layout-breakpoint-xxs};
   --layout-breakpoint-xs: #{$layout-breakpoint-xs};
   --layout-breakpoint-sm: #{$layout-breakpoint-sm};
   --layout-breakpoint-lg: #{$layout-breakpoint-lg};

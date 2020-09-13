@@ -1,5 +1,9 @@
 @use "../../../../styles/styles-critical/layouts";
 
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
 .layout-hero {
   padding: 120px 0;
   position: relative;
@@ -21,9 +25,16 @@
     bottom: 0;
     left: 0;
     z-index: -1;
+    @media (max-width: layouts.$layout-breakpoint-xs) {
+      $range: strip-units(layouts.$layout-breakpoint-xs - layouts.$layout-breakpoint-xxs);
+      $percentage: calc((#{layouts.$layout-breakpoint-xs} - 100vw) / #{$range} * 100);
+      filter: blur(clamp(0px, calc(#{$percentage} / 10), 10px));
+    }
   }
 }
 
 .video-player-container {
   width: 75%;
 }
+
+//blur(calc(calc(100vw - 400px) / 300 * 100))
