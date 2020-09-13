@@ -16,6 +16,8 @@
         <input type="checkbox"
                [formControlName]="i" /> {{ typesEnum[typeKeys[i]] }}
       </label>
+      <mat-error *ngIf="typesFormArray.invalid">{{onboardingService.showErrorMessage(typesFormArray)}}</mat-error>
+
     </div>
 
     <p>
@@ -26,9 +28,11 @@
       </small>
     </p>
     <mat-form-field appearance="outline">
-      <textarea matInput
-                formControlName="portfolio"
-                required></textarea>
+      <input matInput
+             formControlName="portfolio"
+             required />
+      <mat-error *ngIf="portfolio.invalid">{{onboardingService.showErrorMessage(portfolio)}}</mat-error>
+
     </mat-form-field>
     <button mat-button
             mat-flat-button

@@ -27,6 +27,9 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
   controlKey = TEACHER_ONBOARDING + '-' + MARKET;
   defaultCheckbox = DEFAULT_CHECKBOX;
 
+  get sessionArea() {
+    return this.form.get(SESSION_AREA);
+  }
   get groupKeys() {
     return Object.keys(this.groupsEnum);
   }
@@ -43,7 +46,7 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private onboardingService: OnboardingService,
+    public onboardingService: OnboardingService,
     private formService: TeacherOnboardingFormService,
     private storage: StorageServiceService
   ) {

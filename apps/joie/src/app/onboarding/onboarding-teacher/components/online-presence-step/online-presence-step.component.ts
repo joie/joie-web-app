@@ -36,6 +36,10 @@ export class OnlinePresenceStepComponent implements OnDestroy {
       .filter((v) => v !== null);
   }
 
+  get portfolio() {
+    return this.form.get(PORTFOLIO);
+  }
+
   constructor(
     private _formBuilder: FormBuilder,
     public onboardingService: OnboardingService,

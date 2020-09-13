@@ -12,6 +12,7 @@
       <textarea matInput
                 formControlName="sessionArea"
                 required></textarea>
+      <mat-error *ngIf="sessionArea.invalid">{{onboardingService.showErrorMessage(sessionArea)}}</mat-error>
     </mat-form-field>
     <p>For which group your content design for?</p>
     <label *ngFor="let group of groupsFormArray.controls; let i = index"
@@ -20,6 +21,8 @@
              [formControlName]="i" />
       {{groupsEnum[groupKeys[i]]}}
     </label>
+    <mat-error *ngIf="groupsFormArray.invalid">{{onboardingService.showErrorMessage(groupsFormArray)}}</mat-error>
+
 
     <button mat-button
             mat-flat-button

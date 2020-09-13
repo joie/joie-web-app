@@ -1,3 +1,4 @@
+import { numbersRegExPattern, lettersRegExPattern, urlRegExPattern } from './../../models/regex';
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
@@ -25,14 +26,36 @@ export class OnboardingService {
           errors[errorKeys[0]].requiredLength
         }`;
 
+      case 'requireCheckboxToBeChecked':
+        return 'At least one should be checked';
+      case 'requireNotMoreThanOneCheckboxToBeChecked':
+        return 'Not more than one should be checked';
+
       case 'pattern':
-        return 'Field is not valid';
+        const pattern = errors.pattern.requiredPattern;
+        return this.getPatternErrorMessage(pattern);
       default:
+        console.log(formControl);
+        console.log(errors);
+
         return 'Field is not valid TODO';
     }
   }
 
   addCheckboxes(keys, formArray) {
     keys.forEach(() => formArray.push(new FormControl(false)));
+  }
+
+  getPatternErrorMessage(pattern) {
+    switch (pattern) {
+      case numbersRegExPattern:
+        return 'Should only have numbers';
+      case lettersRegExPattern:
+        return 'Should only have letters';
+      case urlRegExPattern:
+        return 'Url is not valid';
+      default:
+        return 'dismatching pattern';
+    }
   }
 }
