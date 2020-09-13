@@ -1,14 +1,14 @@
 <ng-container *ngIf="!afterSubmit">
-  <div class="continer container-condense">
+  <div class="container-condense">
     <h3>Your value to our students</h3>
     <p>
       Finally, {{(authService.state$ | async)?.displayName }} where do you see your added value to the students?
     </p>
   </div>
-  <div class="container container-ultra-condense">
+  <div class="container-ultra-condense">
     <form *ngIf="!afterSubmit"
           [formGroup]="form"
-          class="layout-grid">
+          class="layout-rows-md">
 
       <mat-form-field appearance="outline">
         <textarea matInput
@@ -20,7 +20,7 @@
 
       <button mat-button
               mat-flat-button
-              (ngSubmit)="submitFormsData()"
+              (click)="submitFormsData()"
               [disabled]="form.invalid">
         Submit your application
       </button>
@@ -29,7 +29,7 @@
 
 </ng-container>
 
-<ng-container class="continer container-condense"
+<ng-container class="container-condense"
               *ngIf="afterSubmit">
   <h2 class="text-color-primary">Thank you for submitting your application.</h2>
   <h4>We are excited to review it!</h4>

@@ -5,24 +5,22 @@
   </p>
 </div>
 
-<div class="container container-ultra-condense">
+<div class="container-ultra-condense">
   <form [formGroup]="form"
-        class="layout-grid">
+        class="layout-rows-sm">
     <mat-form-field appearance="outline">
       <textarea matInput
                 formControlName="sessionArea"
                 required></textarea>
     </mat-form-field>
     <p>For which group your content design for?</p>
-    <mat-list class="layout-grid">
-      <mat-list-item *ngFor="let group of groupsFormArray.controls; let i = index">
-        <label formArrayName="ageGroups">
-          <input type="checkbox"
-                 [formControlName]="i" />
-          {{groupsEnum[groupKeys[i]]}}
-        </label>
-      </mat-list-item>
-    </mat-list>
+    <label *ngFor="let group of groupsFormArray.controls; let i = index"
+           formArrayName="ageGroups">
+      <input type="checkbox"
+             [formControlName]="i" />
+      {{groupsEnum[groupKeys[i]]}}
+    </label>
+
     <button mat-button
             mat-flat-button
             [disabled]="form.invalid"

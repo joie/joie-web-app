@@ -72,6 +72,7 @@ export class WhyJoieStepComponent implements OnDestroy {
 
   submitFormsData(): void {
     this.afterSubmit = true;
-    this.apiService.submitTeacherAccountData(this.formService.form.value);
+    console.log(this.formService.form.value);
+    // this.apiService.submitTeacherAccountData(this.formService.form.value);
   }
 }
