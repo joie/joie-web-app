@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SessionFormMetadataComponent } from './session-form-metadata.component';
 
@@ -6,12 +6,13 @@ describe('MetadataComponent', () => {
   let component: SessionFormMetadataComponent;
   let fixture: ComponentFixture<SessionFormMetadataComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SessionFormMetadataComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SessionFormMetadataComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SessionFormMetadataComponent);

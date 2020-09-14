@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ActivitiesBoxComponent } from './activities-box.component';
 
@@ -6,11 +6,13 @@ describe('ActivitiesBoxComponent', () => {
   let component: ActivitiesBoxComponent;
   let fixture: ComponentFixture<ActivitiesBoxComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ActivitiesBoxComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ActivitiesBoxComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ActivitiesBoxComponent);

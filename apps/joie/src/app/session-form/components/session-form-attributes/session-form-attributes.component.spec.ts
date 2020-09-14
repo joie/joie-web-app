@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SessionFormAttributesComponent } from './session-form-attributes.component';
 
@@ -6,12 +6,13 @@ describe('SessionFormAttributesComponent', () => {
   let component: SessionFormAttributesComponent;
   let fixture: ComponentFixture<SessionFormAttributesComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SessionFormAttributesComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SessionFormAttributesComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SessionFormAttributesComponent);

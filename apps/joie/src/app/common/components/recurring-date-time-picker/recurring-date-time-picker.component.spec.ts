@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RecurringDateTimePickerComponent } from './recurring-date-time-picker.component';
 
@@ -6,12 +6,13 @@ describe('RecurringDateTimePickerComponent', () => {
   let component: RecurringDateTimePickerComponent;
   let fixture: ComponentFixture<RecurringDateTimePickerComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ RecurringDateTimePickerComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [RecurringDateTimePickerComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RecurringDateTimePickerComponent);
