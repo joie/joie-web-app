@@ -1,18 +1,28 @@
+import { AuthService } from './../auth-state/services/auth/auth.service';
 import { Injectable } from '@angular/core';
 import { notificationSettingsMock, dashboardInfoMock, profileInfoMock } from './profile.mocks';
 import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { Teacher } from '../models/teacher.model';
 import { sessionsMock } from './account.mocks';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private authService: AuthService) {}
 
   getUser(id: string) {
-    return of(profileInfoMock);
+    // const timezone = new Date().getTimezoneOffset();
+    return this.authService.state$.pipe(
+      map((user) => ({
+        name: user.displayName,
+        email: user.email,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone, // todo replace with real data
+        password: profileInfoMock.password, // todo is client supposed to have the password? or only the length to display bullets? or random ammount of bullets
+      }))
+    );
   }
 
   getNotificationSettings(id: string = 'user123') {
