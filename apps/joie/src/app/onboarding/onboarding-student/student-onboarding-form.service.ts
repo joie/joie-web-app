@@ -22,7 +22,6 @@ export class StudentOnboardingFormService {
   constructor(private fb: FormBuilder, private storageService: StorageServiceService) {
     this.form = this.fb.group({});
   }
-  ngOnDestroy() {}
 
   setControl(control: ControlTuple) {
     this.form.setControl(control[0], control[1]);

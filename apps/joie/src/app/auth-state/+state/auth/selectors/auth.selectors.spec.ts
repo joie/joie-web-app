@@ -4,11 +4,11 @@ import * as AuthSelectors from './auth.selectors';
 
 describe('Auth Selectors', () => {
   const ERROR_MSG = 'No Error Available';
-  const getAuthId = it => it['id'];
+  const getAuthId = (it) => it.id;
   const createAuthEntity = (id: string, name = '') =>
     ({
       id,
-      name: name || `name-${id}`
+      name: name || `name-${id}`,
     } as Auth);
 
   let state;
@@ -19,15 +19,15 @@ describe('Auth Selectors', () => {
         [
           createAuthEntity('PRODUCT-AAA'),
           createAuthEntity('PRODUCT-BBB'),
-          createAuthEntity('PRODUCT-CCC')
+          createAuthEntity('PRODUCT-CCC'),
         ],
         {
           ...initialState,
           selectedId: 'PRODUCT-BBB',
           error: ERROR_MSG,
-          loaded: true
+          loaded: true,
         }
-      )
+      ),
     };
   });
 

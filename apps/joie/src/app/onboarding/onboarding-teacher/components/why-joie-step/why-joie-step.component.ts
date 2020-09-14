@@ -19,11 +19,11 @@ export class WhyJoieStepComponent implements OnInit {
   }
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private fb: FormBuilder,
     public onboardingService: OnboardingService,
     private apiService: TeacherOnboardingApiService
   ) {
-    this.formGroup = this._formBuilder.group({
+    this.formGroup = this.fb.group({
       addedValDescriptionCtrl: ['', [Validators.required, Validators.minLength(50)]],
     });
   }
@@ -36,7 +36,7 @@ export class WhyJoieStepComponent implements OnInit {
   }
 
   ngOnInit() {
-    let teacher = history.state.teacher;
+    const teacher = history.state.teacher;
     this.teachersName = teacher.firstNameCtrl;
     if ('addedValDescriptionCtrl' in teacher) {
       this.initFormWithCachedData(teacher);

@@ -17,7 +17,7 @@ export class SessionsListPopupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let { sessions } = history.state;
+    const { sessions } = history.state;
     if (sessions) {
       this.sessions = sessions;
     } else {

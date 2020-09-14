@@ -18,8 +18,8 @@ export class SessionFocusAreaStepComponent {
     { group: 'Eldery (65+)', isChecked: false },
     { group: 'All of the above', isChecked: false },
   ];
-  constructor(private _formBuilder: FormBuilder) {
-    this.formGroup = this._formBuilder.group({
+  constructor(private fb: FormBuilder) {
+    this.formGroup = this.fb.group({
       sessionAreaCtrl: ['', [Validators.required, Validators.minLength(10)]],
       focusGroupsCtrl: new FormArray(
         [],

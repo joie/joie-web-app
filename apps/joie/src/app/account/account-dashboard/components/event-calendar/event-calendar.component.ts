@@ -20,7 +20,7 @@ export class EventCalendarComponent implements OnInit {
   }
 
   onSelect(date) {
-    let key = this.dateToKey(date);
+    const key = this.dateToKey(date);
 
     if (this.eventMap[key]) {
       this.viewSessionsList(this.eventMap[key]);

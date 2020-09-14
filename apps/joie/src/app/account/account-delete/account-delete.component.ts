@@ -11,7 +11,7 @@ export class AccountDeleteComponent implements OnInit {
     'You will no longer be able to login',
     'You will lose access lose access to your students.',
     ' But mostly, you will be missed',
-  ]; //todo :CloseAccBullets
+  ]; // todo :CloseAccBullets
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {}

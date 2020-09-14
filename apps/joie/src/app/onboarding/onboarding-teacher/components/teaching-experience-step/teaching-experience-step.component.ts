@@ -18,11 +18,11 @@ export class TeachingExperienceStepComponent implements OnInit {
   }
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private fb: FormBuilder,
     public activatedRoute: ActivatedRoute,
     public onboardingService: OnboardingService
   ) {
-    this.formGroup = this._formBuilder.group({
+    this.formGroup = this.fb.group({
       teachingExpCtrl: [
         '',
         [Validators.required, Validators.minLength(50), Validators.maxLength(300)],

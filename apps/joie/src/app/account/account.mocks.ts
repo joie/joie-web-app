@@ -20,7 +20,7 @@ export const dashboardInfoMock = {
   stats: [
     { title: 'On-demand', value: 3 },
     { title: 'Live-streaming', value: 6 },
-    { title: 'Income', value: '1243$' }, //TODO add some currency pipe for $
+    { title: 'Income', value: '1243$' }, // TODO add some currency pipe for $
     { title: 'Messages', value: 3 },
     { title: 'Followers', value: 6 },
   ],
