@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Create a session</h2>
 <mat-dialog-content class="mat-typography">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form">
     <!-- {{ form.value | json }} -->
     <div class="layout-rows">
       <app-session-form-metadata class="layout-rows"></app-session-form-metadata>
@@ -25,5 +25,5 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-flat-button color="primary">Submit</button>
+  <button mat-flat-button (click)="onSubmit()" color="primary">Submit</button>
 </mat-dialog-actions>
