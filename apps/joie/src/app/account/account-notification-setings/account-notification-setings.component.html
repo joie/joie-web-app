@@ -1,25 +1,43 @@
 <form [formGroup]="formGroup">
 
-  <section [formGroupName]="convertToKey(block.title)"
-           *ngFor="let block of settingBlocks; let i = index">
-    <mat-divider *ngIf="i > 0"></mat-divider>
-    <div>
+  <mat-slide-toggle #toggle
+                    (click)="handleBlockToggle(remindersFormArray, remindersKeys, toggle)">
+    <h3>Session reminders</h3>
+  </mat-slide-toggle>
 
-      <h3>{{block.title}}</h3>
-      <mat-slide-toggle [checked]="block.allChecked"
-                        formControlName="all"
-                        (toggleChange)="toggleBlock(convertToKey(block.title))">
-      </mat-slide-toggle>
+  <div [formArrayName]="REMINDERS"
+       class="layout-rows">
+    <mat-slide-toggle [formControlName]="i"
+                      *ngFor="let setting of remindersFormArray.controls; let i = index">
+      <p>{{remindersEnum[remindersKeys[i]]}}</p>
+    </mat-slide-toggle>
+  </div>
+  <mat-divider></mat-divider>
 
-      <section *ngFor="let toggle of block.toggles">
-        <p>{{toggle.name}}</p>
-        <mat-slide-toggle (toggleChange)="
-                toggleSlider(convertToKey(block.title),
-                convertToKey(toggle.name))"
-                          [formControlName]="convertToKey(toggle.name)"
-                          [checked]="block.allChecked ? true : toggle.isChecked">
-        </mat-slide-toggle>
-      </section>
-    </div>
-  </section>
+  <mat-slide-toggle #toggle
+                    (click)="handleBlockToggle(activityFormArray, activityKeys, toggle)">
+    <h3>Account activity</h3>
+  </mat-slide-toggle>
+
+  <div [formArrayName]="ACTIVITY"
+       class="layout-rows">
+    <mat-slide-toggle [formControlName]="i"
+                      *ngFor="let setting of activityFormArray.controls; let i = index">
+      <p>{{activityEnum[activityKeys[i]]}}</p>
+    </mat-slide-toggle>
+  </div>
+  <mat-divider></mat-divider>
+
+  <mat-slide-toggle #toggle
+                    (click)="handleBlockToggle(newsletterFormArray, newsletterKeys, toggle)">
+    <h3>Newsletter and promotions</h3>
+  </mat-slide-toggle>
+
+  <div [formArrayName]="NEWSLETTER"
+       class="layout-rows">
+    <mat-slide-toggle [formControlName]="i"
+                      *ngFor="let setting of newsletterFormArray.controls; let i = index">
+      <p>{{newsletterEnum[newsletterKeys[i]]}}</p>
+    </mat-slide-toggle>
+  </div>
 </form>

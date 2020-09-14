@@ -40,6 +40,7 @@ import { MainLayoutComponent } from '../common/components/main-layout/main-layou
     MatIconModule,
   ],
   exports: [
+    MatSlideToggleModule,
     AccountNotificationSetingsComponent, // todo rm after finishing migration
     AccountDeleteComponent,
     AccountInfoComponent,

@@ -13,32 +13,11 @@ export const dashboardInfoMock = {
   ],
 };
 
-export const notificationSettingsMock = [
-  {
-    title: 'Session reminders',
-    allChecked: true,
-    toggles: [
-      { name: 'Email', isChecked: false },
-      { name: 'Push notification', isChecked: false },
-    ],
-  },
-  {
-    title: 'Account activity',
-    allChecked: false,
-    toggles: [
-      { name: 'New registration', isChecked: false },
-      { name: 'New follow', isChecked: false },
-    ],
-  },
-  {
-    title: 'Newsletter and promotions',
-    allChecked: false,
-    toggles: [
-      { name: 'Weekly Newsletter', isChecked: false },
-      { name: 'Free sessions, promos, events', isChecked: false },
-    ],
-  },
-];
+export const notificationSettingsMock = {
+  sessionReminders: ['Email'],
+  accountActivity: ['New follow'],
+  newsletterAndPromos: [],
+};
 
 export const profileInfoMock: Profile = {
   name: 'raja ram',
