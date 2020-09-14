@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
-import { SessionTypes } from '../../models/student';
+import { SessionTypes, SessionTypesLiteralMap } from '../../models/student';
 import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
 import { sessionTypesData } from './sessionTypesData';
 import { OnboardingService } from '../../../shared/onboarding.service';
@@ -20,13 +20,9 @@ export const SESSION_TYPES = 'sessionTypes';
 })
 export class SessionTypesStepComponent {
   form: FormGroup;
-  typesEnum = SessionTypes;
+  sessionTypesLiteralMap = SessionTypesLiteralMap;
   sessionTypesData = sessionTypesData;
   controlKey = USER_ONBOARDING + '-' + SESSION_TYPES_KEY;
-
-  get typeKeys() {
-    return Object.keys(this.typesEnum);
-  }
 
   get typesFormArray() {
     return this.form.controls.sessionTypes as FormArray;
@@ -34,7 +30,7 @@ export class SessionTypesStepComponent {
 
   get values() {
     return this.form.value.sessionTypes
-      .map((checked, i) => (checked ? this.typesEnum[this.typeKeys[i]] : null))
+      .map((checked, i) => (checked ? Array.from(this.sessionTypesLiteralMap.keys())[i] : null))
       .filter((v) => v !== null);
   }
 
@@ -54,7 +50,10 @@ export class SessionTypesStepComponent {
 
     this.formService.setControl([SESSION_TYPES, new FormArray([])]);
 
-    this.onboardingService.addCheckboxes(this.typeKeys, this.typesFormArray);
+    this.onboardingService.addCheckboxes(
+      Array.from(this.sessionTypesLiteralMap.keys()),
+      this.typesFormArray
+    );
 
     this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
       if (cacheValue) {

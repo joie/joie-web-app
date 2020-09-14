@@ -1,5 +1,4 @@
 import { PillarListComponent, PILLARS } from '../../../../pillar-list/pillar-list.component';
-import { Pillar } from '../../../../sessions/models/session';
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 import { StudentOnboardingFormService } from '../../student-onboarding-form.service';
@@ -13,11 +12,6 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 })
 export class PillarStepComponent implements AfterViewInit {
   @ViewChild('pillarList') pillarList: PillarListComponent;
-  pillarEnum = Pillar;
-
-  get pillarKeys() {
-    return Object.keys(Pillar);
-  }
 
   constructor(private formService: StudentOnboardingFormService) {}
 

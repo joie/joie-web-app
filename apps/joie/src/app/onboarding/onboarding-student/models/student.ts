@@ -6,7 +6,13 @@ export interface Preferences {
 }
 
 export enum SessionTypes {
-  ondemand = 'On-demand sessions',
-  livestreaming = 'Live streaming sessions',
-  coaching = '1:1 coaching sessions',
+  OnDemand = 'On-demand sessions',
+  LiveStreaming = 'Live streaming sessions',
+  Coaching = '1:1 coaching sessions',
 }
+
+export const SessionTypesLiteralMap = new Map([
+  [SessionTypes.OnDemand, 'on demand'],
+  [SessionTypes.LiveStreaming, 'live streaming'],
+  [SessionTypes.Coaching, 'coaching'],
+]);
