@@ -5,22 +5,24 @@ import {
 import { TeacherOnboardingFormService } from './../../services/teacher-onboarding-form.service';
 import { OnboardingService } from './../../../shared/onboarding.service';
 import { AgeGroups } from './../../../../models/teacher.model';
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { Subscription } from 'rxjs';
+import { UntilDestroy } from '@ngneat/until-destroy';
 // todo add validation error messages after refactoring the checkboxes part
 
 export const MARKET = 'market'; //step cache key, probably should be a step name also // todo
 export const GROUPS = 'ageGroups';
 export const SESSION_AREA = 'sessionArea';
 const DEFAULT_CHECKBOX = 'ADULTS';
+@UntilDestroy()
 @Component({
   selector: 'app-session-focus-area-step',
   templateUrl: './session-focus-area-step.component.html',
   styleUrls: ['./session-focus-area-step.component.scss'],
 })
-export class SessionFocusAreaStepComponent implements OnDestroy {
+export class SessionFocusAreaStepComponent {
   form: FormGroup;
   groupsEnum = AgeGroups;
   formValueChanges$: Subscription;
@@ -58,10 +60,6 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
     this.initForm();
   }
 
-  ngOnDestroy(): void {
-    this.formValueChanges$.unsubscribe();
-  }
-
   initForm() {
     this.formService.setControls([
       [GROUPS, new FormArray([])],
@@ -86,7 +84,7 @@ export class SessionFocusAreaStepComponent implements OnDestroy {
   }
 
   subscribeToValueChanges() {
-    this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
+    this.form.valueChanges.subscribe((value) => {
       this.formService.ageGroupsFormArray.clear();
       this.values.forEach((value) => {
         this.formService.ageGroupsFormArray.push(new FormControl(value));

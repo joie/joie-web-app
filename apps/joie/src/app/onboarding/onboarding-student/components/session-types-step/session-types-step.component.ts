@@ -1,6 +1,6 @@
 import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
 import { AuthService } from './../../../../auth-state/services/auth/auth.service';
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
@@ -8,21 +8,20 @@ import { SessionTypes } from '../../models/student';
 import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
 import { sessionTypesData } from './sessionTypesData';
 import { OnboardingService } from '../../../shared/onboarding.service';
-import { Subscription } from 'rxjs';
+import { UntilDestroy } from '@ngneat/until-destroy';
 
 export const SESSION_TYPES_KEY = 'session-types';
 export const SESSION_TYPES = 'sessionTypes';
-
+@UntilDestroy()
 @Component({
   selector: 'app-session-types-step',
   templateUrl: './session-types-step.component.html',
   styleUrls: ['./session-types-step.component.scss'],
 })
-export class SessionTypesStepComponent implements OnDestroy {
+export class SessionTypesStepComponent {
   form: FormGroup;
   typesEnum = SessionTypes;
   sessionTypesData = sessionTypesData;
-  formValueChanges$: Subscription;
   controlKey = USER_ONBOARDING + '-' + SESSION_TYPES_KEY;
 
   get typeKeys() {
@@ -63,7 +62,7 @@ export class SessionTypesStepComponent implements OnDestroy {
       }
     });
 
-    this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
+    this.form.valueChanges.subscribe((value) => {
       this.formService.sessionTypesFormArray.clear();
       this.values.forEach((value) => {
         this.formService.sessionTypesFormArray.push(new FormControl(value));
@@ -74,10 +73,6 @@ export class SessionTypesStepComponent implements OnDestroy {
         this.storage.setItemSubscribe(this.controlKey, value[SESSION_TYPES]);
       }
     });
-  }
-
-  ngOnDestroy(): void {
-    this.formValueChanges$.unsubscribe();
   }
 
   isValid() {

@@ -1,20 +1,22 @@
 import { AuthService } from './../../../../auth-state/services/auth/auth.service';
 import { OnboardingService } from './../../../shared/onboarding.service';
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { TeacherOnboardingApiService } from '../../services/teacher-onboarding-api.service';
 import { Subscription } from 'rxjs';
 import { TEACHER_ONBOARDING, StorageServiceService } from '../../../shared/storage-service.service';
 import { TeacherOnboardingFormService } from '../../services/teacher-onboarding-form.service';
+import { UntilDestroy } from '@ngneat/until-destroy';
 
 export const WHY_JOIE = 'why-joie';
 export const ADDED_VALUE = 'addedValue';
+@UntilDestroy()
 @Component({
   selector: 'app-why-joie-step',
   templateUrl: './why-joie-step.component.html',
   styleUrls: ['./why-joie-step.component.scss'],
 })
-export class WhyJoieStepComponent implements OnDestroy {
+export class WhyJoieStepComponent {
   form: FormGroup;
   afterSubmit = false;
   formValueChanges$: Subscription;
@@ -39,10 +41,6 @@ export class WhyJoieStepComponent implements OnDestroy {
     this.initForm();
   }
 
-  ngOnDestroy() {
-    this.formValueChanges$.unsubscribe();
-  }
-
   initForm() {
     this.formService.setControl([ADDED_VALUE, new FormControl()]);
     this.getCache();
@@ -58,7 +56,7 @@ export class WhyJoieStepComponent implements OnDestroy {
   }
 
   subscribeToValueChanges() {
-    this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
+    this.form.valueChanges.subscribe((value) => {
       this.formService.form.patchValue(value);
       if (this.form.valid) {
         // not caching invalid value

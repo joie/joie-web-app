@@ -6,24 +6,24 @@ import {
   JoieProfessional,
   JoieSpirit,
 } from '../../../../../sessions/models';
-import { Component, Input, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
 import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
 import { PILLARS } from '../../../../../pillar-list/pillar-list.component';
 import { OnboardingService } from '../../../../shared/onboarding.service';
-import { Subscription } from 'rxjs';
+import { UntilDestroy } from '@ngneat/until-destroy';
 
 export const ACTIVITIES = 'activities';
+@UntilDestroy()
 @Component({
   selector: 'app-activities-box',
   templateUrl: './activities-box.component.html',
   styleUrls: ['./activities-box.component.scss'],
 })
-export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
   @Input() pillar;
   public form: FormGroup;
-  formValueChanges$: Subscription;
   pillarEnum = Pillar;
   controlKey: string;
   cachedValues = null;
@@ -84,15 +84,11 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   ngAfterViewInit(): void {
-    this.formValueChanges$ = this.form.valueChanges.subscribe((changedVal) => {
+    this.form.valueChanges.subscribe((changedVal) => {
       if (this.form.valid) {
         this.storage.setItemSubscribe(this.controlKey, changedVal[this.pillar]);
       }
     });
-  }
-
-  ngOnDestroy(): void {
-    this.formValueChanges$.unsubscribe();
   }
 
   handleSelect(index, selected) {

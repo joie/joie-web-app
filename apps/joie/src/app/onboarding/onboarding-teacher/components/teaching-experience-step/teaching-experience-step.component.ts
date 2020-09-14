@@ -5,22 +5,22 @@ import {
 import { TeacherOnboardingFormService } from './../../services/teacher-onboarding-form.service';
 import { AuthService } from './../../../../auth-state/services/auth/auth.service';
 import { OnboardingService } from './../../../shared/onboarding.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { UntilDestroy } from '@ngneat/until-destroy';
 
 export const TEACHING_EXPERIENCE = 'teaching-experience';
 export const EXPERIENCE = 'experience';
+@UntilDestroy()
 @Component({
   selector: 'app-teaching-experience-step',
   templateUrl: './teaching-experience-step.component.html',
   styleUrls: ['./teaching-experience-step.component.scss'],
 })
-export class TeachingExperienceStepComponent implements OnDestroy {
+export class TeachingExperienceStepComponent {
   form: FormGroup;
   controlKey = TEACHER_ONBOARDING + '-' + TEACHING_EXPERIENCE;
-  formValueChanges$: Subscription;
 
   get experienceControl() {
     return this.form.get(EXPERIENCE);
@@ -44,10 +44,6 @@ export class TeachingExperienceStepComponent implements OnDestroy {
     this.initForm();
   }
 
-  ngOnDestroy() {
-    this.formValueChanges$.unsubscribe();
-  }
-
   initForm() {
     this.formService.setControl([EXPERIENCE, new FormControl()]);
 
@@ -65,7 +61,7 @@ export class TeachingExperienceStepComponent implements OnDestroy {
   }
 
   subscribeToValueChanges() {
-    this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
+    this.form.valueChanges.subscribe((value) => {
       this.formService.form.patchValue(value);
       if (this.form.valid) {
         // not caching invalid value

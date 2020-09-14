@@ -1,25 +1,25 @@
 import { TeacherOnboardingFormService } from './../../services/teacher-onboarding-form.service';
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { urlRegExPattern } from '../../../../models/regex';
 import { SessionTypes } from '../../../../models/teacher.model';
 import { TEACHER_ONBOARDING, StorageServiceService } from '../../../shared/storage-service.service';
 import { OnboardingService } from '../../../shared/onboarding.service';
-import { Subscription } from 'rxjs';
+import { UntilDestroy } from '@ngneat/until-destroy';
 
 export const TEACHING_STYLE = 'teaching-style';
 export const PORTFOLIO = 'portfolio';
 export const SESSION_TYPES = 'sessionTypes';
+@UntilDestroy()
 @Component({
   selector: 'app-online-presence-step',
   templateUrl: './online-presence-step.component.html',
   styleUrls: ['./online-presence-step.component.scss'],
 })
-export class OnlinePresenceStepComponent implements OnDestroy {
+export class OnlinePresenceStepComponent {
   form: FormGroup;
   typesEnum = SessionTypes;
-  formValueChanges$: Subscription;
   controlKey = TEACHER_ONBOARDING + '-' + TEACHING_STYLE;
 
   get typeKeys() {
@@ -53,9 +53,6 @@ export class OnlinePresenceStepComponent implements OnDestroy {
 
     this.initForm();
   }
-  ngOnDestroy(): void {
-    this.formValueChanges$.unsubscribe();
-  }
 
   initForm() {
     this.formService.setControls([
@@ -79,7 +76,7 @@ export class OnlinePresenceStepComponent implements OnDestroy {
   }
 
   subscribeToValueChanges() {
-    this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
+    this.form.valueChanges.subscribe((value) => {
       this.formService.typesFormArray.clear();
       this.values.forEach((value) => {
         this.formService.typesFormArray.push(new FormControl(value));

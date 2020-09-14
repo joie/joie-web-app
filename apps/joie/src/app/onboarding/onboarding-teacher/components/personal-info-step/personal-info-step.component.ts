@@ -2,28 +2,27 @@ import {
   StorageServiceService,
   TEACHER_ONBOARDING,
 } from './../../../shared/storage-service.service';
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { OnboardingService } from '../../../shared/onboarding.service';
 import { lettersRegExPattern } from '../../../../models/regex';
 import { TeacherOnboardingFormService } from '../../services/teacher-onboarding-form.service';
-import { Subscription } from 'rxjs';
+import { UntilDestroy } from '@ngneat/until-destroy';
 
 export const PERSONAL = 'personal';
 export const FIRST_NAME = 'firstName';
 export const LAST_NAME = 'lastName';
 export const EMAIL = 'email';
 export const PHONE = 'phone';
-
+@UntilDestroy()
 @Component({
   selector: 'app-personal-info-step',
   templateUrl: './personal-info-step.component.html',
   styleUrls: ['./personal-info-step.component.scss'],
 })
-export class PersonalInfoStepComponent implements OnDestroy {
+export class PersonalInfoStepComponent {
   form: FormGroup;
   controlKey = TEACHER_ONBOARDING + '-' + PERSONAL;
-  formValueChanges$: Subscription;
 
   get firstName() {
     return this.form.get(FIRST_NAME);
@@ -58,9 +57,6 @@ export class PersonalInfoStepComponent implements OnDestroy {
 
     this.initForm();
   }
-  ngOnDestroy(): void {
-    this.formValueChanges$.unsubscribe();
-  }
 
   initForm() {
     this.formService.setControls([
@@ -84,7 +80,7 @@ export class PersonalInfoStepComponent implements OnDestroy {
   }
 
   subscribeToValueChanges() {
-    this.formValueChanges$ = this.form.valueChanges.subscribe((value) => {
+    this.form.valueChanges.subscribe((value) => {
       this.formService.form.patchValue(value);
       if (this.form.valid) {
         // not caching invalid value
