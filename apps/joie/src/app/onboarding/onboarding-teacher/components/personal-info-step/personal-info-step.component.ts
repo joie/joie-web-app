@@ -5,7 +5,7 @@ import {
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { OnboardingService } from '../../../shared/onboarding.service';
-import { lettersRegExPattern, numbersRegExPattern } from '../../../../models/regex';
+import { lettersRegExPattern } from '../../../../models/regex';
 import { TeacherOnboardingFormService } from '../../services/teacher-onboarding-form.service';
 import { Subscription } from 'rxjs';
 
@@ -53,15 +53,7 @@ export class PersonalInfoStepComponent implements OnDestroy {
         [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)],
       ],
       email: ['', [Validators.required, Validators.email]],
-      phone: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(7),
-          Validators.pattern(numbersRegExPattern),
-        ],
-      ],
+      phone: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(7)]],
     });
 
     this.initForm();
