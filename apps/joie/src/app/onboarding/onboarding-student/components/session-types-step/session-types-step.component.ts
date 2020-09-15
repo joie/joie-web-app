@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
-import { SessionTypes, SessionTypesLiteralMap } from '../../models/student';
+import { SessionTypesLiteralMap } from '../../models/student';
 import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
 import { sessionTypesData } from './sessionTypesData';
 import { OnboardingService } from '../../../shared/onboarding.service';

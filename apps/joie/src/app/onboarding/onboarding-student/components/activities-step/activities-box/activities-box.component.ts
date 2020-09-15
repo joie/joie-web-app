@@ -29,9 +29,7 @@ type TypeActivitiesLiteralMap = Map<
   | SpiritActivities
   | ProfessionalActivities,
   string
->;
-
-// need it to explicitly give a type the the activity map because typeScript throws error https://github.com/microsoft/TypeScript/issues/8936
+>; // need it to explicitly give a type the the activity map because typeScript throws error https://github.com/microsoft/TypeScript/issues/8936
 @UntilDestroy()
 @Component({
   selector: 'app-activities-box',
@@ -65,10 +63,6 @@ export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // get activityKeys() {
-  //   return Object.keys(this.activitiesEnum);
-  // }
-
   get activitiesFormArray() {
     return this.form.controls[this.pillar] as FormArray;
   }
@@ -78,7 +72,6 @@ export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
   }
 
   get values() {
-    console.log(this.activitiesLiteralsMap);
     return this.form.value[this.pillar]
       .map((selected, i) => (selected ? Array.from(this.activitiesLiteralsMap.keys())[i] : null))
       .filter((v) => v !== null);
@@ -95,7 +88,6 @@ export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
       [this.pillar]: new FormArray([], [atLeastOneIsCheckedValidator()]),
     });
 
-    console.log(Array.from(this.activitiesLiteralsMap.keys()));
     this.onboardingService.addCheckboxes(
       Array.from(this.activitiesLiteralsMap.keys()),
       this.activitiesFormArray

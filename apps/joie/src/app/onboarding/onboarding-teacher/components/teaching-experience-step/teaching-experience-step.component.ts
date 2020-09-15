@@ -64,7 +64,6 @@ export class TeachingExperienceStepComponent {
     this.form.valueChanges.subscribe((value) => {
       this.formService.form.patchValue(value);
       if (this.form.valid) {
-        // not caching invalid value
         this.storage.setItemSubscribe(this.controlKey, value);
       }
     });
