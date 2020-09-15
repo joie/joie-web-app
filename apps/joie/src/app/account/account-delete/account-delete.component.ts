@@ -1,5 +1,6 @@
 import { AccountService } from '../account.service';
 import { Component, OnInit } from '@angular/core';
+import { accountDeleteBullets } from './account-delete-bullets';
 
 @Component({
   selector: 'app-account-delete',
@@ -7,11 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-delete.component.scss'],
 })
 export class AccountDeleteComponent implements OnInit {
-  bullets = [
-    'You will no longer be able to login',
-    'You will lose access lose access to your students.',
-    ' But mostly, you will be missed',
-  ]; //todo :CloseAccBullets
+  bullets = accountDeleteBullets;
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {}
