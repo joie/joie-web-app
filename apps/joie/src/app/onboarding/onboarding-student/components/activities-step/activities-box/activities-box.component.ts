@@ -117,4 +117,8 @@ export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
       this.activitiesFormArray.controls[index].patchValue(false);
     }
   }
+
+  asIsOrder(a, b) {
+    return 1;
+  }
 }

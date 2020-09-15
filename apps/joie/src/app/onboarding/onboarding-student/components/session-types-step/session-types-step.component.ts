@@ -81,4 +81,8 @@ export class SessionTypesStepComponent {
   finishOnboarding() {
     console.log(this.formService.form.value);
   }
+
+  asIsOrder(a, b) {
+    return 1;
+  }
 }
