@@ -53,11 +53,13 @@ export enum Pillar {
   Professional = 'professional',
 }
 
-// export enum MovementActivities {}
-// excersise = 'Excersice',
-// energy = 'Energy',
-// diet = 'Diet',
-// nutrition = 'Nutrition',
+export const PillarsLiteralMap = new Map([
+  [Pillar.Movement, 'movement'],
+  [Pillar.Emotions, 'emotions'],
+  [Pillar.Connections, 'connections'],
+  [Pillar.Spirit, 'spirit'],
+  [Pillar.Professional, 'professional'],
+]);
 
 export enum Activities {
   YOGA = 'Yoga',
