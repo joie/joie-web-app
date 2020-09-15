@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Form } from '@angular/forms';
-import { Profile } from '../../models/profile.model';
 import { AccountService } from '../account.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { AccountService } from '../account.service';
 })
 export class AccountInfoComponent implements OnInit {
   @ViewChild('form') form: Form;
-  profile: Profile = {
+  profile = {
     name: '',
     email: '',
     password: '',

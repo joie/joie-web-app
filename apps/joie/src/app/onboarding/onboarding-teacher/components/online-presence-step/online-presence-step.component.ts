@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { urlRegExPattern } from '../../../../models/regex';
+import { SessionTypes } from '../../teacher-onboarding.enums';
 
 // todo add validation error messages after refactoring the checkboxes part
 // todo when refactoring checkboxes part, create an enum for sessionTypes (diffrent from the existing ones), and comment out courses fields (we dont have courses yet)

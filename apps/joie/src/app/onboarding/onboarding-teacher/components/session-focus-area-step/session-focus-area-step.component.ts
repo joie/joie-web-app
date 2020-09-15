@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { notMoreThanOneIsCheckedValidator } from '../../../validators/notMoreThanOneIsSelected';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
+import { AgeGroups } from '../../teacher-onboarding.enums';
 // todo add validation error messages after refactoring the checkboxes part
 
 @Component({

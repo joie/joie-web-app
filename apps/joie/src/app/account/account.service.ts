@@ -1,26 +1,28 @@
 import { AuthService } from './../auth-state/services/auth/auth.service';
 import { Injectable } from '@angular/core';
-import { notificationSettingsMock, dashboardInfoMock, profileInfoMock } from './profile.mocks';
-import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
-import { Teacher } from '../models/teacher.model';
-import { sessionsMock } from './account.mocks';
+import {
+  sessionsMock,
+  notificationSettingsMock,
+  dashboardStatsMock,
+  passwordMock,
+} from './account.mocks';
 import { map } from 'rxjs/operators';
+import { NotificationSettings, Stat } from '../models/account.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  constructor(private httpClient: HttpClient, private authService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   getUser(id: string) {
-    // const timezone = new Date().getTimezoneOffset();
     return this.authService.state$.pipe(
       map((user) => ({
         name: user.displayName,
         email: user.email,
-        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone, // todo replace with real data
-        password: profileInfoMock.password, // todo is client supposed to have the password? or only the length to display bullets? or random ammount of bullets
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        password: passwordMock, // todo is client supposed to have the password? or only the length to display bullets? or random ammount of bullets
       }))
     );
   }
@@ -31,7 +33,10 @@ export class AccountService {
   }
 
   // todo interface settings
-  submitNotificationSettings(id: string = 'user123', settings): Observable<Boolean> {
+  submitNotificationSettings(
+    id: string = 'user123',
+    settings: NotificationSettings
+  ): Observable<Boolean> {
     // todo return this.http.post
     return of(true);
   }
@@ -41,8 +46,8 @@ export class AccountService {
   submitProfileChanges() {}
 
   // for dashboard
-  getTeacher(userId = '123'): Observable<Teacher> {
-    return of(dashboardInfoMock);
+  getDashboardStats(userId = '123'): Observable<Stat[]> {
+    return of(dashboardStatsMock);
   }
 
   postMessage(id: string, session, message: string) {

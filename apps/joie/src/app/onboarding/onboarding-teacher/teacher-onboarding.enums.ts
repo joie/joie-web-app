@@ -1,15 +1,3 @@
-export interface Teacher {
-  id: string;
-  firstName: string;
-  lastName: string;
-  stats: Stat[];
-}
-
-export interface Stat {
-  title: string;
-  value: number | string;
-}
-
 export enum AgeGroups {
   CHILDREN = 'Children (6-14)',
   YOUTH = 'Youth (15-24)',
