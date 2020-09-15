@@ -65,7 +65,7 @@ export class WhyJoieStepComponent {
     });
   }
   isValid() {
-    return this.form.valid;
+    return this.afterSubmit ? false : this.form.valid;
   }
 
   submitFormsData(): void {
