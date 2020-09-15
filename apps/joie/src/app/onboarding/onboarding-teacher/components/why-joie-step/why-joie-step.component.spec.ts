@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WhyJoieStepComponent } from './why-joie-step.component';
 
@@ -6,12 +6,13 @@ describe('WhyJoieStepComponent', () => {
   let component: WhyJoieStepComponent;
   let fixture: ComponentFixture<WhyJoieStepComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WhyJoieStepComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [WhyJoieStepComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WhyJoieStepComponent);

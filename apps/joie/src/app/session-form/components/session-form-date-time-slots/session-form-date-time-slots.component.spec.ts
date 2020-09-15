@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SessionFormDateTimeSlotsComponent } from './session-form-date-time-slots.component';
 
@@ -6,11 +6,13 @@ describe('SessionFormTimeSlotsComponent', () => {
   let component: SessionFormDateTimeSlotsComponent;
   let fixture: ComponentFixture<SessionFormDateTimeSlotsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [SessionFormDateTimeSlotsComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SessionFormDateTimeSlotsComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SessionFormDateTimeSlotsComponent);

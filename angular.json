@@ -186,9 +186,7 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/dyna-form/jest.config.js",
-            "tsConfig": "libs/dyna-form/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/dyna-form/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       },

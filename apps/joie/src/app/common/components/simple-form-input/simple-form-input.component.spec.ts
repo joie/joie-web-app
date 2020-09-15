@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SimpleFormInputComponent } from './simple-form-input.component';
 
@@ -6,12 +6,13 @@ describe('SimpleFormInputComponent', () => {
   let component: SimpleFormInputComponent;
   let fixture: ComponentFixture<SimpleFormInputComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SimpleFormInputComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SimpleFormInputComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SimpleFormInputComponent);

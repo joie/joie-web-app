@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WelcomeStepComponent } from './welcome-step.component';
 
@@ -6,12 +6,13 @@ describe('WelcomeStepComponent', () => {
   let component: WelcomeStepComponent;
   let fixture: ComponentFixture<WelcomeStepComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WelcomeStepComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [WelcomeStepComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WelcomeStepComponent);

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ClassesDashboardComponent } from './sessions-dashboard.component';
 
@@ -6,12 +6,13 @@ describe('ClassesComponent', () => {
   let component: ClassesDashboardComponent;
   let fixture: ComponentFixture<ClassesDashboardComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ClassesDashboardComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ClassesDashboardComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClassesDashboardComponent);
