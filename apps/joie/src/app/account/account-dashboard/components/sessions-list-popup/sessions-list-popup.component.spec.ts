@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SessionsListPopupComponent } from './sessions-list-popup.component';
 
@@ -6,12 +6,13 @@ describe('SessionsListPopupComponent', () => {
   let component: SessionsListPopupComponent;
   let fixture: ComponentFixture<SessionsListPopupComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SessionsListPopupComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SessionsListPopupComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SessionsListPopupComponent);
