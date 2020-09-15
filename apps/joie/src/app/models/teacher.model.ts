@@ -6,10 +6,10 @@ export interface Teacher {
 }
 
 export interface TeacherOnboarding {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
+  // firstName: string;
+  // lastName: string;
+  // email: string;
+  // phone: string;
   sessionArea: string;
   ageGroups: Array<string>;
   sesionTypes: Array<string>;
