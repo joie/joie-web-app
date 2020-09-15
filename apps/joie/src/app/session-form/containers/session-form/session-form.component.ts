@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionFormat } from './../../../sessions/models/session';
 import { SessionType } from '../../../sessions/models/session';
-import { DynaFormBaseComponent } from '@joie/dyna-form';
+import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { SessionsFacade } from '../../../services/sessions.facade';
 import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-handshake.service';
 import { environment } from '../../../../environments/environment';

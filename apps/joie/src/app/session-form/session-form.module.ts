@@ -15,7 +15,7 @@ import { FormArrayTableComponent } from '../common/components/form-array-table/f
 import { SimpleFormInputComponent } from '../common/components/simple-form-input/simple-form-input.component';
 import { RecurringDateTimePickerComponent } from '../common/components/recurring-date-time-picker/recurring-date-time-picker.component';
 
-import { DynaFormModule } from '@joie/dyna-form';
+import { DynaFormModule } from '../../../../../libs/dyna-form';
 import { SessionFormDateTimeComponent } from './components/session-form-date-time/session-form-date-time.component';
 import { SessionFormComponent } from './containers/session-form/session-form.component';
 import { KalturaPlayerModule } from '../kaltura-player/kaltura-player.module';

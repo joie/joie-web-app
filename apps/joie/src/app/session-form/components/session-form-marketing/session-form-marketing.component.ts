@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormArray, Validators } from '@angular/forms';
-import { DynaFormBaseComponent } from '@joie/dyna-form';
+import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 
 @Component({
   selector: 'app-session-form-marketing',
