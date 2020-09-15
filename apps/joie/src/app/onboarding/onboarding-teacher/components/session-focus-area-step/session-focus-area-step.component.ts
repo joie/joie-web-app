@@ -100,9 +100,6 @@ export class SessionFocusAreaStepComponent {
   }
 
   preselectDefaultCheckbox() {
-    console.log(this.defaultCheckbox);
-    console.log(Array.from(this.groupsLiteralsMap.keys()));
-    console.log(Array.from(this.groupsLiteralsMap.keys()).indexOf(this.defaultCheckbox));
     if (this.defaultCheckbox) {
       this.groupsFormArray
         .get([Array.from(this.groupsLiteralsMap.keys()).indexOf(this.defaultCheckbox)])
