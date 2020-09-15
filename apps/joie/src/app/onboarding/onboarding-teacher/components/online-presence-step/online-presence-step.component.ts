@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { urlRegExPattern } from '../../../../models/regex';
-import { SessionTypes } from '../../../../models/teacher.model';
 import { TEACHER_ONBOARDING, StorageServiceService } from '../../../shared/storage-service.service';
 import { OnboardingService } from '../../../shared/onboarding.service';
 import { UntilDestroy } from '@ngneat/until-destroy';
+import { SessionTypesLiteralsMap } from '../../teacher-onboarding.enums';
 
 export const TEACHING_STYLE = 'teaching-style';
 export const PORTFOLIO = 'portfolio';
@@ -19,12 +19,8 @@ export const SESSION_TYPES = 'sessionTypes';
 })
 export class OnlinePresenceStepComponent {
   form: FormGroup;
-  typesEnum = SessionTypes;
+  sessionTypesLiteralsMap = SessionTypesLiteralsMap;
   controlKey = TEACHER_ONBOARDING + '-' + TEACHING_STYLE;
-
-  get typeKeys() {
-    return Object.keys(this.typesEnum);
-  }
 
   get typesFormArray() {
     return this.form.controls.sessionTypes as FormArray;
@@ -32,7 +28,7 @@ export class OnlinePresenceStepComponent {
 
   get values() {
     return this.form.value.sessionTypes
-      .map((checked, i) => (checked ? this.typesEnum[this.typeKeys[i]] : null))
+      .map((checked, i) => (checked ? Array.from(this.sessionTypesLiteralsMap.keys())[i] : null))
       .filter((v) => v !== null);
   }
 
@@ -60,7 +56,10 @@ export class OnlinePresenceStepComponent {
       [SESSION_TYPES, new FormArray([])],
     ]);
 
-    this.onboardingService.addCheckboxes(this.typeKeys, this.typesFormArray);
+    this.onboardingService.addCheckboxes(
+      Array.from(this.sessionTypesLiteralsMap.keys()),
+      this.typesFormArray
+    );
 
     this.getCache();
 
@@ -85,7 +84,6 @@ export class OnlinePresenceStepComponent {
         [PORTFOLIO]: value[PORTFOLIO],
       });
       if (this.form.valid) {
-        // not caching invalid value
         this.storage.setItemSubscribe(this.controlKey, value);
       }
     });
@@ -93,5 +91,9 @@ export class OnlinePresenceStepComponent {
 
   isValid() {
     return this.form.valid;
+  }
+
+  asIsOrder(a, b) {
+    return 1;
   }
 }

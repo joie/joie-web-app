@@ -15,9 +15,9 @@
         [formGroup]="form">
     <div class="layout-columns-md">
       <label formArrayName="sessionTypes"
-             *ngFor="let sessionType of typesFormArray.controls; let i = index">
+             *ngFor="let sessionType of sessionTypesLiteralsMap | keyvalue: asIsOrder; let i = index">
         <input type="checkbox"
-               [formControlName]="i" /> {{ typesEnum[typeKeys[i]] }}
+               [formControlName]="i" /> {{ sessionType.value | titlecase}}
       </label>
       <mat-error *ngIf="typesFormArray.invalid">{{onboardingService.showErrorMessage(typesFormArray)}}</mat-error>
 

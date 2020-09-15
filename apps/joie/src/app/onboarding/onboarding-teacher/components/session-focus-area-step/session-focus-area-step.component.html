@@ -18,11 +18,11 @@
       <mat-error *ngIf="sessionArea.invalid">{{onboardingService.showErrorMessage(sessionArea)}}</mat-error>
     </mat-form-field>
     <p>For which group your content design for?</p>
-    <label *ngFor="let group of groupsFormArray.controls; let i = index"
+    <label *ngFor="let group of  groupsLiteralsMap | keyvalue : asIsOrder; let i = index"
            formArrayName="ageGroups">
       <input type="checkbox"
              [formControlName]="i" />
-      {{groupsEnum[groupKeys[i]]}}
+      {{ group.value | titlecase}}
     </label>
     <mat-error *ngIf="groupsFormArray.invalid">{{onboardingService.showErrorMessage(groupsFormArray)}}</mat-error>
 

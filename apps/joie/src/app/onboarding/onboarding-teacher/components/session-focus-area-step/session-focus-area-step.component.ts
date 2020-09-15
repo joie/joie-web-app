@@ -4,18 +4,17 @@ import {
 } from './../../../shared/storage-service.service';
 import { TeacherOnboardingFormService } from './../../services/teacher-onboarding-form.service';
 import { OnboardingService } from './../../../shared/onboarding.service';
-import { AgeGroups } from './../../../../models/teacher.model';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { Subscription } from 'rxjs';
 import { UntilDestroy } from '@ngneat/until-destroy';
-// todo add validation error messages after refactoring the checkboxes part
+import { AgeGroups, AgeGroupsLiteralsMap } from '../../teacher-onboarding.enums';
 
-export const MARKET = 'market'; //step cache key, probably should be a step name also // todo
+export const MARKET = 'market';
 export const GROUPS = 'ageGroups';
 export const SESSION_AREA = 'sessionArea';
-const DEFAULT_CHECKBOX = 'ADULTS';
+const DEFAULT_CHECKBOX = AgeGroups.Adults;
 @UntilDestroy()
 @Component({
   selector: 'app-session-focus-area-step',
@@ -24,16 +23,14 @@ const DEFAULT_CHECKBOX = 'ADULTS';
 })
 export class SessionFocusAreaStepComponent {
   form: FormGroup;
-  groupsEnum = AgeGroups;
+  // groupsEnum = AgeGroups;
+  groupsLiteralsMap = AgeGroupsLiteralsMap;
   formValueChanges$: Subscription;
   controlKey = TEACHER_ONBOARDING + '-' + MARKET;
   defaultCheckbox = DEFAULT_CHECKBOX;
 
   get sessionArea() {
     return this.form.get(SESSION_AREA);
-  }
-  get groupKeys() {
-    return Object.keys(this.groupsEnum);
   }
 
   get groupsFormArray() {
@@ -42,7 +39,7 @@ export class SessionFocusAreaStepComponent {
 
   get values() {
     return this.form.value[GROUPS].map((checked, i) =>
-      checked ? this.groupsEnum[this.groupKeys[i]] : null
+      checked ? Array.from(this.groupsLiteralsMap.keys())[i] : null
     ).filter((v) => v !== null);
   }
 
@@ -66,7 +63,10 @@ export class SessionFocusAreaStepComponent {
       [SESSION_AREA, new FormControl()],
     ]);
 
-    this.onboardingService.addCheckboxes(this.groupKeys, this.groupsFormArray);
+    this.onboardingService.addCheckboxes(
+      Array.from(this.groupsLiteralsMap.keys()),
+      this.groupsFormArray
+    );
 
     this.getCache();
 
@@ -100,12 +100,21 @@ export class SessionFocusAreaStepComponent {
   }
 
   preselectDefaultCheckbox() {
+    console.log(this.defaultCheckbox);
+    console.log(Array.from(this.groupsLiteralsMap.keys()));
+    console.log(Array.from(this.groupsLiteralsMap.keys()).indexOf(this.defaultCheckbox));
     if (this.defaultCheckbox) {
-      this.groupsFormArray.get([this.groupKeys.indexOf(this.defaultCheckbox)]).patchValue(true);
+      this.groupsFormArray
+        .get([Array.from(this.groupsLiteralsMap.keys()).indexOf(this.defaultCheckbox)])
+        .patchValue(true);
     }
   }
 
   isValid() {
     return this.form.valid;
+  }
+
+  asIsOrder(a, b) {
+    return 1;
   }
 }
