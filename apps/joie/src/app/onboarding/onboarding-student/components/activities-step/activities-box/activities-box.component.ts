@@ -1,10 +1,17 @@
 import {
+  EmotionsActivitiesLiteralsMap,
+  ConnectionActivitiesLiteralsMap,
+  SpiritActivitiesLiteralsMap,
+  ProfessionalActivitiesLiteralsMap,
+} from './../../../../../sessions/models/pillars';
+import {
   Pillar,
-  JoieMovement,
-  JoieEmotions,
-  JoieConnections,
-  JoieProfessional,
-  JoieSpirit,
+  MovementActivities,
+  EmotionsActivities,
+  ConnectionsActivities,
+  ProfessionalActivities,
+  SpiritActivities,
+  MovementActivitiesLiteralsMap,
 } from '../../../../../sessions/models';
 import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
@@ -15,6 +22,16 @@ import { OnboardingService } from '../../../../shared/onboarding.service';
 import { UntilDestroy } from '@ngneat/until-destroy';
 
 export const ACTIVITIES = 'activities';
+type TypeActivitiesLiteralMap = Map<
+  | MovementActivities
+  | EmotionsActivities
+  | ConnectionsActivities
+  | SpiritActivities
+  | ProfessionalActivities,
+  string
+>;
+
+// need it to explicitly give a type the the activity map because typeScript throws error https://github.com/microsoft/TypeScript/issues/8936
 @UntilDestroy()
 @Component({
   selector: 'app-activities-box',
@@ -27,25 +44,30 @@ export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
   pillarEnum = Pillar;
   controlKey: string;
   cachedValues = null;
+  movementLiteralsMap = MovementActivitiesLiteralsMap;
+  emotionsLiteralsMap = EmotionsActivitiesLiteralsMap;
+  connectionsLiteralsMap = ConnectionActivitiesLiteralsMap;
+  spiritLiteralsMap = SpiritActivitiesLiteralsMap;
+  professionalLiteralsMap = ProfessionalActivitiesLiteralsMap;
 
-  get activitiesEnum() {
+  get activitiesLiteralsMap(): TypeActivitiesLiteralMap {
     switch (this.pillarEnum[this.pillar]) {
       case Pillar.Movement:
-        return JoieMovement;
+        return this.movementLiteralsMap;
       case Pillar.Emotions:
-        return JoieEmotions;
+        return this.emotionsLiteralsMap;
       case Pillar.Connections:
-        return JoieConnections;
-      case Pillar.Professional:
-        return JoieProfessional;
+        return this.connectionsLiteralsMap;
       case Pillar.Spirit:
-        return JoieSpirit;
+        return this.spiritLiteralsMap;
+      case Pillar.Professional:
+        return this.professionalLiteralsMap;
     }
   }
 
-  get activityKeys() {
-    return Object.keys(this.activitiesEnum);
-  }
+  // get activityKeys() {
+  //   return Object.keys(this.activitiesEnum);
+  // }
 
   get activitiesFormArray() {
     return this.form.controls[this.pillar] as FormArray;
@@ -56,8 +78,9 @@ export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
   }
 
   get values() {
+    console.log(this.activitiesLiteralsMap);
     return this.form.value[this.pillar]
-      .map((selected, i) => (selected ? this.activitiesEnum[this.activityKeys[i]] : null))
+      .map((selected, i) => (selected ? Array.from(this.activitiesLiteralsMap.keys())[i] : null))
       .filter((v) => v !== null);
   }
 
@@ -72,7 +95,11 @@ export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
       [this.pillar]: new FormArray([], [atLeastOneIsCheckedValidator()]),
     });
 
-    this.onboardingService.addCheckboxes(this.activityKeys, this.activitiesFormArray);
+    console.log(Array.from(this.activitiesLiteralsMap.keys()));
+    this.onboardingService.addCheckboxes(
+      Array.from(this.activitiesLiteralsMap.keys()),
+      this.activitiesFormArray
+    );
 
     this.controlKey = USER_ONBOARDING + '-' + PILLARS + '-' + this.pillar;
 
