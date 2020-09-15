@@ -7,8 +7,10 @@
 .layout-hero {
   padding: 120px 0;
   position: relative;
-  mix-blend-mode: color-burn;
-  color: #033138;
+  [role='heading'][aria-level='1'] {
+    mix-blend-mode: color-burn;
+    color: #033138;
+  }
   // @media (min-width: layouts.$layout-breakpoint-xs) {
   //   &-context {
   //     max-inline-size: layouts.$layout-breakpoint-xs;
