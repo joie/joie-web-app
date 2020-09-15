@@ -49,11 +49,15 @@ export class ContactMapComponent {
   // }
 
   zoomIn() {
-    if (this.zoom < this.options.maxZoom) this.zoom++;
+    if (this.zoom < this.options.maxZoom) {
+      this.zoom++;
+    }
   }
 
   zoomOut() {
-    if (this.zoom > this.options.minZoom) this.zoom--;
+    if (this.zoom > this.options.minZoom) {
+      this.zoom--;
+    }
   }
 
   // click(event: google.maps.MouseEvent) {

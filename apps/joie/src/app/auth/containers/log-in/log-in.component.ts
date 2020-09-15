@@ -25,7 +25,7 @@ export class LogInComponent {
   closeAfterLogin() {
     console.log('closing');
     const redirectUrl = this.route.snapshot.queryParamMap.get('redirectUrl');
-    this.dialogRef.close({ redirectUrl: redirectUrl });
+    this.dialogRef.close({ redirectUrl });
   }
   // private firebaseAuthChangeListener(response) {
   //   // if needed, do a redirect in here

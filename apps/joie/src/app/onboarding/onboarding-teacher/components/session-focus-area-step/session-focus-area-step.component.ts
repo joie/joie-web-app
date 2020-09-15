@@ -14,12 +14,13 @@ export class SessionFocusAreaStepComponent {
   focusGroupsData = [
     { group: 'Children (6-14)', isChecked: false },
     { group: 'Youth (15-24)', isChecked: false },
-    { group: 'Adults (25-64)', isChecked: false }, //todo when refactoring make this checkbox selected by default - adult is the most popular choice
+    // todo when refactoring make this checkbox selected by default - adult is the most popular choice
+    { group: 'Adults (25-64)', isChecked: false },
     { group: 'Eldery (65+)', isChecked: false },
     { group: 'All of the above', isChecked: false },
   ];
-  constructor(private _formBuilder: FormBuilder) {
-    this.formGroup = this._formBuilder.group({
+  constructor(private fb: FormBuilder) {
+    this.formGroup = this.fb.group({
       sessionAreaCtrl: ['', [Validators.required, Validators.minLength(10)]],
       focusGroupsCtrl: new FormArray(
         [],
@@ -27,7 +28,7 @@ export class SessionFocusAreaStepComponent {
       ),
     });
 
-    let teacher = history.state.teacher || null;
+    const teacher = history.state.teacher || null;
     if (teacher && 'focusGroupsCtrl' in teacher) {
       this.initFormWithCachedData(teacher);
     } else {
@@ -57,13 +58,13 @@ export class SessionFocusAreaStepComponent {
 
   private addCheckboxesFromCache(groups) {
     groups.forEach((group) => {
-      let entries = this.entry(group);
+      const entries = this.entry(group);
       this.groupsFormArray.push(new FormControl({ [entries[0]]: entries[1] }));
     });
   }
 
   private initFormWithCachedData(teacher) {
-    this.formGroup.controls['sessionAreaCtrl'].setValue(teacher.sessionAreaCtrl);
+    this.formGroup.controls.sessionAreaCtrl.setValue(teacher.sessionAreaCtrl);
     this.addCheckboxesFromCache(teacher.focusGroupsCtrl);
   }
 }

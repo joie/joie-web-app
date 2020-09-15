@@ -21,7 +21,7 @@ export class AccountService {
   }
 
   // todo interface settings
-  submitNotificationSettings(id: string = 'user123', settings): Observable<Boolean> {
+  submitNotificationSettings(id: string = 'user123', settings): Observable<boolean> {
     // todo return this.http.post
     return of(true);
   }

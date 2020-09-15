@@ -22,7 +22,7 @@ export class OnboardingStepperComponent implements OnInit {
   teacher = {} as Teacher;
   currentFormGroup = { status: 'INVALID', value: {} };
   public steps: string[];
-  public selectedStep: number = 0;
+  public selectedStep = 0;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -30,7 +30,7 @@ export class OnboardingStepperComponent implements OnInit {
     this.steps = this.route.snapshot.routeConfig.children.map((child) => {
       return child.path;
     });
-    let step = this.steps[0];
+    const step = this.steps[0];
     this.router.navigate([step], {
       relativeTo: this.route,
     });

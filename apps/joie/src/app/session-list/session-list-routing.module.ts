@@ -30,7 +30,7 @@ const routes: Routes = [
           dialogComponent: PaymentMethodFormComponent,
           matDialogConfig: { width: '500px' },
         },
-        //! guard if already logged in
+        // ! guard if already logged in
         // ...canActivate(redirectUnauthorizedToLogin),
         // ...canActivate(redirectLoggedInToItems)
         outlet: 'popup',

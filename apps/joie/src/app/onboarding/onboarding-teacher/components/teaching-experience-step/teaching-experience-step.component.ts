@@ -18,11 +18,11 @@ export class TeachingExperienceStepComponent implements OnInit {
   }
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private fb: FormBuilder,
     public activatedRoute: ActivatedRoute,
     public onboardingService: OnboardingService
   ) {
-    this.formGroup = this._formBuilder.group({
+    this.formGroup = this.fb.group({
       teachingExpCtrl: [
         '',
         [Validators.required, Validators.minLength(50), Validators.maxLength(300)],
@@ -31,7 +31,7 @@ export class TeachingExperienceStepComponent implements OnInit {
   }
 
   ngOnInit() {
-    let teacher = history.state.teacher;
+    const teacher = history.state.teacher;
     this.teachersName = teacher.firstNameCtrl;
     if ('teachingExpCtrl' in history.state.teacher) {
       this.initFormWithCachedData(teacher);
@@ -39,6 +39,6 @@ export class TeachingExperienceStepComponent implements OnInit {
   }
 
   private initFormWithCachedData(teacher) {
-    this.formGroup.controls['teachingExpCtrl'].setValue(teacher.teachingExpCtrl);
+    this.formGroup.controls.teachingExpCtrl.setValue(teacher.teachingExpCtrl);
   }
 }

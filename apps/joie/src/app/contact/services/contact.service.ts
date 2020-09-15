@@ -17,7 +17,8 @@ export class ContactService {
   postMessage(f) {
     console.log(f);
     const data = {
-      // submittedAt: '1517927174000', // This millisecond timestamp is optional. Update the value from "1517927174000" to avoid an INVALID_TIMESTAMP error.
+      // submittedAt: '1517927174000', // This millisecond timestamp is optional.
+      // Update the value from "1517927174000" to avoid an INVALID_TIMESTAMP error.
       fields: [
         {
           name: 'email',

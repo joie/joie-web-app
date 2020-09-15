@@ -8,20 +8,10 @@ import { FormArray } from '@angular/forms';
 })
 export class FormArrayTableComponent implements OnChanges {
   @Input() values: string[];
-  // @Input()
-  // get values(): any[] {
-  //   return this._values;
-  // }
-  // set values(value: FormArray) {
-  //   this._values = value && value.value;
-  // }
-  // private _values;
-
   @Output() remove = new EventEmitter();
+  displayedColumns: string[] = ['value', 'action'];
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(this.values);
   }
-
-  displayedColumns: string[] = ['value', 'action'];
 }

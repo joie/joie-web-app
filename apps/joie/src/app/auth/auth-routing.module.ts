@@ -19,7 +19,7 @@ const routes: Routes = [
         //   matDialogConfig: {},
         // },
         data: { dialogComponent: LogInComponent },
-        //! guard if already logged in
+        // ! guard if already logged in
         // ...canActivate(redirectUnauthorizedToLogin),
         // ...canActivate(redirectLoggedInToItems)
       },

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/lib/dyna-form-base.component';
+import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 
 @Component({
   selector: 'app-session-form-date-time',

@@ -8,9 +8,9 @@ export class OnboardingService {
   constructor() {}
 
   showErrorMessage(formControl) {
-    let errors = formControl.errors;
+    const errors = formControl.errors;
 
-    let errorKeys = Object.keys(errors);
+    const errorKeys = Object.keys(errors);
     switch (errorKeys[0]) {
       case 'required':
         return 'required';

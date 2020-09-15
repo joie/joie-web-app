@@ -22,11 +22,11 @@ describe('AuthEffects', () => {
         AuthEffects,
         DataPersistence,
         provideMockActions(() => actions),
-        provideMockStore()
-      ]
+        provideMockStore(),
+      ],
     });
 
-    effects = TestBed.get(AuthEffects);
+    effects = TestBed.inject(AuthEffects);
   });
 
   describe('loadAuth$', () => {
@@ -34,7 +34,7 @@ describe('AuthEffects', () => {
       actions = hot('-a-|', { a: AuthActions.loadAuth() });
 
       const expected = hot('-a-|', {
-        a: AuthActions.loadAuthSuccess({ auth: [] })
+        a: AuthActions.loadAuthSuccess({ auth: [] }),
       });
 
       expect(effects.loadAuth$).toBeObservable(expected);

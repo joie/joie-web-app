@@ -1,10 +1,4 @@
-import {
-  Component,
-  ViewChild,
-  ElementRef,
-  NgModule,
-  AfterViewInit,
-} from '@angular/core';
+import { Component, ViewChild, ElementRef, NgModule, AfterViewInit } from '@angular/core';
 import { loadStripe, Stripe, StripeCardElement } from '@stripe/stripe-js';
 import { style } from './stripe-elements.style';
 import { CommonModule } from '@angular/common';
@@ -64,7 +58,7 @@ export class PaymentMethodFormComponent implements AfterViewInit {
   async onSubmit(e) {
     e.preventDefault();
 
-    //!move stripe to its own service
+    // !move stripe to its own service
     const { source, error } = await this.stripe.createSource(this.card, null);
 
     if (error) {
