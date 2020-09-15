@@ -31,8 +31,8 @@ export class EventCalendarComponent implements OnInit {
   }
 
   redirectToNewSession(action, sessionData = null) {
-    let extras = {
-      state: { action: action },
+    const extras = {
+      state: { action },
     };
     if (sessionData) {
       Object.assign(extras, sessionData);
@@ -53,7 +53,7 @@ export class EventCalendarComponent implements OnInit {
 
   viewSessionsList(sessions = this.sessions) {
     this.router.navigate(['/account', 'dashboard', { outlets: { ['popup']: ['sessions'] } }], {
-      state: { sessions: sessions },
+      state: { sessions },
     });
   }
   dateClass() {
@@ -72,8 +72,8 @@ export class EventCalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.datesArray = this.sessions.map((session) => {
-      let { date } = session.dateTimeDuration;
-      let key = this.dateToKey(new Date(date));
+      const { date } = session.dateTimeDuration;
+      const key = this.dateToKey(new Date(date));
 
       if (!this.eventMap[key]) {
         Object.assign(this.eventMap, {
@@ -87,7 +87,7 @@ export class EventCalendarComponent implements OnInit {
   }
 
   dateToKey(date: Date): string {
-    let space = new RegExp(' ', 'g');
+    const space = new RegExp(' ', 'g');
     return date.toString().replace(space, '_');
   }
 }

@@ -13,8 +13,8 @@ const dateTimeToDateObj = (date: string, time: string) => new Date(`${date} ${ti
   styleUrls: ['./recurring-date-time-picker.component.scss'],
 })
 export class RecurringDateTimePickerComponent implements OnDestroy {
-  @ViewChild('documentEditForm') private _documentEditForm: FormGroupDirective;
-  @ViewChild('datePicker') _datePicker: ElementRef;
+  // @ViewChild('documentEditForm') private documentEditForm: FormGroupDirective;
+  @ViewChild('datePicker') datePicker: ElementRef;
   @Output() submission = new EventEmitter();
   @Output() formChange = new EventEmitter();
   recurringEnum = Recurring;
@@ -61,6 +61,6 @@ export class RecurringDateTimePickerComponent implements OnDestroy {
 
     this.submission.emit(this.normalizeValue(this.form.value));
     this.form.reset();
-    this._datePicker.nativeElement.focus();
+    this.datePicker.nativeElement.focus();
   }
 }

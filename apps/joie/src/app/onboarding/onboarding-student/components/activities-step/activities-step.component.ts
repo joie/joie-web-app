@@ -31,7 +31,7 @@ export class ActivitiesStepComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.activityBoxes.toArray().forEach((box) => {
       box.subForm.valueChanges.subscribe(() => {
-        let activityFormArray = this.formService.getActivityFormArray(
+        const activityFormArray = this.formService.getActivityFormArray(
           this.lowercasePipe.transform(box.pillar)
         );
         activityFormArray.clear();

@@ -31,7 +31,7 @@ export class TeachingExperienceStepComponent implements OnInit {
   }
 
   ngOnInit() {
-    let teacher = history.state.teacher;
+    const teacher = history.state.teacher;
     this.teachersName = teacher.firstNameCtrl;
     if ('teachingExpCtrl' in history.state.teacher) {
       this.initFormWithCachedData(teacher);
@@ -39,6 +39,6 @@ export class TeachingExperienceStepComponent implements OnInit {
   }
 
   private initFormWithCachedData(teacher) {
-    this.formGroup.controls['teachingExpCtrl'].setValue(teacher.teachingExpCtrl);
+    this.formGroup.controls.teachingExpCtrl.setValue(teacher.teachingExpCtrl);
   }
 }

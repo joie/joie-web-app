@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Recurring } from '../../../sessions/models';
-import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/lib/dyna-form-base.component';
+import { DynaFormBaseComponent } from '@joie/dyna-form';
 
 const newTimeSlot = ({ dateTime, recurring }) =>
   new FormGroup({

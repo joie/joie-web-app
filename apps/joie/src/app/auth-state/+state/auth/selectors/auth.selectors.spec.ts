@@ -47,13 +47,13 @@ describe('Auth Selectors', () => {
       expect(selId).toBe('PRODUCT-BBB');
     });
 
-    it("getAuthLoaded() should return the current 'loaded' status", () => {
+    it(`getAuthLoaded() should return the current 'loaded' status`, () => {
       const result = AuthSelectors.getAuthLoaded(state);
 
       expect(result).toBe(true);
     });
 
-    it("getAuthError() should return the current 'error' state", () => {
+    it(`getAuthError() should return the current 'error' state`, () => {
       const result = AuthSelectors.getAuthError(state);
 
       expect(result).toBe(ERROR_MSG);

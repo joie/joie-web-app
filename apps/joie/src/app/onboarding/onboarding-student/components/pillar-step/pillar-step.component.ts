@@ -26,7 +26,7 @@ export class PillarStepComponent implements AfterViewInit {
   }
 
   setControls(controls) {
-    let selectedPillarsObj = {};
+    const selectedPillarsObj = {};
     controls.forEach((pillar) =>
       Object.assign(selectedPillarsObj, { [pillar]: new FormArray([]) })
     );

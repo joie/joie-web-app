@@ -44,6 +44,6 @@ export class WhyJoieStepComponent implements OnInit {
   }
 
   private initFormWithCachedData(teacher) {
-    this.formGroup.controls['addedValDescriptionCtrl'].setValue(teacher.addedValDescriptionCtrl);
+    this.formGroup.controls.addedValDescriptionCtrl.setValue(teacher.addedValDescriptionCtrl);
   }
 }

@@ -7,8 +7,8 @@ import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
   styleUrls: ['./simple-form-input.component.scss'],
 })
 export class SimpleFormInputComponent {
-  @ViewChild('documentEditForm') private _documentEditForm: FormGroupDirective;
-  @ViewChild('textInput') _textInput: ElementRef;
+  // @ViewChild('documentEditForm') private documentEditForm: FormGroupDirective;
+  @ViewChild('textInput') textInput: ElementRef;
 
   @Input() validators: Validators[];
   @Output() submission = new EventEmitter<string>();
@@ -30,6 +30,6 @@ export class SimpleFormInputComponent {
     const { value } = this.textControl;
     this.submission.emit(value);
     this.form.reset();
-    this._textInput.nativeElement.focus();
+    this.textInput.nativeElement.focus();
   }
 }
