@@ -20,7 +20,9 @@ export enum AgeGroups {
 
 export enum SessionTypes {
   ONDEMAND_SESSION_OR_LECTURE = 'On-demand session or a lecture',
-  // ONDEMAND_COURSE = 'On-demand course',  //todo courses are not available at joie yet https://github.com/joie/joie-web-app/issues/59#issue-689403295 (bullet 4)
+  // ONDEMAND_COURSE = 'On-demand course',
+  // TODO courses are not available at joie yet
+  // TODO https://github.com/joie/joie-web-app/issues/59#issue-689403295 (bullet 4)
   LIVE_SESSION = 'Live group session',
   // LIVE_COURSE = 'Live group course',
   LIVE_LECTURE = 'Live group lecture',
