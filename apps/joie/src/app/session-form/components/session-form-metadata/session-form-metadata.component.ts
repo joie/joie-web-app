@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import {
-  SessionFormatLiteralsMap,
-  SessionType,
-  SessionTypeLiteralsMap,
-} from '../../../sessions/models';
+import { SessionFormatLiteralsMap, Type, SessionTypeLiteralsMap } from '../../../sessions/models';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 
 // @Dyna({
@@ -37,7 +33,7 @@ export class SessionFormMetadataComponent extends DynaFormBaseComponent {
   }
 
   get coachingSelected() {
-    return this.form.get('type').value === SessionType.Coaching;
+    return this.form.get('type').value === Type.Coaching;
   }
 
   asIsOrder(a, b) {
