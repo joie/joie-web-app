@@ -31,7 +31,7 @@ export class OnboardingService {
         }`;
 
       case 'requireCheckboxToBeChecked':
-        return 'At least one should be checked';
+        return 'At least one option should be selected';
 
       case 'requireNotMoreThanOneCheckboxToBeChecked':
         return 'Not more than one should be checked';

@@ -60,8 +60,6 @@ export const teacherProfileMock: Profile = {
   timezone: '(GMT +5:30 hours) Goa, India',
 };
 
-// todo add mock for ssessions tab
-
 // for dashboard
 export const sessionsMock = [
   {

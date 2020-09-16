@@ -9,6 +9,7 @@ import { FormGroup, FormArray } from '@angular/forms';
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { skip } from 'rxjs/operators';
 import { pillars } from './pillars';
+import { atLeastOneIsCheckedValidator } from '../onboarding/validators/atLeastOnIsChecked';
 
 export const PILLARS = 'pillars';
 
@@ -45,7 +46,7 @@ export class PillarListComponent {
     private onboardingService: OnboardingService,
     private storage: StorageServiceService
   ) {
-    this.form = new FormGroup({ [PILLARS]: new FormArray([]) });
+    this.form = new FormGroup({ [PILLARS]: new FormArray([], atLeastOneIsCheckedValidator()) });
 
     this.initForm();
   }

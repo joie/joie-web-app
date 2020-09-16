@@ -3,6 +3,7 @@ import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 import { StudentOnboardingFormService } from '../../student-onboarding-form.service';
 import { UntilDestroy } from '@ngneat/until-destroy';
+import { OnboardingService } from '../../../shared/onboarding.service';
 
 @UntilDestroy()
 @Component({
@@ -13,7 +14,10 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 export class PillarStepComponent implements AfterViewInit {
   @ViewChild('pillarList') pillarList: PillarListComponent;
 
-  constructor(private formService: StudentOnboardingFormService) {}
+  constructor(
+    private formService: StudentOnboardingFormService,
+    public onboardingService: OnboardingService
+  ) {}
 
   ngAfterViewInit(): void {
     this.pillarList.form.valueChanges.subscribe(() => {
@@ -30,6 +34,8 @@ export class PillarStepComponent implements AfterViewInit {
   }
 
   isValid() {
-    return Object.keys(this.formService.form.get(PILLARS).value).length > 0;
+    return this.pillarList
+      ? this.pillarList.subForm.valid
+      : Object.keys(this.formService.form.get(PILLARS).value).length > 0;
   }
 }
