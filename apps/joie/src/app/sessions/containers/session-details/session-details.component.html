@@ -3,9 +3,9 @@
     <div class="container-condense text-center">
       <h4>JoieSprit</h4>
       <h1>{{ session?.title }}</h1>
-      <h3>{{ session?.author?.name }}</h3>
+      <h3>{{ session?.owner?.name }}</h3>
       <div>
-        {{ session?.when.toMillis() | date }}
+        {{ session?.when?.timestamp.toMillis() | date }}
       </div>
       <ng-container *ngIf="isLiveSession; else vodPlayer">
         <app-live-stream-player
@@ -35,7 +35,7 @@
       </div>
       <div>
         <i class="feather icon-monitor i-20"></i>
-        {{ session?.courseType }}
+        {{ session?.type }}
       </div>
       <div>
         <i class="feather icon-bar-chart i-20"></i>
@@ -69,7 +69,7 @@
                 <div fxLayout="column" fxLayoutAlign="flex-start">
                   <div>Types of sessions</div>
                   <div>
-                    {{ session?.sessionType }}
+                    {{ session?.type }}
                   </div>
                 </div>
               </div>

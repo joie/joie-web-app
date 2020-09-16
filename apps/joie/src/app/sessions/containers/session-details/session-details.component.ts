@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-import { KalturaEvent, SessionStreaming } from '../../models';
+import { KalturaEvent, Session } from '../../models';
 
 import { SessionsFacade } from '../../../services/sessions.facade';
 
@@ -20,7 +20,7 @@ import { Owner } from '../../../models';
 export class SessionDetailsComponent implements OnInit {
   sessionId: string;
 
-  session: SessionStreaming;
+  session: Session;
 
   // TODO - default assignment will be removed after integration
 
@@ -58,14 +58,14 @@ export class SessionDetailsComponent implements OnInit {
   loadData() {
     combineLatest([
       this.afAuth.authState.pipe(untilDestroyed(this)),
-      this.sessionsFacade.getSession(this.sessionId) as Observable<SessionStreaming>,
+      this.sessionsFacade.getSession(this.sessionId),
     ])
       .pipe(untilDestroyed(this))
       .subscribe(([authResponse, session]) => {
-        this.sessionDetails = {
-          eventId: session.eventId,
-          uid: authResponse.displayName,
-        };
+        // this.sessionDetails = {
+        //   eventId: session.eventId,
+        //   uid: authResponse.displayName,
+        // };
 
         this.session = session;
       });

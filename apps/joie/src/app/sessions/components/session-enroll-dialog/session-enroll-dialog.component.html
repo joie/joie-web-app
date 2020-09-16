@@ -1,8 +1,8 @@
 <ng-container *ngIf="data?.session$ | async as session">
   <h2 mat-dialog-title>{{ session?.title }}</h2>
   <mat-dialog-content class="mat-typography">
-    <time *ngIf="session?.when" [dateTime]="session?.date?.seconds * 1000">{{
-      session?.date?.seconds * 1000 | date
+    <time *ngIf="session?.when?.timestamp as timestamp" [dateTime]="timestamp.toMillis()">{{
+      timestamp.toMillis() | date
     }}</time>
     <br />
     <time dateTime="PT15H10M">{{ session?.duration?.amount }}</time>
