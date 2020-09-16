@@ -6,9 +6,9 @@ import {
 
 import { FormGroup, FormArray } from '@angular/forms';
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Pillar } from '../sessions/models/session';
 import { skip } from 'rxjs/operators';
 import { pillars } from './pillars';
+import { Pillar } from '../enums';
 
 export const PILLARS = 'pillars';
 

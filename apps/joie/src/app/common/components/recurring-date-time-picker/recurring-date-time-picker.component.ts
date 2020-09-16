@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output, ViewChild, OnDestroy, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
-import { Recurring } from '../../../sessions/models';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { map, filter, takeUntil } from 'rxjs/operators';
+import { Recurrence } from '../../../sessions/enums';
 
 // JavaScript Date object transforms to a Firestore Timestamp
 const dateTimeToDateObj = (date: string, time: string) => new Date(`${date} ${time}`);
@@ -17,7 +17,7 @@ export class RecurringDateTimePickerComponent implements OnDestroy {
   @ViewChild('datePicker') datePicker: ElementRef;
   @Output() submission = new EventEmitter();
   @Output() formChange = new EventEmitter();
-  recurringEnum = Recurring;
+  recurringEnum = Recurrence;
   private stop$ = new Subject();
 
   form = this.fb.group({
@@ -45,7 +45,7 @@ export class RecurringDateTimePickerComponent implements OnDestroy {
   }
 
   get recurringKeys(): Array<string> {
-    return Object.keys(Recurring);
+    return Object.keys(Recurrence);
   }
 
   private normalizeValue(formValue) {

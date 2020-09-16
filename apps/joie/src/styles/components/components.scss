@@ -18,6 +18,7 @@
 @include mat-select-theme($joie-theme);
 @include mat-divider-theme($joie-theme);
 @include mat-datepicker-theme($joie-theme);
+@include mat-button-toggle-theme($joie-theme);
 
 .mat-card {
   padding: var(--joie-gutter);

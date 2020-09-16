@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionFormat } from './../../../sessions/models/session';
-import { SessionType } from '../../../sessions/models/session';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { SessionsFacade } from '../../../services/sessions.facade';
 import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-handshake.service';
 import { environment } from '../../../../environments/environment';
+import { Format, Type } from '../../../sessions/enums';
 
 @Component({
   selector: 'app-session-form',
@@ -12,6 +11,7 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./session-form.component.scss'],
 })
 export class SessionFormComponent extends DynaFormBaseComponent implements OnInit {
+  commonLayoutClass = 'layout-rows-xs';
   showAllFields: boolean;
   showLoader = false;
 
@@ -27,15 +27,15 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   }
 
   get isCoaching() {
-    return this.getFormControl('type').value === SessionType.Coaching;
+    return this.getFormControl('type').value === Type.Coaching;
   }
 
   get isLivestreaming() {
-    return this.getFormControl('format').value === SessionFormat.LiveStreaming;
+    return this.getFormControl('format').value === Format.LiveStreaming;
   }
 
   get isCourse() {
-    return SessionType[this.getFormControl('type').value] === SessionType.Course;
+    return Type[this.getFormControl('type').value] === Type.Course;
   }
 
   onSubmit() {

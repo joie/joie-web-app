@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Pillar, CourseLevel, Activities } from '../../../sessions/models/session';
 import { FormControl, FormArray, Validators, FormGroup } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
+import { Activities, Pillar } from '../../../enums';
+import { CourseLevel } from '../../../sessions/enums';
 
 @Component({
   selector: 'app-session-form-attributes',

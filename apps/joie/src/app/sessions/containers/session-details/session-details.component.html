@@ -1,16 +1,34 @@
+<main>
+  <section>
+    <div class="container-condense text-center">
+      <h4>JoieSprit</h4>
+      <h1>{{ session?.title }}</h1>
+      <h3>{{ session?.author?.name }}</h3>
+      <div>
+        {{ session?.when.toMillis() | date }}
+      </div>
+      <ng-container *ngIf="isLiveSession; else vodPlayer">
+        <app-live-stream-player
+          [sessionDetails]="sessionDetails"
+          [sessionType]="sessionType"
+          [role]="role"
+          [userContextualRole]="userContextualRole"
+        ></app-live-stream-player>
+      </ng-container>
+      <ng-template #vodPlayer>
+        <app-video-player [entryId]="entryId"></app-video-player>
+      </ng-template>
+    </div>
+  </section>
+  <section></section>
+</main>
 <div fxLayout="row" fxLayoutGap="20px">
   <div fxLayout="column" fxLayoutGap="20px" fxFlex="70%">
-    <div class="text-center">JoieSprit</div>
-    <div class="text-center text-xl">{{ session?.title }}</div>
     <div fxLayout="row" class="text-center" fxLayoutGap="20px" fxLayoutAlign="center center">
       <img src="" class="author-image" width="40px" height="40px" />
-      <div class="text-lg">{{ session?.author?.name }}</div>
     </div>
     <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px" fxLayout.xs="column">
-      <div>
-        <i class="feather icon-calendar i-20"></i>
-        {{ session?.publishedDate }}
-      </div>
+      <div></div>
       <div>
         <i class="feather icon-clock i-20"></i>
         {{ session?.duration?.amount + session?.duration?.unit }}
@@ -30,20 +48,6 @@
     </div>
 
     <div>
-      <ng-container *ngIf="isLiveSession; else vodPlayer">
-        <app-live-stream-player
-          [sessionDetails]="sessionDetails"
-          [sessionType]="sessionType"
-          [role]="role"
-          [userContextualRole]="userContextualRole"
-        ></app-live-stream-player>
-      </ng-container>
-    </div>
-    <ng-template #vodPlayer>
-      <app-video-player [entryId]="entryId"></app-video-player>
-    </ng-template>
-
-    <div>
       <mat-tab-group>
         <mat-tab label="What you will learn">
           <div fxLayout="column" class="p" fxLayoutGap="20px">
@@ -51,9 +55,7 @@
               <div fxLayout="row" fxLayoutGap="10px">
                 <i class="feather icon-compass i-20"></i>
                 <div fxLayout="column" fxLayoutAlign="flex-start">
-                  <div>
-                    Activities
-                  </div>
+                  <div>Activities</div>
                   <div>
                     <span *ngFor="let activity of session?.activities">
                       {{ activity }}
@@ -65,9 +67,7 @@
               <div fxLayout="row" fxLayoutGap="10px">
                 <i class="feather icon-monitor i-20"></i>
                 <div fxLayout="column" fxLayoutAlign="flex-start">
-                  <div>
-                    Types of sessions
-                  </div>
+                  <div>Types of sessions</div>
                   <div>
                     {{ session?.sessionType }}
                   </div>
@@ -77,9 +77,7 @@
               <div fxLayout="row" fxLayoutGap="10px">
                 <i class="feather icon-layers i-20"></i>
                 <div fxLayout="column" fxLayoutAlign="flex-start">
-                  <div>
-                    Pillars
-                  </div>
+                  <div>Pillars</div>
                   <div>
                     {{ session?.pillar }}
                   </div>

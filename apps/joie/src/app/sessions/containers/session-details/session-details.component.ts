@@ -1,32 +1,35 @@
-import { Component, OnInit, ErrorHandler } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-import { SessionDetails, SessionInfo } from '../../models';
+import { KalturaEvent, SessionStreaming } from '../../models';
 
 import { SessionsFacade } from '../../../services/sessions.facade';
 
 import { AngularFireAuth } from '@angular/fire/auth';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
+import { Owner } from '../../../models';
 
 @UntilDestroy()
 @Component({
   templateUrl: './session-details.component.html',
-
   styleUrls: ['./session-details.component.scss'],
 })
 export class SessionDetailsComponent implements OnInit {
   sessionId: string;
 
-  session: SessionInfo;
+  session: SessionStreaming;
 
   // TODO - default assignment will be removed after integration
 
   isLiveSession = true; // if false vod player is visible
 
-  sessionDetails: SessionDetails = { eventId: 6507501, userId: 'test 123' };
+  sessionDetails: Pick<KalturaEvent, 'eventId'> & Pick<Owner, 'uid'> = {
+    eventId: 6507501,
+    uid: 'test 123',
+  }; // ! @pratheeshkumarrd please notice property change from 'userId to 'uid'
 
   sessionType = 2;
 
@@ -55,16 +58,16 @@ export class SessionDetailsComponent implements OnInit {
   loadData() {
     combineLatest([
       this.afAuth.authState.pipe(untilDestroyed(this)),
-      this.sessionsFacade.getSession(this.sessionId),
+      this.sessionsFacade.getSession(this.sessionId) as Observable<SessionStreaming>,
     ])
       .pipe(untilDestroyed(this))
       .subscribe(([authResponse, session]) => {
         this.sessionDetails = {
           eventId: session.eventId,
-          userId: authResponse.displayName,
+          uid: authResponse.displayName,
         };
 
-        this.session = session as SessionInfo;
+        this.session = session;
       });
   }
 }
