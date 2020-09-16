@@ -57,6 +57,4 @@ export class AccountService {
   getSessions(userId: string) {
     return of(sessionsMock);
   }
-
-  //
 }

@@ -25,7 +25,7 @@ describe('AuthFacade', () => {
   const createAuthEntity = (id: string, name = '') =>
     ({
       id,
-      name: name || `name-${id}`
+      name: name || `name-${id}`,
     } as Auth);
 
   beforeEach(() => {});
@@ -35,9 +35,9 @@ describe('AuthFacade', () => {
       @NgModule({
         imports: [
           StoreModule.forFeature(AUTH_FEATURE_KEY, reducer),
-          EffectsModule.forFeature([AuthEffects])
+          EffectsModule.forFeature([AuthEffects]),
         ],
-        providers: [AuthFacade]
+        providers: [AuthFacade],
       })
       class CustomFeatureModule {}
 
@@ -46,20 +46,20 @@ describe('AuthFacade', () => {
           NxModule.forRoot(),
           StoreModule.forRoot({}),
           EffectsModule.forRoot([]),
-          CustomFeatureModule
-        ]
+          CustomFeatureModule,
+        ],
       })
       class RootModule {}
       TestBed.configureTestingModule({ imports: [RootModule] });
 
-      store = TestBed.get(Store);
-      facade = TestBed.get(AuthFacade);
+      store = TestBed.inject(Store);
+      facade = TestBed.inject(AuthFacade);
     });
 
     /**
      * The initially generated facade::loadAll() returns empty array
      */
-    it('loadAll() should return empty list with loaded == true', async done => {
+    it('loadAll() should return empty list with loaded == true', async (done) => {
       try {
         let list = await readFirst(facade.allAuth$);
         let isLoaded = await readFirst(facade.loaded$);
@@ -84,7 +84,7 @@ describe('AuthFacade', () => {
     /**
      * Use `loadAuthSuccess` to manually update list
      */
-    it('allAuth$ should return the loaded list; and loaded flag == true', async done => {
+    it('allAuth$ should return the loaded list; and loaded flag == true', async (done) => {
       try {
         let list = await readFirst(facade.allAuth$);
         let isLoaded = await readFirst(facade.loaded$);
@@ -94,7 +94,7 @@ describe('AuthFacade', () => {
 
         facade.dispatch(
           AuthActions.loadAuthSuccess({
-            auth: [createAuthEntity('AAA'), createAuthEntity('BBB')]
+            auth: [createAuthEntity('AAA'), createAuthEntity('BBB')],
           })
         );
 

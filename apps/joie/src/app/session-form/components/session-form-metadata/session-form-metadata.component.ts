@@ -5,7 +5,7 @@ import {
   SessionType,
   SessionTypeLiteralsMap,
 } from '../../../sessions/models';
-import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form/src/lib/dyna-form-base.component';
+import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 
 // @Dyna({
 //   controls: [

@@ -30,8 +30,8 @@ export class PersonalInfoStepComponent implements OnInit {
   get phone() {
     return this.formGroup.get(PHONE);
   }
-  constructor(private _formBuilder: FormBuilder, public onboardingService: OnboardingService) {
-    this.formGroup = this._formBuilder.group({
+  constructor(private fb: FormBuilder, public onboardingService: OnboardingService) {
+    this.formGroup = this.fb.group({
       firstNameCtrl: [
         '',
         [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)],
@@ -53,7 +53,7 @@ export class PersonalInfoStepComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    let teacher = history.state.teacher || null;
+    const teacher = history.state.teacher || null;
     if (teacher && 'firstNameCtrl' in teacher) {
       this.initFormWithCachedData(teacher);
     }

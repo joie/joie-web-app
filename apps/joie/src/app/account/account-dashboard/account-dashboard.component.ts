@@ -9,7 +9,7 @@ import { Stat } from '../../models/account.model';
   styleUrls: ['./account-dashboard.component.scss'],
 })
 export class AccountDashboardComponent implements OnInit {
-  stats$: Observable<Stat[]>; // todo yet only teacher is supposed to have a dashboard
+  stats$: Observable<Stat[]>;
   sessions$; //todo interface
 
   constructor(private accountService: AccountService) {}
