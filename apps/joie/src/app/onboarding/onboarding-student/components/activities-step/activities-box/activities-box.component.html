@@ -18,4 +18,6 @@
       </mat-chip-list>
     </mat-form-field>
   </form>
+  <mat-error *ngIf="activitiesFormArray.invalid">{{onboardingService.showErrorMessage(activitiesFormArray)}}
+  </mat-error>
 </mat-card>

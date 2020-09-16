@@ -13,7 +13,7 @@ import {
   SpiritActivities,
   MovementActivitiesLiteralsMap,
 } from '../../../../../sessions/models';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
 import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
@@ -36,7 +36,7 @@ type TypeActivitiesLiteralMap = Map<
   templateUrl: './activities-box.component.html',
   styleUrls: ['./activities-box.component.scss'],
 })
-export class ActivitiesBoxComponent implements OnInit {
+export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
   @Input() pillar;
   public form: FormGroup;
   pillarEnum = Pillar;
@@ -93,6 +93,10 @@ export class ActivitiesBoxComponent implements OnInit {
     this.initForm();
   }
 
+  ngAfterViewInit(): void {
+    this.subscribeToValueChanges();
+  }
+
   initForm() {
     this.onboardingService.addCheckboxes(
       Array.from(this.activitiesLiteralsMap.keys()),
@@ -100,8 +104,6 @@ export class ActivitiesBoxComponent implements OnInit {
     );
 
     this.getCache();
-
-    this.subscribeToValueChanges();
   }
 
   getCache() {
