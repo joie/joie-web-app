@@ -4,11 +4,11 @@ import * as AuthSelectors from './auth.selectors';
 
 describe('Auth Selectors', () => {
   const ERROR_MSG = 'No Error Available';
-  const getAuthId = it => it['id'];
+  const getAuthId = (it) => it.id;
   const createAuthEntity = (id: string, name = '') =>
     ({
       id,
-      name: name || `name-${id}`
+      name: name || `name-${id}`,
     } as Auth);
 
   let state;
@@ -19,15 +19,15 @@ describe('Auth Selectors', () => {
         [
           createAuthEntity('PRODUCT-AAA'),
           createAuthEntity('PRODUCT-BBB'),
-          createAuthEntity('PRODUCT-CCC')
+          createAuthEntity('PRODUCT-CCC'),
         ],
         {
           ...initialState,
           selectedId: 'PRODUCT-BBB',
           error: ERROR_MSG,
-          loaded: true
+          loaded: true,
         }
-      )
+      ),
     };
   });
 
@@ -47,13 +47,13 @@ describe('Auth Selectors', () => {
       expect(selId).toBe('PRODUCT-BBB');
     });
 
-    it("getAuthLoaded() should return the current 'loaded' status", () => {
+    it(`getAuthLoaded() should return the current 'loaded' status`, () => {
       const result = AuthSelectors.getAuthLoaded(state);
 
       expect(result).toBe(true);
     });
 
-    it("getAuthError() should return the current 'error' state", () => {
+    it(`getAuthError() should return the current 'error' state`, () => {
       const result = AuthSelectors.getAuthError(state);
 
       expect(result).toBe(ERROR_MSG);

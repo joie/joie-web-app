@@ -17,12 +17,12 @@ export class SessionsListPopupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let { sessions } = history.state;
+    const { sessions } = history.state;
     if (sessions) {
       this.sessions = sessions;
     } else {
-      this.accountService.getSessions('user123').subscribe((sessions) => {
-        this.sessions = sessions;
+      this.accountService.getSessions('user123').subscribe((userSessions) => {
+        this.sessions = userSessions;
       });
     }
     // this.sessions = history.state.sessions; // todo need more persistent source (bug on refresh)

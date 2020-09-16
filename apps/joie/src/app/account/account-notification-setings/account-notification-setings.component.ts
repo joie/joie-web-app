@@ -22,7 +22,7 @@ export class AccountNotificationSetingsComponent implements OnInit {
         this.settingBlocks = settings;
         this.formGroup = this.fb.group({});
         this.settingBlocks.forEach((block) => {
-          let blockFormGroup = new FormGroup({});
+          const blockFormGroup = new FormGroup({});
           blockFormGroup.addControl('all', new FormControl(block.allChecked));
           block.toggles.forEach((toggle) => {
             blockFormGroup.addControl(
@@ -38,13 +38,13 @@ export class AccountNotificationSetingsComponent implements OnInit {
   convertToKey = (title) => title.toLowerCase().replace(' ', '_').replace(',', '');
 
   toggleBlock(block) {
-    let prevVal = this.formGroup.value[block];
+    const prevVal = this.formGroup.value[block];
 
     this.formGroup.get([block]).setValue(mapValues(prevVal, (val) => !val)); // todo bug when toggling block
   }
 
   toggleSlider(blockKey, toggleKey) {
-    let prevVal = this.formGroup.value[blockKey][toggleKey];
+    const prevVal = this.formGroup.value[blockKey][toggleKey];
     this.formGroup.get([blockKey]).patchValue({
       [toggleKey]: !prevVal,
     });

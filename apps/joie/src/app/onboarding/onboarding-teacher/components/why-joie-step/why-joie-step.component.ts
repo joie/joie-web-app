@@ -28,14 +28,14 @@ export class WhyJoieStepComponent {
 
   constructor(
     public authService: AuthService,
-    private _formBuilder: FormBuilder,
+    private fb: FormBuilder,
     public onboardingService: OnboardingService,
     private apiService: TeacherOnboardingApiService,
     private formService: TeacherOnboardingFormService,
     private storage: StorageServiceService
   ) {
-    this.form = this._formBuilder.group({
-      addedValue: ['', [Validators.required, Validators.minLength(50)]],
+    this.form = this.fb.group({
+      [ADDED_VALUE]: ['', [Validators.required, Validators.minLength(50)]],
     });
 
     this.initForm();

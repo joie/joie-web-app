@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class AccountDashboardComponent implements OnInit {
   teacher$: Observable<Teacher>; // todo yet only teacher is supposed to have a dashboard
-  sessions$; //todo interface
+  sessions$; // todo interface
 
   constructor(private accountService: AccountService) {}
 

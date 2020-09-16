@@ -18,7 +18,7 @@ import { PILLARS } from '../../../../pillar-list/pillar-list.component';
 })
 export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit, AfterViewChecked {
   public steps: string[];
-  public selectedStep: number = 0;
+  public selectedStep = 0;
   public selectedStepRef = null;
 
   constructor(
@@ -60,7 +60,7 @@ export class StudentOnboardingStepperComponent implements OnInit, AfterViewInit,
   }
 
   hasForm() {
-    return this.selectedStep != 0;
+    return this.selectedStep !== 0;
   }
 
   isCompleted() {

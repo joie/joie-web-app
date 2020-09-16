@@ -1,7 +1,7 @@
 import { StorageServiceService } from './../shared/storage-service.service';
 import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { ControlTuple } from '../../../../../../libs/dyna-form/src/lib/dyna-form-base.component';
+import { ControlTuple } from '../../../../../../libs/dyna-form';
 import { SESSION_TYPES } from './components/session-types-step/session-types-step.component';
 import { PILLARS } from '../../pillar-list/pillar-list.component';
 
@@ -22,7 +22,6 @@ export class StudentOnboardingFormService {
   constructor(private fb: FormBuilder, private storageService: StorageServiceService) {
     this.form = this.fb.group({});
   }
-  ngOnDestroy() {}
 
   setControl(control: ControlTuple) {
     this.form.setControl(control[0], control[1]);

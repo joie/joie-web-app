@@ -29,13 +29,13 @@ export class TeachingExperienceStepComponent {
 
   constructor(
     public authService: AuthService,
-    private _formBuilder: FormBuilder,
+    private fb: FormBuilder,
     public activatedRoute: ActivatedRoute,
     public onboardingService: OnboardingService,
     private formService: TeacherOnboardingFormService,
     private storage: StorageServiceService
   ) {
-    this.form = this._formBuilder.group({
+    this.form = this.fb.group({
       [EXPERIENCE]: ['', [Validators.required, Validators.minLength(50), wordLimitValidator(300)]],
     });
 

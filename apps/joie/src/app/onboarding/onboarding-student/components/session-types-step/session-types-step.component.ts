@@ -35,13 +35,13 @@ export class SessionTypesStepComponent {
   }
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private fb: FormBuilder,
     public authService: AuthService,
     public onboardingService: OnboardingService,
     private storage: StorageServiceService,
     private formService: StudentOnboardingFormService
   ) {
-    this.form = this._formBuilder.group({
+    this.form = this.fb.group({
       sessionTypes: new FormArray(
         [],
         [atLeastOneIsCheckedValidator(), notMoreThanOneIsCheckedValidator()]
@@ -63,8 +63,8 @@ export class SessionTypesStepComponent {
 
     this.form.valueChanges.subscribe((value) => {
       this.formService.sessionTypesFormArray.clear();
-      this.values.forEach((value) => {
-        this.formService.sessionTypesFormArray.push(new FormControl(value));
+      this.values.forEach((valueItem) => {
+        this.formService.sessionTypesFormArray.push(new FormControl(valueItem));
       });
 
       if (this.form.valid) {

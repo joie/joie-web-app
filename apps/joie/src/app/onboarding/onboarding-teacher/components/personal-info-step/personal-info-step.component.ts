@@ -36,13 +36,14 @@ export class PersonalInfoStepComponent {
   get phone() {
     return this.form.get(PHONE);
   }
+
   constructor(
-    private _formBuilder: FormBuilder,
+    private fb: FormBuilder,
     public onboardingService: OnboardingService,
     private formService: TeacherOnboardingFormService,
     private storage: StorageServiceService
   ) {
-    this.form = this._formBuilder.group({
+    this.form = this.fb.group({
       firstName: [
         '',
         [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)],

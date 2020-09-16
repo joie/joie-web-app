@@ -37,12 +37,12 @@ export class OnlinePresenceStepComponent {
   }
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private fb: FormBuilder,
     public onboardingService: OnboardingService,
     private storage: StorageServiceService,
     private formService: TeacherOnboardingFormService
   ) {
-    this.form = this._formBuilder.group({
+    this.form = this.fb.group({
       portfolio: ['', [Validators.required, Validators.pattern(urlRegExPattern)]],
       sessionTypes: new FormArray([], atLeastOneIsCheckedValidator()),
     });
