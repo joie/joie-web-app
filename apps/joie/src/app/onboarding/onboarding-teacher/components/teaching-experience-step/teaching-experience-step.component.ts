@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
+import { wordLimitValidator } from '../../../validators/maxWordCount';
 
 export const TEACHING_EXPERIENCE = 'teaching-experience';
 export const EXPERIENCE = 'experience';
@@ -35,10 +36,7 @@ export class TeachingExperienceStepComponent {
     private storage: StorageServiceService
   ) {
     this.form = this._formBuilder.group({
-      [EXPERIENCE]: [
-        '',
-        [Validators.required, Validators.minLength(50), Validators.maxLength(300)],
-      ],
+      [EXPERIENCE]: ['', [Validators.required, Validators.minLength(50), wordLimitValidator(300)]],
     });
 
     this.initForm();
