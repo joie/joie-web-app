@@ -21,6 +21,7 @@
       </label>
     </mat-card>
   </form>
+  <mat-error *ngIf="typesFormArray.invalid">{{onboardingService.showErrorMessage(typesFormArray)}}</mat-error>
 
   <div class="layout-columns-md">
     <div>

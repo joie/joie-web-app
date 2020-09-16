@@ -34,7 +34,7 @@ export class OnboardingService {
         return 'At least one option should be selected';
 
       case 'requireNotMoreThanOneCheckboxToBeChecked':
-        return 'Not more than one should be checked';
+        return 'Not more than one option should be selected';
 
       case 'exceedesWordLimit':
         return `The text entered exceeds the maximum word limit ${errors.actualWordsCount}/${errors.limit}`;
