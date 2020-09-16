@@ -1,6 +1,6 @@
 import {
-  StorageServiceService,
   TEACHER_ONBOARDING,
+  StorageServiceService,
 } from './../../../shared/storage-service.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -44,16 +44,16 @@ export class PersonalInfoStepComponent {
     private storage: StorageServiceService
   ) {
     this.form = this.fb.group({
-      firstName: [
+      [FIRST_NAME]: [
         '',
         [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)],
       ],
-      lastName: [
+      [LAST_NAME]: [
         '',
         [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)],
       ],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
+      [EMAIL]: ['', [Validators.required, Validators.email]],
+      [PHONE]: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
     });
 
     this.initForm();
@@ -84,7 +84,6 @@ export class PersonalInfoStepComponent {
     this.form.valueChanges.subscribe((value) => {
       this.formService.form.patchValue(value);
       if (this.form.valid) {
-        // not caching invalid value
         this.storage.setItemSubscribe(this.controlKey, value);
       }
     });

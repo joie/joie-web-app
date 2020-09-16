@@ -50,8 +50,8 @@ export class SessionFocusAreaStepComponent {
     private storage: StorageServiceService
   ) {
     this.form = this._formBuilder.group({
-      sessionArea: ['', [Validators.required, Validators.minLength(10)]],
-      ageGroups: new FormArray([], [atLeastOneIsCheckedValidator()]),
+      [SESSION_AREA]: ['', [Validators.required, Validators.minLength(10)]],
+      [GROUPS]: new FormArray([], [atLeastOneIsCheckedValidator()]),
     });
 
     this.initForm();

@@ -42,7 +42,7 @@ export class SessionTypesStepComponent {
     private formService: StudentOnboardingFormService
   ) {
     this.form = this.fb.group({
-      sessionTypes: new FormArray(
+      [SESSION_TYPES]: new FormArray(
         [],
         [atLeastOneIsCheckedValidator(), notMoreThanOneIsCheckedValidator()]
       ),

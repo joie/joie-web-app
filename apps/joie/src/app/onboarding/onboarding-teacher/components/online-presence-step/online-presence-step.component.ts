@@ -43,8 +43,8 @@ export class OnlinePresenceStepComponent {
     private formService: TeacherOnboardingFormService
   ) {
     this.form = this.fb.group({
-      portfolio: ['', [Validators.required, Validators.pattern(urlRegExPattern)]],
-      sessionTypes: new FormArray([], atLeastOneIsCheckedValidator()),
+      [PORTFOLIO]: ['', [Validators.required, Validators.pattern(urlRegExPattern)]],
+      [SESSION_TYPES]: new FormArray([], atLeastOneIsCheckedValidator()),
     });
 
     this.initForm();
