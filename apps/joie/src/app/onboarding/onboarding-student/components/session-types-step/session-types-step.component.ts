@@ -48,6 +48,10 @@ export class SessionTypesStepComponent {
       ),
     });
 
+    this.initForm();
+  }
+
+  initForm() {
     this.formService.setControl([SESSION_TYPES, new FormArray([])]);
 
     this.onboardingService.addCheckboxes(
@@ -55,12 +59,20 @@ export class SessionTypesStepComponent {
       this.typesFormArray
     );
 
+    this.getCache();
+
+    this.subscribeToValueChanges();
+  }
+
+  getCache() {
     this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
       if (cacheValue) {
         this.form.patchValue({ [SESSION_TYPES]: cacheValue });
       }
     });
+  }
 
+  subscribeToValueChanges() {
     this.form.valueChanges.subscribe((value) => {
       this.formService.sessionTypesFormArray.clear();
       this.values.forEach((valueItem) => {

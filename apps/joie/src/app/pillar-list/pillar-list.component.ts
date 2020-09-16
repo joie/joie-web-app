@@ -1,3 +1,4 @@
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { PillarsLiteralMap } from './../sessions/models/session';
 import { OnboardingService } from './../onboarding/shared/onboarding.service';
 import {
@@ -11,6 +12,7 @@ import { pillars } from './pillars';
 
 export const PILLARS = 'pillars';
 
+@UntilDestroy()
 @Component({
   selector: 'app-pillar-list',
   templateUrl: './pillar-list.component.html',
@@ -44,19 +46,34 @@ export class PillarListComponent {
     private storage: StorageServiceService
   ) {
     this.form = new FormGroup({ [PILLARS]: new FormArray([]) });
+
+    this.initForm();
+  }
+
+  initForm() {
     this.onboardingService.addCheckboxes(
       Array.from(this.pillarsLiteralMap.keys()),
       this.pillarsFormArray
     );
 
+    this.getCache();
+
+    this.subscribeToValueChanges();
+  }
+
+  getCache() {
     this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
       if (cacheValue) {
         this.form.patchValue({ [PILLARS]: cacheValue });
       }
     });
+  }
 
+  subscribeToValueChanges() {
     this.form.valueChanges.pipe(skip(1)).subscribe((value) => {
-      this.storage.setItemSubscribe(this.controlKey, value[PILLARS]);
+      if (this.form.valid) {
+        this.storage.setItemSubscribe(this.controlKey, value[PILLARS]);
+      }
     });
   }
 }

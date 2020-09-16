@@ -13,7 +13,7 @@ import {
   SpiritActivities,
   MovementActivitiesLiteralsMap,
 } from '../../../../../sessions/models';
-import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
 import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
@@ -36,7 +36,7 @@ type TypeActivitiesLiteralMap = Map<
   templateUrl: './activities-box.component.html',
   styleUrls: ['./activities-box.component.scss'],
 })
-export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
+export class ActivitiesBoxComponent implements OnInit {
   @Input() pillar;
   public form: FormGroup;
   pillarEnum = Pillar;
@@ -88,13 +88,23 @@ export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
       [this.pillar]: new FormArray([], [atLeastOneIsCheckedValidator()]),
     });
 
+    this.controlKey = USER_ONBOARDING + '-' + PILLARS + '-' + this.pillar;
+
+    this.initForm();
+  }
+
+  initForm() {
     this.onboardingService.addCheckboxes(
       Array.from(this.activitiesLiteralsMap.keys()),
       this.activitiesFormArray
     );
 
-    this.controlKey = USER_ONBOARDING + '-' + PILLARS + '-' + this.pillar;
+    this.getCache();
 
+    this.subscribeToValueChanges();
+  }
+
+  getCache() {
     this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
       if (cacheValue) {
         this.activitiesFormArray.setValue(cacheValue);
@@ -102,14 +112,13 @@ export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
+  subscribeToValueChanges() {
     this.form.valueChanges.subscribe((changedVal) => {
       if (this.form.valid) {
         this.storage.setItemSubscribe(this.controlKey, changedVal[this.pillar]);
       }
     });
   }
-
   handleSelect(index, selected) {
     if (selected) {
       this.activitiesFormArray.controls[index].patchValue(true);
