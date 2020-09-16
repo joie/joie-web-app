@@ -53,7 +53,7 @@ export class PersonalInfoStepComponent {
         [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)],
       ],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(7)]],
+      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
     });
 
     this.initForm();
