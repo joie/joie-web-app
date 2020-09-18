@@ -50,8 +50,8 @@ export class RecurringDateTimePickerComponent implements OnDestroy {
 
   private normalizeValue(formValue) {
     const { date, time, recurring } = formValue;
-    const dateTime: Date = dateTimeToDateObj(date, time);
-    return { dateTime, recurring };
+    const timestamp: Date = dateTimeToDateObj(date, time);
+    return { timestamp, recurring };
   }
 
   onSubmit() {

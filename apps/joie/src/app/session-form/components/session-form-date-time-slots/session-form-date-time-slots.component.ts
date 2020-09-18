@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { Recurrence } from '../../../sessions/enums';
+import { Session } from '../../../sessions/models';
 
-const newTimeSlot = ({ dateTime, recurring }) =>
+const newTimeSlot = ({ timestamp, recurring }) =>
   new FormGroup({
-    dateTime: new FormControl(dateTime, Validators.required),
+    timestamp: new FormControl(timestamp, Validators.required),
     recurring: new FormControl(recurring),
   });
 
@@ -16,17 +17,17 @@ const newTimeSlot = ({ dateTime, recurring }) =>
 })
 export class SessionFormDateTimeSlotsComponent extends DynaFormBaseComponent {
   readonly timeSlotsFormArray = new FormArray([]);
-  DATE_TIME_SLOTS = 'dateTimeSlots';
+  TIME_SLOTS = 'timeSlots';
 
   constructor() {
     super();
-    this.addControls([[this.DATE_TIME_SLOTS, this.timeSlotsFormArray]]);
+    this.addControls([[this.TIME_SLOTS, this.timeSlotsFormArray]]);
   }
 
   get timeSlotValues() {
     return this.timeSlotsFormArray.controls.map(
-      ({ value: { dateTime, recurring } }) =>
-        `${recurring && `${Recurrence[recurring]} starting`} ${dateTime}`
+      ({ value: { timestamp, recurring } }) =>
+        `${recurring && `${Recurrence[recurring]} starting`} ${timestamp}`
     );
   }
 

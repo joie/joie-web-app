@@ -37,7 +37,7 @@ export class DbService {
     // return this.afs.collection<T>(path).valueChanges();
   }
 
-  set$<T>(path: string, data: T) {
+  set$<T>(path: any, data: T) {
     return from(
       this.isCollection(path)
         ? this.afs.doc<T>(path).set(data)

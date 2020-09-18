@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { Type } from '../../../sessions/enums';
-import { SessionTypeLiteralsMap } from '../../../sessions/literal-maps';
+import { SessionFormatLiteralsMap, SessionTypeLiteralsMap } from '../../../sessions/literal-maps';
 
 // @Dyna({
 //   controls: [
@@ -19,7 +19,7 @@ import { SessionTypeLiteralsMap } from '../../../sessions/literal-maps';
 })
 export class SessionFormMetadataComponent extends DynaFormBaseComponent {
   sessionTypeLiteralMap = SessionTypeLiteralsMap;
-  sessionFormatLiteralMap = SessionTypeLiteralsMap;
+  sessionFormatLiteralMap = SessionFormatLiteralsMap;
   typeSelectedValue: string;
 
   constructor() {

@@ -18,7 +18,7 @@ interface Schedule {
 }
 
 interface SessionMetadata extends Schedule {
-  readonly id: number | string;
+  readonly id: string;
   readonly createdAt: firestore.Timestamp;
   title: string;
   description?: string;

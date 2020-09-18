@@ -27,6 +27,7 @@ import {
 } from 'kaltura-ngx-client';
 import { environment } from '../../environments/environment';
 import { Roles, UserContextualRole } from '../models';
+
 @Injectable({ providedIn: 'root' })
 export class KalturaApiHandShakeService {
   static readonly clientSecret = environment.kalturaConfig.clientSecret;

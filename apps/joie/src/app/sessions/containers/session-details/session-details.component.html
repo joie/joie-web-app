@@ -1,114 +1,116 @@
-<main>
-  <section>
-    <div class="container-condense text-center">
-      <h4>JoieSprit</h4>
-      <h1>{{ session?.title }}</h1>
-      <h3>{{ session?.owner?.name }}</h3>
-      <div>
-        {{ session?.when?.timestamp.toMillis() | date }}
-      </div>
-      <ng-container *ngIf="isLiveSession; else vodPlayer">
-        <app-live-stream-player
+<ng-container *ngIf="session$ | async as session">
+  <main>
+    <section>
+      <div class="container-condense text-center">
+        <h4>JoieSprit</h4>
+        <h1>{{ session?.title }}</h1>
+        <h3>{{ session?.owner?.name }}</h3>
+        <div>
+          {{ session?.when?.timestamp?.toMillis() | date }}
+        </div>
+        <ng-container *ngIf="isLiveSession; else vodPlayer">
+          <!-- <app-live-stream-player
           [sessionDetails]="sessionDetails"
           [sessionType]="sessionType"
           [role]="role"
           [userContextualRole]="userContextualRole"
-        ></app-live-stream-player>
-      </ng-container>
-      <ng-template #vodPlayer>
-        <app-video-player [entryId]="entryId"></app-video-player>
-      </ng-template>
-    </div>
-  </section>
-  <section></section>
-</main>
-<div fxLayout="row" fxLayoutGap="20px">
-  <div fxLayout="column" fxLayoutGap="20px" fxFlex="70%">
-    <div fxLayout="row" class="text-center" fxLayoutGap="20px" fxLayoutAlign="center center">
-      <img src="" class="author-image" width="40px" height="40px" />
-    </div>
-    <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px" fxLayout.xs="column">
-      <div></div>
-      <div>
-        <i class="feather icon-clock i-20"></i>
-        {{ session?.duration?.amount + session?.duration?.unit }}
+        ></app-live-stream-player> -->
+        </ng-container>
+        <ng-template #vodPlayer>
+          <app-video-player [entryId]="entryId"></app-video-player>
+        </ng-template>
       </div>
-      <div>
-        <i class="feather icon-monitor i-20"></i>
-        {{ session?.type }}
+    </section>
+    <section></section>
+  </main>
+  <div fxLayout="row" fxLayoutGap="20px">
+    <div fxLayout="column" fxLayoutGap="20px" fxFlex="70%">
+      <div fxLayout="row" class="text-center" fxLayoutGap="20px" fxLayoutAlign="center center">
+        <img src="" class="author-image" width="40px" height="40px" />
       </div>
-      <div>
-        <i class="feather icon-bar-chart i-20"></i>
-        {{ session?.level }}
+      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px" fxLayout.xs="column">
+        <div></div>
+        <div>
+          <i class="feather icon-clock i-20"></i>
+          {{ session?.duration?.amount + session?.duration?.unit }}
+        </div>
+        <div>
+          <i class="feather icon-monitor i-20"></i>
+          {{ session?.type }}
+        </div>
+        <div>
+          <i class="feather icon-bar-chart i-20"></i>
+          {{ session?.level }}
+        </div>
+        <div>
+          <i class="feather icon-tag i-20"></i>
+          {{ session?.price?.display | currency: session?.price?.currency }}
+        </div>
       </div>
-      <div>
-        <i class="feather icon-tag i-20"></i>
-        {{ session?.price?.display | currency: session?.price?.currency }}
-      </div>
-    </div>
 
-    <div>
-      <mat-tab-group>
-        <mat-tab label="What you will learn">
-          <div fxLayout="column" class="p" fxLayoutGap="20px">
-            <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.xs="column">
-              <div fxLayout="row" fxLayoutGap="10px">
-                <i class="feather icon-compass i-20"></i>
-                <div fxLayout="column" fxLayoutAlign="flex-start">
-                  <div>Activities</div>
-                  <div>
-                    <span *ngFor="let activity of session?.activities">
-                      {{ activity }}
-                    </span>
+      <div>
+        <mat-tab-group>
+          <mat-tab label="What you will learn">
+            <div fxLayout="column" class="p" fxLayoutGap="20px">
+              <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.xs="column">
+                <div fxLayout="row" fxLayoutGap="10px">
+                  <i class="feather icon-compass i-20"></i>
+                  <div fxLayout="column" fxLayoutAlign="flex-start">
+                    <div>Activities</div>
+                    <div>
+                      <span *ngFor="let activity of session?.activities">
+                        {{ activity }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div fxLayout="row" fxLayoutGap="10px">
+                  <i class="feather icon-monitor i-20"></i>
+                  <div fxLayout="column" fxLayoutAlign="flex-start">
+                    <div>Types of sessions</div>
+                    <div>
+                      {{ session?.type }}
+                    </div>
+                  </div>
+                </div>
+
+                <div fxLayout="row" fxLayoutGap="10px">
+                  <i class="feather icon-layers i-20"></i>
+                  <div fxLayout="column" fxLayoutAlign="flex-start">
+                    <div>Pillars</div>
+                    <div>
+                      {{ session?.pillar }}
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div fxLayout="row" fxLayoutGap="10px">
-                <i class="feather icon-monitor i-20"></i>
-                <div fxLayout="column" fxLayoutAlign="flex-start">
-                  <div>Types of sessions</div>
-                  <div>
-                    {{ session?.type }}
-                  </div>
-                </div>
-              </div>
-
-              <div fxLayout="row" fxLayoutGap="10px">
-                <i class="feather icon-layers i-20"></i>
-                <div fxLayout="column" fxLayoutAlign="flex-start">
-                  <div>Pillars</div>
-                  <div>
-                    {{ session?.pillar }}
-                  </div>
-                </div>
+              <div class="text-justify">
+                {{ session?.description }}
               </div>
             </div>
+          </mat-tab>
+          <mat-tab label="Meet your teacher"> Content 2 </mat-tab>
+          <mat-tab label="What our community say"> Content 3 </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
 
-            <div class="text-justify">
-              {{ session?.description }}
-            </div>
-          </div>
-        </mat-tab>
-        <mat-tab label="Meet your teacher"> Content 2 </mat-tab>
-        <mat-tab label="What our community say"> Content 3 </mat-tab>
-      </mat-tab-group>
+    <div fxFlex="30%">
+      <app-session-card [session]="session"></app-session-card>
     </div>
   </div>
 
-  <div fxFlex="30%">
-    <app-session-card [session]="session"></app-session-card>
+  <div class="margin-bottom-20 text-center">
+    Continue your journey with the following recommended sessions
   </div>
-</div>
 
-<div class="margin-bottom-20 text-center">
-  Continue your journey with the following recommended sessions
-</div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
 
-<div fxLayout="row" fxLayoutAlign="space-between">
-  <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
+    <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
 
-  <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
-
-  <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
-</div>
+    <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
+  </div>
+</ng-container>
