@@ -4,6 +4,7 @@ import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { Type } from '../../../sessions/enums';
 import { SessionFormatLiteralsMap, SessionTypeLiteralsMap } from '../../../sessions/literal-maps';
 
+export const IMAGE = 'image';
 // @Dyna({
 //   controls: [
 //     ['format', new FormControl(null, Validators.required)],
@@ -30,6 +31,7 @@ export class SessionFormMetadataComponent extends DynaFormBaseComponent {
       ['type', new FormControl(null, Validators.required)],
       ['title', new FormControl(null, Validators.required)],
       ['description', new FormControl(null)],
+      [IMAGE, new FormControl({ value: null, disabled: true })],
     ]);
   }
 
@@ -39,6 +41,10 @@ export class SessionFormMetadataComponent extends DynaFormBaseComponent {
 
   asIsOrder(a, b) {
     return 1;
+  }
+
+  onImageSelected(file: File) {
+    this.getFormControl(IMAGE).setValue(file);
   }
   // get sessionTypeKeys(): Array<string> {
   //   return this.sessionTypeMap.keys();

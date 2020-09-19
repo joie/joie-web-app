@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'firebase/firestore';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-  AngularFirestoreCollection,
-  QueryFn,
-} from '@angular/fire/firestore';
+import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
 import { Observable, of, from } from 'rxjs';
 import { __, split, modulo, pipe, length, equals } from 'ramda';
 
@@ -40,7 +35,7 @@ export class DbService {
   set$<T>(path: any, data: T) {
     return from(
       this.isCollection(path)
-        ? this.afs.doc<T>(path).set(data)
+        ? this.afs.doc<T>(path).set(data, { merge: true })
         : this.afs.collection<T>(path).add(data)
     );
   }

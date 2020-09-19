@@ -6,6 +6,7 @@ import { PaymentSourceComponent } from './components/payment-source/payment-sour
 import { DialogRouterComponent } from './components/dialog-router/dialog-router.component';
 import { FigureImageComponent } from './components/figure-image/figure-image.component';
 import { IconComponent } from './components/icon/icon.component';
+import { ImageUploadSelectComponent } from './components/image-upload-select/image-upload-select.component';
 
 import { MaterialModule } from '../core/material.module';
 
@@ -15,6 +16,7 @@ import { MaterialModule } from '../core/material.module';
     DialogRouterComponent,
     FigureImageComponent,
     IconComponent,
+    ImageUploadSelectComponent,
   ],
   imports: [CommonModule, QuicklinkModule, ReactiveFormsModule, MaterialModule],
   exports: [
@@ -27,6 +29,7 @@ import { MaterialModule } from '../core/material.module';
     // ! remove in favour of individual importing
     MaterialModule,
     IconComponent,
+    ImageUploadSelectComponent,
   ],
 })
 export class SharedModule {}
