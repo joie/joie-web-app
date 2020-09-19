@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Session } from '../../../models/session.model';
 import { Observable } from 'rxjs';
+import { Session } from '../../models';
 
 @Component({
   selector: 'app-session-enroll-dialog',

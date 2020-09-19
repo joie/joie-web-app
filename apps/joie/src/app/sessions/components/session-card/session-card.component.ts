@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SessionInfo } from '../../models';
+import { Session } from '../../models';
 
 @Component({
   selector: 'app-session-card',
@@ -7,7 +7,7 @@ import { SessionInfo } from '../../models';
   styleUrls: ['session-card.component.scss'],
 })
 export class SessionCardComponent implements OnInit {
-  @Input() session: SessionInfo;
+  @Input() session: Session;
   @Input() showThumbnail = false;
 
   constructor() {}

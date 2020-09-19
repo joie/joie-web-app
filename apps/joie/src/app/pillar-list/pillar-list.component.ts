@@ -1,5 +1,4 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { PillarsLiteralMap } from './../sessions/models/session';
 import { OnboardingService } from './../onboarding/shared/onboarding.service';
 import {
   StorageServiceService,
@@ -10,7 +9,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { skip } from 'rxjs/operators';
 import { pillars } from './pillars';
 import { atLeastOneIsCheckedValidator } from '../onboarding/validators/atLeastOnIsChecked';
-
+import { PillarsLiteralMap } from '../enums/pillar.enum';
 export const PILLARS = 'pillars';
 
 @UntilDestroy()

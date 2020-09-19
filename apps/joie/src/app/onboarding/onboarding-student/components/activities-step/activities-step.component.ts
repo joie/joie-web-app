@@ -2,9 +2,9 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { StudentOnboardingFormService } from './../../student-onboarding-form.service';
 import { Component, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { ActivitiesBoxComponent } from './activities-box/activities-box.component';
-import { Pillar } from '../../../../sessions/models/session';
 import { PILLARS } from '../../../../pillar-list/pillar-list.component';
 import { LowerCasePipe } from '@angular/common';
+import { Pillar } from '../../../../enums';
 
 @Component({
   selector: 'app-activities-step',

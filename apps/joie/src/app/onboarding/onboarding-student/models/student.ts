@@ -1,4 +1,5 @@
-import { Pillar, Activities } from './../../../sessions/models/session';
+import { Activities, Pillar } from '../../../enums';
+
 export interface Preferences {
   pillars: Pillar[];
   activities: Activities[];

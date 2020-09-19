@@ -1,33 +1,25 @@
 import {
-  EmotionsActivitiesLiteralsMap,
-  ConnectionActivitiesLiteralsMap,
-  SpiritActivitiesLiteralsMap,
-  ProfessionalActivitiesLiteralsMap,
-} from './../../../../../sessions/models/pillars';
-import {
-  Pillar,
-  MovementActivities,
-  EmotionsActivities,
-  ConnectionsActivities,
-  ProfessionalActivities,
-  SpiritActivities,
-  MovementActivitiesLiteralsMap,
-} from '../../../../../sessions/models';
-import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
+  MovementTargetsLiteralsMap,
+  EmotionsTargetsLiteralsMap,
+  ConnectionTargetsLiteralsMap,
+  ProfessionalTargetsLiteralsMap,
+  ConnectionsTargets,
+  SpiritTargets,
+  ProfessionalTargets,
+  SpiritTargetsLiteralsMap,
+} from './../../../../../enums/pillars-targets.enum';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
 import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
 import { PILLARS } from '../../../../../pillar-list/pillar-list.component';
 import { OnboardingService } from '../../../../shared/onboarding.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { MovementTargets, EmotionsTargets, Pillar } from '../../../../../enums';
+import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 
 export const ACTIVITIES = 'activities';
 type TypeActivitiesLiteralMap = Map<
-  | MovementActivities
-  | EmotionsActivities
-  | ConnectionsActivities
-  | SpiritActivities
-  | ProfessionalActivities,
+  MovementTargets | EmotionsTargets | ConnectionsTargets | SpiritTargets | ProfessionalTargets,
   string
 >; // need it to explicitly give a type the the activity map because typeScript throws error https://github.com/microsoft/TypeScript/issues/8936
 @UntilDestroy()
@@ -42,11 +34,11 @@ export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
   pillarEnum = Pillar;
   controlKey: string;
   cachedValues = null;
-  movementLiteralsMap = MovementActivitiesLiteralsMap;
-  emotionsLiteralsMap = EmotionsActivitiesLiteralsMap;
-  connectionsLiteralsMap = ConnectionActivitiesLiteralsMap;
-  spiritLiteralsMap = SpiritActivitiesLiteralsMap;
-  professionalLiteralsMap = ProfessionalActivitiesLiteralsMap;
+  movementLiteralsMap = MovementTargetsLiteralsMap;
+  emotionsLiteralsMap = EmotionsTargetsLiteralsMap;
+  connectionsLiteralsMap = ConnectionTargetsLiteralsMap;
+  spiritLiteralsMap = SpiritTargetsLiteralsMap;
+  professionalLiteralsMap = ProfessionalTargetsLiteralsMap;
 
   get activitiesLiteralsMap(): TypeActivitiesLiteralMap {
     switch (this.pillarEnum[this.pillar]) {

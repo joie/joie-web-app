@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Pillar, CourseLevel, Activities } from '../../../sessions/models/session';
-import { FormControl, FormArray, Validators } from '@angular/forms';
+import { FormControl, FormArray, Validators, FormGroup } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
+import { Activities, Pillar } from '../../../enums';
+import { CourseLevel } from '../../../sessions/enums';
 
 @Component({
   selector: 'app-session-form-attributes',
@@ -19,6 +20,7 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
   GOALS = 'goals';
   COMMENTS = 'comments';
   PRICE = 'price';
+  PRICE_DISPLAY = 'display';
 
   readonly goalsFormArray = new FormArray([]);
   readonly commentsFormArray = new FormArray([]);
@@ -33,7 +35,13 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
       [this.ACTIVITY, new FormControl(null)],
       [this.GOALS, this.goalsFormArray],
       [this.COMMENTS, this.commentsFormArray],
-      [this.PRICE, new FormControl(null)],
+      [
+        this.PRICE,
+        new FormGroup({
+          currency: new FormControl('USD'),
+          display: new FormControl(null),
+        }),
+      ],
     ]);
   }
 

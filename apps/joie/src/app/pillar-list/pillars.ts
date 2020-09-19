@@ -1,4 +1,4 @@
-import { Pillar } from '../sessions/models';
+import { Pillar } from '../enums';
 
 export const pillars = [
   {

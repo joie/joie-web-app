@@ -32,12 +32,12 @@ export class DbService {
     return (this.isCollection(path)
       ? this.afs.doc<T>(path)
       : this.afs.collection<T>(path, queryFn)
-    ).valueChanges();
+    ).valueChanges({ idField: 'id' });
     // return this.afs.doc<T>(path).valueChanges();
     // return this.afs.collection<T>(path).valueChanges();
   }
 
-  set$<T>(path: string, data: T) {
+  set$<T>(path: any, data: T) {
     return from(
       this.isCollection(path)
         ? this.afs.doc<T>(path).set(data)
