@@ -1,17 +1,17 @@
-import {
-  Pillar,
-  JoieMovement,
-  JoieEmotions,
-  JoieConnections,
-  JoieProfessional,
-  JoieSpirit,
-} from '../../../../../sessions/models';
 import { Component, Input, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
 import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
 import { PILLARS } from '../../../../../pillar-list/pillar-list.component';
 import { OnboardingService } from '../../../../shared/onboarding.service';
+import {
+  ConnectionsTargets,
+  EmotionsTargets,
+  MovementTargets,
+  Pillar,
+  ProfessionalTargets,
+  SpiritTargets,
+} from '../../../../../enums';
 
 export const ACTIVITIES = 'activities';
 @Component({
@@ -30,15 +30,15 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit 
   get activitiesEnum() {
     switch (this.pillarEnum[this.pillar]) {
       case Pillar.Movement:
-        return JoieMovement;
+        return MovementTargets;
       case Pillar.Emotions:
-        return JoieEmotions;
+        return EmotionsTargets;
       case Pillar.Connections:
-        return JoieConnections;
+        return ConnectionsTargets;
       case Pillar.Professional:
-        return JoieProfessional;
+        return ProfessionalTargets;
       case Pillar.Spirit:
-        return JoieSpirit;
+        return SpiritTargets;
     }
   }
 

@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <div>{{ session?.author?.name }}</div>
+    <div>{{ session?.owner?.name }}</div>
 
     <div fxLayout="row" fxLayoutAlign="space-between">
       <div>{{ session?.price?.display | currency: session?.price?.currency }}</div>
@@ -49,16 +49,16 @@
     </div>
     <div fxLayout="row" class="text-center" fxLayoutGap="20px" fxLayoutAlign="center center">
       <img src="" class="author-image" width="40px" height="40px" />
-      <div class="text-lg">{{ session?.author.name }}</div>
+      <div class="text-lg">{{ session?.owner?.name }}</div>
     </div>
     <div>
       <i class="feather icon-calendar i-20"></i>
-      {{ session?.publishedDate }}
+      {{ session?.createdAt }}
     </div>
     <div>
       <i class="feather icon-clock i-20"></i>
       {{ session?.duration?.amount + session?.duration?.unit }} -
-      {{ session?.courseType }}
+      {{ session?.type }}
     </div>
     <div>
       <!-- TODO implement price pipe based on the logged in user-->
