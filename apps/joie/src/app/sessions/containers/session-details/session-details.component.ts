@@ -11,7 +11,7 @@ import { SessionsFacade } from '../../../services/sessions.facade';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { combineLatest, Observable } from 'rxjs';
 import { Owner } from '../../../models';
-import { map, pluck, switchMap, tap } from 'rxjs/operators';
+import { map, pluck, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { SessionStartActionArgs } from 'kaltura-ngx-client';
 
 @UntilDestroy()
@@ -20,18 +20,22 @@ import { SessionStartActionArgs } from 'kaltura-ngx-client';
   styleUrls: ['./session-details.component.scss'],
 })
 export class SessionDetailsComponent {
-  #sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
-  #displayName$: Observable<string> = this.afAuth.authState.pipe(pluck('displayName'));
-
-  session$ = this.#sessionId$.pipe(
-    switchMap((sessionId) => this.sessionsFacade.getSession(sessionId))
+  private _sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
+  session$ = this._sessionId$.pipe(
+    switchMap((sessionId) => this.sessionsFacade.getSession(sessionId)),
+    shareReplay()
   );
+  eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
+  uid$ = this.afAuth.authState.pipe(pluck('uid'));
 
-  kalturaSessionDetails$: Pick<SessionStartActionArgs, 'userId'>;
-  //   [sessionDetails]="sessionDetails"
-  // [sessionType]="sessionType"
-  // [role]="role"
-  // [userContextualRole]="userContextualRole"
+  // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
+  //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(
+  //   map(([displayName, eventId]) => ({
+  //     userId: displayName,
+  //     eventId,
+  //   }))
+  // );
+
   // TODO - default assignment will be removed after integration
 
   isLiveSession = true; // if false vod player is visible

@@ -9,12 +9,13 @@
           {{ session?.when?.timestamp?.toMillis() | date }}
         </div>
         <ng-container *ngIf="isLiveSession; else vodPlayer">
-          <!-- <app-live-stream-player
-          [sessionDetails]="sessionDetails"
-          [sessionType]="sessionType"
-          [role]="role"
-          [userContextualRole]="userContextualRole"
-        ></app-live-stream-player> -->
+          <app-live-stream-player
+            [uid]="uid$ | async"
+            [eventId]="eventId$ | async"
+            [sessionType]="sessionType"
+            [role]="role"
+            [userContextualRole]="userContextualRole"
+          ></app-live-stream-player>
         </ng-container>
         <ng-template #vodPlayer>
           <app-video-player [entryId]="entryId"></app-video-player>

@@ -191,19 +191,20 @@ export class KalturaApiHandShakeService {
    * @param userCtxRole userContextualRole of the user
    */
   createSession(
-    sessionCreationDetails: any,
+    userId,
+    eventId,
     role: string = Roles.viewer,
     type: number = KalturaSessionType.user,
     userCtxRole: number = UserContextualRole.guest
   ): Observable<any> {
-    const { uid: userId, eventId } = sessionCreationDetails;
     const privileges = `eventId:${eventId},role:${role},userContextualRole:${userCtxRole}`;
 
+    const { clientSecret: secret, partnerId } = KalturaApiHandShakeService;
     return this.kaltura.request(
       new SessionStartAction({
-        secret: KalturaApiHandShakeService.clientSecret,
+        secret,
+        partnerId,
         type,
-        partnerId: KalturaApiHandShakeService.partnerId,
         expiry: this.expiry,
         privileges,
         userId,

@@ -17,7 +17,12 @@ interface Schedule {
   timeSlots?: When[];
 }
 
-interface SessionMetadata extends Schedule {
+export interface KalturaEvent {
+  eventId?: number;
+  resourceId?: number;
+}
+
+interface SessionMetadata extends Schedule, KalturaEvent {
   readonly id: string;
   readonly createdAt: firestore.Timestamp;
   title: string;
@@ -32,12 +37,7 @@ interface SessionMetadata extends Schedule {
   recommendationPercentage: number;
 }
 
-export interface KalturaEvent {
-  eventId: number;
-  resourceId: number;
-}
-
-interface Streaming extends KalturaEvent {
+interface Streaming {
   format: Format.LiveStreaming;
 }
 
