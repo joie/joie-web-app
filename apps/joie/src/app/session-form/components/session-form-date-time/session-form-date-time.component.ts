@@ -9,10 +9,14 @@ import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 })
 export class SessionFormDateTimeComponent extends DynaFormBaseComponent {
   WHEN = 'when';
+  REPETITIONS = 'repetitions';
   constructor() {
     super();
 
-    this.addControls([[this.WHEN, new FormControl(null)]]);
+    this.addControls([
+      [this.WHEN, new FormControl(null)],
+      [this.REPETITIONS, new FormControl(null)],
+    ]);
   }
   setDateTime(value: Date) {
     this.getFormControl(this.WHEN).patchValue(value);

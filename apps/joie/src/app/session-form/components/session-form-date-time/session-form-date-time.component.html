@@ -1,1 +1,12 @@
 <app-recurring-date-time-picker (formChange)="setDateTime($event)"></app-recurring-date-time-picker>
+
+<ng-container [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Number of sessions</mat-label>
+    <input type="number"
+           inputmode="numeric"
+           formControlName="repetitions"
+           matInput />
+  </mat-form-field>
+
+</ng-container>

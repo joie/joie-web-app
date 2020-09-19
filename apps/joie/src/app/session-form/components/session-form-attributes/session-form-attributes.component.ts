@@ -3,6 +3,7 @@ import { Pillar, CourseLevel, Activities, SessionFormat } from '../../../session
 import { FormControl, FormArray, Validators } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 
+const FORMAT = 'format';
 @Component({
   selector: 'app-session-form-attributes',
   templateUrl: './session-form-attributes.component.html',
@@ -55,7 +56,7 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
   }
 
   get isLivestreaming() {
-    return this.getFormControl('format').value === SessionFormat.LiveStreaming;
+    return this.getFormControl(FORMAT).value === SessionFormat.LiveStreaming;
   }
 
   formArrayValues(array: string) {

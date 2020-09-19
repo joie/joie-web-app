@@ -24,7 +24,6 @@ export class RecurringDateTimePickerComponent implements OnDestroy {
     date: [null, Validators.required],
     time: [null, Validators.required],
     recurring: [null],
-    repetitions: [null],
   });
 
   constructor(private fb: FormBuilder) {
@@ -50,16 +49,15 @@ export class RecurringDateTimePickerComponent implements OnDestroy {
   }
 
   private normalizeValue(formValue) {
-    const { date, time, recurring, repetitions } = formValue;
+    const { date, time, recurring } = formValue;
     const dateTime: Date = dateTimeToDateObj(date, time);
-    return { dateTime, recurring, repetitions };
+    return { dateTime, recurring };
   }
 
   onSubmit() {
     if (this.form.invalid) {
       return;
     }
-    console.log(this.normalizeValue(this.form.value));
     this.submission.emit(this.normalizeValue(this.form.value));
     this.form.reset();
     this.datePicker.nativeElement.focus();
