@@ -1,4 +1,4 @@
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { PillarsLiteralMap } from './../sessions/models/session';
 import { OnboardingService } from './../onboarding/shared/onboarding.service';
 import {
@@ -63,15 +63,18 @@ export class PillarListComponent {
   }
 
   getCache() {
-    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
-      if (cacheValue) {
-        this.form.patchValue({ [PILLARS]: cacheValue });
-      }
-    });
+    this.storage
+      .getItem(this.controlKey)
+      .pipe(untilDestroyed(this))
+      .subscribe((cacheValue) => {
+        if (cacheValue) {
+          this.form.patchValue({ [PILLARS]: cacheValue });
+        }
+      });
   }
 
   subscribeToValueChanges() {
-    this.form.valueChanges.pipe(skip(1)).subscribe((value) => {
+    this.form.valueChanges.pipe(skip(1), untilDestroyed(this)).subscribe((value) => {
       if (this.form.valid) {
         this.storage.setItemSubscribe(this.controlKey, value[PILLARS]);
       }

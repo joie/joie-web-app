@@ -8,7 +8,7 @@ import { OnboardingService } from './../../../shared/onboarding.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { wordLimitValidator } from '../../../validators/maxWordCount';
 
 export const TEACHING_EXPERIENCE = 'teaching-experience';
@@ -51,15 +51,18 @@ export class TeachingExperienceStepComponent {
   }
 
   getCache() {
-    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
-      if (cacheValue) {
-        this.form.patchValue(cacheValue);
-      }
-    });
+    this.storage
+      .getItem(this.controlKey)
+      .pipe(untilDestroyed(this))
+      .subscribe((cacheValue) => {
+        if (cacheValue) {
+          this.form.patchValue(cacheValue);
+        }
+      });
   }
 
   subscribeToValueChanges() {
-    this.form.valueChanges.subscribe((value) => {
+    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe((value) => {
       this.formService.form.patchValue(value);
       if (this.form.valid) {
         this.storage.setItemSubscribe(this.controlKey, value);

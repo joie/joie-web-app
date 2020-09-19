@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { Subscription } from 'rxjs';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AgeGroups, AgeGroupsLiteralsMap } from '../../teacher-onboarding.enums';
 
 export const MARKET = 'market';
@@ -74,17 +74,20 @@ export class SessionFocusAreaStepComponent {
   }
 
   getCache() {
-    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
-      if (cacheValue) {
-        this.form.patchValue(cacheValue);
-      } else {
-        this.preselectDefaultCheckbox();
-      }
-    });
+    this.storage
+      .getItem(this.controlKey)
+      .pipe(untilDestroyed(this))
+      .subscribe((cacheValue) => {
+        if (cacheValue) {
+          this.form.patchValue(cacheValue);
+        } else {
+          this.preselectDefaultCheckbox();
+        }
+      });
   }
 
   subscribeToValueChanges() {
-    this.form.valueChanges.subscribe((value) => {
+    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe((value) => {
       this.formService.ageGroupsFormArray.clear();
       this.values.forEach((value) => {
         this.formService.ageGroupsFormArray.push(new FormControl(value));

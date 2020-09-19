@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { OnboardingService } from '../../../shared/onboarding.service';
 import { lettersRegExPattern } from '../../../../models/regex';
 import { TeacherOnboardingFormService } from '../../services/teacher-onboarding-form.service';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 export const PERSONAL = 'personal';
 export const FIRST_NAME = 'firstName';
@@ -73,15 +73,18 @@ export class PersonalInfoStepComponent {
   }
 
   getCache() {
-    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
-      if (cacheValue) {
-        this.form.patchValue(cacheValue);
-      }
-    });
+    this.storage
+      .getItem(this.controlKey)
+      .pipe(untilDestroyed(this))
+      .subscribe((cacheValue) => {
+        if (cacheValue) {
+          this.form.patchValue(cacheValue);
+        }
+      });
   }
 
   subscribeToValueChanges() {
-    this.form.valueChanges.subscribe((value) => {
+    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe((value) => {
       this.formService.form.patchValue(value);
       if (this.form.valid) {
         this.storage.setItemSubscribe(this.controlKey, value);

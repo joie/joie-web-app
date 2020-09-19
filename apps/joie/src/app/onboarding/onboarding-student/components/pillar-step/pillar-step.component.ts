@@ -2,7 +2,7 @@ import { PillarListComponent, PILLARS } from '../../../../pillar-list/pillar-lis
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 import { StudentOnboardingFormService } from '../../student-onboarding-form.service';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { OnboardingService } from '../../../shared/onboarding.service';
 
 @UntilDestroy()
@@ -20,7 +20,7 @@ export class PillarStepComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    this.pillarList.form.valueChanges.subscribe(() => {
+    this.pillarList.form.valueChanges.pipe(untilDestroyed(this)).subscribe(() => {
       this.setControls(this.pillarList.selectedPillars);
     });
   }

@@ -6,7 +6,7 @@ import { TeacherOnboardingApiService } from '../../services/teacher-onboarding-a
 import { Subscription } from 'rxjs';
 import { TEACHER_ONBOARDING, StorageServiceService } from '../../../shared/storage-service.service';
 import { TeacherOnboardingFormService } from '../../services/teacher-onboarding-form.service';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 export const WHY_JOIE = 'why-joie';
 export const ADDED_VALUE = 'addedValue';
@@ -48,15 +48,18 @@ export class WhyJoieStepComponent {
   }
 
   getCache() {
-    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
-      if (cacheValue) {
-        this.form.patchValue(cacheValue);
-      }
-    });
+    this.storage
+      .getItem(this.controlKey)
+      .pipe(untilDestroyed(this))
+      .subscribe((cacheValue) => {
+        if (cacheValue) {
+          this.form.patchValue(cacheValue);
+        }
+      });
   }
 
   subscribeToValueChanges() {
-    this.form.valueChanges.subscribe((value) => {
+    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe((value) => {
       this.formService.form.patchValue(value);
       if (this.form.valid) {
         // not caching invalid value

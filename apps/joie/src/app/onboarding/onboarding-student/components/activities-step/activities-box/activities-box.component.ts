@@ -19,7 +19,7 @@ import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIs
 import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
 import { PILLARS } from '../../../../../pillar-list/pillar-list.component';
 import { OnboardingService } from '../../../../shared/onboarding.service';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 export const ACTIVITIES = 'activities';
 type TypeActivitiesLiteralMap = Map<
@@ -107,15 +107,18 @@ export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
   }
 
   getCache() {
-    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
-      if (cacheValue) {
-        this.activitiesFormArray.setValue(cacheValue);
-      }
-    });
+    this.storage
+      .getItem(this.controlKey)
+      .pipe(untilDestroyed(this))
+      .subscribe((cacheValue) => {
+        if (cacheValue) {
+          this.activitiesFormArray.setValue(cacheValue);
+        }
+      });
   }
 
   subscribeToValueChanges() {
-    this.form.valueChanges.subscribe((changedVal) => {
+    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe((changedVal) => {
       if (this.form.valid) {
         this.storage.setItemSubscribe(this.controlKey, changedVal[this.pillar]);
       }

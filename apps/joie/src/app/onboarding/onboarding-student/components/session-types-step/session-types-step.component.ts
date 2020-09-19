@@ -8,7 +8,7 @@ import { SessionTypesLiteralMap } from '../../models/student';
 import { StorageServiceService, USER_ONBOARDING } from '../../../shared/storage-service.service';
 import { sessionTypesData } from './sessionTypesData';
 import { OnboardingService } from '../../../shared/onboarding.service';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 export const SESSION_TYPES_KEY = 'session-types';
 export const SESSION_TYPES = 'sessionTypes';
@@ -65,15 +65,18 @@ export class SessionTypesStepComponent {
   }
 
   getCache() {
-    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
-      if (cacheValue) {
-        this.form.patchValue({ [SESSION_TYPES]: cacheValue });
-      }
-    });
+    this.storage
+      .getItem(this.controlKey)
+      .pipe(untilDestroyed(this))
+      .subscribe((cacheValue) => {
+        if (cacheValue) {
+          this.form.patchValue({ [SESSION_TYPES]: cacheValue });
+        }
+      });
   }
 
   subscribeToValueChanges() {
-    this.form.valueChanges.subscribe((value) => {
+    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe((value) => {
       this.formService.sessionTypesFormArray.clear();
       this.values.forEach((valueItem) => {
         this.formService.sessionTypesFormArray.push(new FormControl(valueItem));

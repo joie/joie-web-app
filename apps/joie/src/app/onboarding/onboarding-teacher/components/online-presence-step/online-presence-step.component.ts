@@ -5,7 +5,7 @@ import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChe
 import { urlRegExPattern } from '../../../../models/regex';
 import { TEACHER_ONBOARDING, StorageServiceService } from '../../../shared/storage-service.service';
 import { OnboardingService } from '../../../shared/onboarding.service';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SessionTypesLiteralsMap } from '../../teacher-onboarding.enums';
 
 export const TEACHING_STYLE = 'teaching-style';
@@ -67,15 +67,18 @@ export class OnlinePresenceStepComponent {
   }
 
   getCache() {
-    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
-      if (cacheValue) {
-        this.form.patchValue(cacheValue);
-      }
-    });
+    this.storage
+      .getItem(this.controlKey)
+      .pipe(untilDestroyed(this))
+      .subscribe((cacheValue) => {
+        if (cacheValue) {
+          this.form.patchValue(cacheValue);
+        }
+      });
   }
 
   subscribeToValueChanges() {
-    this.form.valueChanges.subscribe((value) => {
+    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe((value) => {
       this.formService.typesFormArray.clear();
       this.values.forEach((value) => {
         this.formService.typesFormArray.push(new FormControl(value));
