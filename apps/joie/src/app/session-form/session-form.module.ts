@@ -19,6 +19,7 @@ import { DynaFormModule } from '../../../../../libs/dyna-form';
 import { SessionFormDateTimeComponent } from './components/session-form-date-time/session-form-date-time.component';
 import { SessionFormComponent } from './containers/session-form/session-form.component';
 import { KalturaPlayerModule } from '../kaltura-player/kaltura-player.module';
+import { SessionFormRepetitionsComponent } from './components/session-form-repetitions/session-form-repetitions.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { KalturaPlayerModule } from '../kaltura-player/kaltura-player.module';
     SimpleFormInputComponent,
     RecurringDateTimePickerComponent,
     SessionFormDateTimeComponent,
+    SessionFormRepetitionsComponent,
   ],
   imports: [
     SharedModule,

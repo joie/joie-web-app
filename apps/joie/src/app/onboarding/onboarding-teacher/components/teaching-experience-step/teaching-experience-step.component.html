@@ -1,20 +1,29 @@
 <div class="container-condense">
+  <button mat-button
+          mat-flat-button
+          (click)="onboardingService.navigateToPrevStep()">> Back</button>
   <h3>Teaching experience</h3>
   <p>
-    {{ teachersName }}, in up to 300 words, tell us about what do you teach, your training and
-    experience, and what is your teaching philosophy.
+    {{ (authService.state$ | async)?.displayName }}, in up to 300 words, tell us about what do you teach, your
+    training and experience, and what is your teaching philosophy.
   </p>
 </div>
 <div class="container-ultra-condense">
-  <form [formGroup]="formGroup">
-    <div>
+  <form [formGroup]="form">
+
+    <div class="layout-rows-sm">
       <mat-form-field appearance="outline">
-        <textarea matInput formControlName="teachingExpCtrl" required></textarea>
-        <mat-error *ngIf="teachingExp.invalid">{{
-          onboardingService.showErrorMessage(teachingExp)
-        }}</mat-error>
+        <textarea matInput
+                  formControlName="experience"
+                  required></textarea>
+        <mat-error *ngIf="experienceControl.invalid">{{onboardingService.showErrorMessage(experienceControl)}}
+        </mat-error>
+
       </mat-form-field>
-      <button mat-button mat-flat-button [disabled]="formGroup.invalid" matStepperNext>
+      <button mat-button
+              mat-flat-button
+              [disabled]="form.invalid"
+              matStepperNext>
         Continue
       </button>
     </div>

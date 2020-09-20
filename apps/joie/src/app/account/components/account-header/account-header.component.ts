@@ -1,6 +1,5 @@
+import { AuthService } from './../../../auth-state/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs';
-import { dashboardInfoMock } from '../../account.mocks';
 
 @Component({
   selector: 'app-account-header',
@@ -8,8 +7,7 @@ import { dashboardInfoMock } from '../../account.mocks';
   styleUrls: ['./account-header.component.scss'],
 })
 export class AccountHeaderComponent implements OnInit {
-  user$ = of(dashboardInfoMock);
-  constructor() {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit(): void {}
 }

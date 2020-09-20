@@ -1,36 +1,73 @@
 export enum MovementTargets {
-  excersise = 'Excersice',
-  energy = 'Energy',
-  diet = 'Diet',
-  nutrition = 'Nutrition',
+  Exercise = 'exercise',
+  Energy = 'energy',
+  Diet = 'diet',
+  Nutrition = 'nutrition',
 }
+
+export const MovementTargetsLiteralsMap = new Map([
+  [MovementTargets.Exercise, 'exercise'],
+  [MovementTargets.Energy, 'energy'],
+  [MovementTargets.Diet, 'diet'],
+  [MovementTargets.Nutrition, 'nutrition'],
+]);
 
 export enum EmotionsTargets {
-  self_regulation = 'Self-regulation',
-  self_care = 'Self-care',
-  relaxation = 'Relaxation',
-  stress_reduction = 'Stress Reduction',
-  inner_strength = 'Inner Strength',
+  SelfRegulation = 'selfRegulation',
+  SelfCare = 'selfCare',
+  Relaxation = 'relaxation',
+  StressReduction = 'stressReduction',
+  InnerStrength = 'innerStrength',
 }
+
+export const EmotionsTargetsLiteralsMap = new Map([
+  [EmotionsTargets.SelfRegulation, 'self-regulation'],
+  [EmotionsTargets.SelfCare, 'self-care'],
+  [EmotionsTargets.Relaxation, 'relaxation'],
+  [EmotionsTargets.StressReduction, 'stress reduction'],
+  [EmotionsTargets.InnerStrength, 'inner strength'],
+]);
 
 export enum ConnectionsTargets {
-  social_interactions = 'Social Interactions',
-  friendships = 'Friendships',
-  parenting = 'Parenting',
-  relationships = 'Relationships',
-  dating = 'Dating',
+  SocialInteractions = 'socialInteractions',
+  Friendships = 'friendships',
+  Parenting = 'parenting',
+  Relationships = 'relationships',
+  Dating = 'dating',
 }
+
+export const ConnectionTargetsLiteralsMap = new Map([
+  [ConnectionsTargets.SocialInteractions, 'social interactions'],
+  [ConnectionsTargets.Friendships, 'friendships'],
+  [ConnectionsTargets.Parenting, 'parenting'],
+  [ConnectionsTargets.Relationships, 'relationships'],
+  [ConnectionsTargets.Dating, 'dating'],
+]);
 
 export enum SpiritTargets {
-  seek_meaning = 'Seek Meaning',
-  individual_purpose = 'Individual Purpose',
-  faith = 'Faith',
-  values = 'Values',
-  ethic_and_morals = 'Ethic and morals',
+  SeekMeaning = 'seekMeaning',
+  IndividualPurpose = 'individualPurpose',
+  Faith = 'faith',
+  Values = 'values',
+  EthicAndMorals = 'ethicAndMorals',
 }
 
+export const SpiritTargetsLiteralsMap = new Map([
+  [SpiritTargets.SeekMeaning, 'seek meaning'],
+  [SpiritTargets.IndividualPurpose, 'individual purpose'],
+  [SpiritTargets.Faith, 'faith'],
+  [SpiritTargets.Values, 'values'],
+  [SpiritTargets.EthicAndMorals, 'ethic and morals'],
+]);
+
 export enum ProfessionalTargets {
-  professional_development = 'Professional Development',
-  financial_stability = 'Financial stability',
-  satisfaction_at_work = 'Satisfactions at Work',
+  ProfessionalDevelopmennt = 'professionaDevelopment',
+  FinancialStability = 'financialStability',
+  SatisfactionsAtWork = 'satisfactionsAtWork',
 }
+
+export const ProfessionalTargetsLiteralsMap = new Map([
+  [ProfessionalTargets.ProfessionalDevelopmennt, 'professional development'],
+  [ProfessionalTargets.FinancialStability, 'financial stability'],
+  [ProfessionalTargets.SatisfactionsAtWork, 'satisfaction at work'],
+]);

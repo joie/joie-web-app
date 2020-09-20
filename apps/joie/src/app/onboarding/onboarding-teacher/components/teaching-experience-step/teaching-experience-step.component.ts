@@ -1,44 +1,76 @@
+import {
+  TEACHER_ONBOARDING,
+  StorageServiceService,
+} from './../../../shared/storage-service.service';
+import { TeacherOnboardingFormService } from './../../services/teacher-onboarding-form.service';
+import { AuthService } from './../../../../auth-state/services/auth/auth.service';
 import { OnboardingService } from './../../../shared/onboarding.service';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { wordLimitValidator } from '../../../validators/maxWordCount';
 
-export const TEACHING_EXPERIENCE = 'teachingExpCtrl';
+export const TEACHING_EXPERIENCE = 'teaching-experience';
+export const EXPERIENCE = 'experience';
+@UntilDestroy()
 @Component({
   selector: 'app-teaching-experience-step',
   templateUrl: './teaching-experience-step.component.html',
   styleUrls: ['./teaching-experience-step.component.scss'],
 })
-export class TeachingExperienceStepComponent implements OnInit {
-  teachersName;
-  formGroup: FormGroup;
+export class TeachingExperienceStepComponent {
+  form: FormGroup;
+  controlKey = TEACHER_ONBOARDING + '-' + TEACHING_EXPERIENCE;
 
-  get teachingExp() {
-    return this.formGroup.get(TEACHING_EXPERIENCE);
+  get experienceControl() {
+    return this.form.get(EXPERIENCE);
   }
 
   constructor(
+    public authService: AuthService,
     private fb: FormBuilder,
     public activatedRoute: ActivatedRoute,
-    public onboardingService: OnboardingService
+    public onboardingService: OnboardingService,
+    private formService: TeacherOnboardingFormService,
+    private storage: StorageServiceService
   ) {
-    this.formGroup = this.fb.group({
-      teachingExpCtrl: [
-        '',
-        [Validators.required, Validators.minLength(50), Validators.maxLength(300)],
-      ],
+    this.form = this.fb.group({
+      [EXPERIENCE]: ['', [Validators.required, Validators.minLength(50), wordLimitValidator(300)]],
+    });
+
+    this.initForm();
+  }
+
+  initForm() {
+    this.formService.setControl([EXPERIENCE, new FormControl()]);
+
+    this.getCache();
+
+    this.subscribeToValueChanges();
+  }
+
+  getCache() {
+    this.storage
+      .getItem(this.controlKey)
+      .pipe(untilDestroyed(this))
+      .subscribe((cacheValue) => {
+        if (cacheValue) {
+          this.form.patchValue(cacheValue);
+        }
+      });
+  }
+
+  subscribeToValueChanges() {
+    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe((value) => {
+      this.formService.form.patchValue(value);
+      if (this.form.valid) {
+        this.storage.setItemSubscribe(this.controlKey, value);
+      }
     });
   }
 
-  ngOnInit() {
-    const teacher = history.state.teacher;
-    this.teachersName = teacher.firstNameCtrl;
-    if ('teachingExpCtrl' in history.state.teacher) {
-      this.initFormWithCachedData(teacher);
-    }
-  }
-
-  private initFormWithCachedData(teacher) {
-    this.formGroup.controls.teachingExpCtrl.setValue(teacher.teachingExpCtrl);
+  isValid() {
+    return this.form.valid;
   }
 }

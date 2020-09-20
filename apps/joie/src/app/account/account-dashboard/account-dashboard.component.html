@@ -1,9 +1,9 @@
 <main>
   <section>
-    <div *ngIf="teacher$ | async as teacher"
+    <div *ngIf="stats$ | async as stats"
          class="
        layout-rows-md">
-      <app-stats [stats]="teacher.stats"></app-stats>
+      <app-stats [stats]="stats"></app-stats>
     </div>
   </section>
 

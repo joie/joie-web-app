@@ -1,66 +1,20 @@
-import { Profile } from '../models/profile.model';
-
 export const navTabs = ['Dashboard', 'Sessions', 'Profile', 'Banking', 'Email and notifications'];
 
-// teacher schould be :
-/*
-{
-dashboard: Dashboardn
-sessions: Session[],
-profile: Profile,
-Banking: SomeTypeIdkYet,
-Notifications: Settting
-}
-*/
-
-export const dashboardInfoMock = {
-  id: '234',
-  firstName: 'Raja',
-  lastName: 'Ram',
-  stats: [
-    { title: 'On-demand', value: 3 },
-    { title: 'Live-streaming', value: 6 },
-    { title: 'Income', value: '1243$' }, // TODO add some currency pipe for $
-    { title: 'Messages', value: 3 },
-    { title: 'Followers', value: 6 },
-  ],
-};
-
-export const notificationSettingsMock = [
-  {
-    title: 'Session reminders',
-    allChecked: true,
-    toggles: [
-      { name: 'Email', isChecked: false },
-      { name: 'Push notification', isChecked: false },
-    ],
-  },
-  {
-    title: 'Account activity',
-    allChecked: false,
-    toggles: [
-      { name: 'New registration', isChecked: false },
-      { name: 'New follow', isChecked: false },
-    ],
-  },
-  {
-    title: 'Newsletter and promotions',
-    allChecked: false,
-    toggles: [
-      { name: 'Weekly Newsletter', isChecked: false },
-      { name: 'Free sessions, promos, events', isChecked: false },
-    ],
-  },
+export const dashboardStatsMock = [
+  { title: 'On-demand', value: 3 },
+  { title: 'Live-streaming', value: 6 },
+  { title: 'Income', value: '1243$' },
+  { title: 'Messages', value: 3 },
+  { title: 'Followers', value: 6 },
 ];
 
-export const teacherProfileMock: Profile = {
-  name: 'raja ram',
-  email: 'raja@tip.goa',
-  password: 'kirimbo124',
-  timezone: '(GMT +5:30 hours) Goa, India',
-};
+export const passwordMock = 'kirimbo124';
 
-// todo add mock for ssessions tab
+export const notificationSettingsMock = {
+  sessionReminders: ['Email'],
+  accountActivity: ['New follow'],
+  newsletterAndPromos: [],
+};
 
 // for dashboard
 export const sessionsMock = [
@@ -73,7 +27,7 @@ export const sessionsMock = [
     name: 'test',
     description: '/////////',
     goals: ['test'],
-    comments: ['//todo'],
+    comments: ['comment text'],
     price: '500',
     dateTimeDuration: {
       date: '2020-08-03',
@@ -82,7 +36,7 @@ export const sessionsMock = [
     },
     promo: 'BOHEMIANRAPSODY',
     relatedSessions: [''],
-    url: '//this comes from server', // todo url should refer to the session's page
+    url: '//session/:id', // todo url should refer to the session's page
   },
   {
     format: 'Live streaming',
@@ -93,7 +47,7 @@ export const sessionsMock = [
     name: 'TEST NUMBER TWO',
     description: '/////////',
     goals: ['test'],
-    comments: ['//todo'],
+    comments: ['comment text'],
     price: '500',
     dateTimeDuration: {
       date: '2020-09-03',
@@ -102,7 +56,7 @@ export const sessionsMock = [
     },
     promo: 'BOHEMIANRAPSODY',
     relatedSessions: [''],
-    url: '//this comes from server',
+    url: '//session/:id',
   },
   {
     format: 'Live streaming',
@@ -113,7 +67,7 @@ export const sessionsMock = [
     name: 'TEST SESH',
     description: '/////////',
     goals: ['test'],
-    comments: ['//todo'],
+    comments: ['comment text'],
     price: '500',
     dateTimeDuration: {
       date: '2020-08-03',
@@ -122,7 +76,7 @@ export const sessionsMock = [
     },
     promo: 'BOHEMIANRAPSODY',
     relatedSessions: [''],
-    url: '//this comes from server',
+    url: '//session/:id',
   },
   {
     format: 'Live streaming',
@@ -133,7 +87,7 @@ export const sessionsMock = [
     name: 'TEST SESH 4',
     description: '/////////',
     goals: ['test'],
-    comments: ['//todo'],
+    comments: ['comment text'],
     price: '500',
     dateTimeDuration: {
       date: '2020-08-31 00:00',

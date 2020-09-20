@@ -1,30 +1,42 @@
 <ng-container *ngIf="!afterSubmit">
-  <div class="continer container-condense">
+  <div class="container-condense">
+    <button mat-button
+            mat-flat-button
+            (click)="onboardingService.navigateToPrevStep()">> Back</button>
     <h3>Your value to our students</h3>
-    <p>Finally, {{ teachersName }} where do you see your added value to the students?</p>
+    <p>
+      Finally, {{(authService.state$ | async)?.displayName }} where do you see your added value to the students?
+    </p>
   </div>
   <div class="container-ultra-condense">
-    <form *ngIf="!afterSubmit" [formGroup]="formGroup" (ngSubmit)="submitFormsData()">
+    <form *ngIf="!afterSubmit"
+          [formGroup]="form"
+          class="layout-rows-md">
+
       <mat-form-field appearance="outline">
-        <textarea matInput formControlName="addedValDescriptionCtrl" required></textarea>
-        <mat-error *ngIf="addedValue.invalid"
-          >{{ onboardingService.showErrorMessage(addedValue) }}
+        <textarea matInput
+                  formControlName="addedValue"
+                  required></textarea>
+        <mat-error *ngIf="addedValue.invalid">{{onboardingService.showErrorMessage(addedValue)}}
         </mat-error>
       </mat-form-field>
 
-      <button mat-button mat-flat-button [disabled]="formGroup.invalid">
+      <button mat-button
+              mat-flat-button
+              (click)="submitFormsData()"
+              [disabled]="form.invalid">
         Submit your application
       </button>
     </form>
   </div>
+
 </ng-container>
 
-<ng-container class="continer container-condense" *ngIf="afterSubmit">
+<ng-container class="container-condense"
+              *ngIf="afterSubmit">
   <h2 class="text-color-primary">Thank you for submitting your application.</h2>
   <h4>We are excited to review it!</h4>
   <h4>We will contact you shortly.</h4>
-  <h4>
-    Meanwhile, visit our <a href="https://blog.joie.co/">blog</a> to learn more about the spirit of
-    Joie
+  <h4>Meanwhile, visit our <a href="https://blog.joie.co/">blog</a> to learn more about the spirit of Joie
   </h4>
 </ng-container>

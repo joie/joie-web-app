@@ -1,70 +1,103 @@
-import { Component, OnInit } from '@angular/core';
+import { TeacherOnboardingFormService } from './../../services/teacher-onboarding-form.service';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
 import { urlRegExPattern } from '../../../../models/regex';
 
-// todo add validation error messages after refactoring the checkboxes part
-// todo when refactoring checkboxes part, create an enum for sessionTypes
-// todo (diffrent from the existing ones), and comment out courses fields(we dont have courses yet)
+import { TEACHER_ONBOARDING, StorageServiceService } from '../../../shared/storage-service.service';
+import { OnboardingService } from '../../../shared/onboarding.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { SessionTypesLiteralsMap } from '../../teacher-onboarding.enums';
+
+export const TEACHING_STYLE = 'teaching-style';
+export const PORTFOLIO = 'portfolio';
+export const SESSION_TYPES = 'sessionTypes';
+@UntilDestroy()
 @Component({
   selector: 'app-online-presence-step',
   templateUrl: './online-presence-step.component.html',
   styleUrls: ['./online-presence-step.component.scss'],
 })
-export class OnlinePresenceStepComponent implements OnInit {
-  formGroup: FormGroup;
-  sessionTypesData = [
-    { type: 'On-demand session or a lecture', isChecked: false },
-    { type: 'On-demand course', isChecked: false },
-    { type: 'Live group session', isChecked: false },
-    { type: 'Live group course', isChecked: false },
-    { type: 'Live lecture', isChecked: false },
-    { type: 'Live 1:1 coaching', isChecked: false },
-  ];
-  constructor(private fb: FormBuilder) {
-    this.formGroup = this.fb.group({
-      teachingPortfolioUrlCtrl: ['', [Validators.required, Validators.pattern(urlRegExPattern)]],
-      sessionTypesCtrl: new FormArray([], atLeastOneIsCheckedValidator()),
+export class OnlinePresenceStepComponent {
+  form: FormGroup;
+  sessionTypesLiteralsMap = SessionTypesLiteralsMap;
+  controlKey = TEACHER_ONBOARDING + '-' + TEACHING_STYLE;
+
+  get typesFormArray() {
+    return this.form.controls.sessionTypes as FormArray;
+  }
+
+  get values() {
+    return this.form.value.sessionTypes
+      .map((checked, i) => (checked ? Array.from(this.sessionTypesLiteralsMap.keys())[i] : null))
+      .filter((v) => v !== null);
+  }
+
+  get portfolio() {
+    return this.form.get(PORTFOLIO);
+  }
+
+  constructor(
+    private fb: FormBuilder,
+    public onboardingService: OnboardingService,
+    private storage: StorageServiceService,
+    private formService: TeacherOnboardingFormService
+  ) {
+    this.form = this.fb.group({
+      [PORTFOLIO]: ['', [Validators.required, Validators.pattern(urlRegExPattern)]],
+      [SESSION_TYPES]: new FormArray([], atLeastOneIsCheckedValidator()),
     });
-  }
-  ngOnInit(): void {
-    const teacher = history.state.teacher || null;
-    if (teacher && 'sessionTypesCtrl' in teacher) {
-      this.initFormWithCachedData(teacher);
-    } else {
-      this.addCheckboxes();
-    }
+
+    this.initForm();
   }
 
-  get sessionTypesFormArray() {
-    return this.formGroup.controls.sessionTypesCtrl as FormArray;
-  }
+  initForm() {
+    this.formService.setControls([
+      [PORTFOLIO, new FormControl()],
+      [SESSION_TYPES, new FormArray([])],
+    ]);
 
-  entry(obj) {
-    return Object.entries(obj)[0];
-  }
-
-  handleCheck(sessionType, isChecked, index) {
-    this.sessionTypesFormArray.controls[index].patchValue({
-      [sessionType]: !isChecked,
-    });
-  }
-
-  private addCheckboxesFromCache(sessionTypes) {
-    sessionTypes.forEach((type) => {
-      const entries = this.entry(type);
-      this.sessionTypesFormArray.push(new FormControl({ [entries[0]]: entries[1] }));
-    });
-  }
-
-  private addCheckboxes() {
-    this.sessionTypesData.forEach(({ type, isChecked }) =>
-      this.sessionTypesFormArray.push(new FormControl({ [type]: isChecked }))
+    this.onboardingService.addCheckboxes(
+      Array.from(this.sessionTypesLiteralsMap.keys()),
+      this.typesFormArray
     );
+
+    this.getCache();
+
+    this.subscribeToValueChanges();
   }
 
-  private initFormWithCachedData(teacher) {
-    this.formGroup.controls.teachingPortfolioUrlCtrl.setValue(teacher.teachingPortfolioUrlCtrl);
-    this.addCheckboxesFromCache(teacher.sessionTypesCtrl);
+  getCache() {
+    this.storage
+      .getItem(this.controlKey)
+      .pipe(untilDestroyed(this))
+      .subscribe((cacheValue) => {
+        if (cacheValue) {
+          this.form.patchValue(cacheValue);
+        }
+      });
+  }
+
+  subscribeToValueChanges() {
+    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe((value) => {
+      this.formService.typesFormArray.clear();
+      this.values.forEach((value) => {
+        this.formService.typesFormArray.push(new FormControl(value));
+      });
+      this.formService.form.patchValue({
+        [PORTFOLIO]: value[PORTFOLIO],
+      });
+      if (this.form.valid) {
+        this.storage.setItemSubscribe(this.controlKey, value);
+      }
+    });
+  }
+
+  isValid() {
+    return this.form.valid;
+  }
+
+  asIsOrder(a, b) {
+    return 1;
   }
 }
