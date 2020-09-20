@@ -2,46 +2,64 @@ import { Injectable } from '@angular/core';
 import { throwError, Observable, forkJoin } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import {
-  KalturaClient, SessionStartAction, KalturaSessionType, KalturaMediaEntryFilter,
-  KalturaFilterPager, MediaListAction, ScheduleResourceAddAction, KalturaScheduleResource,
-  KalturaCameraScheduleResource, KalturaLiveEntryScheduleResource, KalturaLocationScheduleResource,
-  KalturaScheduleResourceFilter, ScheduleResourceListAction, KalturaRecordScheduleEvent,
-  KalturaLiveStreamScheduleEvent, KalturaBlackoutScheduleEvent, ScheduleEventAddAction,
-  KalturaScheduleEventRecurrenceType, KalturaScheduleEventFilter, ScheduleEventListAction,
-  ScheduleEventResourceAddAction, KalturaScheduleEventResource
+  KalturaClient,
+  SessionStartAction,
+  KalturaSessionType,
+  KalturaMediaEntryFilter,
+  KalturaFilterPager,
+  MediaListAction,
+  ScheduleResourceAddAction,
+  KalturaScheduleResource,
+  KalturaCameraScheduleResource,
+  KalturaLiveEntryScheduleResource,
+  KalturaLocationScheduleResource,
+  KalturaScheduleResourceFilter,
+  ScheduleResourceListAction,
+  KalturaRecordScheduleEvent,
+  KalturaLiveStreamScheduleEvent,
+  KalturaBlackoutScheduleEvent,
+  ScheduleEventAddAction,
+  KalturaScheduleEventRecurrenceType,
+  KalturaScheduleEventFilter,
+  ScheduleEventListAction,
+  ScheduleEventResourceAddAction,
+  KalturaScheduleEventResource,
 } from 'kaltura-ngx-client';
 import { environment } from '../../environments/environment';
 import { Roles, UserContextualRole } from '../models';
+
 @Injectable({ providedIn: 'root' })
 export class KalturaApiHandShakeService {
-
   static readonly clientSecret = environment.kalturaConfig.clientSecret;
   static readonly partnerId = environment.kalturaConfig.partner_id;
   // expiry time of the session
   public expiry: 84000;
 
-  constructor(private kaltura: KalturaClient) { }
+  constructor(private kaltura: KalturaClient) {}
 
   getKalturaSession() {
-    this.kaltura
-      .setOptions({
-        clientTag: 'sample-code',
-        endpointUrl: 'https://www.kaltura.com',
-      });
+    this.kaltura.setOptions({
+      clientTag: 'sample-code',
+      endpointUrl: 'https://www.kaltura.com',
+    });
     // create session for Kalutura handshake
     this.kaltura
-      .request(new SessionStartAction({
-        secret: KalturaApiHandShakeService.clientSecret,
-        type: KalturaSessionType.admin,
-        partnerId: KalturaApiHandShakeService.partnerId,
-      }))
-      .subscribe(ks => {
-        this.kaltura.setDefaultRequestOptions({ ks });
-      },
-        error => {
+      .request(
+        new SessionStartAction({
+          secret: KalturaApiHandShakeService.clientSecret,
+          type: KalturaSessionType.admin,
+          partnerId: KalturaApiHandShakeService.partnerId,
+        })
+      )
+      .subscribe(
+        (ks) => {
+          this.kaltura.setDefaultRequestOptions({ ks });
+        },
+        (error) => {
           console.error(`failed to create session with the following error 'SessionStartAction'`);
           throwError(error);
-        });
+        }
+      );
   }
 
   /**
@@ -52,23 +70,21 @@ export class KalturaApiHandShakeService {
     return forkJoin([
       this.createScheduleResource(eventCreationDetails.resourceName),
       this.createScheduleEvent(eventCreationDetails),
-    ])
-      .pipe(
-        switchMap(([resourceRes, eventRes]) => {
-          return this.createScheduleEventResource(resourceRes.id, eventRes.id)
-            .pipe(
-              map(streamEntryRes => {
-                return streamEntryRes;
-              }),
-              catchError(err => {
-                return throwError(err);
-              }),
-            );
-        }),
-        catchError(err => {
-          return throwError(err);
-        }),
-      );
+    ]).pipe(
+      switchMap(([resourceRes, eventRes]) => {
+        return this.createScheduleEventResource(resourceRes.id, eventRes.id).pipe(
+          map((streamEntryRes) => {
+            return streamEntryRes;
+          }),
+          catchError((err) => {
+            return throwError(err);
+          })
+        );
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
   }
 
   /**
@@ -78,8 +94,7 @@ export class KalturaApiHandShakeService {
     const filter = new KalturaMediaEntryFilter();
     const pager = new KalturaFilterPager();
 
-    this.kaltura
-      .request(new MediaListAction({ filter, pager }));
+    this.kaltura.request(new MediaListAction({ filter, pager }));
   }
 
   /**
@@ -101,8 +116,7 @@ export class KalturaApiHandShakeService {
     scheduleResource.name = resourceName;
     scheduleResource.tags = environment.kalturaConfig.eventTags;
 
-    return this.kaltura
-      .request(new ScheduleResourceAddAction({ scheduleResource }));
+    return this.kaltura.request(new ScheduleResourceAddAction({ scheduleResource }));
   }
 
   /**
@@ -112,8 +126,7 @@ export class KalturaApiHandShakeService {
     const filter = new KalturaScheduleResourceFilter();
     const pager = new KalturaFilterPager();
 
-    this.kaltura
-      .request(new ScheduleResourceListAction({ filter, pager }));
+    this.kaltura.request(new ScheduleResourceListAction({ filter, pager }));
   }
 
   /**
@@ -121,7 +134,10 @@ export class KalturaApiHandShakeService {
    * @param eventCreationDetails for event creation
    * @param scheduleResourceType type of session
    */
-  createScheduleEvent(eventCreationDetails: any, scheduleResourceType: number = 3): Observable<any> {
+  createScheduleEvent(
+    eventCreationDetails: any,
+    scheduleResourceType: number = 3
+  ): Observable<any> {
     let scheduleEvent;
 
     if (scheduleResourceType === 1) {
@@ -141,8 +157,7 @@ export class KalturaApiHandShakeService {
     scheduleEvent.endDate = eventCreationDetails.endDate;
     scheduleEvent.tags = environment.kalturaConfig.resourceTags;
 
-    return this.kaltura
-      .request(new ScheduleEventAddAction({ scheduleEvent }));
+    return this.kaltura.request(new ScheduleEventAddAction({ scheduleEvent }));
   }
 
   /**
@@ -152,8 +167,7 @@ export class KalturaApiHandShakeService {
     const filter = new KalturaScheduleEventFilter();
     const pager = new KalturaFilterPager();
 
-    this.kaltura
-      .request(new ScheduleEventListAction({ filter, pager }));
+    this.kaltura.request(new ScheduleEventListAction({ filter, pager }));
   }
 
   /**
@@ -166,8 +180,7 @@ export class KalturaApiHandShakeService {
     scheduleEventResource.eventId = eventId;
     scheduleEventResource.resourceId = resourceId;
 
-    return this.kaltura
-      .request(new ScheduleEventResourceAddAction({ scheduleEventResource }));
+    return this.kaltura.request(new ScheduleEventResourceAddAction({ scheduleEventResource }));
   }
 
   /**
@@ -178,16 +191,24 @@ export class KalturaApiHandShakeService {
    * @param userCtxRole userContextualRole of the user
    */
   createSession(
-    sessionCreationDetails: any, role: string = Roles.viewer, type: number = KalturaSessionType.user,
-    userCtxRole: number = UserContextualRole.guest): Observable<any> {
-
-    const { userId, eventId } = sessionCreationDetails;
+    userId,
+    eventId,
+    role: string = Roles.viewer,
+    type: number = KalturaSessionType.user,
+    userCtxRole: number = UserContextualRole.guest
+  ): Observable<any> {
     const privileges = `eventId:${eventId},role:${role},userContextualRole:${userCtxRole}`;
 
-    return this.kaltura
-      .request(new SessionStartAction({
-        secret: KalturaApiHandShakeService.clientSecret, type,
-        partnerId: KalturaApiHandShakeService.partnerId, expiry: this.expiry, privileges, userId
-      }));
+    const { clientSecret: secret, partnerId } = KalturaApiHandShakeService;
+    return this.kaltura.request(
+      new SessionStartAction({
+        secret,
+        partnerId,
+        type,
+        expiry: this.expiry,
+        privileges,
+        userId,
+      })
+    );
   }
 }

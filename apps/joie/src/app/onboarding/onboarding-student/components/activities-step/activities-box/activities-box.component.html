@@ -6,16 +6,18 @@
     <mat-form-field>
       <mat-chip-list [formArrayName]="pillar"
                      multiple>
-        <label *ngFor="let activity of activitiesFormArray.controls; let i = index">
+        <label *ngFor="let activity of activitiesLiteralsMap | keyvalue: asIsOrder ; let i = index">
           <mat-chip #chip="matChip"
                     class="mat-elevation-z1"
                     [selectable]="true"
                     [selected]="form.value[pillar][i]"
                     (click)="chip.selected = !chip.selected; handleSelect(i, chip.selected)">
-            {{ activitiesEnum[activityKeys[i]] }}
+            {{ activity.value | titlecase}}
           </mat-chip>
         </label>
       </mat-chip-list>
     </mat-form-field>
   </form>
+  <mat-error *ngIf="activitiesFormArray.invalid">{{onboardingService.showErrorMessage(activitiesFormArray)}}
+  </mat-error>
 </mat-card>

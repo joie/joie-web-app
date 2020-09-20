@@ -1,7 +1,9 @@
+import { Format } from './../../../sessions/enums/format.enum';
 import { Component } from '@angular/core';
-import { Pillar, CourseLevel, Activities, SessionFormat } from '../../../sessions/models/session';
-import { FormControl, FormArray, Validators } from '@angular/forms';
+import { FormControl, FormArray, Validators, FormGroup } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
+import { Activities, Pillar } from '../../../enums';
+import { CourseLevel } from '../../../sessions/enums';
 
 const FORMAT = 'format';
 @Component({
@@ -22,6 +24,7 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
   COMMENTS = 'comments';
   PRICE = 'price';
   LIMIT = 'limit';
+  PRICE_DISPLAY = 'display';
 
   readonly goalsFormArray = new FormArray([]);
   readonly commentsFormArray = new FormArray([]);
@@ -36,8 +39,14 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
       [this.ACTIVITY, new FormControl(null)],
       [this.GOALS, this.goalsFormArray],
       [this.COMMENTS, this.commentsFormArray],
-      [this.PRICE, new FormControl(null)],
       [this.LIMIT, new FormControl(null)],
+      [
+        this.PRICE,
+        new FormGroup({
+          currency: new FormControl('USD'),
+          display: new FormControl(null),
+        }),
+      ],
     ]);
 
     this.getFormControl(this.LIMIT).setValidators([Validators.max(this.UPPER_LIMIT)]);
@@ -56,7 +65,7 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
   }
 
   get isLivestreaming() {
-    return this.getFormControl(FORMAT).value === SessionFormat.LiveStreaming;
+    return this.getFormControl(FORMAT).value === Format.LiveStreaming;
   }
 
   formArrayValues(array: string) {

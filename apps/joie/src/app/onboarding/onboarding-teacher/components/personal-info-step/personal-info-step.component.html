@@ -5,66 +5,65 @@
   </h4>
   <h3>Personal Information</h3>
 </div>
+
 <div class="container-ultra-condense">
-  <form [formGroup]="formGroup" autocomplete="on">
+  <form [formGroup]="form"
+        class="layout-rows-sm"
+        autocomplete="on">
     <mat-form-field appearance="outline">
       <mat-label>First name</mat-label>
-      <input
-        matInput
-        type="text"
-        placeholder="first name"
-        name="first-name"
-        formControlName="firstNameCtrl"
-        required
-      />
-      <mat-error *ngIf="firstName.invalid">{{
-        onboardingService.showErrorMessage(firstName)
-      }}</mat-error>
+      <input matInput
+             type="text"
+             placeholder="first name"
+             name="first-name"
+             formControlName="firstName"
+             required />
+      <mat-error *ngIf="firstName.invalid">{{onboardingService.showErrorMessage(firstName)}}</mat-error>
+
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Last name</mat-label>
-      <input
-        matInput
-        type="text"
-        placeholder="last name"
-        name="family-name"
-        formControlName="lastNameCtrl"
-        required
-      />
-      <mat-error *ngIf="lastName.invalid">{{
-        onboardingService.showErrorMessage(lastName)
-      }}</mat-error>
+      <input matInput
+             type="text"
+             placeholder="last name"
+             name="family-name"
+             formControlName="lastName"
+             required />
+      <mat-error *ngIf="lastName.invalid">{{onboardingService.showErrorMessage(lastName)}}</mat-error>
+
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input
-        matInput
-        type="email"
-        placeholder="email"
-        name="email"
-        formControlName="emailCtrl"
-        required
-      />
-      <mat-error *ngIf="email.invalid">{{ onboardingService.showErrorMessage(email) }}</mat-error>
+      <input matInput
+             type="email"
+             placeholder="email"
+             name="email"
+             formControlName="email"
+             required />
+      <mat-error *ngIf="email.invalid">{{onboardingService.showErrorMessage(email)}}</mat-error>
+
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Phone number</mat-label>
-      <input
-        matInput
-        name="tel"
-        type="tel"
-        autocomplete="tel"
-        placeholder="phone number"
-        formControlName="phoneNumberCtrl"
-        required
-      />
-      <mat-error *ngIf="phone.invalid">{{ onboardingService.showErrorMessage(phone) }}</mat-error>
+      <input matInput
+             name="tel"
+             type="tel"
+             autocomplete="tel"
+             type="number"
+             inputmode="numeric"
+             placeholder="phone number"
+             formControlName="phone"
+             required />
+      <mat-error *ngIf="phone.invalid">{{onboardingService.showErrorMessage(phone)}}</mat-error>
+
     </mat-form-field>
 
-    <button mat-flat-button [disabled]="formGroup.invalid" matStepperNext>
+    <button mat-flat-button
+            [disabled]="form.invalid"
+            matStepperNext>
       Continue
     </button>
   </form>

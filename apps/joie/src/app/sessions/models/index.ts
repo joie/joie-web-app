@@ -1,3 +1,2 @@
 export * from './session';
-export * from './pillars';
-export * from './literals';
+export * from './session-variants';

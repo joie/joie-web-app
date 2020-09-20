@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'firebase/firestore';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-  AngularFirestoreCollection,
-  QueryFn,
-} from '@angular/fire/firestore';
+import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
 import { Observable, of, from } from 'rxjs';
 import { __, split, modulo, pipe, length, equals } from 'ramda';
 
@@ -32,15 +27,15 @@ export class DbService {
     return (this.isCollection(path)
       ? this.afs.doc<T>(path)
       : this.afs.collection<T>(path, queryFn)
-    ).valueChanges();
+    ).valueChanges({ idField: 'id' });
     // return this.afs.doc<T>(path).valueChanges();
     // return this.afs.collection<T>(path).valueChanges();
   }
 
-  set$<T>(path: string, data: T) {
+  set$<T>(path: any, data: T) {
     return from(
       this.isCollection(path)
-        ? this.afs.doc<T>(path).set(data)
+        ? this.afs.doc<T>(path).set(data, { merge: true })
         : this.afs.collection<T>(path).add(data)
     );
   }

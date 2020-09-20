@@ -1,4 +1,16 @@
 <ng-container [formGroup]="form">
+  <!-- ! always show this -->
+  <mat-form-field appearance="outline">
+    <mat-label>Title</mat-label>
+    <input
+      formControlName="title"
+      matInput
+      placeholder="e.g. Best session"
+      required
+      cdkFocusInitial
+    />
+  </mat-form-field>
+
   <div class="layout-columns layout-center">
     <mat-form-field appearance="outline">
       <mat-label>Type</mat-label>
@@ -14,11 +26,12 @@
         >Coaching '<kbd>type</kbd>' auto-sets '<kbd>format</kbd>' to live streaming
       </mat-hint>
     </mat-form-field>
+
     <mat-radio-group
-      aria-label="Select an option"
-      required
-      [disabled]="coachingSelected"
       formControlName="format"
+      [disabled]="coachingSelected"
+      name="sessionFormat"
+      aria-label="Session Format"
     >
       <mat-radio-button
         *ngFor="let format of sessionFormatLiteralMap | keyvalue: asIsOrder"
@@ -37,21 +50,12 @@
       </mat-select>
     </mat-form-field> -->
   </div>
-  <!-- ! always show this -->
-  <mat-form-field appearance="outline">
-    <mat-label>Title</mat-label>
-    <input
-      formControlName="title"
-      matInput
-      placeholder="e.g. Best session"
-      required
-      cdkFocusInitial
-    />
-  </mat-form-field>
 
   <!-- ! show only when type/format chosen -->
   <mat-form-field appearance="outline">
     <mat-label>Description</mat-label>
     <textarea formControlName="description" matInput placeholder="e.g. Best session"></textarea>
   </mat-form-field>
+
+  <app-image-upload-select (selected)="onImageSelected($event)"></app-image-upload-select>
 </ng-container>

@@ -1,13 +1,18 @@
-<a mat-raised-button
-   color="accent"
-   [routerLink]="[
+<a
+  mat-raised-button
+  color="accent"
+  [routerLink]="[
     {
       outlets: {
         popup: ['create']
       }
     }
-  ]">
+  ]"
+>
   <mat-icon>add</mat-icon> Add Session
 </a>
 
-<app-session-list [queryFn]="boundQueryFn"></app-session-list>
+<app-session-list
+  class="layout-rows-xs layout-columns-lg"
+  [queryFn]="boundQueryFn"
+></app-session-list>

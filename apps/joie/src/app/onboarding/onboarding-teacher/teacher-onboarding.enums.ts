@@ -1,18 +1,57 @@
-export enum AgeGroups {
-  CHILDREN = 'Children (6-14)',
-  YOUTH = 'Youth (15-24)',
-  ADULTS = 'Adults (25-64)',
-  ELDERY = 'Eldery (65+)',
-  ALL = 'All of the above',
+export interface Teacher {
+  id: string;
+  firstName: string;
+  lastName: string;
+  stats: Stat[];
 }
 
-export enum SessionTypes {
-  ONDEMAND_SESSION_OR_LECTURE = 'On-demand session or a lecture',
-  // ONDEMAND_COURSE = 'On-demand course',
-  // TODO courses are not available at joie yet
-  // TODO https://github.com/joie/joie-web-app/issues/59#issue-689403295 (bullet 4)
-  LIVE_SESSION = 'Live group session',
-  // LIVE_COURSE = 'Live group course',
-  LIVE_LECTURE = 'Live group lecture',
-  COACHING = 'Live 1:1 coaching',
+export interface TeacherOnboarding {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  sessionArea: string;
+  ageGroups: Array<string>;
+  sesionTypes: Array<string>;
+  experience: string;
+  portfolio: string;
+  addedValue: string;
 }
+export interface Stat {
+  title: string;
+  value: number | string;
+}
+
+export enum AgeGroups {
+  Children = 'children',
+  Youth = 'youth',
+  Adults = 'adults',
+  Eldery = 'eldery',
+  All = 'allOfTheAbove',
+}
+
+export const AgeGroupsLiteralsMap = new Map([
+  [AgeGroups.Children, 'children (6-14)'],
+  [AgeGroups.Youth, 'youth (15-24'],
+  [AgeGroups.Adults, 'adults (25-64'],
+  [AgeGroups.Eldery, 'eldery (65+)'],
+  [AgeGroups.Eldery, 'all of the above'],
+]);
+
+export enum SessionTypes {
+  OnDemandSessionOrLecture = 'onDemandSessionOrLecture',
+  // OnDemandCourse = 'onDemandCourse', //todo courses are not available at joie yet https://github.com/joie/joie-web-app/issues/59#issue-689403295 (bullet 4)
+  LiveGroupSession = 'liveGroupSession',
+  // LiveGroupCourse = 'liveGroupCourse',
+  LiveLecture = 'liveGroupLecture',
+  Coaching = 'liveCoaching',
+}
+
+export const SessionTypesLiteralsMap = new Map([
+  [SessionTypes.OnDemandSessionOrLecture, 'on-demand session or a lecture'],
+  // [SessionTypes.OnDemandCourse, 'on-demand course'],
+  [SessionTypes.LiveGroupSession, 'live group session'],
+  // [SessionTypes.LiveGroupCourse, 'live group course'],
+  [SessionTypes.LiveLecture, 'live lecture'],
+  [SessionTypes.Coaching, 'live 1:1 coaching'],
+]);

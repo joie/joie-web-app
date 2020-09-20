@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Output, ViewChild, Input } from '@angular/core';
-import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-simple-form-input',

@@ -1,17 +1,18 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { OnboardingService } from './../onboarding/shared/onboarding.service';
 import {
   StorageServiceService,
   USER_ONBOARDING,
 } from './../onboarding/shared/storage-service.service';
-
 import { FormGroup, FormArray } from '@angular/forms';
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Pillar } from '../sessions/models/session';
 import { skip } from 'rxjs/operators';
 import { pillars } from './pillars';
-
+import { atLeastOneIsCheckedValidator } from '../onboarding/validators/atLeastOnIsChecked';
+import { PillarsLiteralMap } from '../enums/pillar.enum';
 export const PILLARS = 'pillars';
 
+@UntilDestroy()
 @Component({
   selector: 'app-pillar-list',
   templateUrl: './pillar-list.component.html',
@@ -21,7 +22,7 @@ export const PILLARS = 'pillars';
 export class PillarListComponent {
   form: FormGroup;
   pillars = pillars;
-  pillarEnum = Pillar;
+  pillarsLiteralMap = PillarsLiteralMap;
   controlKey = USER_ONBOARDING + '-' + PILLARS;
   @Input() selectable = false;
   @Input() descriptions = false;
@@ -34,13 +35,9 @@ export class PillarListComponent {
     return this.form.get(PILLARS) as FormArray;
   }
 
-  get pillarKeys() {
-    return Object.keys(this.pillarEnum);
-  }
-
   get selectedPillars() {
     return this.form.value.pillars
-      .map((checked, i) => (checked ? this.pillarKeys[i].toLowerCase() : null))
+      .map((checked, i) => (checked ? Array.from(this.pillarsLiteralMap.keys())[i] : null))
       .filter((v) => v !== null);
   }
 
@@ -48,20 +45,38 @@ export class PillarListComponent {
     private onboardingService: OnboardingService,
     private storage: StorageServiceService
   ) {
-    this.form = new FormGroup({ [PILLARS]: new FormArray([]) });
-    this.onboardingService.addCheckboxes(this.pillarKeys, this.pillarsFormArray);
+    this.form = new FormGroup({ [PILLARS]: new FormArray([], atLeastOneIsCheckedValidator()) });
 
-    // restoring cache in this way helps to render the pillars without waiting for storage and in case if no cache this works better
-    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
-      if (cacheValue) {
-        this.form.patchValue({ [PILLARS]: cacheValue });
+    this.initForm();
+  }
+
+  initForm() {
+    this.onboardingService.addCheckboxes(
+      Array.from(this.pillarsLiteralMap.keys()),
+      this.pillarsFormArray
+    );
+
+    this.getCache();
+
+    this.subscribeToValueChanges();
+  }
+
+  getCache() {
+    this.storage
+      .getItem(this.controlKey)
+      .pipe(untilDestroyed(this))
+      .subscribe((cacheValue) => {
+        if (cacheValue) {
+          this.form.patchValue({ [PILLARS]: cacheValue });
+        }
+      });
+  }
+
+  subscribeToValueChanges() {
+    this.form.valueChanges.pipe(skip(1), untilDestroyed(this)).subscribe((value) => {
+      if (this.form.valid) {
+        this.storage.setItemSubscribe(this.controlKey, value[PILLARS]);
       }
     });
-
-    this.form.valueChanges
-      .pipe(skip(1)) // todo skiping 1 not to set same value to cache
-      .subscribe((value) => {
-        this.storage.setItemSubscribe(this.controlKey, value[PILLARS]);
-      });
   }
 }

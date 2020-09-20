@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { KalturaApiHandShakeService } from '../kaltura-api-handshake.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Session } from '../../sessions/models';
 
 declare var kWidget;
 
@@ -11,11 +12,12 @@ declare var kWidget;
   templateUrl: './kaltura-live-stream.component.html',
   styleUrls: ['./kaltura-live-stream.component.scss'],
 })
-export class KalturaLiveStreamPlayerComponent implements OnInit {
+export class KalturaLiveStreamPlayerComponent implements OnChanges {
   @Input() width = 600;
   @Input() height = 400;
-  @Input() isLiveSession: boolean;
-  @Input() sessionDetails: any;
+  // @Input() isLiveSession: boolean; // ! @pratheeshkumarrd this is never used
+  @Input() uid: string;
+  @Input() eventId: number;
   @Input() sessionType: number;
   @Input() role: string;
   @Input() userContextualRole: number;
@@ -27,14 +29,26 @@ export class KalturaLiveStreamPlayerComponent implements OnInit {
     private domSanitizer: DomSanitizer
   ) {}
 
-  ngOnInit() {
-    this.kalturaApiHandShakeService.getKalturaSession();
-    this.openLiveStreamSession();
+  ngOnChanges(changes: SimpleChanges) {
+    // only call live stream session if all needed arguments have values
+    const changesKeys = Object.keys(changes);
+    const liveStreamArgs = ['uid', 'eventId', 'sessionType', 'role', 'userContextualRole'];
+    const isLiveStreamArgChanged = changesKeys.some((value) => liveStreamArgs.includes(value));
+    if (isLiveStreamArgChanged) {
+      const allLiveStreamArgsHasValue = liveStreamArgs.every(
+        (key) => typeof this[key] !== 'undefined' && this[key] !== null
+      );
+
+      if (allLiveStreamArgsHasValue) {
+        this.kalturaApiHandShakeService.getKalturaSession(); // ! @pratheeshkumarrd should this be set only once on init?
+        this.openLiveStreamSession();
+      }
+    }
   }
 
   openLiveStreamSession() {
     this.kalturaApiHandShakeService
-      .createSession(this.sessionDetails, this.role, this.sessionType, this.userContextualRole)
+      .createSession(this.uid, this.eventId, this.role, this.sessionType, this.userContextualRole)
       .pipe(untilDestroyed(this))
       .subscribe(
         (result) => {

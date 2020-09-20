@@ -1,6 +1,7 @@
 import { MatCalendar, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Session } from '../../../../sessions/models';
 
 @Component({
   selector: 'app-event-calendar',
@@ -71,9 +72,9 @@ export class EventCalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.datesArray = this.sessions.map((session) => {
-      const { date } = session.dateTimeDuration;
-      const key = this.dateToKey(new Date(date));
+    this.datesArray = this.sessions.map((session: Session) => {
+      const { timestamp } = session?.when;
+      const key = this.dateToKey(timestamp.toDate());
 
       if (!this.eventMap[key]) {
         Object.assign(this.eventMap, {
@@ -82,7 +83,7 @@ export class EventCalendarComponent implements OnInit {
       }
 
       this.eventMap[key].push(session);
-      return date;
+      // return date;
     });
   }
 

@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionFormat } from './../../../sessions/models/session';
-import { SessionType } from '../../../sessions/models/session';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { SessionsFacade } from '../../../services/sessions.facade';
 import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-handshake.service';
 import { environment } from '../../../../environments/environment';
+import { Format, Type } from '../../../sessions/enums';
+import { IMAGE } from '../../components/session-form-metadata/session-form-metadata.component';
+import { filter, map, pluck, switchMap, tap } from 'rxjs/operators';
+import { iif, Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { DocumentReference } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-session-form',
@@ -12,11 +16,13 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./session-form.component.scss'],
 })
 export class SessionFormComponent extends DynaFormBaseComponent implements OnInit {
+  commonLayoutClass = 'layout-rows-xs';
   showAllFields: boolean;
   showLoader = false;
 
   constructor(
     private sessionsFacade: SessionsFacade,
+    private storage: AngularFireStorage,
     private kalturaApiHandShakeService: KalturaApiHandShakeService
   ) {
     super();
@@ -27,18 +33,18 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   }
 
   get isCoaching() {
-    return this.getFormControl('type').value === SessionType.Coaching;
+    return this.getFormControl('type').value === Type.Coaching;
   }
 
   get isLivestreaming() {
-    return this.getFormControl('format').value === SessionFormat.LiveStreaming;
+    return this.getFormControl('format').value === Format.LiveStreaming;
   }
 
   get isCourse() {
-    return SessionType[this.getFormControl('type').value] === SessionType.Course;
+    return Type[this.getFormControl('type').value] === Type.Course;
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.showLoader = true;
     const currentDate = Date.now();
 
@@ -56,11 +62,21 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     this.kalturaApiHandShakeService.createLiveStreamEntry(eventCreationDetails).subscribe(
       (sessionRes) => {
         this.sessionsFacade
-          .postSession('sessions', {
+          .setSession('sessions', {
             ...this.form.value,
             resourceId: sessionRes.resourceId,
             eventId: sessionRes.eventId,
           })
+          .pipe(
+            filter(Boolean),
+            switchMap((doc) =>
+              iif(
+                // is user selected image file
+                () => this.getFormControl(IMAGE).value,
+                this.storeImgFile$(doc as DocumentReference, this.getFormControl(IMAGE).value)
+              )
+            )
+          )
           .subscribe(
             (session) => {
               this.showLoader = false;
@@ -79,6 +95,27 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
           `Kaltura Session creation: createLiveStreamEntry() :: ${error} while creating session`
         );
       }
+    );
+  }
+
+  uploadFile$(id: string, file: File): Observable<{ downloadURL: string }> {
+    const path = 'images/sessions/thumbs';
+    // console.log('heeyyy', this.storage.ref(path).child(id).put(file));
+
+    return this.storage
+      .ref(path)
+      .child(id)
+      .put(file)
+      .snapshotChanges()
+      .pipe(map(({ ref }) => ref.getDownloadURL()));
+  }
+
+  storeImgFile$({ id }: DocumentReference, file: File) {
+    return this.uploadFile$(id, file).pipe(
+      tap(console.log),
+      switchMap(({ downloadURL: imgUrl }) =>
+        this.sessionsFacade.setSession(`sessions/${id}`, { imgUrl })
+      )
     );
   }
 }

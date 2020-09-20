@@ -1,49 +1,58 @@
 import {
-  Pillar,
-  JoieMovement,
-  JoieEmotions,
-  JoieConnections,
-  JoieProfessional,
-  JoieSpirit,
-} from '../../../../../sessions/models';
-import { Component, Input, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+  MovementTargetsLiteralsMap,
+  EmotionsTargetsLiteralsMap,
+  ConnectionTargetsLiteralsMap,
+  ProfessionalTargetsLiteralsMap,
+  ConnectionsTargets,
+  SpiritTargets,
+  ProfessionalTargets,
+  SpiritTargetsLiteralsMap,
+} from './../../../../../enums/pillars-targets.enum';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
 import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
 import { PILLARS } from '../../../../../pillar-list/pillar-list.component';
 import { OnboardingService } from '../../../../shared/onboarding.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { MovementTargets, EmotionsTargets, Pillar } from '../../../../../enums';
+import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 
 export const ACTIVITIES = 'activities';
+type TypeActivitiesLiteralMap = Map<
+  MovementTargets | EmotionsTargets | ConnectionsTargets | SpiritTargets | ProfessionalTargets,
+  string
+>; // need it to explicitly give a type the the activity map because typeScript throws error https://github.com/microsoft/TypeScript/issues/8936
+@UntilDestroy()
 @Component({
   selector: 'app-activities-box',
   templateUrl: './activities-box.component.html',
   styleUrls: ['./activities-box.component.scss'],
 })
-export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
   @Input() pillar;
   public form: FormGroup;
-  formValueChanges$;
   pillarEnum = Pillar;
-  controlKey;
+  controlKey: string;
   cachedValues = null;
+  movementLiteralsMap = MovementTargetsLiteralsMap;
+  emotionsLiteralsMap = EmotionsTargetsLiteralsMap;
+  connectionsLiteralsMap = ConnectionTargetsLiteralsMap;
+  spiritLiteralsMap = SpiritTargetsLiteralsMap;
+  professionalLiteralsMap = ProfessionalTargetsLiteralsMap;
 
-  get activitiesEnum() {
+  get activitiesLiteralsMap(): TypeActivitiesLiteralMap {
     switch (this.pillarEnum[this.pillar]) {
       case Pillar.Movement:
-        return JoieMovement;
+        return this.movementLiteralsMap;
       case Pillar.Emotions:
-        return JoieEmotions;
+        return this.emotionsLiteralsMap;
       case Pillar.Connections:
-        return JoieConnections;
-      case Pillar.Professional:
-        return JoieProfessional;
+        return this.connectionsLiteralsMap;
       case Pillar.Spirit:
-        return JoieSpirit;
+        return this.spiritLiteralsMap;
+      case Pillar.Professional:
+        return this.professionalLiteralsMap;
     }
-  }
-
-  get activityKeys() {
-    return Object.keys(this.activitiesEnum);
   }
 
   get activitiesFormArray() {
@@ -56,7 +65,7 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit 
 
   get values() {
     return this.form.value[this.pillar]
-      .map((selected, i) => (selected ? this.activitiesEnum[this.activityKeys[i]] : null))
+      .map((selected, i) => (selected ? Array.from(this.activitiesLiteralsMap.keys())[i] : null))
       .filter((v) => v !== null);
   }
 
@@ -71,34 +80,51 @@ export class ActivitiesBoxComponent implements OnInit, OnDestroy, AfterViewInit 
       [this.pillar]: new FormArray([], [atLeastOneIsCheckedValidator()]),
     });
 
-    this.onboardingService.addCheckboxes(this.activityKeys, this.activitiesFormArray);
-
     this.controlKey = USER_ONBOARDING + '-' + PILLARS + '-' + this.pillar;
 
-    this.storage.getItem(this.controlKey).subscribe((cacheValue) => {
-      if (cacheValue) {
-        this.activitiesFormArray.setValue(cacheValue);
-      }
-    });
+    this.initForm();
   }
 
   ngAfterViewInit(): void {
-    this.formValueChanges$ = this.form.valueChanges.subscribe((changedVal) => {
+    this.subscribeToValueChanges();
+  }
+
+  initForm() {
+    this.onboardingService.addCheckboxes(
+      Array.from(this.activitiesLiteralsMap.keys()),
+      this.activitiesFormArray
+    );
+
+    this.getCache();
+  }
+
+  getCache() {
+    this.storage
+      .getItem(this.controlKey)
+      .pipe(untilDestroyed(this))
+      .subscribe((cacheValue) => {
+        if (cacheValue) {
+          this.activitiesFormArray.setValue(cacheValue);
+        }
+      });
+  }
+
+  subscribeToValueChanges() {
+    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe((changedVal) => {
       if (this.form.valid) {
         this.storage.setItemSubscribe(this.controlKey, changedVal[this.pillar]);
       }
     });
   }
-
-  ngOnDestroy(): void {
-    this.formValueChanges$.unsubscribe();
-  }
-
   handleSelect(index, selected) {
     if (selected) {
       this.activitiesFormArray.controls[index].patchValue(true);
     } else {
       this.activitiesFormArray.controls[index].patchValue(false);
     }
+  }
+
+  asIsOrder(a, b) {
+    return 1;
   }
 }
