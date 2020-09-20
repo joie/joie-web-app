@@ -7,14 +7,15 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   styleUrls: ['./image-upload-select.component.scss'],
 })
 export class ImageUploadSelectComponent {
-  previewImage?: SafeUrl;
+  previewImage?: SafeUrl = this.sanitization.bypassSecurityTrustUrl('https://picsum.photos/40/40');
   @Output() selected = new EventEmitter<File>();
 
   constructor(private sanitization: DomSanitizer) {}
 
   chooseFile(event) {
-    const imgUrl = URL.createObjectURL(event.target.files[0]);
+    const file = event.target.files[0];
+    const imgUrl = URL.createObjectURL(file);
     this.previewImage = this.sanitization.bypassSecurityTrustUrl(imgUrl);
-    this.selected.emit(event.target.files[0]);
+    this.selected.emit(file);
   }
 }
