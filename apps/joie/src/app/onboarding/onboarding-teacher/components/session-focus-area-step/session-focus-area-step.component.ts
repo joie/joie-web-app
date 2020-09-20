@@ -23,7 +23,6 @@ const DEFAULT_CHECKBOX = AgeGroups.Adults;
 })
 export class SessionFocusAreaStepComponent {
   form: FormGroup;
-  // groupsEnum = AgeGroups;
   groupsLiteralsMap = AgeGroupsLiteralsMap;
   formValueChanges$: Subscription;
   controlKey = TEACHER_ONBOARDING + '-' + MARKET;
@@ -96,7 +95,6 @@ export class SessionFocusAreaStepComponent {
         [SESSION_AREA]: value[SESSION_AREA],
       });
       if (this.form.valid) {
-        // not caching invalid value
         this.storage.setItemSubscribe(this.controlKey, value);
       }
     });

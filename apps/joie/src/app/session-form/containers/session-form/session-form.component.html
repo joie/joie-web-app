@@ -1,22 +1,24 @@
 <h2 mat-dialog-title>Create a session</h2>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form"
+      (ngSubmit)="onSubmit()">
   <mat-dialog-content class="mat-typography">
     <!-- {{ form.value | json }} -->
     <div [class]="commonLayoutClass">
       <app-session-form-metadata [class]="commonLayoutClass"></app-session-form-metadata>
-      <button mat-button color="primary" (click)="showAllFields = true" *ngIf="!showAllFields">
+      <button mat-button
+              color="primary"
+              (click)="showAllFields = true"
+              *ngIf="!showAllFields">
         Show all fields...
       </button>
       <ng-container *ngIf="showAllFields">
-        <app-session-form-date-time-slots
-          *ngIf="isCoaching"
-          [class]="commonLayoutClass"
-        ></app-session-form-date-time-slots>
+        <app-session-form-date-time-slots *ngIf="isCoaching"
+                                          [class]="commonLayoutClass"></app-session-form-date-time-slots>
 
-        <app-session-form-date-time
-          *ngIf="isLivestreaming && !isCoaching"
-          [class]="commonLayoutClass"
-        ></app-session-form-date-time>
+        <app-session-form-date-time *ngIf="isLivestreaming && !isCoaching"
+                                    [class]="commonLayoutClass"></app-session-form-date-time>
+        <app-session-form-repetitions *ngIf="isLivestreaming"
+                                      [class]="commonLayoutClass"></app-session-form-repetitions>
 
         <app-session-form-marketing [class]="commonLayoutClass"></app-session-form-marketing>
         <app-session-form-attributes [class]="commonLayoutClass"> </app-session-form-attributes>
@@ -24,6 +26,7 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-flat-button color="primary">Submit</button>
+    <button mat-flat-button
+            color="primary">Submit</button>
   </mat-dialog-actions>
 </form>

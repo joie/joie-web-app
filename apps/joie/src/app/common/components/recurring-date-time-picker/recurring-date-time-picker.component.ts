@@ -58,7 +58,6 @@ export class RecurringDateTimePickerComponent implements OnDestroy {
     if (this.form.invalid) {
       return;
     }
-
     this.submission.emit(this.normalizeValue(this.form.value));
     this.form.reset();
     this.datePicker.nativeElement.focus();
