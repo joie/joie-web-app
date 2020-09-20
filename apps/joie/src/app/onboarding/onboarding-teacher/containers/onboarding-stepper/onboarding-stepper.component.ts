@@ -1,50 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { TeacherOnboardingFormService } from './../../services/teacher-onboarding-form.service';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
-interface Teacher {
-  firstNameCtrl: string;
-  lastNameCtrl: string;
-  emailCtrl: string;
-  phoneNumberCtrl: string;
-  sessionAreaCtrl: string;
-  focusGroupsCtrl: Array<string>;
-  sesionTypesCtrl: Array<string>;
-  teachingEpCtrl: string;
-  teachingPortfolioUrlCtrl: string;
-  addedValueDescriptionCtrl: string;
-}
 
 @Component({
   templateUrl: './onboarding-stepper.component.html',
   styleUrls: ['./onboarding-stepper.component.scss'],
 })
 export class OnboardingStepperComponent implements OnInit {
-  teacher = {} as Teacher;
-  currentFormGroup = { status: 'INVALID', value: {} };
   public steps: string[];
-  public selectedStep = 0;
+  public selectedStep: number = 0;
+  public selectedStepRef = null;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
-
-  ngOnInit() {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private cdRef: ChangeDetectorRef
+  ) {
     this.steps = this.route.snapshot.routeConfig.children.map((child) => {
       return child.path;
     });
-    const step = this.steps[0];
+  }
+
+  ngOnInit() {
+    let step = this.steps[0];
     this.router.navigate([step], {
       relativeTo: this.route,
     });
   }
+  ngAfterViewChecked(): void {
+    this.cdRef.detectChanges();
+  }
 
   onActivate(componentRef) {
-    this.currentFormGroup = componentRef.formGroup;
+    this.selectedStepRef = componentRef;
+  }
+
+  isCompleted() {
+    return this.selectedStepRef ? this.selectedStepRef.isValid() : true;
   }
 
   selectionChanged(event: any) {
-    Object.assign(this.teacher, this.currentFormGroup.value);
     this.selectedStep = event.selectedIndex;
     this.router.navigate([this.steps[this.selectedStep]], {
-      state: { teacher: this.teacher },
       relativeTo: this.route,
     });
   }

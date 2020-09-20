@@ -40,10 +40,10 @@ import { MainLayoutComponent } from '../common/components/main-layout/main-layou
     MatIconModule,
   ],
   exports: [
-    AccountNotificationSetingsComponent, // todo rm after finishing migration
-    AccountDeleteComponent,
-    AccountInfoComponent,
-    AccountBankingComponent,
+    // AccountNotificationSetingsComponent, // todo rm after finishing migration
+    // AccountDeleteComponent,
+    // AccountInfoComponent,
+    // AccountBankingComponent,
   ],
 })
 export class AccountModule {}
