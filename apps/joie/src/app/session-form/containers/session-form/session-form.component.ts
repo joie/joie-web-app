@@ -5,7 +5,7 @@ import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-
 import { environment } from '../../../../environments/environment';
 import { Format, Type } from '../../../sessions/enums';
 import { IMAGE } from '../../components/session-form-metadata/session-form-metadata.component';
-import { filter, map, pluck, switchMap, tap } from 'rxjs/operators';
+import { filter, finalize, map, pluck, switchMap, tap } from 'rxjs/operators';
 import { iif, Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { DocumentReference } from '@angular/fire/firestore';
@@ -98,24 +98,30 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     );
   }
 
+  getFileExtension(filename: string) {
+    return filename.substring(filename.lastIndexOf('.') + 1, filename.length) || filename;
+  }
+
   uploadFile$(id: string, file: File): Observable<{ downloadURL: string }> {
-    const path = 'images/sessions/thumbs';
+    console.log(file);
+    const path = `images/sessions/${id}`;
+    const name = `thumbnail${this.getFileExtension(file.name)}`;
     // console.log('heeyyy', this.storage.ref(path).child(id).put(file));
 
-    return this.storage
-      .ref(path)
-      .child(id)
-      .put(file)
-      .snapshotChanges()
-      .pipe(map(({ ref }) => ref.getDownloadURL()));
+    const customMetadata = {};
+
+    const ref = this.storage.ref(path).child(name);
+    console.log(ref);
+    return ref.put(file, { customMetadata }).then(() =>);
+    // .pipe(map(({ ref }) => ref.getDownloadURL()));
   }
 
   storeImgFile$({ id }: DocumentReference, file: File) {
     return this.uploadFile$(id, file).pipe(
-      tap(console.log),
-      switchMap(({ downloadURL: imgUrl }) =>
-        this.sessionsFacade.setSession(`sessions/${id}`, { imgUrl })
-      )
+      tap(console.log)
+      // switchMap(({ downloadURL: imgUrl }) =>
+      //   this.sessionsFacade.setSession(`sessions/${id}`, { imgUrl })
+      // )
     );
   }
 }

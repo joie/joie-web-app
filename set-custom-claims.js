@@ -1,7 +1,7 @@
-const argv = require("yargs").argv;
-var admin = require("firebase-admin");
+const argv = require('yargs').argv;
+var admin = require('firebase-admin');
 
-const preDefinedClaims = ["admin", "teacher", "author", "student"];
+const preDefinedClaims = ['admin', 'teacher'];
 const claims = preDefinedClaims.reduce(
   (acc, claim) => ({
     ...acc,
@@ -12,11 +12,11 @@ const claims = preDefinedClaims.reduce(
 
 const { uid } = argv;
 
-var serviceAccount = require("./serviceAccountKey.json");
+var serviceAccount = require('./serviceAccountKey.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://joie-app.firebaseio.com",
+  databaseURL: 'https://joie-app.firebaseio.com',
 });
 
 admin
