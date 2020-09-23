@@ -5,17 +5,15 @@ import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-
 import { environment } from '../../../../environments/environment';
 import { Format, Type } from '../../../sessions/enums';
 import { IMAGE } from '../../components/session-form-metadata/session-form-metadata.component';
-import { filter, finalize, last, map, mergeMap, pluck, switchMap, take, tap } from 'rxjs/operators';
-import { combineLatest, concat, from, iif, Observable } from 'rxjs';
+import { finalize, last, map, switchMap, take, tap } from 'rxjs/operators';
+import { iif, Observable } from 'rxjs';
 import {
   AngularFireStorage,
   AngularFireStorageReference,
   AngularFireUploadTask,
 } from '@angular/fire/storage';
-import { AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
+import { DocumentReference } from '@angular/fire/firestore';
 import { AuthFacade } from '../../../auth/services/auth.facade';
-import { Owner } from '../../../models';
-import { Session } from '../../../sessions/models';
 
 @Component({
   selector: 'app-session-form',
@@ -122,16 +120,12 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     );
   }
 
-  // async getUrl(ref: firebase.storage.Reference) {
-  //   const url = await ref.getDownloadURL();
-  //   console.log(ref);
-  //   return url;
-  // }
-
-  // storeThumbnailRef$({ ref: { fullPath } }: firebase.storage.UploadTaskSnapshot) {
-  //   console.log(arguments);
-  //   return this.sessionsFacade.setSession('43g4ge', { imgUrl: fullPath });
-  // }
+  storeThumbnailRef$(
+    { ref: { fullPath } }: firebase.storage.UploadTaskSnapshot,
+    sessionId: string
+  ) {
+    return this.sessionsFacade.setSession(sessionId, { imgUrl: fullPath });
+  }
 
   storeThumbnailIfAny$({ id: sessionId }: DocumentReference) {
     const { value: file } = this.getFormControl(IMAGE);
@@ -139,12 +133,9 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     return iif(
       // is user selected thumbnail image file
       () => Boolean(file),
-      this.uploadThumbnail$(sessionId, file)
-      // .pipe(switchMap(this.storeThumbnailRef$.bind(this)))
+      this.uploadThumbnail$(sessionId, file).pipe(
+        switchMap((snapshot) => this.storeThumbnailRef$(snapshot, sessionId))
+      )
     );
   }
-
-  // setSession$(session: Session) {
-  //   return this.sessionsFacade.setSession('', session);
-  // }
 }

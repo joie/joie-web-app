@@ -2,9 +2,9 @@
   <mat-card class="card" *ngFor="let session of sessions">
     <app-figure-image [style.--width]="3" [style.--height]="2">
       <img
+        [fireStorageRef]="session.imgUrl"
         loading="lazy"
-        src="/images/sessions/{{ session.id }}/thumbnail."
-        alt="Thumbnail photo of a session"
+        alt="Thumbnail image of a session {{ session.title }}"
       />
     </app-figure-image>
 
