@@ -5,10 +5,15 @@ import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-
 import { environment } from '../../../../environments/environment';
 import { Format, Type } from '../../../sessions/enums';
 import { IMAGE } from '../../components/session-form-metadata/session-form-metadata.component';
-import { filter, map, pluck, switchMap, tap } from 'rxjs/operators';
+import { finalize, last, map, switchMap, take, tap } from 'rxjs/operators';
 import { iif, Observable } from 'rxjs';
-import { AngularFireStorage } from '@angular/fire/storage';
+import {
+  AngularFireStorage,
+  AngularFireStorageReference,
+  AngularFireUploadTask,
+} from '@angular/fire/storage';
 import { DocumentReference } from '@angular/fire/firestore';
+import { AuthFacade } from '../../../auth/services/auth.facade';
 
 @Component({
   selector: 'app-session-form',
@@ -23,7 +28,8 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   constructor(
     private sessionsFacade: SessionsFacade,
     private storage: AngularFireStorage,
-    private kalturaApiHandShakeService: KalturaApiHandShakeService
+    private kalturaApiHandShakeService: KalturaApiHandShakeService,
+    private authFacade: AuthFacade
   ) {
     super();
   }
@@ -59,35 +65,30 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
       endDate: new Date(currentDate + 60 * 60 * 1000), // TODO: end date will be populated based on the user selected date
       tags: environment.kalturaConfig.resourceTags,
     };
+    // TODO move Kaltura to cloud function onCreate trigger
     this.kalturaApiHandShakeService.createLiveStreamEntry(eventCreationDetails).subscribe(
-      (sessionRes) => {
-        this.sessionsFacade
-          .setSession('sessions', {
-            ...this.form.value,
-            resourceId: sessionRes.resourceId,
-            eventId: sessionRes.eventId,
-          })
+      ({ resourceId, eventId }) => {
+        this.authFacade.owner$
           .pipe(
-            filter(Boolean),
-            switchMap((doc) =>
-              iif(
-                // is user selected image file
-                () => this.getFormControl(IMAGE).value,
-                this.storeImgFile$(doc as DocumentReference, this.getFormControl(IMAGE).value)
-              )
-            )
+            take(1),
+            map((owner) => ({
+              owner,
+              resourceId,
+              eventId,
+              ...this.form.value,
+            })),
+            switchMap((session) => this.sessionsFacade.setSession('', session)),
+            switchMap(this.storeThumbnailIfAny$.bind(this)),
+            tap(console.log),
+            finalize(() => (this.showLoader = false))
           )
-          .subscribe(
-            (session) => {
-              this.showLoader = false;
-            },
-            (error) => {
-              this.showLoader = false;
+          .subscribe({
+            error: (error) => {
               console.log(
                 `Session creation form : submit() :: ${error} while inserting session details`
               );
-            }
-          );
+            },
+          });
       },
       (error) => {
         this.showLoader = false;
@@ -98,23 +99,42 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     );
   }
 
-  uploadFile$(id: string, file: File): Observable<{ downloadURL: string }> {
-    const path = 'images/sessions/thumbs';
-    // console.log('heeyyy', this.storage.ref(path).child(id).put(file));
-
-    return this.storage
-      .ref(path)
-      .child(id)
-      .put(file)
-      .snapshotChanges()
-      .pipe(map(({ ref }) => ref.getDownloadURL()));
+  getFileExtension(filename: string) {
+    return filename.substring(filename.lastIndexOf('.') + 1, filename.length) || filename;
   }
 
-  storeImgFile$({ id }: DocumentReference, file: File) {
-    return this.uploadFile$(id, file).pipe(
-      tap(console.log),
-      switchMap(({ downloadURL: imgUrl }) =>
-        this.sessionsFacade.setSession(`sessions/${id}`, { imgUrl })
+  uploadThumbnail$(id: string, file: File): Observable<firebase.storage.UploadTaskSnapshot> {
+    return this.authFacade.uid$.pipe(
+      switchMap((uid) => {
+        const path = `images/${uid}/sessions/${id}`;
+        const name = `thumbnail.${this.getFileExtension(file.name)}`;
+
+        const customMetadata = {};
+
+        const ref: AngularFireStorageReference = this.storage.ref(path).child(name);
+        const uploadTask: AngularFireUploadTask = ref.put(file, { customMetadata });
+
+        // take only last - dont observe any other changes in between
+        return uploadTask.snapshotChanges().pipe(last());
+      })
+    );
+  }
+
+  storeThumbnailRef$(
+    { ref: { fullPath } }: firebase.storage.UploadTaskSnapshot,
+    sessionId: string
+  ) {
+    return this.sessionsFacade.setSession(sessionId, { imgUrl: fullPath });
+  }
+
+  storeThumbnailIfAny$({ id: sessionId }: DocumentReference) {
+    const { value: file } = this.getFormControl(IMAGE);
+
+    return iif(
+      // is user selected thumbnail image file
+      () => Boolean(file),
+      this.uploadThumbnail$(sessionId, file).pipe(
+        switchMap((snapshot) => this.storeThumbnailRef$(snapshot, sessionId))
       )
     );
   }

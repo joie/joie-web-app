@@ -1,4 +1,4 @@
-<form class="layout-rows" [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm.value)">
+<form class="layout-rows-xs" [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm.value)">
   <mat-form-field appearance="outline">
     <mat-label>Email</mat-label>
     <input
@@ -38,7 +38,5 @@
   <!-- <button type="submit" mat-flat-button>
     Submit
   </button> -->
-  <button type="submit" mat-flat-button [disabled]="contactForm.invalid">
-    Submit
-  </button>
+  <button type="submit" mat-flat-button [disabled]="contactForm.invalid">Submit</button>
 </form>

@@ -9,6 +9,7 @@ import { IconComponent } from './components/icon/icon.component';
 import { ImageUploadSelectComponent } from './components/image-upload-select/image-upload-select.component';
 
 import { MaterialModule } from '../core/material.module';
+import { FireStorageRefDirective } from './directives/fire-storage-ref/fire-storage-ref.directive';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MaterialModule } from '../core/material.module';
     FigureImageComponent,
     IconComponent,
     ImageUploadSelectComponent,
+    FireStorageRefDirective,
   ],
   imports: [CommonModule, QuicklinkModule, ReactiveFormsModule, MaterialModule],
   exports: [
@@ -30,6 +32,7 @@ import { MaterialModule } from '../core/material.module';
     MaterialModule,
     IconComponent,
     ImageUploadSelectComponent,
+    FireStorageRefDirective,
   ],
 })
 export class SharedModule {}

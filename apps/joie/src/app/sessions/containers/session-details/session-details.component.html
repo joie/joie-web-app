@@ -4,7 +4,7 @@
       <div class="container-condense text-center">
         <h4>JoieSprit</h4>
         <h1>{{ session?.title }}</h1>
-        <h3>{{ session?.owner?.name }}</h3>
+        <h3>{{ session?.owner?.displayName }}</h3>
         <div>
           {{ session?.when?.timestamp?.toMillis() | date }}
         </div>

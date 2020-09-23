@@ -1,7 +1,11 @@
 <ng-container *ngIf="sessions$ | async as sessions">
   <mat-card class="card" *ngFor="let session of sessions">
     <app-figure-image [style.--width]="3" [style.--height]="2">
-      <img src="https://source.unsplash.com/random" alt="Thumbnail photo of a session" />
+      <img
+        [fireStorageRef]="session.imgUrl"
+        loading="lazy"
+        alt="Thumbnail image of a session {{ session.title }}"
+      />
     </app-figure-image>
 
     <mat-card-title>
@@ -9,7 +13,7 @@
     </mat-card-title>
 
     <mat-card-subtitle>
-      <h5>{{ session.owner?.name }}</h5>
+      <h5>{{ session.owner?.displayName }}</h5>
     </mat-card-subtitle>
 
     <mat-card-content>

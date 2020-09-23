@@ -19,7 +19,8 @@ export class SessionsFacade {
     return this.db.get$<Session>(`sessions/${id}`) as Observable<Session>;
   }
 
-  setSession(path: string, data: Partial<Session>) {
-    return this.db.set$(path, data).pipe(take(1));
+  setSession(id: string, data: Partial<Session>) {
+    const ref = id ? `sessions/${id}` : 'sessions';
+    return this.db.set$(ref, data).pipe(take(1));
   }
 }
