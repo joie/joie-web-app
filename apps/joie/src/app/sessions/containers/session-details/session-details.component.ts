@@ -5,6 +5,7 @@ import { SessionsFacade } from '../../../services/sessions.facade';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { pluck, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { AuthFacade } from '../../../auth/services/auth.facade';
 
 @UntilDestroy()
 @Component({
@@ -18,7 +19,7 @@ export class SessionDetailsComponent {
     shareReplay()
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
-  uid$ = this.afAuth.authState.pipe(pluck('uid')); // TODO move to an auth facade
+  uid$ = this.authFacade.uid$;
 
   // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
   //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(
@@ -45,7 +46,7 @@ export class SessionDetailsComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private sessionsFacade: SessionsFacade,
-    private afAuth: AngularFireAuth
+    private authFacade: AuthFacade
   ) {}
 
   // get kalturaSessionDetails$(): Observable<SessionStartActionArgs> {

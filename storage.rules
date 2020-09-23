@@ -12,9 +12,13 @@ service firebase.storage {
       allow read, write: if false;
     }
 
-		match /images/sessions/{sessionId}/{fileName} {
-      allow read: if true;
-      allow write: if request.auth.token.teacher == true && lessThan5Mb();
+		match /images/{uid} {
+      allow write: if request.auth.uid == uid && lessThan5Mb();
+
+      match /sessions/{sessionId} {
+        allow read: if true;
+        allow write: if request.auth.token.teacher == true;
+      }
     }
   }
 }

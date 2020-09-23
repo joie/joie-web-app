@@ -60,6 +60,7 @@
     "@types/stripe-v3": "^3.1.20",
     "eslint": "^7.7.0",
     "firebase": "^7.17.1",
+    "firebase-functions": "^3.11.0",
     "firebaseui": "^4.6.1",
     "firebaseui-angular": "^5.0.0",
     "kaltura-ngx-client": "file:libs/kaltura-ngx-client.tgz",
