@@ -1,10 +1,17 @@
-<h4>Banking</h4>
-<button>
-  <mat-icon>add</mat-icon>
-  Add credit card
-</button>
-<fieldset class="stripe-card"
-          #cardElement>
-  <!-- A Stripe Element will be inserted here. -->
-  Stripe
-</fieldset>
+
+
+
+<form (submit)="handleForm($event)">
+
+
+	<div #cardElement>
+	  <!-- A Stripe Element will be inserted here. -->
+	</div>
+    
+    
+	<!-- Used to display Element errors. -->
+	<p>{{ cardErrors }}</p>
+    
+    
+      <button >Buy for ${{ amount / 100 }}.00</button>
+    </form>
