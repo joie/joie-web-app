@@ -124,7 +124,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     { ref: { fullPath } }: firebase.storage.UploadTaskSnapshot,
     sessionId: string
   ) {
-    return this.sessionsFacade.setSession(sessionId, { imgUrl: fullPath });
+    return this.sessionsFacade.setSession(sessionId, { thumbRef: fullPath });
   }
 
   storeThumbnailIfAny$({ id: sessionId }: DocumentReference) {

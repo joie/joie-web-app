@@ -1,10 +1,24 @@
 import * as functions from 'firebase-functions';
-import { db } from './config';
+import * as admin from 'firebase-admin';
+
+const SESSIONS = 'sessions';
+
+export const sessionDelete = functions.firestore
+  .document(`/${SESSIONS}/{sessionId}`)
+  .onDelete((snap) => {
+    const { thumbRef } = snap.data();
+
+    if (thumbRef) {
+      const bucket = admin.storage().bucket();
+      const folderPath = thumbRef.substring(0, thumbRef.lastIndexOf('/'));
+      return bucket.deleteFiles({ prefix: folderPath });
+    } else {
+      return null;
+    }
+  });
 
 // import { getUID, catchErrors } from './helpers';
 // import * as admin from 'firebase-admin';
-
-// const SESSIONS = 'sessions';
 
 // /**
 //  *  Use this function to read the user document from Firestore

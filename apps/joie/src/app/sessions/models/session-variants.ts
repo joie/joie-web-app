@@ -27,7 +27,7 @@ interface SessionMetadata extends Schedule, KalturaEvent {
   readonly createdAt: firestore.Timestamp;
   title: string;
   description?: string;
-  imgUrl: string;
+  thumbRef: string;
   owner: Owner;
   duration: Duration;
   level: CourseLevel;
