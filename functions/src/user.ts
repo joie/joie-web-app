@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 // import { sgMail, msg } from './email';
 import { db } from './config';
 
-const USERS = 'users';
+export const USERS = 'users';
 
 // type Role = 'subscriber' | 'admin';
 // interface User {
@@ -14,28 +14,22 @@ const USERS = 'users';
 //   // roles: Role[];
 // }
 
-// export const newUserSetup = functions.auth
-//   .user()
-//   .onCreate(async (user, context) => {
-//     const ref = db.collection(USER).doc(user.uid);
-//     const { uid, displayName, email, phoneNumber, photoURL } = user;
-//     const userPayload = {
-//       uid,
-//       displayName,
-//       email,
-//       phoneNumber,
-//       photoURL,
-//       joined: Date.now(),
-//     };
-//     await ref.set(userPayload, { merge: true });
+export const newUserSetup = functions.auth.user().onCreate(async (user, context) => {
+  const ref = db.collection(USERS).doc(user.uid);
+  const { uid } = user;
+  const userPayload = {
+    uid,
+    joined: Date.now(),
+  };
+  await ref.set(userPayload, { merge: true });
 
-//     // const body = 'Welcome to Fireship.io!';
-//     // const subject = 'Welcome aboard!';
+  //     // const body = 'Welcome to Fireship.io!';
+  //     // const subject = 'Welcome aboard!';
 
-//     // const emailMsg = msg([email], { body, subject });
+  //     // const emailMsg = msg([email], { body, subject });
 
-//     // return await sgMail.send(emailMsg);
-//   });
+  //     // return await sgMail.send(emailMsg);
+});
 
 // When a user deletes their account, clean up after them
 export const cleanupUser = functions.auth.user().onDelete(async (user) => {

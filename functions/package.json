@@ -9,17 +9,19 @@
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
     "test": "jest --clearCache && jest",
-    "test:watch": "jest --clearCache && jest --watchAll"
+    "test:watch": "jest --clearCache && jest --watchAll",
+    "_comment": "use the 'getCustomConfig' to retrieve config which will also includes stripe token",
+    "getCustomConfig": "firebase functions:config:get > .runtimeconfig.json"
   },
   "engines": {
-    "node": "10"
+    "node": "12"
   },
   "main": "lib/index.js",
   "dependencies": {
     "@google-cloud/logging": "^7.2.3",
     "firebase-admin": "~8.9.2",
     "firebase-functions": "^3.11.0",
-    "stripe": "^8.96.0"
+    "stripe": "^8.102.0"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",

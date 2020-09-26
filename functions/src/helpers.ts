@@ -10,7 +10,7 @@ export const catchErrors = async (promise: Promise<any>) => {
 };
 
 // Validates UID on callable functions
-export const getUID = (context: any) => {
+export const getUID = (context: functions.https.CallableContext) => {
   if (!context.auth) {
     throw new functions.https.HttpsError(
       'permission-denied',
@@ -24,10 +24,7 @@ export const getUID = (context: any) => {
 // Validates data payload on callable functions
 export const assert = (data: any, key: string) => {
   if (!data[key]) {
-    throw new functions.https.HttpsError(
-      'invalid-argument',
-      `function called without ${key} data`
-    );
+    throw new functions.https.HttpsError('invalid-argument', `function called without ${key} data`);
   } else {
     return data[key];
   }
