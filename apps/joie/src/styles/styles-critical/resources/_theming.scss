@@ -58,17 +58,11 @@ $joie-theme: mat-light-theme($joie-primary, $joie-accent, $joie-warn);
 // Custom Overrides
 // Foreground
 $foreground: map.get($joie-theme, foreground);
-$foreground: map.merge(
-  $foreground,
-  custom-palettes.$joie-light-theme-foreground
-);
+$foreground: map.merge($foreground, custom-palettes.$joie-light-theme-foreground);
 
 // Background
 $background: map.get($joie-theme, background);
-$background: map.merge(
-  $background,
-  custom-palettes.$joie-light-theme-background
-);
+$background: map.merge($background, custom-palettes.$joie-light-theme-background);
 
 // Merge theme
 $joie-theme: map.merge(

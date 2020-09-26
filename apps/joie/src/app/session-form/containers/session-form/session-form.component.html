@@ -28,9 +28,9 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-flat-button color="primary">
+    <button mat-flat-button color="primary" [disabled]="showLoader">
       <span class="spinner-text-group">
-        <mat-spinner [diameter]="16" color="warn"></mat-spinner>
+        <mat-spinner [diameter]="16" color="primary" *ngIf="showLoader"></mat-spinner>
         Submit
       </span>
     </button>

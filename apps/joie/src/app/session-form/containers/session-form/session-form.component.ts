@@ -88,12 +88,19 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
             finalize(() => (this.showLoader = false))
           )
           .subscribe({
-            next: () => {
-              this.snackBar.open('Cannonball!!', 'End now', {
-                duration: 500,
-                horizontalPosition: 'start',
-                verticalPosition: 'bottom',
-              });
+            complete: () => {
+              this.snackBar.open(
+                `Session ${this.form.value.id ? 'updated' : 'created'} successfully`,
+                'View',
+                {
+                  duration: 4000,
+                  horizontalPosition: 'end',
+                  verticalPosition: 'bottom',
+                }
+              );
+              // .onAction()
+              // .subscribe(() => console.log(43));
+              this.form.reset();
             },
             error: (error) => {
               console.log(
