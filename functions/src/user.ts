@@ -19,7 +19,7 @@ export const newUserSetup = functions.auth.user().onCreate(async (user, context)
   const { uid } = user;
   const userPayload = {
     uid,
-    joined: Date.now(),
+    joined: new Date(),
   };
   await ref.set(userPayload, { merge: true });
 

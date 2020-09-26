@@ -37,19 +37,19 @@ import { AuthModule } from './auth/auth.module';
     HttpClientModule,
   ],
   providers: [
-    {
-      provide: SETTINGS,
-      useValue: environment.production
-        ? undefined
-        : {
-            host: 'localhost:8080',
-            ssl: false,
-          },
-    },
-    {
-      provide: ORIGIN,
-      useValue: environment.production ? undefined : 'http://localhost:5001',
-    },
+    // {
+    //   provide: SETTINGS,
+    //   useValue: environment.production
+    //     ? undefined
+    //     : {
+    //         host: 'localhost:8080',
+    //         ssl: false,
+    //       },
+    // },
+    // {
+    //   provide: ORIGIN,
+    //   useValue: environment.production ? undefined : 'http://localhost:5001',
+    // },
   ],
   bootstrap: [AppComponent],
   exports: [],
