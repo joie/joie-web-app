@@ -25,7 +25,7 @@ body {
   }
 }
 
-[class*='container'i] {
+[class^='container'i] {
   $container-inline-size-variable-name: --container-inline-size;
   $max-inline-size-variable-name: --max-inline-size;
 
@@ -76,6 +76,7 @@ body {
     )
   );
   grid-column-gap: var(--joie-gutter);
+  grid-auto-rows: 1fr;
 }
 
 [class*='layout-rows'] {

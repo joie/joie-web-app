@@ -14,6 +14,11 @@ import {
 } from '@angular/fire/storage';
 import { DocumentReference } from '@angular/fire/firestore';
 import { AuthFacade } from '../../../auth/services/auth.facade';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-session-form',
@@ -29,7 +34,8 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     private sessionsFacade: SessionsFacade,
     private storage: AngularFireStorage,
     private kalturaApiHandShakeService: KalturaApiHandShakeService,
-    private authFacade: AuthFacade
+    private authFacade: AuthFacade,
+    private snackBar: MatSnackBar
   ) {
     super();
   }
@@ -79,10 +85,16 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
             })),
             switchMap((session) => this.sessionsFacade.setSession('', session)),
             switchMap(this.storeThumbnailIfAny$.bind(this)),
-            tap(console.log),
             finalize(() => (this.showLoader = false))
           )
           .subscribe({
+            next: () => {
+              this.snackBar.open('Cannonball!!', 'End now', {
+                duration: 500,
+                horizontalPosition: 'start',
+                verticalPosition: 'bottom',
+              });
+            },
             error: (error) => {
               console.log(
                 `Session creation form : submit() :: ${error} while inserting session details`

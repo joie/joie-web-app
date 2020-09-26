@@ -20,6 +20,7 @@ import { SessionFormDateTimeComponent } from './components/session-form-date-tim
 import { SessionFormComponent } from './containers/session-form/session-form.component';
 import { KalturaPlayerModule } from '../kaltura-player/kaltura-player.module';
 import { SessionFormRepetitionsComponent } from './components/session-form-repetitions/session-form-repetitions.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SessionFormRepetitionsComponent } from './components/session-form-repet
     MatSelectModule,
     MatInputModule,
     MatNativeDateModule,
+    MatSnackBarModule,
     DynaFormModule,
     KalturaPlayerModule,
   ],
