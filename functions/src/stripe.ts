@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import { getUID, catchErrors } from './helpers';
 import { db, stripe } from './config';
+import { createUserDocumentInFirestore } from '.';
 
 const CUSTOMERS = 'customers';
 
@@ -8,11 +9,20 @@ const CUSTOMERS = 'customers';
  *  Use this function to read the user document from Firestore
  */
 export const getUser = async (uid: string) => {
-  return await db
+  const userDocumentPromise = db
     .collection('users')
     .doc(uid)
     .get()
     .then((doc) => doc.data());
+
+  const userDocument = await userDocumentPromise;
+
+  if (userDocument) {
+    return userDocument;
+  } else {
+    await createUserDocumentInFirestore(uid);
+    return await userDocumentPromise;
+  }
 };
 
 /**

@@ -14,14 +14,17 @@ export const USERS = 'users';
 //   // roles: Role[];
 // }
 
-export const newUserSetup = functions.auth.user().onCreate(async (user, context) => {
-  const ref = db.collection(USERS).doc(user.uid);
-  const { uid } = user;
+export async function createUserDocumentInFirestore(uid: string) {
+  const ref = db.collection(USERS).doc(uid);
   const userPayload = {
     uid,
     joined: new Date(),
   };
   await ref.set(userPayload, { merge: true });
+}
+
+export const newUserSetup = functions.auth.user().onCreate(async (user, context) => {
+  await createUserDocumentInFirestore(user.uid);
 
   //     // const body = 'Welcome to Fireship.io!';
   //     // const subject = 'Welcome aboard!';
