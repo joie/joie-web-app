@@ -7,10 +7,7 @@
 .layout-hero {
   padding: 120px 0;
   position: relative;
-  [role='heading'][aria-level='1'] {
-    mix-blend-mode: color-burn;
-    color: #033138;
-  }
+
   // @media (min-width: layouts.$layout-breakpoint-xs) {
   //   &-context {
   //     max-inline-size: layouts.$layout-breakpoint-xs;
@@ -34,6 +31,14 @@
       $percentage: calc((#{layouts.$layout-breakpoint-xs} - 100vw) / #{$range} * 100);
       filter: blur(clamp(0px, calc(#{$percentage} / 10), 10px));
     }
+  }
+}
+
+[role='heading'] {
+  max-width: 28ch;
+  &[aria-level='1'] {
+    mix-blend-mode: color-burn;
+    color: #033138;
   }
 }
 

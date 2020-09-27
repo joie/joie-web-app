@@ -69,7 +69,7 @@ body {
   inline-size: 100%;
   display: grid;
   grid-template-columns: repeat(
-    auto-fill,
+    auto-fit,
     minmax(
       var(#{$column-items-min-inline-size-variable-name}, #{map.get($items-min-inline-sizes, lg)}),
       1fr

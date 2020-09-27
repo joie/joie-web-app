@@ -16,7 +16,7 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
   @Input() width = 600;
   @Input() height = 400;
   // @Input() isLiveSession: boolean; // ! @pratheeshkumarrd this is never used
-  @Input() uid: string;
+  @Input() displayName: string;
   @Input() eventId: number;
   @Input() sessionType: number;
   @Input() role: string;
@@ -32,7 +32,7 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     // only call live stream session if all needed arguments have values
     const changesKeys = Object.keys(changes);
-    const liveStreamArgs = ['uid', 'eventId', 'sessionType', 'role', 'userContextualRole'];
+    const liveStreamArgs = ['displayName', 'eventId', 'sessionType', 'role', 'userContextualRole'];
     const isLiveStreamArgChanged = changesKeys.some((value) => liveStreamArgs.includes(value));
     if (isLiveStreamArgChanged) {
       const allLiveStreamArgsHasValue = liveStreamArgs.every(
@@ -48,7 +48,13 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
 
   openLiveStreamSession() {
     this.kalturaApiHandShakeService
-      .createSession(this.uid, this.eventId, this.role, this.sessionType, this.userContextualRole)
+      .createSession(
+        this.displayName,
+        this.eventId,
+        this.role,
+        this.sessionType,
+        this.userContextualRole
+      )
       .pipe(untilDestroyed(this))
       .subscribe(
         (result) => {
