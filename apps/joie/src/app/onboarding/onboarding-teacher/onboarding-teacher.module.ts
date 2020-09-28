@@ -11,7 +11,6 @@ import { OnlinePresenceStepComponent } from './components/online-presence-step/o
 import { SharedModule } from '../../shared/shared.module';
 import { OnboardingSharedModule } from '../shared/onboarding-shared.module';
 import { PartnerUpComponent } from './containers/partner-up/partner-up.component';
-import { SubscribeToNewsletterComponent } from '../../common/components/subscribe-to-newsletter/subscribe-to-newsletter.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,6 @@ import { SubscribeToNewsletterComponent } from '../../common/components/subscrib
     SessionFocusAreaStepComponent,
     OnlinePresenceStepComponent,
     PartnerUpComponent,
-    SubscribeToNewsletterComponent,
   ],
   imports: [
     OnboardingTeacherRoutingModule,
