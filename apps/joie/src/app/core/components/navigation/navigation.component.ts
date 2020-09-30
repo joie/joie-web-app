@@ -15,6 +15,7 @@ export class NavigationComponent {
     { name: 'contact', path: ['/', 'contact'] },
     { name: 'Join as a teacher', path: ['/', 'onboarding', 'teacher'] },
     { name: 'onboarding/student', path: ['/', 'onboarding', 'student'] },
+    { name: 'mission', path: ['/', 'mission'] },
     // { name: 'teacher', path: ['/', 'teacher'] },
   ];
   activeLink = this.links[0];

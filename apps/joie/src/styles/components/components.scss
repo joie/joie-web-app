@@ -22,7 +22,9 @@
 @include mat-snack-bar-theme($joie-theme);
 
 .mat-card {
-  padding: var(--joie-gutter);
+  &#{&} {
+    padding: var(--joie-gutter);
+  }
 }
 
 .mat-card-image {

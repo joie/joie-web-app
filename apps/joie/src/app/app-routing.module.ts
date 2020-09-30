@@ -72,6 +72,10 @@ const routes: Routes = [
     path: 'contact',
     loadChildren: () => import('./contact/contact.module').then((m) => m.ContactModule),
   },
+  {
+    path: 'mission',
+    loadChildren: () => import('./mission/mission.module').then((m) => m.MissionModule),
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 

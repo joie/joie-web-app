@@ -1,0 +1,18 @@
+<div class="layout-columns">
+  <div>
+    <h3>We also send newsletters.</h3>
+
+    <p>
+      We stay in touch with our family to give you what you want (what you really, really want).
+    </p>
+  </div>
+  <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput placeholder="Here is my email" formControlName="email" />
+      <mat-hint>Your details will never be shared.</mat-hint>
+    </mat-form-field>
+
+    <button mat-flat-button type="submit" [disabled]="emailForm.invalid">Submit</button>
+  </form>
+</div>

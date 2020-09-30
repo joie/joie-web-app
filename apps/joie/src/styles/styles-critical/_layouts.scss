@@ -44,9 +44,13 @@ body {
     &:not(.container-fluid) {
       #{$container-inline-size-variable-name}: calc(#{$layout-breakpoint-lg});
     }
+  }
+  @media (min-width: $layout-breakpoint-sm) {
     &.container-condense {
       #{$container-inline-size-variable-name}: #{$layout-breakpoint-sm};
     }
+  }
+  @media (min-width: $layout-breakpoint-xs) {
     &.container-ultra-condense {
       #{$container-inline-size-variable-name}: #{$layout-breakpoint-xs};
     }
@@ -173,11 +177,36 @@ main {
     content-visibility: auto;
     contain-intrinsic-size: 500px;
     --section-block-gutter: 60px;
+    // --section-block-gutter-2: 160px;
     padding: var(--section-block-gutter) 0;
-    &.section-block-start-offset {
+    &[class^='section-block-start-offset'i] {
+      $offset-size-variable-name: --offset-size;
+      $offset-sizes: (
+        'sm': -1,
+        'md': -2,
+        'lg': -3,
+      );
+      @each $key, $value in $offset-sizes {
+        @at-root [class~='section-block-start-offset-#{$key}'i] {
+          #{$offset-size-variable-name}: #{map.get($offset-sizes, #{$key})};
+        }
+      }
       padding-top: 0;
-      margin-top: calc(-1 * var(--section-block-gutter));
+      margin-top: calc(
+        var(#{$offset-size-variable-name}, #{map.get($offset-sizes, 'sm')}) *
+          var(--section-block-gutter)
+      );
     }
+
+    // &.section-block-start-offset-2 {
+    //   padding-top: 0;
+    //   margin-top: calc(-1 * var(--section-block-gutter-2));
+
+    //   .mat-card {
+    //     padding: 50px 60px;
+    //     margin-bottom: 50px;
+    //   }
+    // }
 
     // .section-context {
     //   place-items: center;
@@ -185,6 +214,13 @@ main {
     //   grid-row-gap: 35px;
     // }
   }
+}
+
+footer {
+  background-color: var(--joie-color-primary);
+  color: var(--joie-color-background);
+  content-visibility: auto;
+  @extend main;
 }
 
 .dialog-as-drawer {

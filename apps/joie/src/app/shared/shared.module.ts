@@ -7,6 +7,7 @@ import { DialogRouterComponent } from './components/dialog-router/dialog-router.
 import { FigureImageComponent } from './components/figure-image/figure-image.component';
 import { IconComponent } from './components/icon/icon.component';
 import { ImageUploadSelectComponent } from './components/image-upload-select/image-upload-select.component';
+import { SubscribeToNewsletterComponent } from './components/subscribe-to-newsletter/subscribe-to-newsletter.component';
 
 import { MaterialModule } from '../core/material.module';
 import { FireStorageRefDirective } from './directives/fire-storage-ref/fire-storage-ref.directive';
@@ -18,6 +19,7 @@ import { FireStorageRefDirective } from './directives/fire-storage-ref/fire-stor
     FigureImageComponent,
     IconComponent,
     ImageUploadSelectComponent,
+    SubscribeToNewsletterComponent,
     FireStorageRefDirective,
   ],
   imports: [CommonModule, QuicklinkModule, ReactiveFormsModule, MaterialModule],
@@ -32,6 +34,7 @@ import { FireStorageRefDirective } from './directives/fire-storage-ref/fire-stor
     MaterialModule,
     IconComponent,
     ImageUploadSelectComponent,
+    SubscribeToNewsletterComponent,
     FireStorageRefDirective,
   ],
 })
