@@ -44,9 +44,13 @@ body {
     &:not(.container-fluid) {
       #{$container-inline-size-variable-name}: calc(#{$layout-breakpoint-lg});
     }
+  }
+  @media (min-width: $layout-breakpoint-sm) {
     &.container-condense {
       #{$container-inline-size-variable-name}: #{$layout-breakpoint-sm};
     }
+  }
+  @media (min-width: $layout-breakpoint-xs) {
     &.container-ultra-condense {
       #{$container-inline-size-variable-name}: #{$layout-breakpoint-xs};
     }
@@ -213,7 +217,10 @@ main {
 }
 
 footer {
+  background-color: var(--joie-color-primary);
+  color: var(--joie-color-background);
   content-visibility: auto;
+  @extend main;
 }
 
 .dialog-as-drawer {

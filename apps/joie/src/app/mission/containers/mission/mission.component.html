@@ -5,7 +5,7 @@
       alt="cover image of scattered pink letters for contact page"
     />
     <span slot="caption"
-      >Photo by <a href="https://unsplash.com/@eyeforebony">Photo by Eye for Ebony </a> on
+      >Photo by <a href="https://unsplash.com/@eyeforebony">Eye for Ebony </a> on
       <a href="https://unsplash.com/photos/jg_t3PBq5Jo" target="_blank" rel="noopener"
         >Unsplash</a
       ></span
@@ -13,17 +13,28 @@
   </app-figure-image>
 </header>
 <main>
-  <section class="section-block-start-offset-md layout-rows-md">
+  <section
+    [ngClass]="{
+      'section-block-start-offset-md': isLargeBreakpoint$ | async,
+      'layout-rows-md': true
+    }"
+  >
     <div class="container-condense">
-      <mat-card class="mat-elevation-z1 text-center">
-        <section class="layout-rows-md layout-center">
+      <mat-card
+        *ngIf="isLargeBreakpoint$ | async; else headContext"
+        class="mission-offset-card mat-elevation-z1 text-center"
+      >
+        <ng-container *ngTemplateOutlet="headContext"></ng-container>
+      </mat-card>
+      <ng-template #headContext>
+        <section class="layout-rows-md layout-center text-center">
           <h1>
             Joie is on a mission to help you build a healthier and happier life – one step at a
             time.
           </h1>
           <button mat-raised-button color="primary">Start your journey with us</button>
         </section>
-      </mat-card>
+      </ng-template>
     </div>
 
     <div class="container-ultra-condense text-center">
@@ -53,7 +64,7 @@
   <section>
     <div class="container-condense layout-rows-md">
       <h1 class="text-center">Who we are?</h1>
-      <div class="layout-columns-md">
+      <div class="layout-columns layout-rows" [style.--joie-gutter]="'60px'">
         <div>
           <h4>Jason Teitelbaum</h4>
           <p>
@@ -93,5 +104,7 @@
   </section>
 </main>
 <footer>
-  <app-subscribe-to-newsletter></app-subscribe-to-newsletter>
+  <section>
+    <app-subscribe-to-newsletter class="container"></app-subscribe-to-newsletter>
+  </section>
 </footer>
