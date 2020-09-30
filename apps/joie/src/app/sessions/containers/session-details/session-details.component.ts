@@ -19,7 +19,7 @@ export class SessionDetailsComponent {
     shareReplay()
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
-  uid$ = this.authFacade.uid$;
+  displayName$ = this.authFacade.displayName$;
 
   // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
   //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(

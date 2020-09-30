@@ -10,7 +10,7 @@
         </div>
         <ng-container *ngIf="isLiveSession; else vodPlayer">
           <app-live-stream-player
-            [uid]="uid$ | async"
+            [displayName]="displayName$ | async"
             [eventId]="eventId$ | async"
             [sessionType]="sessionType"
             [role]="role"
