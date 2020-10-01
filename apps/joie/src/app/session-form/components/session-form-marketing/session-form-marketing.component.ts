@@ -26,6 +26,9 @@ export class SessionFormMarketingComponent extends DynaFormBaseComponent {
   }
 
   addRelatedSession(value: string) {
+    if (!value) {
+      return;
+    }
     this.relatedSessionsArray.push(new FormControl(value));
   }
 

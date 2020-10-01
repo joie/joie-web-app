@@ -77,6 +77,9 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
   }
 
   addGoalOrComment(formArray: FormArray, value: string) {
+    if (!value) {
+      return;
+    }
     formArray.push(new FormControl(value));
   }
 }
