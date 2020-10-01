@@ -31,7 +31,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   commonLayoutClass = 'layout-rows-xs';
   showAllFields: boolean;
   showLoader = false;
-  sessionId: string; // if sessionId present we have edit mode
+  title = 'Create Session';
 
   constructor(
     private sessionsFacade: SessionsFacade,
@@ -45,10 +45,17 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   }
 
   ngOnInit() {
-    this.sessionId = get(this.data, 'sessionId');
+    const sessionId = get(this.data, 'sessionId');
     this.kalturaApiHandShakeService.getKalturaSession();
 
-    console.log('this: ', this)
+    if (sessionId) {
+      // edit mode
+      this.getSessionData(sessionId);
+    }
+  }
+
+  getSessionData(sessionId: string) {
+    this.title = 'Edit Session';
   }
 
   get isCoaching() {
