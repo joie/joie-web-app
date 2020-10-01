@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { SessionsFacade } from '../../../services/sessions.facade';
@@ -5,7 +6,7 @@ import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-
 import { environment } from '../../../../environments/environment';
 import { Format, Type } from '../../../sessions/enums';
 import { IMAGE } from '../../components/session-form-metadata/session-form-metadata.component';
-import { finalize, last, map, switchMap, take, tap } from 'rxjs/operators';
+import { finalize, last, map, switchMap, take, tap, pluck } from 'rxjs/operators';
 import { iif, Observable } from 'rxjs';
 import {
   AngularFireStorage,
@@ -35,12 +36,17 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     private storage: AngularFireStorage,
     private kalturaApiHandShakeService: KalturaApiHandShakeService,
     private authFacade: AuthFacade,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private activatedRoute: ActivatedRoute
   ) {
     super();
   }
 
   ngOnInit() {
+    // const sessionId = this.activatedRoute.snapshot.paramMap.get('sessionId');
+    const sessionId = this.activatedRoute.firstChild.snapshot.params['sessionId'];
+    console.log('activatedRoute: ', this.activatedRoute, sessionId);
+
     this.kalturaApiHandShakeService.getKalturaSession();
   }
 
@@ -83,7 +89,9 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
               eventId,
               ...this.form.value,
             })),
-            switchMap((session) => this.sessionsFacade.setSession('', session)),
+            switchMap((session) => console.log('session: ', session)
+              // this.sessionsFacade.setSession('', session);
+            ),
             switchMap(this.storeThumbnailIfAny$.bind(this)),
             finalize(() => (this.showLoader = false))
           )
