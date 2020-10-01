@@ -63,6 +63,8 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   }
 
   async onSubmit() {
+    console.log(9);
+    return false;
     this.showLoader = true;
     const currentDate = Date.now();
 
