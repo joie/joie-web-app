@@ -47,8 +47,11 @@ const routes: Routes = [
   },
   {
     path: ':sessionId',
-    component: SessionDetailsComponent,
     children: [
+      {
+        path: '',
+        component: SessionDetailsComponent,
+      },
       {
         path: 'edit',
         component: DialogRouterComponent,
