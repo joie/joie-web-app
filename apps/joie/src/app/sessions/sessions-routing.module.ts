@@ -10,6 +10,7 @@ import { AuthGuard } from '../auth/guards/auth.guard';
 import { PaymentSourceGuard } from '../guards/payment-source/payment-source.guard';
 import { PaymentMethodFormComponent } from '../shared/components/payment-method-form/payment-method-form.component';
 import { SessionDetailsComponent } from './containers/session-details/session-details.component';
+import { SessionFormComponent } from './../session-form/containers/session-form/session-form.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,24 @@ const routes: Routes = [
   {
     path: ':sessionId',
     component: SessionDetailsComponent,
+    children: [
+      {
+        path: 'edit',
+        component: DialogRouterComponent,
+        data: {
+          dialogComponent: SessionFormComponent,
+          matDialogConfig: {
+            panelClass: 'dialog-as-drawer',
+            width: '100%',
+            maxWidth: 900,
+            position: {
+              right: '0px',
+            },
+          },
+        },
+        outlet: 'popup',
+      },
+    ]
   },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
