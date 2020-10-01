@@ -1,5 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { SessionsFacade } from '../../../services/sessions.facade';
 import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-handshake.service';
@@ -20,6 +19,8 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { get } from 'lodash';
 
 @Component({
   selector: 'app-session-form',
@@ -30,6 +31,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   commonLayoutClass = 'layout-rows-xs';
   showAllFields: boolean;
   showLoader = false;
+  sessionId: string; // if sessionId present we have edit mode
 
   constructor(
     private sessionsFacade: SessionsFacade,
@@ -37,17 +39,16 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     private kalturaApiHandShakeService: KalturaApiHandShakeService,
     private authFacade: AuthFacade,
     private snackBar: MatSnackBar,
-    private activatedRoute: ActivatedRoute
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     super();
   }
 
   ngOnInit() {
-    // const sessionId = this.activatedRoute.snapshot.paramMap.get('sessionId');
-    const sessionId = this.activatedRoute.firstChild.snapshot.params['sessionId'];
-    console.log('activatedRoute: ', this.activatedRoute, sessionId);
-
+    this.sessionId = get(this.data, 'sessionId');
     this.kalturaApiHandShakeService.getKalturaSession();
+
+    console.log('this: ', this)
   }
 
   get isCoaching() {
@@ -91,9 +92,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
               eventId,
               ...this.form.value,
             })),
-            switchMap((session) => console.log('session: ', session)
-              // this.sessionsFacade.setSession('', session);
-            ),
+            switchMap((session) => this.sessionsFacade.setSession('', session)),
             switchMap(this.storeThumbnailIfAny$.bind(this)),
             finalize(() => (this.showLoader = false))
           )
