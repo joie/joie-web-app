@@ -41,45 +41,20 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     private kalturaApiHandShakeService: KalturaApiHandShakeService,
     private authFacade: AuthFacade,
     private snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: { session$: Observable<Session> }
   ) {
     super();
+
   }
 
   ngOnInit() {
-    const sessionId = get(this.data, 'sessionId');
     this.kalturaApiHandShakeService.getKalturaSession();
 
-    if (sessionId) {
+    if (get(this.data, 'session$', false)) {
       // edit mode
-      this.getSessionData(sessionId);
-    }
-  }
-
-  getSessionData(sessionId: string) {
-    this.title = 'Edit Session';
-
-    this.sessionsFacade.getSession(sessionId).subscribe((session) => {
-      this.session = session;
+      this.title = 'Edit Session';
       this.showAllFields = true;
-      console.log('session: ', session, this.form);
-
-      setTimeout(() => {
-        this.getFormControl('title').setValue(session.title);
-        this.getFormControl('type').setValue(session.type);
-        this.getFormControl('format').setValue(session.format);
-        this.getFormControl('description').setValue(session.description);
-        this.getFormControl('pillar').setValue(Pillar[session.pillar]);
-        this.getFormControl('level').setValue(Pillar[session.level]);
-        // this.getFormControl('activity').setValue(Pillar[session.activity]);
-        this.getFormControl('price').setValue(session.price);
-        this.getFormControl('promo').setValue(session.promo);
-        // this.getFormControl('relatedSessions').setValue(session.relatedSessions);
-        console.log('this.pillarEnum[session.pillar]: ', Pillar[session.pillar]);
-      }, 0);
-
-      this.form.updateValueAndValidity();
-    });
+    }
   }
 
   get isCoaching() {
@@ -95,8 +70,6 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   }
 
   async onSubmit() {
-    console.log(9);
-    return false;
     this.showLoader = true;
     const currentDate = Date.now();
 

@@ -1,3 +1,4 @@
+import { EditDialogConfigResolver } from './resolvers/edit-dialog-config.resolver';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -47,7 +48,6 @@ const routes: Routes = [
   },
   {
     path: ':sessionId',
-    // component: SessionDetailsComponent,
     children: [
       {
         path: '',
@@ -56,6 +56,9 @@ const routes: Routes = [
       {
         path: 'edit',
         component: DialogRouterComponent,
+        resolve: {
+          matDialogConfig: EditDialogConfigResolver,
+        },
         data: {
           dialogComponent: SessionFormComponent,
           matDialogConfig: {

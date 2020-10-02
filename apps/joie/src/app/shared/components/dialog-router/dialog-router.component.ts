@@ -24,13 +24,8 @@ export class DialogRouterComponent implements OnInit {
   }
 
   openDialog() {
-    const sessionId = this.route.snapshot.paramMap.get('sessionId');
-
     const dialogRef = this.dialog.open(this.route.snapshot.data.dialogComponent, {
       ...this.route.snapshot.data.matDialogConfig,
-      data: {
-        sessionId
-      }
       // height: '99vh',
     });
 
