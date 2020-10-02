@@ -21,6 +21,7 @@ import {
 } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { get } from 'lodash';
+import { Pillar } from '../../../enums';
 
 @Component({
   selector: 'app-session-form',
@@ -32,6 +33,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   showAllFields: boolean;
   showLoader = false;
   title = 'Create Session';
+  session;
 
   constructor(
     private sessionsFacade: SessionsFacade,
@@ -56,6 +58,28 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
 
   getSessionData(sessionId: string) {
     this.title = 'Edit Session';
+
+    this.sessionsFacade.getSession(sessionId).subscribe((session) => {
+      this.session = session;
+      this.showAllFields = true;
+      console.log('session: ', session, this.form);
+
+      setTimeout(() => {
+        this.getFormControl('title').setValue(session.title);
+        this.getFormControl('type').setValue(session.type);
+        this.getFormControl('format').setValue(session.format);
+        this.getFormControl('description').setValue(session.description);
+        this.getFormControl('pillar').setValue(Pillar[session.pillar]);
+        this.getFormControl('level').setValue(Pillar[session.level]);
+        // this.getFormControl('activity').setValue(Pillar[session.activity]);
+        this.getFormControl('price').setValue(session.price);
+        this.getFormControl('promo').setValue(session.promo);
+        // this.getFormControl('relatedSessions').setValue(session.relatedSessions);
+        console.log('this.pillarEnum[session.pillar]: ', Pillar[session.pillar]);
+      }, 0);
+
+      this.form.updateValueAndValidity();
+    });
   }
 
   get isCoaching() {
