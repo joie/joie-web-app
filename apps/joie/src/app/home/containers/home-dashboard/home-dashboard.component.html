@@ -60,7 +60,10 @@
 
         <div class="layout-columns-sm text-center">
           <mat-card class="mat-elevation-z0" *ngFor="let advantage of homeJoieAdvantages">
-            <app-icon class="joie-icon joie-icon-backdrop" [name]="advantage.icon"></app-icon>
+            <app-icon
+              class="joie-icon joie-icon-backdrop size-xxl"
+              [name]="advantage.icon"
+            ></app-icon>
             <h4>{{ advantage.title }}</h4>
             <p>
               {{ advantage.description }}
