@@ -174,45 +174,34 @@ body {
 
 main {
   > section {
+    $offset-block-start-variable-name: --section-gutter-block-start;
+    $offset-block-end-variable-name: --section-gutter-block-end;
+    $gutter-block: calc(var(--joie-gutter) * 3);
     content-visibility: auto;
     contain-intrinsic-size: 500px;
-    --section-block-gutter: 60px;
-    // --section-block-gutter-2: 160px;
-    padding: var(--section-block-gutter) 0;
-    &[class^='section-block-start-offset'i] {
-      $offset-size-variable-name: --offset-size;
-      $offset-sizes: (
-        'sm': -1,
-        'md': -2,
-        'lg': -3,
-      );
-      @each $key, $value in $offset-sizes {
-        @at-root [class~='section-block-start-offset-#{$key}'i] {
-          #{$offset-size-variable-name}: #{map.get($offset-sizes, #{$key})};
-        }
-      }
+
+    #{$offset-block-start-variable-name}: #{$gutter-block};
+    #{$offset-block-end-variable-name}: #{$gutter-block};
+    padding: var(#{$offset-block-start-variable-name}) 0 var(#{$offset-block-end-variable-name});
+    &.section-offset-block-start {
+      // $offset-size-variable-name: --offset-size;
+      // $offset-sizes: (
+      //   'sm': -1,
+      //   'md': -2,
+      //   'lg': -3,
+      // );
+      // @each $key, $value in $offset-sizes {
+      //   @at-root [class~='section-offset-block-start-#{$key}'i] {
+      //     #{$offset-size-variable-name}: #{map.get($offset-sizes, #{$key})};
+      //   }
+      // }
+      // margin-top: calc(
+      //   var(#{$offset-size-variable-name}, #{map.get($offset-sizes, 'sm')}) *
+      //     var(--section-gutter-block-end)
+      // );
       padding-top: 0;
-      margin-top: calc(
-        var(#{$offset-size-variable-name}, #{map.get($offset-sizes, 'sm')}) *
-          var(--section-block-gutter)
-      );
+      margin-top: calc(-1 * var(#{$offset-block-end-variable-name}));
     }
-
-    // &.section-block-start-offset-2 {
-    //   padding-top: 0;
-    //   margin-top: calc(-1 * var(--section-block-gutter-2));
-
-    //   .mat-card {
-    //     padding: 50px 60px;
-    //     margin-bottom: 50px;
-    //   }
-    // }
-
-    // .section-context {
-    //   place-items: center;
-    //   display: grid;
-    //   grid-row-gap: 35px;
-    // }
   }
 }
 
