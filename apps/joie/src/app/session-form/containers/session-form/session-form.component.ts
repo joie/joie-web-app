@@ -16,14 +16,10 @@ import { DocumentReference } from '@angular/fire/firestore';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 import {
   MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { get } from 'lodash';
-import { Pillar } from '../../../enums';
 import { FormControl } from '@angular/forms';
-import { Session } from '../../../sessions/models';
 
 @Component({
   selector: 'app-session-form',
@@ -43,10 +39,9 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     private kalturaApiHandShakeService: KalturaApiHandShakeService,
     private authFacade: AuthFacade,
     private snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: { session$: Observable<Session> }
+    @Inject(MAT_DIALOG_DATA) public data: { session$: Observable<any> }
   ) {
     super();
-
   }
 
   ngOnInit() {
@@ -59,9 +54,10 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
       this.showAllFields = true;
 
       this.data.session$.subscribe(session => {
-        this.form.reset(session);
+        this.form.patchValue(session);
         this.addControls([
           ['id', new FormControl(this.sessionId)],
+          ['repetitions', new FormControl(session.repetitions)],
         ]);
       });
     }
@@ -82,6 +78,9 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   async onSubmit() {
     this.showLoader = true;
     const currentDate = Date.now();
+
+    console.log('this.form.value', this.form.value)
+    // return;
 
     const eventCreationDetails = {
       resourceName: this.form.value.title,
