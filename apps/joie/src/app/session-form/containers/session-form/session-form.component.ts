@@ -79,9 +79,6 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     this.showLoader = true;
     const currentDate = Date.now();
 
-    console.log('this.form.value', this.form.value)
-    // return;
-
     const eventCreationDetails = {
       resourceName: this.form.value.title,
       scheduleResourceType: 3,
