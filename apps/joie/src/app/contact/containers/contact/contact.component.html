@@ -19,7 +19,7 @@
       <h2>Here's how you can reach us. We love them all.</h2>
       <div class="layout-columns-md layout-rows-xs">
         <mat-card class="layout-center" *ngFor="let option of contactOptions">
-          <app-icon class="joie-icon joie-icon-backdrop" [name]="option.icon"></app-icon>
+          <app-icon class="joie-icon joie-icon-backdrop size-xxl" [name]="option.icon"></app-icon>
           <h4>{{ option.title }}</h4>
           <p>{{ option.description }}</p>
         </mat-card>
@@ -31,7 +31,7 @@
       <h3>Use the form below to drop us an email.</h3>
     </div>
   </section>
-  <section class="section-block-start-offset">
+  <section class="section-offset-block-start">
     <div class="container-ultra-condense">
       <mat-card class="mat-elevation-z1">
         <app-contact-form></app-contact-form>

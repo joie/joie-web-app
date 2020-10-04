@@ -19,6 +19,7 @@ figure {
 
 figcaption {
   text-align: end;
+  height: 0;
 }
 
 :host ::ng-deep img {

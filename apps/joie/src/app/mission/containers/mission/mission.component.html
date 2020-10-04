@@ -15,9 +15,9 @@
 <main>
   <section
     [ngClass]="{
-      'section-block-start-offset-md': isLargeBreakpoint$ | async,
-      'layout-rows-md': true
+      'section-offset-block-start': isLargeBreakpoint$ | async
     }"
+    class="mission-hero layout-rows-md"
   >
     <div class="container-condense">
       <mat-card
