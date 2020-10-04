@@ -23,7 +23,7 @@ export class SessionFormDateTimeSlotsComponent extends DynaFormBaseComponent imp
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { session$: Observable<Session> }
-    ) {
+  ) {
     super();
     this.addControls([[this.TIME_SLOTS, this.timeSlotsFormArray]]);
   }
@@ -31,7 +31,7 @@ export class SessionFormDateTimeSlotsComponent extends DynaFormBaseComponent imp
   ngOnInit() {
     if (get(this.data, 'session$', false)) {
       this.data.session$.subscribe(session => {
-        if (session.timeSlots) {
+        if (session.timeSlots && session.timeSlots.length > 0) {
           this.getFormControl(this.TIME_SLOTS).setValue(this.addTimeSlot(session.timeSlots));
         }
       });

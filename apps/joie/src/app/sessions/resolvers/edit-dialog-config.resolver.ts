@@ -24,6 +24,7 @@ export class EditDialogConfigResolver implements Resolve<any> {
       },
       data: {
         session$: this.sessionsFacade.getSession(route.params.sessionId),
+        sessionId: route.params.sessionId,
       },
     };
   }

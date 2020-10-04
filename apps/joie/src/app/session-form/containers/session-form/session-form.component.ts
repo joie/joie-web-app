@@ -22,6 +22,7 @@ import {
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { get } from 'lodash';
 import { Pillar } from '../../../enums';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-session-form',
@@ -54,6 +55,13 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
       // edit mode
       this.title = 'Edit Session';
       this.showAllFields = true;
+
+      this.addControls([
+        ['id', new FormControl(get(this.data, 'sessionId'))],
+      ]);
+      // this.form.patchValue({
+      //   id: get(this.data, 'sessionId')
+      // });
     }
   }
 
@@ -72,6 +80,8 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   async onSubmit() {
     this.showLoader = true;
     const currentDate = Date.now();
+
+    console.log(this.form.value);
 
     const eventCreationDetails = {
       resourceName: this.form.value.title,

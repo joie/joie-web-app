@@ -1,9 +1,12 @@
+import { get } from 'lodash';
 import { Format } from './../../../sessions/enums/format.enum';
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormArray, Validators, FormGroup } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { Activities, Pillar } from '../../../enums';
 import { CourseLevel } from '../../../sessions/enums';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 
 const FORMAT = 'format';
 @Component({
@@ -11,7 +14,7 @@ const FORMAT = 'format';
   templateUrl: './session-form-attributes.component.html',
   styleUrls: ['./session-form-attributes.component.scss'],
 })
-export class SessionFormAttributesComponent extends DynaFormBaseComponent {
+export class SessionFormAttributesComponent extends DynaFormBaseComponent implements OnInit {
   pillarEnum = Pillar;
   levelEnum = CourseLevel;
   activityEnum = Activities;
@@ -31,7 +34,9 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
 
   readonly sfiValidators = [Validators.minLength(5)];
 
-  constructor() {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { session$: Observable<any> }
+  ) {
     super();
     this.addControls([
       [this.PILLAR, new FormControl(null)],
@@ -50,6 +55,33 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
     ]);
 
     this.getFormControl(this.LIMIT).setValidators([Validators.max(this.UPPER_LIMIT)]);
+  }
+
+  ngOnInit() {
+    if (get(this.data, 'session$', false)) {
+      // edit mode
+      this.data.session$.subscribe(session => {
+        this.form.patchValue({
+          [this.PILLAR]: session.pillar,
+          [this.LEVEL]: session.level,
+          [this.ACTIVITY]: session.activity,
+          [this.PRICE]: session.price,
+          [this.LIMIT]: session.limit,
+        });
+
+        if (session.goals.length > 0) {
+          session.goals.map(goal => {
+            this.addGoalOrComment(this.goalsFormArray, goal);
+          });
+        }
+
+        if (session.comments.length > 0) {
+          session.comments.map(goal => {
+            this.addGoalOrComment(this.commentsFormArray, goal);
+          });
+        }
+      });
+    }
   }
 
   get pillarKeys(): Array<string> {
