@@ -5,34 +5,27 @@ import { DynaFormService } from './services/dyna-form.service';
 
 export type ControlTuple = [string, FormControl | FormArray | FormGroup];
 
-interface AddControlsOptions {
-  preserveOnDestroy: boolean;
-}
-
 @Component({ template: '' })
 export abstract class DynaFormBaseComponent implements OnDestroy {
   #controls?: ControlTuple[];
   private dynaFormService: DynaFormService;
-  addControlsOptions: AddControlsOptions;
   constructor() {
     const injector = AppInjector.getInjector();
     this.dynaFormService = injector.get(DynaFormService);
   }
 
-  addControls(controls: ControlTuple[], options?: AddControlsOptions) {
+  addControls(controls: ControlTuple[]) {
     this.#controls = controls;
-    controls.forEach(([name, control]) => {
+    this.#controls.forEach(([name, control]) => {
       // add new control if is undefined or null
-      this.form.addControl(name, control);
+      this.form?.get(name) ?? this.form?.addControl(name, control);
       // console.log(this.form.value);
     });
-
-    this.addControlsOptions = options;
   }
 
   private removeControls() {
-    this.#controls.forEach(([name]) => {
-      this.form.removeControl(name);
+    this.#controls?.forEach(([name]) => {
+      this.form?.removeControl(name);
     });
   }
 
@@ -41,12 +34,10 @@ export abstract class DynaFormBaseComponent implements OnDestroy {
   }
 
   getFormControl(name: string) {
-    return this.form.get(name);
+    return this.form?.get(name);
   }
 
   ngOnDestroy(): void {
-    if (!this.addControlsOptions?.preserveOnDestroy) {
-      this.removeControls();
-    }
+    this.removeControls();
   }
 }
