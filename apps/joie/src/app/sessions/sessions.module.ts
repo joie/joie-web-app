@@ -11,6 +11,10 @@ import { SessionDetailsComponent } from './containers/session-details/session-de
 import { SessionCardComponent } from './components/session-card/session-card.component';
 import { KalturaPlayerModule } from '../kaltura-player/kaltura-player.module';
 import { SessionListModule } from '../session-list/session-list.module';
+import { VideoIntroComponent } from './components/video-intro/video-intro.component';
+import { WhatLearnComponent } from './components/what-learn/what-learn.component';
+import { MeetTeacherComponent } from './components/meet-teacher/meet-teacher.component';
+import { CommunitySayComponent } from './components/community-say/community-say.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,10 @@ import { SessionListModule } from '../session-list/session-list.module';
     SessionEnrollDialogComponent,
     SessionDetailsComponent,
     SessionCardComponent,
+    VideoIntroComponent,
+    WhatLearnComponent,
+    MeetTeacherComponent,
+    CommunitySayComponent,
   ],
   imports: [
     SharedModule,

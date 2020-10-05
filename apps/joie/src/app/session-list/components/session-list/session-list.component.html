@@ -25,17 +25,24 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <a
-        [routerLink]="[
-          {
-            outlets: {
-              popup: ['enroll', session.id]
-            }
-          }
-        ]"
-        mat-button
-        >Enroll in session</a
-      >
+      <ng-container *ngIf="session && !session.owner">
+        <ng-container *ngIf="enrolled; else notenrolled">
+          <a>You are enrolled</a>
+        </ng-container>
+        <ng-template #notenrolled>
+          <a
+            [routerLink]="[
+              {
+                outlets: {
+                  popup: ['enroll', session.id]
+                }
+              }
+            ]"
+            mat-button
+            >Enroll in session</a
+          >
+        </ng-template>
+      </ng-container>
       <a
         [routerLink]="[
           {
