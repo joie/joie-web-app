@@ -8,20 +8,22 @@
 </div>
 
 <div class="container-ultra-condense">
-  <form [formGroup]="form"
-        class="layout-columns-sm">
-    <mat-card *ngFor="let type of sessionTypesLiteralMap | keyvalue : asIsOrder; let i = index">
-      <app-icon class="joie-icon joie-icon-backdrop"
-                [name]="sessionTypesData[i].icon"></app-icon>
+  <form [formGroup]="form" class="layout-columns-sm">
+    <mat-card *ngFor="let type of sessionTypesLiteralMap | keyvalue: asIsOrder; let i = index">
+      <app-icon
+        class="joie-icon joie-icon-backdrop size-xxl"
+        [name]="sessionTypesData[i].icon"
+      ></app-icon>
 
       <label formArrayName="sessionTypes">
-        <input type="checkbox"
-               [formControlName]="i" />
-        {{ type.value | titlecase}}
+        <input type="checkbox" [formControlName]="i" />
+        {{ type.value | titlecase }}
       </label>
     </mat-card>
   </form>
-  <mat-error *ngIf="typesFormArray.invalid">{{onboardingService.showErrorMessage(typesFormArray)}}</mat-error>
+  <mat-error *ngIf="typesFormArray.invalid">{{
+    onboardingService.showErrorMessage(typesFormArray)
+  }}</mat-error>
 
   <div class="layout-columns-md">
     <div>
@@ -29,8 +31,7 @@
         And don't worry! You can always update it later. We have good feeling about this,
         {{ (authService.state$ | async)?.displayName }}!
       </p>
-      <button mat-raised-button
-              (click)="finishOnboarding()">
+      <button mat-raised-button (click)="finishOnboarding()">
         Now, let's find your first session!
       </button>
     </div>

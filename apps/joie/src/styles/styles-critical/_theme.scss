@@ -38,11 +38,29 @@ hr {
 }
 
 .joie-icon {
+  $unit: 12px;
   display: inline-block;
-  height: 100px;
-  width: 100px;
-  inline-size: 100px;
-  block-size: 100px;
+  height: var(--size, $unit);
+  width: var(--size, $unit);
+  inline-size: var(--size, $unit);
+  block-size: var(--size, $unit);
+
+  $size-variable-name: --size;
+  $sizes: (
+    'xs': 1,
+    'sm': 2,
+    'md': 3,
+    'lg': 4,
+    'xl': 6,
+    'xxl': 8,
+  );
+
+  @each $key, $value in $sizes {
+    @at-root .size-#{$key} {
+      #{$size-variable-name}: calc(#{$unit} * #{map.get($sizes, #{$key})});
+    }
+  }
+
   &#{&}-backdrop {
     position: relative;
 
