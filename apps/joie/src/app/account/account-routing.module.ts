@@ -1,5 +1,4 @@
 import { AccountNotificationSetingsComponent } from './account-notification-setings/account-notification-setings.component';
-import { AccountHeaderComponent } from './components/account-header/account-header.component';
 import { AccountSidenavComponent } from './components/account-sidenav/account-sidenav.component';
 import { MainLayoutComponent } from './../common/components/main-layout/main-layout.component';
 import { NgModule } from '@angular/core';
@@ -14,7 +13,6 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     data: {
-      headerComponent: AccountHeaderComponent,
       sidenavComponent: AccountSidenavComponent,
     },
     children: [
