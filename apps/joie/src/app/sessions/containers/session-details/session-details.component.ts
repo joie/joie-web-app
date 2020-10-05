@@ -31,7 +31,7 @@ export class SessionDetailsComponent {
 
   // TODO - default assignment will be removed after integration
 
-  isLiveSession = true; // if false vod player is visible
+  isLiveSession = false; // if false vod player is visible
 
   // kalturaSessionDetails$: Pick<KalturaEvent, 'eventId'> & Pick<Owner, 'name'>;
 

@@ -1,77 +1,69 @@
 <ng-container *ngIf="showThumbnail; else card">
-  <div
-    fxFlex
-    fxLayout="column"
-    class="box box-shadow card p-10"
-    fxLayoutGap="5px"
-    fxLayoutAlign="flex-start"
-  >
-    <div class="banner">Hurry up! Only 2 spots left</div>
-    <div fxLayoutAlign="center">
-      <img src="" width="250px" height="200px" />
-    </div>
-    <button mat-raised-button color="accent">Enroll In Session</button>
+  <mat-card>
+    <!-- <div class="banner">Hurry up! Only 2 spots left</div> -->
 
-    <div fxLayout="row" fxLayoutAlign="space-between">
-      <div fxFlex="80%">
-        {{ session?.title }}
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" mat-card-image>
+    </div>
+    <mat-card-content>
+      <button mat-raised-button color="accent" style="width: 100%;"><h3>Enroll In Session</h3></button>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <div fxLayout="column">
+          <div>{{ session?.title }}</div>
+          <div>{{ session?.owner?.displayName }} asdf</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <mat-icon>favorite_border</mat-icon>
+          <div>{{ session?.recommendationPercentage }} %</div>
+        </div>
       </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>{{ session?.price?.display | currency: session?.price?.currency }}</div>
 
-      <div fxFlex="20%" class="text-right">
-        <i class="feather icon-heart"></i>
-        {{ session?.recommendationPercentage }} %
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
       </div>
-    </div>
-
-    <div>{{ session?.owner?.displayName }}</div>
-
-    <div fxLayout="row" fxLayoutAlign="space-between">
-      <div>{{ session?.price?.display | currency: session?.price?.currency }}</div>
-
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <i class="feather icon-more-horizontal"></i>
-      </button>
-    </div>
-  </div>
+    </mat-card-content>
+  </mat-card>
 </ng-container>
 
 <ng-template #card>
-  <div
-    fxFlex
-    fxLayout="column"
-    class="box box-shadow"
-    fxLayoutGap="20px"
-    fxLayoutAlign="center center"
-  >
+  <mat-card>
     <div class="banner">Hurry up! Only 2 spots left</div>
-    <div>
-      {{ session?.title }}
+    <div class="text-center">
+      <mat-card-subtitle>{{ session?.pillar }}</mat-card-subtitle>
+      <mat-card-title>{{ session?.title }}</mat-card-title>
     </div>
-    <div fxLayout="row" class="text-center" fxLayoutGap="20px" fxLayoutAlign="center center">
-      <img src="" class="author-image" width="40px" height="40px" />
-      <div class="text-lg">{{ session?.owner?.displayName }}</div>
-    </div>
-    <div>
-      <i class="feather icon-calendar i-20"></i>
-      {{ session?.createdAt }}
-    </div>
-    <div>
-      <i class="feather icon-clock i-20"></i>
-      {{ session?.duration?.amount + session?.duration?.unit }} -
-      {{ session?.type }}
-    </div>
-    <div>
-      <!-- TODO implement price pipe based on the logged in user-->
-      <i class="feather icon-tag i-20"></i>
-      {{ session?.price?.currency + session?.price?.display }}
-    </div>
-
-    <button mat-raised-button color="accent">Enroll In Session</button>
-    <div>
-      <i class="feather icon-heart"></i>
-      {{ session?.recommendationPercentage }} % people recommended this
-    </div>
-  </div>
+    <mat-card-content>
+      <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <h3>{{ session?.owner?.displayName }}</h3>
+      <h3>{{ session?.createdAt }}</h3>
+      <h3>
+        {{ session?.duration?.amount + session?.duration?.unit }} -
+        {{ session?.type }}
+      </h3>
+      <h3>
+        <!-- TODO implement price pipe based on the logged in user-->
+        Price: {{ session?.price?.display | currency: session?.price?.currency }}
+      </h3>
+      <button mat-raised-button color="accent" style="width: 100%;"><h3>Enroll In Session</h3></button>
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-icon>favorite_border</mat-icon>
+        <div>{{ session?.recommendationPercentage }} % people recommended this</div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>
+        <mat-icon>card_giftcard</mat-icon>
+        Give as a gift
+      </button>
+      <button mat-button>
+        <mat-icon>favorite_border</mat-icon>
+        Save to my journey
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </ng-template>
 
 <mat-menu #menu="matMenu">
