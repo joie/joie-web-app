@@ -8,7 +8,8 @@ export type ControlTuple = [string, FormControl | FormArray | FormGroup];
 @Component({ template: '' })
 export abstract class DynaFormBaseComponent implements OnDestroy {
   #controls?: ControlTuple[];
-  private dynaFormService: DynaFormService;
+  dynaFormService: DynaFormService;
+
   constructor() {
     const injector = AppInjector.getInjector();
     this.dynaFormService = injector.get(DynaFormService);
@@ -31,6 +32,10 @@ export abstract class DynaFormBaseComponent implements OnDestroy {
 
   get form() {
     return this.dynaFormService.form;
+  }
+
+  get session() {
+    return this.dynaFormService.session;
   }
 
   getFormControl(name: string) {

@@ -12,6 +12,6 @@ export class SessionFormRepetitionsComponent extends DynaFormBaseComponent {
 
   constructor() {
     super();
-    this.addControls([[this.REPETIOTIONS, new FormControl(null)]]);
+    this.addControls([[this.REPETIOTIONS, new FormControl(this.session ? this.session[this.REPETIOTIONS] : null)]]);
   }
 }

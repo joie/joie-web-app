@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { SessionsFacade } from '../../../services/sessions.facade';
 import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-handshake.service';
 import { environment } from '../../../../environments/environment';
 import { Format, Type } from '../../../sessions/enums';
 import { IMAGE } from '../../components/session-form-metadata/session-form-metadata.component';
-import { finalize, last, map, switchMap, take, tap, pluck } from 'rxjs/operators';
+import { finalize, last, map, switchMap, take } from 'rxjs/operators';
 import { iif, Observable, of } from 'rxjs';
 import {
   AngularFireStorage,
@@ -19,14 +19,13 @@ import {
 } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { get } from 'lodash';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-session-form',
   templateUrl: './session-form.component.html',
   styleUrls: ['./session-form.component.scss'],
 })
-export class SessionFormComponent extends DynaFormBaseComponent implements OnInit {
+export class SessionFormComponent extends DynaFormBaseComponent implements OnInit, OnDestroy {
   commonLayoutClass = 'layout-rows-xs';
   showAllFields: boolean;
   showLoader = false;
@@ -39,28 +38,24 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     private kalturaApiHandShakeService: KalturaApiHandShakeService,
     private authFacade: AuthFacade,
     private snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: { session$: Observable<any> }
+    @Inject(MAT_DIALOG_DATA) public data: { session: any }
   ) {
     super();
+
+    if (get(this.data, 'session', false)) {
+      this.dynaFormService.session = this.data.session; // store session on the service
+      this.sessionId = get(this.data, 'sessionId');
+      this.title = 'Edit Session';
+      this.showAllFields = true;
+    }
   }
 
   ngOnInit() {
     this.kalturaApiHandShakeService.getKalturaSession();
+  }
 
-    if (get(this.data, 'session$', false)) {
-      // edit mode
-      this.sessionId = get(this.data, 'sessionId');
-      this.title = 'Edit Session';
-      this.showAllFields = true;
-
-      this.data.session$.subscribe(session => {
-        this.form.patchValue(session);
-        this.addControls([
-          ['id', new FormControl(this.sessionId)],
-          ['repetitions', new FormControl(session.repetitions)],
-        ]);
-      });
-    }
+  ngOnDestroy() {
+    this.dynaFormService.session = undefined;
   }
 
   get isCoaching() {
@@ -120,7 +115,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
               );
               // .onAction()
               // .subscribe(() => console.log(43));
-              if (!get(this.data, 'session$', false)) {
+              if (!get(this.data, 'session', false)) {
                 this.form.reset();
               }
             },

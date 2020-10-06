@@ -19,6 +19,11 @@ export class SessionFormDateTimeSlotsComponent extends DynaFormBaseComponent {
 
   constructor() {
     super();
+    if (this.session && this.session[this.TIME_SLOTS]) {
+      this.session[this.TIME_SLOTS].map(timeSlot => {
+        this.addTimeSlot(timeSlot);
+      });
+    }
     this.addControls([[this.TIME_SLOTS, this.timeSlotsFormArray]]);
   }
 

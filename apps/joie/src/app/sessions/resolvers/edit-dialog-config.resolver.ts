@@ -1,20 +1,19 @@
+import { take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   Resolve,
 } from '@angular/router';
 import { SessionsFacade } from '../../services/sessions.facade';
-import { take } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class EditDialogConfigResolver implements Resolve<any> {
   constructor(private sessionsFacade: SessionsFacade) {}
-  resolve(
+  async resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<any> | Promise<any> | any {
+  ) {
     return {
       panelClass: 'dialog-as-drawer',
       width: '100%',
@@ -23,8 +22,8 @@ export class EditDialogConfigResolver implements Resolve<any> {
         right: '0px',
       },
       data: {
-        session$: this.sessionsFacade.getSession(route.params.sessionId),
         sessionId: route.params.sessionId,
+        session: await this.sessionsFacade.getSession(route.params.sessionId).pipe(take(1)).toPromise()
       },
     };
   }

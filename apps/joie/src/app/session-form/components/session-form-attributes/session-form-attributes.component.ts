@@ -1,12 +1,9 @@
-import { get } from 'lodash';
 import { Format } from './../../../sessions/enums/format.enum';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormArray, Validators, FormGroup } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { Activities, Pillar } from '../../../enums';
 import { CourseLevel } from '../../../sessions/enums';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 
 const FORMAT = 'format';
 @Component({
@@ -14,7 +11,7 @@ const FORMAT = 'format';
   templateUrl: './session-form-attributes.component.html',
   styleUrls: ['./session-form-attributes.component.scss'],
 })
-export class SessionFormAttributesComponent extends DynaFormBaseComponent implements OnInit {
+export class SessionFormAttributesComponent extends DynaFormBaseComponent {
   pillarEnum = Pillar;
   levelEnum = CourseLevel;
   activityEnum = Activities;
@@ -34,46 +31,36 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent implem
 
   readonly sfiValidators = [Validators.minLength(5)];
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { session$: Observable<any> }
-  ) {
+  constructor() {
     super();
+
+    if (this.session) {
+      this.session.goals.map(goal => {
+        this.addGoalOrComment(this.goalsFormArray, goal);
+      });
+
+      this.session.comments.map(comment => {
+        this.addGoalOrComment(this.commentsFormArray, comment);
+      });
+    }
+
     this.addControls([
-      [this.PILLAR, new FormControl(null)],
-      [this.LEVEL, new FormControl(null)],
-      [this.ACTIVITY, new FormControl(null)],
+      [this.PILLAR, new FormControl(this.session ? this.session[this.PILLAR] : null)],
+      [this.LEVEL, new FormControl(this.session ? this.session[this.LEVEL] : null)],
       [this.GOALS, this.goalsFormArray],
       [this.COMMENTS, this.commentsFormArray],
-      [this.LIMIT, new FormControl(null)],
+      [this.ACTIVITY, new FormControl(this.session ? this.session[this.ACTIVITY] : null)],
+      [this.LIMIT, new FormControl(this.session ? this.session[this.LIMIT] : null)],
       [
         this.PRICE,
         new FormGroup({
-          currency: new FormControl('USD'),
-          display: new FormControl(null),
+          currency: new FormControl(this.session ? this.session[this.PRICE]['currency'] : 'USD'),
+          display: new FormControl(this.session ? this.session[this.PRICE]['display'] : null),
         }),
       ],
     ]);
 
     this.getFormControl(this.LIMIT).setValidators([Validators.max(this.UPPER_LIMIT)]);
-  }
-
-  ngOnInit() {
-    if (get(this.data, 'session$', false)) {
-      // edit mode
-      this.data.session$.subscribe(session => {
-        if (session.goals.length > 0) {
-          session.goals.map(goal => {
-            this.addGoalOrComment(this.goalsFormArray, goal);
-          });
-        }
-
-        if (session.comments.length > 0) {
-          session.comments.map(goal => {
-            this.addGoalOrComment(this.commentsFormArray, goal);
-          });
-        }
-      });
-    }
   }
 
   get pillarKeys(): Array<string> {
