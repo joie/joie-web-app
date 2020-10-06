@@ -8,12 +8,12 @@ import { ComponentPortal } from '@angular/cdk/portal';
   styleUrls: ['./main-layout.component.scss'],
 })
 export class MainLayoutComponent {
-  headerComponentPortal: ComponentPortal<any>;
+  // headerComponentPortal: ComponentPortal<any>;
   sidenavComponentPortal: ComponentPortal<any>;
 
   constructor(private route: ActivatedRoute) {
-    const { sidenavComponent, headerComponent } = this.route.snapshot.data;
+    const { sidenavComponent } = this.route.snapshot.data;
     this.sidenavComponentPortal = new ComponentPortal(sidenavComponent);
-    this.headerComponentPortal = new ComponentPortal(headerComponent);
+    // this.headerComponentPortal = new ComponentPortal(headerComponent);
   }
 }
