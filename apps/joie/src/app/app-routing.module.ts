@@ -17,6 +17,10 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
+  {
+    path: 'how-it-works',
+    loadChildren: () => import('./howitworks/howitworks.module').then((m) => m.HowitworksModule),
+  },
   // {
   //   path: 'posts',
   //   loadChildren: () =>
