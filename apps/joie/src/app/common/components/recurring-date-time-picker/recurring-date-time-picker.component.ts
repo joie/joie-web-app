@@ -5,7 +5,7 @@ import { map, filter, takeUntil } from 'rxjs/operators';
 import { Recurrence } from '../../../sessions/enums';
 
 // JavaScript Date object transforms to a Firestore Timestamp
-const dateTimeToDateObj = (date: string, time: string) => new Date(`${date} ${time}`);
+// const dateTimeToDateObj = (date: string, time: string) => new Date(`${date} ${time}`);
 
 @Component({
   selector: 'app-recurring-date-time-picker',
@@ -18,15 +18,20 @@ export class RecurringDateTimePickerComponent implements OnDestroy {
   @Output() submission = new EventEmitter();
   @Output() formChange = new EventEmitter();
   recurringEnum = Recurrence;
+  minDate: Date;
+
   private stop$ = new Subject();
 
   form = this.fb.group({
     date: [null, Validators.required],
     time: [null, Validators.required],
     recurring: [null],
+    duration: [null],
   });
 
   constructor(private fb: FormBuilder) {
+    this.minDate = new Date();
+
     this.form.valueChanges
       .pipe(
         takeUntil(this.stop$),
@@ -48,9 +53,14 @@ export class RecurringDateTimePickerComponent implements OnDestroy {
     return Object.keys(Recurrence);
   }
 
+  transformDate(date): string {
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  }
+
   private normalizeValue(formValue) {
+    formValue.date = this.transformDate(formValue.date);
     const { date, time, recurring } = formValue;
-    const timestamp: Date = dateTimeToDateObj(date, time);
+    const timestamp = `${date} ${time}`;
     return { timestamp, recurring };
   }
 

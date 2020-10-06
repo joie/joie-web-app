@@ -1,5 +1,9 @@
 .mat-radio-group {
   align-self: center;
+
+  .hint-container {
+    font-size: 11px;
+  }
 }
 .mat-radio-button ~ .mat-radio-button {
   margin-left: var(--joie-gutter);

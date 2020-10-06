@@ -22,9 +22,6 @@
           >{{ type.value | titlecase }}</mat-option
         >
       </mat-select>
-      <mat-hint *ngIf="coachingSelected"
-        >Coaching '<kbd>type</kbd>' auto-sets '<kbd>format</kbd>' to live streaming
-      </mat-hint>
     </mat-form-field>
 
     <mat-radio-group
@@ -35,10 +32,17 @@
     >
       <mat-radio-button
         *ngFor="let format of sessionFormatLiteralMap | keyvalue: asIsOrder"
+        [disabled]="format.key === 'onDemand'"
         [value]="format.key"
       >
         {{ format.value | titlecase }}
       </mat-radio-button>
+      <div class="hint-container">
+        <mat-hint *ngIf="coachingSelected">
+          Coaching '<kbd>type</kbd>' auto-sets '<kbd>format</kbd>' to live streaming
+        </mat-hint>
+      </div>
+
     </mat-radio-group>
 
     <!-- <mat-form-field appearance="outline">
