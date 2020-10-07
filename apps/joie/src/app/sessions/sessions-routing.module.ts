@@ -61,14 +61,7 @@ const routes: Routes = [
         },
         data: {
           dialogComponent: SessionFormComponent,
-          matDialogConfig: {
-            panelClass: 'dialog-as-drawer',
-            width: '100%',
-            maxWidth: 900,
-            position: {
-              right: '0px',
-            },
-          },
+          matDialogConfig: EditDialogConfigResolver,
         },
         outlet: 'popup',
       },
