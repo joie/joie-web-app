@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class DynaFormService implements OnDestroy {
   form?: FormGroup;
   session?: any;
+  valueRef?: any;
 
   constructor(private fb: FormBuilder) {
     console.log('service constructed');

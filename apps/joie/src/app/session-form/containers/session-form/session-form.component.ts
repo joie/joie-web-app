@@ -14,9 +14,7 @@ import {
 } from '@angular/fire/storage';
 import { DocumentReference } from '@angular/fire/firestore';
 import { AuthFacade } from '../../../auth/services/auth.facade';
-import {
-  MatSnackBar,
-} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { get } from 'lodash';
 
@@ -41,6 +39,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     @Inject(MAT_DIALOG_DATA) public data: { session: any }
   ) {
     super();
+    this.storeFormValueRef(this.data.session);
 
     if (get(this.data, 'session', false)) {
       this.dynaFormService.session = this.data.session; // store session on the service
@@ -98,14 +97,18 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
               eventId,
               ...this.form.value,
             })),
-            switchMap((session) => this.sessionsFacade.setSession(get(this.data, 'sessionId', ''), session)),
-            switchMap((session) => session ? of(this.storeThumbnailIfAny$.bind(this)) : of([])),
+            switchMap((session) =>
+              this.sessionsFacade.setSession(get(this.data, 'sessionId', ''), session)
+            ),
+            switchMap((session) => (session ? of(this.storeThumbnailIfAny$.bind(this)) : of([]))),
             finalize(() => (this.showLoader = false))
           )
           .subscribe({
             complete: () => {
               this.snackBar.open(
-                `Session ${get(this.data, 'sessionId', false) ? 'updated' : 'created'} successfully`,
+                `Session ${
+                  get(this.data, 'sessionId', false) ? 'updated' : 'created'
+                } successfully`,
                 'View',
                 {
                   duration: 4000,
