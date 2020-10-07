@@ -53,7 +53,8 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   }
 
   ngOnDestroy() {
-    this.dynaFormService.session = undefined;
+    this.removeFormValueRef();
+    this.removeSession();
   }
 
   get isCoaching() {
