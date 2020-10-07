@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { Recurrence } from '../../../sessions/enums';
-import { Session } from '../../../sessions/models';
-
 const newTimeSlot = ({ timestamp, recurring }) =>
   new FormGroup({
     timestamp: new FormControl(timestamp, Validators.required),
