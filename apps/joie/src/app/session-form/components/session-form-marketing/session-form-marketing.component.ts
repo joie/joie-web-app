@@ -15,11 +15,6 @@ export class SessionFormMarketingComponent extends DynaFormBaseComponent {
 
   constructor() {
     super();
-
-    if (this.session && this.session['relatedSessions']) {
-      this.session['relatedSessions'].map(relatedSession => this.addRelatedSession(relatedSession));
-    }
-
     this.addControls([
       ['promo', new FormControl(null)],
       ['relatedSessions', this.relatedSessionsArray],

@@ -34,16 +34,6 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
   constructor() {
     super();
 
-    if (this.session) {
-      this.session.goals.map(goal => {
-        this.addGoalOrComment(this.goalsFormArray, goal);
-      });
-
-      this.session.comments.map(comment => {
-        this.addGoalOrComment(this.commentsFormArray, comment);
-      });
-    }
-
     this.addControls([
       [this.PILLAR, new FormControl(null)],
       [this.LEVEL, new FormControl(null)],

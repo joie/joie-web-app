@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Injectable({ providedIn: 'root' })
 export class DynaFormService implements OnDestroy {
   form?: FormGroup;
-  session?: any;
   valueRef?: any;
 
   constructor(private fb: FormBuilder) {

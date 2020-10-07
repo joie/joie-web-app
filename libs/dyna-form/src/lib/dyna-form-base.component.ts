@@ -31,13 +31,13 @@ export abstract class DynaFormBaseComponent implements OnDestroy {
         const value = this.dynaFormService.valueRef[name];
 
         if (control instanceof FormArray) {
-          const { length = 0 } = value;
-          length.forEach(() => {
+          console.log('value: ', value)
+          value.forEach(() => {
             control.push(new FormControl(value));
           });
+        } else {
+          control.setValue(value);
         }
-
-        control.setValue(value);
       }
 
       this.form?.addControl(name, control);
@@ -54,14 +54,6 @@ export abstract class DynaFormBaseComponent implements OnDestroy {
 
   get form() {
     return this.dynaFormService.form;
-  }
-
-  get session() {
-    return this.dynaFormService.session;
-  }
-
-  removeSession() {
-    this.dynaFormService.session = undefined;
   }
 
   getFormControl(name: string) {

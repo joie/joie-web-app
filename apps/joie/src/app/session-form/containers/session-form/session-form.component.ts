@@ -40,7 +40,6 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   ) {
     super();
     if (get(this.data, 'session', false)) {
-      this.dynaFormService.session = this.data.session; // store session on the service
       this.storeFormValueRef(this.data.session);
       this.sessionId = get(this.data, 'sessionId');
       this.title = 'Edit Session';
@@ -54,7 +53,6 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
 
   ngOnDestroy() {
     this.removeFormValueRef();
-    this.removeSession();
   }
 
   get isCoaching() {
@@ -72,6 +70,8 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   async onSubmit() {
     this.showLoader = true;
     const currentDate = Date.now();
+
+    console.log('form: ', this.form.value)
 
     const eventCreationDetails = {
       resourceName: this.form.value.title,
