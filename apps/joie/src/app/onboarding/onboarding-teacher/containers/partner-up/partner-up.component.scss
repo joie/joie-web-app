@@ -59,3 +59,21 @@ blockquote {
 app-figure-image img {
   object-position: top;
 }
+
+::ng-deep .carousel-dot-active {
+  background-color: #15AABF !important;
+}
+
+::ng-deep .carousel-dot {
+  background-color: #C4C4C4;
+  border: none;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+::ng-deep .carousel-cell img{
+  height: 100px !important;
+  object-fit: fill !important;
+  width: 100px !important;
+  border-radius: 50%;
+}

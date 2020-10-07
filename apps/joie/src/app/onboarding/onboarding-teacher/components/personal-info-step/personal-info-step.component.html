@@ -48,20 +48,18 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Phone number</mat-label>
-      <input matInput
-             name="tel"
-             type="tel"
-             autocomplete="tel"
-             type="number"
-             inputmode="numeric"
-             placeholder="phone number"
-             formControlName="phone"
-             required />
+      <ngx-mat-intl-tel-input
+        [preferredCountries]="['us', 'ca']"
+        [enablePlaceholder]="true"
+        [enableSearch]="true"
+        name="phone"
+        formControlName="phone"
+        ></ngx-mat-intl-tel-input>
       <mat-error *ngIf="phone.invalid">{{onboardingService.showErrorMessage(phone)}}</mat-error>
 
     </mat-form-field>
 
-    <button mat-flat-button
+    <button mat-stroked-button
             [disabled]="form.invalid"
             matStepperNext>
       Continue

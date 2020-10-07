@@ -1,14 +1,23 @@
 <div class="container container-condense">
-  <mat-horizontal-stepper #stepper
-                          linear
-                          (selectionChange)="selectionChanged($event)">
+  <div fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="30px">
+    <mat-horizontal-stepper #stepper
+                            linear
+                            (selectionChange)="selectionChanged($event)">
 
 
-    <mat-step [completed]="isCompleted()"
-              *ngFor="let step of steps; let i = index"
-              [label]="step">
-      <router-outlet (activate)="onActivate($event)"
-                     *ngIf="i === selectedStep"></router-outlet>
-    </mat-step>
-  </mat-horizontal-stepper>
+      <mat-step [completed]="isCompleted()"
+                *ngFor="let step of steps; let i = index"
+                [label]="step">
+        <router-outlet (activate)="onActivate($event)"
+                      *ngIf="i === selectedStep"></router-outlet>
+      </mat-step>
+
+    </mat-horizontal-stepper>
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+      <a>FAQ</a>
+      <a>Contact us</a>
+      <a>Privacy policy</a>
+      <a>Terms and conditions</a>
+    </div>
+  </div>
 </div>

@@ -39,6 +39,9 @@ export class OnboardingService {
       case 'exceedesWordLimit':
         return `The text entered exceeds the maximum word limit ${errors.actualWordsCount}/${errors.limit}`;
 
+      case 'validatePhoneNumber':
+        return 'Invalid Number';
+
       case 'pattern':
         const pattern = errors.pattern.requiredPattern;
         return this.getPatternErrorMessage(pattern);
