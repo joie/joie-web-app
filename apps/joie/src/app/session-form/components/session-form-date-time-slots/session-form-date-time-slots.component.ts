@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { Recurrence } from '../../../sessions/enums';
-const newTimeSlot = ({ timestamp, recurring, duration }) =>
+const newTimeSlot = ({ timestamp, recurring }) =>
   new FormGroup({
     timestamp: new FormControl(timestamp, Validators.required),
     recurring: new FormControl(recurring),
-    duration: new FormControl(duration),
   });
 
 @Component({
@@ -26,15 +25,20 @@ export class SessionFormDateTimeSlotsComponent extends DynaFormBaseComponent {
   get timeSlotValues() {
     return this.timeSlotsFormArray.controls.map(
       ({ value: { timestamp, recurring, duration } }) =>
-        `${recurring && `${Recurrence[recurring]} starting`} ${timestamp}, duration ${duration}`
+        `${recurring && `${Recurrence[recurring]} starting`} ${timestamp}`
     );
   }
 
   addTimeSlot(value): void {
+    value.timestamp = this.transformDate(value.timestamp);
     this.timeSlotsFormArray.push(newTimeSlot(value));
   }
 
   removeTimeSlot(i: number): void {
     this.timeSlotsFormArray.removeAt(i);
+  }
+
+  private transformDate(date): string {
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}, ${date.getHours()}:${date.getMinutes()}`;
   }
 }

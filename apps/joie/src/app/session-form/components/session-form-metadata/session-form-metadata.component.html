@@ -37,11 +37,9 @@
       >
         {{ format.value | titlecase }}
       </mat-radio-button>
-      <div class="hint-container">
-        <mat-hint *ngIf="coachingSelected">
+      <span class="mat-caption" *ngIf="coachingSelected">
           Coaching '<kbd>type</kbd>' auto-sets '<kbd>format</kbd>' to live streaming
-        </mat-hint>
-      </div>
+      </span>
 
     </mat-radio-group>
 
