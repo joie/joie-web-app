@@ -45,17 +45,17 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
     }
 
     this.addControls([
-      [this.PILLAR, new FormControl(this.session ? this.session[this.PILLAR] : null)],
-      [this.LEVEL, new FormControl(this.session ? this.session[this.LEVEL] : null)],
+      [this.PILLAR, new FormControl(null)],
+      [this.LEVEL, new FormControl(null)],
       [this.GOALS, this.goalsFormArray],
       [this.COMMENTS, this.commentsFormArray],
-      [this.ACTIVITY, new FormControl(this.session ? this.session[this.ACTIVITY] : null)],
-      [this.LIMIT, new FormControl(this.session ? this.session[this.LIMIT] : null)],
+      [this.ACTIVITY, new FormControl(null)],
+      [this.LIMIT, new FormControl(null)],
       [
         this.PRICE,
         new FormGroup({
-          currency: new FormControl(this.session ? this.session[this.PRICE]['currency'] : 'USD'),
-          display: new FormControl(this.session ? this.session[this.PRICE]['display'] : null),
+          currency: new FormControl('USD'),
+          display: new FormControl(null),
         }),
       ],
     ]);

@@ -21,7 +21,7 @@ export class SessionFormMarketingComponent extends DynaFormBaseComponent {
     }
 
     this.addControls([
-      ['promo', new FormControl(this.session ? this.session['promo'] : null)],
+      ['promo', new FormControl(null)],
       ['relatedSessions', this.relatedSessionsArray],
     ]);
   }

@@ -39,10 +39,9 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     @Inject(MAT_DIALOG_DATA) public data: { session: any }
   ) {
     super();
-    this.storeFormValueRef(this.data.session);
-
     if (get(this.data, 'session', false)) {
       this.dynaFormService.session = this.data.session; // store session on the service
+      this.storeFormValueRef(this.data.session);
       this.sessionId = get(this.data, 'sessionId');
       this.title = 'Edit Session';
       this.showAllFields = true;
