@@ -19,6 +19,10 @@ export abstract class DynaFormBaseComponent implements OnDestroy {
     this.dynaFormService.valueRef = valueRef;
   }
 
+  removeFormValueRef() {
+    this.dynaFormService.valueRef = undefined;
+  }
+
   addControls(controls: ControlTuple[]) {
     this.#controls = controls;
     this.#controls.forEach(([name, control]) => {
@@ -47,6 +51,10 @@ export abstract class DynaFormBaseComponent implements OnDestroy {
 
   get session() {
     return this.dynaFormService.session;
+  }
+
+  removeSession() {
+    this.dynaFormService.session = undefined;
   }
 
   getFormControl(name: string) {
