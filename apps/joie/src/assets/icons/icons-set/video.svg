@@ -1,36 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 103 103" style="enable-background:new 0 0 103 103;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#DDECEA;}
-	.st1{fill:#F4C67D;}
-	.st2{fill:none;stroke:#404F54;stroke-linecap:round;stroke-linejoin:round;}
-	.st3{fill:none;stroke:#404F54;stroke-miterlimit:10;}
-	.st4{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}
-	.st5{fill:#6D6E71;stroke:#6D6E71;stroke-width:0.5;stroke-miterlimit:10;}
-	.st6{fill:none;stroke:#6D6E71;stroke-width:2;stroke-miterlimit:10;}
-	.st7{fill:#6D6E71;}
-	.st8{fill:#6D6E71;stroke:#6D6E71;stroke-width:2;stroke-miterlimit:10;}
-	.st9{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-	.st10{fill:none;stroke:#6D6E71;stroke-miterlimit:10;}
-	.st11{fill:#6D6E71;stroke:#6D6E71;stroke-miterlimit:10;}
-	.st12{fill:#6D6E71;stroke:#6D6E71;stroke-width:0.25;stroke-miterlimit:10;}
-	.st13{fill:#404F54;}
-	.st14{fill:none;stroke:#404F54;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
-</style>
-<g>
-	<circle class="st2" cx="51.5" cy="51.5" r="17.1"/>
-	<polygon class="st2" points="48.1,44.7 58.3,51.5 48.1,58.3 	"/>
-</g>
-<g>
-	<g>
-		<polyline class="st2" points="19.9,65.3 19.9,78.6 35.2,78.6 		"/>
-		<polyline class="st2" points="83.1,65.3 83.1,78.6 67.8,78.6 		"/>
-	</g>
-	<g>
-		<polyline class="st2" points="83.1,37.7 83.1,24.4 67.8,24.4 		"/>
-		<polyline class="st2" points="19.9,37.7 19.9,24.4 35.2,24.4 		"/>
-	</g>
-</g>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="24" height="24"/>
+<path d="M21.9924 7.75V3.65399H17.0127" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.10648 16.3415L2.10647 20.4375L7.08619 20.4375" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.10648 7.75L2.10647 3.65399L7.08619 3.65399" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21.9924 16.3415L21.9924 20.4375L17.0127 20.4375" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="12" cy="12" r="6.15625" stroke="currentColor"/>
+<path d="M10.4734 9.35589L15.0532 12L10.4734 14.6441L10.4734 9.35589Z" stroke="currentColor"/>
 </svg>

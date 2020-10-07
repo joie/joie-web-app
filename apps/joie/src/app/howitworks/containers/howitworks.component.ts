@@ -31,7 +31,7 @@ export class HowitworksComponent implements OnInit {
 
   sessionOptions = [
     {
-      icon: 'video-player',
+      icon: 'media-player',
       title: 'On-demand sessions',
       description:
         'On-Demand sessions designed for the independent learner. They are suitable for those who need flexibility with time and duration and progress at their own pace. On-demand sessions are also a great format to diversify your learning experience at an affordable price.',
