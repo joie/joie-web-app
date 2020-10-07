@@ -11,6 +11,7 @@ import { SessionDetailsComponent } from './containers/session-details/session-de
 import { SessionCardComponent } from './components/session-card/session-card.component';
 import { KalturaPlayerModule } from '../kaltura-player/kaltura-player.module';
 import { SessionListModule } from '../session-list/session-list.module';
+import { SessionFormModule } from '../session-form/session-form.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SessionListModule } from '../session-list/session-list.module';
     MatButtonModule,
     KalturaPlayerModule,
     SessionListModule,
+    SessionFormModule
   ],
   exports: [SessionEnrollDialogComponent],
 })

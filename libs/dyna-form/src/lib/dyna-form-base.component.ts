@@ -8,17 +8,39 @@ export type ControlTuple = [string, FormControl | FormArray | FormGroup];
 @Component({ template: '' })
 export abstract class DynaFormBaseComponent implements OnDestroy {
   #controls?: ControlTuple[];
-  private dynaFormService: DynaFormService;
+  dynaFormService: DynaFormService;
+
   constructor() {
     const injector = AppInjector.getInjector();
     this.dynaFormService = injector.get(DynaFormService);
   }
 
+  storeFormValueRef(valueRef: any) {
+    this.dynaFormService.valueRef = valueRef;
+  }
+
+  removeFormValueRef() {
+    this.dynaFormService.valueRef = undefined;
+  }
+
   addControls(controls: ControlTuple[]) {
     this.#controls = controls;
     this.#controls.forEach(([name, control]) => {
-      // add new control if is undefined or null
-      this.form?.get(name) ?? this.form?.addControl(name, control);
+      if (this.dynaFormService.valueRef) {
+        // add new control if is undefined or null
+        const value = this.dynaFormService.valueRef[name] || [];
+
+        if (control instanceof FormArray) {
+          value.forEach((val: any) => {
+            control.push(new FormControl(val));
+          });
+        } else {
+          control.setValue(value);
+        }
+      }
+
+      this.form?.addControl(name, control);
+      // this.form?.get(name) ?? this.form?.addControl(name, control);
       // console.log(this.form.value);
     });
   }

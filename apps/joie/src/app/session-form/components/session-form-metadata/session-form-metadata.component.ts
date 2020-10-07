@@ -25,9 +25,11 @@ export class SessionFormMetadataComponent extends DynaFormBaseComponent {
 
   constructor() {
     super();
-
     this.addControls([
-      ['format', new FormControl(null, Validators.required)],
+      [
+        'format',
+        new FormControl(null, Validators.required),
+      ],
       ['type', new FormControl(null, Validators.required)],
       ['title', new FormControl(null, Validators.required)],
       ['description', new FormControl(null)],
