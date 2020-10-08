@@ -61,6 +61,10 @@ body {
   text-align: center;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .text-color {
   &-primary {
     color: var(--joie-color-primary);

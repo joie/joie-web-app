@@ -1,7 +1,9 @@
 <div class="container-condense">
-  <button mat-button
-          mat-flat-button
-          (click)="onboardingService.navigateToPrevStep()">> Back</button>
+  <div class="text-left">
+    <button mat-button
+            mat-flat-button
+            matStepperPrevious>< Back</button>
+  </div>
   <h3>Your market</h3>
   <p>
     What's your niche, the area you focus on in your sessions?
@@ -18,17 +20,20 @@
       <mat-error *ngIf="sessionArea.invalid">{{onboardingService.showErrorMessage(sessionArea)}}</mat-error>
     </mat-form-field>
     <p>For which group your content design for?</p>
-    <label *ngFor="let group of  groupsLiteralsMap | keyvalue : asIsOrder; let i = index"
-           formArrayName="ageGroups">
-      <input type="checkbox"
-             [formControlName]="i" />
-      {{ group.value | titlecase}}
-    </label>
+    <dv fxLayout="row" fxLayoutAlign="center">
+      <div fxLayout="column" fxLayoutGap="20px">
+        <label class="text-left" *ngFor="let group of  groupsLiteralsMap | keyvalue : asIsOrder; let i = index"
+              formArrayName="ageGroups">
+          <input type="checkbox"
+                [formControlName]="i" />
+          {{ group.value | titlecase}}
+        </label>
+      </div>
+    </dv>
     <mat-error *ngIf="groupsFormArray.invalid">{{onboardingService.showErrorMessage(groupsFormArray)}}</mat-error>
 
-
     <button mat-button
-            mat-flat-button
+            mat-stroked-button
             [disabled]="form.invalid"
             matStepperNext>
       Continue
