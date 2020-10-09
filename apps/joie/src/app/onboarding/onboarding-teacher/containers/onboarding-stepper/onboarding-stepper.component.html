@@ -1,21 +1,50 @@
-<div class="container container-condense">
-    <mat-horizontal-stepper #stepper
-                            linear
-                            (selectionChange)="selectionChanged($event)">
+<div class="container container">
+  <ng-stepper #cdkStepper [linear]="true">
+    <cdk-step [stepControl]="stepOne.form" [optional]="false">
+      <ng-template cdkStepLabel>
+        <div class="step-bullet">1</div>
+        <div class="step-title">{{steps[0]}}</div>
+      </ng-template>
+      <app-personal-info-step #stepOne></app-personal-info-step>
+    </cdk-step>    
 
+    <cdk-step [stepControl]="stepTwo.form" [optional]="false">
+      <ng-template cdkStepLabel>
+        <div class="step-bullet">2</div>
+        <div class="step-title">{{steps[1]}}</div>
+      </ng-template>
+      <app-teaching-experience-step #stepTwo></app-teaching-experience-step>
+    </cdk-step>   
 
-      <mat-step [completed]="isCompleted()"
-                *ngFor="let step of steps; let i = index"
-                [label]="step">
-        <router-outlet (activate)="onActivate($event)"
-                      *ngIf="i === selectedStep"></router-outlet>
-      </mat-step>
+    <cdk-step [stepControl]="stepThree.form" [optional]="false">
+      <ng-template cdkStepLabel>
+        <div class="step-bullet">3</div>
+        <div class="step-title">{{steps[2]}}</div>
+      </ng-template>
+      <app-session-focus-area-step #stepThree></app-session-focus-area-step>
+    </cdk-step>  
 
-    </mat-horizontal-stepper>
-    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-      <a>FAQ</a>
-      <a>Contact us</a>
-      <a>Privacy policy</a>
-      <a>Terms and conditions</a>
-    </div>
+    <cdk-step [stepControl]="stepFour.form" [optional]="false">
+      <ng-template cdkStepLabel>
+        <div class="step-bullet">4</div>
+        <div class="step-title">{{steps[3]}}</div>
+      </ng-template>
+      <app-online-presence-step #stepFour></app-online-presence-step>
+    </cdk-step>  
+
+    <cdk-step [stepControl]="stepFive.form" [optional]="false">
+      <ng-template cdkStepLabel>
+        <div class="step-bullet">5</div>
+        <div class="step-title">{{steps[4]}}</div>
+      </ng-template>
+      <app-teaching-experience-step #stepFive></app-teaching-experience-step>
+    </cdk-step>  
+  </ng-stepper>
+
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+    <a>FAQ</a>
+    <a>Contact us</a>
+    <a>Privacy policy</a>
+    <a>Terms and conditions</a>
+  </div>
 </div>
