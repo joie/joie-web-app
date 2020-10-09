@@ -19,15 +19,12 @@ export class SessionFormDateTimeSlotsComponent extends DynaFormBaseComponent {
 
   constructor() {
     super();
-    this.addControls([
-      [this.TIME_SLOTS, this.timeSlotsFormArray],
-      ['duration', new FormControl(null)],
-    ]);
+    this.addControls([[this.TIME_SLOTS, this.timeSlotsFormArray]]);
   }
 
   get timeSlotValues() {
     return this.timeSlotsFormArray.controls.map(
-      ({ value: { timestamp, recurring, duration } }) =>
+      ({ value: { timestamp, recurring } }) =>
         `${recurring && `${Recurrence[recurring]} starting`} ${timestamp}`
     );
   }
@@ -42,6 +39,8 @@ export class SessionFormDateTimeSlotsComponent extends DynaFormBaseComponent {
   }
 
   private transformDate(date): string {
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}, ${date.getHours()}:${date.getMinutes()}`;
+    return `${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}, ${date.getHours()}:${date.getMinutes()}`;
   }
 }
