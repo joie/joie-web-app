@@ -18,6 +18,8 @@ export class RecurringDateTimePickerComponent implements OnDestroy {
   @Output() submission = new EventEmitter();
   @Output() formChange = new EventEmitter();
   recurringEnum = Recurrence;
+  minDate: Date;
+
   private stop$ = new Subject();
 
   form = this.fb.group({
@@ -27,6 +29,8 @@ export class RecurringDateTimePickerComponent implements OnDestroy {
   });
 
   constructor(private fb: FormBuilder) {
+    this.minDate = new Date();
+
     this.form.valueChanges
       .pipe(
         takeUntil(this.stop$),
@@ -49,9 +53,14 @@ export class RecurringDateTimePickerComponent implements OnDestroy {
   }
 
   private normalizeValue(formValue) {
-    const { date, time, recurring } = formValue;
+    const { time, recurring } = formValue;
+    let date = this.transformDate(formValue.date);
     const timestamp: Date = dateTimeToDateObj(date, time);
     return { timestamp, recurring };
+  }
+
+  private transformDate(date): string {
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   }
 
   onSubmit() {

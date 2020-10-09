@@ -1,4 +1,5 @@
 export enum Activities {
+  COACHING = 'Coaching',
   YOGA = 'Yoga',
   MEDITATION = 'Meditation',
   DANCE = 'Dance',
