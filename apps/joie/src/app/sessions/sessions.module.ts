@@ -1,35 +1,12 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared/shared.module';
-import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
-import { SessionsRoutingModule } from './sessions-routing.module';
 
-import { SessionsDashboardComponent } from './containers/sessions-dashboard/sessions-dashboard.component';
-import { SessionEnrollDialogComponent } from './components/session-enroll-dialog/session-enroll-dialog.component';
-import { SessionDetailsComponent } from './containers/session-details/session-details.component';
-import { SessionCardComponent } from './components/session-card/session-card.component';
-import { KalturaPlayerModule } from '../kaltura-player/kaltura-player.module';
-import { SessionListModule } from '../session-list/session-list.module';
-import { SessionFormModule } from '../session-form/session-form.module';
+import { SessionRoutingModule } from './sessions-routing.module';
+import { NewsessionComponent } from './containers/newsession/newsession.component';
+import { MaterialModule } from '../core/material.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    SessionsDashboardComponent,
-    SessionEnrollDialogComponent,
-    SessionDetailsComponent,
-    SessionCardComponent,
-  ],
-  imports: [
-    SharedModule,
-    SessionsRoutingModule,
-    MatCardModule,
-    MatDialogModule,
-    MatButtonModule,
-    KalturaPlayerModule,
-    SessionListModule,
-    SessionFormModule
-  ],
-  exports: [SessionEnrollDialogComponent],
+  declarations: [NewsessionComponent],
+  imports: [SessionRoutingModule, MaterialModule, SharedModule],
 })
 export class SessionsModule {}

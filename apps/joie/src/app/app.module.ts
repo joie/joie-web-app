@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -35,6 +35,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     BrowserAnimationsModule,
     HttpClientModule,
+    FlexLayoutModule,
   ],
   providers: [
     // {
