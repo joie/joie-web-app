@@ -11,7 +11,7 @@
 	background-color: var(--joie-color-primary) !important;
 }
 
-.step.completed + .step:after {
+::ng-ddep .step.completed + .step:after {
 	background-color: var(--joie-color-primary) !important;
 }
 

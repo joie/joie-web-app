@@ -88,9 +88,17 @@ export class SessionFocusAreaStepComponent {
   subscribeToValueChanges() {
     this.form.valueChanges.pipe(untilDestroyed(this)).subscribe((value) => {
       this.formService.ageGroupsFormArray.clear();
-      this.values.forEach((value) => {
-        this.formService.ageGroupsFormArray.push(new FormControl(value));
-      });
+
+      if (value[GROUPS][4]) {
+        [...this.groupsLiteralsMap.keys()].forEach((value) => {
+          this.formService.ageGroupsFormArray.push(new FormControl(value));
+        });
+      }
+      else {
+        this.values.forEach((value) => {
+          this.formService.ageGroupsFormArray.push(new FormControl(value));
+        });
+      }
       this.formService.form.patchValue({
         [SESSION_AREA]: value[SESSION_AREA],
       });
