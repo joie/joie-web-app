@@ -10,7 +10,16 @@
   border-radius: 50%;
 }
 
+.large-image {
+  width: 400px;
+  height: 200px;
+}
+
 .item-center {
   align-items: center;
   justify-content: center;
+}
+
+.mat-tab-label .mat-tab-label-content {
+  font-size: 0.8rem !important;
 }
