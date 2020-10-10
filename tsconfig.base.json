@@ -26,7 +26,14 @@
     "strictInjectionParameters": true
   },
   "references": [
-    { "path": "./libs/dyna-form/tsconfig.json" },
-    { "path": "./apps/joie/tsconfig.app.json" }
+    {
+      "path": "./libs/dyna-form/tsconfig.json"
+    },
+    {
+      "path": "./apps/joie/tsconfig.app.json"
+    },
+    {
+      "path": "./apps/joie/tsconfig.editor.json"
+    }
   ]
 }
