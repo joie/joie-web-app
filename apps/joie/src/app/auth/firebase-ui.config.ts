@@ -6,7 +6,7 @@ import { firebase, firebaseui } from 'firebaseui-angular';
 export const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
   signInOptions: [
-    // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     // {
     //   scopes: ['public_profile', 'email', 'user_likes', 'user_friends'],
     //   customParameters: {
@@ -16,10 +16,10 @@ export const firebaseUiAuthConfig: firebaseui.auth.Config = {
     // },
     // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
     // firebase.auth.GithubAuthProvider.PROVIDER_ID,
-    // {
-    //   requireDisplayName: false,
-    //   provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    // },
+    {
+      requireDisplayName: false,
+      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    },
     // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
     // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
   ],
