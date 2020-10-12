@@ -32,13 +32,18 @@
   <mat-card>
     <div class="banner">Hurry up! Only 2 spots left</div>
     <div class="text-center">
-      <mat-card-subtitle>{{ session?.pillar }}</mat-card-subtitle>
+      <mat-card-subtitle>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <app-icon class="joie-icon size-md" [name]="pillars[session.pillar]"></app-icon>
+          <div>{{ session?.pillar }}</div>
+        </div>
+      </mat-card-subtitle>
       <mat-card-title>{{ session?.title }}</mat-card-title>
     </div>
-    <mat-card-content>
+    <mat-card-content class="text-center">
       <img mat-card-avatar src="{{ session?.owner?.photoURL }}" alt="">
       <h3>{{ session?.owner?.displayName }}</h3>
-      <h3>{{ session?.createdAt }}</h3>
+      <h3 style="margin: 0;">{{ session?.createdAt }}</h3>
       <h3>
         {{ session?.duration?.amount + session?.duration?.unit }} -
         {{ session?.type }}
@@ -49,17 +54,13 @@
       </h3>
       <button mat-raised-button color="accent" style="width: 100%;"><h3>Enroll In Session</h3></button>
       <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-        <mat-icon>favorite_border</mat-icon>
+        <app-icon class="joie-icon size-sm" name="heart"></app-icon>
         <div>{{ session?.recommendationPercentage }} % people recommended this</div>
       </div>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions class="text-center">
       <button mat-button>
-        <mat-icon>card_giftcard</mat-icon>
-        Give as a gift
-      </button>
-      <button mat-button>
-        <mat-icon>favorite_border</mat-icon>
+        <app-icon class="joie-icon size-sm" name="heart"></app-icon>
         Save to my journey
       </button>
     </mat-card-actions>
