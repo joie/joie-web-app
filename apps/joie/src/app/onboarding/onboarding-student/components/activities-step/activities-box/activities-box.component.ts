@@ -11,7 +11,7 @@ import {
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
 import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
-import { PILLARS } from '../../../../../pillar-list/pillar-list.component';
+import { PILLARS } from '../../../../../pillar-list/components/pillar-list/pillar-list.component';
 import { OnboardingService } from '../../../../shared/onboarding.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MovementTargets, EmotionsTargets, Pillar } from '../../../../../enums';
