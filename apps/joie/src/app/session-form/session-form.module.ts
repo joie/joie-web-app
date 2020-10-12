@@ -21,6 +21,7 @@ import { SessionFormComponent } from './containers/session-form/session-form.com
 import { KalturaPlayerModule } from '../kaltura-player/kaltura-player.module';
 import { SessionFormRepetitionsComponent } from './components/session-form-repetitions/session-form-repetitions.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SessionFormDurationComponent } from './components/session-form-duration/session-form-duration.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     RecurringDateTimePickerComponent,
     SessionFormDateTimeComponent,
     SessionFormRepetitionsComponent,
+    SessionFormDurationComponent,
   ],
   imports: [
     SharedModule,
