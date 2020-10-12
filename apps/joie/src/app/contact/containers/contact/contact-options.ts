@@ -15,7 +15,7 @@ export const contactOptions = [
     description: 'Follow us, share a funny meme or a lol.',
   },
   {
-    icon: 'telephone', // todo missing icon
+    icon: 'earpiece',
     title: 'Give Us a Call',
     description: 'We will be happy to hear from you, and promise to be friendly.',
   },
