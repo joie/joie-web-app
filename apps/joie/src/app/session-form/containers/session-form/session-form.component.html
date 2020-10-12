@@ -8,6 +8,11 @@
         Show all fields...
       </button>
       <ng-container *ngIf="showAllFields">
+        <app-session-form-duration
+          *ngIf="isLivestreaming"
+          [class]="commonLayoutClass"
+        ></app-session-form-duration>
+
         <app-session-form-date-time-slots
           *ngIf="isCoaching"
           [class]="commonLayoutClass"

@@ -1,31 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 103 103" style="enable-background:new 0 0 103 103;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#DDECEA;}
-	.st1{fill:#F4C67D;}
-	.st2{fill:none;stroke:#404F54;stroke-linecap:round;stroke-linejoin:round;}
-	.st3{fill:none;stroke:#404F54;stroke-miterlimit:10;}
-	.st4{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}
-	.st5{fill:#6D6E71;stroke:#6D6E71;stroke-width:0.5;stroke-miterlimit:10;}
-	.st6{fill:none;stroke:#6D6E71;stroke-width:2;stroke-miterlimit:10;}
-	.st7{fill:#6D6E71;}
-	.st8{fill:#6D6E71;stroke:#6D6E71;stroke-width:2;stroke-miterlimit:10;}
-	.st9{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-	.st10{fill:none;stroke:#6D6E71;stroke-miterlimit:10;}
-	.st11{fill:#6D6E71;stroke:#6D6E71;stroke-miterlimit:10;}
-	.st12{fill:#6D6E71;stroke:#6D6E71;stroke-width:0.25;stroke-miterlimit:10;}
-	.st13{fill:#404F54;}
-	.st14{fill:none;stroke:#404F54;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
-</style>
-<g>
-	<line class="st2" x1="44.3" y1="44.8" x2="44.3" y2="53.9"/>
-	<line class="st2" x1="51.2" y1="44.8" x2="51.2" y2="53.9"/>
-	<line class="st2" x1="58.1" y1="44.8" x2="58.1" y2="53.9"/>
-	<path class="st2" d="M41.5,65.6l0.2,5.2c0.1,2.7,2.3,4.8,5,4.8l9.8-0.2c2.7-0.1,4.8-2.3,4.8-5l0.3-4.8c-3.7,1.1-10.1,0.8-10.1,0.8
-		S45.2,66.7,41.5,65.6z"/>
-	<path class="st2" d="M44.4,75.5c0.1,2.7,1.7,3.3,3.7,3.2l7.1-0.2c2,0,3.5-0.7,3.4-3.4"/>
-	<path class="st2" d="M61.3,65.8c7.2-3.6,12.1-11,12.1-19.6c0-12.1-9.8-21.9-21.9-21.9S29.6,34,29.6,46.1c0,8.6,4.9,16,12.1,19.6"/>
-</g>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="24" height="24"/>
+<path d="M8.37304 17.1821L8.44632 19.0872C8.48295 20.0763 9.28894 20.8457 10.2781 20.8457L13.8684 20.7724C14.8576 20.7358 15.627 19.9298 15.627 18.9406L15.7369 17.1821C14.3813 17.5851 12.0366 17.4752 12.0366 17.4752C12.0366 17.4752 9.72857 17.5851 8.37304 17.1821Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9.39885 20.8091C9.43549 21.7982 10.0217 22.018 10.7544 21.9814L13.3555 21.9081C14.0882 21.9081 14.6378 21.6517 14.6011 20.6625" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M15.5903 17.2187C18.2281 15.8998 20.0233 13.1888 20.0233 10.0381C20.0233 5.60516 16.4329 2.01484 12 2.01484C7.56706 2.01484 3.97674 5.60516 3.97674 10.0381C3.97674 13.1888 5.7719 15.8998 8.40968 17.2187" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 8.40625V12M10.2712 10.1327L13.5245 10.1327" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

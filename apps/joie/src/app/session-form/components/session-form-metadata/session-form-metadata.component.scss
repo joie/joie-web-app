@@ -1,6 +1,7 @@
-.mat-radio-group {
+.format-options {
   align-self: center;
 }
-.mat-radio-button ~ .mat-radio-button {
+
+mat-radio-button ~ mat-radio-button {
   margin-left: var(--joie-gutter);
 }

@@ -9,27 +9,25 @@
 <main>
   <section style="display: none"></section>
   <section>
-    <div class="container text-center">
+    <div class="container-condense text-center">
       <h1 class="mat-display-1">How Joie Works</h1>
-      <div class="container-condense">
-        <h5>
-          Joie members gain access to word-class sessions and teachers. Enroll in our live-stream or
-          on-demand session - a class, workout, course, lecture, or 1:1 coaching, to start your
-          journey to a happier and healthier life.
-        </h5>
-        <button mat-flat-button color="primary" routerLink="aboard">
-          Start your journey with us
-        </button>
-      </div>
+      <h4>
+        Joie members gain access to word-class sessions and teachers. Enroll in our live-stream or
+        on-demand session - a class, workout, course, lecture, or 1:1 coaching, to start your
+        journey to a happier and healthier life.
+      </h4>
+      <button mat-flat-button color="primary" routerLink="aboard">
+        Start your journey with us
+      </button>
     </div>
   </section>
   <section>
     <div class="container text-center layout-rows-md layout-center">
-      <h3>Sign up to Joie to start your journey. It is fast and simple.</h3>
+      <h1>Sign up to Joie to start your journey. It is fast and simple.</h1>
 
       <div class="layout-columns-md layout-rows-xs">
         <mat-card class="layout-center" *ngFor="let option of worksOptions">
-          <app-icon class="joie-icon joie-icon-backdrop size-xxl" [name]="option.icon"></app-icon>
+          <app-icon class="joie-icon joie-icon-backdrop size-xl" [name]="option.icon"></app-icon>
           <p>{{ option.description }}</p>
         </mat-card>
       </div>
@@ -41,20 +39,20 @@
   </section>
   <section>
     <div class="container text-center layout-rows-md layout-center">
-      <div class="container-condense">
-        <h3>Grow with us, just the way you like it.</h3>
-        <p>
+      <div>
+        <h1>Grow with us, just the way you like it.</h1>
+        <h4>
           For some, it has never been easier to stay active and healthy at home. While others prefer
           to go solo. Joey offers 3 types of learning opportunities to help you choose the right one
           for you, and help you persist on your journey. Find the one that works for you.
-        </p>
-        <div class="layout-columns-md layout-rows-xs">
-          <mat-card class="layout-center" *ngFor="let option of sessionOptions">
-            <app-icon class="joie-icon joie-icon-backdrop size-xxl" [name]="option.icon"></app-icon>
-            <h4>{{ option.title }}</h4>
-            <h5>{{ option.description }}</h5>
-          </mat-card>
-        </div>
+        </h4>
+      </div>
+      <div class="layout-columns-md layout-rows-xs">
+        <mat-card class="layout-center" *ngFor="let option of sessionOptions">
+          <app-icon class="joie-icon joie-icon-backdrop size-xl" [name]="option.icon"></app-icon>
+          <h4>{{ option.title }}</h4>
+          <p>{{ option.description }}</p>
+        </mat-card>
       </div>
       <button mat-flat-button color="primary" routerLink="aboard">
         Start your journey with us
@@ -63,5 +61,7 @@
   </section>
 </main>
 <footer>
-  <app-subscribe-to-newsletter></app-subscribe-to-newsletter>
+  <section>
+    <app-subscribe-to-newsletter class="container"></app-subscribe-to-newsletter>
+  </section>
 </footer>

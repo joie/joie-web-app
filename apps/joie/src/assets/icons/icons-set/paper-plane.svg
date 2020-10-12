@@ -1,44 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 103 103" style="enable-background:new 0 0 103 103;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#DDECEA;}
-	.st1{fill:#F4C67D;}
-	.st2{fill:none;stroke:#404F54;stroke-linecap:round;stroke-linejoin:round;}
-	.st3{fill:none;stroke:#404F54;stroke-miterlimit:10;}
-	.st4{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}
-	.st5{fill:#6D6E71;stroke:#6D6E71;stroke-width:0.5;stroke-miterlimit:10;}
-	.st6{fill:none;stroke:#6D6E71;stroke-width:2;stroke-miterlimit:10;}
-	.st7{fill:#6D6E71;}
-	.st8{fill:#6D6E71;stroke:#6D6E71;stroke-width:2;stroke-miterlimit:10;}
-	.st9{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-	.st10{fill:none;stroke:#6D6E71;stroke-miterlimit:10;}
-	.st11{fill:#6D6E71;stroke:#6D6E71;stroke-miterlimit:10;}
-	.st12{fill:#6D6E71;stroke:#6D6E71;stroke-width:0.25;stroke-miterlimit:10;}
-	.st13{fill:#404F54;}
-	.st14{fill:none;stroke:#404F54;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
-</style>
-<g>
-	<g>
-		<line class="st2" x1="75.8" y1="24.2" x2="57.4" y2="52.6"/>
-		<polygon class="st2" points="75.8,24.2 70,69.9 57.4,52.6 36.5,48.1 		"/>
-	</g>
-	<g>
-		<g>
-			<g>
-				<line class="st2" x1="48.9" y1="67.5" x2="51.6" y2="61.8"/>
-				<line class="st2" x1="48.1" y1="63.6" x2="52.4" y2="65.7"/>
-			</g>
-			<g>
-				<line class="st2" x1="36.9" y1="78.8" x2="39.1" y2="72.9"/>
-				<line class="st2" x1="35.8" y1="75" x2="40.3" y2="76.7"/>
-			</g>
-			<g>
-				<line class="st2" x1="28.4" y1="65.1" x2="30.5" y2="59.1"/>
-				<line class="st2" x1="27.2" y1="61.3" x2="31.7" y2="62.9"/>
-			</g>
-		</g>
-	</g>
-</g>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="24" height="24"/>
+<path d="M21.875 2.1875L12.8687 11.1937" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21.875 2.1875L16.1438 18.5625L12.8688 11.1938L5.5 7.91875L21.875 2.1875Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.1577 13.251L8.4365 16.4057M7.81321 13.9386L10.6691 15.4967" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M4.12176 16.9721L5.59849 20.2484M3.25514 19.2565L6.22103 17.9196" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

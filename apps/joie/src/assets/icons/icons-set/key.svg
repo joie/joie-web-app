@@ -1,29 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 103 103" style="enable-background:new 0 0 103 103;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#DDECEA;}
-	.st1{fill:#F4C67D;}
-	.st2{fill:none;stroke:#404F54;stroke-linecap:round;stroke-linejoin:round;}
-	.st3{fill:none;stroke:#404F54;stroke-miterlimit:10;}
-	.st4{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}
-	.st5{fill:#6D6E71;stroke:#6D6E71;stroke-width:0.5;stroke-miterlimit:10;}
-	.st6{fill:none;stroke:#6D6E71;stroke-width:2;stroke-miterlimit:10;}
-	.st7{fill:#6D6E71;}
-	.st8{fill:#6D6E71;stroke:#6D6E71;stroke-width:2;stroke-miterlimit:10;}
-	.st9{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-	.st10{fill:none;stroke:#6D6E71;stroke-miterlimit:10;}
-	.st11{fill:#6D6E71;stroke:#6D6E71;stroke-miterlimit:10;}
-	.st12{fill:#6D6E71;stroke:#6D6E71;stroke-width:0.25;stroke-miterlimit:10;}
-	.st13{fill:#404F54;}
-	.st14{fill:none;stroke:#404F54;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
-</style>
-<path class="st2" d="M51.7,78.3l0-6.2 M51.6,48.7c-6.6,0.1-12.1-5.3-12.1-11.9s5.3-12.1,11.9-12.1c0.1,0,0.1,0,0.2,0
-	c6.6,0.1,11.9,5.5,11.8,12.2C63.3,43.3,58.1,48.5,51.6,48.7L51.6,48.7z M51.6,48.7l0,12.7 M51.6,61.4l-9.3,0l0,10.8l9.3,0
-	 M51.6,61.4l0,10.8"/>
-<g>
-	<line class="st2" x1="51.6" y1="33.8" x2="51.3" y2="40.1"/>
-	<line class="st2" x1="53.8" y1="37.1" x2="49" y2="36.9"/>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0)">
+<rect width="24" height="24"/>
+<path d="M12.3157 22.1181L12.3157 19.8073M12.3157 19.8073L8.84959 19.8073L8.84959 15.7634L12.3158 15.7634M12.3157 19.8073L12.3158 15.7634M12.3158 11.0148C11.7231 11.0188 11.1356 10.9055 10.587 10.6815C10.0383 10.4574 9.53944 10.1271 9.119 9.70945C8.69855 9.29182 8.36487 8.79514 8.13717 8.24802C7.90947 7.70089 7.79225 7.11413 7.79225 6.52152C7.79225 5.9289 7.90947 5.34214 8.13717 4.79502C8.36487 4.24789 8.69855 3.75122 9.119 3.33358C9.53944 2.91594 10.0383 2.5856 10.587 2.36157C11.1356 2.13754 11.7231 2.02425 12.3158 2.02822C13.4938 2.0487 14.6166 2.53104 15.4425 3.37136C16.2683 4.21168 16.7311 5.34274 16.7311 6.52094C16.7311 7.69914 16.2683 8.8302 15.4425 9.67052C14.6166 10.5108 13.4938 10.9932 12.3158 11.0137V11.0148ZM12.3158 11.0148L12.3158 15.7634M12.3157 4.79502L12.3157 8.48252M10.587 6.52152L13.8402 6.52152" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
+<defs>
+<clipPath id="clip0">
+<rect width="24" height="24"/>
+</clipPath>
+</defs>
 </svg>
