@@ -2,7 +2,7 @@
   <div class="text-left">
     <button mat-button
             mat-flat-button
-            cdkStepperPrevious>< Back</button>
+            matStepperPrevious>< Back</button>
   </div>
   <h3>Online presence</h3>
   <p>
@@ -15,27 +15,14 @@
 <div class="container-ultra-condense">
   <form class="layout-rows-sm"
         [formGroup]="form">
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px">
-      <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
-        <ng-container *ngFor="let sessionType of sessionTypesLiteralsMap | keyvalue: asIsOrder; let i = index">
-          <label class="text-left" formArrayName="sessionTypes"
-                 *ngIf="i<3">
-            <input type="checkbox"
-                  [formControlName]="i" /> {{ sessionType.value | titlecase}}
-          </label>
-        </ng-container>
-      </div>
-      <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
-        <ng-container *ngFor="let sessionType of sessionTypesLiteralsMap | keyvalue: asIsOrder; let i = index">
-          <label class="text-left" formArrayName="sessionTypes"
-                 *ngIf="i>2">
-            <input type="checkbox"
-                  [formControlName]="i" /> {{ sessionType.value | titlecase}}
-          </label>
-        </ng-container>
-      </div>
+    <div class="layout-columns-md">
+      <label class="text-left" formArrayName="sessionTypes"
+      *ngFor="let sessionType of sessionTypesLiteralsMap | keyvalue: asIsOrder; let i = index">
+        <input type="checkbox"
+              [formControlName]="i" /> {{ sessionType.value | titlecase}}
+      </label>
+      <mat-error *ngIf="typesFormArray.invalid && (typesFormArray.dirty || typesFormArray.touched)">{{onboardingService.showErrorMessage(typesFormArray)}}</mat-error>
     </div>
-    <mat-error *ngIf="typesFormArray.invalid">{{onboardingService.showErrorMessage(typesFormArray)}}</mat-error>
 
     <p>
       Where can we learn more about your teaching style?
@@ -54,7 +41,7 @@
     <button mat-button
             mat-stroked-button
             [disabled]="form.invalid"
-            cdkStepperNext>
+            matStepperNext>
       Continue
     </button>
   </form>

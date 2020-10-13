@@ -13,9 +13,8 @@
     grid-column: 2;
     margin: 0;
   }
-  + #{&} {
-    margin-block-start: 70px;
-  }
+  margin-block-start: 35px;
+  margin-block-end: 35px;
 }
 
 blockquote {

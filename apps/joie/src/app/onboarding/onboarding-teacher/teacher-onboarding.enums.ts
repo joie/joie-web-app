@@ -32,8 +32,8 @@ export enum AgeGroups {
 
 export const AgeGroupsLiteralsMap = new Map([
   [AgeGroups.Children, 'children (6-14)'],
-  [AgeGroups.Youth, 'youth (15-24'],
-  [AgeGroups.Adults, 'adults (25-64'],
+  [AgeGroups.Youth, 'youth (15-24)'],
+  [AgeGroups.Adults, 'adults (25-64)'],
   [AgeGroups.Eldery, 'eldery (65+)'],
   [AgeGroups.All, 'all of the above'],
 ]);

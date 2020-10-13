@@ -89,16 +89,10 @@ export class SessionFocusAreaStepComponent {
     this.form.valueChanges.pipe(untilDestroyed(this)).subscribe((value) => {
       this.formService.ageGroupsFormArray.clear();
 
-      if (value[GROUPS][4]) {
-        [...this.groupsLiteralsMap.keys()].forEach((value) => {
-          this.formService.ageGroupsFormArray.push(new FormControl(value));
-        });
-      }
-      else {
-        this.values.forEach((value) => {
-          this.formService.ageGroupsFormArray.push(new FormControl(value));
-        });
-      }
+      this.values.forEach((value) => {
+        this.formService.ageGroupsFormArray.push(new FormControl(value));
+      });
+      // }
       this.formService.form.patchValue({
         [SESSION_AREA]: value[SESSION_AREA],
       });
@@ -122,5 +116,33 @@ export class SessionFocusAreaStepComponent {
 
   asIsOrder(a, b) {
     return 1;
+  }
+
+  handleSelected($event, index) {
+    if (index === 4 && $event.target.checked) {
+      this.form.patchValue({
+        [GROUPS]: [true, true, true, true, true],
+      });
+    }
+    if (index !== 4) {
+      this.storage
+      .getItem(this.controlKey)
+      .pipe(untilDestroyed(this))
+      .subscribe((cacheValue) => {
+        if (cacheValue) {
+          if ($event.target.checked && cacheValue[GROUPS][0] && cacheValue[GROUPS][1] && cacheValue[GROUPS][2] && cacheValue[GROUPS][3]) {
+            this.form.patchValue({
+              [GROUPS]: [true, true, true, true, true],
+            });
+          } else if (!$event.target.checked && cacheValue[GROUPS][4]) {
+            cacheValue[GROUPS][4] = false;
+            this.form.patchValue({
+              [GROUPS]: cacheValue[GROUPS],
+            });
+          }
+        }
+      });
+
+    }
   }
 }

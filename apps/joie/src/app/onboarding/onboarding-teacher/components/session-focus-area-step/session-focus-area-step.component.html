@@ -2,7 +2,7 @@
   <div class="text-left">
     <button mat-button
             mat-flat-button
-            cdkStepperPrevious>< Back</button>
+            matStepperPrevious>< Back</button>
   </div>
   <h3>Your market</h3>
   <p>
@@ -20,22 +20,20 @@
       <mat-error *ngIf="sessionArea.invalid">{{onboardingService.showErrorMessage(sessionArea)}}</mat-error>
     </mat-form-field>
     <p>For which group your content design for?</p>
-    <dv fxLayout="row" fxLayoutAlign="center">
-      <div fxLayout="column" fxLayoutGap="20px">
-        <label class="text-left" *ngFor="let group of  groupsLiteralsMap | keyvalue : asIsOrder; let i = index"
-              formArrayName="ageGroups">
-          <input type="checkbox"
-                [formControlName]="i" />
-          {{ group.value | titlecase}}
-        </label>
-      </div>
-    </dv>
+    <div class="layout-rows layout-center-left">
+      <label class="text-left" *ngFor="let group of  groupsLiteralsMap | keyvalue : asIsOrder; let i = index"
+            formArrayName="ageGroups">
+        <input type="checkbox" (change)="handleSelected($event, i)"
+              [formControlName]="i" />
+        {{ group.value | titlecase}}
+      </label>
+    </div>
     <mat-error *ngIf="groupsFormArray.invalid">{{onboardingService.showErrorMessage(groupsFormArray)}}</mat-error>
 
     <button mat-button
             mat-stroked-button
             [disabled]="form.invalid"
-            cdkStepperNext>
+            matStepperNext>
       Continue
     </button>
 

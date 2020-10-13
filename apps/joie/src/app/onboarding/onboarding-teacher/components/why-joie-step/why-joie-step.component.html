@@ -3,7 +3,7 @@
     <div class="text-left">
       <button mat-button
               mat-flat-button
-              cdkStepperPrevious>< Back</button>
+              matStepperPrevious>< Back</button>
     </div>
     <h3>Your value to our students</h3>
     <p>
@@ -26,7 +26,7 @@
 
       <button mat-button
               mat-stroked-button
-              cdkStepperNext
+              matStepperNext
               (click)="submitFormsData()"
               [disabled]="form.invalid">
         Submit your application
