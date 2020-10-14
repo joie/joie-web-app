@@ -1,41 +1,36 @@
 <div class="container-condense">
   <div class="text-left">
-    <button mat-button
-            mat-flat-button
-            matStepperPrevious>< Back</button>
+    <button mat-button mat-flat-button matStepperPrevious>< Back</button>
   </div>
   <h3>Your market</h3>
-  <p>
-    What's your niche, the area you focus on in your sessions?
-  </p>
+  <p>What's your niche, the area you focus on in your sessions?</p>
 </div>
 
 <div class="container-ultra-condense">
-  <form [formGroup]="form"
-        class="layout-rows-sm">
+  <form [formGroup]="form" class="layout-rows-sm">
     <mat-form-field appearance="outline">
-      <textarea matInput
-                formControlName="sessionArea"
-                required></textarea>
-      <mat-error *ngIf="sessionArea.invalid">{{onboardingService.showErrorMessage(sessionArea)}}</mat-error>
+      <textarea matInput formControlName="sessionArea" required></textarea>
+      <mat-error *ngIf="sessionArea.invalid">{{
+        onboardingService.showErrorMessage(sessionArea)
+      }}</mat-error>
     </mat-form-field>
     <p>For which group your content design for?</p>
-    <div class="layout-rows layout-center-left">
-      <label class="text-left" *ngFor="let group of  groupsLiteralsMap | keyvalue : asIsOrder; let i = index"
-            formArrayName="ageGroups">
-        <input type="checkbox" (change)="handleSelected($event, i)"
-              [formControlName]="i" />
-        {{ group.value | titlecase}}
-      </label>
+    <div class="layout-columns layout-center">
+      <div class="layout-rows">
+        <label
+          class="text-left"
+          *ngFor="let group of groupsLiteralsMap | keyvalue: asIsOrder; let i = index"
+          formArrayName="ageGroups"
+        >
+          <input type="checkbox" (change)="handleSelected($event, i)" [formControlName]="i" />
+          {{ group.value | titlecase }}
+        </label>
+      </div>
     </div>
-    <mat-error *ngIf="groupsFormArray.invalid">{{onboardingService.showErrorMessage(groupsFormArray)}}</mat-error>
+    <mat-error *ngIf="groupsFormArray.invalid">{{
+      onboardingService.showErrorMessage(groupsFormArray)
+    }}</mat-error>
 
-    <button mat-button
-            mat-stroked-button
-            [disabled]="form.invalid"
-            matStepperNext>
-      Continue
-    </button>
-
+    <button mat-button mat-stroked-button [disabled]="form.invalid" matStepperNext>Continue</button>
   </form>
 </div>
