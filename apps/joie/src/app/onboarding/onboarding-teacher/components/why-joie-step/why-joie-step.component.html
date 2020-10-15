@@ -1,10 +1,8 @@
 <ng-container *ngIf="!afterSubmit">
+  <div>
+    <button mat-button mat-flat-button matStepperPrevious>< Back</button>
+  </div>
   <div class="container-condense">
-    <div class="text-left">
-      <button mat-button
-              mat-flat-button
-              matStepperPrevious>< Back</button>
-    </div>
     <h3>Your value to our students</h3>
     <p>
       Finally, {{(authService.state$ | async)?.displayName }} where do you see your added value to the students?
