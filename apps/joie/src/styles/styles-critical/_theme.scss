@@ -60,9 +60,18 @@ hr {
       #{$size-variable-name}: calc(#{$unit} * #{map.get($sizes, #{$key})});
     }
   }
+  &.size-md,
+  &.size-lg,
+  &.size-xl,
+  &.size-xxl {
+    svg {
+      stroke-width: 0.5;
+    }
+  }
 
   &#{&}-backdrop {
     position: relative;
+    padding: calc(var(--size) / 5);
 
     &::before {
       content: '';
@@ -76,6 +85,7 @@ hr {
       top: 50%;
       transform: translate(-50%, -50%);
       border-radius: 50%;
+      padding: inherit;
     }
     > :first-child {
       position: relative;

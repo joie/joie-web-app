@@ -8,6 +8,8 @@ import { AngularFirestoreModule, SETTINGS } from '@angular/fire/firestore';
 import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/functions';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 
+import { KalturaClient } from 'kaltura-ngx-client';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -16,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
+import { KalutraIntegrationService } from './services/kaltura-integration.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -50,6 +53,8 @@ import { AuthModule } from './auth/auth.module';
     //   provide: ORIGIN,
     //   useValue: environment.production ? undefined : 'http://localhost:5001',
     // },
+    KalturaClient,
+    KalutraIntegrationService,
   ],
   bootstrap: [AppComponent],
   exports: [],

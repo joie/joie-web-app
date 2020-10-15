@@ -23,6 +23,7 @@ export abstract class DynaFormBaseComponent implements OnDestroy {
     this.dynaFormService.valueRef = undefined;
   }
 
+  // TODO extract formArray condition to decorator
   addControls(controls: ControlTuple[]) {
     this.#controls = controls;
     this.#controls.forEach(([name, control]) => {

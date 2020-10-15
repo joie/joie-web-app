@@ -29,7 +29,6 @@ interface SessionMetadata extends Schedule, KalturaEvent {
   description?: string;
   thumbRef: string;
   owner: Owner;
-  duration: Duration;
   level: CourseLevel;
   price: Price;
   activities: Activities[];
@@ -39,10 +38,12 @@ interface SessionMetadata extends Schedule, KalturaEvent {
 
 interface Streaming {
   format: Format.LiveStreaming;
+  duration?: Duration;
 }
 
 interface OnDemand {
   format: Format.OnDemand;
+  readonly duration?: Duration;
 }
 
 /************************

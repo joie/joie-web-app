@@ -83,7 +83,7 @@ service cloud.firestore {
       allow create: if isSignedIn() && isClaim('teacher');
       allow update, delete: if isOwner(request.resource.data.owner.uid);
     }
-
+    
     // match /session_info/{sessionInfo} {
     //   allow read: if true;
     //   allow create: if isSignedIn() && isClaim('teacher');
@@ -110,7 +110,7 @@ service cloud.firestore {
 		// 	allow read: if isOwner(get(resource.data.userRef).id); // should be admin or uid match
 		// allow write: if isOwner(get(request.resource.data.userRef).id); // should be admin or uid match
 		// }
-
+    
     // run subscriptions with stripe september 21
      match /customers/{uid} {
       allow read: if request.auth.uid == uid;

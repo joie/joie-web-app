@@ -6,13 +6,22 @@
       We stay in touch with our family to give you what you want (what you really, really want).
     </p>
   </div>
-  <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline">
+  <form [formGroup]="emailForm" (ngSubmit)="onSubmit()" class="layout-rows-xs">
+    <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
-      <input type="email" matInput placeholder="Here is my email" formControlName="email" />
+      <input
+        matInput
+        type="email"
+        name="email"
+        formControlName="email"
+        autocomplete="email"
+        placeholder="Here is my email"
+      />
       <mat-hint>Your details will never be shared.</mat-hint>
     </mat-form-field>
 
-    <button mat-flat-button type="submit" [disabled]="emailForm.invalid">Submit</button>
+    <button mat-flat-button type="submit" [disabled]="emailForm.invalid" color="accent">
+      Submit
+    </button>
   </form>
 </div>

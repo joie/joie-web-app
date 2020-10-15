@@ -1,0 +1,199 @@
+<main>
+  <section>
+    <div class="container">
+      <div class="mat-tab-links">
+        <div class="text-center" style="width: 70%">
+          <h5>JoieSpirit</h5>
+          <h4>A full Body yoga for courage and self-confidence</h4>
+          <img
+            src="../../../../assets//images/female_yoga_teacher_meditating_in_front_of_a_recording_camera_on_a_tripod.jpg"
+            class="small-image"
+          />
+          <div class="mat-tab-links justify-content-between">
+            <div class="mat-tab-links item-center layout-center" *ngFor="let widget of widgets">
+              <app-icon class="joie-icon size-xxl xs-icon" [name]="widget.icon"></app-icon>
+              <h6 class="xs-desc">{{ widget.content }}</h6>
+            </div>
+          </div>
+          <div
+            id="player"
+            [style.width.px]="width"
+            [style.height.px]="height"
+            style="height: 395px"
+          ></div>
+          <div class="upload-content text-center p-1 container">
+            <h3>Upload your video</h3>
+            <h5 class="border-bottom">
+              You can upload any of the following formats: MP4, MOV, WMV, AVI.
+            </h5>
+            <div class="mat-tab-links justify-content-evenly">
+              <div class="joie-list-item mat-tab-links">
+                <app-icon class="joie-icon size-xxl xs-icon mt-1" name="plus-circle"></app-icon>
+                <div class="w-70 text-left ml-2">
+                  <h4 class="joie-list-name">Upload a thumbnail image</h4>
+                  <h6 class="joie-list-description">
+                    Size: 1280x720 px. Formats: JPG, GIF, or PNG.
+                  </h6>
+                </div>
+              </div>
+              <app-icon class="joie-icon size-xxl" name="border-or"></app-icon>
+              <div class="joie-list-item mat-tab-links">
+                <app-icon class="joie-icon size-xxl xs-icon mt-1" name="plus-circle"></app-icon>
+                <div class="w-70 text-left ml-2">
+                  <h4 class="joie-list-name">Upload an intro video</h4>
+                  <h6>Up to 1 minitue video. Formats: Format: MP4, MOV, WMV, AVI.</h6>
+                </div>
+              </div>
+            </div>
+
+            <!-- <input
+              hidden="true"
+              type="file"
+              accept=".mp4, .mov, .wmv, .avi"
+              #uploadControl
+              (change)="fileUpload($event)"
+            />
+
+            <button
+              mat-flat-button
+              color="primary"
+              (click)="uploadControl.click()"
+              type="button"
+              class="mt-3 uploadBtn"
+              [disabled]="uploading === true || changing === true"
+            >
+              <span *ngIf="!uploading || !changing">Upload a video</span>
+              <span *ngIf="uploading" class="uploading"> </span>
+              <span *ngIf="changing" class="uploading">Replacing</span>
+            </button> -->
+          </div>
+          <mat-tab-group>
+            <mat-tab label="What you will learn">
+              <div class="mat-tab-links mt-3 mb-2 justify-content-between">
+                <div class="mat-tab-links align-items-center">
+                  <app-icon class="joie-icon size-xxl xs-icon" name="s_compass"></app-icon>
+                  <span class="ml-2">Activities Yoga</span>
+                </div>
+                <div class="mat-tab-links align-items-center">
+                  <app-icon class="joie-icon size-xxl xs-icon" name="s_desktop"></app-icon>
+                  <span class="ml-2">Types of sessions Workshop</span>
+                </div>
+                <div class="mat-tab-links align-items-center">
+                  <app-icon class="joie-icon size-xxl xs-icon" name="s_pillar"></app-icon>
+                  <span class="ml-2">Pillars Movement</span>
+                </div>
+              </div>
+              <h5 class="text-left mt-3">
+                Training to become an Iyengar Yoga teacher generally takes between 3-5 years and
+                thus attracts only deeply dedicated practitioners. This, in combination with a
+                certification process that evelopment combination with a certification processacross
+                the globe, has resulted in the consistent development of exceptionallyTraining to
+                become an Iyengar Yoga teacher generally takes between 3-5 years and thus attracts
+                only deeply dedicated practitioners. This, in combination with a certification
+                process that has been standardized across the globe, has resulted in the consistent
+                development of exceptionally high caliber teaching. All of the teachers at at has
+                been standardized across the globe, has resulted in the consistent development of
+                exceptionally high caliber teaching. All of the teacher
+                <br />
+                <br />
+                Goals:<br />
+                • Training to become an Iyengar Yoga<br />
+                • teacher generally takes between 3-5 years<br />
+                • Attracts only deeply dedicated practitioners.
+              </h5>
+              <div class="text-left">
+                <div class="mat-tab-links">
+                  <app-icon class="joie-icon size-xxl s-icon" name="s_flag"></app-icon>
+                  <h5 class="col-11">
+                    Neet to know Difficulty level: Beginner <br />
+                    Equipment: No equipment needed. Mat recommended.
+                  </h5>
+                </div>
+                <div class="mat-tab-links">
+                  <app-icon class="joie-icon size-xxl s-icon" name="s_console"></app-icon>
+                  <h5 class="col-11">Contact teacher</h5>
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab label="Meet your teacher">Meet your teacher</mat-tab>
+            <mat-tab label="What our community say">What our community say</mat-tab>
+          </mat-tab-group>
+          <div class="p-3">
+            <h5>Continue your journey with the following recommended sessions</h5>
+            <div class="layout-columns-md layout-rows-xs">
+              <mat-card class="layout-center" *ngFor="let sessionCard of sessionCards">
+                <div class="session-badge" *ngIf="sessionCard.badge">
+                  <h6>{{ sessionCard.badgeContent }}</h6>
+                </div>
+                <img
+                  src="../../../../assets/images/female_yoga_teacher_meditating_in_front_of_a_recording_camera_on_a_tripod.jpg"
+                  class="large-image border-5"
+                />
+                <div class="status"></div>
+                <div class="bg-warning w-100 border-5 p-1 text-white mt-3">
+                  <h4>Enroll In Session</h4>
+                </div>
+                <div class="mat-tab-links justify-content-between p-3">
+                  <div class="text-left" style="width: 60%">
+                    <h5>{{ sessionCard.content }}</h5>
+                    <h6>{{ sessionCard.author }}</h6>
+                  </div>
+                  <div class="mat-tab-links">
+                    <app-icon class="joie-icon size-xxl s-icon" name="s_heart"></app-icon>
+                    <h5>{{ sessionCard.percent }}%</h5>
+                  </div>
+                </div>
+                <div class="mat-tab-links justify-content-between p-3">
+                  <h6>Price: ${{ sessionCard.price }}</h6>
+                  <app-icon class="joie-icon size-xxl s-icon" name="s_more"></app-icon>
+                </div>
+              </mat-card>
+            </div>
+            <h5 class="mt-3">Explore more of our unique sessions</h5>
+          </div>
+        </div>
+        <div class="" style="width: 30%; padding: 15px">
+          <mat-card class="text-center mb-3">
+            <div class="session-badge" style="left: 30%">
+              <h6>Hurry up! Only 2 sports left.</h6>
+            </div>
+            <div class="mt-3">
+              <h5>JoieSpirit</h5>
+              <h4>
+                Full Body <br />
+                STRETCH/YOGA for <br />
+                STRESS & ANXIETY Relief
+              </h4>
+              <img
+                src="../../../../assets/images/female_yoga_teacher_meditating_in_front_of_a_recording_camera_on_a_tripod.jpg"
+                class="medium-image"
+              />
+              <h5>Jill Shereen</h5>
+              <h5>March 24, 6:00 PM, EST <br />4 hours • Beginners <br />Price: $180</h5>
+              <div class="bg-warning w-100 border-5 p-1 text-white"><h4>Enroll In Session</h4></div>
+              <div class="content" class="mat-tab-links item-center align-items-center">
+                <app-icon class="joie-icon size-xxl xs-icon" name="s_heart"></app-icon>
+                <h6 class="xs-desc">97% people recommended this</h6>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.xs="column" fxFlexFill>
+                <div fxLayout="row" class="item-center align-items-center">
+                  <app-icon class="joie-icon size-xxl xs-icon" name="s_gift"></app-icon>
+                  <h6 class="xs-desc">Give as a gift</h6>
+                </div>
+                <div fxLayout="row" class="item-center align-items-center">
+                  <app-icon class="joie-icon size-xxl xs-icon" name="s_heart"></app-icon>
+                  <h6 class="xs-desc">Save to my journey</h6>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <section>
+      <app-subscribe-to-newsletter class="container"></app-subscribe-to-newsletter>
+    </section>
+  </footer>
+</main>

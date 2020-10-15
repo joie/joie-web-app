@@ -5,7 +5,7 @@
     <input type="text" matInput formControlName="promo" />
   </mat-form-field>
 
-  <h4>Related sessions(add up to 3)</h4>
+  <h4>Related sessions (add up to 3)</h4>
   <app-form-array-table [values]="sessionsArrayValues()" (remove)="removeControl($event)">
     <app-simple-form-input
       #relatedSessionsForm
