@@ -1,7 +1,6 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CdkStepperModule } from '@angular/cdk/stepper';
-import {NgStepperModule} from 'angular-ng-stepper';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -72,7 +71,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatIconModule,
 
     CdkStepperModule,
-    NgStepperModule,
   ],
   exports: [
     FlexLayoutModule,
@@ -110,7 +108,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatIconModule,
 
     CdkStepperModule,
-    NgStepperModule,
   ],
 })
 export class MaterialModule {}
