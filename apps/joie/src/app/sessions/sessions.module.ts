@@ -15,6 +15,7 @@ import { VideoIntroComponent } from './components/video-intro/video-intro.compon
 import { WhatLearnComponent } from './components/what-learn/what-learn.component';
 import { MeetTeacherComponent } from './components/meet-teacher/meet-teacher.component';
 import { CommunitySayComponent } from './components/community-say/community-say.component';
+import { SessionFormModule } from '../session-form/session-form.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CommunitySayComponent } from './components/community-say/community-say.
     MatButtonModule,
     KalturaPlayerModule,
     SessionListModule,
+    SessionFormModule
   ],
   exports: [SessionEnrollDialogComponent],
 })

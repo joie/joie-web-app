@@ -19,3 +19,15 @@
   position: sticky;
   top: 5%;
 }
+
+.row-spacing {
+  flex-direction: row;
+  display: flex;
+  place-content: center space-between;
+}
+
+.row-center {
+  flex-direction: row;
+  display: flex;
+  place-content: center;
+}

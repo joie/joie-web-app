@@ -1,0 +1,31 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="24" height="24"/>
+<g clip-path="url(#clip0)">
+<path d="M12.0259 1.53125V6.7876" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M8.94622 1.98833L10.467 7.01614" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M6.1327 3.35954L9.06028 7.70175" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M3.81345 5.49256L7.91966 8.76826" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M2.2546 8.19692L7.12123 10.1395" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M1.53222 11.2441L6.77905 11.6631" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M1.76034 14.3674L6.89311 13.2247" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M2.90095 17.2622L7.46341 14.6721" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M4.84 19.738L8.41393 15.891" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M7.38737 21.5283L9.70663 16.8052" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M10.391 22.4424L11.1894 17.2622" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M13.5087 22.4805L12.7483 17.2622" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M16.5123 21.5663L14.2691 16.8052" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M19.0977 19.8523L15.5618 15.9672" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M21.0748 17.4146L16.5503 14.7483" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M22.2534 14.5198L17.1206 13.3009" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M22.5195 11.3964L17.2727 11.7392" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M21.8352 8.34927L16.9305 10.1776" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M20.3144 5.60683L16.1701 8.84444" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M18.0711 3.43573L15.0295 7.73984" stroke="currentColor" stroke-miterlimit="10"/>
+<path d="M15.2576 2.02641L13.6608 7.05423" stroke="currentColor" stroke-miterlimit="10"/>
+</g>
+<defs>
+<clipPath id="clip0">
+<rect width="21.5" height="21.5" fill="white" transform="translate(1 1)"/>
+</clipPath>
+</defs>
+</svg>

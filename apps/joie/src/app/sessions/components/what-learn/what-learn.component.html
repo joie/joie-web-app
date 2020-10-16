@@ -1,10 +1,10 @@
-<div fxLayout="column" fxLayoutGap="20px">
-    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayout.xs="column">
+<div fxLayout="column" fxLayoutGap="20px" style="margin: 20px 55px;">
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayout.xs="column">
       <div fxLayout="row" fxLayoutGap="10px">
-        <i class="feather icon-compass i-20"></i>
+        <app-icon class="joie-icon size-sm" name="compass"></app-icon>
         <div fxLayout="column" fxLayoutAlign="flex-start">
-          <div>Activities</div>
-          <div>
+          <div class="text-left">Activities</div>
+          <div class="text-left">
             <span *ngFor="let activity of session?.activities">
               {{ activity }}
             </span>
@@ -13,20 +13,20 @@
       </div>
 
       <div fxLayout="row" fxLayoutGap="10px">
-        <i class="feather icon-monitor i-20"></i>
+        <app-icon class="joie-icon size-sm" name="monitor"></app-icon>
         <div fxLayout="column" fxLayoutAlign="flex-start">
-          <div>Types of sessions</div>
-          <div>
+          <div class="text-left">Types of sessions</div>
+          <p class="text-left">
             {{ session?.type }}
-          </div>
+          </p>
         </div>
       </div>
 
       <div fxLayout="row" fxLayoutGap="10px">
-        <i class="feather icon-layers i-20"></i>
+        <app-icon class="joie-icon size-sm" name="layers"></app-icon>
         <div fxLayout="column" fxLayoutAlign="flex-start">
-          <div>Pillars</div>
-          <div>
+          <div class="text-left">Pillars</div>
+          <div class="text-left">
             {{ session?.pillar }}
           </div>
         </div>
@@ -35,5 +35,20 @@
 
     <div class="text-left">
       {{ session?.description }}
+    </div>
+    <div class="text-left" fxLayout="column">
+      <div>Goal</div>
+    </div>
+    <div class="text-left" fxLayout="column">
+      <div fxLayout="row" fxLayoutGap="10px">
+        <app-icon class="joie-icon size-sm" name="flag"></app-icon>
+        <div>Need to know</div>
+      </div>
+    </div>
+    <div class="text-left" fxLayout="column">
+      <div fxLayout="row" fxLayoutGap="10px">
+        <app-icon class="joie-icon size-sm" name="message-square"></app-icon>
+        <a href="#">Contact teacher</a>
+      </div>
     </div>
   </div>

@@ -1,3 +1,4 @@
+import { EditDialogConfigResolver } from './resolvers/edit-dialog-config.resolver';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -10,6 +11,7 @@ import { AuthGuard } from '../auth/guards/auth.guard';
 import { PaymentSourceGuard } from '../guards/payment-source/payment-source.guard';
 import { PaymentMethodFormComponent } from '../shared/components/payment-method-form/payment-method-form.component';
 import { SessionDetailsComponent } from './containers/session-details/session-details.component';
+import { SessionFormComponent } from './../session-form/containers/session-form/session-form.component';
 
 const routes: Routes = [
   {
@@ -46,7 +48,24 @@ const routes: Routes = [
   },
   {
     path: ':sessionId',
-    component: SessionDetailsComponent,
+    children: [
+      {
+        path: '',
+        component: SessionDetailsComponent,
+      },
+      {
+        path: 'edit',
+        component: DialogRouterComponent,
+        resolve: {
+          matDialogConfig: EditDialogConfigResolver,
+        },
+        data: {
+          dialogComponent: SessionFormComponent,
+          matDialogConfig: EditDialogConfigResolver,
+        },
+        outlet: 'popup',
+      },
+    ]
   },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];

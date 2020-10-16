@@ -4,16 +4,10 @@
     <section class="session-offset-block-start"></section>
     <section class="session-offset-block-start section-offset-block-start">
       <div class="container grid">
-        <div fxLayout="row" fxLayout.xs="column" class="text-center" fxLayoutGap="30px">
-          <div fxFlex="70%">
-            <h4>{{ session?.pillar }}</h4>
-            <h1>{{ session?.title }}</h1>
-            <div
-              fxLayout="row"
-              class="text-center"
-              fxLayoutGap="10px"
-              fxLayoutAlign="center center"
-            >
+        <div class="layout-rows">
+            <h4 class="text-center">{{ session?.pillar }}</h4>
+            <h1 class="text-center">{{ session?.title }}</h1>
+            <div class="row-center">
               <img
                 src="{{ session?.owner?.photoURL }}"
                 class="author-image"
@@ -23,31 +17,30 @@
               <h3>{{ session?.owner?.displayName }}</h3>
             </div>
 
-            <div
-              fxLayout="row"
-              fxLayoutAlign="space-between center"
-              [style.margin-top]="'27px'"
-              [style.margin-bottom]="'10px'"
-            >
-              <div fxLayout="row">
-                <app-icon class="joie-icon joie-icon-backdrop size-sm" name="calendar"></app-icon>
+            <div class="layout-columns row-spacing">
+              <div class="row-center">
+                <app-icon class="joie-icon size-sm" name="calendar"></app-icon>
                 <div>{{ session?.duration?.amount + session?.duration?.unit }}</div>
               </div>
-              <div fxLayout="row">
-                <app-icon class="joie-icon joie-icon-backdrop size-sm" name="clock"></app-icon>
+              <div class="row-center">
+                <app-icon class="joie-icon size-sm" name="clock"></app-icon>
                 <div>{{ session?.duration?.amount + session?.duration?.unit }}</div>
               </div>
-              <div fxLayout="row">
-                <app-icon class="joie-icon joie-icon-backdrop size-sm" name="monitor"></app-icon>
+              <div class="row-center">
+                <app-icon class="joie-icon size-sm" name="monitor"></app-icon>
                 <div>{{ session?.type }}</div>
               </div>
-              <div fxLayout="row">
-                <app-icon class="joie-icon joie-icon-backdrop size-sm" name="bar-chart"></app-icon>
+              <div class="row-center">
+                <app-icon class="joie-icon size-sm" name="bar-chart"></app-icon>
                 <div>{{ session?.level }}</div>
               </div>
-              <div fxLayout="row">
-                <app-icon class="joie-icon joie-icon-backdrop size-sm" name="tag"></app-icon>
+              <div class="row-center">
+                <app-icon class="joie-icon size-sm" name="tag"></app-icon>
                 <div>{{ session?.price?.display | currency: session?.price?.currency }}</div>
+              </div>
+              <div class="row-center">
+                <app-icon class="joie-icon size-sm" name="send"></app-icon>
+                <div>Share</div>
               </div>
             </div>
 
@@ -72,7 +65,6 @@
                 <app-community-say [session]="session"></app-community-say>
               </mat-tab>
             </mat-tab-group>
-          </div>
         </div>
         <aside class="enrol-col">
           <app-session-card [session]="session"></app-session-card>
@@ -80,13 +72,13 @@
       </div>
     </section>
     <section>
-      <div class="margin-bottom-20 text-center">
+      <div class="text-center">
         Continue your journey with the following recommended sessions
       </div>
     </section>
   </main>
 
-  <div fxLayout="row" fxLayoutAlign="space-between">
+  <div class="layout-columns">
     <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
 
     <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>

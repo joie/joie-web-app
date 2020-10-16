@@ -8,12 +8,6 @@
       "target": "joie",
       "public": "dist/apps/joie",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ],
       "headers": [
         {
           "source": "**/*.@(ttf|woff2|css)",
@@ -41,14 +35,7 @@
               "value": "max-age=300"
             }
           ]
-        }
-      ]
-    },
-    {
-      "target": "joie",
-      "public": "dist/apps/joie",
-      "ignore": ["**/.*"],
-      "headers": [
+        },
         {
           "source": "*.[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f].+(css|js)",
           "headers": [
@@ -83,6 +70,9 @@
     },
     "hosting": {
       "port": 5000
+    },
+    "ui": {
+      "enabled": true
     }
   },
   "storage": {

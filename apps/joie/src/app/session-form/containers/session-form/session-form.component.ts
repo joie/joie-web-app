@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { SessionsFacade } from '../../../services/sessions.facade';
 import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-handshake.service';
 import { environment } from '../../../../environments/environment';
 import { Format, Type } from '../../../sessions/enums';
 import { IMAGE } from '../../components/session-form-metadata/session-form-metadata.component';
-import { finalize, last, map, switchMap, take, tap } from 'rxjs/operators';
-import { iif, Observable } from 'rxjs';
+import { finalize, last, map, switchMap, take } from 'rxjs/operators';
+import { iif, Observable, of } from 'rxjs';
 import {
   AngularFireStorage,
   AngularFireStorageReference,
@@ -14,34 +14,45 @@ import {
 } from '@angular/fire/storage';
 import { DocumentReference } from '@angular/fire/firestore';
 import { AuthFacade } from '../../../auth/services/auth.facade';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { get } from 'lodash';
 
 @Component({
   selector: 'app-session-form',
   templateUrl: './session-form.component.html',
   styleUrls: ['./session-form.component.scss'],
 })
-export class SessionFormComponent extends DynaFormBaseComponent implements OnInit {
+export class SessionFormComponent extends DynaFormBaseComponent implements OnInit, OnDestroy {
   commonLayoutClass = 'layout-rows-xs';
   showAllFields: boolean;
   showLoader = false;
+  title = 'Create Session';
+  sessionId;
 
   constructor(
     private sessionsFacade: SessionsFacade,
     private storage: AngularFireStorage,
     private kalturaApiHandShakeService: KalturaApiHandShakeService,
     private authFacade: AuthFacade,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: { session: any }
   ) {
     super();
+    if (get(this.data, 'session', false)) {
+      this.storeFormValueRef(this.data.session);
+      this.sessionId = get(this.data, 'sessionId');
+      this.title = 'Edit Session';
+      this.showAllFields = true;
+    }
   }
 
   ngOnInit() {
     this.kalturaApiHandShakeService.getKalturaSession();
+  }
+
+  ngOnDestroy() {
+    this.removeFormValueRef();
   }
 
   get isCoaching() {
@@ -60,6 +71,8 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     this.showLoader = true;
     const currentDate = Date.now();
 
+    console.log('form: ', this.form.value)
+
     const eventCreationDetails = {
       resourceName: this.form.value.title,
       scheduleResourceType: 3,
@@ -71,6 +84,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
       endDate: new Date(currentDate + 60 * 60 * 1000), // TODO: end date will be populated based on the user selected date
       tags: environment.kalturaConfig.resourceTags,
     };
+
     // TODO move Kaltura to cloud function onCreate trigger
     this.kalturaApiHandShakeService.createLiveStreamEntry(eventCreationDetails).subscribe(
       ({ resourceId, eventId }) => {
@@ -83,14 +97,18 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
               eventId,
               ...this.form.value,
             })),
-            switchMap((session) => this.sessionsFacade.setSession('', session)),
-            switchMap(this.storeThumbnailIfAny$.bind(this)),
+            switchMap((session) =>
+              this.sessionsFacade.setSession(get(this.data, 'sessionId', ''), session)
+            ),
+            switchMap((session) => (session ? of(this.storeThumbnailIfAny$.bind(this)) : of([]))),
             finalize(() => (this.showLoader = false))
           )
           .subscribe({
             complete: () => {
               this.snackBar.open(
-                `Session ${this.form.value.id ? 'updated' : 'created'} successfully`,
+                `Session ${
+                  get(this.data, 'sessionId', false) ? 'updated' : 'created'
+                } successfully`,
                 'View',
                 {
                   duration: 4000,
@@ -100,7 +118,9 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
               );
               // .onAction()
               // .subscribe(() => console.log(43));
-              this.form.reset();
+              if (!get(this.data, 'session', false)) {
+                this.form.reset();
+              }
             },
             error: (error) => {
               console.log(
