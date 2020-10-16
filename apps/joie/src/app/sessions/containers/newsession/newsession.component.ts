@@ -13,6 +13,7 @@ import {
   KalturaEntryReplacementOptions,
   MediaUpdateContentAction,
 } from 'kaltura-ngx-client';
+import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 
 @Component({
   selector: 'app-newsession',
@@ -87,15 +88,17 @@ export class NewsessionComponent implements OnInit {
   uploadTokenID: any;
   uploading: Boolean;
   changing: Boolean;
+  isVideo: Boolean;
+  fileData: any;
   constructor(private playerService: PlayerService, private kalturaClient: KalturaClient) {}
   ngOnInit(): void {
-    this.playerService.boot();
     this.uploading = false;
     this.changing = false;
+    this.isVideo = false;
   }
 
   fileReplace(fileInputEvent: any) {
-    const fileData = fileInputEvent.target.files[0] as File;
+    this.fileData = fileInputEvent.target.files[0] as File;
     this.changing = true;
     this.kalturaClient
       .request(new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() }))
@@ -104,7 +107,7 @@ export class NewsessionComponent implements OnInit {
           .request(
             new UploadTokenUploadAction({
               uploadTokenId: uploadTokenResponse.id,
-              fileData: fileData,
+              fileData: this.fileData,
               resume: true,
               finalChunk: true,
               resumeAt: -1,
@@ -138,8 +141,24 @@ export class NewsessionComponent implements OnInit {
           });
       });
   }
-  fileUpload(fileInputEvent: any) {
-    const fileData = fileInputEvent.target.files[0] as File;
+
+  onClickFile(fileInputEvent: any) {
+    this.fileData = fileInputEvent.target.files[0] as File;
+    this.fileUpload();
+    console.log('clicking file->', this.fileData);
+  }
+
+  public dropped(files: NgxFileDropEntry[]) {
+    if (files[0].fileEntry.isFile) {
+      const temp = files[0].fileEntry as FileSystemFileEntry;
+      temp.file((file: File) => {
+        this.fileData = file;
+        this.fileUpload();
+      });
+    }
+  }
+
+  fileUpload() {
     this.uploading = true;
     this.kalturaClient
       .request(new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() }))
@@ -150,7 +169,7 @@ export class NewsessionComponent implements OnInit {
           .request(
             new UploadTokenUploadAction({
               uploadTokenId: uploadTokenReponse.id,
-              fileData: fileData,
+              fileData: this.fileData,
               resume: true,
               finalChunk: true,
               resumeAt: -1,
@@ -172,8 +191,12 @@ export class NewsessionComponent implements OnInit {
                 .request(new MediaAddContentAction({ entryId, resource }))
                 .subscribe(
                   (result) => {
-                    this.uploading = false;
                     console.log('final result->', result);
+                    setTimeout(() => {
+                      this.playerService.boot(this.entryID);
+                      this.uploading = false;
+                      this.isVideo = true;
+                    }, 20000);
                   },
                   (error) => {
                     this.uploading = false;

@@ -170,4 +170,9 @@
 .border-bottom {
   border-bottom: 1px solid lightgrey;
   padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.ngx-file-drop__content {
+  display: block !important;
 }

@@ -8,6 +8,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { PlayerService } from './sessions.service';
+import { NgxFileDropModule } from 'ngx-file-drop';
 @NgModule({
   declarations: [NewsessionComponent],
   imports: [
@@ -17,6 +18,7 @@ import { PlayerService } from './sessions.service';
     MatDialogModule,
     MatTabsModule,
     MatCardModule,
+    NgxFileDropModule,
   ],
   providers: [PlayerService],
 })

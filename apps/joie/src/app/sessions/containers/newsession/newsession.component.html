@@ -9,7 +9,7 @@
             src="../../../../assets//images/female_yoga_teacher_meditating_in_front_of_a_recording_camera_on_a_tripod.jpg"
             class="small-image"
           />
-          <div class="mat-tab-links justify-content-between">
+          <div class="mat-tab-links justify-content-between" style="margin-bottom: 20px">
             <div class="mat-tab-links item-center layout-center" *ngFor="let widget of widgets">
               <app-icon class="joie-icon size-xxl xs-icon" [name]="widget.icon"></app-icon>
               <h6 class="xs-desc">{{ widget.content }}</h6>
@@ -20,9 +20,32 @@
             [style.width.px]="width"
             [style.height.px]="height"
             style="height: 395px"
+            *ngIf="isVideo"
           ></div>
-          <div class="upload-content text-center p-1 container">
+          <div class="upload-content text-center p-1 container" *ngIf="!isVideo">
             <h3>Upload your video</h3>
+
+            <ngx-file-drop
+              dropZoneLabel="Drop files here"
+              (onFileDrop)="dropped($event)"
+              accept=".mp4, .mov, .wmv, .avi"
+            >
+              <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                <div class="mt-3">Drop your file here or</div>
+                <button
+                  mat-flat-button
+                  color="primary"
+                  (click)="uploadControl.click()"
+                  type="button"
+                  class="uploadBtn"
+                  [disabled]="uploading === true || changing === true"
+                >
+                  <span *ngIf="!uploading">Browse</span>
+                  <span *ngIf="uploading" class="uploading"> </span>
+                  <span *ngIf="changing" class="uploading">Replacing</span>
+                </button>
+              </ng-template>
+            </ngx-file-drop>
             <h5 class="border-bottom">
               You can upload any of the following formats: MP4, MOV, WMV, AVI.
             </h5>
@@ -46,14 +69,14 @@
               </div>
             </div>
 
-            <!-- <input
+            <input
               hidden="true"
               type="file"
               accept=".mp4, .mov, .wmv, .avi"
               #uploadControl
-              (change)="fileUpload($event)"
+              (change)="onClickFile($event)"
             />
-
+            <!--
             <button
               mat-flat-button
               color="primary"

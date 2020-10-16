@@ -67,6 +67,7 @@
     "kaltura-ngx-client": "file:libs/kaltura-ngx-client.tgz",
     "lodash": "^4.17.20",
     "modularscale-sass": "^3.0.10",
+    "ngx-file-drop": "^10.0.0",
     "ngx-quicklink": "^0.2.3",
     "normalize.css": "^8.0.1",
     "ramda": "^0.27.1",

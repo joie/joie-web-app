@@ -50,8 +50,16 @@ export class PlayerService {
       );
   }
 
-  boot() {
-    this.kWidget.embed(this.kalturaConfiguration);
+  boot(entryID: any) {
+    let kalturaConfiguration = {
+      targetId: 'player',
+      wid: '_2976751',
+      uiconf_id: 46213871,
+      flashvars: {},
+      cache_st: 1602684332,
+      entry_id: entryID,
+    };
+    this.kWidget.embed(kalturaConfiguration);
   }
 
   reboot(entryID: any) {
