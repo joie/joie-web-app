@@ -41,7 +41,7 @@ export class SessionDetailsComponent {
 
   userContextualRole = 0;
 
-  entryId = '1_0v7lxhb8';
+  // entryId = '1_0v7lxhb8';
 
   constructor(
     private activatedRoute: ActivatedRoute,

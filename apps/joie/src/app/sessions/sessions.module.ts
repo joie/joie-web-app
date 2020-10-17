@@ -16,6 +16,10 @@ import { WhatLearnComponent } from './components/what-learn/what-learn.component
 import { MeetTeacherComponent } from './components/meet-teacher/meet-teacher.component';
 import { CommunitySayComponent } from './components/community-say/community-say.component';
 import { SessionFormModule } from '../session-form/session-form.module';
+import { VideoUploadComponent } from './components/video-upload/video-upload.component';
+import { PlayerService } from '../services/player.service';
+import { MatTabsModule } from '@angular/material/tabs';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,7 @@ import { SessionFormModule } from '../session-form/session-form.module';
     WhatLearnComponent,
     MeetTeacherComponent,
     CommunitySayComponent,
+    VideoUploadComponent,
   ],
   imports: [
     SharedModule,
@@ -34,9 +39,14 @@ import { SessionFormModule } from '../session-form/session-form.module';
     MatCardModule,
     MatDialogModule,
     MatButtonModule,
+    MatTabsModule,
+    NgxFileDropModule,
     KalturaPlayerModule,
     SessionListModule,
     SessionFormModule
+  ],
+  providers: [
+    PlayerService
   ],
   exports: [SessionEnrollDialogComponent],
 })

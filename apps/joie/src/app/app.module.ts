@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
+import { KalturaClient } from 'kaltura-ngx-client';
 
 @NgModule({
   declarations: [AppComponent],
@@ -50,6 +51,7 @@ import { AuthModule } from './auth/auth.module';
     //   provide: ORIGIN,
     //   useValue: environment.production ? undefined : 'http://localhost:5001',
     // },
+    KalturaClient
   ],
   bootstrap: [AppComponent],
   exports: [],
