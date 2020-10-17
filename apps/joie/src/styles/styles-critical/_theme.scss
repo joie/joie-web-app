@@ -60,10 +60,18 @@ hr {
       #{$size-variable-name}: calc(#{$unit} * #{map.get($sizes, #{$key})});
     }
   }
+  &.size-md,
+  &.size-lg,
+  &.size-xl,
+  &.size-xxl {
+    svg {
+      stroke-width: 0.5;
+    }
+  }
 
   &#{&}-backdrop {
     position: relative;
-    padding: 10px;
+    padding: calc(var(--size) / 5);
 
     &::before {
       content: '';
