@@ -3,6 +3,8 @@ import { SharedModule } from '../shared/shared.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SessionsRoutingModule } from './sessions-routing.module';
 
 import { SessionsDashboardComponent } from './containers/sessions-dashboard/sessions-dashboard.component';
@@ -39,7 +41,9 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     MatCardModule,
     MatDialogModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     MatTabsModule,
+    MatSnackBarModule,
     NgxFileDropModule,
     KalturaPlayerModule,
     SessionListModule,

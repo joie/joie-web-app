@@ -15,11 +15,16 @@ import { AuthFacade } from '../../../auth/services/auth.facade';
 export class SessionDetailsComponent {
   private _sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
   session$ = this._sessionId$.pipe(
-    switchMap((sessionId) => this.sessionsFacade.getSession(sessionId)),
+    switchMap((sessionId) => {
+      this.sessionId = sessionId;
+      console.log(this.sessionId);
+      return this.sessionsFacade.getSession(sessionId)
+    }),
     shareReplay()
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
   displayName$ = this.authFacade.displayName$;
+  sessionId: string;
 
   // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
   //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(

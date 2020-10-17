@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { mergeMap } from 'rxjs/operators';
 import {
   KalturaClient,
   UploadTokenUploadAction,
@@ -12,8 +14,10 @@ import {
   KalturaEntryReplacementOptions,
   MediaUpdateContentAction,
 } from 'kaltura-ngx-client';
-import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
+import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
 import { PlayerService } from '../../../services/player.service';
+import { SessionsFacade } from '../../../services/sessions.facade';
+import { Session } from '../../models';
 
 @Component({
   selector: 'app-video-upload',
@@ -22,13 +26,21 @@ import { PlayerService } from '../../../services/player.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class VideoUploadComponent implements OnInit {
-  entryID: any;
+  @Input() session: Session;
+  @Input() sessionId: string;
+
   uploadTokenID: any;
   uploading = false;
   changing = false;
   fileData: any;
+  entryId: string;
 
-  constructor(private playerService: PlayerService, private kalturaClient: KalturaClient) {}
+  constructor(
+    private playerService: PlayerService,
+    private kalturaClient: KalturaClient,
+    private snackBar: MatSnackBar,
+    private sessionsFacade: SessionsFacade
+  ) {}
 
   ngOnInit(): void {}
 
@@ -97,11 +109,10 @@ export class VideoUploadComponent implements OnInit {
     this.uploading = true;
     this.kalturaClient
       .request(new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() }))
-      .subscribe((uploadTokenReponse) => {
-        console.log('uploaded token response->', uploadTokenReponse);
-        this.uploadTokenID = uploadTokenReponse.id;
-        this.kalturaClient
-          .request(
+      .pipe(
+        mergeMap((uploadTokenReponse) => {
+          this.uploadTokenID = uploadTokenReponse.id;
+          return this.kalturaClient.request(
             new UploadTokenUploadAction({
               uploadTokenId: uploadTokenReponse.id,
               fileData: this.fileData,
@@ -109,38 +120,38 @@ export class VideoUploadComponent implements OnInit {
               finalChunk: true,
               resumeAt: -1,
             })
-          )
-          .subscribe((res) => {
-            // TODO - take values from the form
-            const entry = new KalturaMediaEntry();
-            // entry.name = 'hardcoded-2';
-            entry.mediaType = KalturaMediaType.video;
-            entry.description = '';
+          );
+        }),
+        mergeMap((token) => {
+          // TODO - take values from the form
+          const entry = new KalturaMediaEntry();
+          // entry.name = 'hardcoded-2';
+          entry.mediaType = KalturaMediaType.video;
+          entry.description = '';
 
-            this.kalturaClient.request(new MediaAddAction({ entry })).subscribe((res1) => {
-              this.entryID = res1.rootEntryId;
-              const entryId = res1.rootEntryId;
-              const resource = new KalturaUploadedFileTokenResource();
-              resource.token = this.uploadTokenID;
-              this.kalturaClient
-                .request(new MediaAddContentAction({ entryId, resource }))
-                .subscribe(
-                  (result) => {
-                    console.log('final result->', result);
-                    setTimeout(() => {
-                      this.playerService.boot(this.entryID);
-                      console.log(this.entryID);
-                      this.uploading = false;
-                    }, 20000);
-                  },
-                  (error) => {
-                    this.uploading = false;
-                    console.log('final error-->', error);
-                  }
-                );
-              // this.playerService.reboot('1_0zbhgbzx');
-            });
+          return this.kalturaClient.request(new MediaAddAction({ entry }));
+        }),
+        mergeMap((entry: KalturaMediaEntry) => {
+          this.entryId = entry.rootEntryId;
+          const entryId = entry.rootEntryId;
+          const resource = new KalturaUploadedFileTokenResource();
+          resource.token = this.uploadTokenID;
+          return this.kalturaClient.request(new MediaAddContentAction({ entryId, resource }));
+        })
+      )
+      .subscribe(
+        (result) => {
+          this.snackBar.open('Uploaded successfully!', '', {
+            duration: 3000,
           });
-      });
+          this.sessionsFacade.setSession(this.sessionId, { entryId: this.entryId });
+        },
+        (error) => {
+          this.snackBar.open('Upload Error', '', {
+            duration: 3000,
+          });
+        },
+        () => this.uploading = false
+      );
   }
 }

@@ -1,40 +1,38 @@
 <div class="upload-content text-center container">
-    <h3>Upload your video</h3>
-
-    <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" accept="video/*">
-        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-            <div class="mt-3">Drop your file here or</div>
-            <button mat-flat-button color="primary" (click)="uploadControl.click()" type="button" class="uploadBtn"
-                [disabled]="uploading === true || changing === true">
-                <span *ngIf="!uploading">Browse</span>
-                <span *ngIf="uploading" class="uploading"> </span>
-                <span *ngIf="changing" class="uploading">Replacing</span>
-            </button>
-        </ng-template>
-    </ngx-file-drop>
-    <h5 class="border-bottom">
-        You can upload any of the following formats: MP4, MOV, WMV, AVI.
-    </h5>
-    <div class="mat-tab-links justify-content-evenly">
-        <div class="joie-list-item mat-tab-links">
-            <app-icon class="joie-icon size-xxl xs-icon mt-1" name="plus-circle"></app-icon>
-            <div class="w-70 text-left ml-2">
-                <h4 class="joie-list-name">Upload a thumbnail image</h4>
-                <h6 class="joie-list-description">
-                    Size: 1280x720 px. Formats: JPG, GIF, or PNG.
-                </h6>
-            </div>
-        </div>
-        <app-icon class="joie-icon size-xxl" name="border-or"></app-icon>
-        <div class="joie-list-item mat-tab-links">
-            <app-icon class="joie-icon size-xxl xs-icon mt-1" name="plus-circle"></app-icon>
-            <div class="w-70 text-left ml-2">
-                <h4 class="joie-list-name">Upload an intro video</h4>
-                <h6>Up to 1 minitue video. Formats: Format: MP4, MOV, WMV, AVI.</h6>
-            </div>
-        </div>
-    </div>
-
-    <input hidden="true" type="file" accept="video/*" #uploadControl (change)="onClickFile($event)" />
-
+    <mat-tab-group headerPosition="below" mat-align-tabs="center">
+        <mat-tab label="Video">
+            <h3 class="joie-list-name">Upload an intro video</h3>
+            <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" accept="video/*">
+                <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                    <div class="mt-3">Drop your file here or</div>
+                    <button mat-flat-button color="primary" (click)="uploadVideoControl.click()" type="button"
+                        class="uploadBtn" [disabled]="uploading === true || changing === true">
+                        <span *ngIf="!uploading">Browse</span>
+                        <mat-spinner *ngIf="uploading || changing"></mat-spinner>
+                    </button>
+                </ng-template>
+            </ngx-file-drop>
+            <h5 class="border-bottom">
+                Up to 1 minitue video. Formats: Format: MP4, MOV, WMV, AVI.
+            </h5>
+        </mat-tab>
+        <mat-tab label="Image">
+            <h3 class="joie-list-name">Upload a thumbnail image</h3>
+            <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" accept="image/*">
+                <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                    <div class="mt-3">Drop your file here or</div>
+                    <button mat-flat-button color="primary" (click)="uploadImgControl.click()" type="button"
+                        class="uploadBtn" [disabled]="uploading === true || changing === true">
+                        <span *ngIf="!uploading">Browse</span>
+                        <mat-spinner *ngIf="uploading || changing"></mat-spinner>
+                    </button>
+                </ng-template>
+            </ngx-file-drop>
+            <h5 class="border-bottom">
+                Size: 1280x720 px. Formats: JPG, GIF, or PNG.
+            </h5>
+        </mat-tab>
+    </mat-tab-group>
+    <input hidden="true" type="file" accept="image/*" #uploadImgControl (change)="onClickFile($event)" />
+    <input hidden="true" type="file" accept="video/*" #uploadVideoControl (change)="onClickFile($event)" />
 </div>
