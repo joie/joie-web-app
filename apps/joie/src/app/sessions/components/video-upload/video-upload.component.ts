@@ -49,9 +49,10 @@ export class VideoUploadComponent implements OnInit {
     this.changing = true;
     this.kalturaClient
       .request(new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() }))
-      .subscribe((uploadTokenResponse) => {
-        this.kalturaClient
-          .request(
+      .pipe(
+        mergeMap((uploadTokenResponse) => {
+          this.uploadTokenID = uploadTokenResponse.id;
+          return this.kalturaClient.request(
             new UploadTokenUploadAction({
               uploadTokenId: uploadTokenResponse.id,
               fileData: this.fileData,
@@ -59,34 +60,33 @@ export class VideoUploadComponent implements OnInit {
               finalChunk: true,
               resumeAt: -1,
             })
-          )
-          .subscribe((result) => {
-            const advancedOptions = new KalturaEntryReplacementOptions();
-            const entryId = '1_v3d6yfj9';
-            const resource = new KalturaUploadedFileTokenResource();
-            resource.token = uploadTokenResponse.id;
-            const conversionProfileId = 0;
-            this.kalturaClient
-              .request(
-                new MediaUpdateContentAction({
-                  entryId,
-                  resource,
-                  conversionProfileId,
-                  advancedOptions,
-                })
-              )
-              .subscribe(
-                (res) => {
-                  console.log('changing result->', res);
-                  this.changing = false;
-                },
-                (error) => {
-                  this.changing = false;
-                  console.log('replacing error-->', error);
-                }
-              );
-          });
-      });
+          );
+        }),
+        mergeMap((token) => {
+          const advancedOptions = new KalturaEntryReplacementOptions();
+          const entryId = '1_v3d6yfj9';
+          const resource = new KalturaUploadedFileTokenResource();
+          resource.token = this.uploadTokenID;
+          const conversionProfileId = 0;
+          return this.kalturaClient.request(
+            new MediaUpdateContentAction({
+              entryId,
+              resource,
+              conversionProfileId,
+              advancedOptions,
+            })
+          );
+        })
+      )
+      .subscribe(
+        (res) => {
+          console.log('changing result->', res);
+        },
+        (error) => {
+          console.log('replacing error-->', error);
+        },
+        () => (this.changing = false)
+      );
   }
 
   onClickFile(fileInputEvent: any) {
@@ -151,7 +151,7 @@ export class VideoUploadComponent implements OnInit {
             duration: 3000,
           });
         },
-        () => this.uploading = false
+        () => (this.uploading = false)
       );
   }
 }
