@@ -26,7 +26,12 @@
             "assets": [
               "apps/joie/src/favicon.ico",
               "apps/joie/src/assets",
-              "apps/joie/src/manifest.webmanifest"
+              "apps/joie/src/manifest.webmanifest",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-auth-firebaseui/assets/",
+                "output": "./assets/"
+              }
             ],
             "styles": [
               {
@@ -111,6 +116,8 @@
                 "bundleName": "styles-critical",
                 "inject": false
               },
+              "styles.css",
+              "node_modules/material-design-icons/iconfont/material-icons.css",
               "apps/joie/src/styles/components/components.scss"
             ],
             "stylePreprocessorOptions": {

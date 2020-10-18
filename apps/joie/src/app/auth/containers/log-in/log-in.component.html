@@ -4,5 +4,8 @@
   </button>
 </div>
 <mat-dialog-content class="mat-typography">
-  <firebase-ui></firebase-ui>
+  <ngx-auth-firebaseui-login
+    [providers]="[providers.Google, providers.Facebook]"
+    [registrationEnabled]="false"
+  ></ngx-auth-firebaseui-login>
 </mat-dialog-content>

@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { filter } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthProvider, Theme } from 'ngx-auth-firebaseui';
 
 @UntilDestroy()
 @Component({
@@ -11,6 +12,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./log-in.component.scss'],
 })
 export class LogInComponent {
+  providers = AuthProvider;
+  themes = Theme;
+
   constructor(
     private afAuth: AngularFireAuth,
     private dialogRef: MatDialogRef<LogInComponent>,
