@@ -44,8 +44,9 @@ export class VideoUploadComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  fileReplace(fileInputEvent: any) {
-    this.fileData = fileInputEvent.target.files[0] as File;
+  fileReplace() {
+    console.log('File replacing...');
+    // this.fileData = fileInputEvent.target.files[0] as File;
     this.changing = true;
     this.kalturaClient
       .request(new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() }))
@@ -64,7 +65,7 @@ export class VideoUploadComponent implements OnInit {
         }),
         mergeMap((token) => {
           const advancedOptions = new KalturaEntryReplacementOptions();
-          const entryId = '1_v3d6yfj9';
+          const entryId = this.session.entryId;
           const resource = new KalturaUploadedFileTokenResource();
           resource.token = this.uploadTokenID;
           const conversionProfileId = 0;
@@ -91,8 +92,12 @@ export class VideoUploadComponent implements OnInit {
 
   onClickFile(fileInputEvent: any) {
     this.fileData = fileInputEvent.target.files[0] as File;
-    this.fileUpload();
     console.log('clicking file->', this.fileData);
+    if (this.session.entryId) {
+      this.fileReplace();
+    } else {
+      this.fileUpload();
+    }
   }
 
   public dropped(files: NgxFileDropEntry[]) {
@@ -100,12 +105,17 @@ export class VideoUploadComponent implements OnInit {
       const temp = files[0].fileEntry as FileSystemFileEntry;
       temp.file((file: File) => {
         this.fileData = file;
-        this.fileUpload();
+        if (this.session.entryId) {
+          this.fileReplace();
+        } else {
+          this.fileUpload();
+        }
       });
     }
   }
 
   fileUpload() {
+    console.log('File uploading...');
     this.uploading = true;
     this.kalturaClient
       .request(new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() }))

@@ -43,7 +43,7 @@
             [eventId]="eventId$ | async" [sessionType]="sessionType" [role]="role"
             [userContextualRole]="userContextualRole" [entryId]="session?.entryId" *ngIf="session?.entryId || !(isOnwer$ | async)"></app-video-intro>
           
-          <app-video-upload  *ngIf="!session?.entryId && isOnwer$ | async" [session]="session" [sessionId]="sessionId"></app-video-upload>
+          <app-video-upload  *ngIf="isOnwer$ | async" [session]="session" [sessionId]="sessionId"></app-video-upload>
 
           <mat-tab-group mat-stretch-tabs>
             <mat-tab label="What you will learn">

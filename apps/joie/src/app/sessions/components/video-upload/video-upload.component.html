@@ -18,15 +18,14 @@
         </mat-tab>
         <mat-tab label="Image">
             <h3 class="joie-list-name">Upload a thumbnail image</h3>
-            <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" accept="image/*">
+            <mat-spinner style="margin: auto" *ngIf="uploading || changing"></mat-spinner>
+            <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" accept="image/*" *ngIf="!uploading && !changing">
                 <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
                     <div class="mt-3">Drop your file here or</div>
                     <button mat-flat-button color="primary" (click)="uploadImgControl.click()" type="button"
-                        class="uploadBtn" [disabled]="uploading === true || changing === true">
+                        class="uploadBtn" [disabled]="uploading || changing">
                         <span *ngIf="!uploading">Browse</span>
                     </button>
-
-                    <mat-spinner *ngIf="uploading || changing"></mat-spinner>
                 </ng-template>
             </ngx-file-drop>
             <h5 class="border-bottom">
