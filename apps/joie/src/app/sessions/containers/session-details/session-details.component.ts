@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { SessionsFacade } from '../../../services/sessions.facade';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
-import { pluck, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { map, pluck, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 
 @UntilDestroy()
@@ -17,13 +17,14 @@ export class SessionDetailsComponent {
   session$ = this._sessionId$.pipe(
     switchMap((sessionId) => {
       this.sessionId = sessionId;
-      console.log(this.sessionId);
-      return this.sessionsFacade.getSession(sessionId)
+      return this.sessionsFacade.getSession(sessionId);
     }),
     shareReplay()
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
+  onwer$: Observable<any> = this.session$.pipe(pluck('owner'));
   displayName$ = this.authFacade.displayName$;
+  uid$ = this.authFacade.uid$;
   sessionId: string;
 
   // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
@@ -47,13 +48,19 @@ export class SessionDetailsComponent {
   userContextualRole = 0;
 
   // entryId = '1_0v7lxhb8';
+  isOnwer$ = combineLatest([this.authFacade.uid$, this.onwer$])
+    .pipe(
+      map(([uid, owner]) => {
+        return uid === owner.uid;
+      })
+    );
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private sessionsFacade: SessionsFacade,
     private authFacade: AuthFacade
   ) {}
-
+  
   // get kalturaSessionDetails$(): Observable<SessionStartActionArgs> {
   //   return this.session$.pipe(
   //     pluck('eventId', 'name'),
