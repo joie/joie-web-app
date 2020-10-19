@@ -2,12 +2,12 @@
     <mat-tab-group headerPosition="below" mat-align-tabs="center">
         <mat-tab label="Video">
             <h3 class="joie-list-name">Upload an intro video</h3>
-            <mat-spinner style="margin: auto" *ngIf="uploading || changing"></mat-spinner>
-            <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" accept="video/*" *ngIf="!uploading && !changing">
+            <mat-spinner style="margin: auto" *ngIf="uploading"></mat-spinner>
+            <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" accept="video/*" *ngIf="!uploading">
                 <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
                     <div class="mt-3">Drop your file here or</div>
                     <button mat-flat-button color="primary" (click)="uploadVideoControl.click()" type="button"
-                        class="uploadBtn" [disabled]="uploading || changing">
+                        class="uploadBtn" [disabled]="uploading">
                         <span>Browse</span>
                     </button>
                 </ng-template>
@@ -18,12 +18,12 @@
         </mat-tab>
         <mat-tab label="Image">
             <h3 class="joie-list-name">Upload a thumbnail image</h3>
-            <mat-spinner style="margin: auto" *ngIf="uploading || changing"></mat-spinner>
-            <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" accept="image/*" *ngIf="!uploading && !changing">
+            <mat-spinner style="margin: auto" *ngIf="uploading"></mat-spinner>
+            <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" accept="image/*" *ngIf="!uploading">
                 <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
                     <div class="mt-3">Drop your file here or</div>
                     <button mat-flat-button color="primary" (click)="uploadImgControl.click()" type="button"
-                        class="uploadBtn" [disabled]="uploading || changing">
+                        class="uploadBtn" [disabled]="uploading">
                         <span *ngIf="!uploading">Browse</span>
                     </button>
                 </ng-template>
