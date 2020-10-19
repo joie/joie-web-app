@@ -107,7 +107,7 @@ export class VideoUploadComponent implements OnInit {
           console.log(result);
 
           setTimeout(() => {
-            this.sessionsFacade.setSession(this.sessionId, { entryId: this.entryId });
+            this.sessionsFacade.setSession(this.sessionId, { entryId: this.entryId, entryLastUpdated: new Date().getTime() });
             this.uploading = false;
             this.snackBar.open('Uploaded successfully!', '', {
               duration: 3000,
@@ -165,6 +165,7 @@ export class VideoUploadComponent implements OnInit {
         (res) => {
 
           setTimeout(() => {
+            this.sessionsFacade.setSession(this.sessionId, { entryLastUpdated: new Date().getTime() });
             this.uploading = false;
             this.snackBar.open('Uploaded successfully!', '', {
               duration: 3000,

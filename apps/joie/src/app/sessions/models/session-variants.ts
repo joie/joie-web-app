@@ -34,6 +34,7 @@ interface SessionMetadata extends Schedule, KalturaEvent {
   activities: Activities[];
   pillar: Pillar;
   entryId: string;
+  entryLastUpdated: number;
   recommendationPercentage: number;
 }
 
