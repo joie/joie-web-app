@@ -3,126 +3,82 @@
     <section style="display: none"></section>
     <section class="session-offset-block-start"></section>
     <section class="session-offset-block-start section-offset-block-start">
-      <div class="container-condense text-center">
-        <h4>JoieSprit</h4>
-        <h1>{{ session?.title }}</h1>
-        <h3>{{ session?.owner?.displayName }}</h3>
-        <div>
-          {{ session?.when?.timestamp?.toMillis() | date }}
-        </div>
-        <a
-          mat-raised-button
-          color="accent"
-          [routerLink]="[
-            {
-              outlets: {
-                popup: ['edit']
-              }
-            }
-          ]"
-        >
-          <mat-icon>create</mat-icon> Edit Session
-        </a>
-        <ng-container *ngIf="isLiveSession; else vodPlayer">
-          <app-live-stream-player
+      <div class="container grid">
+        <div class="layout-rows">
+          <h4 class="text-center">{{ session?.pillar }}</h4>
+          <h1 class="text-center">{{ session?.title }}</h1>
+          <app-paper-item class="layout-center">
+            <img
+              src="{{ photoURL$ | async }}"
+              class="author-image"
+              width="28px"
+              height="28px"
+            />
+            <h3>{{ displayName$ | async }}</h3>
+          </app-paper-item>
+
+          <div class="layout-columns row-spacing">
+            <app-paper-item>
+              <app-icon class="joie-icon size-sm" name="calendar"></app-icon>
+              <span>
+                {{ session?.duration?.amount + session?.duration?.unit }}
+              </span>
+            </app-paper-item>
+            <app-paper-item>
+              <app-icon class="joie-icon size-sm" name="clock"></app-icon>
+              <span>{{ session?.duration?.amount + session?.duration?.unit }}</span>
+            </app-paper-item>
+            <app-paper-item>
+              <app-icon class="joie-icon size-sm" name="monitor"></app-icon>
+              <span>{{ session?.type }}</span>
+            </app-paper-item>
+            <app-paper-item>
+              <app-icon class="joie-icon size-sm" name="bar-chart"></app-icon>
+              <span>{{ session?.level }}</span>
+            </app-paper-item>
+            <app-paper-item>
+              <app-icon class="joie-icon size-sm" name="tag"></app-icon>
+              <span>{{ session?.price?.display | currency: session?.price?.currency }}</span>
+            </app-paper-item>
+            <app-paper-item>
+              <app-icon class="joie-icon size-sm" name="send"></app-icon>
+              <span>Share</span>
+            </app-paper-item>
+          </div>
+
+          <app-video-intro
+            [isLiveSession]="isLiveSession"
             [displayName]="displayName$ | async"
             [eventId]="eventId$ | async"
             [sessionType]="sessionType"
             [role]="role"
             [userContextualRole]="userContextualRole"
-          ></app-live-stream-player>
-        </ng-container>
-        <ng-template #vodPlayer>
-          <app-video-player [entryId]="entryId"></app-video-player>
-        </ng-template>
+            [entryId]="entryId"
+          ></app-video-intro>
+
+          <mat-tab-group mat-stretch-tabs>
+            <mat-tab label="What you will learn">
+              <app-what-learn [session]="session"></app-what-learn>
+            </mat-tab>
+            <mat-tab label="Meet your teacher">
+              <app-meet-teacher [session]="session"></app-meet-teacher>
+            </mat-tab>
+            <mat-tab label="What our community say">
+              <app-community-say [session]="session"></app-community-say>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+        <aside class="enrol-col">
+          <app-session-card [session]="session"></app-session-card>
+        </aside>
       </div>
     </section>
-    <section></section>
+    <section>
+      <div class="text-center">Continue your journey with the following recommended sessions</div>
+    </section>
   </main>
-  <div fxLayout="row" fxLayoutGap="20px">
-    <div fxLayout="column" fxLayoutGap="20px" fxFlex="70%">
-      <div fxLayout="row" class="text-center" fxLayoutGap="20px" fxLayoutAlign="center center">
-        <img src="" class="author-image" width="40px" height="40px" />
-      </div>
-      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px" fxLayout.xs="column">
-        <div></div>
-        <div>
-          <i class="feather icon-clock i-20"></i>
-          {{ session?.duration?.amount + session?.duration?.unit }}
-        </div>
-        <div>
-          <i class="feather icon-monitor i-20"></i>
-          {{ session?.type }}
-        </div>
-        <div>
-          <i class="feather icon-bar-chart i-20"></i>
-          {{ session?.level }}
-        </div>
-        <div>
-          <i class="feather icon-tag i-20"></i>
-          {{ session?.price?.display | currency: session?.price?.currency }}
-        </div>
-      </div>
 
-      <div>
-        <mat-tab-group>
-          <mat-tab label="What you will learn">
-            <div fxLayout="column" class="p" fxLayoutGap="20px">
-              <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.xs="column">
-                <div fxLayout="row" fxLayoutGap="10px">
-                  <i class="feather icon-compass i-20"></i>
-                  <div fxLayout="column" fxLayoutAlign="flex-start">
-                    <div>Activities</div>
-                    <div>
-                      <span *ngFor="let activity of session?.activities">
-                        {{ activity }}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div fxLayout="row" fxLayoutGap="10px">
-                  <i class="feather icon-monitor i-20"></i>
-                  <div fxLayout="column" fxLayoutAlign="flex-start">
-                    <div>Types of sessions</div>
-                    <div>
-                      {{ session?.type }}
-                    </div>
-                  </div>
-                </div>
-
-                <div fxLayout="row" fxLayoutGap="10px">
-                  <i class="feather icon-layers i-20"></i>
-                  <div fxLayout="column" fxLayoutAlign="flex-start">
-                    <div>Pillars</div>
-                    <div>
-                      {{ session?.pillar }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="text-justify">
-                {{ session?.description }}
-              </div>
-            </div>
-          </mat-tab>
-          <mat-tab label="Meet your teacher"> Content 2 </mat-tab>
-          <mat-tab label="What our community say"> Content 3 </mat-tab>
-        </mat-tab-group>
-      </div>
-    </div>
-
-    <div fxFlex="30%">
-      <app-session-card [session]="session"></app-session-card>
-    </div>
-  </div>
-
-  <div class="margin-bottom-20 text-center">
-    Continue your journey with the following recommended sessions
-  </div>
-
-  <div fxLayout="row" fxLayoutAlign="space-between">
+  <div class="layout-columns">
     <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
 
     <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>

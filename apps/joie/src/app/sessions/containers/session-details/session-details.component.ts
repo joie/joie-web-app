@@ -20,6 +20,7 @@ export class SessionDetailsComponent {
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
   displayName$ = this.authFacade.displayName$;
+  photoURL$ = this.authFacade.user$.pipe(pluck('photoURL'));
 
   // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
   //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(
@@ -31,7 +32,7 @@ export class SessionDetailsComponent {
 
   // TODO - default assignment will be removed after integration
 
-  isLiveSession = true; // if false vod player is visible
+  isLiveSession = false; // if false vod player is visible
 
   // kalturaSessionDetails$: Pick<KalturaEvent, 'eventId'> & Pick<Owner, 'name'>;
 
