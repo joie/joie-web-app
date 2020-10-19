@@ -6,20 +6,19 @@
       <img [fireStorageRef]="session.thumbRef" loading="lazy" alt="Thumbnail image of a session {{ session.title }}" mat-card-image>
     </div>
     <mat-card-content>
-      <button mat-raised-button color="accent" style="width: 100%;"><h3>Enroll In Session</h3></button>
-      <div fxLayout="row" fxLayoutAlign="space-between">
-        <div fxLayout="column">
+      <button mat-raised-button color="accent" style="width: 100%;">Enroll In Session</button>
+      <div class="row-spacing">
+        <div>
           <div>{{ session?.title }}</div>
           <div>{{ session?.owner?.displayName }}</div>
         </div>
-        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <app-paper-item class="layout-center">
           <app-icon class="joie-icon size-sm" name="heart"></app-icon>
           <div>{{ session?.recommendationPercentage }} %</div>
-        </div>
+        </app-paper-item>
       </div>
-      <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="row-spacing layout-center">
         <div>{{ session?.price?.display | currency: session?.price?.currency }}</div>
-
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_horiz</mat-icon>
         </button>
@@ -33,10 +32,10 @@
     <div class="banner">Hurry up! Only 2 spots left</div>
     <div class="text-center">
       <mat-card-subtitle>
-        <div fxLayout="row" fxLayoutAlign="center center">
+        <app-paper-item class="layout-center">
           <app-icon class="joie-icon size-md" [name]="pillars[session.pillar]"></app-icon>
           <div>{{ session?.pillar }}</div>
-        </div>
+        </app-paper-item>
       </mat-card-subtitle>
       <mat-card-title>{{ session?.title }}</mat-card-title>
     </div>
@@ -52,11 +51,11 @@
         <!-- TODO implement price pipe based on the logged in user-->
         Price: {{ session?.price?.display | currency: session?.price?.currency }}
       </h3>
-      <button mat-raised-button color="accent" style="width: 100%;"><h3>Enroll In Session</h3></button>
-      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <button mat-raised-button color="accent" style="width: 100%;">Enroll In Session</button>
+      <app-paper-item class="layout-center">
         <app-icon class="joie-icon size-sm" name="heart"></app-icon>
         <div>{{ session?.recommendationPercentage }} % people recommended this</div>
-      </div>
+      </app-paper-item>
     </mat-card-content>
     <mat-card-actions class="text-center">
       <button mat-button>

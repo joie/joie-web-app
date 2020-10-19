@@ -7,15 +7,15 @@
         <div class="layout-rows">
           <h4 class="text-center">{{ session?.pillar }}</h4>
           <h1 class="text-center">{{ session?.title }}</h1>
-          <div class="row-center">
+          <app-paper-item class="layout-center">
             <img
-              src="{{ session?.owner?.photoURL }}"
+              src="{{ photoURL$ | async }}"
               class="author-image"
               width="28px"
               height="28px"
             />
-            <h3>{{ session?.owner?.displayName }}</h3>
-          </div>
+            <h3>{{ displayName$ | async }}</h3>
+          </app-paper-item>
 
           <div class="layout-columns row-spacing">
             <app-paper-item>

@@ -20,6 +20,7 @@ export class SessionDetailsComponent {
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
   displayName$ = this.authFacade.displayName$;
+  photoURL$ = this.authFacade.user$.pipe(pluck('photoURL'));
 
   // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
   //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(
