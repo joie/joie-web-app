@@ -17,6 +17,9 @@ export class OnboardingService {
       case 'required':
         return 'required';
 
+      case 'invalidUrl':
+        return 'Url is not valid';
+
       case 'email':
         return 'Please enter a valid email address.';
 
