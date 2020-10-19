@@ -10,6 +10,7 @@ export class OnboardingStepperComponent implements OnInit {
   public steps: string[];
   public selectedStep: number = 0;
   public selectedStepRef = null;
+  public stepsCompleted = [false, false, false, false, false];
 
   constructor(
     private router: Router,
@@ -35,8 +36,12 @@ export class OnboardingStepperComponent implements OnInit {
     this.selectedStepRef = componentRef;
   }
 
-  isCompleted() {
-    return this.selectedStepRef ? this.selectedStepRef.isValid() : true;
+  isCompleted(i) {
+    if (i === this.selectedStep && this.selectedStepRef) {
+      this.stepsCompleted[i] = this.selectedStepRef.isValid();
+    }
+    return this.stepsCompleted[i];
+    // return this.selectedStepRef ? this.selectedStepRef.isValid() : true;
   }
 
   selectionChanged(event: any) {

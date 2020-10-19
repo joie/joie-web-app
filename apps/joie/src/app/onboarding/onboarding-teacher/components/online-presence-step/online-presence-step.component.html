@@ -2,8 +2,8 @@
   <button mat-button mat-flat-button matStepperPrevious>< Back</button>
 </div>
 <div class="container-condense">
-  <h3>Online presence</h3>
-  <p>
+  <h3 class="text-center">Online presence</h3>
+  <p class="text-center">
     What type of sessions are you interested in teaching?
     <br />
     <small>(You can pick as many as you like)</small>
@@ -36,8 +36,8 @@
       <mat-error *ngIf="portfolio.invalid">{{onboardingService.showErrorMessage(portfolio)}}</mat-error>
 
     </mat-form-field>
-    <button mat-button
-            mat-stroked-button
+    <button mat-flat-button 
+            color="primary"
             [disabled]="form.invalid"
             matStepperNext>
       Continue

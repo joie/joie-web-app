@@ -2,8 +2,8 @@
   <button mat-button mat-flat-button matStepperPrevious>< Back</button>
 </div>
 <div class="container-condense">
-  <h3>Your market</h3>
-  <p>What's your niche, the area you focus on in your sessions?</p>
+  <h3 class="text-center">Your market</h3>
+  <p class="text-center">What's your niche, the area you focus on in your sessions?</p>
 </div>
 
 <div class="container-ultra-condense">
@@ -30,6 +30,11 @@
       onboardingService.showErrorMessage(groupsFormArray)
     }}</mat-error>
 
-    <button mat-button mat-stroked-button [disabled]="form.invalid" matStepperNext>Continue</button>
+    <button mat-flat-button 
+            color="primary"
+            [disabled]="form.invalid"
+            matStepperNext>
+      Continue
+    </button>
   </form>
 </div>

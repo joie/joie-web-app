@@ -28,7 +28,7 @@
   <section>
     <div class="container-condense">
       <carousel 
-        [height]=350 cellWidth="100%" [cellsToShow]=1 [loop]=true
+        [height]=450 cellWidth="100%" [cellsToShow]=1 [loop]=true
         [autoplay]=true  [arrows]=false [dots]=true [overflowCellsLimit]=1>
         <div class="carousel-cell" *ngFor="let item of teacherList">
           <div class="layout-rows layout-center">
@@ -66,6 +66,9 @@
             <h4 class="joie-list-name">{{ item.name }}</h4>
             <p class="joie-list-description">{{ item.description }}</p>
           </div>
+        </div>
+        <div class="text-center">
+          <button mat-flat-button color="primary" routerLink="aboard">Apply Now</button>
         </div>
       </div>
     </div>

@@ -3,8 +3,8 @@
     <button mat-button mat-flat-button matStepperPrevious>< Back</button>
   </div>
   <div class="container-condense">
-    <h3>Your value to our students</h3>
-    <p>
+    <h3 class="text-center">Your value to our students</h3>
+    <p class="text-center">
       Finally, {{(authService.state$ | async)?.displayName }} where do you see your added value to the students?
     </p>
   </div>
@@ -22,8 +22,8 @@
         </mat-error>
       </mat-form-field>
 
-      <button mat-button
-              mat-stroked-button
+      <button mat-flat-button
+              color="primary"
               matStepperNext
               (click)="submitFormsData()"
               [disabled]="form.invalid">
@@ -36,10 +36,10 @@
 
 <ng-container class="container-condense"
               *ngIf="afterSubmit">
-  <h2 class="text-color-primary">
+  <h2 class="text-color-primary text-center">
     Thank you for submitting your application.</h2>
-  <h4>We are excited to review it!</h4>
-  <h4>We will contact you shortly.</h4>
-  <h4>Meanwhile, visit our <a href="https://blog.joie.co/">blog</a> or our FAQ page to learn more about the spirit of Joie
+  <h4 class="text-center">We are excited to review it!</h4>
+  <h4 class="text-center">We will contact you shortly.</h4>
+  <h4 class="text-center">Meanwhile, visit our <a href="https://blog.joie.co/">blog</a> or our FAQ page to learn more about the spirit of Joie
   </h4>
 </ng-container>
