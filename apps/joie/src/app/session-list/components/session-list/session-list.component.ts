@@ -14,6 +14,8 @@ export class SessionListComponent implements OnInit {
 
   sessions$: Observable<Session[]>;
 
+  enrolled = true;
+  
   constructor(private sessionsFacade: SessionsFacade) {}
 
   ngOnInit(): void {
