@@ -1,4 +1,4 @@
-<div class="upload-content text-center container">
+<mat-card class="upload-content text-center container">
     <mat-tab-group headerPosition="below" mat-align-tabs="center">
         <mat-tab label="Video">
             <h3 class="joie-list-name">Upload an intro video</h3>
@@ -35,4 +35,4 @@
     </mat-tab-group>
     <input hidden="true" type="file" accept="image/*" #uploadImgControl (change)="onClickFile($event)" />
     <input hidden="true" type="file" accept="video/*" #uploadVideoControl (change)="onClickFile($event)" />
-</div>
+</mat-card>

@@ -31,7 +31,6 @@ export class VideoUploadComponent implements OnInit {
 
   uploadTokenID: any;
   uploading = false;
-  changing = false;
   fileData: any;
   entryId: string;
 
@@ -43,52 +42,6 @@ export class VideoUploadComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
-
-  fileReplace() {
-    console.log('File replacing...');
-    // this.fileData = fileInputEvent.target.files[0] as File;
-    this.changing = true;
-    this.kalturaClient
-      .request(new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() }))
-      .pipe(
-        mergeMap((uploadTokenResponse) => {
-          this.uploadTokenID = uploadTokenResponse.id;
-          return this.kalturaClient.request(
-            new UploadTokenUploadAction({
-              uploadTokenId: uploadTokenResponse.id,
-              fileData: this.fileData,
-              resume: true,
-              finalChunk: true,
-              resumeAt: -1,
-            })
-          );
-        }),
-        mergeMap((token) => {
-          const advancedOptions = new KalturaEntryReplacementOptions();
-          const entryId = this.session.entryId;
-          const resource = new KalturaUploadedFileTokenResource();
-          resource.token = this.uploadTokenID;
-          const conversionProfileId = 0;
-          return this.kalturaClient.request(
-            new MediaUpdateContentAction({
-              entryId,
-              resource,
-              conversionProfileId,
-              advancedOptions,
-            })
-          );
-        })
-      )
-      .subscribe(
-        (res) => {
-          console.log('changing result->', res);
-        },
-        (error) => {
-          console.log('replacing error-->', error);
-        },
-        () => (this.changing = false)
-      );
-  }
 
   onClickFile(fileInputEvent: any) {
     this.fileData = fileInputEvent.target.files[0] as File;
@@ -151,17 +104,83 @@ export class VideoUploadComponent implements OnInit {
       )
       .subscribe(
         (result) => {
-          this.snackBar.open('Uploaded successfully!', '', {
-            duration: 3000,
-          });
-          this.sessionsFacade.setSession(this.sessionId, { entryId: this.entryId });
+          console.log(result);
+
+          setTimeout(() => {
+            this.sessionsFacade.setSession(this.sessionId, { entryId: this.entryId });
+            this.uploading = false;
+            this.snackBar.open('Uploaded successfully!', '', {
+              duration: 3000,
+            });
+          }, 20000);
         },
         (error) => {
-          this.snackBar.open('Upload Error', '', {
-            duration: 3000,
-          });
+          setTimeout(() => {
+            this.uploading = false;
+            this.snackBar.open('Upload Error', '', {
+              duration: 3000,
+            });
+          }, 20000);
+        }
+      );
+  }
+
+
+  fileReplace() {
+    console.log('File replacing...');
+    // this.fileData = fileInputEvent.target.files[0] as File;
+    this.uploading = true;
+    this.kalturaClient
+      .request(new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() }))
+      .pipe(
+        mergeMap((uploadTokenResponse) => {
+          this.uploadTokenID = uploadTokenResponse.id;
+          return this.kalturaClient.request(
+            new UploadTokenUploadAction({
+              uploadTokenId: uploadTokenResponse.id,
+              fileData: this.fileData,
+              resume: true,
+              finalChunk: true,
+              resumeAt: -1,
+            })
+          );
+        }),
+        mergeMap((token) => {
+          const advancedOptions = new KalturaEntryReplacementOptions();
+          const entryId = this.session.entryId;
+          const resource = new KalturaUploadedFileTokenResource();
+          resource.token = this.uploadTokenID;
+          const conversionProfileId = 0;
+          return this.kalturaClient.request(
+            new MediaUpdateContentAction({
+              entryId,
+              resource,
+              conversionProfileId,
+              advancedOptions,
+            })
+          );
+        })
+      )
+      .subscribe(
+        (res) => {
+
+          setTimeout(() => {
+            this.uploading = false;
+            this.snackBar.open('Uploaded successfully!', '', {
+              duration: 3000,
+            });
+            console.log('changing result->', res);
+          }, 20000);
         },
-        () => (this.uploading = false)
+        (error) => {
+          setTimeout(() => {
+            this.uploading = false;
+            this.snackBar.open('Upload Error', '', {
+              duration: 3000,
+            });
+            console.log('replacing error-->', error);
+          }, 20000);
+        }
       );
   }
 }
