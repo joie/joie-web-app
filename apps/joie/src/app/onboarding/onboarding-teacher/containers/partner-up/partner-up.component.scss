@@ -1,21 +1,10 @@
-// :host {
-//   text-align: center;
-// }
-
 .joie-list-item {
   display: grid;
   grid-template-columns: 115px auto;
   grid-row-gap: 15px;
   grid-column-gap: 50px;
   > #{&}-figure {
-    // $size: 115px;
-    // width: $size;
-    // block-size: $size;
-    // height: $size;
-    // inline-size: $size;
-    // grid-column: 1;
     grid-row: span 2;
-    // aspect-ratio: 1/1;
   }
   > #{&}-name {
     grid-column: 2;
@@ -24,9 +13,8 @@
     grid-column: 2;
     margin: 0;
   }
-  + #{&} {
-    margin-block-start: 70px;
-  }
+  margin-block-start: 35px;
+  margin-block-end: 35px;
 }
 
 blockquote {
@@ -58,4 +46,22 @@ blockquote {
 
 app-figure-image img {
   object-position: top;
+}
+
+::ng-deep .carousel-dot-active {
+  background-color: #15AABF !important;
+}
+
+::ng-deep .carousel-dot {
+  background-color: #C4C4C4;
+  border: none;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+::ng-deep .carousel-cell img{
+  height: 100px !important;
+  object-fit: fill !important;
+  width: 100px !important;
+  border-radius: 50%;
 }

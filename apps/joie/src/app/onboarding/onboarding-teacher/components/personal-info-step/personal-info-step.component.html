@@ -1,9 +1,9 @@
 <div class="container-condense">
-  <h4>
+  <h4 class="text-center">
     Joie is looking for passionate teachers, experts and coaches who believe in our philosophy, and
     interested in growing together. Fill out this form to help us learn more about you.
   </h4>
-  <h3>Personal Information</h3>
+  <h3 class="text-center">Personal Information</h3>
 </div>
 
 <div class="container-ultra-condense">
@@ -48,20 +48,19 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Phone number</mat-label>
-      <input matInput
-             name="tel"
-             type="tel"
-             autocomplete="tel"
-             type="number"
-             inputmode="numeric"
-             placeholder="phone number"
-             formControlName="phone"
-             required />
+      <ngx-mat-intl-tel-input
+        [preferredCountries]="['us', 'ca']"
+        [enablePlaceholder]="true"
+        [enableSearch]="true"
+        name="phone"
+        formControlName="phone"
+        ></ngx-mat-intl-tel-input>
       <mat-error *ngIf="phone.invalid">{{onboardingService.showErrorMessage(phone)}}</mat-error>
 
     </mat-form-field>
 
-    <button mat-flat-button
+    <button mat-flat-button 
+            color="primary"
             [disabled]="form.invalid"
             matStepperNext>
       Continue

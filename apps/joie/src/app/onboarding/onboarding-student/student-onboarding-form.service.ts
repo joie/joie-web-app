@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { ControlTuple } from '../../../../../../libs/dyna-form';
 import { SESSION_TYPES } from './components/session-types-step/session-types-step.component';
-import { PILLARS } from '../../pillar-list/pillar-list.component';
+import { PILLARS } from '../../pillar-list/components/pillar-list/pillar-list.component';
 
 @Injectable({
   providedIn: 'root',

@@ -9,7 +9,7 @@ import {
 import { Router, ActivatedRoute } from '@angular/router';
 import { Preferences } from '../../models/student';
 import { FormGroup } from '@angular/forms';
-import { PILLARS } from '../../../../pillar-list/pillar-list.component';
+import { PILLARS } from '../../../../pillar-list/components/pillar-list/pillar-list.component';
 
 @Component({
   selector: 'app-student-onboarding-stepper',

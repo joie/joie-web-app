@@ -1,4 +1,7 @@
-import { PillarListComponent, PILLARS } from '../../../../pillar-list/pillar-list.component';
+import {
+  PillarListComponent,
+  PILLARS,
+} from '../../../../pillar-list/components/pillar-list/pillar-list.component';
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 import { StudentOnboardingFormService } from '../../student-onboarding-form.service';
