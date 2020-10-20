@@ -116,8 +116,6 @@
                 "bundleName": "styles-critical",
                 "inject": false
               },
-              "styles.css",
-              "node_modules/material-design-icons/iconfont/material-icons.css",
               "apps/joie/src/styles/components/components.scss"
             ],
             "stylePreprocessorOptions": {

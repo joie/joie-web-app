@@ -4,8 +4,15 @@
   </button>
 </div>
 <mat-dialog-content class="mat-typography">
-  <ngx-auth-firebaseui-login
+  <ngx-auth-firebaseui-providers
+    [theme]="themes.STROKED"
     [providers]="[providers.Google, providers.Facebook]"
+    layout="column">
+  </ngx-auth-firebaseui-providers>
+  <!--<ngx-auth-firebaseui-login
+    [titleText]="titleText"
+    [logoUrl]="logoUrl"
+    [providers]="['google', 'facebook']"
     [registrationEnabled]="false"
-  ></ngx-auth-firebaseui-login>
+  ></ngx-auth-firebaseui-login>-->
 </mat-dialog-content>
