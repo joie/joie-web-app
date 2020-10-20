@@ -11,6 +11,7 @@ import { SubscribeToNewsletterComponent } from './components/subscribe-to-newsle
 
 import { MaterialModule } from '../core/material.module';
 import { FireStorageRefDirective } from './directives/fire-storage-ref/fire-storage-ref.directive';
+import { PaperItemComponent } from './components/paper-item/paper-item.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FireStorageRefDirective } from './directives/fire-storage-ref/fire-stor
     ImageUploadSelectComponent,
     SubscribeToNewsletterComponent,
     FireStorageRefDirective,
+    PaperItemComponent,
   ],
   imports: [CommonModule, QuicklinkModule, ReactiveFormsModule, MaterialModule],
   exports: [
@@ -36,6 +38,7 @@ import { FireStorageRefDirective } from './directives/fire-storage-ref/fire-stor
     ImageUploadSelectComponent,
     SubscribeToNewsletterComponent,
     FireStorageRefDirective,
+    PaperItemComponent,
   ],
 })
 export class SharedModule {}

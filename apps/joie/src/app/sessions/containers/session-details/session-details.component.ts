@@ -26,6 +26,7 @@ export class SessionDetailsComponent {
   displayName$ = this.authFacade.displayName$;
   uid$ = this.authFacade.uid$;
   sessionId: string;
+  photoURL$ = this.authFacade.user$.pipe(pluck('photoURL'));
 
   // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
   //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(

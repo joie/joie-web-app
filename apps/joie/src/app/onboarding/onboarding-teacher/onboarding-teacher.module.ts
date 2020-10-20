@@ -11,6 +11,8 @@ import { OnlinePresenceStepComponent } from './components/online-presence-step/o
 import { SharedModule } from '../../shared/shared.module';
 import { OnboardingSharedModule } from '../shared/onboarding-shared.module';
 import { PartnerUpComponent } from './containers/partner-up/partner-up.component';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { NgxMatIntlTelInputModule } from 'ngx-mat-intl-tel-input';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { PartnerUpComponent } from './containers/partner-up/partner-up.component
     OnboardingTeacherRoutingModule,
     SharedModule,
     OnboardingSharedModule,
+    IvyCarouselModule,
+    NgxMatIntlTelInputModule,
   ],
 })
 export class OnboardingTeacherModule {}

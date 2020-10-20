@@ -7,36 +7,43 @@
         <div class="layout-rows">
           <h4 class="text-center">{{ session?.pillar }}</h4>
           <h1 class="text-center">{{ session?.title }}</h1>
-          <div class="row-center">
-            <img src="{{ session?.owner?.photoURL }}" class="author-image" width="28px" height="28px" />
-            <h3>{{ session?.owner?.displayName }}</h3>
-          </div>
+          <app-paper-item class="layout-center">
+            <img
+              src="{{ photoURL$ | async }}"
+              class="author-image"
+              width="28px"
+              height="28px"
+            />
+            <h3>{{ displayName$ | async }}</h3>
+          </app-paper-item>
 
           <div class="layout-columns row-spacing">
-            <div class="row-center">
+            <app-paper-item>
               <app-icon class="joie-icon size-sm" name="calendar"></app-icon>
-              <div>{{ session?.duration?.amount + session?.duration?.unit }}</div>
-            </div>
-            <div class="row-center">
+              <span>
+                {{ session?.duration?.amount + session?.duration?.unit }}
+              </span>
+            </app-paper-item>
+            <app-paper-item>
               <app-icon class="joie-icon size-sm" name="clock"></app-icon>
-              <div>{{ session?.duration?.amount + session?.duration?.unit }}</div>
-            </div>
-            <div class="row-center">
+              <span>{{ session?.duration?.amount + session?.duration?.unit }}</span>
+            </app-paper-item>
+            <app-paper-item>
               <app-icon class="joie-icon size-sm" name="monitor"></app-icon>
-              <div>{{ session?.type }}</div>
-            </div>
-            <div class="row-center">
+              <span>{{ session?.type }}</span>
+            </app-paper-item>
+            <app-paper-item>
               <app-icon class="joie-icon size-sm" name="bar-chart"></app-icon>
-              <div>{{ session?.level }}</div>
-            </div>
-            <div class="row-center">
+              <span>{{ session?.level }}</span>
+            </app-paper-item>
+            <app-paper-item>
               <app-icon class="joie-icon size-sm" name="tag"></app-icon>
-              <div>{{ session?.price?.display | currency: session?.price?.currency }}</div>
-            </div>
-            <div class="row-center">
+              <span>{{ session?.price?.display | currency: session?.price?.currency }}</span>
+            </app-paper-item>
+            <app-paper-item>
               <app-icon class="joie-icon size-sm" name="send"></app-icon>
-              <div>Share</div>
-            </div>
+              <span>Share</span>
+            </app-paper-item>
           </div>
 
           <app-video-intro [isLiveSession]="isLiveSession" [displayName]="displayName$ | async"

@@ -9,7 +9,7 @@
       </label>
 
       <div>
-        <h4 [innerHTML]="pillar?.title"></h4>
+        <h4 [innerHTML]="pillar?.title | titlecase | joiePrefix"></h4>
       </div>
     </mat-card>
   </form>
@@ -20,7 +20,7 @@
     <app-icon class="joie-icon joie-icon-backdrop size-xl" [name]="pillar.icon"></app-icon>
 
     <div>
-      <h4 [innerHTML]="pillar?.title"></h4>
+      <h4 [innerHTML]="pillar?.title | titlecase | joiePrefix"></h4>
     </div>
     <p>{{ pillar.description }}</p>
   </mat-card>

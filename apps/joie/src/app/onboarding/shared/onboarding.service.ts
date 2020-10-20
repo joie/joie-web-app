@@ -17,6 +17,9 @@ export class OnboardingService {
       case 'required':
         return 'required';
 
+      case 'invalidUrl':
+        return 'Url is not valid';
+
       case 'email':
         return 'Please enter a valid email address.';
 
@@ -38,6 +41,9 @@ export class OnboardingService {
 
       case 'exceedesWordLimit':
         return `The text entered exceeds the maximum word limit ${errors.actualWordsCount}/${errors.limit}`;
+
+      case 'validatePhoneNumber':
+        return 'Invalid Number';
 
       case 'pattern':
         const pattern = errors.pattern.requiredPattern;

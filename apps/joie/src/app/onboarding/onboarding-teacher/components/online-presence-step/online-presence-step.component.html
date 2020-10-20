@@ -1,9 +1,9 @@
+<div>
+  <button mat-button mat-flat-button matStepperPrevious>< Back</button>
+</div>
 <div class="container-condense">
-  <button mat-button
-          mat-flat-button
-          (click)="onboardingService.navigateToPrevStep()">> Back</button>
-  <h3>Online presence</h3>
-  <p>
+  <h3 class="text-center">Online presence</h3>
+  <p class="text-center">
     What type of sessions are you interested in teaching?
     <br />
     <small>(You can pick as many as you like)</small>
@@ -11,16 +11,15 @@
 </div>
 
 <div class="container-ultra-condense">
-  <form class="layout-rows-sm layout-center"
+  <form class="layout-rows-sm"
         [formGroup]="form">
     <div class="layout-columns-md">
-      <label formArrayName="sessionTypes"
-             *ngFor="let sessionType of sessionTypesLiteralsMap | keyvalue: asIsOrder; let i = index">
+      <label class="text-left" formArrayName="sessionTypes"
+      *ngFor="let sessionType of sessionTypesLiteralsMap | keyvalue: asIsOrder; let i = index">
         <input type="checkbox"
-               [formControlName]="i" /> {{ sessionType.value | titlecase}}
+              [formControlName]="i" /> {{ sessionType.value | titlecase}}
       </label>
-      <mat-error *ngIf="typesFormArray.invalid">{{onboardingService.showErrorMessage(typesFormArray)}}</mat-error>
-
+      <mat-error *ngIf="typesFormArray.invalid && (typesFormArray.dirty || typesFormArray.touched)">{{onboardingService.showErrorMessage(typesFormArray)}}</mat-error>
     </div>
 
     <p>
@@ -37,8 +36,8 @@
       <mat-error *ngIf="portfolio.invalid">{{onboardingService.showErrorMessage(portfolio)}}</mat-error>
 
     </mat-form-field>
-    <button mat-button
-            mat-flat-button
+    <button mat-flat-button 
+            color="primary"
             [disabled]="form.invalid"
             matStepperNext>
       Continue

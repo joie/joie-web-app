@@ -2,7 +2,7 @@ import { TeacherOnboardingFormService } from './../../services/teacher-onboardin
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../validators/atLeastOnIsChecked';
-import { urlRegExPattern } from '../../../../models/regex';
+import { validUrl } from '../../../validators/validUrl';
 
 import { TEACHER_ONBOARDING, StorageServiceService } from '../../../shared/storage-service.service';
 import { OnboardingService } from '../../../shared/onboarding.service';
@@ -44,7 +44,7 @@ export class OnlinePresenceStepComponent {
     private formService: TeacherOnboardingFormService
   ) {
     this.form = this.fb.group({
-      [PORTFOLIO]: ['', [Validators.required, Validators.pattern(urlRegExPattern)]],
+      [PORTFOLIO]: ['', [Validators.required, validUrl()]],
       [SESSION_TYPES]: new FormArray([], atLeastOneIsCheckedValidator()),
     });
 
