@@ -34,13 +34,13 @@ interface SessionMetadata extends Schedule, KalturaEvent {
   activities: Activities[];
   pillar: Pillar;
   recommendationPercentage: number;
+  entryId: string;
+  entryLastUpdated: number;
 }
 
 interface Streaming {
   format: Format.LiveStreaming;
   duration?: Duration;
-  entryId: string;
-  entryLastUpdated: number;
 }
 
 interface OnDemand {
