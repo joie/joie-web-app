@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 
 const SESSIONS = 'sessions';
 
-export const sessionDelete = functions.firestore
+export const onSessionDelete = functions.firestore
   .document(`/${SESSIONS}/{sessionId}`)
   .onDelete((snap) => {
     const { thumbRef } = snap.data();
@@ -16,6 +16,12 @@ export const sessionDelete = functions.firestore
       return null;
     }
   });
+
+export const sessionDelete = functions.https.onCall(async (params, context) => {
+  const { id } = params;
+
+  // @TODO: before deleting a session, check for permission
+})
 
 // import { getUID, catchErrors } from './helpers';
 // import * as admin from 'firebase-admin';
