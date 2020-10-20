@@ -6,6 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { pluck, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
+import { Pillar } from '../../../enums/pillar.enum';
 
 @UntilDestroy()
 @Component({
@@ -43,6 +44,8 @@ export class SessionDetailsComponent {
   userContextualRole = 0;
 
   entryId = '1_0v7lxhb8';
+
+  pillars = Pillar;
 
   constructor(
     private activatedRoute: ActivatedRoute,

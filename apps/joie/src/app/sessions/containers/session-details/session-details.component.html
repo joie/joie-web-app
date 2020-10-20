@@ -5,7 +5,10 @@
     <section class="session-offset-block-start section-offset-block-start">
       <div class="container grid">
         <div class="layout-rows">
-          <h4 class="text-center">{{ session?.pillar }}</h4>
+          <app-paper-item class="layout-center">
+            <app-icon class="joie-icon size-lg" [name]="pillars[session.pillar]"></app-icon>
+            <h4>{{ session?.pillar }}</h4>
+          </app-paper-item>
           <h1 class="text-center">{{ session?.title }}</h1>
           <app-paper-item class="layout-center">
             <img
