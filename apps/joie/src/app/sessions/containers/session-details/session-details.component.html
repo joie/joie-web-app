@@ -71,6 +71,12 @@
         <aside class="enrol-col">
           <app-session-card [session]="session"></app-session-card>
         </aside>
+        <div class="delete-section">
+          <button mat-raised-button (click)="deleteSession()">
+            <span class="material-icons">delete</span>
+            DELETE
+          </button>
+        </div>
       </div>
     </section>
     <section>

@@ -50,6 +50,8 @@ Thumbs.db
 firebase-debug.log
 firestore-debug.log
 
+.runtimeconfig.json
+
 ui-debug.log
 
 serviceAccountKey.json

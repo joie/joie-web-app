@@ -4,7 +4,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 import { SessionsFacade } from '../../../services/sessions.facade';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
-import { pluck, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { pluck, shareReplay, switchMap, take, tap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 
 @UntilDestroy()
@@ -72,4 +72,12 @@ export class SessionDetailsComponent {
   //       this.session = session;
   //     });
   // }
+
+  async deleteSession() {
+    const session = await this.session$.pipe(take(1)).toPromise();
+    console.log('session: ', session);
+
+    const resp = await this.sessionsFacade.deleteSession(session.id).toPromise();
+    console.log('resp: ', resp)
+  }
 }
