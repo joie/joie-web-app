@@ -26,7 +26,6 @@ import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
     CoreModule,
     SharedModule,
     AuthModule,
-    AngularFireModule.initializeApp(environment.firebase),
     NgxAuthFirebaseUIModule.forRoot(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule.enablePersistence(),

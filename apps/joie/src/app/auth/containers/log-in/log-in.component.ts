@@ -12,8 +12,8 @@ import { AuthProvider, Theme } from 'ngx-auth-firebaseui';
   styleUrls: ['./log-in.component.scss'],
 })
 export class LogInComponent {
-  providers = AuthProvider;
   themes = Theme;
+  providers = AuthProvider;
 
   constructor(
     private afAuth: AngularFireAuth,
