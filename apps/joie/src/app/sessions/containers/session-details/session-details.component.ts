@@ -17,6 +17,7 @@ export class SessionDetailsComponent {
   session$ = this._sessionId$.pipe(
     switchMap((sessionId) => {
       this.sessionId = sessionId;
+      console.log(sessionId);
       return this.sessionsFacade.getSession(sessionId);
     }),
     shareReplay()

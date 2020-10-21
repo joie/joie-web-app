@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, ViewEncapsulation, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { mergeMap } from 'rxjs/operators';
 import {
@@ -25,7 +25,7 @@ import { Session } from '../../models';
   styleUrls: ['./video-upload.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class VideoUploadComponent implements OnInit {
+export class VideoUploadComponent implements OnInit, OnChanges {
   @Input() session: Session;
   @Input() sessionId: string;
 
@@ -42,6 +42,10 @@ export class VideoUploadComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  ngOnChanges(): void {
+    console.log(this.session);
+  }
 
   onClickFile(fileInputEvent: any) {
     this.fileData = fileInputEvent.target.files[0] as File;
@@ -105,26 +109,28 @@ export class VideoUploadComponent implements OnInit {
       .subscribe(
         (result) => {
           console.log(result);
+          this.playerService.boot(this.entryId);
 
           setTimeout(() => {
-            this.sessionsFacade.setSession(this.sessionId, { entryId: this.entryId, entryLastUpdated: new Date().getTime() });
             this.uploading = false;
             this.snackBar.open('Uploaded successfully!', '', {
               duration: 3000,
             });
-          }, 20000);
+            this.sessionsFacade
+              .setSession(this.sessionId, {
+                entryId: this.entryId,
+                entryLastUpdated: new Date().getTime(),
+              })
+              .subscribe(() => {
+                window.location.reload();
+              });
+          }, 60000);
         },
         (error) => {
-          setTimeout(() => {
-            this.uploading = false;
-            this.snackBar.open('Upload Error', '', {
-              duration: 3000,
-            });
-          }, 20000);
+          this.uploading = false;
         }
       );
   }
-
 
   fileReplace() {
     console.log('File replacing...');
@@ -163,24 +169,27 @@ export class VideoUploadComponent implements OnInit {
       )
       .subscribe(
         (res) => {
-
+          console.log('changing result->', res);
           setTimeout(() => {
-            this.sessionsFacade.setSession(this.sessionId, { entryLastUpdated: new Date().getTime() });
-            this.uploading = false;
             this.snackBar.open('Uploaded successfully!', '', {
               duration: 3000,
             });
-            console.log('changing result->', res);
-          }, 20000);
+            this.uploading = false;
+            this.sessionsFacade
+              .setSession(this.sessionId, {
+                entryLastUpdated: new Date().getTime(),
+              })
+              .subscribe(() => {
+                window.location.reload();
+              });
+          }, 60000);
         },
         (error) => {
-          setTimeout(() => {
-            this.uploading = false;
-            this.snackBar.open('Upload Error', '', {
-              duration: 3000,
-            });
-            console.log('replacing error-->', error);
-          }, 20000);
+          this.uploading = false;
+          this.snackBar.open('Upload Error', '', {
+            duration: 3000,
+          });
+          console.log('replacing error-->', error);
         }
       );
   }
