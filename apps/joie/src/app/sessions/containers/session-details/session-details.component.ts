@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { SessionsFacade } from '../../../services/sessions.facade';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
-import { pluck, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { pluck, shareReplay, switchMap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 
 @UntilDestroy()
@@ -19,8 +18,7 @@ export class SessionDetailsComponent {
     shareReplay()
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
-  displayName$ = this.authFacade.displayName$;
-  photoURL$ = this.authFacade.user$.pipe(pluck('photoURL'));
+  owner$ = this.session$.pipe(pluck('owner'), shareReplay());
 
   // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
   //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(

@@ -25,3 +25,11 @@
   display: flex;
   place-content: center space-between;
 }
+
+.owner-display-name {
+  display: flex;
+  justify-content: center;
+  > img {
+    margin: 0 10px 0 0;
+  }
+}
