@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { catchErrors, getUID } from './helpers';
+import { getUID } from './helpers';
 
 const SESSIONS = 'sessions';
 

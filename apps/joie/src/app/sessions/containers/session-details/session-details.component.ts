@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
+import { ConfirmationDialogComponent } from './../../../shared/components/confirmation-dialog/confirmation-dialog.component';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { SessionsFacade } from '../../../services/sessions.facade';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
-import { pluck, shareReplay, switchMap, take, tap } from 'rxjs/operators';
+import { pluck, shareReplay, switchMap, take } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @UntilDestroy()
 @Component({
   templateUrl: './session-details.component.html',
   styleUrls: ['./session-details.component.scss'],
 })
-export class SessionDetailsComponent {
+export class SessionDetailsComponent implements OnInit {
   private _sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
   session$ = this._sessionId$.pipe(
     switchMap((sessionId) => this.sessionsFacade.getSession(sessionId)),
@@ -44,10 +45,13 @@ export class SessionDetailsComponent {
 
   entryId = '1_0v7lxhb8';
 
+  showDelete: boolean;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private sessionsFacade: SessionsFacade,
-    private authFacade: AuthFacade
+    private authFacade: AuthFacade,
+    private dialog: MatDialog
   ) {}
 
   // get kalturaSessionDetails$(): Observable<SessionStartActionArgs> {
@@ -73,11 +77,38 @@ export class SessionDetailsComponent {
   //     });
   // }
 
+  ngOnInit() {
+    this.authFacade.owner$.subscribe((owner) => {
+      this.session$.subscribe((session) => {
+        this.showDelete = false;
+        if (owner.uid === session.owner.uid) {
+          this.showDelete = true;
+        }
+      });
+    });
+  }
+
   async deleteSession() {
     const session = await this.session$.pipe(take(1)).toPromise();
-    console.log('session: ', session);
 
     const resp = await this.sessionsFacade.deleteSession(session.id).toPromise();
     console.log('resp: ', resp)
+  }
+
+  openDeleteDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+      data: {
+        message: `Do you want to delete this session?`,
+        confirmText: 'Delete',
+        confirmColor: 'warn'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(async (result: boolean) => {
+      if (result) {
+        await this.deleteSession();
+      }
+    });
   }
 }

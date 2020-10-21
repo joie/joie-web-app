@@ -26,7 +26,6 @@ export class SessionsFacade {
   }
 
   deleteSession(id: string) {
-    this.fns.useFunctionsEmulator(`http://localhost:${5001}`);
     const callable = this.fns.httpsCallable('deleteSession');
     return callable({ id });
   }
