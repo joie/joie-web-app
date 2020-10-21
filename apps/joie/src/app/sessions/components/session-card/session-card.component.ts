@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Session } from '../../models';
-import { Pillar } from '../../../enums/pillar.enum';
+import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
 
 @Component({
   selector: 'app-session-card',
@@ -11,7 +11,8 @@ export class SessionCardComponent implements OnInit {
   @Input() session: Session;
   @Input() showThumbnail = false;
 
-  pillars = Pillar;
+  pillar = Pillar;
+  pillarIcons = PillarsIconsMap;
 
   constructor() {}
 

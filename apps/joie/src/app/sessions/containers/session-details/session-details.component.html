@@ -7,7 +7,7 @@
         <div class="layout-rows-sm">
           <header class="layout-rows-xs text-center">
             <div class="figure-pairing">
-              <app-icon class="joie-icon size-lg" [name]="pillars[session.pillar]"></app-icon>
+              <app-icon class="joie-icon size-md" [name]="pillarIcons.get(pillar[session?.pillar])"></app-icon>
               <h4 [innerHTML]="session?.pillar | joiePrefix: false"></h4>
             </div>
             <h1>{{ session?.title }}</h1>

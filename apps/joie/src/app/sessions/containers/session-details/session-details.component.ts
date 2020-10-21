@@ -5,7 +5,7 @@ import { SessionsFacade } from '../../../services/sessions.facade';
 import { Observable } from 'rxjs';
 import { pluck, shareReplay, switchMap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
-import { Pillar } from '../../../enums/pillar.enum';
+import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
 
 @UntilDestroy()
 @Component({
@@ -43,7 +43,8 @@ export class SessionDetailsComponent {
 
   entryId = '1_0v7lxhb8';
 
-  pillars = Pillar;
+  pillar = Pillar;
+  pillarIcons = PillarsIconsMap;
 
   constructor(
     private activatedRoute: ActivatedRoute,
