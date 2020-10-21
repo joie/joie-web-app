@@ -5,6 +5,7 @@
   },
   "hosting": [
     {
+      "target": "joie",
       "public": "dist/apps/joie",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "headers": [
