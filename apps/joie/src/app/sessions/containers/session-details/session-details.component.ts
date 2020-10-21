@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { SessionsFacade } from '../../../services/sessions.facade';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
-import { pluck, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { pluck, shareReplay, switchMap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
+import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
 
 @UntilDestroy()
 @Component({
@@ -19,8 +19,7 @@ export class SessionDetailsComponent {
     shareReplay()
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
-  displayName$ = this.authFacade.displayName$;
-  photoURL$ = this.authFacade.user$.pipe(pluck('photoURL'));
+  owner$ = this.session$.pipe(pluck('owner'), shareReplay());
 
   // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
   //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(
@@ -43,6 +42,9 @@ export class SessionDetailsComponent {
   userContextualRole = 0;
 
   entryId = '1_0v7lxhb8';
+
+  pillar = Pillar;
+  pillarIcons = PillarsIconsMap;
 
   constructor(
     private activatedRoute: ActivatedRoute,
