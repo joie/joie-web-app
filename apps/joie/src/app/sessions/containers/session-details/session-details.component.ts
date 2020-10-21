@@ -89,10 +89,11 @@ export class SessionDetailsComponent implements OnInit {
   }
 
   async deleteSession() {
-    const session = await this.session$.pipe(take(1)).toPromise();
-
-    const resp = await this.sessionsFacade.deleteSession(session.id).toPromise();
-    console.log('resp: ', resp)
+    this.activatedRoute.params.pipe(pluck('sessionId'))
+      .subscribe(async (sessionId: string) => {
+        const resp = await this.sessionsFacade.deleteSession(sessionId).toPromise();
+        console.log('resp: ', resp, sessionId);
+      });
   }
 
   openDeleteDialog(): void {

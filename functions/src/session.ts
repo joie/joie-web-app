@@ -1,6 +1,8 @@
+import { Session } from './../../apps/joie/src/app/sessions/models/session';
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { getUID } from './helpers';
+import { catchErrors, getUID } from './helpers';
+import { db } from './config';
 
 const SESSIONS = 'sessions';
 
@@ -19,14 +21,43 @@ export const sessionDelete = functions.firestore
   });
 
 
-export const deleteSession =  functions.https.onCall(async (params, context) => {
-  // const { id } = params;
+export const deleteSession = functions.https.onCall(async (params, context) => {
+  const { id } = params;
   const uid = getUID(context);
+
+  functions.logger.info('logging ', { uid, id })
+
+  const session = await db
+    .collection(SESSIONS)
+    .doc(id)
+    .get()
+    .then((doc) => doc.data()) as Session;
 
   // @TODO: before deleting a session, check for permission
 
-  // return catchErrors(Promise.resolve('session deleted!'));
-  return Promise.resolve(uid);
+  // check if the user is the owner of this session
+  if (session.owner.uid === uid) {
+    await db
+    .collection(SESSIONS)
+    .doc(id)
+    .delete()
+    .catch((error) => {
+      return catchErrors(Promise.resolve({
+        message: error,
+        type: 'error'
+      }));
+    });
+
+    return catchErrors(Promise.resolve({
+      message: 'Session succesfully deleted!',
+      type: 'success'
+    }));
+  }
+
+  return catchErrors(Promise.resolve({
+    message: 'Failed deleting session, due to missing permission',
+    type: 'error'
+  }));
 })
 
 // import { getUID, catchErrors } from './helpers';
