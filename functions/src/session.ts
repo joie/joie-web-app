@@ -23,8 +23,6 @@ export const deleteSession = functions.https.onCall(async (params, context) => {
   const { id } = params;
   const uid = getUID(context);
 
-  functions.logger.info('logging ', { uid, id })
-
   const session = await db
     .collection(SESSIONS)
     .doc(id)

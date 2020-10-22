@@ -1,6 +1,6 @@
 import { ConfirmationDialogComponent } from './../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { SessionsFacade } from '../../../services/sessions.facade';
 import { Observable } from 'rxjs';
@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { pluck, shareReplay, switchMap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @UntilDestroy()
 @Component({
@@ -53,7 +54,9 @@ export class SessionDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private sessionsFacade: SessionsFacade,
     private authFacade: AuthFacade,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router,
+    private snackBar: MatSnackBar,
   ) {}
 
   // get kalturaSessionDetails$(): Observable<SessionStartActionArgs> {
@@ -82,6 +85,8 @@ export class SessionDetailsComponent implements OnInit {
   ngOnInit() {
     this.authFacade.owner$.subscribe((owner) => {
       this.session$.subscribe((session) => {
+        if (!session) { return; }
+
         this.showDelete = false;
         if (owner.uid === session.owner.uid) {
           this.showDelete = true;
@@ -94,12 +99,18 @@ export class SessionDetailsComponent implements OnInit {
     this.activatedRoute.params.pipe(pluck('sessionId'))
       .subscribe(async (sessionId: string) => {
         const resp = await this.sessionsFacade.deleteSession(sessionId).toPromise() as { message: string; type: 'error' | 'success'; };
-        console.log('resp: ', resp, sessionId);
         if (resp.type === 'success') {
-          // @TODO: redirect to some page
-        } else {
-          // @TODO: show alert why it failed
+          this.router.navigate([ '/account', 'sessions']);
         }
+        this.snackBar.open(
+          resp.message,
+          ``,
+          {
+            duration: 4000,
+            horizontalPosition: 'end',
+            verticalPosition: 'bottom',
+          }
+        );
       });
   }
 
