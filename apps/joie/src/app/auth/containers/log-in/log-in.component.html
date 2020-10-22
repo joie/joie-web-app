@@ -1,14 +1,15 @@
 <div mat-dialog-title align="end">
   <button mat-icon-button mat-dialog-close>
-    <mat-icon>close</mat-icon>
+    <app-icon class="joie-icon size-sm" name="close"></app-icon>
   </button>
 </div>
 <mat-dialog-content class="mat-typography">
-  <ngx-auth-firebaseui-providers
-    [theme]="themes.STROKED"
-    [providers]="[providers.Google, providers.Facebook]"
-    layout="column">
-  </ngx-auth-firebaseui-providers>
+  <nav class="layout-rows-xs">
+    <ngx-auth-firebaseui-providers [theme]="themes.STROKED" [providers]="[providers.Google]">
+    </ngx-auth-firebaseui-providers>
+    <ngx-auth-firebaseui-providers [theme]="themes.STROKED" [providers]="[providers.Facebook]">
+    </ngx-auth-firebaseui-providers>
+  </nav>
   <!--<ngx-auth-firebaseui-login
     [titleText]="titleText"
     [logoUrl]="logoUrl"
