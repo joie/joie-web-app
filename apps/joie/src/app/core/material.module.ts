@@ -2,7 +2,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -36,7 +35,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   imports: [
-    FlexLayoutModule,
     OverlayModule,
     PortalModule,
     MatCardModule,
@@ -69,11 +67,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatStepperModule,
     MatSidenavModule,
     MatIconModule,
-
     CdkStepperModule,
   ],
   exports: [
-    FlexLayoutModule,
     OverlayModule,
     PortalModule,
     MatCardModule,

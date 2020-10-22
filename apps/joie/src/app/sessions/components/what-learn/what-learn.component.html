@@ -1,0 +1,51 @@
+<div class="layout-rows" style="margin: 20px 55px;">
+  <div class="layout-columns row-spacing">
+    <div class="layout-rows-xs layout-center">
+      <app-paper-item>
+        <app-icon class="joie-icon size-sm" name="compass"></app-icon>
+        <div>Activities</div>
+      </app-paper-item>
+      <div>
+        <span *ngFor="let activity of session?.activities">
+          {{ activity }}
+        </span>
+      </div>
+    </div>
+
+    <div class="layout-rows-xs layout-center">
+      <app-paper-item>
+        <app-icon class="joie-icon size-sm" name="monitor"></app-icon>
+        <div>Types of session</div>
+      </app-paper-item>
+      <div>{{ session?.type }}</div>
+    </div>
+
+    <div class="layout-rows-xs layout-center">
+      <app-paper-item>
+        <app-icon class="joie-icon size-sm" name="layers"></app-icon>
+        <div>Pillar</div>
+      </app-paper-item>
+      <div>{{ session?.pillar }}</div>
+    </div>
+  </div>
+
+  <div>{{ session?.description }}</div>
+
+  <div class="layout-rows">
+    <div>Goal</div>
+  </div>
+
+  <div class="layout-rows">
+    <app-paper-item>
+      <app-icon class="joie-icon size-sm" name="flag"></app-icon>
+      <div>Need to know</div>
+    </app-paper-item>
+  </div>
+
+  <div class="layout-rows">
+    <app-paper-item>
+      <app-icon class="joie-icon size-sm" name="message-square"></app-icon>
+      <a href="#">Contact teacher</a>
+    </app-paper-item>
+  </div>
+</div>

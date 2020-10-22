@@ -1,3 +1,36 @@
 .session-offset-block-start {
   --section-gutter-block-end: 370px;
 }
+
+.author-image {
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto 450px;
+  grid-gap: var(--joie-gutter);
+}
+
+.enrol-col {
+  height: min-content;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5%;
+}
+
+.row-spacing {
+  flex-direction: row;
+  display: flex;
+  place-content: center space-between;
+}
+
+.figure-pairing {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  > img {
+    margin: 0 10px 0 0;
+  }
+}

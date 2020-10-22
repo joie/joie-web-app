@@ -1,38 +1,40 @@
+<div>
+  <button mat-button mat-flat-button matStepperPrevious>< Back</button>
+</div>
 <div class="container-condense">
-  <button mat-button
-          mat-flat-button
-          (click)="onboardingService.navigateToPrevStep()">> Back</button>
-  <h3>Your market</h3>
-  <p>
-    What's your niche, the area you focus on in your sessions?
-  </p>
+  <h3 class="text-center">Your market</h3>
+  <p class="text-center">What's your niche, the area you focus on in your sessions?</p>
 </div>
 
 <div class="container-ultra-condense">
-  <form [formGroup]="form"
-        class="layout-rows-sm">
+  <form [formGroup]="form" class="layout-rows-sm">
     <mat-form-field appearance="outline">
-      <textarea matInput
-                formControlName="sessionArea"
-                required></textarea>
-      <mat-error *ngIf="sessionArea.invalid">{{onboardingService.showErrorMessage(sessionArea)}}</mat-error>
+      <textarea matInput formControlName="sessionArea" required></textarea>
+      <mat-error *ngIf="sessionArea.invalid">{{
+        onboardingService.showErrorMessage(sessionArea)
+      }}</mat-error>
     </mat-form-field>
     <p>For which group your content design for?</p>
-    <label *ngFor="let group of  groupsLiteralsMap | keyvalue : asIsOrder; let i = index"
-           formArrayName="ageGroups">
-      <input type="checkbox"
-             [formControlName]="i" />
-      {{ group.value | titlecase}}
-    </label>
-    <mat-error *ngIf="groupsFormArray.invalid">{{onboardingService.showErrorMessage(groupsFormArray)}}</mat-error>
+    <div class="layout-columns layout-center">
+      <div class="layout-rows">
+        <label
+          *ngFor="let group of groupsLiteralsMap | keyvalue: asIsOrder; let i = index"
+          formArrayName="ageGroups"
+        >
+          <input type="checkbox" (change)="handleSelected($event, i)" [formControlName]="i" />
+          {{ group.value | titlecase }}
+        </label>
+      </div>
+    </div>
+    <mat-error *ngIf="groupsFormArray.invalid">{{
+      onboardingService.showErrorMessage(groupsFormArray)
+    }}</mat-error>
 
-
-    <button mat-button
-            mat-flat-button
+    <button mat-flat-button 
+            color="primary"
             [disabled]="form.invalid"
             matStepperNext>
       Continue
     </button>
-
   </form>
 </div>

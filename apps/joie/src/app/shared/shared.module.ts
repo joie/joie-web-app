@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { JoiePrefixPipe } from './pipes/joie-prefix/joie-prefix.pipe';
+
 import { PaymentSourceComponent } from './components/payment-source/payment-source.component';
 import { DialogRouterComponent } from './components/dialog-router/dialog-router.component';
 import { FigureImageComponent } from './components/figure-image/figure-image.component';
@@ -11,6 +14,7 @@ import { SubscribeToNewsletterComponent } from './components/subscribe-to-newsle
 
 import { MaterialModule } from '../core/material.module';
 import { FireStorageRefDirective } from './directives/fire-storage-ref/fire-storage-ref.directive';
+import { PaperItemComponent } from './components/paper-item/paper-item.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,8 @@ import { FireStorageRefDirective } from './directives/fire-storage-ref/fire-stor
     ImageUploadSelectComponent,
     SubscribeToNewsletterComponent,
     FireStorageRefDirective,
+    PaperItemComponent,
+    JoiePrefixPipe,
   ],
   imports: [CommonModule, QuicklinkModule, ReactiveFormsModule, MaterialModule],
   exports: [
@@ -36,6 +42,8 @@ import { FireStorageRefDirective } from './directives/fire-storage-ref/fire-stor
     ImageUploadSelectComponent,
     SubscribeToNewsletterComponent,
     FireStorageRefDirective,
+    PaperItemComponent,
+    JoiePrefixPipe,
   ],
 })
 export class SharedModule {}

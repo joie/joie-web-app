@@ -1,0 +1,11 @@
+<ng-container *ngIf="isLiveSession; else vodPlayer">
+    <app-live-stream-player
+      [eventId]="eventId"
+      [sessionType]="sessionType"
+      [role]="role"
+      [userContextualRole]="userContextualRole"
+    ></app-live-stream-player>
+</ng-container>
+<ng-template #vodPlayer>
+    <app-video-player [entryId]="entryId"></app-video-player>
+</ng-template>
