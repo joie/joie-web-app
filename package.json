@@ -9,6 +9,7 @@
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
     "deploy": "ng deploy",
+    "deploy:functions": "cd functions && npm run build && firebase deploy --only functions",
     "emulate": "firebase emulators:start --only functions",
     "postinstall": "node ./decorate-angular-cli.js",
     "analyze": "nx build --prod && npx source-map-explorer dist/apps/joie/main-es2015.*.js",
