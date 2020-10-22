@@ -31,3 +31,12 @@
   right: 3%;
   top: 15%;
 }
+
+.figure-pairing {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  > img {
+    margin: 0 10px 0 0;
+  }
+}

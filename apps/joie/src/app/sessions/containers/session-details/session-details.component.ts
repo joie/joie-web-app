@@ -4,9 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { SessionsFacade } from '../../../services/sessions.facade';
 import { Observable } from 'rxjs';
-import { pluck, shareReplay, switchMap, take } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { pluck, shareReplay, switchMap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
 
 @UntilDestroy()
 @Component({
@@ -20,8 +21,7 @@ export class SessionDetailsComponent implements OnInit {
     shareReplay()
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
-  displayName$ = this.authFacade.displayName$;
-  photoURL$ = this.authFacade.user$.pipe(pluck('photoURL'));
+  owner$ = this.session$.pipe(pluck('owner'), shareReplay());
 
   // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
   //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(
@@ -46,6 +46,8 @@ export class SessionDetailsComponent implements OnInit {
   entryId = '1_0v7lxhb8';
 
   showDelete: boolean;
+  pillar = Pillar;
+  pillarIcons = PillarsIconsMap;
 
   constructor(
     private activatedRoute: ActivatedRoute,

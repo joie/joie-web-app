@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { JoiePrefixPipe } from './pipes/joie-prefix/joie-prefix.pipe';
+
 import { PaymentSourceComponent } from './components/payment-source/payment-source.component';
 import { DialogRouterComponent } from './components/dialog-router/dialog-router.component';
 import { FigureImageComponent } from './components/figure-image/figure-image.component';
@@ -24,7 +27,8 @@ import { PaperItemComponent } from './components/paper-item/paper-item.component
     SubscribeToNewsletterComponent,
     FireStorageRefDirective,
     PaperItemComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    JoiePrefixPipe,
   ],
   imports: [CommonModule, QuicklinkModule, ReactiveFormsModule, MaterialModule],
   exports: [
@@ -41,7 +45,8 @@ import { PaperItemComponent } from './components/paper-item/paper-item.component
     SubscribeToNewsletterComponent,
     FireStorageRefDirective,
     PaperItemComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    JoiePrefixPipe,
   ],
 })
 export class SharedModule {}
