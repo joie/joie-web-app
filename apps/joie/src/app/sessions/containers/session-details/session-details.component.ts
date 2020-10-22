@@ -91,8 +91,13 @@ export class SessionDetailsComponent implements OnInit {
   async deleteSession() {
     this.activatedRoute.params.pipe(pluck('sessionId'))
       .subscribe(async (sessionId: string) => {
-        const resp = await this.sessionsFacade.deleteSession(sessionId).toPromise();
+        const resp = await this.sessionsFacade.deleteSession(sessionId).toPromise() as { message: string; type: 'error' | 'success'; };
         console.log('resp: ', resp, sessionId);
+        if (resp.type === 'success') {
+          // @TODO: redirect to some page
+        } else {
+          // @TODO: show alert why it failed
+        }
       });
   }
 

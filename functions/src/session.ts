@@ -1,4 +1,3 @@
-import { Session } from './../../apps/joie/src/app/sessions/models/session';
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { catchErrors, getUID } from './helpers';
@@ -20,7 +19,6 @@ export const sessionDelete = functions.firestore
     }
   });
 
-
 export const deleteSession = functions.https.onCall(async (params, context) => {
   const { id } = params;
   const uid = getUID(context);
@@ -31,12 +29,12 @@ export const deleteSession = functions.https.onCall(async (params, context) => {
     .collection(SESSIONS)
     .doc(id)
     .get()
-    .then((doc) => doc.data()) as Session;
+    .then((doc) => doc.data());
 
   // @TODO: before deleting a session, check for permission
 
   // check if the user is the owner of this session
-  if (session.owner.uid === uid) {
+  if (session && session.owner.uid === uid) {
     await db
     .collection(SESSIONS)
     .doc(id)
