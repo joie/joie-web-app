@@ -1,13 +1,1 @@
-<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="24" height="24" transform="translate(0 0.916199)" />
-<path d="M6.54988 5.66159H17.4501C18.4444 5.66159 19.2545 6.47174 19.2545 7.46602V18.3663C19.2545 19.3605 18.4444 20.1707 17.4501 20.1707H6.54988C5.5556 20.1707 4.74545 19.3605 4.74545 18.3663V7.46602C4.74545 6.47174 5.5556 5.66159 6.54988 5.66159Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M9.27495 2.93654V5.6616" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.7251 2.93654V5.6616" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M9.27495 20.1707V22.8958" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.7251 20.1707V22.8958" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19.2545 10.1911H21.9796" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19.2545 14.7206H21.9796" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.02039 10.1911H4.74545" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.02039 14.7206H4.74545" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.0006 11.045V14.7886M10.1997 12.8435L13.5886 12.8435" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" fill="none" viewBox="0 0 24 25"><path d="M0 0H24V24H0z" transform="translate(0 0.916199)"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M6.54988 5.66159H17.4501C18.4444 5.66159 19.2545 6.47174 19.2545 7.46602V18.3663C19.2545 19.3605 18.4444 20.1707 17.4501 20.1707H6.54988C5.5556 20.1707 4.74545 19.3605 4.74545 18.3663V7.46602C4.74545 6.47174 5.5556 5.66159 6.54988 5.66159zM9.27495 2.93654V5.6616M14.7251 2.93654V5.6616M9.27495 20.1707V22.8958M14.7251 20.1707V22.8958M19.2545 10.1911H21.9796M19.2545 14.7206H21.9796M2.02039 10.1911H4.74545M2.02039 14.7206H4.74545M12.0006 11.045V14.7886M10.1997 12.8435L13.5886 12.8435"/></svg>

@@ -1,8 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="24" height="24"/>
-<circle cx="12" cy="12" r="10" stroke="currentColor"/>
-<circle cx="12" cy="12" r="8.09375" stroke="currentColor"/>
-<circle cx="12" cy="12" r="6.0625" stroke="currentColor"/>
-<circle cx="12" cy="12" r="4.03125" stroke="currentColor"/>
-<circle cx="12" cy="12" r="2.0625" stroke="currentColor"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M0 0H24V24H0z"/><circle cx="12" cy="12" r="10" stroke="currentColor"/><circle cx="12" cy="12" r="8.094" stroke="currentColor"/><circle cx="12" cy="12" r="6.063" stroke="currentColor"/><circle cx="12" cy="12" r="4.031" stroke="currentColor"/><circle cx="12" cy="12" r="2.063" stroke="currentColor"/></svg>

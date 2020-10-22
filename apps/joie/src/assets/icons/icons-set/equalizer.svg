@@ -1,13 +1,1 @@
-<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="24" height="24" transform="translate(0 0.916199)" />
-<path d="M21.9556 2.96065H2.04445V22.8718H21.9556V2.96065Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6.85933 18.8895V14.1108" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6.85933 11.3595V6.58084" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.3258 18.8895V12.7352" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.3258 10.02V6.58084" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17.7923 18.8895V15.4865" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17.7923 12.7352V6.58084" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4.79582 14.1108H8.92285" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.2985 10.02H14.3894" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M15.765 15.4865H19.8559" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" fill="none" viewBox="0 0 24 25"><path d="M0 0H24V24H0z" transform="translate(0 0.916199)"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M21.9556 2.96065H2.04445V22.8718H21.9556V2.96065zM6.85933 18.8895V14.1108M6.85933 11.3595V6.58084M12.3258 18.8895V12.7352M12.3258 10.02V6.58084M17.7923 18.8895V15.4865M17.7923 12.7352V6.58084M4.79582 14.1108H8.92285M10.2985 10.02H14.3894M15.765 15.4865H19.8559"/></svg>
