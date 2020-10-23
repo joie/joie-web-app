@@ -28,7 +28,7 @@ export class SessionDetailsComponent {
     switchMap(
       owner => this.authFacade.owner$.pipe(
         map(auth => owner.uid === auth.uid),
-        take(1)
+        // take(1)
       )
     ),
   );
