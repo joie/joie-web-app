@@ -39,13 +39,4 @@ export class DbService {
         : this.afs.collection<T>(path).add(data)
     );
   }
-
-  delete$<T>(path: string) {
-    // only documents can be deleted
-    return from (
-      this.isCollection(path)
-      ? this.afs.doc<T>(path).delete()
-      : null
-    );
-  }
 }
