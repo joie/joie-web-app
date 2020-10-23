@@ -17,6 +17,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { KalturaClient } from 'kaltura-ngx-client';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,7 @@ import { KalturaClient } from 'kaltura-ngx-client';
     CoreModule,
     SharedModule,
     AuthModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    NgxAuthFirebaseUIModule.forRoot(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule.enablePersistence(),
     AngularFireStorageModule,

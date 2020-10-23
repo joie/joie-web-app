@@ -4,18 +4,23 @@
     <section class="session-offset-block-start"></section>
     <section class="session-offset-block-start section-offset-block-start">
       <div class="container grid">
-        <div class="layout-rows">
-          <h4 class="text-center">{{ session?.pillar }}</h4>
-          <h1 class="text-center">{{ session?.title }}</h1>
-          <app-paper-item class="layout-center">
-            <img
-              src="{{ photoURL$ | async }}"
-              class="author-image"
-              width="28px"
-              height="28px"
-            />
-            <h3>{{ displayName$ | async }}</h3>
-          </app-paper-item>
+        <div class="layout-rows-sm">
+          <header class="layout-rows-xs text-center">
+            <div class="figure-pairing">
+              <app-icon class="joie-icon size-md" [name]="pillarIcons.get(pillar[session?.pillar])"></app-icon>
+              <h4 [innerHTML]="session?.pillar | joiePrefix: false"></h4>
+            </div>
+            <h1>{{ session?.title }}</h1>
+            <address class="figure-pairing">
+              <img
+                src="{{ (owner$ | async)?.photoURL }}"
+                class="author-image"
+                width="28px"
+                height="28px"
+              />
+              <h3>{{ (owner$ | async)?.displayName }}</h3>
+            </address>
+          </header>
 
           <div class="layout-columns row-spacing">
             <app-paper-item>

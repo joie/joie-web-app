@@ -15,14 +15,6 @@ declare var $: any;
 @Injectable({ providedIn: 'root' })
 export class PlayerService {
   kWidget = kWidget;
-  kalturaConfiguration = {
-    targetId: 'player',
-    wid: '_2976751',
-    uiconf_id: 46213871,
-    flashvars: {},
-    cache_st: 1602684332,
-    entry_id: '1_v3d6yfj9',
-  };
   constructor(private kaltura: KalturaClient) {
     this.kaltura.setOptions({
       clientTag: 'sample-code',
@@ -51,7 +43,7 @@ export class PlayerService {
   }
 
   boot(entryID: any) {
-    let kalturaConfiguration = {
+    const kalturaConfiguration = {
       targetId: 'player',
       wid: '_2976751',
       uiconf_id: 46213871,
@@ -63,11 +55,10 @@ export class PlayerService {
   }
 
   reboot(entryID: any) {
-    let temp = entryID;
     console.log('updated video id-->', entryID);
     this.kWidget.addReadyCallback(function (playerId) {
       // var kdp = document.getElementById('player');
-      var kdp = $('#player').get(0);
+      const kdp = $('#player').get(0);
       kdp.sendNotification('changeMedia', { entryId: $(this).attr('data-entryId') });
       kdp.kBind('changeMedia', function (data) {
         console.log('data?-------------->', data);
@@ -77,8 +68,8 @@ export class PlayerService {
   }
 
   runRequest() {
-    let filter = new KalturaMediaEntryFilter();
-    let pager = new KalturaFilterPager();
+    const filter = new KalturaMediaEntryFilter();
+    const pager = new KalturaFilterPager();
 
     // retriving all the available videos
     this.kaltura.request(new MediaListAction({ filter, pager })).subscribe(

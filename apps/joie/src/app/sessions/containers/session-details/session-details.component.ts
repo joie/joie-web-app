@@ -6,6 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { combineLatest, Observable } from 'rxjs';
 import { map, pluck, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
+import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
 
 @UntilDestroy()
 @Component({
@@ -57,12 +58,15 @@ export class SessionDetailsComponent {
       })
     );
 
+  pillar = Pillar;
+  pillarIcons = PillarsIconsMap;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private sessionsFacade: SessionsFacade,
     private authFacade: AuthFacade
   ) {}
-  
+
   // get kalturaSessionDetails$(): Observable<SessionStartActionArgs> {
   //   return this.session$.pipe(
   //     pluck('eventId', 'name'),

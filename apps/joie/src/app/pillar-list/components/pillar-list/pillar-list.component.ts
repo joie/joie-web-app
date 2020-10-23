@@ -9,7 +9,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { skip } from 'rxjs/operators';
 import { pillars } from '../../pillars';
 import { atLeastOneIsCheckedValidator } from '../../../onboarding/validators/atLeastOnIsChecked';
-import { PillarsLiteralMap } from '../../../enums';
+import { PillarsIconsMap, PillarsLiteralMap } from '../../../enums';
 export const PILLARS = 'pillars';
 
 @UntilDestroy()
@@ -23,6 +23,7 @@ export class PillarListComponent {
   form: FormGroup;
   pillars = pillars;
   pillarsLiteralMap = PillarsLiteralMap;
+  pillarsIconsMap = PillarsIconsMap;
   controlKey = USER_ONBOARDING + '-' + PILLARS;
   @Input() selectable = false;
   @Input() descriptions = false;
