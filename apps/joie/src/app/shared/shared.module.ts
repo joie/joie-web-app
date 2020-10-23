@@ -11,6 +11,7 @@ import { FigureImageComponent } from './components/figure-image/figure-image.com
 import { IconComponent } from './components/icon/icon.component';
 import { ImageUploadSelectComponent } from './components/image-upload-select/image-upload-select.component';
 import { SubscribeToNewsletterComponent } from './components/subscribe-to-newsletter/subscribe-to-newsletter.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 import { MaterialModule } from '../core/material.module';
 import { FireStorageRefDirective } from './directives/fire-storage-ref/fire-storage-ref.directive';
@@ -26,6 +27,7 @@ import { PaperItemComponent } from './components/paper-item/paper-item.component
     SubscribeToNewsletterComponent,
     FireStorageRefDirective,
     PaperItemComponent,
+    ConfirmationDialogComponent,
     JoiePrefixPipe,
   ],
   imports: [CommonModule, QuicklinkModule, ReactiveFormsModule, MaterialModule],
@@ -43,6 +45,7 @@ import { PaperItemComponent } from './components/paper-item/paper-item.component
     SubscribeToNewsletterComponent,
     FireStorageRefDirective,
     PaperItemComponent,
+    ConfirmationDialogComponent,
     JoiePrefixPipe,
   ],
 })

@@ -5,9 +5,21 @@
     <section class="session-offset-block-start section-offset-block-start">
       <div class="container grid">
         <div class="layout-rows-sm">
+          <button
+            *ngIf="isOwner$ | async"
+            mat-raised-button
+            (click)="openDeleteDialog()"
+            color="warn"
+          >
+            <app-icon class="joie-icon size-sm" name="trash"></app-icon>
+            DELETE
+          </button>
           <header class="layout-rows-xs text-center">
             <div class="figure-pairing">
-              <app-icon class="joie-icon size-md" [name]="pillarIcons.get(pillar[session?.pillar])"></app-icon>
+              <app-icon
+                class="joie-icon size-md"
+                [name]="pillarIcons.get(pillar[session?.pillar])"
+              ></app-icon>
               <h4 [innerHTML]="session?.pillar | joiePrefix: false"></h4>
             </div>
             <h1>{{ session?.title }}</h1>
