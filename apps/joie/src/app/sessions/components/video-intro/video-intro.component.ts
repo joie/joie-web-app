@@ -13,6 +13,7 @@ export class VideoIntroComponent implements OnInit {
   @Input() role: string;
   @Input() userContextualRole: number;
   @Input() entryId: string;
+  @Input() entryLastUpdated: number;
   
   constructor() { }
 

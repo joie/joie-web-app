@@ -1,6 +1,7 @@
-import { Component, OnInit, OnChanges, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { mergeMap } from 'rxjs/operators';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import {
   KalturaClient,
   UploadTokenUploadAction,
@@ -18,14 +19,16 @@ import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
 import { PlayerService } from '../../../services/player.service';
 import { SessionsFacade } from '../../../services/sessions.facade';
 import { Session } from '../../models';
+import { Subscription } from 'rxjs';
 
+@UntilDestroy({ checkProperties: true })
 @Component({
   selector: 'app-video-upload',
   templateUrl: './video-upload.component.html',
   styleUrls: ['./video-upload.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class VideoUploadComponent implements OnInit, OnChanges {
+export class VideoUploadComponent implements OnInit, OnDestroy {
   @Input() session: Session;
   @Input() sessionId: string;
 
@@ -33,6 +36,7 @@ export class VideoUploadComponent implements OnInit, OnChanges {
   uploading = false;
   fileData: any;
   entryId: string;
+  subscription: Subscription;
 
   constructor(
     private playerService: PlayerService,
@@ -43,8 +47,8 @@ export class VideoUploadComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {}
 
-  ngOnChanges(): void {
-    console.log(this.session);
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   onClickFile(fileInputEvent: any) {
@@ -74,7 +78,7 @@ export class VideoUploadComponent implements OnInit, OnChanges {
   fileUpload() {
     console.log('File uploading...');
     this.uploading = true;
-    this.kalturaClient
+    this.subscription = this.kalturaClient
       .request(new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() }))
       .pipe(
         mergeMap((uploadTokenReponse) => {
@@ -104,7 +108,8 @@ export class VideoUploadComponent implements OnInit, OnChanges {
           const resource = new KalturaUploadedFileTokenResource();
           resource.token = this.uploadTokenID;
           return this.kalturaClient.request(new MediaAddContentAction({ entryId, resource }));
-        })
+        }),
+        untilDestroyed(this)
       )
       .subscribe(
         (result) => {
@@ -120,9 +125,6 @@ export class VideoUploadComponent implements OnInit, OnChanges {
               .setSession(this.sessionId, {
                 entryId: this.entryId,
                 entryLastUpdated: new Date().getTime(),
-              })
-              .subscribe(() => {
-                window.location.reload();
               });
           }, 60000);
         },
@@ -178,9 +180,6 @@ export class VideoUploadComponent implements OnInit, OnChanges {
             this.sessionsFacade
               .setSession(this.sessionId, {
                 entryLastUpdated: new Date().getTime(),
-              })
-              .subscribe(() => {
-                window.location.reload();
               });
           }, 60000);
         },

@@ -53,7 +53,8 @@
 
           <app-video-intro [isLiveSession]="isLiveSession" [displayName]="displayName$ | async"
             [eventId]="eventId$ | async" [sessionType]="sessionType" [role]="role"
-            [userContextualRole]="userContextualRole" [entryId]="session?.entryId" *ngIf="session?.entryId || !(isOnwer$ | async)"></app-video-intro>
+            [userContextualRole]="userContextualRole" [entryId]="session?.entryId" [entryLastUpdated]="session?.entryLastUpdated" 
+            *ngIf="session?.entryId || !(isOnwer$ | async)"></app-video-intro>
           
           <app-video-upload  *ngIf="isOnwer$ | async" [session]="session" [sessionId]="sessionId"></app-video-upload>
 
