@@ -16,21 +16,22 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./session-details.component.scss'],
 })
 export class SessionDetailsComponent {
-  private _sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
-  session$ = this._sessionId$.pipe(
+  #sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
+  session$ = this.#sessionId$.pipe(
     switchMap((sessionId) => this.sessionsFacade.getSession(sessionId)),
-    shareReplay()
+    shareReplay(1)
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
   owner$ = this.session$.pipe(pluck('owner'), shareReplay());
+  sessionOwnerId$ = this.owner$.pipe(pluck('uid'), shareReplay());
 
-  showDelete$: Observable<boolean> = this.owner$.pipe(
-    switchMap(
-      owner => this.authFacade.owner$.pipe(
-        map(auth => owner.uid === auth.uid),
+  isOwner$: Observable<boolean> = this.sessionOwnerId$.pipe(
+    switchMap((sessionOwnerId) =>
+      this.authFacade.uid$.pipe(
+        map((uid) => sessionOwnerId === uid)
         // take(1)
       )
-    ),
+    )
   );
 
   // showDelete$: Observable<boolean> = combineLatest([this.authFacade, this.owner$]).pipe(
@@ -68,7 +69,7 @@ export class SessionDetailsComponent {
     private authFacade: AuthFacade,
     private dialog: MatDialog,
     private router: Router,
-    private snackBar: MatSnackBar,
+    private snackBar: MatSnackBar
   ) {}
 
   // get kalturaSessionDetails$(): Observable<SessionStartActionArgs> {
@@ -95,22 +96,20 @@ export class SessionDetailsComponent {
   // }
 
   async deleteSession() {
-    this.activatedRoute.params.pipe(pluck('sessionId'))
-      .subscribe(async (sessionId: string) => {
-        const resp = await this.sessionsFacade.deleteSession(sessionId).toPromise() as { message: string; type: 'error' | 'success'; };
-        if (resp.type === 'success') {
-          this.router.navigate([ '/account', 'sessions']);
-        }
-        this.snackBar.open(
-          resp.message,
-          ``,
-          {
-            duration: 4000,
-            horizontalPosition: 'end',
-            verticalPosition: 'bottom',
-          }
-        );
+    this.activatedRoute.params.pipe(pluck('sessionId')).subscribe(async (sessionId: string) => {
+      const resp = (await this.sessionsFacade.deleteSession(sessionId).toPromise()) as {
+        message: string;
+        type: 'error' | 'success';
+      };
+      if (resp.type === 'success') {
+        this.router.navigate(['/account', 'sessions']);
+      }
+      this.snackBar.open(resp.message, ``, {
+        duration: 4000,
+        horizontalPosition: 'end',
+        verticalPosition: 'bottom',
       });
+    });
   }
 
   openDeleteDialog(): void {
@@ -119,8 +118,8 @@ export class SessionDetailsComponent {
       data: {
         message: `Do you want to delete this session?`,
         confirmText: 'Delete',
-        confirmColor: 'warn'
-      }
+        confirmColor: 'warn',
+      },
     });
 
     dialogRef.afterClosed().subscribe(async (result: boolean) => {

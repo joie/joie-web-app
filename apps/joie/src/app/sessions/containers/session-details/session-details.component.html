@@ -6,7 +6,7 @@
       <div class="container grid">
         <div class="layout-rows-sm">
           <button
-            *ngIf="showDelete$ | async"
+            *ngIf="isOwner$ | async"
             mat-raised-button
             (click)="openDeleteDialog()"
             color="warn"
