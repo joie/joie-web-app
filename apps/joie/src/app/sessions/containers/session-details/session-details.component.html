@@ -76,7 +76,7 @@
         <aside class="enrol-col">
           <app-session-card [session]="session"></app-session-card>
         </aside>
-        <div class="delete-section" *ngIf="showDelete">
+        <div class="delete-section" *ngIf="showDelete$ | async">
           <button mat-raised-button (click)="openDeleteDialog()" color="warn">
             <span class="material-icons">delete</span>
             DELETE

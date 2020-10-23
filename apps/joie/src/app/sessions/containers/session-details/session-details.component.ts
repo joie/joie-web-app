@@ -1,11 +1,11 @@
 import { ConfirmationDialogComponent } from './../../../shared/components/confirmation-dialog/confirmation-dialog.component';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { SessionsFacade } from '../../../services/sessions.facade';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { pluck, shareReplay, switchMap } from 'rxjs/operators';
+import { map, pluck, shareReplay, switchMap, take } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,7 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './session-details.component.html',
   styleUrls: ['./session-details.component.scss'],
 })
-export class SessionDetailsComponent implements OnInit {
+export class SessionDetailsComponent {
   private _sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
   session$ = this._sessionId$.pipe(
     switchMap((sessionId) => this.sessionsFacade.getSession(sessionId)),
@@ -23,6 +23,19 @@ export class SessionDetailsComponent implements OnInit {
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
   owner$ = this.session$.pipe(pluck('owner'), shareReplay());
+
+  showDelete$: Observable<boolean> = this.owner$.pipe(
+    switchMap(
+      owner => this.authFacade.owner$.pipe(
+        map(auth => owner.uid === auth.uid),
+        take(1)
+      )
+    ),
+  );
+
+  // showDelete$: Observable<boolean> = combineLatest([this.authFacade, this.owner$]).pipe(
+  //   map(result => Boolean(result[0].owner.uid === result[1].uid))
+  // );
 
   // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
   //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(
@@ -46,7 +59,6 @@ export class SessionDetailsComponent implements OnInit {
 
   entryId = '1_0v7lxhb8';
 
-  showDelete: boolean;
   pillar = Pillar;
   pillarIcons = PillarsIconsMap;
 
@@ -81,19 +93,6 @@ export class SessionDetailsComponent implements OnInit {
   //       this.session = session;
   //     });
   // }
-
-  ngOnInit() {
-    this.authFacade.owner$.subscribe((owner) => {
-      this.session$.subscribe((session) => {
-        if (!session) { return; }
-
-        this.showDelete = false;
-        if (owner.uid === session.owner.uid) {
-          this.showDelete = true;
-        }
-      });
-    });
-  }
 
   async deleteSession() {
     this.activatedRoute.params.pipe(pluck('sessionId'))
