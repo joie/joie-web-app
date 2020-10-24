@@ -16,6 +16,7 @@ import { WhatLearnComponent } from './components/what-learn/what-learn.component
 import { MeetTeacherComponent } from './components/meet-teacher/meet-teacher.component';
 import { CommunitySayComponent } from './components/community-say/community-say.component';
 import { SessionFormModule } from '../session-form/session-form.module';
+import { SessionOwnerLinksComponent } from './components/session-owner-links/session-owner-links.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SessionFormModule } from '../session-form/session-form.module';
     WhatLearnComponent,
     MeetTeacherComponent,
     CommunitySayComponent,
+    SessionOwnerLinksComponent,
   ],
   imports: [
     SharedModule,
@@ -36,7 +38,7 @@ import { SessionFormModule } from '../session-form/session-form.module';
     MatButtonModule,
     KalturaPlayerModule,
     SessionListModule,
-    SessionFormModule
+    SessionFormModule,
   ],
   exports: [SessionEnrollDialogComponent],
 })

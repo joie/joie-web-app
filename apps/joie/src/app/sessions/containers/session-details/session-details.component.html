@@ -5,16 +5,11 @@
     <section class="session-offset-block-start section-offset-block-start">
       <div class="container grid">
         <div class="layout-rows-sm">
-          <button
-            *ngIf="isOwner$ | async"
-            mat-raised-button
-            (click)="openDeleteDialog()"
-            color="warn"
-          >
-            <app-icon class="joie-icon size-sm" name="trash"></app-icon>
-            DELETE
-          </button>
           <header class="layout-rows-xs text-center">
+            <app-session-owner-links
+              class="owner-links"
+              *ngIf="isOwner$ | async"
+            ></app-session-owner-links>
             <div class="figure-pairing">
               <app-icon
                 class="joie-icon size-md"

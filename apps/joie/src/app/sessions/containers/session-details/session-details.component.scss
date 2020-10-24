@@ -13,6 +13,10 @@
   grid-gap: var(--joie-gutter);
 }
 
+header {
+  position: relative;
+}
+
 .enrol-col {
   height: min-content;
   position: -webkit-sticky;
@@ -33,4 +37,9 @@
   > img {
     margin: 0 10px 0 0;
   }
+}
+
+.owner-links {
+  position: absolute;
+  right: 0;
 }
