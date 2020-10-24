@@ -25,15 +25,10 @@
     </mat-form-field>
 
     <div class="format-options">
-      <mat-radio-group
-        [formControlName]="FORMAT"
-        [disabled]="isCoachingType$ | async"
-        name="sessionFormat"
-        aria-label="Session Format"
-      >
+      <mat-radio-group [formControlName]="FORMAT" name="sessionFormat" aria-label="Session Format">
         <mat-radio-button
           *ngFor="let format of sessionFormatLiteralMap | keyvalue: asIsOrder"
-          [disabled]="format.key === 'onDemand'"
+          [disabled]="isCoachingType$ | async"
           [value]="format.key"
         >
           {{ format.value | titlecase }}

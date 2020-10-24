@@ -4,6 +4,15 @@ import { AccountSessionsComponent } from './account-sessions.component';
 import { DialogRouterComponent } from '../../shared/components/dialog-router/dialog-router.component';
 import { SessionFormComponent } from '../../session-form/containers/session-form/session-form.component';
 
+export const formMatDialogConfig = {
+  panelClass: 'dialog-as-drawer',
+  width: '100%',
+  maxWidth: 900,
+  position: {
+    right: '0px',
+  },
+};
+
 const routes: Routes = [
   { path: '', component: AccountSessionsComponent },
   {
@@ -11,14 +20,7 @@ const routes: Routes = [
     component: DialogRouterComponent,
     data: {
       dialogComponent: SessionFormComponent,
-      matDialogConfig: {
-        panelClass: 'dialog-as-drawer',
-        width: '100%',
-        maxWidth: 900,
-        position: {
-          right: '0px',
-        },
-      },
+      matDialogConfig: formMatDialogConfig,
     },
     outlet: 'popup',
   },

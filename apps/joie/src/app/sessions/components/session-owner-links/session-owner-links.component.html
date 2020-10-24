@@ -10,12 +10,9 @@
   <a
     mat-menu-item
     [routerLink]="[
-      '/',
-      'account',
-      'sessions',
       {
         outlets: {
-          popup: [sessionId$ | async]
+          popup: ['edit']
         }
       }
     ]"
