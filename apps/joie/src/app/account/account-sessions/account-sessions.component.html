@@ -14,5 +14,6 @@
 
 <app-session-list
   class="layout-rows-xs layout-columns-lg"
+  *ngIf="boundQueryFn$ | async as boundQueryFn"
   [queryFn]="boundQueryFn"
 ></app-session-list>
