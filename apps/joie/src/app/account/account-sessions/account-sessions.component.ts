@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { QueryFn } from '@angular/fire/firestore';
+import { CollectionReference, QueryFn } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthFacade } from '../../auth/services/auth.facade';
 
 @Component({
   selector: 'app-account-sessions',
@@ -7,12 +10,14 @@ import { QueryFn } from '@angular/fire/firestore';
   styleUrls: ['./account-sessions.component.scss'],
 })
 export class AccountSessionsComponent implements OnInit {
-  public boundQueryFn: QueryFn;
+  public boundQueryFn$: Observable<QueryFn>;
+
+  constructor(private authFacade: AuthFacade) {}
+
   public ngOnInit() {
-    this.boundQueryFn = this.queryFn.bind(this);
+    this.boundQueryFn$ = this.authFacade.uid$.pipe(map((uid) => this.queryFnFactorial(uid)));
   }
-  private queryFn(ref) {
-    // TODO make sure to get user's own uid
-    return ref.where('owner.uid', '==', 'PcEwfN4wbxWv72bAnp2yNWZOtpH2');
+  private queryFnFactorial(uid: string) {
+    return (ref: CollectionReference) => ref.where('owner.uid', '==', uid);
   }
 }
