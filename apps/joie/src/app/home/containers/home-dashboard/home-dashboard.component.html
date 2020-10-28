@@ -8,7 +8,7 @@
   </app-figure-image> -->
   <div class="container">
     <div class="mat-display-1" role="heading" aria-level="1">
-      Find Your Joie In Life.<br />One Step At A Time.
+      Find Your Joie In Life. One Step At A Time.
     </div>
     <h1 role="heading" aria-level="2">
       Joie pairs you with world-class teachers to help you build a healthier and happier life – one
@@ -61,7 +61,8 @@
         <div class="layout-columns-sm text-center">
           <mat-card class="mat-elevation-z0" *ngFor="let advantage of homeJoieAdvantages">
             <app-icon
-              class="joie-icon joie-icon-backdrop size-xl"
+              [backdrop]="true"
+              class="joie-icon size-xl"
               [name]="advantage.icon"
             ></app-icon>
             <h4>{{ advantage.title }}</h4>

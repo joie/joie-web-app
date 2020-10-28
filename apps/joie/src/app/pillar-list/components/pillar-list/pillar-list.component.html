@@ -3,10 +3,7 @@
 <ng-template #selectablePillars class="container-condense">
   <form [formGroup]="form" class="layout-columns-sm">
     <mat-card *ngFor="let pillar of pillars; let i = index">
-      <app-icon
-        class="joie-icon joie-icon-backdrop size-xl"
-        [name]="pillarsIconsMap.get(pillar.title)"
-      ></app-icon>
+      <app-icon class="joie-icon size-xl" [name]="pillarsIconsMap.get(pillar.title)"></app-icon>
       <label formArrayName="pillars">
         <input type="checkbox" [formControlName]="i" />
       </label>
@@ -21,7 +18,8 @@
 <ng-template #nonSelectablePillars class="container-condense">
   <mat-card *ngFor="let pillar of pillars; let i = index">
     <app-icon
-      class="joie-icon joie-icon-backdrop size-xl"
+      [backdrop]="true"
+      class="joie-icon size-xl"
       [name]="pillarsIconsMap.get(pillar.title)"
     ></app-icon>
 

@@ -3,10 +3,11 @@
 }
 
 .header-top-bar {
-  $block-size: 90px;
-  block-size: $block-size;
-  height: $block-size;
+  $min-block-size: 90px;
+  min-block-size: $min-block-size;
+  min-height: $min-block-size;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--joie-gutter);
 
