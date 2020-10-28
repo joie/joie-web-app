@@ -5,7 +5,7 @@ import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-
 import { environment } from '../../../../environments/environment';
 import { Format, Type } from '../../../sessions/enums';
 import { IMAGE } from '../../components/session-form-metadata/session-form-metadata.component';
-import { finalize, last, map, switchMap, take } from 'rxjs/operators';
+import { tap, catchError, finalize, last, map, switchMap, take } from 'rxjs/operators';
 import { iif, Observable, of } from 'rxjs';
 import {
   AngularFireStorage,
@@ -100,8 +100,16 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
             switchMap((session) =>
               this.sessionsFacade.setSession(get(this.data, 'sessionId', ''), session)
             ),
-            switchMap((session) => (session ? of(this.storeThumbnailIfAny$.bind(this)) : of([]))),
-            finalize(() => (this.showLoader = false))
+            switchMap((sessionId) => this.storeThumbnailIfAny$(sessionId)),
+            tap(() => {
+              this.showLoader = false;
+            }),
+            catchError(error => {
+              console.log('error occured:', error);
+              this.showLoader = false;
+              return error;
+            }),
+            finalize(() => (this.showLoader = false)),
           )
           .subscribe({
             complete: () => {
@@ -118,6 +126,22 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
               );
               // .onAction()
               // .subscribe(() => console.log(43));
+              if (!get(this.data, 'session', false)) {
+                this.form.reset();
+              }
+            },
+            next: () => {
+              this.snackBar.open(
+                `Session ${
+                  get(this.data, 'sessionId', false) ? 'updated' : 'created'
+                } successfully`,
+                'View',
+                {
+                  duration: 4000,
+                  horizontalPosition: 'end',
+                  verticalPosition: 'bottom',
+                }
+              );
               if (!get(this.data, 'session', false)) {
                 this.form.reset();
               }
@@ -145,6 +169,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   uploadThumbnail$(id: string, file: File): Observable<firebase.storage.UploadTaskSnapshot> {
     return this.authFacade.uid$.pipe(
       switchMap((uid) => {
+        console.log(uid, file.name);
         const path = `images/${uid}/sessions/${id}`;
         const name = `thumbnail.${this.getFileExtension(file.name)}`;
 
@@ -163,12 +188,15 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     { ref: { fullPath } }: firebase.storage.UploadTaskSnapshot,
     sessionId: string
   ) {
-    return this.sessionsFacade.setSession(sessionId, { thumbRef: fullPath });
+    const data = this.sessionsFacade.setSession(sessionId, { thumbRef: fullPath });
+    return data;
   }
 
-  storeThumbnailIfAny$({ id: sessionId }: DocumentReference) {
+  storeThumbnailIfAny$(sessionId) {
     const { value: file } = this.getFormControl(IMAGE);
-
+    if (!sessionId && !file) {
+      return [];
+    }
     return iif(
       // is user selected thumbnail image file
       () => Boolean(file),

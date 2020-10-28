@@ -20,7 +20,20 @@ export class SessionsFacade {
   }
 
   setSession(id: string, data: Partial<Session>) {
-    const ref = id ? `sessions/${id}` : 'sessions';
-    return this.db.set$(ref, data).pipe(take(1));
+    if (id) {
+      const ref = `sessions/${id}`;
+      return this.db.set$(ref, data).pipe(take(1));
+    } else {
+      const ref = 'sessions';
+      return new Promise(resolve => {
+        this.db.set$(ref, data).pipe(
+          take(1)
+        )
+        .subscribe(
+          (dt: any) => {
+            resolve(dt.id);
+        })
+      })
+    }
   }
 }
