@@ -18,19 +18,24 @@
   </div>
 </header>
 <main>
+  <section hidden></section>
   <section>
-    <div class="container">
-      <div class="layout-rows-md layout-center text-center">
-        <h2>Explore Our Pillars</h2>
-        <h4>
-          Our online platform helps you find the right programs to help you reach your goals faster
-          and covers a variety of topics related to holistic health and wellness. What brings you to
-          Joie today?
-        </h4>
+    <div class="layout-rows-xs">
+      <div class="container-condense">
+        <div class="text-center">
+          <h2>Explore Our Pillars</h2>
+          <h4>
+            Our online platform helps you find the right programs to help you reach your goals
+            faster and covers a variety of topics related to holistic health and wellness. What
+            brings you to Joie today?
+          </h4>
+        </div>
+      </div>
+      <div class="container">
         <app-pillar-list
           [descriptions]="true"
           [selectable]="false"
-          class="layout-columns-sm layout-rows-xs"
+          class="layout-columns-sm layout-rows-xs text-center"
         >
         </app-pillar-list>
       </div>
@@ -38,48 +43,71 @@
   </section>
 
   <section>
-    <div class="container">
-      <div class="layout-rows-md layout-center text-center">
+    <div class="container-condense">
+      <div class="text-center">
         <h2>Take your first step</h2>
         <h4>
           Explore our full library of Live-Streaming and On-Demand Videos, Workshops, Courses and
           1:1 Coaching from leading experts in holistic health and wellness.
         </h4>
-        <app-session-list class="layout-rows-xs layout-columns-lg"></app-session-list>
+        <!-- <app-session-list class="layout-rows-xs layout-columns-lg"></app-session-list> -->
       </div>
     </div>
   </section>
 
   <section>
-    <div class="container">
-      <div class="layout-rows-md layout-center">
-        <h2>What Joie Offers You</h2>
-        <div class="video-player-container">
-          <app-video-player [entryId]="entryId"></app-video-player>
-        </div>
+    <div class="layout-rows-sm">
+      <div class="container-condense">
+        <div class="layout-rows-sm layout-center">
+          <h2>What Joie Offers You</h2>
 
+          <iframe
+            id="ytplayer"
+            type="text/html"
+            width="720"
+            height="405"
+            src="https://www.youtube.com/embed/pidtZePk4bE?color=white"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+
+          <!-- <div class="video-player-container">
+          <app-video-player [entryId]="entryId"></app-video-player>
+        </div> -->
+        </div>
+      </div>
+
+      <div class="container-fluid">
         <div class="layout-columns-sm text-center">
-          <mat-card class="mat-elevation-z0" *ngFor="let advantage of homeJoieAdvantages">
-            <app-icon
-              [backdrop]="true"
-              class="joie-icon size-xl"
-              [name]="advantage.icon"
-            ></app-icon>
-            <h4>{{ advantage.title }}</h4>
-            <p>
-              {{ advantage.description }}
-            </p>
+          <mat-card
+            class="advantage-card mat-elevation-z0"
+            *ngFor="let advantage of homeJoieAdvantages"
+          >
+            <mat-card-content>
+              <div class="layout-rows-xs layout-center">
+                <app-icon
+                  [backdrop]="true"
+                  class="joie-icon size-xl"
+                  [name]="advantage.icon"
+                ></app-icon>
+                <div>
+                  <h4>{{ advantage.title }}</h4>
+                  <p>
+                    {{ advantage.description }}
+                  </p>
+                </div>
+              </div>
+            </mat-card-content>
           </mat-card>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section>
-    <div class="container">
-      <div class="layout-rows-md layout-center text-center">
-        <button mat-raised-button color="primary">Like what you see? Join Joie</button>
-        <button mat-button>Want to teach with us? Apply Now!</button>
+      <div class="container-ultra-condense">
+        <div class="layout-rows-xs layout-center text-center">
+          <button mat-raised-button color="primary">Like what you see? Join Joie</button>
+          <button mat-button>Want to teach with us? Apply Now!</button>
+        </div>
       </div>
     </div>
   </section>
@@ -87,11 +115,13 @@
   <section>
     <div class="container">
       <div class="layout-rows-md layout-center text-center">
-        <div>Learn From Our Leading Teachers</div>
         <div>
-          Joie hand-picked teachers with a unique teaching approach, who put their hearts and souls
-          into their sessions, identifying with our philosophy, and having the desire to help you
-          live a happier life.
+          <h2 role="heading" aria-level="1">Learn From Our Leading Teachers</h2>
+          <h3 role="heading" aria-level="2">
+            Joie hand-picked teachers with a unique teaching approach, who put their hearts and
+            souls into their sessions, identifying with our philosophy, and having the desire to
+            help you live a happier life.
+          </h3>
         </div>
 
         <!--TODO Get List of teachers-->
@@ -104,7 +134,7 @@
   <section>
     <div class="container">
       <div class="layout-rows-md layout-center text-center">
-        <div>Fresh From our blog</div>
+        <h3>Fresh From our blog</h3>
 
         <!--TODO Get List of blog posts-->
       </div>
