@@ -1,14 +1,12 @@
-<div class="layout-rows" style="margin: 20px 55px;">
+<div class="layout-rows" style="margin: 20px 55px">
   <div class="layout-columns row-spacing">
     <div class="layout-rows-xs layout-center">
       <app-paper-item>
         <app-icon class="joie-icon size-sm" name="compass"></app-icon>
-        <div>Activities</div>
+        <div>Activity</div>
       </app-paper-item>
       <div>
-        <span *ngFor="let activity of session?.activities">
-          {{ activity }}
-        </span>
+        {{ session?.activity }}
       </div>
     </div>
 

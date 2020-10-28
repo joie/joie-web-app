@@ -1,25 +1,39 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UntilDestroy } from '@ngneat/until-destroy';
+// import { UntilDestroy } from '@ngneat/until-destroy';
 import { SessionsFacade } from '../../../services/sessions.facade';
 import { Observable } from 'rxjs';
-import { pluck, shareReplay, switchMap } from 'rxjs/operators';
+import { map, pluck, shareReplay, switchMap, take } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
 
-@UntilDestroy()
+// @UntilDestroy()
 @Component({
   templateUrl: './session-details.component.html',
   styleUrls: ['./session-details.component.scss'],
 })
 export class SessionDetailsComponent {
-  private _sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
-  session$ = this._sessionId$.pipe(
+  #sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
+  session$ = this.#sessionId$.pipe(
     switchMap((sessionId) => this.sessionsFacade.getSession(sessionId)),
-    shareReplay()
+    shareReplay(1)
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
   owner$ = this.session$.pipe(pluck('owner'), shareReplay());
+  sessionOwnerId$ = this.owner$.pipe(pluck('uid'), shareReplay());
+
+  isOwner$: Observable<boolean> = this.sessionOwnerId$.pipe(
+    switchMap((sessionOwnerId) =>
+      this.authFacade.uid$.pipe(
+        map((uid) => sessionOwnerId === uid)
+        // take(1)
+      )
+    )
+  );
+
+  // showDelete$: Observable<boolean> = combineLatest([this.authFacade, this.owner$]).pipe(
+  //   map(result => Boolean(result[0].owner.uid === result[1].uid))
+  // );
 
   // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
   //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(

@@ -1,5 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import { catchErrors, getUID } from './helpers';
+import { db } from './config';
 
 const SESSIONS = 'sessions';
 
@@ -16,6 +18,43 @@ export const sessionDelete = functions.firestore
       return null;
     }
   });
+
+export const deleteSession = functions.https.onCall(async (params, context) => {
+  const { id } = params;
+  const uid = getUID(context);
+
+  const session = await db
+    .collection(SESSIONS)
+    .doc(id)
+    .get()
+    .then((doc) => doc.data());
+
+  // @TODO: before deleting a session, check for permission
+
+  // check if the user is the owner of this session
+  if (session && session.owner.uid === uid) {
+    await db
+    .collection(SESSIONS)
+    .doc(id)
+    .delete()
+    .catch((error) => {
+      return catchErrors(Promise.resolve({
+        message: error,
+        type: 'error'
+      }));
+    });
+
+    return catchErrors(Promise.resolve({
+      message: 'Session succesfully deleted!',
+      type: 'success'
+    }));
+  }
+
+  return catchErrors(Promise.resolve({
+    message: 'Failed deleting session, due to missing permission',
+    type: 'error'
+  }));
+})
 
 // import { getUID, catchErrors } from './helpers';
 // import * as admin from 'firebase-admin';
