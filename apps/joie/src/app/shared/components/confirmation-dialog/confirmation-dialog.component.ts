@@ -3,8 +3,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface DialogData {
   message: string;
-  confirmText: string;
-  confirmColor: string;
+  submitTxt: string;
+  submitColor: string;
+  headline?: string;
 }
 
 @Component({
