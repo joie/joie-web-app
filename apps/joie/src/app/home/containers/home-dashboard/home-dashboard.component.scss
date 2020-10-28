@@ -32,19 +32,22 @@
       filter: blur(clamp(0px, calc(#{$percentage} / 10), 10px));
     }
   }
-}
 
-[role='heading'] {
-  max-width: 28ch;
-  &[aria-level='1'] {
-    mix-blend-mode: color-burn;
-    color: #033138;
-    max-width: clamp(500px, 16ch, 100%);
+  [role='heading'] {
+    max-width: 28ch;
+    &[aria-level='1'] {
+      mix-blend-mode: color-burn;
+      color: #033138;
+      max-width: clamp(500px, 16ch, 100%);
+    }
   }
 }
 
-.video-player-container {
-  width: 75%;
+.advantage-card {
+  background-color: transparent;
 }
+// .video-player-container {
+//   width: 75%;
+// }
 
 //blur(calc(calc(100vw - 400px) / 300 * 100))
