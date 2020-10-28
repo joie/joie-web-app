@@ -7,9 +7,8 @@ export function Confirmable(
   submitColor = 'warn',
   submitTxt = 'OK',
   headline?: string,
-  width = '250px',
+  width = '250px'
 ) {
-
   // service is not injected instantly aot.
   // this needs to run on run time
   const injector = AppInjector.getInjector();
@@ -20,7 +19,8 @@ export function Confirmable(
     descriptor.value = async function (...args: any[]) {
       const dialogRef = getDialog().open(ConfirmationDialogComponent, {
         width,
-        data: {message, submitColor, submitTxt, headline},
+        autoFocus: false,
+        data: { message, submitColor, submitTxt, headline },
       });
       const allow = await dialogRef.afterClosed().toPromise();
 

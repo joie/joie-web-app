@@ -23,16 +23,23 @@ export class SessionOwnerLinksComponent {
 
   @Confirmable(`Do you want to delete this session?`, 'warn', 'Delete')
   async deleteSession() {
-    const sessionId = await this.activatedRoute.params.pipe(pluck('sessionId'), take(1)).toPromise();
+    const sessionId = await this.activatedRoute.params
+      .pipe(pluck('sessionId'), take(1))
+      .toPromise();
 
-    const resp = (await this.sessionsFacade.deleteSession(sessionId).toPromise()) as {
+    const { message, type } = (await this.sessionsFacade
+      .deleteSession(sessionId)
+      .pipe(take(1))
+      .toPromise()) as {
+      // TODO: set as part of #174 common back/front end model
+      // TODO: https://github.com/joie/joie-web-app/issues/174
       message: string;
       type: 'error' | 'success';
     };
-    if (resp.type === 'success') {
+    if (type === 'success') {
       this.router.navigate(['/account', 'sessions']);
     }
-    this.snackBar.open(resp.message, ``, {
+    this.snackBar.open(message, null, {
       duration: 8000,
       horizontalPosition: 'end',
       verticalPosition: 'bottom',
