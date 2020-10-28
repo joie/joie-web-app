@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessionsFacade } from '../../../services/sessions.facade';
 import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
+import { Confirmable } from '../../../shared/decorators/confirmable.decorator';
 
 @Component({
   selector: 'app-session-owner-links',
@@ -41,19 +42,21 @@ export class SessionOwnerLinksComponent {
   }
 
   openDeleteDialog(): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '250px',
-      data: {
-        message: `Do you want to delete this session?`,
-        confirmText: 'Delete',
-        confirmColor: 'warn',
-      },
-    });
+    // const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    //   width: '250px',
+    //   data: {
+    //     message: `Do you want to delete this session?`,
+    //     confirmText: 'Delete',
+    //     confirmColor: 'warn',
+    //   },
+    // });
 
-    dialogRef.afterClosed().subscribe(async (result: boolean) => {
-      if (result) {
-        await this.deleteSession();
-      }
-    });
+    // dialogRef.afterClosed().subscribe(async (result: boolean) => {
+    //   if (result) {
+    //     await this.deleteSession();
+    //   }
+    // });
+
+    const confirmable = Confirmable('', `Do you want to delete this session?`, 'primary', 'Delete');
   }
 }
