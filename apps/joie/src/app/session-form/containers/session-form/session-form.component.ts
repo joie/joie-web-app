@@ -111,26 +111,8 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
             }),
             finalize(() => (this.showLoader = false)),
           )
-          .subscribe({
-            complete: () => {
-              this.snackBar.open(
-                `Session ${
-                  get(this.data, 'sessionId', false) ? 'updated' : 'created'
-                } successfully`,
-                'View',
-                {
-                  duration: 4000,
-                  horizontalPosition: 'end',
-                  verticalPosition: 'bottom',
-                }
-              );
-              // .onAction()
-              // .subscribe(() => console.log(43));
-              if (!get(this.data, 'session', false)) {
-                this.form.reset();
-              }
-            },
-            next: () => {
+          .subscribe(
+            (res: any) => {
               this.snackBar.open(
                 `Session ${
                   get(this.data, 'sessionId', false) ? 'updated' : 'created'
@@ -146,12 +128,12 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
                 this.form.reset();
               }
             },
-            error: (error) => {
+            error => {
               console.log(
                 `Session creation form : submit() :: ${error} while inserting session details`
               );
             },
-          });
+          );
       },
       (error) => {
         this.showLoader = false;
