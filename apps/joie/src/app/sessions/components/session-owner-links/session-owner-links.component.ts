@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessionsFacade } from '../../../services/sessions.facade';
-import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { Confirmable } from '../../../shared/decorators/confirmable.decorator';
 
 @Component({
@@ -19,7 +17,6 @@ export class SessionOwnerLinksComponent {
   constructor(
     private sessionsFacade: SessionsFacade,
     private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog,
     private router: Router,
     private snackBar: MatSnackBar
   ) {}
@@ -41,22 +38,11 @@ export class SessionOwnerLinksComponent {
     });
   }
 
-  openDeleteDialog(): void {
-    // const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-    //   width: '250px',
-    //   data: {
-    //     message: `Do you want to delete this session?`,
-    //     confirmText: 'Delete',
-    //     confirmColor: 'warn',
-    //   },
-    // });
+  async openDeleteDialog() {
+    const confirmable = await Confirmable(`Do you want to delete this session?`, 'warn', 'Delete');
 
-    // dialogRef.afterClosed().subscribe(async (result: boolean) => {
-    //   if (result) {
-    //     await this.deleteSession();
-    //   }
-    // });
-
-    const confirmable = Confirmable('', `Do you want to delete this session?`, 'primary', 'Delete');
+    if (confirmable) {
+      await this.deleteSession();
+    }
   }
 }

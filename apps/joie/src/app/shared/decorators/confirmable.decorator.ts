@@ -1,37 +1,29 @@
 import { ConfirmationDialogComponent } from './../components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Injector } from '@angular/core';
+import { AppInjector } from '../../../../../../libs/dyna-form/src/lib/app-injector';
 
-export function Confirmable(
-  headline?: string,
+export async function Confirmable(
   message = 'Are you sure?',
-  type = 'primary',
-  submitTxt = 'OK'
+  submitColor = 'warn',
+  submitTxt = 'OK',
+  headline?: string,
+  width = '250px',
 ) {
-  const injector = Injector.create({ providers: [{ provide: MatDialog, deps: [] }] });
 
   // service is not injected instantly aot.
   // this needs to run on run time
+  const injector = AppInjector.getInjector();
   const getDialog = () => injector.get(MatDialog);
 
-  return (target: object, key: string | symbol, descriptor: PropertyDescriptor) => {
-    const original = descriptor.value;
-    console.log('aaaa')
-    descriptor.value = async function (...args: any[]) {
-      const dialogRef = getDialog().open(ConfirmationDialogComponent, {
-        width: '45rem',
-        data: [headline, message, type, submitTxt],
-        role: 'alertdialog',
-      });
-      const allow = await dialogRef.afterClosed().toPromise();
+  const dialogRef = getDialog().open(ConfirmationDialogComponent, {
+    width,
+    data: {
+      message,
+      submitColor,
+      submitTxt,
+      headline,
+    },
+  });
 
-      if (allow) {
-        return original.apply(this, args);
-      } else {
-        return null;
-      }
-    };
-
-    return descriptor;
-  };
+  return await dialogRef.afterClosed().toPromise() as Promise<boolean>;
 }
