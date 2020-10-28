@@ -21,6 +21,7 @@ export class SessionOwnerLinksComponent {
     private snackBar: MatSnackBar
   ) {}
 
+  @Confirmable(`Do you want to delete this session?`, 'warn', 'Delete')
   async deleteSession() {
     this.activatedRoute.params.pipe(pluck('sessionId')).subscribe(async (sessionId: string) => {
       const resp = (await this.sessionsFacade.deleteSession(sessionId).toPromise()) as {
@@ -36,13 +37,5 @@ export class SessionOwnerLinksComponent {
         verticalPosition: 'bottom',
       });
     });
-  }
-
-  async openDeleteDialog() {
-    const confirmable = await Confirmable(`Do you want to delete this session?`, 'warn', 'Delete');
-
-    if (confirmable) {
-      await this.deleteSession();
-    }
   }
 }

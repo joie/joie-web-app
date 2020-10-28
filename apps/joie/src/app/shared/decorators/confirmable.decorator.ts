@@ -2,7 +2,7 @@ import { ConfirmationDialogComponent } from './../components/confirmation-dialog
 import { MatDialog } from '@angular/material/dialog';
 import { AppInjector } from '../../../../../../libs/dyna-form/src/lib/app-injector';
 
-export async function Confirmable(
+export function Confirmable(
   message = 'Are you sure?',
   submitColor = 'warn',
   submitTxt = 'OK',
@@ -15,15 +15,22 @@ export async function Confirmable(
   const injector = AppInjector.getInjector();
   const getDialog = () => injector.get(MatDialog);
 
-  const dialogRef = getDialog().open(ConfirmationDialogComponent, {
-    width,
-    data: {
-      message,
-      submitColor,
-      submitTxt,
-      headline,
-    },
-  });
+  return (target: object, key: string | symbol, descriptor: PropertyDescriptor) => {
+    const original = descriptor.value;
+    descriptor.value = async function (...args: any[]) {
+      const dialogRef = getDialog().open(ConfirmationDialogComponent, {
+        width,
+        data: {message, submitColor, submitTxt, headline},
+      });
+      const allow = await dialogRef.afterClosed().toPromise();
 
-  return await dialogRef.afterClosed().toPromise() as Promise<boolean>;
+      if (allow) {
+        return original.apply(this, args);
+      } else {
+        return null;
+      }
+    };
+
+    return descriptor;
+  };
 }

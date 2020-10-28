@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { DynaFormModule } from './../../../../../libs/dyna-form/src/lib/dyna-form.module';
+import { Injector, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +17,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { MaterialModule } from '../core/material.module';
 import { FireStorageRefDirective } from './directives/fire-storage-ref/fire-storage-ref.directive';
 import { PaperItemComponent } from './components/paper-item/paper-item.component';
+import { AppInjector } from '../../../../../libs/dyna-form/src/lib/app-injector';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { PaperItemComponent } from './components/paper-item/paper-item.component
     ConfirmationDialogComponent,
     JoiePrefixPipe,
   ],
-  imports: [CommonModule, QuicklinkModule, ReactiveFormsModule, MaterialModule],
+  imports: [CommonModule, QuicklinkModule, ReactiveFormsModule, MaterialModule, DynaFormModule],
   exports: [
     CommonModule,
     QuicklinkModule,
@@ -49,4 +51,8 @@ import { PaperItemComponent } from './components/paper-item/paper-item.component
     JoiePrefixPipe,
   ],
 })
-export class SharedModule {}
+export class SharedModule {
+  constructor(injector: Injector) {
+    AppInjector.setInjector(injector);
+  }
+}
