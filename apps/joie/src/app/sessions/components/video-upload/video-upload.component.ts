@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { mergeMap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -28,7 +28,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./video-upload.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class VideoUploadComponent implements OnInit, OnDestroy {
+export class VideoUploadComponent implements OnInit {
   @Input() session: Session;
   @Input() sessionId: string;
 
@@ -46,10 +46,6 @@ export class VideoUploadComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {}
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
 
   onClickFile(fileInputEvent: any) {
     this.fileData = fileInputEvent.target.files[0] as File;
@@ -111,6 +107,7 @@ export class VideoUploadComponent implements OnInit, OnDestroy {
         }),
         untilDestroyed(this)
       )
+      .pipe(untilDestroyed(this))
       .subscribe(
         (result) => {
           console.log(result);
@@ -169,6 +166,7 @@ export class VideoUploadComponent implements OnInit, OnDestroy {
           );
         })
       )
+      .pipe(untilDestroyed(this))
       .subscribe(
         (res) => {
           console.log('changing result->', res);
