@@ -58,12 +58,18 @@
             </app-paper-item>
           </div>
 
-          <app-video-intro [isLiveSession]="isLiveSession" [displayName]="displayName$ | async"
-            [eventId]="eventId$ | async" [sessionType]="sessionType" [role]="role"
-            [userContextualRole]="userContextualRole" [entryId]="session?.entryId" [entryLastUpdated]="session?.entryLastUpdated"
-            *ngIf="session?.entryId || !(isOnwer$ | async)"></app-video-intro>
+          <app-video-intro
+            *ngIf="session?.entryId || !(isOwner$ | async)"
+            [isLiveSession]="isLiveSession"
+            [displayName]="(owner$ | async)?.displayName"
+            [eventId]="eventId$ | async"
+            [sessionType]="sessionType"
+            [role]="role"
+            [userContextualRole]="userContextualRole"
+            [entryId]="entryId"
+          ></app-video-intro>
 
-          <app-video-upload  *ngIf="isOnwer$ | async" [session]="session" [sessionId]="sessionId"></app-video-upload>
+          <app-video-upload *ngIf="isOwner$ | async" [session]="session" [sessionId]="sessionId"></app-video-upload>
 
           <mat-tab-group mat-stretch-tabs>
             <mat-tab label="What you will learn">
