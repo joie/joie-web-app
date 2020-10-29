@@ -40,13 +40,9 @@ export class SessionDetailsComponent {
   // TODO - default assignment will be removed after integration
 
   isLiveSession = false; // if false vod player is visible // @TODO: where does this come from, ask @yinon
-
   // kalturaSessionDetails$: Pick<KalturaEvent, 'eventId'> & Pick<Owner, 'name'>;
-
   sessionType = 2; // @TODO: where does this come from, ask @yinon
-
   role = 'adminRole'; // @TODO: ask @yinon, we need to resolve this hardcoded role
-
   userContextualRole = 0; // @TODO: where does this come from, ask @yinon
 
   pillar = Pillar;
