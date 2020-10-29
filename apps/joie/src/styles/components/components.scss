@@ -23,6 +23,8 @@
 @include mat-menu-theme($joie-theme);
 
 .mat-card {
+  background: var(--joie-color-background);
+  color: var(--joie-color-foreground);
   &#{&} {
     padding: var(--joie-gutter);
   }

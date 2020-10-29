@@ -24,7 +24,7 @@ export const homeJoieAdvantages = [
       ' Our inspiration is to empower those around us. We act with fairness and respect, try to make decisions not only based on profit, and make sure to give back to our community. Yes, we are trying to live in harmony with our old friend - Karma.',
   },
   {
-    icon: 'dotted-circle',
+    icon: 'circled-bullets',
     title: 'Making the world a smaller place. Just for you.',
     description:
       'Joie providesß you with an access to world-class experts teaching a variety of topics in holistic health and wellness. Learn from anywhere with instant access to on-demand and live-streaming trainings and workshops.',
