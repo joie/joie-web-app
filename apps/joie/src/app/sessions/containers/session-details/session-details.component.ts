@@ -37,31 +37,17 @@ export class SessionDetailsComponent {
     )
   );
 
-  // showDelete$: Observable<boolean> = combineLatest([this.authFacade, this.owner$]).pipe(
-  //   map(result => Boolean(result[0].owner.uid === result[1].uid))
-  // );
-
-  // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
-  //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(
-  //   map(([displayName, eventId]) => ({
-  //     userId: displayName,
-  //     eventId,
-  //   }))
-  // );
-
   // TODO - default assignment will be removed after integration
 
-  isLiveSession = false; // if false vod player is visible
+  isLiveSession = false; // if false vod player is visible // @TODO: where does this come from, ask @yinon
 
   // kalturaSessionDetails$: Pick<KalturaEvent, 'eventId'> & Pick<Owner, 'name'>;
 
-  sessionType = 2;
+  sessionType = 2; // @TODO: where does this come from, ask @yinon
 
-  role = 'adminRole';
+  role = 'adminRole'; // @TODO: ask @yinon, we need to resolve this hardcoded role
 
-  userContextualRole = 0;
-
-  entryId = '1_0v7lxhb8';
+  userContextualRole = 0; // @TODO: where does this come from, ask @yinon
 
   pillar = Pillar;
   pillarIcons = PillarsIconsMap;

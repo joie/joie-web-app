@@ -66,7 +66,7 @@
             [sessionType]="sessionType"
             [role]="role"
             [userContextualRole]="userContextualRole"
-            [entryId]="entryId"
+            [entryId]="session?.entryId"
           ></app-video-intro>
 
           <app-video-upload *ngIf="isOwner$ | async" [session]="session" [sessionId]="sessionId"></app-video-upload>
