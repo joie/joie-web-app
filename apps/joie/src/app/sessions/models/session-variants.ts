@@ -33,9 +33,9 @@ interface SessionMetadata extends Schedule, KalturaEvent {
   price: Price;
   activity: Activities;
   pillar: Pillar;
+  recommendationPercentage: number;
   entryId: string;
   entryLastUpdated: number;
-  recommendationPercentage: number;
 }
 
 interface Streaming {

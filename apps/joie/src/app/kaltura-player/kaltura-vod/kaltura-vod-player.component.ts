@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, OnDestroy } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
 declare var kWidget;
@@ -8,12 +8,13 @@ declare var kWidget;
   templateUrl: './kaltura-vod-player.component.html',
   styleUrls: ['./kaltura-vod-player.component.scss'],
 })
-export class KalturaVodPlayerComponent implements OnInit, OnDestroy {
+export class KalturaVodPlayerComponent implements OnInit, OnChanges, OnDestroy {
   static readonly targetId = environment.kalturaConfig.targetId;
 
   @Input() width = 600;
   @Input() height = 400;
   @Input() entryId: string;
+  @Input() entryLastUpdated: number;
 
   kWidget = kWidget;
   kalturaConfiguration;
@@ -21,6 +22,9 @@ export class KalturaVodPlayerComponent implements OnInit, OnDestroy {
   constructor() {}
 
   ngOnInit() {
+  }
+
+  ngOnChanges() {
     this.kalturaConfiguration = {
       targetId: KalturaVodPlayerComponent.targetId,
       wid: `_${environment.kalturaConfig.partner_id}`,

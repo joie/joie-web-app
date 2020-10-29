@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SessionsFacade } from '../../../services/sessions.facade';
-import { combineLatest, Observable } from 'rxjs';
 import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
 
@@ -16,6 +16,7 @@ export class SessionDetailsComponent {
   session$ = this._sessionId$.pipe(
     switchMap((sessionId) => {
       this.sessionId = sessionId;
+      console.log(sessionId);
       return this.sessionsFacade.getSession(sessionId);
     }),
     shareReplay()
