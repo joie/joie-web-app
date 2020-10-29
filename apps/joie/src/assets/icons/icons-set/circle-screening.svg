@@ -1,16 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="24" height="24"/>
-<path d="M17.3232 20.3727H6.67683" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19.3442 18.7126H4.69193" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M20.5712 17.0525H3.4288" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21.3652 15.3924H2.63484" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21.8343 13.7323H2.16568" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21.9787 12.0722H2.02132" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21.8704 10.4121H2.12959" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21.4734 8.71588H2.56266" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3.28444 7.05577H20.7156" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4.47539 5.39566H19.5607" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17.6841 3.73556H6.31594" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.4301 2.07545H13.5699" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.4301 21.9245H13.5699" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M0 0H24V24H0z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M17.3232 20.3727H6.67683M19.3442 18.7126H4.69193M20.5712 17.0525H3.4288M21.3652 15.3924H2.63484M21.8343 13.7323H2.16568M21.9787 12.0722H2.02132M21.8704 10.4121H2.12959M21.4734 8.71588H2.56266M3.28444 7.05577H20.7156M4.47539 5.39566H19.5607M17.6841 3.73556H6.31594M10.4301 2.07545H13.5699M10.4301 21.9245H13.5699"/></svg>

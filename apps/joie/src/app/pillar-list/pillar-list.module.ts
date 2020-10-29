@@ -1,4 +1,4 @@
-import { PillarListComponent } from './pillar-list.component';
+import { PillarListComponent } from './components/pillar-list/pillar-list.component';
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared/shared.module';

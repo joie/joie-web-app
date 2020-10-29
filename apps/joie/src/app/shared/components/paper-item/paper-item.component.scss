@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  $gap: 4px;
+  @supports (gap: 2rem) {
+    gap: $gap;
+  }
+  @supports not (gap: 2rem) {
+    > * + * {
+      margin-inline-start: $gap;
+    }
+  }
+}

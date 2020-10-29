@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UntilDestroy } from '@ngneat/until-destroy';
 import { SessionsFacade } from '../../../services/sessions.facade';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { combineLatest, Observable } from 'rxjs';
-import { map, pluck, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
+import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
 
-@UntilDestroy()
+// @UntilDestroy()
 @Component({
   templateUrl: './session-details.component.html',
   styleUrls: ['./session-details.component.scss'],
@@ -26,6 +25,22 @@ export class SessionDetailsComponent {
   displayName$ = this.authFacade.displayName$;
   uid$ = this.authFacade.uid$;
   sessionId: string;
+
+  owner$ = this.session$.pipe(pluck('owner'), shareReplay());
+  sessionOwnerId$ = this.owner$.pipe(pluck('uid'), shareReplay());
+
+  isOwner$: Observable<boolean> = this.sessionOwnerId$.pipe(
+    switchMap((sessionOwnerId) =>
+      this.authFacade.uid$.pipe(
+        map((uid) => sessionOwnerId === uid)
+        // take(1)
+      )
+    )
+  );
+
+  // showDelete$: Observable<boolean> = combineLatest([this.authFacade, this.owner$]).pipe(
+  //   map(result => Boolean(result[0].owner.uid === result[1].uid))
+  // );
 
   // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
   //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(
@@ -55,12 +70,15 @@ export class SessionDetailsComponent {
       })
     );
 
+  pillar = Pillar;
+  pillarIcons = PillarsIconsMap;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private sessionsFacade: SessionsFacade,
     private authFacade: AuthFacade
   ) {}
-  
+
   // get kalturaSessionDetails$(): Observable<SessionStartActionArgs> {
   //   return this.session$.pipe(
   //     pluck('eventId', 'name'),

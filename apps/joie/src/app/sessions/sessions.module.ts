@@ -22,6 +22,7 @@ import { VideoUploadComponent } from './components/video-upload/video-upload.com
 import { PlayerService } from '../services/player.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgxFileDropModule } from 'ngx-file-drop';
+import { SessionOwnerLinksComponent } from './components/session-owner-links/session-owner-links.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     MeetTeacherComponent,
     CommunitySayComponent,
     VideoUploadComponent,
+    SessionOwnerLinksComponent,
   ],
   imports: [
     SharedModule,
@@ -47,7 +49,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     NgxFileDropModule,
     KalturaPlayerModule,
     SessionListModule,
-    SessionFormModule
+    SessionFormModule,
   ],
   providers: [
     PlayerService

@@ -65,7 +65,7 @@ const routes: Routes = [
         },
         outlet: 'popup',
       },
-    ]
+    ],
   },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];

@@ -4,8 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 
-import { FirebaseUIModule } from 'firebaseui-angular';
-import { firebaseUiAuthConfig } from './firebase-ui.config';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 
 @NgModule({
   declarations: [LogInComponent],
@@ -13,7 +12,7 @@ import { firebaseUiAuthConfig } from './firebase-ui.config';
     AuthRoutingModule,
     SharedModule,
     MatDialogModule,
-    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+    NgxAuthFirebaseUIModule,
   ],
   exports: [LogInComponent],
 })

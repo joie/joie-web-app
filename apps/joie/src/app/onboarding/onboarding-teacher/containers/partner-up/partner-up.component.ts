@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { list } from './needs';
+import { list, teacherList } from './needs';
 
 @Component({
   selector: 'app-partner-up',
@@ -8,6 +8,7 @@ import { list } from './needs';
 })
 export class PartnerUpComponent  {
   list = list;
+  teacherList = teacherList;
   constructor() {}
 
 }

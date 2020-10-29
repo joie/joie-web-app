@@ -1,14 +1,14 @@
-<div class="container container-condense">
-  <mat-horizontal-stepper #stepper
-                          linear
-                          (selectionChange)="selectionChanged($event)">
+<mat-horizontal-stepper #stepper linear (selectionChange)="selectionChanged($event)">
+  <mat-step *ngFor="let step of steps; let i = index" [label]="step" [completed]="isCompleted(i)">
+    <router-outlet (activate)="onActivate($event)" *ngIf="i === selectedStep"></router-outlet>
+  </mat-step>
+</mat-horizontal-stepper>
 
-
-    <mat-step [completed]="isCompleted()"
-              *ngFor="let step of steps; let i = index"
-              [label]="step">
-      <router-outlet (activate)="onActivate($event)"
-                     *ngIf="i === selectedStep"></router-outlet>
-    </mat-step>
-  </mat-horizontal-stepper>
+<div class="container-ultra-condense">
+  <div class="layout-columns-sm">
+    <a>FAQ</a>
+    <a>Contact us</a>
+    <a>Privacy policy</a>
+    <a>Terms and conditions</a>
+  </div>
 </div>

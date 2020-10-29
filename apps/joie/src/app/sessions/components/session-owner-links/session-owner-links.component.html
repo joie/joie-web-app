@@ -1,0 +1,27 @@
+<button
+  mat-mini-fab
+  color="primary"
+  aria-label="Example icon button with a vertical three dot icon"
+  [matMenuTriggerFor]="menu"
+>
+  <app-icon class="joie-icon size-sm" name="more-horizontal" [inline]="true"></app-icon>
+</button>
+<mat-menu #menu="matMenu" xPosition="before" yPosition="below">
+  <a
+    mat-menu-item
+    [routerLink]="[
+      {
+        outlets: {
+          popup: ['edit']
+        }
+      }
+    ]"
+  >
+    <app-icon class="joie-icon size-sm" name="edit"></app-icon>
+    Edit
+  </a>
+  <button mat-menu-item (click)="deleteSession()" color="warn">
+    <app-icon class="joie-icon size-sm" name="trash"></app-icon>
+    Delete
+  </button>
+</mat-menu>

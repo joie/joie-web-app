@@ -1,6 +1,6 @@
 export const contactOptions = [
   {
-    icon: 'screen-examine',
+    icon: 'monitor',
     title: 'Visit our FAQ',
     description: 'We might have answered it before.',
   },

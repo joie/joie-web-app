@@ -20,8 +20,11 @@
 @include mat-datepicker-theme($joie-theme);
 @include mat-button-toggle-theme($joie-theme);
 @include mat-snack-bar-theme($joie-theme);
+@include mat-menu-theme($joie-theme);
 
 .mat-card {
+  background: var(--joie-color-background);
+  color: var(--joie-color-foreground);
   &#{&} {
     padding: var(--joie-gutter);
   }

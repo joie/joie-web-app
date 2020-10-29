@@ -1,15 +1,15 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { OnboardingService } from './../onboarding/shared/onboarding.service';
+import { OnboardingService } from '../../../onboarding/shared/onboarding.service';
 import {
   StorageServiceService,
   USER_ONBOARDING,
-} from './../onboarding/shared/storage-service.service';
+} from '../../../onboarding/shared/storage-service.service';
 import { FormGroup, FormArray } from '@angular/forms';
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { skip } from 'rxjs/operators';
-import { pillars } from './pillars';
-import { atLeastOneIsCheckedValidator } from '../onboarding/validators/atLeastOnIsChecked';
-import { PillarsLiteralMap } from '../enums/pillar.enum';
+import { pillars } from '../../pillars';
+import { atLeastOneIsCheckedValidator } from '../../../onboarding/validators/atLeastOnIsChecked';
+import { PillarsIconsMap, PillarsLiteralMap } from '../../../enums';
 export const PILLARS = 'pillars';
 
 @UntilDestroy()
@@ -23,6 +23,7 @@ export class PillarListComponent {
   form: FormGroup;
   pillars = pillars;
   pillarsLiteralMap = PillarsLiteralMap;
+  pillarsIconsMap = PillarsIconsMap;
   controlKey = USER_ONBOARDING + '-' + PILLARS;
   @Input() selectable = false;
   @Input() descriptions = false;
