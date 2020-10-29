@@ -68,7 +68,7 @@
             [entryId]="entryId"
           ></app-video-intro>
 
-          <app-video-upload *ngIf="isOnwer$ | async" [session]="session" [sessionId]="sessionId"></app-video-upload>
+          <app-video-upload *ngIf="isOwner$ | async" [session]="session" [sessionId]="sessionId"></app-video-upload>
 
           <mat-tab-group mat-stretch-tabs>
             <mat-tab label="What you will learn">
@@ -90,26 +90,5 @@
     <section>
       <div class="text-center">Continue your journey with the following recommended sessions</div>
     </section>
-  </main>
-
-      <div class="layout-columns">
-        <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
-
-        <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
-
-        <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
-      </div>
-
-      <div class="text-center">
-        Explore more of our unique sessions
-      </div>
-
-    </section>
-
-    <footer>
-      <section>
-        <app-subscribe-to-newsletter class="container"></app-subscribe-to-newsletter>
-      </section>
-    </footer>
   </main>
 </ng-container>

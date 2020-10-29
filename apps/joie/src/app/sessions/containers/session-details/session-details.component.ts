@@ -21,7 +21,6 @@ export class SessionDetailsComponent {
     shareReplay()
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
-  onwer$: Observable<any> = this.session$.pipe(pluck('owner'));
   displayName$ = this.authFacade.displayName$;
   uid$ = this.authFacade.uid$;
   sessionId: string;
@@ -33,7 +32,6 @@ export class SessionDetailsComponent {
     switchMap((sessionOwnerId) =>
       this.authFacade.uid$.pipe(
         map((uid) => sessionOwnerId === uid)
-        // take(1)
       )
     )
   );
@@ -62,13 +60,7 @@ export class SessionDetailsComponent {
 
   userContextualRole = 0;
 
-  // entryId = '1_0v7lxhb8';
-  isOnwer$ = combineLatest([this.authFacade.uid$, this.onwer$])
-    .pipe(
-      map(([uid, owner]) => {
-        return uid === owner.uid;
-      })
-    );
+  entryId = '1_0v7lxhb8';
 
   pillar = Pillar;
   pillarIcons = PillarsIconsMap;
