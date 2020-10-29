@@ -14,6 +14,7 @@ main > section.address-section {
   }
 
   .address-details {
+    margin: var(--joie-gutter);
     @media (min-width: layouts.$layout-breakpoint-lg) {
       margin-left: var(--joie-gutter);
       margin-inline-start: var(--joie-gutter);
