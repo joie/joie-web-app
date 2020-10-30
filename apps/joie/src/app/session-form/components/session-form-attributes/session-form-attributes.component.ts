@@ -4,6 +4,7 @@ import { FormControl, FormArray, Validators, FormGroup } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { Activities, Pillar } from '../../../enums';
 import { CourseLevel } from '../../../sessions/enums';
+import { Currency } from '../../../models';
 
 const FORMAT = 'format';
 @Component({
@@ -24,6 +25,7 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
   COMMENTS = 'comments';
   PRICE = 'price';
   LIMIT = 'limit';
+  PRICE_CURRENCY = 'currency';
   PRICE_DISPLAY = 'display';
 
   readonly goalsFormArray = new FormArray([]);
@@ -44,8 +46,8 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
       [
         this.PRICE,
         new FormGroup({
-          currency: new FormControl('USD'),
-          display: new FormControl(null),
+          [this.PRICE_CURRENCY]: new FormControl({ value: Currency.USD }), // ! readonly value
+          [this.PRICE_DISPLAY]: new FormControl(null),
         }),
       ],
     ]);

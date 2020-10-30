@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SessionsFacade } from './sessions.facade';
+import { SessionsService } from './sessions.service';
 
-describe('ClassesFacade', () => {
-  let service: SessionsFacade;
+describe('ClassesService', () => {
+  let service: SessionsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SessionsFacade);
+    service = TestBed.inject(SessionsService);
   });
 
   it('should be created', () => {

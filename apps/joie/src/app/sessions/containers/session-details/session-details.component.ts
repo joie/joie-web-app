@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SessionsFacade } from '../../../services/sessions.facade';
 import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
+// import { UntilDestroy } from '@ngneat/until-destroy';
+import { SessionsService } from '../../../services/sessions/sessions.service';
 import { Observable } from 'rxjs';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
@@ -50,7 +51,7 @@ export class SessionDetailsComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private sessionsFacade: SessionsFacade,
+    private sessionsFacade: SessionsService,
     private authFacade: AuthFacade
   ) {}
 
