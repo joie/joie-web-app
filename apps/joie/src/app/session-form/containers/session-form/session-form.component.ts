@@ -97,16 +97,15 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
               eventId,
               ...this.form.value,
             })),
-            switchMap((session) => this.sessionsService.setSession(get(this.data, 'sessionId', ''), session)),
-            switchMap((session) => {
-              if (this.sessionId) {
-                return this.storeThumbnailIfAny$(null);
-              } else {
-                return session ? this.storeThumbnailIfAny$(session) : [];
-              }
-            }
+            switchMap((session) =>
+              this.sessionsService.setSession(get(this.data, 'sessionId', ''), session)
             ),
-            finalize(() => this.showLoader = false)
+            map((session) => {
+              // new session response returns a session object while update won't
+              return session ? session.id : this.sessionId;
+            }),
+            switchMap(this.storeThumbnailIfAny$.bind(this)),
+            finalize(() => (this.showLoader = false))
           )
           .subscribe(
             (res) => {
@@ -148,7 +147,6 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   }
 
   uploadThumbnail$(id: string, file: File): Observable<firebase.storage.UploadTaskSnapshot> {
-
     return this.authFacade.uid$.pipe(
       switchMap((uid) => {
         const path = `images/${uid}/sessions/${id}`;
@@ -172,8 +170,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     return this.sessionsService.setSession(sessionId, { thumbRef: fullPath });
   }
 
-  storeThumbnailIfAny$(session: DocumentReference) {
-    const sessionId = session ? session.id : this.sessionId;
+  storeThumbnailIfAny$(sessionId: string) {
     const { value: file } = this.getFormControl(IMAGE);
 
     return iif(
