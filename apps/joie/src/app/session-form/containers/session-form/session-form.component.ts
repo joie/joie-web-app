@@ -100,7 +100,12 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
             switchMap((session) =>
               this.sessionsService.setSession(get(this.data, 'sessionId', ''), session)
             ),
-            switchMap((session) => (session ? this.storeThumbnailIfAny$(session) : []))
+            map((session) => {
+              // new session response returns a session object while update won't
+              return session ? session.id : this.sessionId;
+            }),
+            switchMap(this.storeThumbnailIfAny$.bind(this)),
+            finalize(() => (this.showLoader = false))
           )
           .subscribe(
             (res) => {
@@ -116,8 +121,6 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
                   verticalPosition: 'bottom',
                 }
               );
-              // .onAction()
-              // .subscribe(() => console.log(43));
               if (!get(this.data, 'session', false)) {
                 this.form.reset();
               }
@@ -167,7 +170,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     return this.sessionsService.setSession(sessionId, { thumbRef: fullPath });
   }
 
-  storeThumbnailIfAny$({ id: sessionId }: DocumentReference) {
+  storeThumbnailIfAny$(sessionId: string) {
     const { value: file } = this.getFormControl(IMAGE);
 
     return iif(
