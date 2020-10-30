@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ComponentPortal } from '@angular/cdk/portal';
 
@@ -6,6 +6,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class MainLayoutComponent {
   // headerComponentPortal: ComponentPortal<any>;

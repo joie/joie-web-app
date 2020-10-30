@@ -18,7 +18,7 @@ $modularscale: (
   // 1200px: (
   //   // base: 16px,
   //   ratio: 1.4,
-  // ),,,,,,
+  // ),,,,,,,,,,
 );
 
 $joie-typography: mat-typography-config(
@@ -29,7 +29,11 @@ $joie-typography: mat-typography-config(
   // $display-2:
   //   mat-typography-level(45px, 48px, $normal, $letter-spacing: -0.005em),
   $display-1:
-    mat-typography-level(math.round(ms(13)), calc(1ex / 0.49), map.get($font-weights, '600')),
+    mat-typography-level(
+      clamp(math.round(ms(13) * 0.62), 6vw, math.round(ms(13))),
+      clamp(120%, calc(1ex / 0.49), 150%),
+      map.get($font-weights, '600')
+    ),
   $headline:
     mat-typography-level(math.round(ms(8)), calc(1ex / 0.44), map.get($font-weights, '600')),
   $title: mat-typography-level(math.round(ms(6)), calc(1ex / 0.42), map.get($font-weights, '500')),

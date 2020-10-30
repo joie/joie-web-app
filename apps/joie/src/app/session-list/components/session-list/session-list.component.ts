@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SessionsFacade } from '../../../services/sessions.facade';
+import { SessionsService } from '../../../services/sessions/sessions.service';
 import { QueryFn } from '@angular/fire/firestore';
 import { Session } from '../../../sessions/models';
 
@@ -16,7 +16,7 @@ export class SessionListComponent implements OnInit {
 
   enrolled = true;
 
-  constructor(private sessionsFacade: SessionsFacade) {}
+  constructor(private sessionsFacade: SessionsService) {}
 
   ngOnInit(): void {
     this.sessions$ = this.sessionsFacade.getSessions(this.queryFn);

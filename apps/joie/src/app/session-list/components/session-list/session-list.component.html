@@ -17,7 +17,7 @@
     </mat-card-subtitle>
 
     <mat-card-content>
-      <p>{{ session.description }}</p>
+      <p class="session-description" [textContent]="session.description"></p>
 
       <span
         >Price : <i>{{ session?.price?.display | currency: session?.price?.currency }}</i></span
