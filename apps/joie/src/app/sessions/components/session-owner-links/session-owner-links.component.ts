@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
-import { MatDialog } from '@angular/material/dialog';
+import { pluck, take } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessionsService } from '../../../services/sessions/sessions.service';
-import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
+import { Confirmable } from '../../../shared/decorators/confirmable.decorator';
 
 @Component({
   selector: 'app-session-owner-links',
@@ -18,42 +17,32 @@ export class SessionOwnerLinksComponent {
   constructor(
     private sessionsFacade: SessionsService,
     private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog,
     private router: Router,
     private snackBar: MatSnackBar
   ) {}
 
+  @Confirmable(`Do you want to delete this session?`, 'warn', 'Delete')
   async deleteSession() {
-    this.activatedRoute.params.pipe(pluck('sessionId')).subscribe(async (sessionId: string) => {
-      const resp = (await this.sessionsFacade.deleteSession(sessionId).toPromise()) as {
-        message: string;
-        type: 'error' | 'success';
-      };
-      if (resp.type === 'success') {
-        this.router.navigate(['/account', 'sessions']);
-      }
-      this.snackBar.open(resp.message, ``, {
-        duration: 8000,
-        horizontalPosition: 'end',
-        verticalPosition: 'bottom',
-      });
-    });
-  }
+    const sessionId = await this.activatedRoute.params
+      .pipe(pluck('sessionId'), take(1))
+      .toPromise();
 
-  openDeleteDialog(): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '250px',
-      data: {
-        message: `Do you want to delete this session?`,
-        confirmText: 'Delete',
-        confirmColor: 'warn',
-      },
-    });
-
-    dialogRef.afterClosed().subscribe(async (result: boolean) => {
-      if (result) {
-        await this.deleteSession();
-      }
+    const { message, type } = (await this.sessionsFacade
+      .deleteSession(sessionId)
+      .pipe(take(1))
+      .toPromise()) as {
+      // TODO: set as part of #174 common back/front end model
+      // TODO: https://github.com/joie/joie-web-app/issues/174
+      message: string;
+      type: 'error' | 'success';
+    };
+    if (type === 'success') {
+      this.router.navigate(['/account', 'sessions']);
+    }
+    this.snackBar.open(message, null, {
+      duration: 8000,
+      horizontalPosition: 'end',
+      verticalPosition: 'bottom',
     });
   }
 }

@@ -69,7 +69,7 @@ hr {
     }
   }
 
-  &#{&}-backdrop {
+  > #{&}-backdrop {
     position: relative;
     padding: calc(var(--size) / 5);
 

@@ -27,17 +27,24 @@
   </section>
   <section>
     <div class="container-condense">
-      <carousel 
-        [height]=450 cellWidth="100%" [cellsToShow]=1 [loop]=true
-        [autoplay]=true  [arrows]=false [dots]=true [overflowCellsLimit]=1>
+      <carousel
+        [height]="450"
+        cellWidth="100%"
+        [cellsToShow]="1"
+        [loop]="true"
+        [autoplay]="true"
+        [arrows]="false"
+        [dots]="true"
+        [overflowCellsLimit]="1"
+      >
         <div class="carousel-cell" *ngFor="let item of teacherList">
           <div class="layout-rows layout-center">
             <h3>See what other teachers say about partnering with us</h3>
             <div class="joie-list-item">
               <img [src]="item.photo_url" alt="" />
               <div>
-                <p>{{item.description}}</p>
-                <p>{{item.teacher_info}}</p>
+                <p>{{ item.description }}</p>
+                <p>{{ item.teacher_info }}</p>
               </div>
             </div>
           </div>
@@ -61,7 +68,7 @@
         <div class="layout-columns">
           <div class="joie-list-item" *ngFor="let item of list">
             <figure class="joie-list-item-figure">
-              <app-icon class="joie-icon joie-icon-backdrop size-xl" [name]="item.icon"></app-icon>
+              <app-icon [backdrop]="true" class="joie-icon size-xl" [name]="item.icon"></app-icon>
             </figure>
             <h4 class="joie-list-name">{{ item.name }}</h4>
             <p class="joie-list-description">{{ item.description }}</p>
