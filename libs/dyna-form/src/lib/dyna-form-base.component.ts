@@ -29,18 +29,29 @@ export abstract class DynaFormBaseComponent implements OnDestroy {
     this.#controls.forEach(([name, control]) => {
       if (this.dynaFormService.valueRef) {
         // add new control if is undefined or null
-        const value = this.dynaFormService.valueRef[name] || [];
+        let value = this.dynaFormService.valueRef[name];
+
+        if (control instanceof FormGroup) {
+          if (value) {
+            control.setValue(value);
+          }
+        }
+
+        if (control instanceof FormControl) {
+          value ||= null;
+          control.setValue(value);
+        }
 
         if (control instanceof FormArray) {
+          value ||= [];
           value.forEach((val: any) => {
             control.push(new FormControl(val));
           });
-        } else {
-          control.setValue(value);
         }
       }
 
       this.form?.addControl(name, control);
+
       // this.form?.get(name) ?? this.form?.addControl(name, control);
       // console.log(this.form.value);
     });
