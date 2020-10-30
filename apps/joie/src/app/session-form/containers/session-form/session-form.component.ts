@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
-import { SessionsFacade } from '../../../services/sessions.facade';
+import { SessionsService } from '../../../services/sessions/sessions.service';
 import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-handshake.service';
 import { environment } from '../../../../environments/environment';
 import { Format, Type } from '../../../sessions/enums';
@@ -31,7 +31,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   sessionId;
 
   constructor(
-    private sessionsFacade: SessionsFacade,
+    private sessionsService: SessionsService,
     private storage: AngularFireStorage,
     private kalturaApiHandShakeService: KalturaApiHandShakeService,
     private authFacade: AuthFacade,
@@ -71,7 +71,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     this.showLoader = true;
     const currentDate = Date.now();
 
-    console.log('form: ', this.form.value)
+    console.log('form: ', this.form.value);
 
     const eventCreationDetails = {
       resourceName: this.form.value.title,
@@ -98,12 +98,12 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
               ...this.form.value,
             })),
             switchMap((session) =>
-              this.sessionsFacade.setSession(get(this.data, 'sessionId', ''), session)
+              this.sessionsService.setSession(get(this.data, 'sessionId', ''), session)
             ),
-            switchMap((session) => session ? this.storeThumbnailIfAny$(session) : []),
+            switchMap((session) => (session ? this.storeThumbnailIfAny$(session) : []))
           )
           .subscribe(
-            res => {
+            (res) => {
               this.showLoader = false;
               this.snackBar.open(
                 `Session ${
@@ -122,12 +122,12 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
                 this.form.reset();
               }
             },
-            error => {
+            (error) => {
               this.showLoader = false;
               console.log(
                 `Session creation form : submit() :: ${error} while inserting session details`
               );
-            },
+            }
           );
       },
       (error) => {
@@ -156,7 +156,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
 
         // take only last - dont observe any other changes in between
         return uploadTask.snapshotChanges().pipe(last());
-      }),
+      })
     );
   }
 
@@ -164,8 +164,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     { ref: { fullPath } }: firebase.storage.UploadTaskSnapshot,
     sessionId: string
   ) {
-
-    return this.sessionsFacade.setSession(sessionId, { thumbRef: fullPath });
+    return this.sessionsService.setSession(sessionId, { thumbRef: fullPath });
   }
 
   storeThumbnailIfAny$({ id: sessionId }: DocumentReference) {

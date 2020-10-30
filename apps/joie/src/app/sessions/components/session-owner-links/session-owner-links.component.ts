@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SessionsFacade } from '../../../services/sessions.facade';
+import { SessionsService } from '../../../services/sessions/sessions.service';
 import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
@@ -16,7 +16,7 @@ export class SessionOwnerLinksComponent {
   sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
 
   constructor(
-    private sessionsFacade: SessionsFacade,
+    private sessionsFacade: SessionsService,
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
     private router: Router,

@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  Resolve,
-} from '@angular/router';
-import { SessionsFacade } from '../../services/sessions.facade';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
+import { SessionsService } from '../../services/sessions/sessions.service';
 
 @Injectable({ providedIn: 'root' })
 export class EnrollDialogConfigResolver implements Resolve<any> {
-  constructor(private sessionsFacade: SessionsFacade) {}
+  constructor(private sessionsService: SessionsService) {}
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -17,7 +13,7 @@ export class EnrollDialogConfigResolver implements Resolve<any> {
     return {
       width: '680px',
       data: {
-        session$: this.sessionsFacade.getSession(route.params.sessionId),
+        session$: this.sessionsService.getSession(route.params.sessionId),
       },
     };
   }

@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { DbService } from './db.service';
+import { DbService } from '../db/db.service';
 import { Observable } from 'rxjs';
 import { QueryFn } from '@angular/fire/firestore';
-import { Session } from '../sessions/models';
+import { Session } from '../../sessions/models';
 import { take } from 'rxjs/operators';
 import { AngularFireFunctions } from '@angular/fire/functions';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SessionsFacade {
+export class SessionsService {
   constructor(private db: DbService, private fns: AngularFireFunctions) {}
 
   getSessions(queryFn?: QueryFn) {
