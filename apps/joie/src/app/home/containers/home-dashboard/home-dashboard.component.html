@@ -6,6 +6,7 @@
     [style.--height]="9"
   >
   </app-figure-image> -->
+
   <div class="container">
     <div class="mat-display-1" role="heading" aria-level="1">
       Find Your Joie In Life. One Step At A Time.
@@ -58,25 +59,36 @@
   <section>
     <div class="layout-rows-sm">
       <div class="container-condense">
-        <div class="layout-rows-sm layout-center">
-          <h2>What Joie Offers You</h2>
+        <h2 class="text-center">What Joie Offers You</h2>
 
-          <iframe
-            id="ytplayer"
-            type="text/html"
-            width="720"
-            height="405"
-            src="https://www.youtube.com/embed/pidtZePk4bE?color=white"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-
-          <!-- <div class="video-player-container">
+        <!-- <div class="video-player-container">
           <app-video-player [entryId]="entryId"></app-video-player>
         </div> -->
-        </div>
       </div>
+
+      <app-youtube-video
+        videoId="pidtZePk4bE"
+        [ngClass]="{
+          'container-condense':
+            (breakpoints.isBreakpointSmall$ | async) ||
+            (breakpoints.isBreakpointMedium$ | async) ||
+            (breakpoints.isBreakpointWeb$ | async)
+        }"
+      >
+      </app-youtube-video>
+      <!--
+      <iframe
+        loading="lazy"
+        style="max-width: 100%; margin: 0 auto"
+        id="ytplayer"
+        type="text/html"
+        width="720"
+        height="405"
+        src="https://www.youtube.com/embed/pidtZePk4bE?color=white"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe> -->
 
       <div class="container-fluid">
         <div class="layout-columns-sm text-center">
