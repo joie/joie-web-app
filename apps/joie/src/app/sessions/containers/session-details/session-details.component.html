@@ -12,7 +12,7 @@
             ></app-session-owner-links>
             <div class="figure-pairing">
               <app-icon
-                class="joie-icon size-md"
+                class="size-md"
                 [name]="pillarIcons.get(pillar[session?.pillar])"
               ></app-icon>
               <h4 [innerHTML]="session?.pillar | joiePrefix: false"></h4>
@@ -31,29 +31,29 @@
 
           <div class="layout-columns row-spacing">
             <app-paper-item>
-              <app-icon class="joie-icon size-sm" name="calendar"></app-icon>
+              <app-icon class="size-sm" name="calendar"></app-icon>
               <span>
                 {{ session?.duration?.amount + session?.duration?.unit }}
               </span>
             </app-paper-item>
             <app-paper-item>
-              <app-icon class="joie-icon size-sm" name="clock"></app-icon>
+              <app-icon class="size-sm" name="clock"></app-icon>
               <span>{{ session?.duration?.amount + session?.duration?.unit }}</span>
             </app-paper-item>
             <app-paper-item>
-              <app-icon class="joie-icon size-sm" name="monitor"></app-icon>
+              <app-icon class="size-sm" name="monitor"></app-icon>
               <span>{{ session?.type }}</span>
             </app-paper-item>
             <app-paper-item>
-              <app-icon class="joie-icon size-sm" name="bar-chart"></app-icon>
+              <app-icon class="size-sm" name="bar-chart"></app-icon>
               <span>{{ session?.level }}</span>
             </app-paper-item>
             <app-paper-item>
-              <app-icon class="joie-icon size-sm" name="tag"></app-icon>
+              <app-icon class="size-sm" name="tag"></app-icon>
               <span>{{ session?.price?.display | currency: session?.price?.currency }}</span>
             </app-paper-item>
             <app-paper-item>
-              <app-icon class="joie-icon size-sm" name="send"></app-icon>
+              <app-icon class="size-sm" name="send"></app-icon>
               <span>Share</span>
             </app-paper-item>
           </div>

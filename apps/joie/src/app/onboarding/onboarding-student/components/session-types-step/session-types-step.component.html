@@ -10,11 +10,7 @@
 <div class="container-ultra-condense">
   <form [formGroup]="form" class="layout-columns-sm">
     <mat-card *ngFor="let type of sessionTypesLiteralMap | keyvalue: asIsOrder; let i = index">
-      <app-icon
-        [backdrop]="true"
-        class="joie-icon size-xl"
-        [name]="sessionTypesData[i].icon"
-      ></app-icon>
+      <app-icon [backdrop]="true" class="size-xl" [name]="sessionTypesData[i].icon"></app-icon>
 
       <label formArrayName="sessionTypes">
         <input type="checkbox" [formControlName]="i" />
