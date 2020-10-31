@@ -34,13 +34,13 @@
     </mat-select>
   </mat-form-field>
 
-  <h4>Session goals (add one goal in line)</h4>
-
   <app-form-array-table
     [values]="formArrayValues(GOALS)"
     (remove)="removeControl(goalsFormArray, $event)"
   >
+    <label id="goals-label" slot="label">Session goals</label>
     <app-simple-form-input
+      labelId="goals-label"
       #goalsSimpleForm
       [validators]="sfiValidators"
       (submission)="addGoalOrComment(goalsFormArray, $event)"
@@ -57,12 +57,13 @@
     </button>
   </app-form-array-table>
 
-  <h4>Need to know (add one comment in line)</h4>
   <app-form-array-table
     [values]="formArrayValues(COMMENTS)"
     (remove)="removeControl(commentsFormArray, $event)"
   >
+    <label id="comment-label" slot="label">Need to know</label>
     <app-simple-form-input
+      labelId="comment-label"
       #commentsSimpleForm
       [validators]="sfiValidators"
       (submission)="addGoalOrComment(commentsFormArray, $event)"

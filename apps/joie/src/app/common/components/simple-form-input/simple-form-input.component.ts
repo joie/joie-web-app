@@ -10,6 +10,7 @@ export class SimpleFormInputComponent {
   // @ViewChild('documentEditForm') private documentEditForm: FormGroupDirective;
   @ViewChild('textInput') textInput: ElementRef;
 
+  @Input() labelId: string;
   @Input() validators: Validators[];
   @Output() submission = new EventEmitter<string>();
 

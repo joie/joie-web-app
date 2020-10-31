@@ -31,7 +31,7 @@ interface SessionMetadata extends Schedule, KalturaEvent {
   owner: Owner;
   level: CourseLevel;
   price: Price;
-  activity: Activities;
+  activities: Activities[];
   pillar: Pillar;
   recommendationPercentage: number;
   promo: string;

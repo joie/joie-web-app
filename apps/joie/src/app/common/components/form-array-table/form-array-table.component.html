@@ -1,6 +1,8 @@
-<table mat-table [dataSource]="values" class="mat-elevation-z2">
+<table mat-table [dataSource]="values" class="mat-elevation-z1">
   <ng-container matColumnDef="value">
-    <th mat-header-cell *matHeaderCellDef></th>
+    <th mat-header-cell *matHeaderCellDef>
+      <ng-content select="[slot=label]"></ng-content>
+    </th>
     <td mat-cell *matCellDef="let value">{{ value }}</td>
     <td mat-footer-cell *matFooterCellDef>
       <ng-content></ng-content>
