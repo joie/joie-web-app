@@ -20,7 +20,7 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
   UPPER_LIMIT = 20; // https://github.com/joie/joie-web-app/issues/18#issuecomment-671474074
   PILLAR = 'pillar';
   LEVEL = 'level';
-  ACTIVITY = 'activity';
+  ACTIVITIES = 'activities';
   GOALS = 'goals';
   COMMENTS = 'comments';
   PRICE = 'price';
@@ -41,7 +41,7 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
       [this.LEVEL, new FormControl(null)],
       [this.GOALS, this.goalsFormArray],
       [this.COMMENTS, this.commentsFormArray],
-      [this.ACTIVITY, new FormControl(null)],
+      [this.ACTIVITIES, new FormControl(null)],
       [this.LIMIT, new FormControl(null)],
       [
         this.PRICE,

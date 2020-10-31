@@ -19,10 +19,18 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Activity</mat-label>
-    <mat-select required [formControlName]="ACTIVITY">
-      <mat-option *ngFor="let activity of activityKeys" [value]="activity">{{
-        activityEnum[activity]
-      }}</mat-option>
+    <mat-hint>You can choose up to 3</mat-hint>
+    <mat-select required [formControlName]="ACTIVITIES" multiple>
+      <mat-option
+        *ngFor="let activity of activityKeys"
+        [value]="activity"
+        [disabled]="
+          getFormControl(ACTIVITIES)?.value?.length >= 3 &&
+          !getFormControl(ACTIVITIES)?.value?.includes(activity)
+        "
+      >
+        {{ activityEnum[activity] }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
 

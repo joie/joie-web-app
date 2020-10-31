@@ -33,7 +33,6 @@
 </ng-container>
 
 <ng-template #card>
-  {{ session?.promo | json }}
   <div class="banner mat-elevation-z2" *ngIf="session?.promo as promo">{{ promo }}</div>
   <mat-card>
     <div class="text-center">
