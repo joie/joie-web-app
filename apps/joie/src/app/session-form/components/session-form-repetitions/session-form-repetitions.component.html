@@ -1,10 +1,7 @@
 <ng-container [formGroup]="form">
   <mat-form-field appearance="outline">
+    <mat-hint>Please leave empty if it is an ongoing session</mat-hint>
     <mat-label>Number of sessions</mat-label>
-    <input type="number"
-           inputmode="numeric"
-           formControlName="repetitions"
-           matInput />
+    <input type="number" inputmode="numeric" formControlName="repetitions" matInput />
   </mat-form-field>
-
 </ng-container>

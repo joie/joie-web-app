@@ -3,10 +3,10 @@
     <div class="layout-rows-xs layout-center">
       <app-paper-item>
         <app-icon class="size-sm" name="compass"></app-icon>
-        <div>Activity</div>
+        <div>Activities</div>
       </app-paper-item>
       <div>
-        {{ session?.activity }}
+        {{ session?.activities?.join(', ') | titlecase }}
       </div>
     </div>
 
