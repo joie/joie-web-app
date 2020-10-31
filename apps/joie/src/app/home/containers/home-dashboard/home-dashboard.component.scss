@@ -5,9 +5,12 @@
 }
 
 .layout-hero {
-  padding: 120px 0;
+  $min-vertical-padding: calc(var(--joie-gutter) * 3);
+  $max-vertical-padding: calc(var(--joie-gutter) * 7.5);
+  padding: clamp($min-vertical-padding, 10vw, $max-vertical-padding) 0;
   position: relative;
-
+  overflow: hidden;
+  contain: paint layout;
   // @media (min-width: layouts.$layout-breakpoint-xs) {
   //   &-context {
   //     max-inline-size: layouts.$layout-breakpoint-xs;
@@ -16,9 +19,9 @@
   // }
   &::before {
     content: '';
-    background-image: url('https://source.unsplash.com/r2nJPbEYuSQ');
+    background-image: url('https://source.unsplash.com/r2nJPbEYuSQ/1600x1500');
     background-size: cover;
-    background-position: left;
+    background-position: right 40%;
     transform: scaleX(-1);
     position: absolute;
     top: 0;
@@ -26,6 +29,7 @@
     bottom: 0;
     left: 0;
     z-index: -1;
+    margin-right: -225px;
     @media (max-width: layouts.$layout-breakpoint-xs) {
       $range: strip-units(layouts.$layout-breakpoint-xs - layouts.$layout-breakpoint-xxs);
       $percentage: calc((#{layouts.$layout-breakpoint-xs} - 100vw) / #{$range} * 100);
@@ -34,11 +38,18 @@
   }
 
   [role='heading'] {
-    max-width: 28ch;
+    // max-width: 28ch;
+    max-width: var(--heading-max-inline-size);
+    max-inline-size: var(--heading-max-inline-size);
     &[aria-level='1'] {
       mix-blend-mode: color-burn;
       color: #033138;
-      max-width: clamp(500px, 16ch, 100%);
+      --heading-max-inline-size: clamp(500px, 16ch, 100%);
+    }
+    &[aria-level='2'] {
+      @media (min-width: layouts.$layout-breakpoint-xs) {
+        --heading-max-inline-size: clamp(420px, 50ch, 58%);
+      }
     }
   }
 }
