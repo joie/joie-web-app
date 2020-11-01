@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { UserLinksComponent } from './components/user-links/user-links.component';
 import { SearchComponent } from './components/search/search.component';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SearchComponent } from './components/search/search.component';
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AuthStateModule,
+    NgxAuthFirebaseUIModule,
   ],
   exports: [PageNotFoundComponent, HeaderComponent],
 })
