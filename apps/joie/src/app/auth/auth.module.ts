@@ -8,12 +8,7 @@ import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 
 @NgModule({
   declarations: [LogInComponent],
-  imports: [
-    AuthRoutingModule,
-    SharedModule,
-    MatDialogModule,
-    NgxAuthFirebaseUIModule,
-  ],
+  imports: [AuthRoutingModule, SharedModule, MatDialogModule, NgxAuthFirebaseUIModule],
   exports: [LogInComponent],
 })
 export class AuthModule {}
