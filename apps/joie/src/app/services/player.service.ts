@@ -3,8 +3,6 @@ import { AngularFireFunctions } from '@angular/fire/functions';
 
 import {
   KalturaClient,
-  SessionStartAction,
-  KalturaSessionType,
   KalturaMediaEntryFilter,
   KalturaFilterPager,
   MediaListAction,
@@ -73,7 +71,7 @@ export class PlayerService {
     // retriving all the available videos
     this.kaltura.request(new MediaListAction({ filter, pager })).subscribe(
       (result) => {
-        console.log('result', result);
+        console.log('runRequest result', result);
       },
       (error) => {
         throwError(error);
