@@ -1,3 +1,4 @@
+import { SessionsService } from './../../../services/sessions/sessions.service';
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { mergeMap } from 'rxjs/operators';
@@ -17,7 +18,6 @@ import {
 } from 'kaltura-ngx-client';
 import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
 import { PlayerService } from '../../../services/player.service';
-import { SessionsFacade } from '../../../services/sessions.facade';
 import { Session } from '../../models';
 import { Subscription } from 'rxjs';
 
@@ -42,7 +42,7 @@ export class VideoUploadComponent implements OnInit {
     private playerService: PlayerService,
     private kalturaClient: KalturaClient,
     private snackBar: MatSnackBar,
-    private sessionsFacade: SessionsFacade
+    private sessionsFacade: SessionsService
   ) {}
 
   ngOnInit(): void {}
