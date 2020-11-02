@@ -1,35 +1,24 @@
-<form (ngSubmit)="onSubmit()"
-      [formGroup]="form"
-      #documentEditForm="ngForm"
-      class="layout-columns">
+<form (ngSubmit)="onSubmit()" [formGroup]="form" #documentEditForm="ngForm" class="date-time-grid">
   <!-- ! TODO: date & time should be extracted to an independent component with a controlValueAccessor to merge both to a single timestamp -->
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Date</mat-label>
-    <input #datePicker
-           [min]="minDate"
-           matInput
-           [matDatepicker]="picker"
-           formControlName="date" />
+    <input #datePicker [min]="minDate" matInput [matDatepicker]="picker" formControlName="date" />
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Time</mat-label>
-    <input type="time"
-           matInput
-           formControlName="time" />
+    <input type="time" matInput formControlName="time" />
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Repeat</mat-label>
     <mat-select formControlName="recurring">
       <mat-option>-- None --</mat-option>
-      <mat-option *ngFor="let recurring of recurringKeys"
-                  [value]="recurring">{{
+      <mat-option *ngFor="let recurring of recurringKeys" [value]="recurring">{{
         recurringEnum[recurring]
       }}</mat-option>
     </mat-select>
   </mat-form-field>
-
 </form>

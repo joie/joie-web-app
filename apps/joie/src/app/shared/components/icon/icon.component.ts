@@ -11,7 +11,7 @@ export class IconComponent {
   #name: string;
 
   @HostBinding('class.inline') @Input() inline: boolean;
-  @Input() backdrop: boolean;
+  @HostBinding('class.backdrop') @Input() backdrop: boolean;
 
   @Input()
   set name(value: string) {

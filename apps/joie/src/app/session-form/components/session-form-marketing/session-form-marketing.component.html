@@ -1,13 +1,13 @@
 <ng-container [formGroup]="form">
-  <mat-label class="block">Upsell and promos (optional)</mat-label>
-  <mat-form-field appearance="outline">
-    <mat-label>Special offer promotion</mat-label>
-    <input type="text" matInput formControlName="promo" />
+  <mat-form-field appearance="outline" floatLabel="never">
+    <mat-label>Upsell and promos (optional)</mat-label>
+    <input type="text" matInput formControlName="promo" placeholder="e.g. 10% off" />
   </mat-form-field>
 
-  <h4>Related sessions (add up to 3)</h4>
   <app-form-array-table [values]="sessionsArrayValues()" (remove)="removeControl($event)">
+    <label id="related-label" slot="label">Related sessions (add up to 3)</label>
     <app-simple-form-input
+      labelId="related-label"
       #relatedSessionsForm
       [validators]="sfiValidators"
       (submission)="addRelatedSession($event)"

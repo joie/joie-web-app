@@ -1,6 +1,7 @@
 <ng-container [formGroup]="form">
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Duration</mat-label>
+    <mat-hint>In minutes</mat-hint>
     <input
       matInput
       type="number"
@@ -9,7 +10,6 @@
       [formControlName]="DURATION"
       min="10"
     />
-    <span matSuffix>Minutes</span>
     <!-- <mat-error *ngIf="fontSizeControl.invalid">Min size: 10px</mat-error> -->
   </mat-form-field>
 </ng-container>

@@ -31,11 +31,13 @@ interface SessionMetadata extends Schedule, KalturaEvent {
   owner: Owner;
   level: CourseLevel;
   price: Price;
-  activity: Activities;
+  activities: Activities[];
   pillar: Pillar;
   recommendationPercentage: number;
   entryId: string;
   entryLastUpdated: number;
+  promo: string;
+  relatedSessions: string[];
 }
 
 interface Streaming {
