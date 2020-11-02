@@ -45,7 +45,7 @@ export class VideoUploadComponent implements OnInit {
     private sessionsFacade: SessionsService
   ) {}
 
-  ngOnInit(): void {}
+  async ngOnInit() {}
 
   onClickFile(fileInputEvent: any) {
     this.fileData = fileInputEvent.target.files[0] as File;

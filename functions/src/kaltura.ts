@@ -2,11 +2,11 @@ import { config, https } from "firebase-functions";
 import { KalturaClient } from "kaltura-typescript-client";
 import { KalturaSessionType } from "kaltura-typescript-client/api/types/KalturaSessionType";
 import { SessionStartAction } from "kaltura-typescript-client/api/types/SessionStartAction";
-import { db } from "./config";
-import { catchErrors, getUID } from "./helpers";
-import get from 'lodash.get';
+import { catchErrors, getUEmail, getUID } from "./helpers";
+import { getUser } from ".";
 
-const USERS = '/users';
+// Kaltura TypeScript library, it uses XMLHttpRequest to connect to Kaltura API
+(global as any).XMLHttpRequest = require("xhr2");
 
 const clientConfig = {
   clientTag: "sample-code",
@@ -27,26 +27,32 @@ const kalturaConfig = {
 const client = new KalturaClient(clientConfig);
 
 export const startKalturaSession = https.onCall(async (params, context) => {
-  const uid = getUID(context);
+  const email = getUEmail(context);
 
-  const user = await db
-    .collection(USERS)
-    .doc(uid)
-    .get()
-    .then((doc) => doc.data());
+  if (!email) {
+    throw new https.HttpsError('not-found', "couldn't find user in firestore");
+  }
 
-  const email: string = get(user, 'email');
+  const resp = await initKalturaSession(email);
 
-  const resp = initKalturaSession(email);
+  if (resp) {
+    return catchErrors(Promise.resolve({
+      data: {
+        session: resp.session,
+        kaltura_options: clientConfig
+      },
+      message: 'Kaltura Session succesfully created',
+      type: 'success'
+    }));
+  }
 
   return catchErrors(Promise.resolve({
-    data: resp,
     message: '',
-    type: 'success'
+    type: 'error'
   }));
 });
 
-const initKalturaSession = async (userEmail: string): Promise<boolean> => {
+const initKalturaSession = async (userEmail: string): Promise<any> => {
   try {
     const session = await client.request(
       new SessionStartAction({
@@ -57,16 +63,16 @@ const initKalturaSession = async (userEmail: string): Promise<boolean> => {
 
     if (!session) {
       console.log("Failed to start kaltura session");
-      return false;
+      return undefined;
     }
 
     client.setDefaultRequestOptions({ ks: session });
 
     console.log(`Kaltura session:\n${session}`);
 
-    return true;
+    return { session, client };
   } catch (error) {
     console.log(`Kaltura session error: \n ${error}`);
-    return false;
+    return undefined;
   }
 };

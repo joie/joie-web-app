@@ -13,41 +13,27 @@ import { throwError } from 'rxjs';
 
 declare var kWidget;
 declare var $: any;
+
+interface IResponse {
+  type: 'success' | 'error';
+  data: any;
+  message: string;
+}
 @Injectable({ providedIn: 'root' })
 export class PlayerService {
   kWidget = kWidget;
+
   constructor(private kaltura: KalturaClient, private fns: AngularFireFunctions) {
-    this.kaltura.setOptions({
-      clientTag: 'sample-code',
-      endpointUrl: 'https://www.kaltura.com',
+    this.startSession().subscribe((resp: IResponse) => {
+      if (resp.type === 'success') {
+        this.kaltura.setOptions(resp.data.kaltura_options);
+        this.kaltura.setDefaultRequestOptions({ ks: resp.data.session });
+        this.runRequest();
+      } else {
+        console.error(`failed to create session with the following error "SessionStartAction"`);
+        throwError(`failed to create session with the following error "SessionStartAction"`);
+      }
     });
-    // create session for Kalutura handshake
-    this.kaltura
-      .request(
-        new SessionStartAction({
-          secret: 'dbd317b69a5164bad9222d6ffad98a2e',
-          userId: 'rroy26740@gmail.com',
-          type: KalturaSessionType.admin,
-          partnerId: 2976751,
-        })
-      )
-      .subscribe(
-        (ks) => {
-          console.log('ks', ks);
-
-          this.kaltura.setDefaultRequestOptions({ ks });
-          this.runRequest();
-        },
-        (error) => {
-          console.error(`failed to create session with the following error "SessionStartAction"`);
-          throwError(error);
-        }
-      );
-  }
-
-  startSession() {
-    const callable = this.fns.httpsCallable('startKalturaSession');
-    return callable({});
   }
 
   boot(entryID: any) {
@@ -73,6 +59,11 @@ export class PlayerService {
         kdp.evaluate();
       });
     });
+  }
+
+  startSession() {
+    const callable = this.fns.httpsCallable('startKalturaSession');
+    return callable({});
   }
 
   runRequest() {

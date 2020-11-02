@@ -21,6 +21,17 @@ export const getUID = (context: functions.https.CallableContext) => {
   }
 };
 
+export const getUEmail = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      'permission-denied',
+      'function called without context.auth'
+    );
+  } else {
+    return context.auth.token.email;
+  }
+};
+
 // Validates data payload on callable functions
 export const assert = (data: any, key: string) => {
   if (!data[key]) {
