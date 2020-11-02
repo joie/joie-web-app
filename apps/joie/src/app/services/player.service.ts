@@ -1,4 +1,5 @@
 import { Injectable} from '@angular/core';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 import {
   KalturaClient,
@@ -15,7 +16,7 @@ declare var $: any;
 @Injectable({ providedIn: 'root' })
 export class PlayerService {
   kWidget = kWidget;
-  constructor(private kaltura: KalturaClient) {
+  constructor(private kaltura: KalturaClient, private fns: AngularFireFunctions) {
     this.kaltura.setOptions({
       clientTag: 'sample-code',
       endpointUrl: 'https://www.kaltura.com',
@@ -32,6 +33,8 @@ export class PlayerService {
       )
       .subscribe(
         (ks) => {
+          console.log('ks', ks);
+
           this.kaltura.setDefaultRequestOptions({ ks });
           this.runRequest();
         },
@@ -40,6 +43,11 @@ export class PlayerService {
           throwError(error);
         }
       );
+  }
+
+  startSession() {
+    const callable = this.fns.httpsCallable('startKalturaSession');
+    return callable({});
   }
 
   boot(entryID: any) {
@@ -74,7 +82,7 @@ export class PlayerService {
     // retriving all the available videos
     this.kaltura.request(new MediaListAction({ filter, pager })).subscribe(
       (result) => {
-        console.log(result);
+        console.log('result', result);
       },
       (error) => {
         throwError(error);

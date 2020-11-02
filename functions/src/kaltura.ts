@@ -1,7 +1,12 @@
-import { config } from "firebase-functions";
+import { config, https } from "firebase-functions";
 import { KalturaClient } from "kaltura-typescript-client";
 import { KalturaSessionType } from "kaltura-typescript-client/api/types/KalturaSessionType";
 import { SessionStartAction } from "kaltura-typescript-client/api/types/SessionStartAction";
+import { db } from "./config";
+import { catchErrors, getUID } from "./helpers";
+import get from 'lodash.get';
+
+const USERS = '/users';
 
 const clientConfig = {
   clientTag: "sample-code",
@@ -21,7 +26,27 @@ const kalturaConfig = {
 
 const client = new KalturaClient(clientConfig);
 
-export const startKalturaSession = async (userEmail: string): Promise<boolean> => {
+export const startKalturaSession = https.onCall(async (params, context) => {
+  const uid = getUID(context);
+
+  const user = await db
+    .collection(USERS)
+    .doc(uid)
+    .get()
+    .then((doc) => doc.data());
+
+  const email: string = get(user, 'email');
+
+  const resp = initKalturaSession(email);
+
+  return catchErrors(Promise.resolve({
+    data: resp,
+    message: '',
+    type: 'success'
+  }));
+});
+
+const initKalturaSession = async (userEmail: string): Promise<boolean> => {
   try {
     const session = await client.request(
       new SessionStartAction({
@@ -32,7 +57,6 @@ export const startKalturaSession = async (userEmail: string): Promise<boolean> =
 
     if (!session) {
       console.log("Failed to start kaltura session");
-
       return false;
     }
 

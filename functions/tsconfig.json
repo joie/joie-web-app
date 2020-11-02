@@ -8,8 +8,9 @@
     "strict": true,
     "target": "es2017",
     "resolveJsonModule": true,
-    "typeRoots": ["./functions/node_modules/@types"]
+    "typeRoots": ["./functions/node_modules/@types"],
+    "noImplicitAny": false
   },
   "compileOnSave": true,
-  "include": ["src"]
+  "include": ["src"],
 }

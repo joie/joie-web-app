@@ -20,8 +20,9 @@
   "dependencies": {
     "firebase-admin": "^8.10.0",
     "firebase-functions": "^3.6.1",
-    "stripe": "^8.102.0",
-    "kaltura-typescript-client": "file:kaltura-typescript-client-7.0.2.tgz"
+    "kaltura-typescript-client": "file:kaltura-typescript-client-7.0.2.tgz",
+    "lodash.get": "^4.4.2",
+    "stripe": "^8.102.0"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",
