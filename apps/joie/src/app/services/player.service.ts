@@ -30,8 +30,8 @@ export class PlayerService {
         this.kaltura.setDefaultRequestOptions({ ks: resp.data.session });
         this.runRequest();
       } else {
-        console.error(`failed to create session with the following error "SessionStartAction"`);
-        throwError(`failed to create session with the following error "SessionStartAction"`);
+        console.error(resp.message);
+        throwError(resp.message);
       }
     });
   }

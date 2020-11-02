@@ -2,8 +2,7 @@ import { config, https } from "firebase-functions";
 import { KalturaClient } from "kaltura-typescript-client";
 import { KalturaSessionType } from "kaltura-typescript-client/api/types/KalturaSessionType";
 import { SessionStartAction } from "kaltura-typescript-client/api/types/SessionStartAction";
-import { catchErrors, getUEmail, getUID } from "./helpers";
-import { getUser } from ".";
+import { catchErrors, getUEmail } from "./helpers";
 
 // Kaltura TypeScript library, it uses XMLHttpRequest to connect to Kaltura API
 (global as any).XMLHttpRequest = require("xhr2");
@@ -41,13 +40,13 @@ export const startKalturaSession = https.onCall(async (params, context) => {
         session: resp.session,
         kaltura_options: clientConfig
       },
-      message: 'Kaltura Session succesfully created',
+      message: 'Kaltura Session succesfully created with SessionStartAction',
       type: 'success'
     }));
   }
 
   return catchErrors(Promise.resolve({
-    message: '',
+    message: 'failed to create session with the following error "SessionStartAction"',
     type: 'error'
   }));
 });
