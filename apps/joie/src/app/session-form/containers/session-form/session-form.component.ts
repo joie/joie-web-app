@@ -5,18 +5,17 @@ import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-
 import { environment } from '../../../../environments/environment';
 import { Format, Type } from '../../../sessions/enums';
 import { IMAGE } from '../../components/session-form-metadata/session-form-metadata.component';
-import { catchError, finalize, last, map, switchMap, take } from 'rxjs/operators';
-import { iif, Observable, of, scheduled } from 'rxjs';
+import { finalize, last, map, switchMap, take } from 'rxjs/operators';
+import { iif, Observable } from 'rxjs';
 import {
   AngularFireStorage,
   AngularFireStorageReference,
   AngularFireUploadTask,
 } from '@angular/fire/storage';
-import { DocumentReference } from '@angular/fire/firestore';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { get } from 'lodash';
+import get from 'lodash.get';
 
 @Component({
   selector: 'app-session-form',
