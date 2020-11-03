@@ -66,7 +66,7 @@
     "firebaseui": "^4.6.1",
     "kaltura-ngx-client": "file:libs/kaltura-ngx-client.tgz",
     "libphonenumber-js": "^1.8.3",
-    "lodash": "^4.17.20",
+    "lodash.get": "^4.4.2",
     "modularscale-sass": "^3.0.10",
     "ngx-file-drop": "^10.0.0",
     "ngx-auth-firebaseui": "^4.4.0",
