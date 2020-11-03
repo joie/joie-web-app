@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { throwError, Observable, forkJoin } from 'rxjs';
-import { catchError, map, switchMap, take } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import {
   KalturaClient,
-  SessionStartAction,
   KalturaSessionType,
   KalturaMediaEntryFilter,
   KalturaFilterPager,
   MediaListAction,
   ScheduleResourceAddAction,
-  KalturaScheduleResource,
   KalturaCameraScheduleResource,
   KalturaLiveEntryScheduleResource,
   KalturaLocationScheduleResource,
@@ -41,6 +39,7 @@ interface IResponse {
 @Injectable({ providedIn: 'root' })
 export class KalturaApiHandShakeService {
   static readonly partnerId = environment.kalturaConfig.partner_id;
+  static readonly uiconfId = environment.kalturaConfig.uiconf_id;
   // expiry time of the session
   public expiry: 84000;
   kWidget = kWidget;
@@ -224,10 +223,12 @@ export class KalturaApiHandShakeService {
   }
 
   boot(entryID: any) {
+    const { uiconfId, partnerId } = KalturaApiHandShakeService;
+
     const kalturaConfiguration = {
       targetId: 'player',
-      wid: '_2976751',
-      uiconf_id: 46213871,
+      wid: partnerId,
+      uiconf_id: uiconfId,
       flashvars: {},
       cache_st: 1602684332,
       entry_id: entryID,
