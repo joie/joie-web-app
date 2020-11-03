@@ -32,7 +32,7 @@ export const startKalturaSession = https.onCall(async (params, context) => {
     throw new https.HttpsError('not-found', "couldn't find user in firestore");
   }
 
-  const resp = await initKalturaSession(email);
+  const resp = await initKalturaSession(email, params);
 
   if (resp) {
     return catchErrors(Promise.resolve({
@@ -51,12 +51,13 @@ export const startKalturaSession = https.onCall(async (params, context) => {
   }));
 });
 
-const initKalturaSession = async (userEmail: string): Promise<any> => {
+const initKalturaSession = async (userEmail: string, params: any): Promise<any> => {
   try {
     const session = await client.request(
       new SessionStartAction({
         ...kalturaConfig,
         userId: userEmail,
+        ...params
       })
     );
 

@@ -1,3 +1,4 @@
+import { KalturaApiHandShakeService } from './../../../kaltura-player/kaltura-api-handshake.service';
 import { SessionsService } from './../../../services/sessions/sessions.service';
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -17,7 +18,6 @@ import {
   MediaUpdateContentAction,
 } from 'kaltura-ngx-client';
 import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
-import { PlayerService } from '../../../services/player.service';
 import { Session } from '../../models';
 import { Subscription } from 'rxjs';
 
@@ -39,7 +39,7 @@ export class VideoUploadComponent implements OnInit {
   subscription: Subscription;
 
   constructor(
-    private playerService: PlayerService,
+    private kalturaApiHandShakeService: KalturaApiHandShakeService,
     private kalturaClient: KalturaClient,
     private snackBar: MatSnackBar,
     private sessionsFacade: SessionsService
@@ -109,9 +109,9 @@ export class VideoUploadComponent implements OnInit {
       )
       .pipe(untilDestroyed(this))
       .subscribe(
-        (result) => {
-          console.log(result);
-          this.playerService.boot(this.entryId);
+        async (result) => {
+          console.log('result->', result);
+          this.kalturaApiHandShakeService.boot(this.entryId);
 
           setTimeout(() => {
             this.uploading = false;

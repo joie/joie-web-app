@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { throwError, Observable, forkJoin } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, take } from 'rxjs/operators';
 import {
   KalturaClient,
   SessionStartAction,
@@ -27,39 +27,38 @@ import {
 } from 'kaltura-ngx-client';
 import { environment } from '../../environments/environment';
 import { Roles, UserContextualRole } from '../models';
+import { AngularFireFunctions } from '@angular/fire/functions';
+
+declare var kWidget;
+declare var $: any;
+
+interface IResponse {
+  type: 'success' | 'error';
+  data: any;
+  message: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class KalturaApiHandShakeService {
-  static readonly clientSecret = environment.kalturaConfig.clientSecret;
   static readonly partnerId = environment.kalturaConfig.partner_id;
   // expiry time of the session
   public expiry: 84000;
+  kWidget = kWidget;
 
-  constructor(private kaltura: KalturaClient) {}
+  constructor(private kaltura: KalturaClient, private fns: AngularFireFunctions) {
+    this.getKalturaSession();
+  }
 
   getKalturaSession() {
-    this.kaltura.setOptions({
-      clientTag: 'sample-code',
-      endpointUrl: 'https://www.kaltura.com',
+    this.startSession().subscribe((resp: IResponse) => {
+      if (resp.type === 'success') {
+        this.kaltura.setOptions(resp.data.kaltura_options);
+        this.kaltura.setDefaultRequestOptions({ ks: resp.data.session });
+      } else {
+        console.error(resp.message);
+        throwError(resp.message);
+      }
     });
-    // create session for Kalutura handshake
-    this.kaltura
-      .request(
-        new SessionStartAction({
-          secret: KalturaApiHandShakeService.clientSecret,
-          type: KalturaSessionType.admin,
-          partnerId: KalturaApiHandShakeService.partnerId,
-        })
-      )
-      .subscribe(
-        (ks) => {
-          this.kaltura.setDefaultRequestOptions({ ks });
-        },
-        (error) => {
-          console.error(`failed to create session with the following error 'SessionStartAction'`);
-          throwError(error);
-        }
-      );
   }
 
   /**
@@ -189,6 +188,8 @@ export class KalturaApiHandShakeService {
    * @param role of the session
    * @param type of user
    * @param userCtxRole userContextualRole of the user
+   *
+   * @returns session token
    */
   createSession(
     userId,
@@ -196,19 +197,54 @@ export class KalturaApiHandShakeService {
     role: string = Roles.viewer,
     type: number = KalturaSessionType.user,
     userCtxRole: number = UserContextualRole.guest
-  ): Observable<any> {
+  ): Observable<string> {
     const privileges = `eventId:${eventId},role:${role},userContextualRole:${userCtxRole}`;
 
-    const { clientSecret: secret, partnerId } = KalturaApiHandShakeService;
-    return this.kaltura.request(
-      new SessionStartAction({
-        secret,
-        partnerId,
-        type,
-        expiry: this.expiry,
-        privileges,
-        userId,
+    const { partnerId } = KalturaApiHandShakeService;
+
+    return this.startSession({
+      partnerId,
+      type,
+      expiry: this.expiry,
+      privileges,
+      userId,
+    }).pipe(
+      map((resp: IResponse) => {
+        if (resp.type === 'success') {
+          return resp.data.session as string;
+        }
+        return null;
       })
     );
+  }
+
+  startSession(params?: { partnerId: number; type: number; expiry: number; privileges: string; userId: string; }) {
+    const callable = this.fns.httpsCallable('startKalturaSession');
+    return callable(params);
+  }
+
+  boot(entryID: any) {
+    const kalturaConfiguration = {
+      targetId: 'player',
+      wid: '_2976751',
+      uiconf_id: 46213871,
+      flashvars: {},
+      cache_st: 1602684332,
+      entry_id: entryID,
+    };
+    this.kWidget.embed(kalturaConfiguration);
+  }
+
+  reboot(entryID: any) {
+    console.log('updated video id-->', entryID);
+    this.kWidget.addReadyCallback((playerId) => {
+      // var kdp = document.getElementById('player');
+      const kdp = $('#player').get(0);
+      kdp.sendNotification('changeMedia', { entryId: $(this).attr('data-entryId') });
+      kdp.kBind('changeMedia', (data) => {
+        console.log('data?-------------->', data);
+        kdp.evaluate();
+      });
+    });
   }
 }

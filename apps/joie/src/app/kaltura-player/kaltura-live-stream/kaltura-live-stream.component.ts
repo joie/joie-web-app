@@ -58,6 +58,7 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
       .pipe(untilDestroyed(this))
       .subscribe(
         (result) => {
+          console.log('openLiveStreamSession result: ', result)
           this.isLoading = false;
           const url = `https://${KalturaApiHandShakeService.partnerId}.kaf.kaltura.com/virtualEvent/launch?ks=${result}`;
           this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);

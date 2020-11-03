@@ -19,7 +19,6 @@ import { MeetTeacherComponent } from './components/meet-teacher/meet-teacher.com
 import { CommunitySayComponent } from './components/community-say/community-say.component';
 import { SessionFormModule } from '../session-form/session-form.module';
 import { VideoUploadComponent } from './components/video-upload/video-upload.component';
-import { PlayerService } from '../services/player.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { SessionOwnerLinksComponent } from './components/session-owner-links/session-owner-links.component';
@@ -51,9 +50,7 @@ import { SessionOwnerLinksComponent } from './components/session-owner-links/ses
     SessionListModule,
     SessionFormModule,
   ],
-  providers: [
-    PlayerService
-  ],
+  providers: [],
   exports: [SessionEnrollDialogComponent],
 })
 export class SessionsModule {}
