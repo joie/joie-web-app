@@ -16,6 +16,18 @@ export class SessionsService {
     return this.db.get$<Session>('sessions', queryFn) as Observable<Session[]>;
   }
 
+  getSessionss(queryFn?: QueryFn) {
+    return this.db.getSessionsData('sessions', queryFn) as Observable<Session[]>;
+  }
+
+  getSessionsNext(startAfter, queryFn?: QueryFn) {
+    return this.db.getSessionsNext('sessions', startAfter, queryFn) as Observable<Session[]>;
+  }
+
+  getSessionsPrev(prevStartAt, firstInResponse, queryFn?: QueryFn) {
+    return this.db.getSessionsPrev('sessions', prevStartAt, firstInResponse, queryFn) as Observable<Session[]>;
+  }
+
   getSession(id: string) {
     return this.db.get$<Session>(`sessions/${id}`) as Observable<Session>;
   }
