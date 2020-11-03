@@ -4,6 +4,7 @@ import { FormControl, FormArray, Validators, FormGroup } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { Activities, Pillar } from '../../../enums';
 import { CourseLevel } from '../../../sessions/enums';
+import { Currency } from '../../../models';
 
 const FORMAT = 'format';
 @Component({
@@ -19,11 +20,12 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
   UPPER_LIMIT = 20; // https://github.com/joie/joie-web-app/issues/18#issuecomment-671474074
   PILLAR = 'pillar';
   LEVEL = 'level';
-  ACTIVITY = 'activity';
+  ACTIVITIES = 'activities';
   GOALS = 'goals';
   COMMENTS = 'comments';
   PRICE = 'price';
   LIMIT = 'limit';
+  PRICE_CURRENCY = 'currency';
   PRICE_DISPLAY = 'display';
 
   readonly goalsFormArray = new FormArray([]);
@@ -39,13 +41,13 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
       [this.LEVEL, new FormControl(null)],
       [this.GOALS, this.goalsFormArray],
       [this.COMMENTS, this.commentsFormArray],
-      [this.ACTIVITY, new FormControl(null)],
+      [this.ACTIVITIES, new FormControl(null)],
       [this.LIMIT, new FormControl(null)],
       [
         this.PRICE,
         new FormGroup({
-          currency: new FormControl('USD'),
-          display: new FormControl(null),
+          [this.PRICE_CURRENCY]: new FormControl({ value: Currency.USD }), // ! readonly value
+          [this.PRICE_DISPLAY]: new FormControl(null),
         }),
       ],
     ]);

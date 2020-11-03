@@ -1,4 +1,8 @@
 export interface Price {
   display: number;
-  currency: 'USD';
+  currency: Currency;
+}
+
+export enum Currency {
+  USD = 'usd',
 }

@@ -1,22 +1,21 @@
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
-import { SessionsFacade } from '../../../services/sessions.facade';
+import { SessionsService } from '../../../services/sessions/sessions.service';
 import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-handshake.service';
 import { environment } from '../../../../environments/environment';
 import { Format, Type } from '../../../sessions/enums';
 import { IMAGE } from '../../components/session-form-metadata/session-form-metadata.component';
 import { finalize, last, map, switchMap, take } from 'rxjs/operators';
-import { iif, Observable, of } from 'rxjs';
+import { iif, Observable } from 'rxjs';
 import {
   AngularFireStorage,
   AngularFireStorageReference,
   AngularFireUploadTask,
 } from '@angular/fire/storage';
-import { DocumentReference } from '@angular/fire/firestore';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { get } from 'lodash';
+import get from 'lodash.get';
 
 @Component({
   selector: 'app-session-form',
@@ -31,7 +30,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
   sessionId;
 
   constructor(
-    private sessionsFacade: SessionsFacade,
+    private sessionsService: SessionsService,
     private storage: AngularFireStorage,
     private kalturaApiHandShakeService: KalturaApiHandShakeService,
     private authFacade: AuthFacade,
@@ -71,7 +70,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     this.showLoader = true;
     const currentDate = Date.now();
 
-    console.log('form: ', this.form.value)
+    console.log('form: ', this.form.value);
 
     const eventCreationDetails = {
       resourceName: this.form.value.title,
@@ -98,13 +97,18 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
               ...this.form.value,
             })),
             switchMap((session) =>
-              this.sessionsFacade.setSession(get(this.data, 'sessionId', ''), session)
+              this.sessionsService.setSession(get(this.data, 'sessionId', ''), session)
             ),
-            switchMap((session) => (session ? of(this.storeThumbnailIfAny$.bind(this)) : of([]))),
+            map((session) => {
+              // new session response returns a session object while update won't
+              return session ? session.id : this.sessionId;
+            }),
+            switchMap(this.storeThumbnailIfAny$.bind(this)),
             finalize(() => (this.showLoader = false))
           )
-          .subscribe({
-            complete: () => {
+          .subscribe(
+            (res) => {
+              this.showLoader = false;
               this.snackBar.open(
                 `Session ${
                   get(this.data, 'sessionId', false) ? 'updated' : 'created'
@@ -116,18 +120,17 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
                   verticalPosition: 'bottom',
                 }
               );
-              // .onAction()
-              // .subscribe(() => console.log(43));
               if (!get(this.data, 'session', false)) {
                 this.form.reset();
               }
             },
-            error: (error) => {
+            (error) => {
+              this.showLoader = false;
               console.log(
                 `Session creation form : submit() :: ${error} while inserting session details`
               );
-            },
-          });
+            }
+          );
       },
       (error) => {
         this.showLoader = false;
@@ -163,10 +166,10 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     { ref: { fullPath } }: firebase.storage.UploadTaskSnapshot,
     sessionId: string
   ) {
-    return this.sessionsFacade.setSession(sessionId, { thumbRef: fullPath });
+    return this.sessionsService.setSession(sessionId, { thumbRef: fullPath });
   }
 
-  storeThumbnailIfAny$({ id: sessionId }: DocumentReference) {
+  storeThumbnailIfAny$(sessionId: string) {
     const { value: file } = this.getFormControl(IMAGE);
 
     return iif(

@@ -19,20 +19,28 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Activity</mat-label>
-    <mat-select required [formControlName]="ACTIVITY">
-      <mat-option *ngFor="let activity of activityKeys" [value]="activity">{{
-        activityEnum[activity]
-      }}</mat-option>
+    <mat-hint>You can choose up to 3</mat-hint>
+    <mat-select required [formControlName]="ACTIVITIES" multiple>
+      <mat-option
+        *ngFor="let activity of activityKeys"
+        [value]="activity"
+        [disabled]="
+          getFormControl(ACTIVITIES)?.value?.length >= 3 &&
+          !getFormControl(ACTIVITIES)?.value?.includes(activity)
+        "
+      >
+        {{ activityEnum[activity] }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
-
-  <h4>Session goals (add one goal in line)</h4>
 
   <app-form-array-table
     [values]="formArrayValues(GOALS)"
     (remove)="removeControl(goalsFormArray, $event)"
   >
+    <label id="goals-label" slot="label">Session goals</label>
     <app-simple-form-input
+      labelId="goals-label"
       #goalsSimpleForm
       [validators]="sfiValidators"
       (submission)="addGoalOrComment(goalsFormArray, $event)"
@@ -49,12 +57,13 @@
     </button>
   </app-form-array-table>
 
-  <h4>Need to know (add one comment in line)</h4>
   <app-form-array-table
     [values]="formArrayValues(COMMENTS)"
     (remove)="removeControl(commentsFormArray, $event)"
   >
+    <label id="comment-label" slot="label">Need to know</label>
     <app-simple-form-input
+      labelId="comment-label"
       #commentsSimpleForm
       [validators]="sfiValidators"
       (submission)="addGoalOrComment(commentsFormArray, $event)"
@@ -71,21 +80,23 @@
     </button>
   </app-form-array-table>
 
-  <mat-form-field appearance="outline" [formGroupName]="PRICE">
-    <mat-label>Session price (USD)</mat-label>
-    <input
-      type="number"
-      inputmode="numeric"
-      min="0.00"
-      max="10000.00"
-      step="0.05"
-      autocomplete="transaction-amount"
-      [formControlName]="PRICE_DISPLAY"
-      matInput
-    />
-    <span matPrefix>$&nbsp;</span>
-    <mat-hint>At the moment, Joie uses USD as its currency.</mat-hint>
-  </mat-form-field>
+  <ng-container [formGroupName]="PRICE">
+    <mat-form-field appearance="outline">
+      <mat-label>Session price (USD)</mat-label>
+      <input
+        type="number"
+        inputmode="numeric"
+        min="0.00"
+        max="10000.00"
+        step="0.05"
+        autocomplete="transaction-amount"
+        [formControlName]="PRICE_DISPLAY"
+        matInput
+      />
+      <span matPrefix>$&nbsp;</span>
+      <mat-hint>At the moment, Joie uses only USD as its currency.</mat-hint>
+    </mat-form-field>
+  </ng-container>
 
   <mat-form-field *ngIf="isLivestreaming" appearance="outline">
     <mat-label>Number of students</mat-label>

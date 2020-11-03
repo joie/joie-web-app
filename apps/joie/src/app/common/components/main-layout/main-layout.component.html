@@ -2,15 +2,15 @@
   <ng-template [cdkPortalOutlet]="headerComponentPortal"></ng-template>
 </header> -->
 
-<div class="container-fluid">
-  <div class="grid">
-    <div>
+<main>
+  <section>
+    <div class="grid">
       <ng-template [cdkPortalOutlet]="sidenavComponentPortal"></ng-template>
-    </div>
 
-    <main>
-      <router-outlet></router-outlet>
-      <router-outlet name="popup"></router-outlet>
-    </main>
-  </div>
-</div>
+      <div>
+        <router-outlet></router-outlet>
+        <router-outlet name="popup"></router-outlet>
+      </div>
+    </div>
+  </section>
+</main>

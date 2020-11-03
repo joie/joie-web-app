@@ -15,10 +15,10 @@ const routes: Routes = [
       {
         path: 'log-in',
         component: DialogRouterComponent,
-        // resolve: {
-        //   matDialogConfig: {},
-        // },
-        data: { dialogComponent: LogInComponent },
+        data: {
+          dialogComponent: LogInComponent,
+          matDialogConfig: { autoFocus: false, width: 250 },
+        },
         // ! guard if already logged in
         // ...canActivate(redirectUnauthorizedToLogin),
         // ...canActivate(redirectLoggedInToItems)

@@ -15,13 +15,13 @@
 <main>
   <section
     [ngClass]="{
-      'section-offset-block-start': isLargeBreakpoint$ | async
+      'section-offset-block-start': breakpoints.isBreakpointWeb$ | async
     }"
     class="mission-hero layout-rows-md"
   >
     <div class="container-condense">
       <mat-card
-        *ngIf="isLargeBreakpoint$ | async; else headContext"
+        *ngIf="breakpoints.isBreakpointWeb$ | async; else headContext"
         class="mission-offset-card mat-elevation-z1 text-center"
       >
         <ng-container *ngTemplateOutlet="headContext"></ng-container>

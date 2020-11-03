@@ -7,6 +7,7 @@ import { MaterialModule } from '../core/material.module';
 import { KalturaPlayerModule } from '../kaltura-player/kaltura-player.module';
 import { SharedModule } from '../shared/shared.module';
 import { PillarListModule } from '../pillar-list/pillar-list.module';
+import { YoutubeVideoModule } from '../youtube-video/youtube-video.module';
 
 @NgModule({
   declarations: [HomeDashboardComponent],
@@ -17,6 +18,7 @@ import { PillarListModule } from '../pillar-list/pillar-list.module';
     MaterialModule,
     KalturaPlayerModule,
     PillarListModule,
+    YoutubeVideoModule,
   ],
 })
 export class HomeModule {}

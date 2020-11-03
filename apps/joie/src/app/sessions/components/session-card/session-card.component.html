@@ -3,17 +3,22 @@
     <!-- <div class="banner">Hurry up! Only 2 spots left</div> -->
 
     <div class="layout-columns layout-center">
-      <img [fireStorageRef]="session.thumbRef" loading="lazy" alt="Thumbnail image of a session {{ session.title }}" mat-card-image>
+      <img
+        [fireStorageRef]="session.thumbRef"
+        loading="lazy"
+        alt="Thumbnail image of a session {{ session.title }}"
+        mat-card-image
+      />
     </div>
     <mat-card-content>
-      <button mat-raised-button color="accent" style="width: 100%;">Enroll In Session</button>
+      <button mat-raised-button color="accent" style="width: 100%">Enroll In Session</button>
       <div class="row-spacing">
         <div>
           <div>{{ session?.title }}</div>
           <div>{{ session?.owner?.displayName }}</div>
         </div>
         <app-paper-item class="layout-center">
-          <app-icon class="joie-icon size-sm" name="heart"></app-icon>
+          <app-icon class="size-sm" name="heart"></app-icon>
           <div>{{ session?.recommendationPercentage }} %</div>
         </app-paper-item>
       </div>
@@ -28,21 +33,21 @@
 </ng-container>
 
 <ng-template #card>
+  <div class="banner mat-elevation-z2" *ngIf="session?.promo as promo">{{ promo }}</div>
   <mat-card>
-    <div class="banner">Hurry up! Only 2 spots left</div>
     <div class="text-center">
       <mat-card-subtitle>
         <app-paper-item class="layout-center">
-          <app-icon class="joie-icon size-sm" [name]="pillarIcons.get(pillar[session?.pillar])"></app-icon>
+          <app-icon class="size-sm" [name]="pillarIcons.get(pillar[session?.pillar])"></app-icon>
           <div [innerHTML]="session?.pillar | joiePrefix: false"></div>
         </app-paper-item>
       </mat-card-subtitle>
       <mat-card-title>{{ session?.title }}</mat-card-title>
     </div>
     <mat-card-content class="text-center">
-      <img mat-card-avatar src="{{ session?.owner?.photoURL }}" alt="">
+      <img mat-card-avatar src="{{ session?.owner?.photoURL }}" alt="" />
       <h3>{{ session?.owner?.displayName }}</h3>
-      <h3 style="margin: 0;">{{ session?.createdAt }}</h3>
+      <h3 style="margin: 0">{{ session?.createdAt }}</h3>
       <h3>
         {{ session?.duration?.amount + session?.duration?.unit }} -
         {{ session?.type }}
@@ -51,15 +56,15 @@
         <!-- TODO implement price pipe based on the logged in user-->
         Price: {{ session?.price?.display | currency: session?.price?.currency }}
       </h3>
-      <button mat-raised-button color="accent" style="width: 100%;">Enroll In Session</button>
+      <button mat-raised-button color="accent" style="width: 100%">Enroll In Session</button>
       <app-paper-item class="layout-center">
-        <app-icon class="joie-icon size-sm" name="heart"></app-icon>
+        <app-icon class="size-sm" name="heart"></app-icon>
         <div>{{ session?.recommendationPercentage }} % people recommended this</div>
       </app-paper-item>
     </mat-card-content>
     <mat-card-actions class="text-center">
       <button mat-button>
-        <app-icon class="joie-icon size-sm" name="heart"></app-icon>
+        <app-icon class="size-sm" name="heart"></app-icon>
         Save to my journey
       </button>
     </mat-card-actions>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 // import { UntilDestroy } from '@ngneat/until-destroy';
-import { SessionsFacade } from '../../../services/sessions.facade';
+import { SessionsService } from '../../../services/sessions/sessions.service';
 import { Observable } from 'rxjs';
 import { map, pluck, shareReplay, switchMap, take } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
@@ -62,7 +62,7 @@ export class SessionDetailsComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private sessionsFacade: SessionsFacade,
+    private sessionsFacade: SessionsService,
     private authFacade: AuthFacade
   ) {}
 

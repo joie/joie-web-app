@@ -1,3 +1,65 @@
+@use "sass:map";
+// :host {
+//   display: contents;
+// }
+
 :host {
-  display: inline;
+  $unit: 12px;
+  display: inline-block;
+  height: var(--size, $unit);
+  width: var(--size, $unit);
+  inline-size: var(--size, $unit);
+  block-size: var(--size, $unit);
+
+  $size-variable-name: --size;
+  $sizes: (
+    'xs': 1,
+    'sm': 2,
+    'md': 3,
+    'lg': 4,
+    'xl': 6,
+    'xxl': 8,
+  );
+
+  @each $key, $value in $sizes {
+    @at-root :host(.size-#{$key}) {
+      #{$size-variable-name}: calc(#{$unit} * #{map.get($sizes, #{$key})});
+    }
+  }
+
+  @at-root :is(:host(.size-md), :host(.size-lg), :host(.size-xl), :host(.size-xxl)) {
+    stroke-width: 0.5;
+  }
+}
+
+:host(.inline) {
+  display: contents;
+}
+
+:host(.backdrop) {
+  position: relative;
+  padding: calc(var(--size) / 5);
+
+  &::before {
+    content: '';
+    background-color: #ddecea;
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    inline-size: inherit;
+    block-size: inherit;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    padding: inherit;
+  }
+  > :first-child {
+    position: relative;
+  }
+}
+
+mat-icon {
+  width: inherit;
+  height: inherit;
 }

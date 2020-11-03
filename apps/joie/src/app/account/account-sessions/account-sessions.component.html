@@ -1,19 +1,28 @@
-<a
-  mat-raised-button
-  color="accent"
-  [routerLink]="[
-    {
-      outlets: {
-        popup: ['create']
-      }
-    }
-  ]"
->
-  <mat-icon>add</mat-icon> Add Session
-</a>
+<div class="container-fluid">
+  <div class="layout-rows-xs">
+    <header>
+      <h3>My Sessions</h3>
 
-<app-session-list
-  class="layout-rows-xs layout-columns-lg"
-  *ngIf="boundQueryFn$ | async as boundQueryFn"
-  [queryFn]="boundQueryFn"
-></app-session-list>
+      <a
+        mat-raised-button
+        color="accent"
+        [routerLink]="[
+          {
+            outlets: {
+              popup: ['create']
+            }
+          }
+        ]"
+      >
+        <app-icon class="size-sm" name="plus-circle"></app-icon>
+        Add session
+      </a>
+    </header>
+
+    <app-session-list
+      class="layout-rows-xs layout-columns-lg"
+      *ngIf="boundQueryFn$ | async as boundQueryFn"
+      [queryFn]="boundQueryFn"
+    ></app-session-list>
+  </div>
+</div>

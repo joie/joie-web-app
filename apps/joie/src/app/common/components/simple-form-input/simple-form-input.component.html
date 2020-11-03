@@ -1,3 +1,9 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form" #documentEditForm="ngForm">
-  <input #textInput type="text" matInput formControlName="text" />
+  <input
+    #textInput
+    type="text"
+    matInput
+    formControlName="text"
+    [attr.aria-labelledby]="labelId ? labelId : null"
+  />
 </form>
