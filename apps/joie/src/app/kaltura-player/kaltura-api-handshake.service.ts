@@ -22,6 +22,11 @@ import {
   ScheduleEventListAction,
   ScheduleEventResourceAddAction,
   KalturaScheduleEventResource,
+  MediaAddAction,
+  KalturaMediaEntry,
+  KalturaMediaType,
+  MediaAddContentAction,
+  KalturaUploadedFileTokenResource,
 } from 'kaltura-ngx-client';
 import { environment } from '../../environments/environment';
 import { Roles, UserContextualRole } from '../models';
@@ -179,6 +184,21 @@ export class KalturaApiHandShakeService {
     scheduleEventResource.resourceId = resourceId;
 
     return this.kaltura.request(new ScheduleEventResourceAddAction({ scheduleEventResource }));
+  }
+
+  createMediaAddAction(data): Observable<any> {
+    let entry = new KalturaMediaEntry();
+    entry.mediaType = KalturaMediaType.video;
+    entry = { ...entry, ...data};
+
+    return this.kaltura.request(new MediaAddAction({ entry }));
+  }
+
+  createMediaAddContentAction(entryId, uploadTokenID): Observable<any> {
+    const resource = new KalturaUploadedFileTokenResource();
+    resource.token = uploadTokenID;
+
+    return this.kaltura.request(new MediaAddContentAction({ entryId, resource }));
   }
 
   /**

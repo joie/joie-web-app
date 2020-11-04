@@ -2,7 +2,7 @@ import { KalturaApiHandShakeService } from './../../../kaltura-player/kaltura-ap
 import { SessionsService } from './../../../services/sessions/sessions.service';
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { mergeMap } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import {
   KalturaClient,
@@ -91,39 +91,35 @@ export class VideoUploadComponent implements OnInit {
         }),
         mergeMap((token) => {
           // TODO - take values from the form
-          const entry = new KalturaMediaEntry();
-          // entry.name = 'hardcoded-2';
-          entry.mediaType = KalturaMediaType.video;
-          entry.description = '';
+          const data = {
+            description: '',
+            // name: 'hardcoded-2',
+          };
 
-          return this.kalturaClient.request(new MediaAddAction({ entry }));
+          return this.kalturaApiHandShakeService.createMediaAddAction(data);
         }),
         mergeMap((entry: KalturaMediaEntry) => {
           this.entryId = entry.rootEntryId;
-          const entryId = entry.rootEntryId;
-          const resource = new KalturaUploadedFileTokenResource();
-          resource.token = this.uploadTokenID;
-          return this.kalturaClient.request(new MediaAddContentAction({ entryId, resource }));
+
+          return this.kalturaApiHandShakeService.createMediaAddContentAction(this.entryId, this.uploadTokenID);
         }),
         untilDestroyed(this)
       )
       .pipe(untilDestroyed(this))
       .subscribe(
-        async (result) => {
+        (result) => {
           console.log('result->', result);
-          this.kalturaApiHandShakeService.boot(this.entryId);
+          // this.kalturaApiHandShakeService.boot(this.entryId);
 
-          setTimeout(() => {
-            this.uploading = false;
-            this.snackBar.open('Uploaded successfully!', '', {
-              duration: 3000,
+          this.uploading = false;
+          this.snackBar.open('Uploaded successfully!', '', {
+            duration: 3000,
+          });
+          this.sessionsFacade
+            .setSession(this.sessionId, {
+              entryId: this.entryId,
+              entryLastUpdated: new Date().getTime(),
             });
-            this.sessionsFacade
-              .setSession(this.sessionId, {
-                entryId: this.entryId,
-                entryLastUpdated: new Date().getTime(),
-              });
-          }, 60000);
         },
         (error) => {
           this.uploading = false;
