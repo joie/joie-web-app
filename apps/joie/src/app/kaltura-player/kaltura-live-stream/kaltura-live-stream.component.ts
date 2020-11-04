@@ -1,10 +1,7 @@
-import { Component, OnChanges, Input, SimpleChanges, OnInit } from '@angular/core';
+import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { KalturaApiHandShakeService } from '../kaltura-api-handshake.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Session } from '../../sessions/models';
-
-declare var kWidget;
 
 @UntilDestroy()
 @Component({
@@ -12,7 +9,7 @@ declare var kWidget;
   templateUrl: './kaltura-live-stream.component.html',
   styleUrls: ['./kaltura-live-stream.component.scss'],
 })
-export class KalturaLiveStreamPlayerComponent implements OnInit, OnChanges {
+export class KalturaLiveStreamPlayerComponent implements OnChanges {
   @Input() width = 600;
   @Input() height = 400;
   @Input() displayName: string;
@@ -27,10 +24,6 @@ export class KalturaLiveStreamPlayerComponent implements OnInit, OnChanges {
     private kalturaApiHandShakeService: KalturaApiHandShakeService,
     private domSanitizer: DomSanitizer
   ) {}
-
-  ngOnInit() {
-    this.kalturaApiHandShakeService.getKalturaSession();
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     // only call live stream session if all needed arguments have values
