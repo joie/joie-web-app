@@ -65,13 +65,13 @@ export const teacherList = [
   {
     photo_url: '/assets/images/image 3.png',
     description:
-      'As a creative entrepreneur with expertise in health and wellness, I knew I needed assistance with designing and marketing my ideas. The process with Joie has been a pleasure from the start. After being provided with easy-to-follow outlines and constructive feedback I feel confident and supported launching my products on the Joie platform! The staff are responsive and kind, and I\'m very excited to be working with them. Looking forward to connecting with you in the community!',
+      "As a creative entrepreneur with expertise in health and wellness, I knew I needed assistance with designing and marketing my ideas. The process with Joie has been a pleasure from the start. After being provided with easy-to-follow outlines and constructive feedback I feel confident and supported launching my products on the Joie platform! The staff are responsive and kind, and I'm very excited to be working with them. Looking forward to connecting with you in the community!",
     teacher_info: 'Jill Shireen  // Meditation, Belly-Dance, Prenatal And New Baby Coach',
   },
   {
     photo_url: '/assets/images/image 6.png',
     description:
-      'I am very much enjoying the process!  It\'s wonderful that you told me all the various details upfront, and then told me that I wouldn\'t have to work on all of them at once.  It has been a very pleasantly-paced process; it\'s also clear and easy to accomplish.  I am grateful that you are so helpful with any questions that I have, and that your responses have been prompt.',
-    teacher_info: 'Frances O'Brien  // Life-coach and Meditation',
+      "I am very much enjoying the process!  It's wonderful that you told me all the various details upfront, and then told me that I wouldn't have to work on all of them at once.  It has been a very pleasantly-paced process; it's also clear and easy to accomplish.  I am grateful that you are so helpful with any questions that I have, and that your responses have been prompt.",
+    teacher_info: "Frances O'Brien", // Life-coach and Meditation',
   },
 ];
