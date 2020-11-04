@@ -27,6 +27,9 @@ import {
   KalturaMediaType,
   MediaAddContentAction,
   KalturaUploadedFileTokenResource,
+  UploadTokenUploadAction,
+  UploadTokenAddAction,
+  KalturaUploadToken,
 } from 'kaltura-ngx-client';
 import { environment } from '../../environments/environment';
 import { Roles, UserContextualRole } from '../models';
@@ -186,10 +189,11 @@ export class KalturaApiHandShakeService {
     return this.kaltura.request(new ScheduleEventResourceAddAction({ scheduleEventResource }));
   }
 
-  createMediaAddAction(data): Observable<any> {
-    let entry = new KalturaMediaEntry();
+  createMediaAddAction(data: { description: string; name: string; }): Observable<any> {
+    const entry = new KalturaMediaEntry();
     entry.mediaType = KalturaMediaType.video;
-    entry = { ...entry, ...data};
+    entry.description = data.description;
+    entry.name = data.name;
 
     return this.kaltura.request(new MediaAddAction({ entry }));
   }
@@ -199,6 +203,24 @@ export class KalturaApiHandShakeService {
     resource.token = uploadTokenID;
 
     return this.kaltura.request(new MediaAddContentAction({ entryId, resource }));
+  }
+
+  createUploadTokenUploadAction(uploadTokenId, fileData): Observable<any> {
+    return this.kaltura.request(
+      new UploadTokenUploadAction({
+        uploadTokenId,
+        fileData,
+        resume: true,
+        finalChunk: true,
+        resumeAt: -1,
+      })
+    );
+  }
+
+  createUploadTokenAddAction(): Observable<any> {
+    return this.kaltura.request(
+      new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() })
+    );
   }
 
   /**
@@ -242,6 +264,12 @@ export class KalturaApiHandShakeService {
     return callable(params);
   }
 
+  /**
+   * Embed Kaltura Player
+   * @param entryID | string
+   *
+   * @url http://kgit.html5video.org/tags/v2.57.1/docs/api#kWidget.settingsObject
+   */
   boot(entryID: any) {
     const { uiconfId, partnerId } = KalturaApiHandShakeService;
 

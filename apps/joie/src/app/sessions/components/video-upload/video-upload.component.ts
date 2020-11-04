@@ -2,24 +2,21 @@ import { KalturaApiHandShakeService } from './../../../kaltura-player/kaltura-ap
 import { SessionsService } from './../../../services/sessions/sessions.service';
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { map, mergeMap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import {
   KalturaClient,
   UploadTokenUploadAction,
   UploadTokenAddAction,
   KalturaUploadToken,
-  MediaAddAction,
-  KalturaMediaType,
   KalturaMediaEntry,
   KalturaUploadedFileTokenResource,
-  MediaAddContentAction,
   KalturaEntryReplacementOptions,
   MediaUpdateContentAction,
 } from 'kaltura-ngx-client';
 import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
 import { Session } from '../../models';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
@@ -74,54 +71,46 @@ export class VideoUploadComponent implements OnInit {
   fileUpload() {
     console.log('File uploading...');
     this.uploading = true;
-    this.subscription = this.kalturaClient
-      .request(new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() }))
+    this.subscription = this.kalturaApiHandShakeService
+      .createUploadTokenAddAction()
       .pipe(
         mergeMap((uploadTokenReponse) => {
           this.uploadTokenID = uploadTokenReponse.id;
-          return this.kalturaClient.request(
-            new UploadTokenUploadAction({
-              uploadTokenId: uploadTokenReponse.id,
-              fileData: this.fileData,
-              resume: true,
-              finalChunk: true,
-              resumeAt: -1,
-            })
-          );
+          return this.kalturaApiHandShakeService.createUploadTokenUploadAction(this.uploadTokenID, this.fileData);
         }),
         mergeMap((token) => {
           // TODO - take values from the form
           const data = {
             description: '',
+            name: ''
             // name: 'hardcoded-2',
           };
-
           return this.kalturaApiHandShakeService.createMediaAddAction(data);
         }),
         mergeMap((entry: KalturaMediaEntry) => {
           this.entryId = entry.rootEntryId;
-
           return this.kalturaApiHandShakeService.createMediaAddContentAction(this.entryId, this.uploadTokenID);
         }),
-        untilDestroyed(this)
       )
       .pipe(untilDestroyed(this))
       .subscribe(
         (result) => {
           console.log('result->', result);
-          // this.kalturaApiHandShakeService.boot(this.entryId);
-
-          this.uploading = false;
-          this.snackBar.open('Uploaded successfully!', '', {
-            duration: 3000,
-          });
-          this.sessionsFacade
-            .setSession(this.sessionId, {
-              entryId: this.entryId,
-              entryLastUpdated: new Date().getTime(),
+          this.kalturaApiHandShakeService.boot(this.entryId);
+          setTimeout(() => {
+            this.uploading = false;
+            this.snackBar.open('Uploaded successfully!', '', {
+              duration: 3000,
             });
+            this.sessionsFacade
+              .setSession(this.sessionId, {
+                entryId: this.entryId,
+                entryLastUpdated: new Date().getTime(),
+              });
+          }, 6000);
         },
         (error) => {
+          console.error(error)
           this.uploading = false;
         }
       );
