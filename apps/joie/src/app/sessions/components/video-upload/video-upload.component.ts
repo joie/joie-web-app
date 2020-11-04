@@ -4,19 +4,10 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { mergeMap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import {
-  KalturaClient,
-  UploadTokenUploadAction,
-  UploadTokenAddAction,
-  KalturaUploadToken,
-  KalturaMediaEntry,
-  KalturaUploadedFileTokenResource,
-  KalturaEntryReplacementOptions,
-  MediaUpdateContentAction,
-} from 'kaltura-ngx-client';
+import { KalturaMediaEntry } from 'kaltura-ngx-client';
 import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
 import { Session } from '../../models';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
@@ -37,7 +28,6 @@ export class VideoUploadComponent implements OnInit {
 
   constructor(
     private kalturaApiHandShakeService: KalturaApiHandShakeService,
-    private kalturaClient: KalturaClient,
     private snackBar: MatSnackBar,
     private sessionsFacade: SessionsService
   ) {}
@@ -97,6 +87,7 @@ export class VideoUploadComponent implements OnInit {
         (result) => {
           console.log('result->', result);
           this.kalturaApiHandShakeService.boot(this.entryId);
+          // @TODO: find a way to detect when processing ends on Kalutra side
           setTimeout(() => {
             this.uploading = false;
             this.snackBar.open('Uploaded successfully!', '', {
@@ -110,7 +101,7 @@ export class VideoUploadComponent implements OnInit {
           }, 6000);
         },
         (error) => {
-          console.error(error)
+          console.log(error);
           this.uploading = false;
         }
       );
@@ -120,35 +111,18 @@ export class VideoUploadComponent implements OnInit {
     console.log('File replacing...');
     // this.fileData = fileInputEvent.target.files[0] as File;
     this.uploading = true;
-    this.kalturaClient
-      .request(new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() }))
+    this.kalturaApiHandShakeService
+      .createUploadTokenAddAction()
       .pipe(
         mergeMap((uploadTokenResponse) => {
           this.uploadTokenID = uploadTokenResponse.id;
-          return this.kalturaClient.request(
-            new UploadTokenUploadAction({
-              uploadTokenId: uploadTokenResponse.id,
-              fileData: this.fileData,
-              resume: true,
-              finalChunk: true,
-              resumeAt: -1,
-            })
-          );
+          return this.kalturaApiHandShakeService.createUploadTokenUploadAction(this.uploadTokenID, this.fileData);
         }),
         mergeMap((token) => {
-          const advancedOptions = new KalturaEntryReplacementOptions();
           const entryId = this.session.entryId;
-          const resource = new KalturaUploadedFileTokenResource();
-          resource.token = this.uploadTokenID;
           const conversionProfileId = 0;
-          return this.kalturaClient.request(
-            new MediaUpdateContentAction({
-              entryId,
-              resource,
-              conversionProfileId,
-              advancedOptions,
-            })
-          );
+
+          return this.kalturaApiHandShakeService.createMediaUpdateContentAction(entryId, this.uploadTokenID, conversionProfileId);
         })
       )
       .pipe(untilDestroyed(this))

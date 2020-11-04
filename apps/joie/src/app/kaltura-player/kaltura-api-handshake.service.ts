@@ -30,6 +30,8 @@ import {
   UploadTokenUploadAction,
   UploadTokenAddAction,
   KalturaUploadToken,
+  MediaUpdateContentAction,
+  KalturaEntryReplacementOptions,
 } from 'kaltura-ngx-client';
 import { environment } from '../../environments/environment';
 import { Roles, UserContextualRole } from '../models';
@@ -220,6 +222,21 @@ export class KalturaApiHandShakeService {
   createUploadTokenAddAction(): Observable<any> {
     return this.kaltura.request(
       new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() })
+    );
+  }
+
+  createMediaUpdateContentAction(entryId, uploadTokenID, conversionProfileId): Observable<any> {
+    const advancedOptions = new KalturaEntryReplacementOptions();
+    const resource = new KalturaUploadedFileTokenResource();
+    resource.token = uploadTokenID;
+
+    return this.kaltura.request(
+      new MediaUpdateContentAction({
+        entryId,
+        resource,
+        conversionProfileId,
+        advancedOptions,
+      })
     );
   }
 
