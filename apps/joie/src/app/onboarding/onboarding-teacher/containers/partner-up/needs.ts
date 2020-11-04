@@ -53,8 +53,7 @@ export const teacherList = [
     photo_url: '/assets/images/bio_pic_2020 1.png',
     description:
       'From the moment that I connected with the helpful staff at Joie, I knew I had found a true gem. Jason and his staff made me feel completely supported and welcome from the very beginning. Every question I have asked along the way has been answered right away with as many resources provided as necessary. Each step to joining the Joie family has been easy and enjoyable. It has been amazing to watch everything unfold in front of my eyes and I feel very fortunate to be part of the Joie family at these early stages. If you are a yoga teacher looking to expand and teach in a new, innovative way, this is the platform for you!',
-    teacher_info:
-      'Stacie Goldin. RYT, CYT. Sp.Hon. B.A.; B.Ed.  //  Hatha, Restorative, Yin, Vinyasa, Meditation',
+    teacher_info: 'Stacie Goldin. RYT, CYT. Sp.Hon. B.A.; B.Ed.  //  Hatha, Restorative, Yin, Vinyasa, Meditation',
   },
   {
     photo_url: '/assets/images/image 5.png',
@@ -64,14 +63,12 @@ export const teacherList = [
   },
   {
     photo_url: '/assets/images/image 3.png',
-    description:
-      "As a creative entrepreneur with expertise in health and wellness, I knew I needed assistance with designing and marketing my ideas. The process with Joie has been a pleasure from the start. After being provided with easy-to-follow outlines and constructive feedback I feel confident and supported launching my products on the Joie platform! The staff are responsive and kind, and I'm very excited to be working with them. Looking forward to connecting with you in the community!",
+    description: `As a creative entrepreneur with expertise in health and wellness, I knew I needed assistance with designing and marketing my ideas. The process with Joie has been a pleasure from the start. After being provided with easy-to-follow outlines and constructive feedback I feel confident and supported launching my products on the Joie platform! The staff are responsive and kind, and I'm very excited to be working with them. Looking forward to connecting with you in the community!`,
     teacher_info: 'Jill Shireen  // Meditation, Belly-Dance, Prenatal And New Baby Coach',
   },
   {
     photo_url: '/assets/images/image 6.png',
-    description:
-      "I am very much enjoying the process!  It's wonderful that you told me all the various details upfront, and then told me that I wouldn't have to work on all of them at once.  It has been a very pleasantly-paced process; it's also clear and easy to accomplish.  I am grateful that you are so helpful with any questions that I have, and that your responses have been prompt.",
-    teacher_info: "Frances O'Brien", // Life-coach and Meditation',
+    description: `I am very much enjoying the process!  It's wonderful that you told me all the various details upfront, and then told me that I wouldn't have to work on all of them at once.  It has been a very pleasantly-paced process; it's also clear and easy to accomplish.  I am grateful that you are so helpful with any questions that I have, and that your responses have been prompt.`,
+    teacher_info: `Frances O'Brien`, // Life-coach and Meditation',
   },
 ];

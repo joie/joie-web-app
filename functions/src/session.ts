@@ -18,19 +18,17 @@ export const sessionCreate = functions.firestore
     }
   });
 
-export const sessionDelete = functions.firestore
-  .document(`/${SESSIONS}/{sessionId}`)
-  .onDelete((snap) => {
-    const { thumbRef } = snap.data();
+export const sessionDelete = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onDelete((snap) => {
+  const { thumbRef } = snap.data();
 
-    if (thumbRef) {
-      const bucket = admin.storage().bucket();
-      const folderPath = thumbRef.substring(0, thumbRef.lastIndexOf('/'));
-      return bucket.deleteFiles({ prefix: folderPath });
-    } else {
-      return null;
-    }
-  });
+  if (thumbRef) {
+    const bucket = admin.storage().bucket();
+    const folderPath = thumbRef.substring(0, thumbRef.lastIndexOf('/'));
+    return bucket.deleteFiles({ prefix: folderPath });
+  } else {
+    return null;
+  }
+});
 
 export const deleteSession = functions.https.onCall(async (params, context) => {
   const { id } = params;
@@ -55,7 +53,7 @@ export const deleteSession = functions.https.onCall(async (params, context) => {
           Promise.resolve({
             message: error,
             type: 'error',
-          })
+          }),
         );
       });
 
@@ -63,7 +61,7 @@ export const deleteSession = functions.https.onCall(async (params, context) => {
       Promise.resolve({
         message: 'Session succesfully deleted!',
         type: 'success',
-      })
+      }),
     );
   }
 
@@ -71,7 +69,7 @@ export const deleteSession = functions.https.onCall(async (params, context) => {
     Promise.resolve({
       message: 'Failed deleting session, due to missing permission',
       type: 'error',
-    })
+    }),
   );
 });
 
