@@ -12,6 +12,7 @@ module.exports = {
   parserOptions: {
     project: "tsconfig.json",
     sourceType: "module",
+    extraFileExtensions: ['.DELETE']
   },
   plugins: [
     "@typescript-eslint",
@@ -66,5 +67,11 @@ module.exports = {
         returns: "return",
       },
     },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        paths: ['./src']
+      }
+    }
   },
 };
