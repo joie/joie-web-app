@@ -19,7 +19,7 @@
 
 ### Misc
 - if a teacher hacks the client and uses the current auth against Kaltura, can they obuse the API and add entries, uploads, resources? anything worth mentioning?
-- Uploading a video should reflect progress indication - been told to plainly observe http call events but we're using the [Kaltura angular library](https://github.com/kaltura/kaltura-ng)'s _MediaAddContentAction_ observable. should we use a different method?
+- Uploading a video should reflect progress indication - been told to plainly observe http call events but we're using the [Kaltura angular library](https://github.com/kaltura/kaltura-ng)'s _MediaAddContentAction_ observable which only emits on completion. should we use a different method?
 
 ### Practices for database
 - Uploaded videos should be stored in firestore session document as refs (entryId?, resourceId?)
