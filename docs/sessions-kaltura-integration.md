@@ -26,6 +26,7 @@
 - Is the angular, 2 year old, library trustworthy?
 - Background sync for multiple videos?
 - Can we also add here, which of Kaltura libraries (nodejs) do you suggest for us to use on server side so we handle the handshake, so we are safe on secret keys? Recently we discovered Kaltura TypeScript Client we are experimenting with it to use in the server side, is it the correct package to use?
+- when uploading a file, on Kaltura it takes some time to be processed but on our side we are not able to find/detect this finished processing event and we see this image: https://user-images.githubusercontent.com/32432082/96609246-50020180-12c8-11eb-8874-1995d57dcb77.png , how to detect the event that the file(image/video) finished processing?
 
 ### Streaming (to be defined)
 
