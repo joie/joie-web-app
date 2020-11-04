@@ -1,14 +1,14 @@
 import { TeacherOnboardingFormService } from './../../services/teacher-onboarding-form.service';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './onboarding-stepper.component.html',
   styleUrls: ['./onboarding-stepper.component.scss'],
 })
-export class OnboardingStepperComponent implements OnInit {
+export class OnboardingStepperComponent implements OnInit, AfterViewChecked {
   public steps: string[];
-  public selectedStep: number = 0;
+  public selectedStep = 0;
   public selectedStepRef = null;
   public stepsCompleted = [false, false, false, false, false];
 
@@ -23,11 +23,12 @@ export class OnboardingStepperComponent implements OnInit {
   }
 
   ngOnInit() {
-    let step = this.steps[0];
+    const step = this.steps[0];
     this.router.navigate([step], {
       relativeTo: this.route,
     });
   }
+
   ngAfterViewChecked(): void {
     this.cdRef.detectChanges();
   }

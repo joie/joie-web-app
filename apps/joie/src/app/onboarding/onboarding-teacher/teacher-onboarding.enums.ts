@@ -40,7 +40,8 @@ export const AgeGroupsLiteralsMap = new Map([
 
 export enum SessionTypes {
   OnDemandSessionOrLecture = 'onDemandSessionOrLecture',
-  OnDemandCourse = 'onDemandCourse', //todo courses are not available at joie yet https://github.com/joie/joie-web-app/issues/59#issue-689403295 (bullet 4)
+  OnDemandCourse = 'onDemandCourse',
+  // TODO courses are not available at joie yet https://github.com/joie/joie-web-app/issues/59#issue-689403295 (bullet 4)
   LiveGroupSession = 'liveGroupSession',
   LiveGroupCourse = 'liveGroupCourse',
   LiveLecture = 'liveGroupLecture',

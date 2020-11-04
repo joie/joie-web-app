@@ -43,12 +43,12 @@ export class SessionFocusAreaStepComponent {
   }
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private fb: FormBuilder,
     public onboardingService: OnboardingService,
     private formService: TeacherOnboardingFormService,
     private storage: StorageServiceService
   ) {
-    this.form = this._formBuilder.group({
+    this.form = this.fb.group({
       [SESSION_AREA]: ['', [Validators.required, Validators.minLength(10)]],
       [GROUPS]: new FormArray([], [atLeastOneIsCheckedValidator()]),
     });
@@ -89,8 +89,8 @@ export class SessionFocusAreaStepComponent {
     this.form.valueChanges.pipe(untilDestroyed(this)).subscribe((value) => {
       this.formService.ageGroupsFormArray.clear();
 
-      this.values.forEach((value) => {
-        this.formService.ageGroupsFormArray.push(new FormControl(value));
+      this.values.forEach((val) => {
+        this.formService.ageGroupsFormArray.push(new FormControl(val));
       });
       // }
       this.formService.form.patchValue({
@@ -126,23 +126,28 @@ export class SessionFocusAreaStepComponent {
     }
     if (index !== 4) {
       this.storage
-      .getItem(this.controlKey)
-      .pipe(untilDestroyed(this))
-      .subscribe((cacheValue) => {
-        if (cacheValue) {
-          if ($event.target.checked && cacheValue[GROUPS][0] && cacheValue[GROUPS][1] && cacheValue[GROUPS][2] && cacheValue[GROUPS][3]) {
-            this.form.patchValue({
-              [GROUPS]: [true, true, true, true, true],
-            });
-          } else if (!$event.target.checked && cacheValue[GROUPS][4]) {
-            cacheValue[GROUPS][4] = false;
-            this.form.patchValue({
-              [GROUPS]: cacheValue[GROUPS],
-            });
+        .getItem(this.controlKey)
+        .pipe(untilDestroyed(this))
+        .subscribe((cacheValue) => {
+          if (cacheValue) {
+            if (
+              $event.target.checked &&
+              cacheValue[GROUPS][0] &&
+              cacheValue[GROUPS][1] &&
+              cacheValue[GROUPS][2] &&
+              cacheValue[GROUPS][3]
+            ) {
+              this.form.patchValue({
+                [GROUPS]: [true, true, true, true, true],
+              });
+            } else if (!$event.target.checked && cacheValue[GROUPS][4]) {
+              cacheValue[GROUPS][4] = false;
+              this.form.patchValue({
+                [GROUPS]: cacheValue[GROUPS],
+              });
+            }
           }
-        }
-      });
-
+        });
     }
   }
 }
