@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, Input, SimpleChanges, OnInit } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { KalturaApiHandShakeService } from '../kaltura-api-handshake.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -12,10 +12,9 @@ declare var kWidget;
   templateUrl: './kaltura-live-stream.component.html',
   styleUrls: ['./kaltura-live-stream.component.scss'],
 })
-export class KalturaLiveStreamPlayerComponent implements OnChanges {
+export class KalturaLiveStreamPlayerComponent implements OnInit, OnChanges {
   @Input() width = 600;
   @Input() height = 400;
-  // @Input() isLiveSession: boolean; // ! @pratheeshkumarrd this is never used
   @Input() displayName: string;
   @Input() eventId: number;
   @Input() sessionType: number;
@@ -29,6 +28,10 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
     private domSanitizer: DomSanitizer
   ) {}
 
+  ngOnInit() {
+    this.kalturaApiHandShakeService.getKalturaSession();
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     // only call live stream session if all needed arguments have values
     const changesKeys = Object.keys(changes);
@@ -40,7 +43,6 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
       );
 
       if (allLiveStreamArgsHasValue) {
-        this.kalturaApiHandShakeService.getKalturaSession(); // ! @pratheeshkumarrd should this be set only once on init?
         this.openLiveStreamSession();
       }
     }
