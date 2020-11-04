@@ -10,7 +10,7 @@ export const catchErrors = async (promise: Promise<unknown>): Promise<unknown> =
 };
 
 // Validates UID on callable functions
-export const getUID = (context: functions.https.CallableContext): unknown => {
+export const getUID = (context: functions.https.CallableContext): string | undefined => {
   if (!context.auth) {
     throw new functions.https.HttpsError('permission-denied', 'function called without context.auth');
   } else {
