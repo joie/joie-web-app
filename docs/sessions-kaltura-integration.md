@@ -25,6 +25,7 @@
 - Uploaded videos should be stored in firestore session document as refs (entryId?, resourceId?)
 - Is the angular, 2 year old, library trustworthy?
 - Background sync for multiple videos?
+- Can we also add here, which of Kaltura libraries (nodejs) do you suggest for us to use on server side so we handle the handshake, so we are safe on secret keys? Recently we discovered Kaltura TypeScript Client we are experimenting with it to use in the server side, is it the correct package to use?
 
 ### Streaming (to be defined)
 
