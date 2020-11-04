@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-video-intro',
   templateUrl: './video-intro.component.html',
-  styleUrls: ['./video-intro.component.scss']
+  styleUrls: ['./video-intro.component.scss'],
 })
 export class VideoIntroComponent implements OnInit {
   @Input() isLiveSession = true;
@@ -13,11 +13,8 @@ export class VideoIntroComponent implements OnInit {
   @Input() role: string;
   @Input() userContextualRole: number;
   @Input() entryId: string;
-  @Input() entryLastUpdated: number;
-  
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+  constructor() {}
 
+  ngOnInit(): void {}
 }

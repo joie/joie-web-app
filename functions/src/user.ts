@@ -14,7 +14,8 @@ export const USERS = 'users';
 //   // roles: Role[];
 // }
 
-export async function createUserDocumentInFirestore(uid: string) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function createUserDocumentInFirestore(uid: string): Promise<any> {
   const ref = db.collection(USERS).doc(uid);
   const userPayload = {
     uid,
@@ -23,7 +24,7 @@ export async function createUserDocumentInFirestore(uid: string) {
   await ref.set(userPayload, { merge: true });
 }
 
-export const newUserSetup = functions.auth.user().onCreate(async (user, context) => {
+export const newUserSetup = functions.auth.user().onCreate(async (user) => {
   await createUserDocumentInFirestore(user.uid);
 
   //     // const body = 'Welcome to Fireship.io!';

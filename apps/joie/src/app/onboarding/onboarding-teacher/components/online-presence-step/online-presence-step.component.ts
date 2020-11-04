@@ -81,8 +81,8 @@ export class OnlinePresenceStepComponent {
   subscribeToValueChanges() {
     this.form.valueChanges.pipe(untilDestroyed(this)).subscribe((value) => {
       this.formService.typesFormArray.clear();
-      this.values.forEach((value) => {
-        this.formService.typesFormArray.push(new FormControl(value));
+      this.values.forEach((val) => {
+        this.formService.typesFormArray.push(new FormControl(val));
       });
       this.formService.form.patchValue({
         [PORTFOLIO]: value[PORTFOLIO],

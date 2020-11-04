@@ -1,7 +1,7 @@
 import { firestore } from 'firebase';
 import { Activities, Pillar } from '../../enums';
 import { Duration, Owner, Price } from '../../models';
-import { CourseLevel, Format, Recurrence, Type } from '../enums';
+import { CourseLevel, Format, Recurrence, Status, Type } from '../enums';
 
 /***************************************
  * SESSION INTERFACE RELATED COMPONENTS
@@ -33,11 +33,10 @@ interface SessionMetadata extends Schedule, KalturaEvent {
   price: Price;
   activities: Activities[];
   pillar: Pillar;
-  recommendationPercentage: number;
-  entryId: string;
-  entryLastUpdated: number;
+  readonly recommendationPercentage: number;
   promo: string;
   relatedSessions: string[];
+  status: Status;
 }
 
 interface Streaming {

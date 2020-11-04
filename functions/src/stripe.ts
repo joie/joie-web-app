@@ -2,27 +2,28 @@ import * as functions from 'firebase-functions';
 import { getUID, catchErrors } from './helpers';
 import { db, stripe } from './config';
 import { createUserDocumentInFirestore } from '.';
+import { firestore } from 'firebase-admin';
 
 const CUSTOMERS = 'customers';
 
 /**
  *  Use this function to read the user document from Firestore
  */
-export const getUser = async (uid: string) => {
+export const getUser = async (uid: string): Promise<firestore.DocumentData | undefined> => {
   const userDocumentPromise = db
     .collection('users')
     .doc(uid)
     .get()
     .then((doc) => doc.data());
 
-  const userDocument = await userDocumentPromise;
+  let userDocument = await userDocumentPromise;
 
-  if (userDocument) {
-    return userDocument;
-  } else {
+  if (!userDocument) {
     await createUserDocumentInFirestore(uid);
-    return await userDocumentPromise;
+    userDocument = await userDocumentPromise;
   }
+
+  return userDocument;
 };
 
 /**
@@ -50,7 +51,7 @@ const createCustomerAndSource = async (source: string, uid: string) => {
   const user = await getUser(uid);
 
   if (!user) {
-    throw new functions.https.HttpsError('not-found', "couldn't find user in firestore");
+    throw new functions.https.HttpsError('not-found', `couldn't find user in firestore`);
   }
 
   const customer = await stripe.customers.create({
@@ -73,11 +74,13 @@ const createSource = async (source: string, stripeId: string) =>
 export const stripeAttachSource = functions.https.onCall(async ({ sourceId }, context) => {
   const uid = getUID(context);
 
+  if (!uid) {
+    throw new functions.https.HttpsError('not-found', `couldn't find user`);
+  }
+
   const stripeId = await getUserCustomerId(uid);
 
-  return stripeId
-    ? catchErrors(createSource(sourceId, stripeId))
-    : catchErrors(createCustomerAndSource(sourceId, uid));
+  return stripeId ? catchErrors(createSource(sourceId, stripeId)) : catchErrors(createCustomerAndSource(sourceId, uid));
 });
 
 /**
@@ -121,13 +124,17 @@ export const cleanupStripeCustomer = functions.auth.user().onDelete(async (user)
  */
 const getSources = async (stripeId: string) => await stripe.customers.listSources(stripeId);
 
-export const stripeGetSources = functions.https.onCall(async ({ sourceId }, context) => {
+export const stripeGetSources = functions.https.onCall(async (_, context) => {
   const uid = getUID(context);
+
+  if (!uid) {
+    throw new functions.https.HttpsError('not-found', `couldn't find user`);
+  }
 
   const stripeId = await getUserCustomerId(uid);
 
   if (!stripeId) {
-    throw new functions.https.HttpsError('not-found', "couldn't find stripe customer in firestore");
+    throw new functions.https.HttpsError('not-found', `couldn't find stripe customer in firestore`);
   }
 
   return catchErrors(getSources(stripeId));
