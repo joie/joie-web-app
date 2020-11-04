@@ -8,7 +8,10 @@
     "strict": true,
     "target": "es2017",
     "resolveJsonModule": true,
-    "typeRoots": ["./functions/node_modules/@types"]
+    "typeRoots": ["./functions/node_modules/@types"],
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "removeComments": true
   },
   "compileOnSave": true,
   "include": ["src"]

@@ -1,13 +1,13 @@
 const argv = require('yargs').argv;
 var admin = require('firebase-admin');
 
-const preDefinedClaims = ['admin', 'teacher'];
+const preDefinedClaims = ['isAdmin', 'isTeacher'];
 const claims = preDefinedClaims.reduce(
   (acc, claim) => ({
     ...acc,
     ...(argv[claim] && { [claim]: true }),
   }),
-  {}
+  {},
 );
 
 const { uid } = argv;

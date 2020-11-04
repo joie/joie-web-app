@@ -2,15 +2,15 @@ import { ValidatorFn, FormControl } from '@angular/forms';
 
 export function validUrl(): ValidatorFn {
   return function validate(inputfield: FormControl) {
-    let inputUrl = inputfield.value;
+    const inputUrl = inputfield.value;
     try {
-        new URL(inputUrl);
-        return null;
-    }
-    catch (e) {
-        return {
-            invalidUrl: true
-        };
+      // tslint:disable-next-line: no-unused-expression
+      new URL(inputUrl);
+      return null;
+    } catch (e) {
+      return {
+        invalidUrl: true,
+      };
     }
   };
 }

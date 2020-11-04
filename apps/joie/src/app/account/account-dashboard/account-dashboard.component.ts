@@ -10,7 +10,7 @@ import { Stat } from '../../models/account.model';
 })
 export class AccountDashboardComponent implements OnInit {
   stats$: Observable<Stat[]>;
-  sessions$; //todo interface
+  sessions$; // todo interface
 
   constructor(private accountService: AccountService) {}
 
