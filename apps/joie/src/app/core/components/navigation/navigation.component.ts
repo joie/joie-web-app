@@ -16,6 +16,7 @@ export class NavigationComponent {
     { name: 'Join as a teacher', path: ['/', 'onboarding', 'teacher'] },
     { name: 'onboarding/student', path: ['/', 'onboarding', 'student'] },
     { name: 'mission', path: ['/', 'mission'] },
+    { name: 'teachers', path: ['/', 'teachers'] },
     { name: 'how it works', path: ['/', 'how-it-works'] },
     // { name: 'teacher', path: ['/', 'teacher'] },
   ];

@@ -80,6 +80,10 @@ const routes: Routes = [
     path: 'mission',
     loadChildren: () => import('./mission/mission.module').then((m) => m.MissionModule),
   },
+  {
+    path: 'teachers',
+    loadChildren: () => import('./teachers/teachers.module').then((m) => m.TeachersModule),
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 
