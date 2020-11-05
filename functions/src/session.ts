@@ -7,7 +7,6 @@ const SESSIONS = 'sessions';
 
 export const sessionCreate = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onCreate(async (snapshot) => {
   const now = admin.firestore.FieldValue.serverTimestamp();
-
   return snapshot.ref.set({ createdAt: now }, { merge: true }).catch((e) => console.log(e));
 });
 

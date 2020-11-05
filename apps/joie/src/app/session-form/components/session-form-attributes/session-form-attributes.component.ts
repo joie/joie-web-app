@@ -46,7 +46,7 @@ export class SessionFormAttributesComponent extends DynaFormBaseComponent {
       [
         this.PRICE,
         new FormGroup({
-          [this.PRICE_CURRENCY]: new FormControl({ value: Currency.USD }), // ! readonly value
+          [this.PRICE_CURRENCY]: new FormControl(Currency.USD), // ! readonly value
           [this.PRICE_DISPLAY]: new FormControl(null),
         }),
       ],

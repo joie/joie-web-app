@@ -45,7 +45,11 @@ service cloud.firestore {
           ['title', 'owner'],
           ['description', 'type', 'format', 'thumbRef', 'level', 'price', 'activities', 'pillar', 'promo', 'relatedSessions', 'duration', 'when', 'eventId', 'resourceId']
         );
-      allow update: if isOwner(resource.data.owner.uid) && (resource.data.status != 'public' || editOnlyChangesFields(['title', 'description', 'thumbRef', 'level', 'price', 'activities', 'pillar', 'promo', 'relatedSessions', 'duration']));
+      allow update: if isOwner(resource.data.owner.uid)
+        && (
+          resource.data.status != 'public' ||
+          editOnlyChangesFields(['title', 'description', 'thumbRef', 'level', 'price', 'activities', 'pillar', 'promo', 'relatedSessions', 'duration'])
+        );
       allow delete: if isOwner(resource.data.owner.uid) && resource.data.status != 'public';
     }
 
