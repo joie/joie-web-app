@@ -20,10 +20,7 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
   isLoading = true;
   videoUrl: SafeResourceUrl;
 
-  constructor(
-    private kalturaApiHandShakeService: KalturaApiHandShakeService,
-    private domSanitizer: DomSanitizer
-  ) {}
+  constructor(private kalturaApiHandShakeService: KalturaApiHandShakeService, private domSanitizer: DomSanitizer) {}
 
   ngOnChanges(changes: SimpleChanges) {
     // only call live stream session if all needed arguments have values
@@ -32,7 +29,7 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
     const isLiveStreamArgChanged = changesKeys.some((value) => liveStreamArgs.includes(value));
     if (isLiveStreamArgChanged) {
       const allLiveStreamArgsHasValue = liveStreamArgs.every(
-        (key) => typeof this[key] !== 'undefined' && this[key] !== null
+        (key) => typeof this[key] !== 'undefined' && this[key] !== null,
       );
 
       if (allLiveStreamArgsHasValue) {
@@ -43,26 +40,18 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
 
   openLiveStreamSession() {
     this.kalturaApiHandShakeService
-      .createSession(
-        this.displayName,
-        this.eventId,
-        this.role,
-        this.sessionType,
-        this.userContextualRole
-      )
+      .createSession(this.displayName, this.eventId, this.role, this.sessionType, this.userContextualRole)
       .pipe(untilDestroyed(this))
       .subscribe(
         (result) => {
-          console.log('openLiveStreamSession result: ', result)
+          console.log('openLiveStreamSession result: ', result);
           this.isLoading = false;
           const url = `https://${KalturaApiHandShakeService.partnerId}.kaf.kaltura.com/virtualEvent/launch?ks=${result}`;
           this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
         },
         (error) => {
-          console.log(
-            `KalturaLiveStreamPlayerComponent : openLiveStreamSession() :: ${error} while fetching session`
-          );
-        }
+          console.log(`KalturaLiveStreamPlayerComponent : openLiveStreamSession() :: ${error} while fetching session`);
+        },
       );
   }
 }

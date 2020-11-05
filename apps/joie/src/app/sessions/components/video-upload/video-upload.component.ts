@@ -1,6 +1,6 @@
 import { KalturaApiHandShakeService } from './../../../kaltura-player/kaltura-api-handshake.service';
 import { SessionsService } from './../../../services/sessions/sessions.service';
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { mergeMap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./video-upload.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class VideoUploadComponent implements OnInit {
+export class VideoUploadComponent {
   @Input() session: Session;
   @Input() sessionId: string;
 
@@ -29,10 +29,8 @@ export class VideoUploadComponent implements OnInit {
   constructor(
     private kalturaApiHandShakeService: KalturaApiHandShakeService,
     private snackBar: MatSnackBar,
-    private sessionsFacade: SessionsService
+    private sessionsFacade: SessionsService,
   ) {}
-
-  async ngOnInit() {}
 
   onClickFile(fileInputEvent: any) {
     this.fileData = fileInputEvent.target.files[0] as File;
@@ -72,7 +70,7 @@ export class VideoUploadComponent implements OnInit {
           // TODO - take values from the form
           const data = {
             description: '',
-            name: ''
+            name: '',
             // name: 'hardcoded-2',
           };
           return this.kalturaApiHandShakeService.createMediaAddAction(data);
@@ -93,17 +91,16 @@ export class VideoUploadComponent implements OnInit {
             this.snackBar.open('Uploaded successfully!', '', {
               duration: 3000,
             });
-            this.sessionsFacade
-              .setSession(this.sessionId, {
-                entryId: this.entryId,
-                entryLastUpdated: new Date().getTime(),
-              });
+            this.sessionsFacade.setSession(this.sessionId, {
+              entryId: this.entryId,
+              entryLastUpdated: new Date().getTime(),
+            });
           }, 6000);
         },
         (error) => {
           console.log(error);
           this.uploading = false;
-        }
+        },
       );
   }
 
@@ -122,8 +119,12 @@ export class VideoUploadComponent implements OnInit {
           const entryId = this.session.entryId;
           const conversionProfileId = 0;
 
-          return this.kalturaApiHandShakeService.createMediaUpdateContentAction(entryId, this.uploadTokenID, conversionProfileId);
-        })
+          return this.kalturaApiHandShakeService.createMediaUpdateContentAction(
+            entryId,
+            this.uploadTokenID,
+            conversionProfileId,
+          );
+        }),
       )
       .pipe(untilDestroyed(this))
       .subscribe(
@@ -134,10 +135,9 @@ export class VideoUploadComponent implements OnInit {
               duration: 3000,
             });
             this.uploading = false;
-            this.sessionsFacade
-              .setSession(this.sessionId, {
-                entryLastUpdated: new Date().getTime(),
-              });
+            this.sessionsFacade.setSession(this.sessionId, {
+              entryLastUpdated: new Date().getTime(),
+            });
           }, 60000);
         },
         (error) => {
@@ -146,7 +146,7 @@ export class VideoUploadComponent implements OnInit {
             duration: 3000,
           });
           console.log('replacing error-->', error);
-        }
+        },
       );
   }
 }

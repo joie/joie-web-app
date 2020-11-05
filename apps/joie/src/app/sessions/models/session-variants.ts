@@ -18,8 +18,9 @@ interface Schedule {
 }
 
 export interface KalturaEvent {
-  eventId?: number;
+  entryId?: string;
   resourceId?: number;
+  entryLastUpdated: number;
 }
 
 interface SessionMetadata extends Schedule, KalturaEvent {
