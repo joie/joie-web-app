@@ -4,14 +4,11 @@
     <!-- {{ form.value | json }} -->
     <div [class]="commonLayoutClass">
       <app-session-form-metadata [class]="commonLayoutClass"></app-session-form-metadata>
-      <button mat-button color="primary" (click)="showAllFields = true" *ngIf="!showAllFields">
+      <button type="button" mat-button color="primary" (click)="showAllFields = true" *ngIf="!showAllFields">
         Show all fields...
       </button>
       <ng-container *ngIf="showAllFields">
-        <app-session-form-duration
-          *ngIf="isLivestreaming"
-          [class]="commonLayoutClass"
-        ></app-session-form-duration>
+        <app-session-form-duration *ngIf="isLivestreaming" [class]="commonLayoutClass"></app-session-form-duration>
 
         <app-session-form-date-time-slots
           *ngIf="isCoaching"
