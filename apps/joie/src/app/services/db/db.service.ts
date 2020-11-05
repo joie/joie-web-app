@@ -24,10 +24,9 @@ export class DbService {
   }
 
   get$<T>(path: string, queryFn?: QueryFn): Observable<T> | Observable<T[]> {
-    return (this.isCollection(path)
-      ? this.afs.doc<T>(path)
-      : this.afs.collection<T>(path, queryFn)
-    ).valueChanges({ idField: 'id' });
+    return (this.isCollection(path) ? this.afs.doc<T>(path) : this.afs.collection<T>(path, queryFn)).valueChanges({
+      idField: 'id',
+    });
     // return this.afs.doc<T>(path).valueChanges();
     // return this.afs.collection<T>(path).valueChanges();
   }
@@ -36,7 +35,7 @@ export class DbService {
     return from(
       this.isCollection(path)
         ? this.afs.doc<T>(path).set(data, { merge: true })
-        : this.afs.collection<T>(path).add(data)
+        : this.afs.collection<T>(path).add(data),
     );
   }
 }
