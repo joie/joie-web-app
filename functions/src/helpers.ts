@@ -20,10 +20,7 @@ export const getUID = (context: functions.https.CallableContext): string | undef
 
 export const getUEmail = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError(
-      'permission-denied',
-      'function called without context.auth'
-    );
+    throw new functions.https.HttpsError('permission-denied', 'function called without context.auth');
   } else {
     return context.auth.token.email;
   }

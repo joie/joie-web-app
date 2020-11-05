@@ -59,7 +59,7 @@
           </div>
 
           <app-video-intro
-            *ngIf="session?.entryId || !(isOwner$ | async)"
+            *ngIf="session?.entryId || (isOwner$ | async) === false"
             [isLiveSession]="isLiveSession"
             [displayName]="(owner$ | async)?.displayName"
             [eventId]="eventId$ | async"

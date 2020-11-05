@@ -13,14 +13,14 @@ import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
   styleUrls: ['./session-details.component.scss'],
 })
 export class SessionDetailsComponent {
-  private _sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
-  session$ = this._sessionId$.pipe(
+  private sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
+  session$ = this.sessionId$.pipe(
     switchMap((sessionId) => {
       this.sessionId = sessionId;
       console.log(sessionId);
       return this.sessionsFacade.getSession(sessionId);
     }),
-    shareReplay()
+    shareReplay(),
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
   displayName$ = this.authFacade.displayName$;
@@ -31,11 +31,7 @@ export class SessionDetailsComponent {
   sessionOwnerId$ = this.owner$.pipe(pluck('uid'), shareReplay());
 
   isOwner$: Observable<boolean> = this.sessionOwnerId$.pipe(
-    switchMap((sessionOwnerId) =>
-      this.authFacade.uid$.pipe(
-        map((uid) => sessionOwnerId === uid)
-      )
-    )
+    switchMap((sessionOwnerId) => this.authFacade.uid$.pipe(map((uid) => sessionOwnerId === uid))),
   );
 
   // TODO - default assignment will be removed after integration
@@ -52,7 +48,7 @@ export class SessionDetailsComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private sessionsFacade: SessionsService,
-    private authFacade: AuthFacade
+    private authFacade: AuthFacade,
   ) {}
 
   // get kalturaSessionDetails$(): Observable<SessionStartActionArgs> {
