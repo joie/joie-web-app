@@ -1,3 +1,123 @@
+<div class="container">
+  <div class="main-index-columns">
+    <main>
+      <section>
+        <h1 class="text-center">Rachel Goldstein Upcoming Sessions</h1>
+
+        <form (ngSubmit)="onSubmit()" [formGroup]="teachersForm" class="teachers-form">
+          <mat-form-field appearance="outline">
+            <mat-label>Format</mat-label>
+            <mat-select formControlName="format">
+              <mat-option>-- None --</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Type of Session</mat-label>
+            <mat-select formControlName="typeOfSession">
+              <mat-option>-- None --</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Pillar</mat-label>
+            <mat-select formControlName="pillar">
+              <mat-option>-- None --</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Activity</mat-label>
+            <mat-select formControlName="activity">
+              <mat-option>-- None --</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Level</mat-label>
+            <mat-select formControlName="level">
+              <mat-option>-- None --</mat-option>
+            </mat-select> </mat-form-field
+          ><mat-form-field appearance="outline">
+            <mat-label>Price</mat-label>
+            <mat-select formControlName="price">
+              <mat-option>-- None --</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Date</mat-label>
+            <mat-select formControlName="date">
+              <mat-option>-- None --</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </section>
+    </main>
+    <aside class="teacher-column">
+      <section class="no-inset-gutters">
+        <div class="layout-rows-xs layout-center">
+          <figure class="text-center">
+            <img class="teachers-photo" src="/assets/images/bio_pic_2020 1.png" />
+            <figcaption>
+              <h2>Rachel Goldstein</h2>
+            </figcaption>
+          </figure>
+          <address class="teachers-desc text-center">
+            <app-paper-item>
+              <app-icon class="size-sm" name="marker"></app-icon>
+              <span> Toronto, Canada. EST time </span>
+            </app-paper-item>
+          </address>
+          <button mat-raised-button color="primary">Follow</button>
+          <app-paper-item>
+            <app-icon class="size-sm" name="heart"></app-icon>
+            <span>97% of our community recommended Rachel</span>
+          </app-paper-item>
+        </div>
+      </section>
+      <section class="no-inset-gutters">
+        <dl class="attribute-list-columns">
+          <div>
+            <dt>
+              <app-paper-item>
+                <app-icon class="size-sm" name="compass"></app-icon>
+                <span>Activities</span>
+              </app-paper-item>
+            </dt>
+            <dd>Dance</dd>
+            <dd>Meditation</dd>
+          </div>
+          <div>
+            <dt>
+              <app-paper-item>
+                <app-icon class="size-sm" name="compass"></app-icon>
+                <span>Activities</span>
+              </app-paper-item>
+            </dt>
+            <dd>Dance</dd>
+            <dd>Meditation</dd>
+          </div>
+          <div>
+            <dt>
+              <app-paper-item>
+                <app-icon class="size-sm" name="compass"></app-icon>
+                <span>Activities</span>
+              </app-paper-item>
+            </dt>
+            <dd>Dance</dd>
+            <dd>Meditation</dd>
+          </div>
+          <div>
+            <dt>
+              <app-paper-item>
+                <app-icon class="size-sm" name="compass"></app-icon>
+                <span>Activities</span>
+              </app-paper-item>
+            </dt>
+            <dd>Dance</dd>
+            <dd>Meditation</dd>
+          </div>
+        </dl>
+      </section>
+    </aside>
+  </div>
+</div>
 <main class="container">
   <section class="teachers-info layout-rows-xs layout-columns">
     <div class="teachers-sessions">
@@ -32,13 +152,13 @@
           <mat-label>Level</mat-label>
           <mat-select formControlName="level">
             <mat-option>-- None --</mat-option>
+          </mat-select> </mat-form-field
+        ><mat-form-field appearance="outline">
+          <mat-label>Price</mat-label>
+          <mat-select formControlName="price">
+            <mat-option>-- None --</mat-option>
           </mat-select>
-        </mat-form-field><mat-form-field appearance="outline">
-        <mat-label>Price</mat-label>
-        <mat-select formControlName="price">
-          <mat-option>-- None --</mat-option>
-        </mat-select>
-      </mat-form-field>
+        </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Date</mat-label>
           <mat-select formControlName="date">
@@ -74,8 +194,8 @@
             <div class="teachers-desc">
               <div><mat-icon>location_searching</mat-icon>Activity</div>
               <p>
-                Dance <br>
-                Meditation<br>
+                Dance <br />
+                Meditation<br />
               </p>
             </div>
           </div>
@@ -83,9 +203,9 @@
             <div class="teachers-desc">
               <div><mat-icon>playlist_add_check</mat-icon>Pillar</div>
               <p>
-                Movement<br>
-                Spirit<br>
-                Connections<br>
+                Movement<br />
+                Spirit<br />
+                Connections<br />
               </p>
             </div>
           </div>
@@ -93,8 +213,8 @@
             <div class="teachers-desc">
               <div><mat-icon>desktop_windows</mat-icon>Format</div>
               <p>
-                On-demand<br>
-                Live-streaming<br>
+                On-demand<br />
+                Live-streaming<br />
               </p>
             </div>
           </div>
@@ -102,8 +222,8 @@
             <div class="teachers-desc">
               <div><mat-icon>calendar_today</mat-icon>Session</div>
               <p>
-                Course<br>
-                Workshop<br>
+                Course<br />
+                Workshop<br />
               </p>
             </div>
           </div>
@@ -114,14 +234,12 @@
             <button mat-stroked-button color="primary">Message</button>
           </div>
           <p>
-            Hi there, I'm so pleased to meet you! My name is Rachel, founder of Co: Mind-Body-Spirit.
-
-            I am a Belly Dance teacher/performer, a guided meditation teacher, and I hold a B.Sc. Hon.
-            Neuroscience and have worked in Adult Education as a Registered Nurse since 2014.
-            I am incredibly passionate about a healthy lifestyle, mental health, and chronic disease prevention.
-            I suffered from depression, anxiety, and panic attacks for years without realizing it.
-            Cultivating wellness and personal power from within are, unfortunately,
-            not skills that many of us have had the privilege of learning. <br><br>
+            Hi there, I'm so pleased to meet you! My name is Rachel, founder of Co: Mind-Body-Spirit. I am a Belly Dance
+            teacher/performer, a guided meditation teacher, and I hold a B.Sc. Hon. Neuroscience and have worked in
+            Adult Education as a Registered Nurse since 2014. I am incredibly passionate about a healthy lifestyle,
+            mental health, and chronic disease prevention. I suffered from depression, anxiety, and panic attacks for
+            years without realizing it. Cultivating wellness and personal power from within are, unfortunately, not
+            skills that many of us have had the privilege of learning. <br /><br />
 
             <a href="javasctipe:void(0)">Read more</a>
           </p>
