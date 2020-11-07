@@ -9,23 +9,15 @@
     background-color: var(--joie-color-surface);
   }
 }
+
 .main-index-columns {
   display: grid;
   grid-template-columns: auto var(--layout-column-aside);
   grid-gap: calc(2 * var(--joie-gutter));
 }
 
-.session-offset-block-start {
-  --section-gutter-block-end: 370px;
-}
-
-.author-image {
-  overflow: hidden;
-  border-radius: 50%;
-}
-
-header {
-  position: relative;
+figure {
+  margin: 0;
 }
 
 .enrol-col {
@@ -35,10 +27,19 @@ header {
   top: 5%;
 }
 
-.row-spacing {
-  flex-direction: row;
+.attributes {
   display: flex;
-  place-content: center space-between;
+  justify-content: space-between;
+  list-style-type: none;
+}
+////////////////////////////////////////////////////////////////////////
+// .session-offset-block-start {
+//   --section-gutter-block-end: 370px;
+// }
+
+.author-image {
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 .figure-pairing {

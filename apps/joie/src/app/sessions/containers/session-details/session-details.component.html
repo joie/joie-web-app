@@ -1,68 +1,62 @@
 <div class="container" *ngIf="session$ | async as session">
   <div class="main-index-columns">
     <main>
-      <section>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim incidunt blanditiis placeat, vel, sunt ipsum
-        voluptatum nostrum necessitatibus nesciunt, alias earum dolorum! Unde iusto dolorum placeat maiores distinctio
-        laborum suscipit?
-      </section>
-    </main>
-    <aside>
-      <section>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim incidunt blanditiis placeat, vel, sunt ipsum
-        voluptatum nostrum necessitatibus nesciunt, alias earum dolorum! Unde iusto dolorum placeat maiores distinctio
-        laborum suscipit?
-      </section>
-    </aside>
-  </div>
-  <main>
-    <section hidden></section>
-    <section class="session-offset-block-start"></section>
-    <section class="session-offset-block-start section-offset-block-start">
-      <div class="container grid">
-        <div class="layout-rows-sm">
-          <header class="layout-rows-xs text-center">
-            <app-session-owner-links class="owner-links" *ngIf="isOwner$ | async"></app-session-owner-links>
-            <div class="figure-pairing">
-              <app-icon class="size-md" [name]="pillarIcons.get(pillar[session?.pillar])"></app-icon>
-              <h4 [innerHTML]="session?.pillar | joiePrefix: false"></h4>
-            </div>
-            <h1>{{ session?.title }}</h1>
-            <address class="figure-pairing">
-              <img src="{{ (owner$ | async)?.photoURL }}" class="author-image" width="28px" height="28px" />
-              <h3>{{ (owner$ | async)?.displayName }}</h3>
-            </address>
-          </header>
-
-          <div class="layout-columns row-spacing">
-            <app-paper-item>
-              <app-icon class="size-sm" name="calendar"></app-icon>
-              <span>
-                {{ session?.duration?.amount + session?.duration?.unit }}
-              </span>
-            </app-paper-item>
-            <app-paper-item>
-              <app-icon class="size-sm" name="clock"></app-icon>
-              <span>{{ session?.duration?.amount + session?.duration?.unit }}</span>
-            </app-paper-item>
-            <app-paper-item>
-              <app-icon class="size-sm" name="monitor"></app-icon>
-              <span>{{ session?.type }}</span>
-            </app-paper-item>
-            <app-paper-item>
-              <app-icon class="size-sm" name="bar-chart"></app-icon>
-              <span>{{ session?.level }}</span>
-            </app-paper-item>
-            <app-paper-item>
-              <app-icon class="size-sm" name="tag"></app-icon>
-              <span>{{ session?.price?.display | currency: session?.price?.currency }}</span>
-            </app-paper-item>
-            <app-paper-item>
-              <app-icon class="size-sm" name="send"></app-icon>
-              <span>Share</span>
-            </app-paper-item>
+      <header class="no-inset-gutters">
+        <div class="layout-rows-xs text-center">
+          <app-session-owner-links class="owner-links" *ngIf="isOwner$ | async"></app-session-owner-links>
+          <div class="figure-pairing">
+            <app-icon class="size-md" [name]="pillarIcons.get(pillar[session?.pillar])"></app-icon>
+            <h4 [innerHTML]="session?.pillar | joiePrefix: false"></h4>
           </div>
-
+          <h1>{{ session?.title }}</h1>
+          <address class="figure-pairing">
+            <img src="{{ (owner$ | async)?.photoURL }}" class="author-image" width="28px" height="28px" />
+            <h3>{{ (owner$ | async)?.displayName }}</h3>
+          </address>
+          <ul class="attributes">
+            <li>
+              <app-paper-item>
+                <app-icon class="size-sm" name="calendar"></app-icon>
+                <span>
+                  {{ session?.duration?.amount + session?.duration?.unit }}
+                </span>
+              </app-paper-item>
+            </li>
+            <li>
+              <app-paper-item>
+                <app-icon class="size-sm" name="clock"></app-icon>
+                <span>{{ session?.duration?.amount + session?.duration?.unit }}</span>
+              </app-paper-item>
+            </li>
+            <li>
+              <app-paper-item>
+                <app-icon class="size-sm" name="monitor"></app-icon>
+                <span>{{ session?.type }}</span>
+              </app-paper-item>
+            </li>
+            <li>
+              <app-paper-item>
+                <app-icon class="size-sm" name="bar-chart"></app-icon>
+                <span>{{ session?.level }}</span>
+              </app-paper-item>
+            </li>
+            <li>
+              <app-paper-item>
+                <app-icon class="size-sm" name="tag"></app-icon>
+                <span>{{ session?.price?.display | currency: session?.price?.currency }}</span>
+              </app-paper-item>
+            </li>
+            <li>
+              <app-paper-item>
+                <app-icon class="size-sm" name="send"></app-icon>
+                <span>Share</span>
+              </app-paper-item>
+            </li>
+          </ul>
+        </div>
+      </header>
+      <section class="no-inset-gutters">
+        <figure>
           <app-video-intro
             [isLiveSession]="isLiveSession"
             [displayName]="(owner$ | async)?.displayName"
@@ -72,34 +66,26 @@
             [userContextualRole]="userContextualRole"
             [entryId]="entryId"
           ></app-video-intro>
-
-          <mat-tab-group mat-stretch-tabs>
-            <mat-tab label="What you will learn">
-              <app-what-learn [session]="session"></app-what-learn>
-            </mat-tab>
-            <mat-tab label="Meet your teacher">
-              <app-meet-teacher [session]="session"></app-meet-teacher>
-            </mat-tab>
-            <mat-tab label="What our community say">
-              <app-community-say [session]="session"></app-community-say>
-            </mat-tab>
-          </mat-tab-group>
-        </div>
-        <aside class="enrol-col">
-          <app-session-card [session]="session"></app-session-card>
-        </aside>
-      </div>
-    </section>
-    <section>
-      <div class="text-center">Continue your journey with the following recommended sessions</div>
-    </section>
-  </main>
-
-  <div class="layout-columns">
-    <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
-
-    <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
-
-    <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
+        </figure>
+      </section>
+      <section class="no-inset-gutters">
+        <mat-tab-group mat-stretch-tabs>
+          <mat-tab label="What you will learn">
+            <app-what-learn [session]="session"></app-what-learn>
+          </mat-tab>
+          <mat-tab label="Meet your teacher">
+            <app-meet-teacher [session]="session"></app-meet-teacher>
+          </mat-tab>
+          <mat-tab label="What our community say">
+            <app-community-say [session]="session"></app-community-say>
+          </mat-tab>
+        </mat-tab-group>
+      </section>
+    </main>
+    <aside class="enrol-col">
+      <section style="content-visibility: revert">
+        <app-session-card [session]="session"></app-session-card>
+      </section>
+    </aside>
   </div>
 </div>

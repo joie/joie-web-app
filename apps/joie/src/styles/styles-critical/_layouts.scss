@@ -12,7 +12,7 @@ $layout-breakpoint-lg: 1365px;
   --layout-breakpoint-xs: #{$layout-breakpoint-xs};
   --layout-breakpoint-sm: #{$layout-breakpoint-sm};
   --layout-breakpoint-lg: #{$layout-breakpoint-lg};
-  --layout-column-aside: 450px;
+  --layout-column-aside: clamp(320px, 40vw, 450px);
 }
 
 body {
@@ -171,7 +171,8 @@ body {
 
 main,
 aside {
-  > section {
+  > section,
+  > header {
     $offset-block-start-variable-name: --section-gutter-block-start;
     $offset-block-end-variable-name: --section-gutter-block-end;
     $gutter-block: calc(var(--joie-gutter) * 3);
