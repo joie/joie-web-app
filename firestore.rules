@@ -41,8 +41,15 @@ service cloud.firestore {
 		match /sessions/{session} {
       allow read: if isOwner(resource.data.owner.uid) || (resource.data.status == 'public');
       allow create: if isClaim('isTeacher') && request.resource.data.owner.uid == request.auth.uid &&
-        documentFieldsCheckOut(['title', 'owner'], ['description', 'type', 'format', 'thumbRef', 'level', 'price', 'activities', 'pillar', 'promo', 'relatedSessions', 'duration', 'when']);
-      allow update: if isOwner(resource.data.owner.uid) && (resource.data.status != 'public' || editOnlyChangesFields(['title', 'description', 'thumbRef', 'level', 'price', 'activities', 'pillar', 'promo', 'relatedSessions', 'duration']));
+        documentFieldsCheckOut(
+          ['title', 'owner'],
+          ['description', 'type', 'format', 'thumbRef', 'level', 'price', 'activities', 'pillar', 'promo', 'relatedSessions', 'duration', 'when', 'eventId', 'resourceId']
+        );
+      allow update: if isOwner(resource.data.owner.uid)
+        && (
+          resource.data.status != 'public' ||
+          editOnlyChangesFields(['title', 'description', 'thumbRef', 'level', 'price', 'activities', 'pillar', 'promo', 'relatedSessions', 'duration', 'entryId'])
+        );
       allow delete: if isOwner(resource.data.owner.uid) && resource.data.status != 'public';
     }
 

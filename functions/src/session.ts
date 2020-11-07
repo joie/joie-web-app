@@ -5,18 +5,10 @@ import { db } from './config';
 
 const SESSIONS = 'sessions';
 
-export const sessionCreate = functions.firestore
-  .document(`/${SESSIONS}/{sessionId}`)
-  .onCreate(async (snapshot, context) => {
-    const data = snapshot.data();
-
-    if (data && context.auth?.uid) {
-      const { createTime: createdAt } = snapshot;
-      return snapshot.ref.set({ createdAt }, { merge: true }).catch((e) => console.log(e));
-    } else {
-      return null;
-    }
-  });
+export const sessionCreate = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onCreate(async (snapshot) => {
+  const now = admin.firestore.FieldValue.serverTimestamp();
+  return snapshot.ref.set({ createdAt: now }, { merge: true }).catch((e) => console.log(e));
+});
 
 export const sessionDelete = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onDelete((snap) => {
   const { thumbRef } = snap.data();

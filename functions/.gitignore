@@ -5,6 +5,9 @@
 # Except the ESLint config file
 !.eslintrc.js
 
+# Except the test files
+test/**/*.js
+
 # TypeScript v1 declaration files
 typings/
 

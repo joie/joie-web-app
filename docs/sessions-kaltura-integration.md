@@ -1,4 +1,11 @@
 # Joie Sessions - Kaltura flow
+
+Joie's implementation of Kaltura should handle multiple entities, meaning each session should have its own Kaltura resource upon requirement (question is if that's a good practice or should we use same credentials for all).
+
+a session requires any kaltura ref/resource will pair with a new dedicated document in _kalturaSession_ collection. requests to kaltura resource will be decorated with a `getKalturaSession` function to retrive (or create and retrieve) the required credential/entryId/eventId/resourceId.
+if session has no need in kaltura resource, it should never waste such resource or even have a pairing document in _kalturaSession_ collection. 
+
+
 ### Apply Kaltura integration through cloud functions
 - Session update trigger
   - from draft to public adds Kaltura event
