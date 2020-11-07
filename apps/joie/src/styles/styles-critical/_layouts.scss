@@ -12,11 +12,12 @@ $layout-breakpoint-lg: 1365px;
   --layout-breakpoint-xs: #{$layout-breakpoint-xs};
   --layout-breakpoint-sm: #{$layout-breakpoint-sm};
   --layout-breakpoint-lg: #{$layout-breakpoint-lg};
+  --layout-column-aside: 450px;
 }
 
 body {
-  padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px)
-    env(safe-area-inset-bottom, 20px) env(safe-area-inset-left, 20px);
+  padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px) env(safe-area-inset-bottom, 20px)
+    env(safe-area-inset-left, 20px);
 }
 
 #{$headings} {
@@ -30,9 +31,7 @@ body {
   $max-inline-size-variable-name: --max-inline-size;
 
   #{$container-inline-size-variable-name}: 100%;
-  #{$max-inline-size-variable-name}: calc(
-    var(#{$container-inline-size-variable-name}) - var(--joie-gutter) * 2
-  );
+  #{$max-inline-size-variable-name}: calc(var(#{$container-inline-size-variable-name}) - var(--joie-gutter) * 2);
 
   width: 100%;
   inline-size: 100%;
@@ -74,10 +73,7 @@ body {
   display: grid;
   grid-template-columns: repeat(
     auto-fit,
-    minmax(
-      var(#{$column-items-min-inline-size-variable-name}, #{map.get($items-min-inline-sizes, lg)}),
-      1fr
-    )
+    minmax(var(#{$column-items-min-inline-size-variable-name}, #{map.get($items-min-inline-sizes, lg)}), 1fr)
   );
   grid-column-gap: var(--joie-gutter);
   // grid-auto-rows: 1fr;
@@ -173,7 +169,8 @@ body {
 //   }
 // }
 
-main {
+main,
+aside {
   > section {
     $offset-block-start-variable-name: --section-gutter-block-start;
     $offset-block-end-variable-name: --section-gutter-block-end;
@@ -183,7 +180,13 @@ main {
 
     #{$offset-block-start-variable-name}: #{$gutter-block};
     #{$offset-block-end-variable-name}: #{$gutter-block};
-    padding: var(#{$offset-block-start-variable-name}) 0 var(#{$offset-block-end-variable-name});
+    $gutters-ver: var(#{$offset-block-start-variable-name}) 0 var(#{$offset-block-end-variable-name});
+    &:not(.no-inset-gutters) {
+      padding: $gutters-ver;
+    }
+    &.no-inset-gutters {
+      margin: $gutters-ver;
+    }
     &.section-offset-block-start {
       // $offset-size-variable-name: --offset-size;
       // $offset-sizes: (
