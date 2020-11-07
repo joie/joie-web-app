@@ -1,4 +1,20 @@
-<ng-container *ngIf="session$ | async as session">
+<div class="container" *ngIf="session$ | async as session">
+  <div class="main-index-columns">
+    <main>
+      <section>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim incidunt blanditiis placeat, vel, sunt ipsum
+        voluptatum nostrum necessitatibus nesciunt, alias earum dolorum! Unde iusto dolorum placeat maiores distinctio
+        laborum suscipit?
+      </section>
+    </main>
+    <aside>
+      <section>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim incidunt blanditiis placeat, vel, sunt ipsum
+        voluptatum nostrum necessitatibus nesciunt, alias earum dolorum! Unde iusto dolorum placeat maiores distinctio
+        laborum suscipit?
+      </section>
+    </aside>
+  </div>
   <main>
     <section hidden></section>
     <section class="session-offset-block-start"></section>
@@ -6,25 +22,14 @@
       <div class="container grid">
         <div class="layout-rows-sm">
           <header class="layout-rows-xs text-center">
-            <app-session-owner-links
-              class="owner-links"
-              *ngIf="isOwner$ | async"
-            ></app-session-owner-links>
+            <app-session-owner-links class="owner-links" *ngIf="isOwner$ | async"></app-session-owner-links>
             <div class="figure-pairing">
-              <app-icon
-                class="size-md"
-                [name]="pillarIcons.get(pillar[session?.pillar])"
-              ></app-icon>
+              <app-icon class="size-md" [name]="pillarIcons.get(pillar[session?.pillar])"></app-icon>
               <h4 [innerHTML]="session?.pillar | joiePrefix: false"></h4>
             </div>
             <h1>{{ session?.title }}</h1>
             <address class="figure-pairing">
-              <img
-                src="{{ (owner$ | async)?.photoURL }}"
-                class="author-image"
-                width="28px"
-                height="28px"
-              />
+              <img src="{{ (owner$ | async)?.photoURL }}" class="author-image" width="28px" height="28px" />
               <h3>{{ (owner$ | async)?.displayName }}</h3>
             </address>
           </header>
@@ -97,4 +102,4 @@
 
     <app-session-card [session]="session" [showThumbnail]="true"></app-session-card>
   </div>
-</ng-container>
+</div>
