@@ -1,11 +1,11 @@
 import { IResponse } from './interfaces';
-import { get } from 'lodash.get';
 import * as functions from 'firebase-functions';
 import { getUID, catchErrors, getUEmail, serverTimestamp } from './helpers';
 import { db, stripe } from './config';
 import { createUserDocumentInFirestore } from '.';
 import { firestore } from 'firebase-admin';
 import { getSession } from './session';
+import get from 'lodash.get';
 
 const CUSTOMERS = 'customers';
 
@@ -122,7 +122,7 @@ export const cleanupStripeCustomer = functions.auth.user().onDelete(async (user)
 //   source: 'src_18eYalAHEMiOZZp1l9ZTjSU0',
 // });
 
-export const stripeCreateChargeCustomer = functions.https.onCall(
+export const stripeSessionCharge = functions.https.onCall(
   async (params, context): Promise<IResponse> => {
     try {
       const uid = getUID(context);
@@ -153,7 +153,7 @@ export const stripeCreateChargeCustomer = functions.https.onCall(
 
         const response = await stripe.charges.create({
           source: sourceId,
-          amount,
+          amount: amount * 100,
           currency,
           receipt_email: email,
           description: `Joie - Session #${sessionId}`,
