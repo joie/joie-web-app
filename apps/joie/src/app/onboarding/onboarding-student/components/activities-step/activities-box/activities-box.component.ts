@@ -21,7 +21,9 @@ export const ACTIVITIES = 'activities';
 type TypeActivitiesLiteralMap = Map<
   MovementTargets | EmotionsTargets | ConnectionsTargets | SpiritTargets | ProfessionalTargets,
   string
->; // need it to explicitly give a type the the activity map because typeScript throws error https://github.com/microsoft/TypeScript/issues/8936
+>;
+// need it to explicitly give a type the the activity map because
+// typeScript throws error https://github.com/microsoft/TypeScript/issues/8936
 @UntilDestroy()
 @Component({
   selector: 'app-activities-box',

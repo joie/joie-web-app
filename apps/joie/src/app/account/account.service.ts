@@ -22,7 +22,8 @@ export class AccountService {
         name: user.displayName,
         email: user.email,
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        password: passwordMock, // todo is client supposed to have the password? or only the length to display bullets? or random ammount of bullets
+        // todo is client supposed to have the password? or only the length to display bullets? or random ammount of bullets
+        password: passwordMock,
       }))
     );
   }
@@ -36,7 +37,7 @@ export class AccountService {
   submitNotificationSettings(
     id: string = 'user123',
     settings: NotificationSettings
-  ): Observable<Boolean> {
+  ): Observable<boolean> {
     // todo return this.http.post
     return of(true);
   }

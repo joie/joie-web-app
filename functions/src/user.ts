@@ -1,4 +1,5 @@
 import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
 // import { sgMail, msg } from './email';
 import { db } from './config';
 
@@ -14,16 +15,19 @@ export const USERS = 'users';
 //   // roles: Role[];
 // }
 
-export async function createUserDocumentInFirestore(uid: string) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function createUserDocumentInFirestore(uid: string): Promise<any> {
+  const now = admin.firestore.FieldValue.serverTimestamp();
+
   const ref = db.collection(USERS).doc(uid);
   const userPayload = {
     uid,
-    joined: new Date(),
+    joined: now,
   };
   await ref.set(userPayload, { merge: true });
 }
 
-export const newUserSetup = functions.auth.user().onCreate(async (user, context) => {
+export const newUserSetup = functions.auth.user().onCreate(async (user) => {
   await createUserDocumentInFirestore(user.uid);
 
   //     // const body = 'Welcome to Fireship.io!';

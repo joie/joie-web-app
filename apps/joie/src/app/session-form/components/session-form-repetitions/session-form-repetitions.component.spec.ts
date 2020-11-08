@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SessionFormRepetitionsComponent } from './session-form-repetitions.component';
 
@@ -6,12 +6,13 @@ describe('SessionFormRepetitionsComponent', () => {
   let component: SessionFormRepetitionsComponent;
   let fixture: ComponentFixture<SessionFormRepetitionsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SessionFormRepetitionsComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SessionFormRepetitionsComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SessionFormRepetitionsComponent);

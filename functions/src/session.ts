@@ -5,19 +5,22 @@ import { db } from './config';
 
 const SESSIONS = 'sessions';
 
-export const sessionDelete = functions.firestore
-  .document(`/${SESSIONS}/{sessionId}`)
-  .onDelete((snap) => {
-    const { thumbRef } = snap.data();
+export const sessionCreate = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onCreate(async (snapshot) => {
+  const now = admin.firestore.FieldValue.serverTimestamp();
+  return snapshot.ref.set({ createdAt: now }, { merge: true }).catch((e) => console.log(e));
+});
 
-    if (thumbRef) {
-      const bucket = admin.storage().bucket();
-      const folderPath = thumbRef.substring(0, thumbRef.lastIndexOf('/'));
-      return bucket.deleteFiles({ prefix: folderPath });
-    } else {
-      return null;
-    }
-  });
+export const sessionDelete = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onDelete((snap) => {
+  const { thumbRef } = snap.data();
+
+  if (thumbRef) {
+    const bucket = admin.storage().bucket();
+    const folderPath = thumbRef.substring(0, thumbRef.lastIndexOf('/'));
+    return bucket.deleteFiles({ prefix: folderPath });
+  } else {
+    return null;
+  }
+});
 
 export const deleteSession = functions.https.onCall(async (params, context) => {
   const { id } = params;
@@ -34,27 +37,33 @@ export const deleteSession = functions.https.onCall(async (params, context) => {
   // check if the user is the owner of this session
   if (session && session.owner.uid === uid) {
     await db
-    .collection(SESSIONS)
-    .doc(id)
-    .delete()
-    .catch((error) => {
-      return catchErrors(Promise.resolve({
-        message: error,
-        type: 'error'
-      }));
-    });
+      .collection(SESSIONS)
+      .doc(id)
+      .delete()
+      .catch((error) => {
+        return catchErrors(
+          Promise.resolve({
+            message: error,
+            type: 'error',
+          }),
+        );
+      });
 
-    return catchErrors(Promise.resolve({
-      message: 'Session succesfully deleted!',
-      type: 'success'
-    }));
+    return catchErrors(
+      Promise.resolve({
+        message: 'Session succesfully deleted!',
+        type: 'success',
+      }),
+    );
   }
 
-  return catchErrors(Promise.resolve({
-    message: 'Failed deleting session, due to missing permission',
-    type: 'error'
-  }));
-})
+  return catchErrors(
+    Promise.resolve({
+      message: 'Failed deleting session, due to missing permission',
+      type: 'error',
+    }),
+  );
+});
 
 // import { getUID, catchErrors } from './helpers';
 // import * as admin from 'firebase-admin';

@@ -16,7 +16,7 @@ export function Confirmable(
 
   return (target: object, key: string | symbol, descriptor: PropertyDescriptor) => {
     const original = descriptor.value;
-    descriptor.value = async function (...args: any[]) {
+    descriptor.value = async function confirmOperation(...args: any[]) {
       const dialogRef = getDialog().open(ConfirmationDialogComponent, {
         width,
         autoFocus: false,
