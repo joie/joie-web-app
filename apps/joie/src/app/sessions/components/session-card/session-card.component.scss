@@ -7,13 +7,14 @@
   color: var(--joie-color-background);
   border-radius: 4px;
   text-align: center;
-  margin: 0 auto calc(var(--block-size) * -0.5);
+  margin: 0 auto calc(var(--block-size) * -1);
   padding: 0 30px;
   position: relative;
   z-index: 1;
   inline-size: fit-content;
   max-inline-size: 90%;
   block-size: var(--block-size);
+  transform: translateY(-50%);
 }
 
 .row-spacing {
