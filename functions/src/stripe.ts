@@ -124,90 +124,90 @@ export const cleanupStripeCustomer = functions.auth.user().onDelete(async (user)
 
 export const stripeSessionCharge = functions.https.onCall(
   async (params, context): Promise<IResponse> => {
-    try {
-      const uid = getUID(context);
-      const email = getUEmail(context);
+    // try {
+    const uid = getUID(context);
+    const email = getUEmail(context);
 
-      const { sessionId, sourceId } = params;
+    const { sessionId, sourceId } = params;
 
-      const session = await getSession(sessionId);
+    const session = await getSession(sessionId);
 
-      if (session) {
-        // owner can not pay it's own session
-        if (get(session, 'owner.id', false) === uid) {
-          return Promise.resolve({
-            type: 'error',
-            message: `Owner cannot purchase it's own session`,
-          } as IResponse);
-        }
-
-        const amount = get(session, 'price.display', false);
-        const currency = get(session, 'price.currency', false);
-
-        if (!amount || !currency) {
-          return Promise.resolve({
-            type: 'error',
-            message: 'Amount or Currency missing in the session data',
-          } as IResponse);
-        }
-
-        const response = await stripe.charges.create({
-          source: sourceId,
-          amount: amount * 100,
-          currency,
-          receipt_email: email,
-          description: `Joie - Session #${sessionId}`,
-          metadata: {
-            title: get(session, 'title', ''),
-          },
-        });
-
-        // @TODO: check if not enugh credit in the card
-        const { id, description, receipt_url } = response;
-
-        const sessionUserData = {
-          sessionId,
-          userId: uid,
-          stripe: {
-            id,
-            description,
-            receipt_url,
-          },
-        };
-
-        await db
-          .collection(`/sessions_users/${uid}/sessions`)
-          .doc(sessionId)
-          .set(
-            {
-              sessionUserData,
-              created_at: serverTimestamp(),
-              updated_at: serverTimestamp(),
-            },
-            { merge: true },
-          )
-          .catch((error) => {
-            return Promise.resolve({
-              type: 'error',
-              message: error,
-            } as IResponse);
-          });
-
+    if (session) {
+      // owner can not pay it's own session
+      if (get(session, 'owner.uid', false) === uid) {
         return Promise.resolve({
-          type: 'success',
-          message: 'Session successfully paid',
+          type: 'error',
+          message: `Owner cannot purchase it's own session`,
         } as IResponse);
       }
+
+      const amount = get(session, 'price.display', false);
+      const currency = get(session, 'price.currency', false);
+
+      if (!amount || !currency) {
+        return Promise.resolve({
+          type: 'error',
+          message: 'Amount or Currency missing in the session data',
+        } as IResponse);
+      }
+
+      const response = await stripe.charges.create({
+        source: sourceId,
+        amount: amount * 100,
+        currency,
+        receipt_email: email,
+        description: `Joie - Session #${sessionId}`,
+        metadata: {
+          title: get(session, 'title', ''),
+        },
+      });
+
+      // @TODO: check if not enugh credit in the card
+      const { id, description, receipt_url } = response;
+
+      const sessionUserData = {
+        sessionId,
+        userId: uid,
+        stripe: {
+          id,
+          description,
+          receipt_url,
+        },
+      };
+
+      await db
+        .collection(`/sessions_users`)
+        .doc(`${sessionId}_${uid}`)
+        .set(
+          {
+            ...sessionUserData,
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp(),
+          },
+          { merge: true },
+        )
+        .catch((error) => {
+          return Promise.resolve({
+            type: 'error',
+            message: error,
+          } as IResponse);
+        });
+
       return Promise.resolve({
-        type: 'error',
-        message: `Session not found`,
-      } as IResponse);
-    } catch (error) {
-      return Promise.resolve({
-        type: 'error',
-        message: error,
+        type: 'success',
+        message: 'Session successfully paid',
       } as IResponse);
     }
+    return Promise.resolve({
+      type: 'error',
+      message: `Session not found`,
+    } as IResponse);
+    // } catch (error) {
+    //   return Promise.resolve({
+    //     type: 'error',
+    //     message: error,
+    //   } as IResponse);
+    // }
   },
 );
 /**

@@ -1,3 +1,4 @@
+import { SessionConfigResolver } from './resolvers/session-config.resolver';
 import { EditDialogConfigResolver } from './resolvers/edit-dialog-config.resolver';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -29,8 +30,11 @@ const routes: Routes = [
         canActivate: [AuthGuard, PaymentSourceGuard],
       },
       {
-        path: 'add-payment-source',
+        path: 'add-payment-source/:sessionId',
         component: DialogRouterComponent,
+        resolve: {
+          matDialogConfig: SessionConfigResolver,
+        },
         data: {
           dialogComponent: PaymentMethodFormComponent,
           matDialogConfig: { width: '500px' },

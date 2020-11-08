@@ -1,10 +1,12 @@
-import { Component, ViewChild, ElementRef, NgModule, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, NgModule, AfterViewInit, Inject } from '@angular/core';
 import { loadStripe, Stripe, StripeCardElement } from '@stripe/stripe-js';
 import { style } from './stripe-elements.style';
 import { CommonModule } from '@angular/common';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import get from 'lodash.get';
 
 const STRIPE_KEY = 'pk_test_2iuUrsVhJB1IVAhu1KnRYSFA00elnKh57f';
 // declare var Stripe: stripe.StripeStatic;
@@ -20,8 +22,14 @@ export class PaymentMethodFormComponent implements AfterViewInit {
   private card: StripeCardElement;
   cardErrors: string;
   isLoading = true;
+  sessionId;
 
-  constructor(private paymentService: PaymentService) {}
+  constructor(
+    private paymentService: PaymentService,
+    @Inject(MAT_DIALOG_DATA) public data: { session: any; sessionId: string },
+  ) {
+    this.sessionId = get(this.data, 'sessionId');
+  }
 
   async ngAfterViewInit(): Promise<void> {
     this.card = await this.mountCard();
@@ -67,8 +75,8 @@ export class PaymentMethodFormComponent implements AfterViewInit {
     } else {
       this.isLoading = true;
       // Send the token to your server.
-      const res = await this.paymentService.attachSource(source.id).toPromise();
-      console.log(res);
+      const res = await this.paymentService.sessionCharge(this.sessionId, source.id).toPromise();
+      console.log('attachSource res: ', res);
       this.isLoading = false;
     }
   }

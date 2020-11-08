@@ -34,7 +34,7 @@ export class DialogRouterComponent implements OnInit {
       // console.log(this.route.parent.snapshot.params);
 
       const redirectUrl = result?.redirectUrl;
-      console.log(redirectUrl);
+      console.log('redirectUrl:', redirectUrl);
       if (redirectUrl) {
         this.router.navigateByUrl(redirectUrl);
       } else {

@@ -57,5 +57,9 @@ service cloud.firestore {
       allow read: if isOwner(userId);
     }
 
+    match /sessions_users/{ref} {
+      allow read: true;
+      allow write, update, delete: if false;
+    }
   }
 }
