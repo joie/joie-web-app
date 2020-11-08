@@ -1,8 +1,11 @@
+import { IResponse } from './interfaces';
+import { get } from 'lodash.get';
 import * as functions from 'firebase-functions';
-import { getUID, catchErrors } from './helpers';
+import { getUID, catchErrors, getUEmail, serverTimestamp } from './helpers';
 import { db, stripe } from './config';
 import { createUserDocumentInFirestore } from '.';
 import { firestore } from 'firebase-admin';
+import { getSession } from './session';
 
 const CUSTOMERS = 'customers';
 
@@ -119,6 +122,94 @@ export const cleanupStripeCustomer = functions.auth.user().onDelete(async (user)
 //   source: 'src_18eYalAHEMiOZZp1l9ZTjSU0',
 // });
 
+export const stripeCreateChargeCustomer = functions.https.onCall(
+  async (params, context): Promise<IResponse> => {
+    try {
+      const uid = getUID(context);
+      const email = getUEmail(context);
+
+      const { sessionId, sourceId } = params;
+
+      const session = await getSession(sessionId);
+
+      if (session) {
+        // owner can not pay it's own session
+        if (get(session, 'owner.id', false) === uid) {
+          return Promise.resolve({
+            type: 'error',
+            message: `Owner cannot purchase it's own session`,
+          } as IResponse);
+        }
+
+        const amount = get(session, 'price.display', false);
+        const currency = get(session, 'price.currency', false);
+
+        if (!amount || !currency) {
+          return Promise.resolve({
+            type: 'error',
+            message: 'Amount or Currency missing in the session data',
+          } as IResponse);
+        }
+
+        const response = await stripe.charges.create({
+          source: sourceId,
+          amount,
+          currency,
+          receipt_email: email,
+          description: `Joie - Session #${sessionId}`,
+          metadata: {
+            title: get(session, 'title', ''),
+          },
+        });
+
+        // @TODO: check if not enugh credit in the card
+        const { id, description, receipt_url } = response;
+
+        const sessionUserData = {
+          sessionId,
+          userId: uid,
+          stripe: {
+            id,
+            description,
+            receipt_url,
+          },
+        };
+
+        await db
+          .collection(`/sessions_users/${uid}/sessions`)
+          .doc(sessionId)
+          .set(
+            {
+              sessionUserData,
+              created_at: serverTimestamp(),
+              updated_at: serverTimestamp(),
+            },
+            { merge: true },
+          )
+          .catch((error) => {
+            return Promise.resolve({
+              type: 'error',
+              message: error,
+            } as IResponse);
+          });
+
+        return Promise.resolve({
+          type: 'success',
+          message: 'Session successfully paid',
+        } as IResponse);
+      }
+      return Promise.resolve({
+        type: 'error',
+        message: `Session not found`,
+      } as IResponse);
+    } catch (error) {
+      return Promise.resolve({
+        type: 'error',
+        message: error,
+      } as IResponse);
+    }
+  },
+);
 /**
  *  Use this function to get all sources for existing customer
  */

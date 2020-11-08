@@ -26,11 +26,7 @@ export const deleteSession = functions.https.onCall(async (params, context) => {
   const { id } = params;
   const uid = getUID(context);
 
-  const session = await db
-    .collection(SESSIONS)
-    .doc(id)
-    .get()
-    .then((doc) => doc.data());
+  const session = await getSession(id);
 
   // @TODO: before deleting a session, check for permission
 
@@ -64,6 +60,19 @@ export const deleteSession = functions.https.onCall(async (params, context) => {
     }),
   );
 });
+
+export const getSession = async (id: string) => {
+  const session = await db
+    .collection(SESSIONS)
+    .doc(id)
+    .get()
+    .then((doc) => doc.data())
+    .catch((error) => {
+      return undefined;
+    });
+
+  return session;
+};
 
 // import { getUID, catchErrors } from './helpers';
 // import * as admin from 'firebase-admin';
