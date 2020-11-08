@@ -1,7 +1,7 @@
 <main>
   <section>
     <div class="container">
-      <app-session-list class="layout-rows-xs layout-columns-lg text-center"></app-session-list>
+      <app-session-list [queryFn]="queryFn()" class="layout-rows-xs layout-columns-lg text-center"></app-session-list>
       <router-outlet name="popup"></router-outlet>
     </div>
   </section>
