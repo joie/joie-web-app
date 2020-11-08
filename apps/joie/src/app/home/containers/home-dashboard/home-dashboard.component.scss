@@ -4,13 +4,13 @@
   @return $number / ($number * 0 + 1);
 }
 
-.layout-hero {
-  $min-vertical-padding: calc(var(--joie-gutter) * 3);
-  $max-vertical-padding: calc(var(--joie-gutter) * 7.5);
-  padding: clamp($min-vertical-padding, 10vw, $max-vertical-padding) 0;
-  position: relative;
-  overflow: hidden;
-  contain: paint layout;
+main header.layout-hero {
+  --padding: clamp(calc(var(--joie-gutter) * 3), 10vw, calc(var(--joie-gutter) * 7.5));
+  --section-gutter-block-start: var(--padding);
+  --section-gutter-block-end: var(--padding);
+  // position: relative;
+  // overflow: hidden;
+  // contain: paint layout;
   // @media (min-width: layouts.$layout-breakpoint-xs) {
   //   &-context {
   //     max-inline-size: layouts.$layout-breakpoint-xs;
