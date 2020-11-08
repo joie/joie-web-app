@@ -36,4 +36,9 @@ if session has no need in kaltura resource, it should never waste such resource 
 - when uploading a file, on Kaltura it takes some time to be processed but on our side we are not able to find/detect this finished processing event and we see this image: https://user-images.githubusercontent.com/32432082/96609246-50020180-12c8-11eb-8874-1995d57dcb77.png , how to detect the event that the file(image/video) finished processing?
 
 ### Streaming (to be defined)
-
+features should include:
+- dynamically toggle between - 1-to-1, 1-to-many, many-to-many, 1-to-many with partial broadcast
+- create a resource of live session where creator has admin rights, how do we store priviliges/claims to our own authentication/db?
+- users enroled to live sessions should have view priviliges
+- set live video session to exact period of time? turn it on/off by owner?
+- what are the features of a kaltura video session? whiteboard, etc'...
