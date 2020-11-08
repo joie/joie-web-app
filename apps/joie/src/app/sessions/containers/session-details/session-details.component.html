@@ -1,7 +1,7 @@
 <div class="container" *ngIf="session$ | async as session">
   <div class="main-index-columns">
     <main>
-      <header class="no-inset-gutters">
+      <header class="no-inset-gutters" style="content-visibility: revert; position: relative">
         <div class="layout-rows-xs text-center">
           <app-session-owner-links class="owner-links" *ngIf="isOwner$ | async"></app-session-owner-links>
           <div class="figure-pairing">
