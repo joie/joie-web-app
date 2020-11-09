@@ -2,8 +2,10 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { catchErrors, getUID } from './helpers';
 import { db } from './config';
+import get from 'lodash.get';
 
 const SESSIONS = 'sessions';
+const SESSIONS_USERS = 'sessions_users';
 
 export const sessionCreate = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onCreate(async (snapshot) => {
   const now = admin.firestore.FieldValue.serverTimestamp();
@@ -27,8 +29,6 @@ export const deleteSession = functions.https.onCall(async (params, context) => {
   const uid = getUID(context);
 
   const session = await getSession(id);
-
-  // @TODO: before deleting a session, check for permission
 
   // check if the user is the owner of this session
   if (session && session.owner.uid === uid) {
@@ -133,3 +133,50 @@ export const getSession = async (id: string) => {
 //   const sessionId = filePath.substring(0, end).substring(start + 1);
 
 // });
+
+export const sessionsUsersOnCreate = functions.firestore
+  .document(`/${SESSIONS_USERS}/{uid_sessionId}`)
+  .onCreate(async (snapshot, context) => {
+    const data = snapshot.data();
+    const { sessionId } = data;
+
+    const sessionData = await getSession(sessionId);
+
+    if (sessionData) {
+      const enrolments = get(sessionData, 'enrolments', 0);
+      await db
+        .collection(SESSIONS)
+        .doc(sessionId)
+        .set(
+          {
+            enrolments: enrolments + 1,
+          },
+          {
+            merge: true,
+          },
+        );
+    }
+  });
+
+export const sessionsUsersOnDelete = functions.firestore
+  .document(`/${SESSIONS_USERS}/{uid_sessionId}`)
+  .onDelete(async (snapshot, context) => {
+    const data = snapshot.data();
+    const { sessionId } = data;
+
+    const sessionData = await getSession(sessionId);
+
+    if (sessionData) {
+      let enrolments = get(sessionData, 'enrolments', 0);
+      enrolments = enrolments > 0 ? enrolments-- : 0;
+
+      await db.collection(SESSIONS).doc(sessionId).set(
+        {
+          enrolments,
+        },
+        {
+          merge: true,
+        },
+      );
+    }
+  });

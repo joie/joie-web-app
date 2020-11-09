@@ -159,20 +159,16 @@ export const stripeSessionCharge = functions.https.onCall(
           description: `Joie - Session #${sessionId}`,
           metadata: {
             title: get(session, 'title', ''),
+            session_id: sessionId,
           },
         });
 
-        // @TODO: check if not enugh credit in the card
-        const { id, description, receipt_url } = response;
+        const { id } = response;
 
         const sessionUserData = {
           sessionId,
-          userId: uid,
-          stripe: {
-            id,
-            description,
-            receipt_url,
-          },
+          uid,
+          stripe_charge_id: id,
         };
 
         await db

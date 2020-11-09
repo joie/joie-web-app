@@ -12,10 +12,7 @@ export class EditDialogConfigResolver implements Resolve<any> {
       ...formMatDialogConfig,
       data: {
         sessionId: route.params.sessionId,
-        session: await this.sessionsService
-          .getSession(route.params.sessionId)
-          .pipe(take(1))
-          .toPromise(),
+        session: await this.sessionsService.getSession(route.params.sessionId).pipe(take(1)).toPromise(),
       },
     };
   }
