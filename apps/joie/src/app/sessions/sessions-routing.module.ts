@@ -13,6 +13,7 @@ import { PaymentSourceGuard } from '../guards/payment-source/payment-source.guar
 import { PaymentMethodFormComponent } from '../shared/components/payment-method-form/payment-method-form.component';
 import { SessionDetailsComponent } from './containers/session-details/session-details.component';
 import { SessionFormComponent } from './../session-form/containers/session-form/session-form.component';
+import { SessionEnrolmentGuard } from '../guards/session-enrolment/session-enrolment.guard';
 
 const routes: Routes = [
   {
@@ -39,9 +40,7 @@ const routes: Routes = [
           dialogComponent: PaymentMethodFormComponent,
           matDialogConfig: { width: '500px' },
         },
-        // ! guard if already logged in
-        // ...canActivate(redirectUnauthorizedToLogin),
-        // ...canActivate(redirectLoggedInToItems)
+        canActivate: [AuthGuard, SessionEnrolmentGuard],
         outlet: 'popup',
       },
     ],

@@ -7,6 +7,19 @@ import get from 'lodash.get';
 const SESSIONS = 'sessions';
 const SESSIONS_USERS = 'sessions_users';
 
+export const sessionEnrolment = functions.https.onCall(async (params, context) => {
+  const { id } = params; // id -> session.id
+  const uid = getUID(context);
+
+  const sessionEnrolmentData = await db
+    .collection(SESSIONS_USERS)
+    .doc(`${id}_${uid}`)
+    .get()
+    .then((data) => data.data());
+
+  return catchErrors(Promise.resolve(sessionEnrolmentData));
+});
+
 export const deleteSession = functions.https.onCall(async (params, context) => {
   const { id } = params;
   const uid = getUID(context);
