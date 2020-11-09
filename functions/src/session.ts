@@ -7,23 +7,6 @@ import get from 'lodash.get';
 const SESSIONS = 'sessions';
 const SESSIONS_USERS = 'sessions_users';
 
-export const sessionCreate = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onCreate(async (snapshot) => {
-  const now = admin.firestore.FieldValue.serverTimestamp();
-  return snapshot.ref.set({ createdAt: now }, { merge: true }).catch((e) => console.log(e));
-});
-
-export const sessionDelete = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onDelete((snap) => {
-  const { thumbRef } = snap.data();
-
-  if (thumbRef) {
-    const bucket = admin.storage().bucket();
-    const folderPath = thumbRef.substring(0, thumbRef.lastIndexOf('/'));
-    return bucket.deleteFiles({ prefix: folderPath });
-  } else {
-    return null;
-  }
-});
-
 export const deleteSession = functions.https.onCall(async (params, context) => {
   const { id } = params;
   const uid = getUID(context);
@@ -133,6 +116,27 @@ export const getSession = async (id: string) => {
 //   const sessionId = filePath.substring(0, end).substring(start + 1);
 
 // });
+
+/******************************************
+ *          FIRESTORE EVENTS
+ ******************************************/
+
+export const sessionCreate = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onCreate(async (snapshot) => {
+  const now = admin.firestore.FieldValue.serverTimestamp();
+  return snapshot.ref.set({ createdAt: now }, { merge: true }).catch((e) => console.log(e));
+});
+
+export const sessionDelete = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onDelete((snap) => {
+  const { thumbRef } = snap.data();
+
+  if (thumbRef) {
+    const bucket = admin.storage().bucket();
+    const folderPath = thumbRef.substring(0, thumbRef.lastIndexOf('/'));
+    return bucket.deleteFiles({ prefix: folderPath });
+  } else {
+    return null;
+  }
+});
 
 export const sessionsUsersOnCreate = functions.firestore
   .document(`/${SESSIONS_USERS}/{uid_sessionId}`)
