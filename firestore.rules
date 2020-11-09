@@ -36,6 +36,10 @@ service cloud.firestore {
       let affectedKeys = request.resource.data.diff(resource.data).affectedKeys();
       return affectedKeys.hasOnly(allowedFields);
     }
+
+    function isPublic() {
+      return 'status' in resource.data && resource.data.status == 'public';
+    }
     // //////////////////
 
 		match /sessions/{session} {
@@ -47,10 +51,10 @@ service cloud.firestore {
         );
       allow update: if isOwner(resource.data.owner.uid)
         && (
-          resource.data.status != 'public' ||
+          !isPublic() ||
           editOnlyChangesFields(['title', 'description', 'thumbRef', 'level', 'price', 'activities', 'pillar', 'promo', 'relatedSessions', 'duration', 'entryId'])
         );
-      allow delete: if isOwner(resource.data.owner.uid) && resource.data.status != 'public';
+      allow delete: if isOwner(resource.data.owner.uid) && !isPublic();
     }
 
     match /users/{userId} {
