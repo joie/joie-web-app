@@ -9,7 +9,7 @@
       </label>
 
       <div>
-        <h4 [innerHTML]="pillar?.title | titlecase | joiePrefix"></h4>
+        <h4><dfn [innerHTML]="pillar?.title | titlecase | joiePrefix"></dfn></h4>
       </div>
     </mat-card>
   </form>
@@ -19,13 +19,9 @@
   <mat-card *ngFor="let pillar of pillars; let i = index">
     <mat-card-content>
       <div class="layout-rows-xs layout-center">
-        <app-icon
-          [backdrop]="true"
-          class="size-xl"
-          [name]="pillarsIconsMap.get(pillar.title)"
-        ></app-icon>
+        <app-icon [backdrop]="true" class="size-xl" [name]="pillarsIconsMap.get(pillar.title)"></app-icon>
         <div>
-          <h4 [innerHTML]="pillar?.title | titlecase | joiePrefix"></h4>
+          <h4><dfn [innerHTML]="pillar?.title | titlecase | joiePrefix"></dfn></h4>
           <p>{{ pillar.description }}</p>
         </div>
       </div>
