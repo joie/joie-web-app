@@ -122,12 +122,22 @@ export const cleanupStripeCustomer = functions.auth.user().onDelete(async (user)
 //   source: 'src_18eYalAHEMiOZZp1l9ZTjSU0',
 // });
 
+export const createCharge = async (data: {
+  customer: string;
+  amount: number;
+  currency: string;
+  receipt_email: string;
+  description: string;
+  metadata: any;
+}): Promise<{ id: string }> => {
+  return await stripe.charges.create(data);
+};
+
 export const stripeSessionCharge = functions.https.onCall(
   async (params, context): Promise<IResponse> => {
     try {
       const uid = getUID(context);
       const email = getUEmail(context);
-
       const { sessionId } = params;
 
       const customerId = await getUserCustomerId(uid ?? '');
@@ -160,11 +170,11 @@ export const stripeSessionCharge = functions.https.onCall(
           } as IResponse);
         }
 
-        const response = await stripe.charges.create({
+        const response = await createCharge({
           customer: customerId,
           amount: amount * 100,
           currency,
-          receipt_email: email,
+          receipt_email: email ?? '',
           description: `Joie - Session #${sessionId}`,
           metadata: {
             title: get(session, 'title', ''),
