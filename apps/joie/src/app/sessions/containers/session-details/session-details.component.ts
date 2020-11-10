@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 // import { UntilDestroy } from '@ngneat/until-destroy';
 import { SessionsService } from '../../../services/sessions/sessions.service';
 import { Observable } from 'rxjs';
-import { map, pluck, shareReplay, switchMap, take } from 'rxjs/operators';
+import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
 
@@ -16,19 +16,19 @@ export class SessionDetailsComponent {
   #sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
   session$ = this.#sessionId$.pipe(
     switchMap((sessionId) => this.sessionsFacade.getSession(sessionId)),
-    shareReplay(1)
+    shareReplay(1),
   );
-  eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
+  eventId$: Observable<number | undefined> = this.session$.pipe(pluck('eventId'));
   owner$ = this.session$.pipe(pluck('owner'), shareReplay());
   sessionOwnerId$ = this.owner$.pipe(pluck('uid'), shareReplay());
 
   isOwner$: Observable<boolean> = this.sessionOwnerId$.pipe(
     switchMap((sessionOwnerId) =>
       this.authFacade.uid$.pipe(
-        map((uid) => sessionOwnerId === uid)
+        map((uid) => sessionOwnerId === uid),
         // take(1)
-      )
-    )
+      ),
+    ),
   );
 
   // showDelete$: Observable<boolean> = combineLatest([this.authFacade, this.owner$]).pipe(
@@ -63,7 +63,7 @@ export class SessionDetailsComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private sessionsFacade: SessionsService,
-    private authFacade: AuthFacade
+    private authFacade: AuthFacade,
   ) {}
 
   // get kalturaSessionDetails$(): Observable<SessionStartActionArgs> {
