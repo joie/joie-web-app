@@ -1,29 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { takeUntil } from 'rxjs/operators';
+
+import * as AuthSelectors from '../../../auth-state/+state/auth/selectors/auth.selectors';
 
 @Component({
   selector: 'app-teachers',
   templateUrl: './teachers.component.html',
   styleUrls: ['./teachers.component.scss']
 })
-export class TeachersComponent implements OnInit {
-  teachersForm = this.fb.group({
-    format: [null],
-    typeOfSession: [null],
-    pillar: [null],
-    activity: [null],
-    level: [null],
-    price: [null],
-    date: [null],
-  });
+export class TeachersComponent implements OnInit, OnDestroy {
+  isTeacher = false;
+  uid: string;
 
-  constructor(private fb: FormBuilder) { }
+  private unsubscribe$: Subject<any> = new Subject<any>();
 
-  ngOnInit(): void {
+  constructor(
+    private store: Store<any>,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) { }
+
+  ngOnInit() {
+    this.store.pipe(
+      select(AuthSelectors.getAuthUser),
+      takeUntil(this.unsubscribe$),
+    ).subscribe((userData: any) => {
+      this.uid = userData.uid;
+      this.isTeacher = userData.isTeacher;
+    });
   }
 
-  onSubmit() {
+  ngOnDestroy() {
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.complete();
+  }
 
+  openTeacherPage() {
+    if (this.isTeacher) {
+      this.router.navigate([`teacher/${this.uid}`], { relativeTo: this.activatedRoute });
+    }
   }
 
 }

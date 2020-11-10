@@ -1,0 +1,140 @@
+<main class="container">
+  <section class="teacher-info layout-rows-xs layout-columns">
+    <div class="teacher-sessions">
+      <h1 class="text-center">Rachel Goldstein Upcoming Sessions</h1>
+
+      <form (ngSubmit)="onSubmit()" [formGroup]="teacherForm" class="teacher-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Format</mat-label>
+          <mat-select formControlName="format">
+            <mat-option>-- None --</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Type of Session</mat-label>
+          <mat-select formControlName="typeOfSession">
+            <mat-option>-- None --</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Pillar</mat-label>
+          <mat-select formControlName="pillar">
+            <mat-option>-- None --</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Activity</mat-label>
+          <mat-select formControlName="activity">
+            <mat-option>-- None --</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Level</mat-label>
+          <mat-select formControlName="level">
+            <mat-option>-- None --</mat-option>
+          </mat-select>
+        </mat-form-field><mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <mat-select formControlName="price">
+          <mat-option>-- None --</mat-option>
+        </mat-select>
+      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Date</mat-label>
+          <mat-select formControlName="date">
+            <mat-option>-- None --</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </div>
+
+    <div class="profile-info">
+      <div class="container">
+        <figure class="text-center">
+          <p>
+            <img class="teacher-photo" src="/assets/images/bio_pic_2020 1.png" />
+          </p>
+          <figcaption>
+            <h2>Rachel Goldstein</h2>
+          </figcaption>
+        </figure>
+        <p class="teacher-desc text-center">
+          <mat-icon>location_on</mat-icon>
+          Toronto, Canada. EST time
+        </p>
+        <div class="teacher-follow text-center">
+          <button mat-raised-button color="primary">Follow</button>
+        </div>
+        <p class="teacher-desc text-center">
+          <mat-icon>wb_sunny</mat-icon>
+          97% of our community recommended Rachel
+        </p>
+        <div class="teacher-expertise layout-columns-md layout-rows-xs">
+          <div>
+            <div class="teacher-desc">
+              <div><mat-icon>location_searching</mat-icon>Activity</div>
+              <p>
+                Dance <br>
+                Meditation<br>
+              </p>
+            </div>
+          </div>
+          <div>
+            <div class="teacher-desc">
+              <div><mat-icon>playlist_add_check</mat-icon>Pillar</div>
+              <p>
+                Movement<br>
+                Spirit<br>
+                Connections<br>
+              </p>
+            </div>
+          </div>
+          <div>
+            <div class="teacher-desc">
+              <div><mat-icon>desktop_windows</mat-icon>Format</div>
+              <p>
+                On-demand<br>
+                Live-streaming<br>
+              </p>
+            </div>
+          </div>
+          <div>
+            <div class="teacher-desc">
+              <div><mat-icon>calendar_today</mat-icon>Session</div>
+              <p>
+                Course<br>
+                Workshop<br>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="teacher-about">
+          <div class="teacher-about-title">
+            <p>About Me</p>
+            <button mat-stroked-button color="primary">Message</button>
+          </div>
+          <p>
+            Hi there, I'm so pleased to meet you! My name is Rachel, founder of Co: Mind-Body-Spirit.
+
+            I am a Belly Dance teacher/performer, a guided meditation teacher, and I hold a B.Sc. Hon.
+            Neuroscience and have worked in Adult Education as a Registered Nurse since 2014.
+            I am incredibly passionate about a healthy lifestyle, mental health, and chronic disease prevention.
+            I suffered from depression, anxiety, and panic attacks for years without realizing it.
+            Cultivating wellness and personal power from within are, unfortunately,
+            not skills that many of us have had the privilege of learning. <br><br>
+
+            <a href="javascript:void(0)">Read more</a>
+          </p>
+        </div>
+        <div class="teacher-comments">
+          <p>What my community say about me</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <section>
+    <app-subscribe-to-newsletter class="container"></app-subscribe-to-newsletter>
+  </section>
+</footer>

@@ -83,6 +83,7 @@ const routes: Routes = [
   {
     path: 'teachers',
     loadChildren: () => import('./teachers/teachers.module').then((m) => m.TeachersModule),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
   { path: '**', component: PageNotFoundComponent },
 ];
