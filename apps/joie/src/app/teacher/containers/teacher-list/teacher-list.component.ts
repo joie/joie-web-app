@@ -9,7 +9,7 @@ import * as AuthSelectors from '../../../auth-state/+state/auth/selectors/auth.s
 import { Status } from '../../../sessions/enums';
 
 @Component({
-  selector: 'app-teachers-list',
+  selector: 'app-teacher-list',
   templateUrl: './teacher-list.component.html',
   styleUrls: ['./teacher-list.component.scss']
 })

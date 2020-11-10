@@ -81,9 +81,8 @@ const routes: Routes = [
     loadChildren: () => import('./mission/mission.module').then((m) => m.MissionModule),
   },
   {
-    path: 'teachers',
-    loadChildren: () => import('./teachers/teachers.module').then((m) => m.TeachersModule),
-    ...canActivate(redirectUnauthorizedToLogin),
+    path: 'teacher',
+    loadChildren: () => import('./teacher/teacher.module').then((m) => m.TeacherModule),
   },
   { path: '**', component: PageNotFoundComponent },
 ];
