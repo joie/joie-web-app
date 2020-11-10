@@ -3,6 +3,11 @@
   display: grid;
   grid-template-columns: calc(100% - var(--layout-column-aside)) auto;
   grid-gap: $gutter-hor;
+
+  .teacher-session-list {
+    background: #ffffff;
+  }
+
   aside {
     padding: 0 $gutter-hor;
   }

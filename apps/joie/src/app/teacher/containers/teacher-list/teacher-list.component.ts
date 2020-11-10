@@ -2,16 +2,18 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { select, Store } from '@ngrx/store';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
+import { CollectionReference, QueryFn } from '@angular/fire/firestore';
 
 import * as AuthSelectors from '../../../auth-state/+state/auth/selectors/auth.selectors';
+import { Status } from '../../../sessions/enums';
 
 @Component({
-  selector: 'app-teachers',
-  templateUrl: './teachers.component.html',
-  styleUrls: ['./teachers.component.scss']
+  selector: 'app-teachers-list',
+  templateUrl: './teacher-list.component.html',
+  styleUrls: ['./teacher-list.component.scss']
 })
-export class TeachersComponent implements OnInit, OnDestroy {
+export class TeacherListComponent implements OnInit, OnDestroy {
   isTeacher = false;
   uid: string;
 
@@ -26,10 +28,15 @@ export class TeachersComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.store.pipe(
       select(AuthSelectors.getAuthUser),
+      filter(resp => !!resp),
       takeUntil(this.unsubscribe$),
     ).subscribe((userData: any) => {
       this.uid = userData.uid;
       this.isTeacher = userData.isTeacher;
+
+      if (this.isTeacher) {
+        this.router.navigate([`${this.uid}`], { relativeTo: this.activatedRoute });
+      }
     });
   }
 
@@ -38,10 +45,8 @@ export class TeachersComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  openTeacherPage() {
-    if (this.isTeacher) {
-      this.router.navigate([`teacher/${this.uid}`], { relativeTo: this.activatedRoute });
-    }
+  queryFn(): QueryFn {
+    return (ref: CollectionReference): firebase.firestore.Query<firebase.firestore.DocumentData> =>
+      ref.where('status', '==', Status.Public).where('isTeacher', '==', true);
   }
-
 }
