@@ -39,7 +39,7 @@
       <mat-card-subtitle>
         <app-paper-item class="layout-center">
           <app-icon class="size-sm" [name]="pillarIcons.get(pillar[session?.pillar])"></app-icon>
-          <div [innerHTML]="session?.pillar | joiePrefix: false"></div>
+          <dfn [innerHTML]="session?.pillar | joiePrefix: false"></dfn>
         </app-paper-item>
       </mat-card-subtitle>
       <mat-card-title>{{ session?.title }}</mat-card-title>
