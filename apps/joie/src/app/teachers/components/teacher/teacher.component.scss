@@ -1,28 +1,54 @@
-.teacher-info {
+.main-index-columns {
+  $gutter-hor: calc(2 * var(--joie-gutter));
+  display: grid;
+  grid-template-columns: calc(100% - var(--layout-column-aside)) auto;
+  grid-gap: $gutter-hor;
+  aside {
+    padding: 0 $gutter-hor;
+  }
+}
+
+.teacher-column {
+  background-color: var(--joie-color-surface);
+}
+
+.attribute-list-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: var(--joie-gutter);
+  dt {
+    margin-block-end: 5px;
+  }
+  dd {
+    margin-inline-start: 28px;
+  }
+}
+
+.teachers-form {
+  display: grid;
+  grid-template-columns: 13% 16% 12% 13% 12% 11% 12%;
+  grid-auto-flow: column;
+  gap: var(--joie-gutter);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+.teachers-info {
   display: grid;
   grid-template-columns: 70% 30%;
   gap: 0;
   padding-bottom: 0;
 
-  .teacher-sessions {
-    .teacher-form {
-      display: grid;
-      grid-template-columns: 13% 16% 11% 13% 11% 11% 11%;
-      gap: 15px;
-      grid-auto-flow: column;
-      font-size: 12px;
-    }
+  .teachers-sessions {
   }
 
   .profile-info {
     background: var(--joie-color-surface);
-    padding: 0 20px;
 
-    .teacher-photo {
+    .teachers-photo {
       border-radius: 50%;
     }
 
-    .teacher-desc {
+    .teachers-desc {
       margin-top: 1em;
       font-size: 12px;
       line-height: 18px;
@@ -32,13 +58,13 @@
       }
     }
 
-    .teacher-follow {
+    .teachers-follow {
       button {
-        width: 100%!important;;
+        width: 100% !important;
       }
     }
 
-    .teacher-expertise {
+    .teachers-expertise {
       grid-template-columns: repeat(2, 1fr);
       margin-bottom: 30px;
 
@@ -47,8 +73,8 @@
       }
     }
 
-    .teacher-about {
-      .teacher-about-title {
+    .teachers-about {
+      .teachers-about-title {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
 
