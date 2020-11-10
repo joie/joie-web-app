@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { catchErrors, getUID } from './helpers';
+import { catchErrors, getUID, serverTimestamp } from './helpers';
 import { db } from './config';
 import get from 'lodash.get';
 
@@ -135,7 +135,7 @@ export const getSession = async (id: string) => {
  ******************************************/
 
 export const sessionCreate = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onCreate(async (snapshot) => {
-  const now = admin.firestore.FieldValue.serverTimestamp();
+  const now = serverTimestamp();
   return snapshot.ref.set({ createdAt: now }, { merge: true }).catch((e) => console.log(e));
 });
 

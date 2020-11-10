@@ -1,3 +1,4 @@
+import { serverTimestamp } from './helpers';
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 // import { sgMail, msg } from './email';
@@ -17,7 +18,7 @@ export const USERS = 'users';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function createUserDocumentInFirestore(uid: string): Promise<any> {
-  const now = admin.firestore.FieldValue.serverTimestamp();
+  const now = serverTimestamp();
 
   const ref = db.collection(USERS).doc(uid);
   const userPayload = {
