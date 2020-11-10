@@ -1,7 +1,9 @@
+import { PaymentService } from './../../../services/payment/payment.service';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Session } from '../../models';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-session-enroll-dialog',
@@ -9,10 +11,32 @@ import { Session } from '../../models';
   styleUrls: ['./session-enroll-dialog.component.scss'],
 })
 export class SessionEnrollDialogComponent {
+  sessionId: string;
+
   constructor(
     public dialogRef: MatDialogRef<SessionEnrollDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { session$: Observable<Session> }
+    private paymentService: PaymentService,
+    private snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: { session$: Observable<Session>; sessionId: string },
   ) {
-    // data.session$.subscribe(console.log)
+    this.sessionId = data.sessionId;
+  }
+
+  async buySession(): Promise<void> {
+    const resp = await this.paymentService.sessionCharge(this.sessionId).toPromise();
+    this.dialogRef.close();
+    if (resp && resp.type === 'success') {
+      this.snackBar.open(`Session Enrolment sucessful`, 'Close', {
+        duration: 4000,
+        horizontalPosition: 'end',
+        verticalPosition: 'bottom',
+      });
+      return;
+    }
+    this.snackBar.open(`Session Enrolment failed`, 'Close', {
+      duration: 4000,
+      horizontalPosition: 'end',
+      verticalPosition: 'bottom',
+    });
   }
 }

@@ -1,4 +1,3 @@
-import { SessionConfigResolver } from './resolvers/session-config.resolver';
 import { EditDialogConfigResolver } from './resolvers/edit-dialog-config.resolver';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -28,19 +27,16 @@ const routes: Routes = [
         },
         data: { dialogComponent: SessionEnrollDialogComponent },
         outlet: 'popup',
-        canActivate: [AuthGuard, PaymentSourceGuard],
+        canActivate: [AuthGuard, PaymentSourceGuard, SessionEnrolmentGuard],
       },
       {
-        path: 'add-payment-source/:sessionId',
+        path: 'add-payment-source',
         component: DialogRouterComponent,
-        resolve: {
-          matDialogConfig: SessionConfigResolver,
-        },
         data: {
           dialogComponent: PaymentMethodFormComponent,
           matDialogConfig: { width: '500px' },
         },
-        canActivate: [AuthGuard, SessionEnrolmentGuard],
+        canActivate: [AuthGuard],
         outlet: 'popup',
       },
     ],
@@ -67,6 +63,16 @@ const routes: Routes = [
           matDialogConfig: EditDialogConfigResolver,
         },
         outlet: 'popup',
+      },
+      {
+        path: 'enroll/:sessionId',
+        component: DialogRouterComponent,
+        resolve: {
+          matDialogConfig: EnrollDialogConfigResolver,
+        },
+        data: { dialogComponent: SessionEnrollDialogComponent },
+        outlet: 'popup',
+        canActivate: [AuthGuard, PaymentSourceGuard, SessionEnrolmentGuard],
       },
     ],
   },

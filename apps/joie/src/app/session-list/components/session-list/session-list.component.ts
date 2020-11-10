@@ -1,3 +1,4 @@
+import { AuthFacade } from './../../../auth/services/auth.facade';
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SessionsService } from '../../../services/sessions/sessions.service';
@@ -13,10 +14,11 @@ export class SessionListComponent implements OnInit {
   @Input() queryFn: QueryFn;
 
   sessions$: Observable<Session[]>;
+  uid$ = this.authFacade.uid$;
 
   enrolled = true;
 
-  constructor(private sessionsFacade: SessionsService) {}
+  constructor(private sessionsFacade: SessionsService, private authFacade: AuthFacade) {}
 
   ngOnInit(): void {
     this.sessions$ = this.sessionsFacade.getSessions(this.queryFn);

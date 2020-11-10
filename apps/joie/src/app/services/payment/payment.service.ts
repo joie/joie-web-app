@@ -18,8 +18,8 @@ export class PaymentService {
     return callable({ sourceId });
   }
 
-  sessionCharge(sessionId: string, sourceId: string): Observable<any> {
+  sessionCharge(sessionId: string): Observable<any> {
     const callable = this.fns.httpsCallable('stripeSessionCharge');
-    return callable({ sessionId, sourceId });
+    return callable({ sessionId });
   }
 }

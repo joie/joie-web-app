@@ -22,14 +22,8 @@ export class PaymentMethodFormComponent implements AfterViewInit {
   private card: StripeCardElement;
   cardErrors: string;
   isLoading = true;
-  sessionId;
 
-  constructor(
-    private paymentService: PaymentService,
-    @Inject(MAT_DIALOG_DATA) public data: { session: any; sessionId: string },
-  ) {
-    this.sessionId = get(this.data, 'sessionId');
-  }
+  constructor(private paymentService: PaymentService) {}
 
   async ngAfterViewInit(): Promise<void> {
     this.card = await this.mountCard();
@@ -74,9 +68,7 @@ export class PaymentMethodFormComponent implements AfterViewInit {
       this.cardErrors = error.message;
     } else {
       this.isLoading = true;
-      // Send the token to your server.
-      const res = await this.paymentService.sessionCharge(this.sessionId, source.id).toPromise();
-      console.log('attachSource res: ', res);
+      await this.paymentService.attachSource(source.id).toPromise();
       this.isLoading = false;
     }
   }

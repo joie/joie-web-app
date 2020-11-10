@@ -13,10 +13,10 @@ import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
   styleUrls: ['./session-details.component.scss'],
 })
 export class SessionDetailsComponent {
-  #sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
-  session$ = this.#sessionId$.pipe(
+  sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
+  session$ = this.sessionId$.pipe(
     switchMap((sessionId) => this.sessionsFacade.getSession(sessionId)),
-    shareReplay(1)
+    shareReplay(1),
   );
   eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
   owner$ = this.session$.pipe(pluck('owner'), shareReplay());
@@ -25,10 +25,10 @@ export class SessionDetailsComponent {
   isOwner$: Observable<boolean> = this.sessionOwnerId$.pipe(
     switchMap((sessionOwnerId) =>
       this.authFacade.uid$.pipe(
-        map((uid) => sessionOwnerId === uid)
+        map((uid) => sessionOwnerId === uid),
         // take(1)
-      )
-    )
+      ),
+    ),
   );
 
   // showDelete$: Observable<boolean> = combineLatest([this.authFacade, this.owner$]).pipe(
@@ -63,7 +63,7 @@ export class SessionDetailsComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private sessionsFacade: SessionsService,
-    private authFacade: AuthFacade
+    private authFacade: AuthFacade,
   ) {}
 
   // get kalturaSessionDetails$(): Observable<SessionStartActionArgs> {

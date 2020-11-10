@@ -8,9 +8,9 @@
     >
     <br />
     <time dateTime="PT15H10M">{{ session?.duration?.amount }}</time>
-
+    <p>Amount: {{ session?.price?.display | currency: session?.price?.currency }}</p>
     <br />
-    <button flat mat-button>One Click Buy</button>
+    <button flat mat-button (click)="buySession()">One Click Buy</button>
   </mat-dialog-content>
   <!-- <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>One Click Buy</button>

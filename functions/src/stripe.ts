@@ -128,7 +128,16 @@ export const stripeSessionCharge = functions.https.onCall(
       const uid = getUID(context);
       const email = getUEmail(context);
 
-      const { sessionId, sourceId } = params;
+      const { sessionId } = params;
+
+      const customerId = await getUserCustomerId(uid ?? '');
+
+      if (!customerId) {
+        return Promise.resolve({
+          type: 'error',
+          message: `Missing payment method`,
+        } as IResponse);
+      }
 
       const session = await getSession(sessionId);
 
@@ -152,7 +161,7 @@ export const stripeSessionCharge = functions.https.onCall(
         }
 
         const response = await stripe.charges.create({
-          source: sourceId,
+          customer: customerId,
           amount: amount * 100,
           currency,
           receipt_email: email,
