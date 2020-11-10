@@ -1,4 +1,5 @@
 <ngx-auth-firebaseui-avatar
+  [canViewAccount]="false"
   layout="simple"
   [canDeleteAccount]="false"
   *ngIf="afAuth.authState | async; else showLogin"
