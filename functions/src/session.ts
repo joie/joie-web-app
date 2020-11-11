@@ -3,6 +3,7 @@ import * as admin from 'firebase-admin';
 import { catchErrors, getUID, serverTimestamp } from './helpers';
 import { db } from './config';
 import get from 'lodash.get';
+import { IResponse } from './interfaces';
 
 const SESSIONS = 'sessions';
 const SESSIONS_USERS = 'sessions_users';
@@ -68,6 +69,29 @@ export const getSession = async (id: string) => {
     });
 
   return session;
+};
+
+export const setSessionUser = async (ref: string, data: any): Promise<IResponse> => {
+  await db
+    .collection(SESSIONS_USERS)
+    .doc(ref)
+    .set(
+      {
+        ...data,
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
+    )
+    .catch((error) => {
+      return Promise.resolve({
+        type: 'error',
+        message: error,
+      } as IResponse);
+    });
+  return Promise.resolve({
+    type: 'success',
+    message: 'Session User succesfully set',
+  } as IResponse);
 };
 
 // import { getUID, catchErrors } from './helpers';

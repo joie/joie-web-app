@@ -4,7 +4,7 @@ import { getUID, catchErrors, getUEmail, serverTimestamp } from './helpers';
 import { db, stripe } from './config';
 import { createUserDocumentInFirestore } from '.';
 import { firestore } from 'firebase-admin';
-import { getSession } from './session';
+import { getSession, setSessionUser } from './session';
 import get from 'lodash.get';
 
 const CUSTOMERS = 'customers';
@@ -190,23 +190,10 @@ export const stripeSessionCharge = functions.https.onCall(
           stripe_charge_id: id,
         };
 
-        await db
-          .collection(`/sessions_users`)
-          .doc(`${sessionId}_${uid}`)
-          .set(
-            {
-              ...sessionUserData,
-              createdAt: serverTimestamp(),
-              updatedAt: serverTimestamp(),
-            },
-            { merge: true },
-          )
-          .catch((error) => {
-            return Promise.resolve({
-              type: 'error',
-              message: error,
-            } as IResponse);
-          });
+        await setSessionUser(`${sessionId}_${uid}`, {
+          ...sessionUserData,
+          updatedAt: serverTimestamp(),
+        });
 
         return Promise.resolve({
           type: 'success',
