@@ -6,7 +6,9 @@
           <app-session-owner-links class="owner-links" *ngIf="isOwner$ | async"></app-session-owner-links>
           <div class="figure-pairing">
             <app-icon class="size-md" [name]="pillarIcons.get(pillar[session?.pillar])"></app-icon>
-            <h4 [innerHTML]="session?.pillar | joiePrefix: false"></h4>
+            <h4>
+              <dfn [innerHTML]="session?.pillar | joiePrefix: false"></dfn>
+            </h4>
           </div>
           <h1>{{ session?.title }}</h1>
           <address class="figure-pairing">

@@ -17,6 +17,8 @@ export class NavigationComponent {
     { name: 'onboarding/student', path: ['/', 'onboarding', 'student'] },
     { name: 'mission', path: ['/', 'mission'] },
     { name: 'how it works', path: ['/', 'how-it-works'] },
+    { name: 'terms & conditions', path: ['/', 'terms-and-conditions'] },
+
     // { name: 'teacher', path: ['/', 'teacher'] },
   ];
   activeLink = this.links[0];

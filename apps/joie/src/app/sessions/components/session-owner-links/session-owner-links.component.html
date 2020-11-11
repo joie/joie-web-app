@@ -7,7 +7,7 @@
   <app-icon class="size-sm" name="more-horizontal" [inline]="true"></app-icon>
 </button>
 <mat-menu #menu="matMenu" xPosition="before" yPosition="below">
-  <button mat-menu-item (click)="publishSession()" *ngIf="!(isPublic$ | async)">
+  <button mat-menu-item (click)="publishSession()" *ngIf="(isPublic$ | async) === false">
     <app-icon [inline]="true" class="size-sm" name="flag"></app-icon>
     Make public
   </button>

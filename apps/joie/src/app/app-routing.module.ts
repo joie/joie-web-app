@@ -59,16 +59,12 @@ const routes: Routes = [
       {
         path: 'teacher',
         loadChildren: () =>
-          import('./onboarding/onboarding-teacher/onboarding-teacher.module').then(
-            (m) => m.OnboardingTeacherModule
-          ),
+          import('./onboarding/onboarding-teacher/onboarding-teacher.module').then((m) => m.OnboardingTeacherModule),
       },
       {
         path: 'student',
         loadChildren: () =>
-          import('./onboarding/onboarding-student/onboarding-student.module').then(
-            (m) => m.OnboardingStudentModule
-          ),
+          import('./onboarding/onboarding-student/onboarding-student.module').then((m) => m.OnboardingStudentModule),
       },
     ],
   },
@@ -80,13 +76,18 @@ const routes: Routes = [
     path: 'mission',
     loadChildren: () => import('./mission/mission.module').then((m) => m.MissionModule),
   },
+  {
+    path: 'terms-and-conditions',
+    loadChildren: () =>
+      import('./terms-and-conditions/terms-and-conditions.module').then((m) => m.TermsAndConditionsModule),
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      // preloadingStrategy: QuicklinkStrategy,
+      preloadingStrategy: QuicklinkStrategy,
       paramsInheritanceStrategy: 'always',
     }),
   ],
