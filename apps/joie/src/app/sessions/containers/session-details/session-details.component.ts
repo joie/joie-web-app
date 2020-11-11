@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 // import { UntilDestroy } from '@ngneat/until-destroy';
 import { SessionsService } from '../../../services/sessions/sessions.service';
 import { Observable } from 'rxjs';
-import { map, pluck, shareReplay, switchMap, take } from 'rxjs/operators';
+import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
 
@@ -18,7 +18,7 @@ export class SessionDetailsComponent {
     switchMap((sessionId) => this.sessionsFacade.getSession(sessionId)),
     shareReplay(1),
   );
-  eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
+  eventId$: Observable<number | undefined> = this.session$.pipe(pluck('eventId'));
   owner$ = this.session$.pipe(pluck('owner'), shareReplay());
   sessionOwnerId$ = this.owner$.pipe(pluck('uid'), shareReplay());
 

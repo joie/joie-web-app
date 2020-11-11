@@ -44,15 +44,19 @@ export class SessionOwnerLinksComponent {
     if (type === 'success') {
       this.router.navigate(['/account', 'sessions']);
     }
-    this.snackBar.open(message, null, {
+    this.snackBar.open(message, undefined, {
       duration: 8000,
       horizontalPosition: 'end',
       verticalPosition: 'bottom',
     });
   }
 
-  @Confirmable(`Are you sure session is fully composed? this cannot be undone`, 'warn', 'Publish')
-  async publishSession() {
+  @Confirmable(
+    `Are you sure session is fully composed and ready to be published? this cannot be undone`,
+    'warn',
+    'Publish',
+  )
+  async publishSession(): Promise<void> {
     const sessionId = await this.sessionId;
     this.sessionsService.setSession(sessionId, { status: Status.Public });
   }
