@@ -1,6 +1,5 @@
 import { serverTimestamp } from './helpers';
 import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
 // import { sgMail, msg } from './email';
 import { db } from './config';
 
