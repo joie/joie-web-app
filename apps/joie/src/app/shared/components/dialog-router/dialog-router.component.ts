@@ -19,7 +19,7 @@ export class DialogRouterComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    console.log('this.route.snapshot', this.route.snapshot);
+    // console.log('this.route.snapshot', this.route.snapshot);
     this.openDialog();
   }
 
