@@ -26,27 +26,15 @@ export class PaymentSourceGuard implements CanActivate {
     );
   }
 
-  getUrlAddPayment() {
-    return this.router.createUrlTree([
-      'sessions',
-      'dashboard',
-      {
-        outlets: {
-          popup: ['add-payment-source'],
-        },
-      },
-    ]);
-  }
-
   canActivate(_next: ActivatedRouteSnapshot, { url }: RouterStateSnapshot): Observable<boolean | UrlTree> {
-    console.log('KKKKKK');
-    console.log(this.getUrlTree(url).toString());
+    // console.log('KKKKKK');
+    // console.log(this.getUrlTree(url).toString());
     return this.paymentService.getSources().pipe(
       pluck('data', 'length'),
       map(Boolean),
       map((hasPaymentSource) => hasPaymentSource || this.getUrlTree(url)),
       catchError((error, caught) => {
-        return of(this.getUrlAddPayment());
+        return of(this.getUrlTree(url));
       }),
     );
   }

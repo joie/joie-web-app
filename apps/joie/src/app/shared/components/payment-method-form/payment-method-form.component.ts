@@ -1,12 +1,12 @@
-import { Component, ViewChild, ElementRef, NgModule, AfterViewInit, Inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Component, ViewChild, ElementRef, NgModule, AfterViewInit } from '@angular/core';
 import { loadStripe, Stripe, StripeCardElement } from '@stripe/stripe-js';
 import { style } from './stripe-elements.style';
 import { CommonModule } from '@angular/common';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import get from 'lodash.get';
+import { MatDialogRef } from '@angular/material/dialog';
 
 const STRIPE_KEY = 'pk_test_2iuUrsVhJB1IVAhu1KnRYSFA00elnKh57f';
 // declare var Stripe: stripe.StripeStatic;
@@ -23,7 +23,11 @@ export class PaymentMethodFormComponent implements AfterViewInit {
   cardErrors: string;
   isLoading = true;
 
-  constructor(private paymentService: PaymentService) {}
+  constructor(
+    private paymentService: PaymentService,
+    private route: ActivatedRoute,
+    public dialogRef: MatDialogRef<any>,
+  ) {}
 
   async ngAfterViewInit(): Promise<void> {
     this.card = await this.mountCard();
@@ -68,7 +72,12 @@ export class PaymentMethodFormComponent implements AfterViewInit {
       this.cardErrors = error.message;
     } else {
       this.isLoading = true;
-      await this.paymentService.attachSource(source.id).toPromise();
+      const response = await this.paymentService.attachSource(source.id).toPromise();
+      const redirectUrl = this.route.snapshot.queryParamMap.get('redirectUrl');
+
+      if (response && response.id && redirectUrl) {
+        this.dialogRef.close({ redirectUrl });
+      }
       this.isLoading = false;
     }
   }
