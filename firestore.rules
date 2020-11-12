@@ -37,8 +37,12 @@ service cloud.firestore {
       return affectedKeys.hasOnly(allowedFields);
     }
 
-    function isPublic() {
+    function isOrUpdatesToPublic() {
       return 'status' in resource.data && resource.data.status == 'public';
+    }
+
+    function isValidPrice() {
+      return false;
     }
     // //////////////////
 
@@ -51,8 +55,10 @@ service cloud.firestore {
         );
       allow update: if isOwner(resource.data.owner.uid)
         && (
-          !isPublic() ||
-          editOnlyChangesFields(['title', 'description', 'thumbRef', 'level', 'price', 'activities', 'pillar', 'promo', 'relatedSessions', 'duration', 'entryId'])
+          !isOrUpdatesToPublic() ||
+
+            editOnlyChangesFields(['title', 'description', 'thumbRef', 'level', 'price', 'activities', 'pillar', 'promo', 'relatedSessions', 'duration', 'entryId'])
+
         );
       allow delete: if isOwner(resource.data.owner.uid) && !isPublic();
     }
