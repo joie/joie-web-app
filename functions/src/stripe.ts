@@ -1,4 +1,3 @@
-import { get } from 'lodash.get';
 import * as functions from 'firebase-functions';
 import { getUID, catchErrors } from './helpers';
 import { db, stripe } from './config';
@@ -142,7 +141,7 @@ export const stripeGetSources = functions.https.onCall(async (_, context) => {
 });
 
 export const stripeOnboard = functions.https.onCall(async (params, context) => {
-  const uid = getUID(context);
+  // const uid = getUID(context);
   try {
     const account = await stripe.accounts.create({ type: 'express' });
 
@@ -166,14 +165,15 @@ export const stripeOnboard = functions.https.onCall(async (params, context) => {
 });
 
 export const stripeOnboardRefresh = functions.https.onCall(async (params, context) => {
-  const uid = getUID(context);
-  const accountID = get(params, 'accountID');
+  // const uid = getUID(context);
 
-  if (!accountID) {
+  if (!params || !params.accountID) {
     return 'error';
   }
 
   try {
+    const accountID = params.accountID;
+
     const origin = `http://localhost:5001/joie-app/us-central1`; // @TODO: move this to runtimeConfig
     const accountLinkURL = await generateAccountLink(accountID, origin);
 
@@ -193,32 +193,9 @@ export const stripeOnboardRefresh = functions.https.onCall(async (params, contex
   }
 });
 
-export const stripeOnboardSuccess = functions.https.onCall(async (params, context) => {
-  const uid = getUID(context);
-  const accountID = get(params, 'accountID');
-
-  if (!accountID) {
-    return 'error';
-  }
-
-  try {
-    const origin = `http://localhost:5001/joie-app/us-central1`; // @TODO: move this to runtimeConfig
-    const accountLinkURL = await generateAccountLink(accountID, origin);
-
-    return catchErrors(
-      Promise.resolve({
-        type: 'success',
-        data: { url: accountLinkURL },
-      }),
-    );
-  } catch (err) {
-    return catchErrors(
-      Promise.resolve({
-        type: 'error',
-        message: err,
-      }),
-    );
-  }
+export const stripeOnboardSuccess = functions.https.onRequest((req, res) => {
+  console.log('req: ', req);
+  console.log('res: ', res);
 });
 
 const generateAccountLink = (accountID: string, origin: string) => {

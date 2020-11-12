@@ -12,7 +12,14 @@ export class AccountBankingComponent implements OnInit {
   ngOnInit(): void {}
 
   async connectStripe(): Promise<void> {
-    const resp = await this.stripeService.onboard().toPromise();
-    console.log('onboard resp: ', resp);
+    const resp = (await this.stripeService.onboard().toPromise()) as {
+      type: 'success' | 'error';
+      data?: any;
+      message: string;
+    };
+
+    if (resp.type === 'success') {
+      window.open(resp.data.url, '_blank');
+    }
   }
 }
