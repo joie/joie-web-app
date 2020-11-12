@@ -1,3 +1,4 @@
+import { StripeService } from './../../services/stripe/stripe.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-banking.component.scss'],
 })
 export class AccountBankingComponent implements OnInit {
-  constructor() {}
+  constructor(private stripeService: StripeService) {}
 
   ngOnInit(): void {}
+
+  async connectStripe(): Promise<void> {
+    const resp = await this.stripeService.onboard().toPromise();
+    console.log('onboard resp: ', resp);
+  }
 }

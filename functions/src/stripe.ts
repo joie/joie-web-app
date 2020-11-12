@@ -1,3 +1,4 @@
+import { get } from 'lodash.get';
 import * as functions from 'firebase-functions';
 import { getUID, catchErrors } from './helpers';
 import { db, stripe } from './config';
@@ -139,3 +140,94 @@ export const stripeGetSources = functions.https.onCall(async (_, context) => {
 
   return catchErrors(getSources(stripeId));
 });
+
+export const stripeOnboard = functions.https.onCall(async (params, context) => {
+  const uid = getUID(context);
+  try {
+    const account = await stripe.accounts.create({ type: 'express' });
+
+    const origin = `http://localhost:5001/joie-app/us-central1`; // @TODO: move this to runtimeConfig
+    const accountLinkURL = await generateAccountLink(account.id, origin);
+
+    return catchErrors(
+      Promise.resolve({
+        type: 'success',
+        data: { url: accountLinkURL },
+      }),
+    );
+  } catch (err) {
+    return catchErrors(
+      Promise.resolve({
+        type: 'error',
+        message: err,
+      }),
+    );
+  }
+});
+
+export const stripeOnboardRefresh = functions.https.onCall(async (params, context) => {
+  const uid = getUID(context);
+  const accountID = get(params, 'accountID');
+
+  if (!accountID) {
+    return 'error';
+  }
+
+  try {
+    const origin = `http://localhost:5001/joie-app/us-central1`; // @TODO: move this to runtimeConfig
+    const accountLinkURL = await generateAccountLink(accountID, origin);
+
+    return catchErrors(
+      Promise.resolve({
+        type: 'success',
+        data: { url: accountLinkURL },
+      }),
+    );
+  } catch (err) {
+    return catchErrors(
+      Promise.resolve({
+        type: 'error',
+        message: err,
+      }),
+    );
+  }
+});
+
+export const stripeOnboardSuccess = functions.https.onCall(async (params, context) => {
+  const uid = getUID(context);
+  const accountID = get(params, 'accountID');
+
+  if (!accountID) {
+    return 'error';
+  }
+
+  try {
+    const origin = `http://localhost:5001/joie-app/us-central1`; // @TODO: move this to runtimeConfig
+    const accountLinkURL = await generateAccountLink(accountID, origin);
+
+    return catchErrors(
+      Promise.resolve({
+        type: 'success',
+        data: { url: accountLinkURL },
+      }),
+    );
+  } catch (err) {
+    return catchErrors(
+      Promise.resolve({
+        type: 'error',
+        message: err,
+      }),
+    );
+  }
+});
+
+const generateAccountLink = (accountID: string, origin: string) => {
+  return stripe.accountLinks
+    .create({
+      type: 'account_onboarding',
+      account: accountID,
+      refresh_url: `${origin}/stripeOnboardRefresh`,
+      return_url: `${origin}/stripeOnboardSuccess`,
+    })
+    .then((link) => link.url);
+};
