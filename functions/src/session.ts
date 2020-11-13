@@ -1,38 +1,31 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { catchErrors, getUID } from './helpers';
+import { catchErrors, getUID, serverTimestamp } from './helpers';
 import { db } from './config';
+import get from 'lodash.get';
+import { IResponse } from './interfaces';
 
 const SESSIONS = 'sessions';
+const SESSIONS_USERS = 'sessions_users';
 
-export const sessionCreate = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onCreate(async (snapshot) => {
-  const now = admin.firestore.FieldValue.serverTimestamp();
-  return snapshot.ref.set({ createdAt: now }, { merge: true }).catch((e) => console.log(e));
-});
+export const sessionEnrolment = functions.https.onCall(async (params, context) => {
+  const { id } = params; // id -> session.id
+  const uid = getUID(context);
 
-export const sessionDelete = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onDelete((snap) => {
-  const { thumbRef } = snap.data();
+  const sessionEnrolmentData = await db
+    .collection(SESSIONS_USERS)
+    .doc(`${id}_${uid}`)
+    .get()
+    .then((data) => data.data());
 
-  if (thumbRef) {
-    const bucket = admin.storage().bucket();
-    const folderPath = thumbRef.substring(0, thumbRef.lastIndexOf('/'));
-    return bucket.deleteFiles({ prefix: folderPath });
-  } else {
-    return null;
-  }
+  return catchErrors(Promise.resolve(sessionEnrolmentData));
 });
 
 export const deleteSession = functions.https.onCall(async (params, context) => {
   const { id } = params;
   const uid = getUID(context);
 
-  const session = await db
-    .collection(SESSIONS)
-    .doc(id)
-    .get()
-    .then((doc) => doc.data());
-
-  // @TODO: before deleting a session, check for permission
+  const session = await getSession(id);
 
   // check if the user is the owner of this session
   if (session && session.owner.uid === uid) {
@@ -64,6 +57,42 @@ export const deleteSession = functions.https.onCall(async (params, context) => {
     }),
   );
 });
+
+export const getSession = async (id: string) => {
+  const session = await db
+    .collection(SESSIONS)
+    .doc(id)
+    .get()
+    .then((doc) => doc.data())
+    .catch((error) => {
+      return undefined;
+    });
+
+  return session;
+};
+
+export const setSessionUser = async (ref: string, data: any): Promise<IResponse> => {
+  await db
+    .collection(SESSIONS_USERS)
+    .doc(ref)
+    .set(
+      {
+        ...data,
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
+    )
+    .catch((error) => {
+      return Promise.resolve({
+        type: 'error',
+        message: error,
+      } as IResponse);
+    });
+  return Promise.resolve({
+    type: 'success',
+    message: 'Session User succesfully set',
+  } as IResponse);
+};
 
 // import { getUID, catchErrors } from './helpers';
 // import * as admin from 'firebase-admin';
@@ -124,3 +153,71 @@ export const deleteSession = functions.https.onCall(async (params, context) => {
 //   const sessionId = filePath.substring(0, end).substring(start + 1);
 
 // });
+
+/******************************************
+ *          FIRESTORE EVENTS
+ ******************************************/
+
+export const sessionCreate = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onCreate(async (snapshot) => {
+  const now = serverTimestamp();
+  return snapshot.ref.set({ createdAt: now }, { merge: true }).catch((e) => console.log(e));
+});
+
+export const sessionDelete = functions.firestore.document(`/${SESSIONS}/{sessionId}`).onDelete((snap) => {
+  const { thumbRef } = snap.data();
+
+  if (thumbRef) {
+    const bucket = admin.storage().bucket();
+    const folderPath = thumbRef.substring(0, thumbRef.lastIndexOf('/'));
+    return bucket.deleteFiles({ prefix: folderPath });
+  } else {
+    return null;
+  }
+});
+
+export const sessionsUsersOnCreate = functions.firestore
+  .document(`/${SESSIONS_USERS}/{uid_sessionId}`)
+  .onCreate(async (snapshot, context) => {
+    const data = snapshot.data();
+    const { sessionId } = data;
+
+    const sessionData = await getSession(sessionId);
+
+    if (sessionData) {
+      const enrolments = get(sessionData, 'enrolments', 0);
+      await db
+        .collection(SESSIONS)
+        .doc(sessionId)
+        .set(
+          {
+            enrolments: enrolments + 1,
+          },
+          {
+            merge: true,
+          },
+        );
+    }
+  });
+
+export const sessionsUsersOnDelete = functions.firestore
+  .document(`/${SESSIONS_USERS}/{uid_sessionId}`)
+  .onDelete(async (snapshot, context) => {
+    const data = snapshot.data();
+    const { sessionId } = data;
+
+    const sessionData = await getSession(sessionId);
+
+    if (sessionData) {
+      let enrolments = get(sessionData, 'enrolments', 0);
+      enrolments = enrolments > 0 ? enrolments-- : 0;
+
+      await db.collection(SESSIONS).doc(sessionId).set(
+        {
+          enrolments,
+        },
+        {
+          merge: true,
+        },
+      );
+    }
+  });

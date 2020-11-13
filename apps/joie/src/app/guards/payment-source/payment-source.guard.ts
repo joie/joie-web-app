@@ -1,14 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@angular/core';
-import {
-  CanActivate,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  UrlTree,
-  Router,
-} from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 import { PaymentService } from '../../services/payment/payment.service';
-import { map, pluck } from 'rxjs/operators';
+import { map, pluck, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -27,20 +22,20 @@ export class PaymentSourceGuard implements CanActivate {
           },
         },
       ],
-      { queryParams: { redirectUrl }, skipLocationChange: true }
+      { queryParams: { redirectUrl }, skipLocationChange: true },
     );
   }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    { url }: RouterStateSnapshot
-  ): Observable<boolean | UrlTree> {
-    console.log('KKKKKK');
-    console.log(this.getUrlTree(url).toString());
+  canActivate(next: ActivatedRouteSnapshot, { url }: RouterStateSnapshot): Observable<boolean | UrlTree> {
+    // console.log('KKKKKK');
+    // console.log(this.getUrlTree(url).toString());
     return this.paymentService.getSources().pipe(
       pluck('data', 'length'),
       map(Boolean),
-      map((hasPaymentSource) => hasPaymentSource || this.getUrlTree(url))
+      map((hasPaymentSource) => hasPaymentSource || this.getUrlTree(url)),
+      catchError((error, caught) => {
+        return of(this.getUrlTree(url));
+      }),
     );
   }
 }

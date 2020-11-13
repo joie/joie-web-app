@@ -29,4 +29,9 @@ export class SessionsService {
     const callable = this.fns.httpsCallable('deleteSession');
     return callable({ id });
   }
+
+  sessionEnrolment(id: string): Observable<any> {
+    const callable = this.fns.httpsCallable('sessionEnrolment');
+    return callable({ id });
+  }
 }
