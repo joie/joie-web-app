@@ -1,8 +1,8 @@
+import { Observable } from 'rxjs';
+import { Session } from './../../models/session';
 import { PaymentService } from './../../../services/payment/payment.service';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
-import { Session } from '../../models';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -17,9 +17,9 @@ export class SessionEnrollDialogComponent {
     public dialogRef: MatDialogRef<SessionEnrollDialogComponent>,
     private paymentService: PaymentService,
     private snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: { session$: Observable<Session>; sessionId: string },
+    @Inject(MAT_DIALOG_DATA) public data: { session: Session },
   ) {
-    this.sessionId = data.sessionId;
+    this.sessionId = data.session.id;
   }
 
   async buySession(): Promise<void> {
