@@ -46,8 +46,10 @@ service cloud.firestore {
     }
 
     function priceValid(data) {
-      return 'price' in data && data.price.keys().hasAll(['currency', 'display']);
-      // return 'price' in request.resource.data;
+      return 'price' in data
+      && data.price.keys().hasAll(['currency', 'display'])
+      && data.price.currency != null
+      && data.price.display != null;
     }
 
     function jointResourcesCheckout(requiredFields){
