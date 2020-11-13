@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import { getUID, catchErrors } from './helpers';
-import { db, stripe } from './config';
+import { cors, db, stripe } from './config';
 import { createUserDocumentInFirestore } from '.';
 import { firestore } from 'firebase-admin';
 
@@ -194,10 +194,10 @@ export const stripeOnboardRefresh = functions.https.onCall(async (params, contex
 });
 
 export const stripeOnboardSuccess = functions.https.onRequest((req, res) => {
-  console.log('req: ', req);
-  console.log('res: ', res);
-
-  return { type: 'success', data: { url: '' } };
+  cors(req, res, async () => {
+    console.log('req: ', req);
+    res.status(200).send(req.query);
+  });
 });
 
 const generateAccountLink = (accountID: string, origin: string) => {
