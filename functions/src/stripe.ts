@@ -196,6 +196,8 @@ export const stripeOnboardRefresh = functions.https.onCall(async (params, contex
 export const stripeOnboardSuccess = functions.https.onRequest((req, res) => {
   console.log('req: ', req);
   console.log('res: ', res);
+
+  return { type: 'success', data: { url: '' } };
 });
 
 const generateAccountLink = (accountID: string, origin: string) => {
