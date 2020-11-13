@@ -3,12 +3,14 @@
   <mat-icon>add</mat-icon>
   Add credit card
 </button>
-<fieldset class="stripe-card"
-          #cardElement>
+<fieldset class="stripe-card" #cardElement>
   <!-- A Stripe Element will be inserted here. -->
   Stripe
 </fieldset>
-<button class="btn mat-button" mat-raised-button (click)="connectStripe()">
-  <img src="/assets/icons/icons-set/stripe.svg" class="stripe-button" alt="Stripe Logo">
-  | Connect with Stripe
+<button mat-raised-button color="primary" (click)="connectStripe()">
+  <app-icon class="size-sm" name="stripe"></app-icon>
+  <!-- [vertical]="true" strange behavior -->
+  <mat-divider></mat-divider>
+
+  Connect with Stripe
 </button>
