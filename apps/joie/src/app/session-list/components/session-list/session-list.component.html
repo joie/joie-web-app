@@ -25,35 +25,23 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <ng-container *ngIf="session && !session.owner">
-        <ng-container *ngIf="enrolled; else notenrolled">
+      <ng-container *ngIf="session?.owner?.uid !== (uid$ | async)">
+        <!-- <ng-container *ngIf="enrolled; else notenrolled">
           <a>You are enrolled</a>
-        </ng-container>
-        <ng-template #notenrolled>
-          <a
-            [routerLink]="[
-              {
-                outlets: {
-                  popup: ['enroll', session.id]
-                }
+        </ng-container> -->
+        <a
+          mat-raised-button
+          color="accent" style="width: 100%"
+          [routerLink]="[
+            {
+              outlets: {
+                popup: ['enroll', session.id]
               }
-            ]"
-            mat-button
-            >Enroll in session</a
-          >
-        </ng-template>
-      </ng-container>
-      <a
-        [routerLink]="[
-          {
-            outlets: {
-              popup: ['add-payment-source']
             }
-          }
-        ]"
-        mat-button
-        >pay</a
-      >
+          ]"
+          >Enroll in session</a
+        >
+      </ng-container>
     </mat-card-actions>
   </mat-card>
 </ng-container>
