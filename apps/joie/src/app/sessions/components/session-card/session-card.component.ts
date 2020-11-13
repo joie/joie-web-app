@@ -9,13 +9,11 @@ import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
 })
 export class SessionCardComponent implements OnInit {
   @Input() session: Session;
+  @Input() sessionId: string;
   @Input() showThumbnail = false;
 
   pillar = Pillar;
   pillarIcons = PillarsIconsMap;
 
-  constructor() {}
-
   ngOnInit() {}
-
 }

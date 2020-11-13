@@ -46,8 +46,10 @@ service cloud.firestore {
     }
 
     function priceValid(data) {
-      return 'price' in data && data.price.keys().hasAll(['currency', 'display']);
-      // return 'price' in request.resource.data;
+      return 'price' in data
+      && data.price.keys().hasAll(['currency', 'display'])
+      && data.price.currency != null
+      && data.price.display != null;
     }
 
     function jointResourcesCheckout(requiredFields){
@@ -89,5 +91,9 @@ service cloud.firestore {
       allow read: if isOwner(userId);
     }
 
+    match /sessions_users/{ref} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
   }
 }

@@ -13,8 +13,13 @@ export class PaymentService {
     return callable({});
   }
 
-  attachSource(sourceId: string) {
+  attachSource(sourceId: string): Observable<any> {
     const callable = this.fns.httpsCallable('stripeAttachSource');
     return callable({ sourceId });
+  }
+
+  sessionCharge(sessionId: string): Observable<any> {
+    const callable = this.fns.httpsCallable('stripeSessionCharge');
+    return callable({ sessionId });
   }
 }

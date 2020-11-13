@@ -1,8 +1,11 @@
+import { IResponse } from './interfaces';
 import * as functions from 'firebase-functions';
-import { getUID, catchErrors } from './helpers';
 import { cors, db, stripe } from './config';
+import { getUID, catchErrors, getUEmail, serverTimestamp } from './helpers';
 import { createUserDocumentInFirestore } from '.';
 import { firestore } from 'firebase-admin';
+import { getSession, setSessionUser } from './session';
+import get from 'lodash.get';
 
 const CUSTOMERS = 'customers';
 
@@ -119,6 +122,96 @@ export const cleanupStripeCustomer = functions.auth.user().onDelete(async (user)
 //   source: 'src_18eYalAHEMiOZZp1l9ZTjSU0',
 // });
 
+export const createCharge = async (data: {
+  customer: string;
+  amount: number;
+  currency: string;
+  receipt_email: string;
+  description: string;
+  metadata: any;
+}): Promise<{ id: string }> => {
+  return await stripe.charges.create(data);
+};
+
+export const stripeSessionCharge = functions.https.onCall(
+  async (params, context): Promise<IResponse> => {
+    try {
+      const uid = getUID(context);
+      const email = getUEmail(context);
+      const { sessionId } = params;
+
+      const customerId = await getUserCustomerId(uid ?? '');
+
+      if (!customerId) {
+        return Promise.resolve({
+          type: 'error',
+          message: `Missing payment method`,
+        } as IResponse);
+      }
+
+      const session = await getSession(sessionId);
+
+      if (session) {
+        // owner can not pay it's own session
+        if (get(session, 'owner.uid', false) === uid) {
+          return Promise.resolve({
+            type: 'error',
+            message: `Owner cannot purchase it's own session`,
+          } as IResponse);
+        }
+
+        const amount = get(session, 'price.display', false);
+        const currency = get(session, 'price.currency', false);
+
+        if (!amount || !currency) {
+          return Promise.resolve({
+            type: 'error',
+            message: 'Amount or Currency missing in the session data',
+          } as IResponse);
+        }
+
+        const response = await createCharge({
+          customer: customerId,
+          amount: amount * 100,
+          currency,
+          receipt_email: email ?? '',
+          description: `Joie - Session #${sessionId}`,
+          metadata: {
+            title: get(session, 'title', ''),
+            session_id: sessionId,
+          },
+        });
+
+        const { id } = response;
+
+        const sessionUserData = {
+          sessionId,
+          uid,
+          stripe_charge_id: id,
+        };
+
+        await setSessionUser(`${sessionId}_${uid}`, {
+          ...sessionUserData,
+          updatedAt: serverTimestamp(),
+        });
+
+        return Promise.resolve({
+          type: 'success',
+          message: 'Session successfully paid',
+        } as IResponse);
+      }
+      return Promise.resolve({
+        type: 'error',
+        message: `Session not found`,
+      } as IResponse);
+    } catch (error) {
+      return Promise.resolve({
+        type: 'error',
+        message: error,
+      } as IResponse);
+    }
+  },
+);
 /**
  *  Use this function to get all sources for existing customer
  */

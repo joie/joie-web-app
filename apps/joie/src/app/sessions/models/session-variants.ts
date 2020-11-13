@@ -37,6 +37,7 @@ interface SessionMetadata extends Schedule, KalturaEvent {
   promo: string;
   relatedSessions: string[];
   status: Status;
+  enrolments?: number; // nr of people enrolled to this session
 }
 
 interface Streaming {
