@@ -3,7 +3,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { take } from 'rxjs/operators';
 
 @Directive({
-  // tslint:disable-next-line: directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[fireStorageRef]',
 })
 export class FireStorageRefDirective implements OnInit {

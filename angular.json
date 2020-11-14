@@ -44,7 +44,6 @@
             "stylePreprocessorOptions": {
               "includePaths": ["node_modules/"]
             },
-            "extractCss": true,
             "scripts": []
           },
           "configurations": {
@@ -58,7 +57,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": true,
-              "extractCss": true,
               "namedChunks": true,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -105,11 +103,7 @@
             "polyfills": "apps/joie/src/polyfills.ts",
             "tsConfig": "apps/joie/tsconfig.spec.json",
             "karmaConfig": "apps/joie/karma.conf.js",
-            "assets": [
-              "apps/joie/src/favicon.ico",
-              "apps/joie/src/assets",
-              "apps/joie/src/manifest.webmanifest"
-            ],
+            "assets": ["apps/joie/src/favicon.ico", "apps/joie/src/assets", "apps/joie/src/manifest.webmanifest"],
             "styles": [
               {
                 "input": "apps/joie/src/styles/styles-critical/styles-critical.scss",
@@ -125,10 +119,9 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": ["apps/joie/tsconfig.app.json", "apps/joie/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": ["apps/joie/**/*.ts", "apps/joie/**/*.html"]
           }
         },
         "deploy": {
