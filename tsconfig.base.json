@@ -16,7 +16,8 @@
     "lib": ["es2018", "dom"],
     "paths": {
       "@/*": ["./*"],
-      "@joie/dyna-form": ["./libs/dyna-form/src/index.ts"]
+      "@joie/dyna-form": ["./libs/dyna-form/src/index.ts"],
+      "@joie/schemes": ["libs/schemes/src/index.ts"]
     },
     "rootDir": ".",
     "forceConsistentCasingInFileNames": true,
@@ -27,8 +28,14 @@
     "strictInjectionParameters": true
   },
   "references": [
-    { "path": "./libs/dyna-form/tsconfig.json" },
-    { "path": "./apps/joie/tsconfig.app.json" },
-    { "path": "./apps/joie/tsconfig.editor.json" }
+    {
+      "path": "./libs/dyna-form/tsconfig.json"
+    },
+    {
+      "path": "./apps/joie/tsconfig.app.json"
+    },
+    {
+      "path": "./apps/joie/tsconfig.editor.json"
+    }
   ]
 }
