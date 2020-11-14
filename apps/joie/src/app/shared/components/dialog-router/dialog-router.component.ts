@@ -30,14 +30,13 @@ export class DialogRouterComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      // console.log('The dialog was closed with:', result);
-      // console.log(this.route.parent.snapshot.params);
-      const redirectUrl = result?.redirectUrl;
-      if (redirectUrl) {
-        this.router.navigateByUrl(redirectUrl);
-      } else {
-        this.router.navigate(['../'], { relativeTo: this.route });
+      let { url } = this.router;
+      let substringIndex = url.indexOf('/(');
+      if (substringIndex === -1) {
+        substringIndex = url.indexOf('(');
       }
+      url = url.substring(0, substringIndex);
+      this.router.navigateByUrl(url);
     });
   }
 }
