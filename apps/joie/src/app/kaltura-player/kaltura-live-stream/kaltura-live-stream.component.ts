@@ -2,9 +2,8 @@ import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { KalturaApiHandShakeService } from '../kaltura-api-handshake.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Session } from '../../sessions/models';
 
-declare var kWidget;
+declare let kWidget;
 
 @UntilDestroy()
 @Component({
@@ -24,10 +23,7 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
   isLoading = true;
   videoUrl: SafeResourceUrl;
 
-  constructor(
-    private kalturaApiHandShakeService: KalturaApiHandShakeService,
-    private domSanitizer: DomSanitizer
-  ) {}
+  constructor(private kalturaApiHandShakeService: KalturaApiHandShakeService, private domSanitizer: DomSanitizer) {}
 
   ngOnChanges(changes: SimpleChanges) {
     // only call live stream session if all needed arguments have values
@@ -36,7 +32,7 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
     const isLiveStreamArgChanged = changesKeys.some((value) => liveStreamArgs.includes(value));
     if (isLiveStreamArgChanged) {
       const allLiveStreamArgsHasValue = liveStreamArgs.every(
-        (key) => typeof this[key] !== 'undefined' && this[key] !== null
+        (key) => typeof this[key] !== 'undefined' && this[key] !== null,
       );
 
       if (allLiveStreamArgsHasValue) {
@@ -48,13 +44,7 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
 
   openLiveStreamSession() {
     this.kalturaApiHandShakeService
-      .createSession(
-        this.displayName,
-        this.eventId,
-        this.role,
-        this.sessionType,
-        this.userContextualRole
-      )
+      .createSession(this.displayName, this.eventId, this.role, this.sessionType, this.userContextualRole)
       .pipe(untilDestroyed(this))
       .subscribe(
         (result) => {
@@ -63,10 +53,8 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
           this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
         },
         (error) => {
-          console.log(
-            `KalturaLiveStreamPlayerComponent : openLiveStreamSession() :: ${error} while fetching session`
-          );
-        }
+          console.log(`KalturaLiveStreamPlayerComponent : openLiveStreamSession() :: ${error} while fetching session`);
+        },
       );
   }
 }

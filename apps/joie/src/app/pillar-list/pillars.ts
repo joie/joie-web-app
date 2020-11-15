@@ -1,4 +1,4 @@
-import { Pillar } from '../enums';
+import { Pillar } from '../../../../../libs/schemes/src';
 
 export const pillars = [
   {
