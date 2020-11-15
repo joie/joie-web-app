@@ -3,7 +3,7 @@ import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { SessionsService } from '../../../services/sessions/sessions.service';
 import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-handshake.service';
 import { environment } from '../../../../environments/environment';
-import { Format, Type } from '../../../sessions/enums';
+import { Format, Type } from '../../../../../../../libs/schemes/src';
 import { IMAGE } from '../../components/session-form-metadata/session-form-metadata.component';
 import { finalize, last, map, switchMap, take } from 'rxjs/operators';
 import { iif, Observable } from 'rxjs';

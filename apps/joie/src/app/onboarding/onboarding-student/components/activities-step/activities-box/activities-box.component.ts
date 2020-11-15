@@ -7,14 +7,17 @@ import {
   SpiritTargets,
   ProfessionalTargets,
   SpiritTargetsLiteralsMap,
-} from './../../../../../enums/pillars-targets.enum';
+  MovementTargets,
+  EmotionsTargets,
+  Pillar,
+} from '../../../../../../../../../libs/schemes/src';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { atLeastOneIsCheckedValidator } from '../../../../validators/atLeastOnIsChecked';
 import { StorageServiceService, USER_ONBOARDING } from '../../../../shared/storage-service.service';
 import { PILLARS } from '../../../../../pillar-list/components/pillar-list/pillar-list.component';
 import { OnboardingService } from '../../../../shared/onboarding.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { MovementTargets, EmotionsTargets, Pillar } from '../../../../../enums';
+
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 
 export const ACTIVITIES = 'activities';
@@ -74,7 +77,7 @@ export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
   constructor(
     private formBuilder: FormBuilder,
     public onboardingService: OnboardingService,
-    private storage: StorageServiceService
+    private storage: StorageServiceService,
   ) {}
 
   ngOnInit(): void {
@@ -92,10 +95,7 @@ export class ActivitiesBoxComponent implements OnInit, AfterViewInit {
   }
 
   initForm() {
-    this.onboardingService.addCheckboxes(
-      Array.from(this.activitiesLiteralsMap.keys()),
-      this.activitiesFormArray
-    );
+    this.onboardingService.addCheckboxes(Array.from(this.activitiesLiteralsMap.keys()), this.activitiesFormArray);
 
     this.getCache();
   }

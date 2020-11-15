@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Stat } from '../../../../models/account.model';
+import { Stat } from '../../../../../../../../libs/schemes/src';
 
 @Component({
   selector: 'app-stats',
@@ -8,5 +8,4 @@ import { Stat } from '../../../../models/account.model';
 })
 export class StatsComponent {
   @Input() stats: Stat[];
-  constructor() {}
 }
