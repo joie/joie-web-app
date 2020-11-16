@@ -1,10 +1,7 @@
-import { Format } from './../../../sessions/enums/format.enum';
 import { Component } from '@angular/core';
 import { FormControl, FormArray, Validators, FormGroup } from '@angular/forms';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
-import { Activities, Pillar } from '../../../enums';
-import { CourseLevel } from '../../../sessions/enums';
-import { Currency } from '../../../models';
+import { Activities, Pillar, CourseLevel, Currency, Format } from '../../../../../../../libs/schemes/src';
 
 const FORMAT = 'format';
 @Component({

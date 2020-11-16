@@ -5,7 +5,7 @@ import { map, pluck, switchMap, take } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessionsService } from '../../../services/sessions/sessions.service';
 import { Confirmable } from '../../../shared/decorators/confirmable.decorator';
-import { Status } from '../../enums';
+import { Status } from '../../../../../../../libs/schemes/src';
 
 @Component({
   selector: 'app-session-owner-links',

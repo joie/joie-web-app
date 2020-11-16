@@ -5,7 +5,7 @@ import { SessionsService } from '../../../services/sessions/sessions.service';
 import { Observable } from 'rxjs';
 import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
-import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
+import { Pillar, PillarsIconsMap } from '../../../../../../../libs/schemes/src';
 
 // @UntilDestroy()
 @Component({

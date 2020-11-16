@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Session } from '../../models';
+import { Session } from '../../../../../../../libs/schemes/src';
 
 @Component({
   selector: 'app-what-learn',

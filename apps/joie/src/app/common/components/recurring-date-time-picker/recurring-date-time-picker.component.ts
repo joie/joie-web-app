@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output, ViewChild, OnDestroy, ElementRef } fro
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { map, filter, takeUntil } from 'rxjs/operators';
-import { Recurrence } from '../../../sessions/enums';
+import { Recurrence } from '../../../../../../../libs/schemes/src';
 
 // JavaScript Date object transforms to a Firestore Timestamp
 const dateTimeToDateObj = (date: string, time: string) => new Date(`${date} ${time}`);
@@ -35,7 +35,7 @@ export class RecurringDateTimePickerComponent implements OnDestroy {
       .pipe(
         takeUntil(this.stop$),
         filter(() => this.form.valid),
-        map(this.normalizeValue)
+        map(this.normalizeValue),
       )
       .subscribe(this.formChange);
   }

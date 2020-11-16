@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
-import { Type, Format } from '../../../sessions/enums';
+import { Type, Format } from '../../../../../../../libs/schemes/src';
 import { SessionFormatLiteralsMap, SessionTypeLiteralsMap } from '../../../sessions/literal-maps';
 
 export const IMAGE = 'image';
@@ -46,7 +46,7 @@ export class SessionFormMetadataComponent extends DynaFormBaseComponent {
     this.isCoachingType$ = this.form.get(this.TYPE).valueChanges.pipe(
       map((type) => type === Type.Coaching),
       tap((isCoaching) => isCoaching && this.form.get(this.FORMAT).setValue(Format.LiveStreaming)),
-      shareReplay(1)
+      shareReplay(1),
     );
   }
 
