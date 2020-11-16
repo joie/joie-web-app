@@ -22,7 +22,7 @@ export class AccountBankingComponent implements OnInit {
       const response = this.stripeService.onboardCallback(stripeAccountID).toPromise();
       console.log('response: ', response);
     }
-    window.close();
+    // window.close();
   };
 
   async connectStripe(): Promise<void> {

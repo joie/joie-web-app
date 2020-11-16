@@ -258,10 +258,13 @@ export const stripeOnboard = functions.https.onCall(async (params, context) => {
 });
 
 export const stripeOnboardRefresh = functions.https.onCall(async (params, context) => {
-  // const uid = getUID(context);
-
   if (!params || !params.accountID) {
-    return 'error';
+    return catchErrors(
+      Promise.resolve({
+        type: 'error',
+        message: 'Missing accoutID',
+      }),
+    );
   }
 
   try {
@@ -291,6 +294,9 @@ export const stripeOnboardCallback = functions.https.onCall(async (params, conte
   const uid = getUID(context);
 
   const accountResp = await stripe.accounts.retrieve(accountID);
+
+  if (accountResp) {
+  }
 
   return catchErrors(Promise.resolve({ data: { uid, accountID, accountResp }, type: 'success' } as IResponse));
 });
