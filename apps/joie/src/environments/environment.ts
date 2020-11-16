@@ -6,8 +6,9 @@ import { kalturaConfig } from './kaltura.config';
 
 export const environment = {
   production: false,
+  api_url: 'http://localhost:5001/joie-app/us-central1',
   firebase,
-  kalturaConfig
+  kalturaConfig,
 };
 
 /*

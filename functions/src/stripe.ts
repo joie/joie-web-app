@@ -1,6 +1,6 @@
 import { IResponse } from './interfaces';
 import * as functions from 'firebase-functions';
-import { cors, db, stripe } from './config';
+import { db, stripe } from './config';
 import { getUID, catchErrors, getUEmail, serverTimestamp } from './helpers';
 import { createUserDocumentInFirestore } from '.';
 import { firestore } from 'firebase-admin';
@@ -286,11 +286,13 @@ export const stripeOnboardRefresh = functions.https.onCall(async (params, contex
   }
 });
 
-export const stripeOnboardSuccess = functions.https.onRequest((req, res) => {
-  cors(req, res, async () => {
-    console.log('req: ', req);
-    res.status(200).send(req.query);
-  });
+export const stripeOnboardCallback = functions.https.onCall(async (params, context) => {
+  const { accountID } = params;
+  const uid = getUID(context);
+
+  const accountResp = await stripe.accounts.retrieve(accountID);
+
+  return catchErrors(Promise.resolve({ data: { uid, accountID, accountResp }, type: 'success' } as IResponse));
 });
 
 const generateAccountLink = (accountID: string, origin: string) => {
@@ -299,7 +301,7 @@ const generateAccountLink = (accountID: string, origin: string) => {
       type: 'account_onboarding',
       account: accountID,
       refresh_url: `${origin}/stripeOnboardRefresh`,
-      return_url: `${origin}/stripeOnboardSuccess`,
+      return_url: `http://localhost:8927/account/banking?accountID=${accountID}`,
     })
     .then((link) => link.url);
 };

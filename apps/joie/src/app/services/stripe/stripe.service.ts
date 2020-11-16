@@ -12,4 +12,9 @@ export class StripeService {
     const callable = this.fns.httpsCallable('stripeOnboard');
     return callable({});
   }
+
+  onboardCallback(accountID: string): Observable<any> {
+    const callable = this.fns.httpsCallable('stripeOnboardCallback');
+    return callable({ accountID });
+  }
 }
