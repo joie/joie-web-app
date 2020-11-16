@@ -42,6 +42,15 @@ const getUserCustomerId = async (uid: string) => {
   return UserCustomer?.stripeId;
 };
 
+const getUserCustomer = async (uid: string) => {
+  const UserCustomer = await db
+    .collection(CUSTOMERS)
+    .doc(uid)
+    .get()
+    .then((doc) => doc.data());
+  return UserCustomer;
+};
+
 /**
  * Set customer id reference to a Firebase user non-destructively
  */
@@ -292,9 +301,13 @@ export const stripeOnboardCallback = functions.https.onCall(async (params, conte
   const { accountID } = params;
   const uid = getUID(context);
 
+  if (!uid) {
+    return catchErrors(Promise.resolve({ message: `No user found`, type: 'error' } as IResponse));
+  }
+
   const accountResp = await stripe.accounts.retrieve(accountID);
 
-  if (uid && accountResp) {
+  if (accountResp) {
     await setUserCustomerReference(uid, accountID, 'account');
 
     return catchErrors(
@@ -322,5 +335,22 @@ export const stripeDisonnectAccount = functions.https.onCall(async (_, context) 
     throw new functions.https.HttpsError('not-found', `couldn't find user`);
   }
 
-  return catchErrors(deleteUserCustomerReference(uid));
+  const customer = await getUserCustomer(uid);
+
+  if (customer && customer.type === 'account') {
+    // disconnect account from stripe also
+    const deleted = await stripe.accounts.del(customer?.stripeId);
+
+    if (deleted) {
+      await deleteUserCustomerReference(uid);
+      return Promise.resolve({ message: 'Stripe account succesfully disconnected', type: 'success' } as IResponse);
+    }
+    return Promise.resolve({
+      message: `Stripe account failed to disconnect`,
+      type: 'error',
+      data: deleted,
+    } as IResponse);
+  }
+
+  return Promise.resolve({ message: `Stripe account failed to disconnect`, type: 'error' } as IResponse);
 });

@@ -16,12 +16,24 @@
     <!-- A Stripe Element will be inserted here. -->
     Stripe
   </fieldset>
-  <button mat-raised-button color="primary" (click)="connectStripe()">
-    <app-icon class="size-sm" name="stripe"></app-icon>
-    <!-- [vertical]="true" strange behavior -->
-    <mat-divider></mat-divider>
 
-    Connect with Stripe
-  </button>
+  <div *ngIf="stripeAccount$ | async; then stripeAccount; else notStripeAccount"></div>
+
+  <ng-template #stripeAccount>
+    <b>Connected with Stripe</b>
+
+    <button  mat-raised-button color="warn" (click)="disconnectStripe()">
+      <app-icon class="size-sm" name="trash"></app-icon>
+    </button>
+  </ng-template>
+  <ng-template #notStripeAccount>
+    <button mat-raised-button color="primary" (click)="connectStripe()">
+      <app-icon class="size-sm" name="stripe"></app-icon>
+      <!-- [vertical]="true" strange behavior -->
+      <mat-divider></mat-divider>
+
+      Connect with Stripe
+    </button>
+  </ng-template>
 </ng-template>
 
