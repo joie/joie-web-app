@@ -44,8 +44,8 @@ const getUserCustomerId = async (uid: string) => {
 /**
  * Set customer id reference to a Firebase user non-destructively
  */
-const setUserCustomerReference = (uid: string, stripeId: string) =>
-  db.collection(CUSTOMERS).doc(uid).set({ stripeId }, { merge: true });
+const setUserCustomerReference = (uid: string, stripeId: string, type: 'account' | 'customer' = 'customer') =>
+  db.collection(CUSTOMERS).doc(uid).set({ stripeId, type }, { merge: true });
 
 /**
  *  Use this function to create a customer & source for non-existing customer
@@ -295,10 +295,15 @@ export const stripeOnboardCallback = functions.https.onCall(async (params, conte
 
   const accountResp = await stripe.accounts.retrieve(accountID);
 
-  if (accountResp) {
+  if (uid && accountResp) {
+    await setUserCustomerReference(uid, accountID, 'account');
+
+    return catchErrors(
+      Promise.resolve({ data: `Stripe account verified and succesfully stored`, type: 'success' } as IResponse),
+    );
   }
 
-  return catchErrors(Promise.resolve({ data: { uid, accountID, accountResp }, type: 'success' } as IResponse));
+  return catchErrors(Promise.resolve({ message: `Unable to verify the stripe account`, type: 'error' } as IResponse));
 });
 
 const generateAccountLink = (accountID: string, origin: string) => {

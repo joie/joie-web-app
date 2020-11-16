@@ -1,16 +1,27 @@
 <h4>Banking</h4>
-<button>
-  <mat-icon>add</mat-icon>
-  Add credit card
-</button>
-<fieldset class="stripe-card" #cardElement>
-  <!-- A Stripe Element will be inserted here. -->
-  Stripe
-</fieldset>
-<button mat-raised-button color="primary" (click)="connectStripe()">
-  <app-icon class="size-sm" name="stripe"></app-icon>
-  <!-- [vertical]="true" strange behavior -->
-  <mat-divider></mat-divider>
 
-  Connect with Stripe
-</button>
+<div *ngIf="stripeAccountID; then spinning; else notSpinning"></div>
+
+<ng-template #spinning>
+  <mat-spinner class="mt-2" color="primary"></mat-spinner>
+</ng-template>
+
+
+<ng-template #notSpinning>
+  <button>
+    <mat-icon>add</mat-icon>
+    Add credit card
+  </button>
+  <fieldset class="stripe-card" #cardElement>
+    <!-- A Stripe Element will be inserted here. -->
+    Stripe
+  </fieldset>
+  <button mat-raised-button color="primary" (click)="connectStripe()">
+    <app-icon class="size-sm" name="stripe"></app-icon>
+    <!-- [vertical]="true" strange behavior -->
+    <mat-divider></mat-divider>
+
+    Connect with Stripe
+  </button>
+</ng-template>
+

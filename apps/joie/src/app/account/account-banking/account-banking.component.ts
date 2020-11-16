@@ -10,19 +10,21 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./account-banking.component.scss'],
 })
 export class AccountBankingComponent implements OnInit {
+  stripeAccountID: string;
+
   constructor(private stripeService: StripeService, private route: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit(): void {
+    // in case we have a stripe callback
     this.stripeCallback();
   }
 
   stripeCallback = (): void => {
-    const stripeAccountID = this.route.snapshot.queryParamMap.get('accountID');
-    if (stripeAccountID) {
-      const response = this.stripeService.onboardCallback(stripeAccountID).toPromise();
-      console.log('response: ', response);
+    this.stripeAccountID = this.route.snapshot.queryParamMap.get('accountID');
+    if (this.stripeAccountID) {
+      this.stripeService.onboardCallback(this.stripeAccountID).toPromise();
     }
-    // window.close();
+    window.close();
   };
 
   async connectStripe(): Promise<void> {
