@@ -16,6 +16,4 @@ export const stripeToken = functions.config().stripe.token;
 import { Stripe } from 'stripe';
 export const stripe = new Stripe(stripeToken, { apiVersion: '2020-08-27' });
 
-// Export Cors
-import CORS from 'cors';
-export const cors = CORS({ origin: true });
+export const API_URL = functions.config().app.api_url;

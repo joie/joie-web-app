@@ -1,6 +1,6 @@
 import { IResponse } from './interfaces';
 import * as functions from 'firebase-functions';
-import { db, stripe } from './config';
+import { db, stripe, API_URL } from './config';
 import { getUID, catchErrors, getUEmail, serverTimestamp } from './helpers';
 import { createUserDocumentInFirestore } from '.';
 import { firestore } from 'firebase-admin';
@@ -8,6 +8,7 @@ import { getSession, setSessionUser } from './session';
 import get from 'lodash.get';
 
 const CUSTOMERS = 'customers';
+const RETURN_URL = functions.config().stripe.return_url;
 
 /**
  *  Use this function to read the user document from Firestore
@@ -47,6 +48,7 @@ const getUserCustomerId = async (uid: string) => {
 const setUserCustomerReference = (uid: string, stripeId: string, type: 'account' | 'customer' = 'customer') =>
   db.collection(CUSTOMERS).doc(uid).set({ stripeId, type }, { merge: true });
 
+const deleteUserCustomerReference = (uid: string) => db.collection(CUSTOMERS).doc(uid).delete();
 /**
  *  Use this function to create a customer & source for non-existing customer
  */
@@ -233,13 +235,11 @@ export const stripeGetSources = functions.https.onCall(async (_, context) => {
   return catchErrors(getSources(stripeId));
 });
 
-export const stripeOnboard = functions.https.onCall(async (params, context) => {
-  // const uid = getUID(context);
+export const stripeOnboard = functions.https.onCall(async () => {
   try {
     const account = await stripe.accounts.create({ type: 'express' });
 
-    const origin = `http://localhost:5001/joie-app/us-central1`; // @TODO: move this to runtimeConfig
-    const accountLinkURL = await generateAccountLink(account.id, origin);
+    const accountLinkURL = await generateAccountLink(account.id);
 
     return catchErrors(
       Promise.resolve({
@@ -270,8 +270,7 @@ export const stripeOnboardRefresh = functions.https.onCall(async (params, contex
   try {
     const accountID = params.accountID;
 
-    const origin = `http://localhost:5001/joie-app/us-central1`; // @TODO: move this to runtimeConfig
-    const accountLinkURL = await generateAccountLink(accountID, origin);
+    const accountLinkURL = await generateAccountLink(accountID);
 
     return catchErrors(
       Promise.resolve({
@@ -306,13 +305,22 @@ export const stripeOnboardCallback = functions.https.onCall(async (params, conte
   return catchErrors(Promise.resolve({ message: `Unable to verify the stripe account`, type: 'error' } as IResponse));
 });
 
-const generateAccountLink = (accountID: string, origin: string) => {
+const generateAccountLink = (accountID: string) => {
   return stripe.accountLinks
     .create({
       type: 'account_onboarding',
       account: accountID,
-      refresh_url: `${origin}/stripeOnboardRefresh`,
-      return_url: `http://localhost:8927/account/banking?accountID=${accountID}`,
+      refresh_url: `${API_URL}/stripeOnboardRefresh`,
+      return_url: `${RETURN_URL}?accountID=${accountID}`,
     })
     .then((link) => link.url);
 };
+
+export const stripeDisonnectAccount = functions.https.onCall(async (_, context) => {
+  const uid = getUID(context);
+  if (!uid) {
+    throw new functions.https.HttpsError('not-found', `couldn't find user`);
+  }
+
+  return catchErrors(deleteUserCustomerReference(uid));
+});
