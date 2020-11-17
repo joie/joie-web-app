@@ -58,7 +58,7 @@ const getUserCustomer = async (uid: string) => {
 const setUserCustomerReference = (uid: string, stripeId: string, type: 'account' | 'customer' = 'customer') =>
   db.collection(CUSTOMERS).doc(uid).set({ stripeId, type }, { merge: true });
 
-const deleteUserCustomerReference = (uid: string) => db.collection(CUSTOMERS).doc(uid).delete();
+// const deleteUserCustomerReference = (uid: string) => db.collection(CUSTOMERS).doc(uid).delete();
 /**
  *  Use this function to create a customer & source for non-existing customer
  */
@@ -145,9 +145,9 @@ export const stripeSessionCharge = functions.https.onCall(
       const email = getUEmail(context);
       const { sessionId } = params;
 
-      const customerId = await getUserCustomerId(uid ?? '');
+      const customer = await getUserCustomer(uid ?? '');
 
-      if (!customerId) {
+      if (!customer) {
         return Promise.resolve({
           type: 'error',
           message: `Missing payment method`,
@@ -155,6 +155,7 @@ export const stripeSessionCharge = functions.https.onCall(
       }
 
       const session = await getSession(sessionId);
+      const { stripeId } = customer;
 
       if (session) {
         // owner can not pay it's own session
@@ -175,8 +176,10 @@ export const stripeSessionCharge = functions.https.onCall(
           } as IResponse);
         }
 
+        // @TODO: create paymentIntent if is account
+
         const response = await createCharge({
-          customer: customerId,
+          customer: stripeId,
           amount: amount * 100,
           currency,
           receipt_email: email ?? '',
@@ -220,7 +223,8 @@ export const stripeSessionCharge = functions.https.onCall(
 /**
  *  Use this function to get all sources for existing customer
  */
-const getSources = async (stripeId: string) => await stripe.customers.listSources(stripeId);
+// const getSources = async (stripeId: string) => await stripe.customers.listSources(stripeId);
+const getAccount = async (stripeId: string) => await stripe.accounts.retrieve(stripeId);
 
 export const stripeGetSources = functions.https.onCall(async (_, context) => {
   const uid = getUID(context);
@@ -229,13 +233,13 @@ export const stripeGetSources = functions.https.onCall(async (_, context) => {
     throw new functions.https.HttpsError('not-found', `couldn't find user`);
   }
 
-  const stripeId = await getUserCustomerId(uid);
+  const customer = await getUserCustomer(uid);
 
-  if (!stripeId) {
+  if (!customer) {
     throw new functions.https.HttpsError('not-found', `couldn't find stripe customer in firestore`);
   }
 
-  return catchErrors(getSources(stripeId));
+  return catchErrors(Promise.resolve({ data: true }));
 });
 
 export const stripeOnboard = functions.https.onCall(async () => {
@@ -299,7 +303,7 @@ export const stripeOnboardCallback = functions.https.onCall(async (params, conte
     return catchErrors(Promise.resolve({ message: `No user found`, type: 'error' } as IResponse));
   }
 
-  const accountResp = await stripe.accounts.retrieve(accountID);
+  const accountResp = await getAccount(accountID);
 
   if (accountResp) {
     await setUserCustomerReference(uid, accountID, 'account');
