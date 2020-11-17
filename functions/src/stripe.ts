@@ -6,6 +6,7 @@ import { createUserDocumentInFirestore } from '.';
 import { firestore } from 'firebase-admin';
 import { getSession, setSessionUser } from './session';
 import get from 'lodash.get';
+import Stripe from 'stripe';
 
 const CUSTOMERS = 'customers';
 
@@ -122,14 +123,7 @@ export const cleanupStripeCustomer = functions.auth.user().onDelete(async (user)
 //   source: 'src_18eYalAHEMiOZZp1l9ZTjSU0',
 // });
 
-export const createCharge = async (data: {
-  customer: string;
-  amount: number;
-  currency: string;
-  receipt_email: string;
-  description: string;
-  metadata: any;
-}): Promise<{ id: string }> => {
+export const createCharge = async (data: Stripe.ChargeCreateParams): Promise<{ id: string }> => {
   return await stripe.charges.create(data);
 };
 
