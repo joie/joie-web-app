@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { CollectionReference, QueryFn } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import { AuthFacade } from '../../../auth/services/auth.facade';
+import { ActivatedRoute } from '@angular/router';
+import { CollectionReference, QueryFn, AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-teacher',
@@ -22,27 +18,28 @@ export class TeacherComponent implements OnInit {
     price: [null],
     date: [null],
   });
-
-  boundQueryFn$: Observable<QueryFn>;
-  teacherData$: Observable<any>;
+  teacherUid: string;
+  teacherData: any;
 
   constructor(
-    private authFacade: AuthFacade,
     private fb: FormBuilder,
-    private afAuth: AngularFireAuth,
+    private afs: AngularFirestore,
+    private route: ActivatedRoute,
   ) { }
 
   public ngOnInit() {
-    this.boundQueryFn$ = this.authFacade.uid$.pipe(map((uid) => this.queryFnFactorial(uid)));
-    this.teacherData$ = this.getTeacherData();
-  }
-
-  private queryFnFactorial(uid: string) {
-    return (ref: CollectionReference) => ref.where('owner.uid', '==', uid);
+    this.teacherUid = this.route.snapshot.paramMap.get('id');
+    this.getTeacherData();
   }
 
   private getTeacherData() {
-    return this.afAuth.authState.pipe(map((user) => user));
+    return this.afs.collection('sessions', (ref: CollectionReference) => ref.where('owner.uid', '==', this.teacherUid).orderBy('owner').limit(1)).valueChanges().subscribe(res => {
+      this.teacherData = res[0];
+    });
+  }
+
+  queryFn(): QueryFn {
+    return (ref: CollectionReference) => ref.where('owner.uid', '==', this.teacherUid).orderBy('status');
   }
 
   onSubmit() {}

@@ -13,7 +13,7 @@
     </mat-card-title>
 
     <mat-card-subtitle>
-      <p>{{ session.owner?.displayName }}</p>
+      <a routerLink="/teacher/{{ session.owner.uid }}">{{ session.owner?.displayName }}</a>
     </mat-card-subtitle>
 
     <mat-card-content>
