@@ -1,15 +1,12 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { OnboardingService } from '../../../onboarding/shared/onboarding.service';
-import {
-  StorageServiceService,
-  USER_ONBOARDING,
-} from '../../../onboarding/shared/storage-service.service';
+import { StorageServiceService, USER_ONBOARDING } from '../../../onboarding/shared/storage-service.service';
 import { FormGroup, FormArray } from '@angular/forms';
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { skip } from 'rxjs/operators';
 import { pillars } from '../../pillars';
 import { atLeastOneIsCheckedValidator } from '../../../onboarding/validators/atLeastOnIsChecked';
-import { PillarsIconsMap, PillarsLiteralMap } from '../../../enums';
+import { PillarsIconsMap, PillarsLiteralMap } from '.../../../libs/schemes/src';
 export const PILLARS = 'pillars';
 
 @UntilDestroy()
@@ -42,20 +39,14 @@ export class PillarListComponent {
       .filter((v) => v !== null);
   }
 
-  constructor(
-    private onboardingService: OnboardingService,
-    private storage: StorageServiceService
-  ) {
+  constructor(private onboardingService: OnboardingService, private storage: StorageServiceService) {
     this.form = new FormGroup({ [PILLARS]: new FormArray([], atLeastOneIsCheckedValidator()) });
 
     this.initForm();
   }
 
   initForm() {
-    this.onboardingService.addCheckboxes(
-      Array.from(this.pillarsLiteralMap.keys()),
-      this.pillarsFormArray
-    );
+    this.onboardingService.addCheckboxes(Array.from(this.pillarsLiteralMap.keys()), this.pillarsFormArray);
 
     this.getCache();
 

@@ -4,7 +4,7 @@ import { Component, ViewChildren, QueryList, AfterViewInit } from '@angular/core
 import { ActivitiesBoxComponent } from './activities-box/activities-box.component';
 import { PILLARS } from '../../../../pillar-list/components/pillar-list/pillar-list.component';
 import { LowerCasePipe } from '@angular/common';
-import { Pillar } from '../../../../enums';
+import { Pillar } from '../../../../../../../../libs/schemes/src';
 
 @Component({
   selector: 'app-activities-step',
@@ -18,10 +18,7 @@ export class ActivitiesStepComponent implements AfterViewInit {
   afterViewInit = false;
   pillarEnum = Pillar;
 
-  constructor(
-    private formService: StudentOnboardingFormService,
-    private lowercasePipe: LowerCasePipe
-  ) {
+  constructor(private formService: StudentOnboardingFormService, private lowercasePipe: LowerCasePipe) {
     this.selectedPillars = Object.keys(this.formService.form.value.pillars);
   }
 
@@ -31,9 +28,7 @@ export class ActivitiesStepComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.activityBoxes.toArray().forEach((box) => {
       box.subForm.valueChanges.subscribe(() => {
-        const activityFormArray = this.formService.getActivityFormArray(
-          this.lowercasePipe.transform(box.pillar)
-        );
+        const activityFormArray = this.formService.getActivityFormArray(this.lowercasePipe.transform(box.pillar));
         activityFormArray.clear();
         box.values.forEach((value) => {
           activityFormArray.push(new FormControl(value));

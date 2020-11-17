@@ -1,4 +1,4 @@
-import { numbersRegExPattern, lettersRegExPattern, urlRegExPattern } from './../../models/regex';
+import { numbersRegExPattern, lettersRegExPattern, urlRegExPattern } from '../../../../../../libs/schemes/src';
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
@@ -24,14 +24,12 @@ export class OnboardingService {
         return 'Please enter a valid email address.';
 
       case 'minlength':
-        return `Should be longer than ${
-          errors[errorKeys[0]].requiredLength
-        } symbols. Actual length ${errors[errorKeys[0]].actualLength}`;
+        return `Should be longer than ${errors[errorKeys[0]].requiredLength} symbols. Actual length ${
+          errors[errorKeys[0]].actualLength
+        }`;
 
       case 'maxlength':
-        return `The text entered exceeds the maximum length. ${
-          errors[errorKeys[0]].requiredLength
-        }`;
+        return `The text entered exceeds the maximum length. ${errors[errorKeys[0]].requiredLength}`;
 
       case 'requireCheckboxToBeChecked':
         return 'At least one option should be selected';

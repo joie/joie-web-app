@@ -1,4 +1,4 @@
-import { Type } from '../enums';
+import { Type } from '../../../../../../libs/schemes/src';
 
 export const SessionTypeLiteralsMap = new Map([
   [Type.Class, 'class'],

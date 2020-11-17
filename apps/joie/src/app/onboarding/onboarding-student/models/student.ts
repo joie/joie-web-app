@@ -1,4 +1,4 @@
-import { Activities, Pillar } from '../../../enums';
+import { Activities, Pillar } from '../../../../../../../libs/schemes/src';
 
 export interface Preferences {
   pillars: Pillar[];

@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SessionsService } from '../../../services/sessions/sessions.service';
 import { QueryFn } from '@angular/fire/firestore';
-import { Session } from '../../../sessions/models';
+import { Session } from '../../../../../../../libs/schemes/src';
 
 @Component({
   selector: 'app-session-list',

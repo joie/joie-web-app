@@ -1,16 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Session } from '../../models';
+import { Component, Input } from '@angular/core';
+import { Session } from '../../../../../../../libs/schemes/src';
 
 @Component({
   selector: 'app-meet-teacher',
   templateUrl: './meet-teacher.component.html',
-  styleUrls: ['./meet-teacher.component.scss']
+  styleUrls: ['./meet-teacher.component.scss'],
 })
-export class MeetTeacherComponent implements OnInit {
+export class MeetTeacherComponent {
   @Input() session: Session;
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

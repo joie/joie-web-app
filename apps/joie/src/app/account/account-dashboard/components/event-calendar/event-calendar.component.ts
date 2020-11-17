@@ -1,7 +1,7 @@
 import { MatCalendar, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Session } from '../../../../sessions/models';
+import { Session } from '../../../../../../../../libs/schemes/src';
 
 @Component({
   selector: 'app-event-calendar',
@@ -48,7 +48,7 @@ export class EventCalendarComponent implements OnInit {
           },
         },
       ],
-      extras
+      extras,
     );
   }
 
@@ -65,7 +65,7 @@ export class EventCalendarComponent implements OnInit {
           (d) =>
             d.getDate() === date.getDate() &&
             d.getMonth() === date.getMonth() &&
-            d.getFullYear() === date.getFullYear()
+            d.getFullYear() === date.getFullYear(),
         );
       return highlightDate ? 'scheduled' : '';
     };
