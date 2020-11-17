@@ -50,17 +50,17 @@ export class AccountBankingComponent implements OnInit {
     }
   }
 
-  @Confirmable(`Do you want to disconnect Stripe Account?`, 'warn', 'Disconnect')
-  async disconnectStripe(): Promise<void> {
-    const response = (await this.stripeService.disconnectAccount().toPromise()) as {
-      message: string;
-      type: 'error' | 'success';
-    };
+  // @Confirmable(`Do you want to disconnect Stripe Account?`, 'warn', 'Disconnect')
+  // async disconnectStripe(): Promise<void> {
+  //   const response = (await this.stripeService.disconnectAccount().toPromise()) as {
+  //     message: string;
+  //     type: 'error' | 'success';
+  //   };
 
-    this.snackBar.open(response.message, undefined, {
-      duration: 4000,
-      horizontalPosition: 'end',
-      verticalPosition: 'bottom',
-    });
-  }
+  //   this.snackBar.open(response.message, undefined, {
+  //     duration: 4000,
+  //     horizontalPosition: 'end',
+  //     verticalPosition: 'bottom',
+  //   });
+  // }
 }
