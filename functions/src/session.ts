@@ -58,20 +58,20 @@ export const deleteSession = functions.https.onCall(async (params, context) => {
   );
 });
 
-export const getSession = async (id: string) => {
+export const getSession = async (id: string): Promise<FirebaseFirestore.DocumentData | undefined> => {
   const session = await db
     .collection(SESSIONS)
     .doc(id)
     .get()
     .then((doc) => doc.data())
-    .catch((error) => {
+    .catch(() => {
       return undefined;
     });
 
   return session;
 };
 
-export const setSessionUser = async (ref: string, data: any): Promise<IResponse> => {
+export const setSessionUser = async (ref: string, data: Record<string, unknown>): Promise<IResponse | null> => {
   await db
     .collection(SESSIONS_USERS)
     .doc(ref)
@@ -88,6 +88,7 @@ export const setSessionUser = async (ref: string, data: any): Promise<IResponse>
         message: error,
       } as IResponse);
     });
+
   return Promise.resolve({
     type: 'success',
     message: 'Session User succesfully set',
@@ -177,7 +178,7 @@ export const sessionDelete = functions.firestore.document(`/${SESSIONS}/{session
 
 export const sessionsUsersOnCreate = functions.firestore
   .document(`/${SESSIONS_USERS}/{uid_sessionId}`)
-  .onCreate(async (snapshot, context) => {
+  .onCreate(async (snapshot) => {
     const data = snapshot.data();
     const { sessionId } = data;
 
@@ -201,7 +202,7 @@ export const sessionsUsersOnCreate = functions.firestore
 
 export const sessionsUsersOnDelete = functions.firestore
   .document(`/${SESSIONS_USERS}/{uid_sessionId}`)
-  .onDelete(async (snapshot, context) => {
+  .onDelete(async (snapshot) => {
     const data = snapshot.data();
     const { sessionId } = data;
 
