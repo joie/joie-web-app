@@ -1,0 +1,13 @@
+<span>
+  <mat-label>Upload Photo</mat-label>
+  <input
+    hidden
+    type="file"
+    id="photoUpload"
+    name="photoUpload"
+    (change)="onFileSelected($event)"
+    #photoUpload
+  >
+  <button mat-raised-button (click)="photoUpload.click()">Choose Photo</button>
+</span>
+
