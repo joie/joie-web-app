@@ -21,7 +21,7 @@ export class AccountInfoComponent implements OnInit {
     password: '',
     timezone: '',
   };
-  isTeacher$: Observable<any>;
+  isTeacher: any;
 
   constructor(
     private accountService: AccountService,
@@ -35,7 +35,8 @@ export class AccountInfoComponent implements OnInit {
     });
 
     this.authFacade.uid$.subscribe((res) => {
-      this.isTeacher$ = this.afs.collection('users', (ref: CollectionReference) => ref.where('uid', '==', res).orderBy('isTeacher').limit(1)).valueChanges();
+      this.afs.collection('users', (ref: CollectionReference) => ref.where('uid', '==', res).limit(1)).valueChanges()
+        .subscribe((user: any) => { this.isTeacher = user[0].isTeacher; });
     });
   }
 

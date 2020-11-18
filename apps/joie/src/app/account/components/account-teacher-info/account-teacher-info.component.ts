@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Form } from '@angular/forms';
+
+import { Activities, Pillar, Format } from '../../../../../../../libs/schemes/src';
+import { SessionTypeLiteralsMap } from '../../../sessions/literal-maps/session-type.map';
 
 @Component({
   selector: 'app-account-teacher-info',
@@ -6,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-teacher-info.component.scss']
 })
 export class AccountTeacherInfoComponent implements OnInit {
-  PILLAR = 'pillar';
-  LEVEL = 'level';
-  ACTIVITIES = 'activities';
+  @ViewChild('teacherform') teacherform: Form;
+  activityEnum = Activities;
+  pillarEnum = Pillar;
+  formatEnum = Format;
+  sessionTypeLiteralMap = SessionTypeLiteralsMap;
+
 
   constructor() { }
 
@@ -17,4 +24,19 @@ export class AccountTeacherInfoComponent implements OnInit {
 
   onFileSelected(event) {}
 
+  get activityKeys(): Array<string> {
+    return Object.keys(this.activityEnum);
+  }
+
+  get pillarKeys(): Array<string> {
+    return Object.keys(this.pillarEnum);
+  }
+
+  get formatKeys(): Array<string> {
+    return Object.keys(this.formatEnum);
+  }
+
+  asIsOrder(a, b) {
+    return 1;
+  }
 }

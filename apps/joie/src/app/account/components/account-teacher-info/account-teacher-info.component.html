@@ -1,12 +1,68 @@
-<span>
-  <mat-label>Upload Photo</mat-label>
-  <input
-    hidden
-    type="file"
-    id="photoUpload"
-    name="photoUpload"
-    (change)="onFileSelected($event)"
-    #photoUpload
-  >
-  <button mat-raised-button (click)="photoUpload.click()">Choose Photo</button>
-</span>
+<form #teacherform="ngForm" class="layout-rows-sm">
+  <span>
+    <mat-label>Upload Photo</mat-label>
+    <input
+      hidden
+      type="file"
+      id="photoUpload"
+      name="photoUpload"
+      (change)="onFileSelected($event)"
+      #photoUpload
+    >
+    <button mat-raised-button (click)="photoUpload.click()">Choose Photo</button>
+  </span>
+
+  <span>
+    <mat-label>Activities</mat-label>
+    <mat-form-field appearance="outline">
+      <mat-select name="activities" multiple>
+        <mat-option *ngFor="let activity of activityKeys" [value]="activity">
+          {{ activityEnum[activity] }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </span>
+
+  <span>
+    <mat-label>Pillars</mat-label>
+    <mat-form-field appearance="outline" multiple>
+      <mat-select name="pillar">
+        <mat-option *ngFor="let pillar of pillarKeys" [value]="pillar">
+         {{ pillarEnum[pillar] }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </span>
+
+  <span>
+    <mat-label>Format</mat-label>
+    <mat-form-field appearance="outline" multiple>
+      <mat-select name="format">
+        <mat-option *ngFor="let format of formatKeys" [value]="format">
+         {{ formatEnum[format] }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </span>
+
+  <span>
+    <mat-label>Sessions</mat-label>
+    <mat-form-field appearance="outline" multiple>
+      <mat-select name="sessions">
+        <mat-option
+          *ngFor="let session of sessionTypeLiteralMap | keyvalue: asIsOrder"
+          [value]="session.key"
+        >{{ session.value | titlecase }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </span>
+
+  <span>
+    <mat-label>About Me</mat-label>
+    <mat-form-field appearance="outline">
+      <textarea matInput name="aboutMe" maxlength="250"></textarea>
+    </mat-form-field>
+  </span>
+
+</form>
