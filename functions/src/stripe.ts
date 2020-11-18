@@ -8,7 +8,7 @@ import { getSession, setSessionUser } from './session';
 import get from 'lodash.get';
 import Stripe from 'stripe';
 
-const CUSTOMERS = 'customers';
+const STRIPE = 'stripe';
 const RETURN_URL = functions.config().stripe.return_url;
 
 /**
@@ -34,35 +34,29 @@ export const getUser = async (uid: string): Promise<firestore.DocumentData | und
 /**
  *  Convenience method to get customer ID
  */
-const getUserCustomerId = async (uid: string) => {
-  const UserCustomer = await db
-    .collection(CUSTOMERS)
-    .doc(uid)
+const getStripe = async (uid: string) => {
+  const stripeData = await db
+    .collection(`users/${uid}/integrations`)
+    .doc(STRIPE)
     .get()
     .then((doc) => doc.data());
-  return UserCustomer?.stripeId;
-};
-
-const getUserCustomer = async (uid: string) => {
-  const UserCustomer = await db
-    .collection(CUSTOMERS)
-    .doc(uid)
-    .get()
-    .then((doc) => doc.data());
-  return UserCustomer;
+  return stripeData;
 };
 
 /**
  * Set customer id reference to a Firebase user non-destructively
  */
-const setUserCustomerReference = (uid: string, stripeId: string, type: 'account' | 'customer' = 'customer') =>
-  db.collection(CUSTOMERS).doc(uid).set({ stripeId, type }, { merge: true });
+const setStripeReference = (uid: string, params: { accountId?: string; customerId?: string }) =>
+  db
+    .collection(`users/${uid}/integrations`)
+    .doc(STRIPE)
+    .set({ ...params }, { merge: true });
 
 // const deleteUserCustomerReference = (uid: string) => db.collection(CUSTOMERS).doc(uid).delete();
 /**
  *  Use this function to create a customer & source for non-existing customer
  */
-const createCustomerAndSource = async (source: string, uid: string) => {
+const createStripeAndSource = async (source: string, uid: string) => {
   const user = await getUser(uid);
 
   if (!user) {
@@ -75,7 +69,7 @@ const createCustomerAndSource = async (source: string, uid: string) => {
     source,
   });
 
-  await setUserCustomerReference(uid, customer.id);
+  await setStripeReference(uid, { customerId: customer.id });
 
   return customer;
 };
@@ -83,8 +77,8 @@ const createCustomerAndSource = async (source: string, uid: string) => {
 /**
  *  Use this function to create a source for existing customer
  */
-const createSource = async (source: string, stripeId: string) =>
-  await stripe.customers.createSource(stripeId, { source });
+const createSource = async (source: string, customerId: string) =>
+  await stripe.customers.createSource(customerId, { source });
 
 export const stripeAttachSource = functions.https.onCall(async ({ sourceId }, context) => {
   const uid = getUID(context);
@@ -93,21 +87,32 @@ export const stripeAttachSource = functions.https.onCall(async ({ sourceId }, co
     throw new functions.https.HttpsError('not-found', `couldn't find user`);
   }
 
-  const stripeId = await getUserCustomerId(uid);
+  const stripeData = await getStripe(uid);
 
-  return stripeId ? catchErrors(createSource(sourceId, stripeId)) : catchErrors(createCustomerAndSource(sourceId, uid));
+  if (stripeData && stripeData.customerId) {
+    return catchErrors(createSource(sourceId, stripeData.customerId));
+  }
+
+  return catchErrors(createStripeAndSource(sourceId, uid));
 });
 
 /**
  * When a user deletes their account, clean up after them
  */
 export const cleanupStripeCustomer = functions.auth.user().onDelete(async (user) => {
-  const snapshot = await db.collection(CUSTOMERS).doc(user.uid).get();
-  const customer = snapshot.data();
+  const snapshot = await db.collection(`users/${user.uid}/integrations`).doc(STRIPE).get();
+  const stripeData = snapshot.data();
 
   // delete customer if exist in user
-  if (customer) {
-    return stripe.customers.del(customer.stripeId);
+  if (stripeData) {
+    if (stripeData.customerId) {
+      stripe.customers.del(stripeData.customerId);
+    }
+
+    if (stripeData.accountId) {
+      stripe.accounts.del(stripeData.accountId); // @TODO: consult with @yinon if we can do this
+    }
+    return 'finished';
   } else {
     return null;
   }
@@ -141,13 +146,13 @@ export const createCharge = async (data: Stripe.ChargeCreateParams): Promise<{ i
 export const stripeSessionCharge = functions.https.onCall(
   async (params, context): Promise<IResponse> => {
     try {
-      const uid = getUID(context);
+      const uid = getUID(context) ?? '';
       const email = getUEmail(context);
       const { sessionId } = params;
 
-      const customer = await getUserCustomer(uid ?? '');
+      const stripeData = await getStripe(uid);
 
-      if (!customer) {
+      if (!stripeData) {
         return Promise.resolve({
           type: 'error',
           message: `Missing payment method`,
@@ -155,7 +160,7 @@ export const stripeSessionCharge = functions.https.onCall(
       }
 
       const session = await getSession(sessionId);
-      const { stripeId } = customer;
+      const { accountId, customerId } = stripeData;
 
       if (session) {
         // owner can not pay it's own session
@@ -176,37 +181,47 @@ export const stripeSessionCharge = functions.https.onCall(
           } as IResponse);
         }
 
-        // @TODO: create paymentIntent if is account
+        let stripeChargeId;
+        let response;
 
-        const response = await createCharge({
-          customer: stripeId,
-          amount: amount * 100,
-          currency,
-          receipt_email: email ?? '',
-          description: `Joie - Session #${sessionId}`,
-          metadata: {
-            title: get(session, 'title', ''),
-            session_id: sessionId,
-          },
-        });
+        if (accountId) {
+          // @TODO: create paymentIntent if is account
+          stripeChargeId = null;
+        } else {
+          response = await createCharge({
+            customer: customerId,
+            amount: amount * 100,
+            currency,
+            receipt_email: email ?? '',
+            description: `Joie - Session #${sessionId}`,
+            metadata: {
+              title: get(session, 'title', ''),
+              session_id: sessionId,
+            },
+          });
 
-        const { id } = response;
+          stripeChargeId = response.id ?? null;
+        }
 
-        const sessionUserData = {
-          sessionId,
-          uid,
-          stripe_charge_id: id,
-        };
+        if (stripeChargeId) {
+          const sessionUserData = {
+            sessionId,
+            uid,
+            stripeChargeId,
+          };
 
-        await setSessionUser(`${sessionId}_${uid}`, {
-          ...sessionUserData,
-          updatedAt: serverTimestamp(),
-        });
+          await setSessionUser(`${sessionId}_${uid}`, {
+            ...sessionUserData,
+            updatedAt: serverTimestamp(),
+          });
 
-        return Promise.resolve({
-          type: 'success',
-          message: 'Session successfully paid',
-        } as IResponse);
+          return Promise.resolve({
+            type: 'success',
+            message: 'Session successfully paid',
+          } as IResponse);
+        }
+
+        throw new Error(`Stripe - Something went wrong while creating charge`);
       }
       return Promise.resolve({
         type: 'error',
@@ -233,10 +248,10 @@ export const stripeGetSources = functions.https.onCall(async (_, context) => {
     throw new functions.https.HttpsError('not-found', `couldn't find user`);
   }
 
-  const customer = await getUserCustomer(uid);
+  const stripeData = await getStripe(uid);
 
-  if (!customer) {
-    throw new functions.https.HttpsError('not-found', `couldn't find stripe customer in firestore`);
+  if (!stripeData) {
+    return catchErrors(Promise.resolve({}));
   }
 
   return catchErrors(Promise.resolve({ data: true }));
@@ -296,17 +311,17 @@ export const stripeOnboardRefresh = functions.https.onCall(async (params, contex
 });
 
 export const stripeOnboardCallback = functions.https.onCall(async (params, context) => {
-  const { accountID } = params;
+  const { accountID: accountId } = params;
   const uid = getUID(context);
 
   if (!uid) {
     return catchErrors(Promise.resolve({ message: `No user found`, type: 'error' } as IResponse));
   }
 
-  const accountResp = await getAccount(accountID);
+  const accountResp = await getAccount(accountId);
 
   if (accountResp) {
-    await setUserCustomerReference(uid, accountID, 'account');
+    await setStripeReference(uid, { accountId });
 
     return catchErrors(
       Promise.resolve({ data: `Stripe account verified and succesfully stored`, type: 'success' } as IResponse),
