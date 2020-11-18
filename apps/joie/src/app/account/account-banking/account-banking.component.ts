@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { StripeService } from './../../services/stripe/stripe.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthFacade } from '../../auth/services/auth.facade';
-import { shareReplay, switchMap } from 'rxjs/operators';
+import { pluck, shareReplay, switchMap } from 'rxjs/operators';
 import { Confirmable } from '../../shared/decorators/confirmable.decorator';
 
 @Component({
@@ -13,7 +13,7 @@ import { Confirmable } from '../../shared/decorators/confirmable.decorator';
 })
 export class AccountBankingComponent implements OnInit {
   stripeAccount$ = this.authFacade.uid$.pipe(
-    switchMap((uid) => this.stripeService.getAccount(uid)),
+    switchMap((uid) => this.stripeService.getAccount(uid).pipe(pluck('accountId'))),
     shareReplay(1),
   );
   stripeAccountID: string;

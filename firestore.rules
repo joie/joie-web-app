@@ -8,7 +8,6 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
-
     // Reusable functions
     // //////////////////
 
@@ -96,8 +95,8 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    match /customers/{uid} {
-      allow read: if request.auth != null;
+    match /users/{uid}/integrations/stripe {
+      allow read: if isOwner(uid);
       allow write: if false;
     }
   }
