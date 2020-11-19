@@ -1,4 +1,3 @@
-import { IResponse } from './interfaces';
 import * as functions from 'firebase-functions';
 import { db, stripe, API_URL } from './config';
 import { getUID, catchErrors, getUEmail, serverTimestamp } from './helpers';
@@ -7,6 +6,7 @@ import { firestore } from 'firebase-admin';
 import { getSession, setSessionUser } from './session';
 import get from 'lodash.get';
 import Stripe from 'stripe';
+import { IResponse, IStripe } from './../../libs/schemes/src/lib/models';
 
 const STRIPE = 'stripe';
 const RETURN_URL = functions.config().stripe.return_url;
@@ -34,7 +34,7 @@ export const getUser = async (uid: string): Promise<firestore.DocumentData | und
 /**
  *  Convenience method to get customer ID
  */
-const getStripe = async (uid: string) => {
+const getStripe = async (uid: string): Promise<IStripe | undefined> => {
   const stripeData = await db
     .collection(`users/${uid}/${STRIPE}`)
     .doc(uid)
@@ -46,7 +46,7 @@ const getStripe = async (uid: string) => {
 /**
  * Set customer id reference to a Firebase user non-destructively
  */
-const setStripeReference = (uid: string, params: { accountId?: string; customerId?: string }) =>
+const setStripeReference = (uid: string, params: IStripe) =>
   db
     .collection(`users/${uid}/${STRIPE}`)
     .doc(uid)
@@ -101,7 +101,7 @@ export const stripeAttachSource = functions.https.onCall(async ({ sourceId }, co
  */
 export const cleanupStripeCustomer = functions.auth.user().onDelete(async (user) => {
   const snapshot = await db.collection(`users/${user.uid}/${STRIPE}`).doc(user.uid).get();
-  const stripeData = snapshot.data();
+  const stripeData = snapshot.data() as IStripe;
 
   // delete customer if exist in user
   if (stripeData) {
