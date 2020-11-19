@@ -1,12 +1,9 @@
-import { AuthFacade } from './../../../auth/services/auth.facade';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { QueryFn } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
 
 import { SessionsService } from '../../../services/sessions/sessions.service';
-import { QueryFn } from '@angular/fire/firestore';
+import { AuthFacade } from './../../../auth/services/auth.facade';
 import { Session } from '../../../../../../../libs/schemes/src';
 
 @Component({
@@ -16,56 +13,47 @@ import { Session } from '../../../../../../../libs/schemes/src';
 })
 export class SessionListComponent implements OnInit {
   @Input() queryFn: QueryFn;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-
-  dataSource: MatTableDataSource<any>;
-
-  sessions$: Observable<Session[]>;
   uid$ = this.authFacade.uid$;
 
-  enrolled = true;
+  sessions$: Observable<Session[]>;
 
   sessions: any[] = [];
 
   firstInResponse: any = [];
   lastInResponse: any = [];
-  prev_strt_at: any = [];
-  pagination_clicked_count = 0;
+  prevStrtAt: any = [];
+  paginationClickedCount = 0;
   disable_next: boolean = false;
   disable_prev: boolean = true;
+  pageSize = 6;
 
-  constructor(private sessionsFacade: SessionsService, private authFacade: AuthFacade) {}
+  constructor(
+    private sessionsService: SessionsService,
+    private authFacade: AuthFacade,
+  ) {}
 
   ngOnInit(): void {
-    // this.sessions$ = this.sessionsFacade.getSessions(this.queryFn);
     this.getItems();
   }
 
-  ngAfterViewInit() {
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-  }
-
   getItems() {
-    this.sessionsFacade.getSessionss(this.queryFn).subscribe(response => {
+    this.sessionsService.getSessionsData('sessions', this.pageSize, this.queryFn).subscribe((response: any) => {
       if (!response.length) {
-        console.log("No Data Available");
         return false;
       }
-      console.log('Response = ', response);
-      this.firstInResponse = response[0];
-      this.lastInResponse = response[response.length - 1];
+      this.firstInResponse = response[0].payload.doc;
+      this.lastInResponse = response[response.length - 1].payload.doc;
 
       this.sessions = [];
-      for (const item of response) {
-        this.sessions.push(item);
+      for (let item of response) {
+        this.sessions.push(item.payload.doc.data());
       }
 
-      this.prev_strt_at = [];
-      this.pagination_clicked_count = 0;
+      this.prevStrtAt = [];
+      this.paginationClickedCount = 0;
       this.disable_next = false;
-      this.disable_prev = true;
+      this.disable_prev = false;
+
       this.push_prev_startAt(this.firstInResponse);
     }, error => {
       console.log(error);
@@ -74,26 +62,23 @@ export class SessionListComponent implements OnInit {
 
   nextPage() {
     this.disable_next = true;
-    this.sessionsFacade.getSessionsNext(this.lastInResponse, this.queryFn).subscribe(response => {
+    this.sessionsService.getSessionsNext('sessions', this.pageSize, this.lastInResponse, this.queryFn).subscribe((response: any) => {
       if (!response.length) {
-        console.log("No More Data Available");
         this.disable_next = true;
         return;
       }
-
-      console.log('Response = ', response);
-      this.firstInResponse = response[0];
-      this.lastInResponse = response[response.length - 1];
-
+      this.firstInResponse = response[0].payload.doc;
+      this.lastInResponse = response[response.length - 1].payload.doc;
       this.sessions = [];
-      for (const item of response) {
-        this.sessions.push(item);
+      for (let item of response) {
+        this.sessions.push(item.payload.doc.data());
       }
 
-      this.pagination_clicked_count++;
-
+      this.paginationClickedCount++;
       this.push_prev_startAt(this.firstInResponse);
-      if (response.length < 5) {
+      if (response.length < this.pageSize) {
+        // disable next button if data fetched is less than 5 - means no more data left to load
+        // because limit ti get data is set to 5
         this.disable_next = true;
       } else {
         this.disable_next = false;
@@ -106,15 +91,23 @@ export class SessionListComponent implements OnInit {
 
   prevPage() {
     this.disable_prev = true;
-    this.sessionsFacade.getSessionsPrev(this.get_prev_startAt(), this.firstInResponse, this.queryFn).subscribe(response => {
-      this.firstInResponse = response[0];
-      this.lastInResponse = response[response.length - 1];
-      console.log('Response = ', response);
-      this.sessions = response;
-      this.pagination_clicked_count--;
+    this.sessionsService.getSessionsPrev('sessions', this.pageSize, this.get_prev_startAt(), this.firstInResponse, this.queryFn).subscribe((response: any) => {
+      this.firstInResponse = response[0].payload.doc;
+      this.lastInResponse = response[response.length - 1].payload.doc;
+
+      this.sessions = [];
+      for (let item of response) {
+        this.sessions.push(item.payload.doc.data());
+      }
+
+      // maintaing page no.
+      this.paginationClickedCount--;
+
+      // pop not required value in array
       this.pop_prev_startAt(this.firstInResponse);
 
-      if (this.pagination_clicked_count === 0) {
+      // enable buttons again
+      if (this.paginationClickedCount === 0) {
         this.disable_prev = true;
       } else {
         this.disable_prev = false;
@@ -125,22 +118,22 @@ export class SessionListComponent implements OnInit {
     });
   }
 
-  push_prev_startAt(prev_first_doc) {
-    this.prev_strt_at.push(prev_first_doc);
+  push_prev_startAt(prevFirstDoc) {
+    this.prevStrtAt.push(prevFirstDoc);
   }
 
-  pop_prev_startAt(prev_first_doc) {
-    this.prev_strt_at.forEach(element => {
-      if (prev_first_doc.id == element.id) {
+  pop_prev_startAt(prevFirstDoc) {
+    this.prevStrtAt.forEach(element => {
+      if (prevFirstDoc.id === element.id) {
         element = null;
       }
     });
   }
 
   get_prev_startAt() {
-    if (this.prev_strt_at.length > (this.pagination_clicked_count + 1)) {
-      this.prev_strt_at.splice(this.prev_strt_at.length - 2, this.prev_strt_at.length - 1);
+    if (this.prevStrtAt.length > (this.paginationClickedCount + 1)) {
+      this.prevStrtAt.splice(this.prevStrtAt.length - 2, this.prevStrtAt.length - 1);
     }
-    return this.prev_strt_at[this.pagination_clicked_count - 1];
+    return this.prevStrtAt[this.paginationClickedCount - 1];
   }
 }

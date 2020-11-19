@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DbService } from '../db/db.service';
 import { Observable } from 'rxjs';
-import { QueryFn } from '@angular/fire/firestore';
+import { QueryFn, AngularFirestore, } from '@angular/fire/firestore';
 import { Session } from '../../../../../../libs/schemes/src';
 import { take } from 'rxjs/operators';
 import { AngularFireFunctions } from '@angular/fire/functions';
@@ -10,22 +10,38 @@ import { AngularFireFunctions } from '@angular/fire/functions';
   providedIn: 'root',
 })
 export class SessionsService {
-  constructor(private db: DbService, private fns: AngularFireFunctions) {}
+  constructor(
+    private db: DbService,
+    private fns: AngularFireFunctions,
+    private afs: AngularFirestore,
+    ) {}
 
   getSessions(queryFn?: QueryFn) {
     return this.db.get$<Session>('sessions', queryFn) as Observable<Session[]>;
   }
 
-  getSessionss(queryFn?: QueryFn) {
-    return this.db.getSessionsData('sessions', queryFn) as Observable<Session[]>;
+  getSessionsData(path: string, pageSize, queryFn?: QueryFn) {
+    return this.afs.collection(path, queryFn => queryFn
+      .limit(pageSize)
+      .orderBy('eventId', 'desc')
+    ).snapshotChanges();
   }
 
-  getSessionsNext(startAfter, queryFn?: QueryFn) {
-    return this.db.getSessionsNext('sessions', startAfter, queryFn) as Observable<Session[]>;
+  getSessionsNext(path: string, pageSize, startAfter, queryFn?: QueryFn) {
+    return this.afs.collection(path, queryFn => queryFn
+      .orderBy('eventId', 'desc')
+      .startAfter(startAfter)
+      .limit(pageSize)
+    ).snapshotChanges();
   }
 
-  getSessionsPrev(prevStartAt, firstInResponse, queryFn?: QueryFn) {
-    return this.db.getSessionsPrev('sessions', prevStartAt, firstInResponse, queryFn) as Observable<Session[]>;
+  getSessionsPrev(path: string, pageSize, prevStartAt, firstInResponse, queryFn?: QueryFn) {
+    return this.afs.collection(path, queryFn => queryFn
+      .orderBy('eventId', 'desc')
+      .startAt(prevStartAt)
+      .endBefore(firstInResponse)
+      .limit(pageSize)
+    ).snapshotChanges();
   }
 
   getSession(id: string) {

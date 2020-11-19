@@ -31,30 +31,6 @@ export class DbService {
     // return this.afs.collection<T>(path).valueChanges();
   }
 
-  getSessionsData(path: string, queryFn?: QueryFn) {
-    return this.afs.collection(path, queryFn => queryFn
-      .orderBy('description', 'desc')
-      .limit(5)
-    ).valueChanges({ idField: 'id' });
-  }
-
-  getSessionsNext(path: string, startAfter, queryFn?: QueryFn) {
-    return this.afs.collection(path, queryFn => queryFn
-      .limit(5)
-      .orderBy('description', 'desc')
-      .startAfter(startAfter)
-    ).valueChanges({ idField: 'id' });
-  }
-
-  getSessionsPrev(path: string, prevStartAt, firstInResponse, queryFn?: QueryFn) {
-    return this.afs.collection(path, queryFn => queryFn
-      .orderBy('description', 'desc')
-      .startAt(prevStartAt)
-      .endBefore(firstInResponse)
-      .limit(5)
-    ).valueChanges({ idField: 'id' });
-  }
-
   set$<T>(path: any, data: T) {
     return from(
       this.isCollection(path)
