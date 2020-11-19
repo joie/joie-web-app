@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
-import { Owner } from '../../models';
+import { Owner } from '../../../../../../libs/schemes/src';
 
 @Injectable({
   providedIn: 'root',

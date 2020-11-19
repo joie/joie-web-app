@@ -86,7 +86,7 @@
     </main>
     <aside class="enrol-col">
       <section style="content-visibility: revert">
-        <app-session-card [session]="session"></app-session-card>
+        <app-session-card [session]="session" [sessionId]="sessionId$ | async"></app-session-card>
       </section>
     </aside>
   </div>

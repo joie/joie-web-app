@@ -105,11 +105,7 @@
             "polyfills": "apps/joie/src/polyfills.ts",
             "tsConfig": "apps/joie/tsconfig.spec.json",
             "karmaConfig": "apps/joie/karma.conf.js",
-            "assets": [
-              "apps/joie/src/favicon.ico",
-              "apps/joie/src/assets",
-              "apps/joie/src/manifest.webmanifest"
-            ],
+            "assets": ["apps/joie/src/favicon.ico", "apps/joie/src/assets", "apps/joie/src/manifest.webmanifest"],
             "styles": [
               {
                 "input": "apps/joie/src/styles/styles-critical/styles-critical.scss",
@@ -197,6 +193,45 @@
       },
       "schematics": {
         "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "schemes": {
+      "projectType": "library",
+      "root": "libs/schemes",
+      "sourceRoot": "libs/schemes/src",
+      "prefix": "joie",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/schemes/tsconfig.lib.json",
+            "project": "libs/schemes/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/schemes/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/schemes/tsconfig.lib.json", "libs/schemes/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/schemes/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/schemes/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
           "style": "scss"
         }
       }

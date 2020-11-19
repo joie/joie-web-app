@@ -40,6 +40,31 @@ service cloud.firestore {
     function isPublic() {
       return 'status' in resource.data && resource.data.status == 'public';
     }
+
+    function updatesToPublic() {
+      return 'status' in request.resource.data && request.resource.data.status == 'public';
+    }
+
+    function priceValid(data) {
+      return 'price' in data
+      && data.price.keys().hasAll(['currency', 'display'])
+      && data.price.currency != null
+      && data.price.display != null;
+    }
+
+    function jointResourcesCheckout(requiredFields){
+      return resource.data.keys()
+        .concat(request.resource.data.keys())
+        .hasAll(requiredFields);
+    }
+
+    function isStatusRequest() { return 'status' in request.resource.data }
+    function isPublishRequest() { return request.resource.data.status == 'public' }
+    function isValidPublishRequest() {
+      return
+        jointResourcesCheckout(['title', 'description', 'owner', 'price'])
+        && (priceValid(resource.data) || priceValid(request.resource.data));
+    }
     // //////////////////
 
 		match /sessions/{session} {
@@ -49,11 +74,16 @@ service cloud.firestore {
           ['title', 'owner'],
           ['description', 'type', 'format', 'thumbRef', 'level', 'price', 'activities', 'pillar', 'promo', 'relatedSessions', 'duration', 'when', 'eventId', 'resourceId']
         );
-      allow update: if isOwner(resource.data.owner.uid)
+
+      allow update: if
+        isOwner(resource.data.owner.uid)
         && (
-          !isPublic() ||
-          editOnlyChangesFields(['title', 'description', 'thumbRef', 'level', 'price', 'activities', 'pillar', 'promo', 'relatedSessions', 'duration', 'entryId'])
-        );
+          !isStatusRequest()
+          || !isPublishRequest()
+          || isValidPublishRequest()
+        )
+        && editOnlyChangesFields(['title', 'description', 'thumbRef', 'level', 'price', 'activities', 'pillar', 'promo', 'relatedSessions', 'duration', 'entryId', 'status']);
+
       allow delete: if isOwner(resource.data.owner.uid) && !isPublic();
     }
 
@@ -61,5 +91,9 @@ service cloud.firestore {
       allow read: if isOwner(userId);
     }
 
+    match /sessions_users/{ref} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
   }
 }

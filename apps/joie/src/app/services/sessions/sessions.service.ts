@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DbService } from '../db/db.service';
 import { Observable } from 'rxjs';
 import { QueryFn } from '@angular/fire/firestore';
-import { Session } from '../../sessions/models';
+import { Session } from '../../../../../../libs/schemes/src';
 import { take } from 'rxjs/operators';
 import { AngularFireFunctions } from '@angular/fire/functions';
 
@@ -39,6 +39,11 @@ export class SessionsService {
 
   deleteSession(id: string) {
     const callable = this.fns.httpsCallable('deleteSession');
+    return callable({ id });
+  }
+
+  sessionEnrolment(id: string): Observable<any> {
+    const callable = this.fns.httpsCallable('sessionEnrolment');
     return callable({ id });
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CollectionReference, QueryFn } from '@angular/fire/firestore';
-import { Status } from '../../../sessions/enums';
+import { Status } from '../../../../../../../libs/schemes/src';
 
 @Component({
   selector: 'app-sessions-dashboard',

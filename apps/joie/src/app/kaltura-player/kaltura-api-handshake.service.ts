@@ -9,7 +9,7 @@ import {
   KalturaFilterPager,
   MediaListAction,
   ScheduleResourceAddAction,
-  KalturaScheduleResource,
+  // KalturaScheduleResource,
   KalturaCameraScheduleResource,
   KalturaLiveEntryScheduleResource,
   KalturaLocationScheduleResource,
@@ -26,7 +26,7 @@ import {
   KalturaScheduleEventResource,
 } from 'kaltura-ngx-client';
 import { environment } from '../../environments/environment';
-import { Roles, UserContextualRole } from '../models';
+import { Roles, UserContextualRole } from '../../../../../libs/schemes/src';
 
 @Injectable({ providedIn: 'root' })
 export class KalturaApiHandShakeService {
@@ -49,7 +49,7 @@ export class KalturaApiHandShakeService {
           secret: KalturaApiHandShakeService.clientSecret,
           type: KalturaSessionType.admin,
           partnerId: KalturaApiHandShakeService.partnerId,
-        })
+        }),
       )
       .subscribe(
         (ks) => {
@@ -58,7 +58,7 @@ export class KalturaApiHandShakeService {
         (error) => {
           console.error(`failed to create session with the following error 'SessionStartAction'`);
           throwError(error);
-        }
+        },
       );
   }
 
@@ -78,12 +78,12 @@ export class KalturaApiHandShakeService {
           }),
           catchError((err) => {
             return throwError(err);
-          })
+          }),
         );
       }),
       catchError((err) => {
         return throwError(err);
-      })
+      }),
     );
   }
 
@@ -102,7 +102,7 @@ export class KalturaApiHandShakeService {
    * @param resourceName of the resource
    * @param scheduleResourceType type of session
    */
-  createScheduleResource(resourceName: string, scheduleResourceType: number = 3): Observable<any> {
+  createScheduleResource(resourceName: string, scheduleResourceType = 3): Observable<any> {
     let scheduleResource;
 
     if (scheduleResourceType === 1) {
@@ -134,10 +134,7 @@ export class KalturaApiHandShakeService {
    * @param eventCreationDetails for event creation
    * @param scheduleResourceType type of session
    */
-  createScheduleEvent(
-    eventCreationDetails: any,
-    scheduleResourceType: number = 3
-  ): Observable<any> {
+  createScheduleEvent(eventCreationDetails: any, scheduleResourceType = 3): Observable<any> {
     let scheduleEvent;
 
     if (scheduleResourceType === 1) {
@@ -195,7 +192,7 @@ export class KalturaApiHandShakeService {
     eventId,
     role: string = Roles.viewer,
     type: number = KalturaSessionType.user,
-    userCtxRole: number = UserContextualRole.guest
+    userCtxRole: number = UserContextualRole.guest,
   ): Observable<any> {
     const privileges = `eventId:${eventId},role:${role},userContextualRole:${userCtxRole}`;
 
@@ -208,7 +205,7 @@ export class KalturaApiHandShakeService {
         expiry: this.expiry,
         privileges,
         userId,
-      })
+      }),
     );
   }
 }

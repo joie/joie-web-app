@@ -5,7 +5,7 @@ import { SessionsService } from '../../../services/sessions/sessions.service';
 import { Observable } from 'rxjs';
 import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
-import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
+import { Pillar, PillarsIconsMap } from '../../../../../../../libs/schemes/src';
 
 // @UntilDestroy()
 @Component({
@@ -13,8 +13,8 @@ import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
   styleUrls: ['./session-details.component.scss'],
 })
 export class SessionDetailsComponent {
-  #sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
-  session$ = this.#sessionId$.pipe(
+  sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
+  session$ = this.sessionId$.pipe(
     switchMap((sessionId) => this.sessionsFacade.getSession(sessionId)),
     shareReplay(1),
   );

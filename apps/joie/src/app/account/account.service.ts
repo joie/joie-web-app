@@ -1,14 +1,9 @@
 import { AuthService } from './../auth-state/services/auth/auth.service';
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
-import {
-  sessionsMock,
-  notificationSettingsMock,
-  dashboardStatsMock,
-  passwordMock,
-} from './account.mocks';
+import { sessionsMock, notificationSettingsMock, dashboardStatsMock, passwordMock } from './account.mocks';
 import { map } from 'rxjs/operators';
-import { NotificationSettings, Stat } from '../models/account.model';
+import { NotificationSettings, Stat } from '../../../../../libs/schemes/src';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +19,7 @@ export class AccountService {
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         // todo is client supposed to have the password? or only the length to display bullets? or random ammount of bullets
         password: passwordMock,
-      }))
+      })),
     );
   }
 
@@ -34,10 +29,7 @@ export class AccountService {
   }
 
   // todo interface settings
-  submitNotificationSettings(
-    id: string = 'user123',
-    settings: NotificationSettings
-  ): Observable<boolean> {
+  submitNotificationSettings(id: string = 'user123', settings: NotificationSettings): Observable<boolean> {
     // todo return this.http.post
     return of(true);
   }

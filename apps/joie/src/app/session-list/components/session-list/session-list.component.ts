@@ -1,12 +1,13 @@
+import { AuthFacade } from './../../../auth/services/auth.facade';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { QueryFn } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
 import { SessionsService } from '../../../services/sessions/sessions.service';
-import { Session } from '../../../sessions/models';
+import { QueryFn } from '@angular/fire/firestore';
+import { Session } from '../../../../../../../libs/schemes/src';
 
 @Component({
   selector: 'app-session-list',
@@ -21,6 +22,7 @@ export class SessionListComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
 
   sessions$: Observable<Session[]>;
+  uid$ = this.authFacade.uid$;
 
   enrolled = true;
 
@@ -33,9 +35,7 @@ export class SessionListComponent implements OnInit {
   disable_next: boolean = false;
   disable_prev: boolean = true;
 
-  constructor(
-    private sessionsFacade: SessionsService,
-  ) {}
+  constructor(private sessionsFacade: SessionsService, private authFacade: AuthFacade) {}
 
   ngOnInit(): void {
     // this.sessions$ = this.sessionsFacade.getSessions(this.queryFn);

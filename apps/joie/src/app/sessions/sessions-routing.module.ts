@@ -12,6 +12,7 @@ import { PaymentSourceGuard } from '../guards/payment-source/payment-source.guar
 import { PaymentMethodFormComponent } from '../shared/components/payment-method-form/payment-method-form.component';
 import { SessionDetailsComponent } from './containers/session-details/session-details.component';
 import { SessionFormComponent } from './../session-form/containers/session-form/session-form.component';
+import { SessionEnrolmentGuard } from '../guards/session-enrolment/session-enrolment.guard';
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
         },
         data: { dialogComponent: SessionEnrollDialogComponent },
         outlet: 'popup',
-        canActivate: [AuthGuard, PaymentSourceGuard],
+        canActivate: [AuthGuard, PaymentSourceGuard, SessionEnrolmentGuard],
       },
       {
         path: 'add-payment-source',
@@ -35,9 +36,7 @@ const routes: Routes = [
           dialogComponent: PaymentMethodFormComponent,
           matDialogConfig: { width: '500px' },
         },
-        // ! guard if already logged in
-        // ...canActivate(redirectUnauthorizedToLogin),
-        // ...canActivate(redirectLoggedInToItems)
+        canActivate: [AuthGuard],
         outlet: 'popup',
       },
     ],
@@ -64,6 +63,16 @@ const routes: Routes = [
           matDialogConfig: EditDialogConfigResolver,
         },
         outlet: 'popup',
+      },
+      {
+        path: 'enroll/:sessionId',
+        component: DialogRouterComponent,
+        resolve: {
+          matDialogConfig: EnrollDialogConfigResolver,
+        },
+        data: { dialogComponent: SessionEnrollDialogComponent },
+        outlet: 'popup',
+        canActivate: [AuthGuard, PaymentSourceGuard, SessionEnrolmentGuard],
       },
     ],
   },
