@@ -11,7 +11,7 @@ export class StripeService {
   constructor(private fns: AngularFireFunctions, private db: DbService) {}
 
   getAccount(uid: string): Observable<ICustomer> {
-    return this.db.get$<ICustomer>(`users/${uid}/integrations/stripe`) as Observable<ICustomer>;
+    return this.db.get$<ICustomer>(`users/${uid}/stripe/${uid}`) as Observable<ICustomer>;
   }
 
   onboard(): Observable<any> {

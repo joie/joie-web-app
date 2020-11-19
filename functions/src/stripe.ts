@@ -36,8 +36,8 @@ export const getUser = async (uid: string): Promise<firestore.DocumentData | und
  */
 const getStripe = async (uid: string) => {
   const stripeData = await db
-    .collection(`users/${uid}/integrations`)
-    .doc(STRIPE)
+    .collection(`users/${uid}/${STRIPE}`)
+    .doc(uid)
     .get()
     .then((doc) => doc.data());
   return stripeData;
@@ -48,8 +48,8 @@ const getStripe = async (uid: string) => {
  */
 const setStripeReference = (uid: string, params: { accountId?: string; customerId?: string }) =>
   db
-    .collection(`users/${uid}/integrations`)
-    .doc(STRIPE)
+    .collection(`users/${uid}/${STRIPE}`)
+    .doc(uid)
     .set({ ...params }, { merge: true });
 
 // const deleteUserCustomerReference = (uid: string) => db.collection(CUSTOMERS).doc(uid).delete();
@@ -100,7 +100,7 @@ export const stripeAttachSource = functions.https.onCall(async ({ sourceId }, co
  * When a user deletes their account, clean up after them
  */
 export const cleanupStripeCustomer = functions.auth.user().onDelete(async (user) => {
-  const snapshot = await db.collection(`users/${user.uid}/integrations`).doc(STRIPE).get();
+  const snapshot = await db.collection(`users/${user.uid}/${STRIPE}`).doc(user.uid).get();
   const stripeData = snapshot.data();
 
   // delete customer if exist in user
