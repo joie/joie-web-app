@@ -4,6 +4,7 @@ import { catchErrors, getUID, serverTimestamp } from './helpers';
 import { db } from './config';
 import get from 'lodash.get';
 import { IResponse } from './interfaces';
+import { Session } from '../../../libs/schemes/src';
 
 const SESSIONS = 'sessions';
 const SESSIONS_USERS = 'sessions_users';
@@ -71,7 +72,7 @@ export const getSession = async (id: string): Promise<FirebaseFirestore.Document
   return session;
 };
 
-export const setSessionUser = async (ref: string, data: Record<string, unknown>): Promise<IResponse | null> => {
+export const setSessionUser = async (ref: string, data: Partial<Session>): Promise<IResponse | null> => {
   await db
     .collection(SESSIONS_USERS)
     .doc(ref)

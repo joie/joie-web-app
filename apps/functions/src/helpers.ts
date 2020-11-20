@@ -36,6 +36,6 @@ export const assert = (data: never, key: string): unknown => {
   }
 };
 
-export const serverTimestamp = (): admin.firestore.FieldValue => {
-  return admin.firestore.FieldValue.serverTimestamp();
+export const serverTimestamp = (): any => {
+  return admin.firestore.FieldValue.serverTimestamp() as admin.firestore.Timestamp;
 };

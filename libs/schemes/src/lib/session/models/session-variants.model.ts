@@ -25,6 +25,7 @@ export interface KalturaEvent {
 interface SessionMetadata extends Schedule, KalturaEvent {
   readonly id: string;
   readonly createdAt: firestore.Timestamp;
+  readonly updatedAt?: any;
   title: string;
   description?: string;
   thumbRef: string;
