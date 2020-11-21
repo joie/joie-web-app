@@ -9,9 +9,7 @@
     "strict": true,
     "target": "es2017",
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "typeRoots": ["./functions/node_modules/@types"],
     "types": ["node"]
   },
   "compileOnSave": true,
