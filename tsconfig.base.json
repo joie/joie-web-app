@@ -32,10 +32,16 @@
       "path": "./libs/dyna-form/tsconfig.json"
     },
     {
+      "path": "./libs/schemes/tsconfig.json"
+    },
+    {
       "path": "./apps/joie/tsconfig.app.json"
     },
     {
       "path": "./apps/joie/tsconfig.editor.json"
+    },
+    {
+      "path": "./apps/firebase-cloud-functions/tsconfig.json"
     }
   ]
 }

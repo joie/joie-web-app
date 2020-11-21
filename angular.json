@@ -44,7 +44,6 @@
             "stylePreprocessorOptions": {
               "includePaths": ["node_modules/"]
             },
-            "extractCss": true,
             "scripts": []
           },
           "configurations": {
@@ -58,7 +57,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": true,
-              "extractCss": true,
               "namedChunks": true,
               "extractLicenses": true,
               "vendorChunk": false,
