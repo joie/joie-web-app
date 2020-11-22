@@ -267,7 +267,7 @@
           "options": {
             "commands": [
               {
-                "command": "nx run firebase-cloud-functions:build-node"
+                "command": "nx run firebase-cloud-functions:build-node && npm run getCustomConfig && cp .runtimeconfig.json dist/apps/firebase-cloud-functions"
               },
               {
                 "command": "ts-node tools/scripts/build-firebase-functions-package-json.ts"
