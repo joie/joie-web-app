@@ -6,7 +6,7 @@ import { firestore } from 'firebase-admin';
 import { getSession, setSessionUser } from './session';
 import get from 'lodash.get';
 import Stripe from 'stripe';
-import { IResponse, IStripe } from './../../libs/schemes/src/lib/models';
+import { IResponse, IStripe } from './../../../libs/schemes/src/lib/models';
 
 const STRIPE = 'stripe';
 const RETURN_URL = functions.config().stripe.return_url;

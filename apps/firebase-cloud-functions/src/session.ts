@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 import { catchErrors, getUID, serverTimestamp } from './helpers';
 import { db } from './config';
 import get from 'lodash.get';
-import { IResponse } from './../../libs/schemes/src/lib/models/interfaces.model';
+import { IResponse } from './../../../libs/schemes/src/lib/models/interfaces.model';
 
 const SESSIONS = 'sessions';
 const SESSIONS_USERS = 'sessions_users';
