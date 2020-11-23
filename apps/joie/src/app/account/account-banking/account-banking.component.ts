@@ -36,6 +36,7 @@ export class AccountBankingComponent implements OnInit {
       await this.stripeService.onboardCallback(this.stripeAccountID).toPromise();
     }
     window.close();
+    // tslint:disable-next-line: semicolon
   };
 
   async connectStripe(): Promise<void> {
