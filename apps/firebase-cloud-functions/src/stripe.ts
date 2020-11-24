@@ -362,7 +362,8 @@ const chargeTransferAccountToAccount = async (
         amount: session.price.display * 100,
         currency: session.price.currency,
         application_fee_amount: 100, // @TODO: // we need to consult if we will charge fees & how much
-        transfer_group: `SESSION_${session.id}`,
+        source: 'tok_visa',
+        transfer_group: `SESSION_${session.id}_${email}`,
         receipt_email: email,
         metadata: {
           title: get(session, 'title', ''),
@@ -381,7 +382,7 @@ const chargeTransferAccountToAccount = async (
       amount: session.price.display * 100,
       currency: session.price.currency,
       destination: receiverAccountId,
-      transfer_group: `SESSION_${session.id}`,
+      transfer_group: `SESSION_${session.id}_${email}`,
       metadata: {
         title: get(session, 'title', ''),
         session_id: session.id,
@@ -392,6 +393,7 @@ const chargeTransferAccountToAccount = async (
 
     return { stripeChargeId, stripeTransferId };
   } catch (error) {
+    console.log('error: ', error);
     return undefined;
   }
 };
@@ -414,7 +416,7 @@ const chargeTransferCustomerToAccount = async (
         amount: session.price.display * 100,
         currency: session.price.currency,
         application_fee_amount: 100, // @TODO: // we need to consult if we will charge fees & how much
-        transfer_group: `SESSION_${session.id}`,
+        transfer_group: `SESSION_${session.id}_${email}`,
         receipt_email: email,
         metadata: {
           title: get(session, 'title', ''),
@@ -429,7 +431,7 @@ const chargeTransferCustomerToAccount = async (
       amount: session.price.display * 100,
       currency: session.price.currency,
       destination: receiverAccountId,
-      transfer_group: `SESSION_${session.id}`,
+      transfer_group: `SESSION_${session.id}_${email}`,
       metadata: {
         title: get(session, 'title', ''),
         session_id: session.id,
