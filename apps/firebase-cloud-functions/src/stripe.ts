@@ -152,7 +152,8 @@ export const stripeSessionCharge = functions.https.onCall(
         throw new Error(`Missing payment method for sender`);
       }
 
-      const session = await getSession(sessionId) as Session;
+      let session = await getSession(sessionId) as Session;
+
       const { accountId: senderAccountId, customerId: senderCustomerId } = senderStripeData;
 
       if (session) {
@@ -167,6 +168,8 @@ export const stripeSessionCharge = functions.https.onCall(
         if (!amount || !currency) {
           throw new Error('Amount or Currency missing in the session data');
         }
+
+        session = Object.assign({ id: sessionId }, session);
 
         let stripeChargeId;
         let stripeTransferId;
@@ -369,6 +372,7 @@ const chargeTransferAccountToAccount = async (
           title: get(session, 'title', ''),
           session_id: session.id,
         },
+        description: 'Initiated through Joie'
       },
       {
         stripeAccount: senderAccountId,
@@ -387,6 +391,7 @@ const chargeTransferAccountToAccount = async (
         title: get(session, 'title', ''),
         session_id: session.id,
       },
+      description: 'Initiated through Joie'
     });
 
     stripeTransferId = response.id ?? null;
@@ -421,6 +426,7 @@ const chargeTransferCustomerToAccount = async (
           title: get(session, 'title', ''),
           session_id: session.id,
         },
+        description: 'Initiated through Joie'
       }
     );
     stripeChargeId = response.id ?? null;
@@ -435,6 +441,7 @@ const chargeTransferCustomerToAccount = async (
         title: get(session, 'title', ''),
         session_id: session.id,
       },
+      description: 'Initiated through Joie'
     });
 
     stripeTransferId = response.id ?? null;
