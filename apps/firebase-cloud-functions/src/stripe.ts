@@ -5,12 +5,10 @@ import { createUserDocumentInFirestore } from '.';
 import { firestore } from 'firebase-admin';
 import { getSession, setSessionUser } from './session';
 import get from 'lodash.get';
-import Stripe from 'stripe';
 import { IResponse, IStripe } from './../../../libs/schemes/src/lib/models';
 import { Session } from './../../../libs/schemes/src/lib/session/models/session.model';
-import { send } from 'process';
 
-const STRIPE = 'stripe';
+const STRIPE_PATH = 'stripe';
 const RETURN_URL = functions.config().stripe.return_url;
 
 /**
@@ -38,7 +36,7 @@ export const getUser = async (uid: string): Promise<firestore.DocumentData | und
  */
 const getStripe = async (uid: string): Promise<IStripe | undefined> => {
   const stripeData = await db
-    .collection(`users/${uid}/${STRIPE}`)
+    .collection(`users/${uid}/${STRIPE_PATH}`)
     .doc(uid)
     .get()
     .then((doc) => doc.data());
@@ -50,7 +48,7 @@ const getStripe = async (uid: string): Promise<IStripe | undefined> => {
  */
 const setStripeReference = (uid: string, params: IStripe) =>
   db
-    .collection(`users/${uid}/${STRIPE}`)
+    .collection(`users/${uid}/${STRIPE_PATH}`)
     .doc(uid)
     .set({ ...params }, { merge: true });
 
@@ -102,7 +100,7 @@ export const stripeAttachSource = functions.https.onCall(async ({ sourceId }, co
  * When a user deletes their account, clean up after them
  */
 export const cleanupStripeCustomer = functions.auth.user().onDelete(async (user) => {
-  const snapshot = await db.collection(`users/${user.uid}/${STRIPE}`).doc(user.uid).get();
+  const snapshot = await db.collection(`users/${user.uid}/${STRIPE_PATH}`).doc(user.uid).get();
   const stripeData = snapshot.data() as IStripe;
 
   // delete customer if exist in user
@@ -231,11 +229,11 @@ export const stripeSessionCharge = functions.https.onCall(
 
         throw new Error('Something went wrong, check Stripe logs');
       }
-      throw new Error(`Session not found`);
+      throw new Error('Session not found');
     } catch (error) {
       return Promise.resolve({
         type: 'error',
-        message: error,
+        message: get(error, 'message', error),
       } as IResponse);
     }
   },
