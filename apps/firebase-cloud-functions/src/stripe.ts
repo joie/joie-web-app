@@ -415,7 +415,6 @@ const chargeTransferCustomerToAccount = async (
         customer: senderCustomerId,
         amount: session.price.display * 100,
         currency: session.price.currency,
-        application_fee_amount: 100, // @TODO: // we need to consult if we will charge fees & how much
         transfer_group: `SESSION_${session.id}_${email}`,
         receipt_email: email,
         metadata: {
@@ -442,6 +441,7 @@ const chargeTransferCustomerToAccount = async (
 
     return { stripeChargeId, stripeTransferId };
   } catch (error) {
+    console.log('error: ', error)
     return undefined;
   }
 };
