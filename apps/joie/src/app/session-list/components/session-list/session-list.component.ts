@@ -1,4 +1,6 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 import { QueryFn } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -22,22 +24,45 @@ export class SessionListComponent implements OnInit {
   firstInResponse: any = [];
   lastInResponse: any = [];
   prevStrtAt: any = [];
-  paginationClickedCount = 0;
-  disable_next: boolean = false;
-  disable_prev: boolean = true;
-  pageSize = 6;
+  disable_next = false;
+  disable_prev = true;
+  page = 0;
+  pageCount = 10;
 
   constructor(
     private sessionsService: SessionsService,
     private authFacade: AuthFacade,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private location: Location,
   ) {}
 
   ngOnInit(): void {
+    this.checkRoutePagination();
+    this.handlePageSelection();
     this.getItems();
   }
 
+  checkRoutePagination() {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.page = params.page ? Number(params.page) : this.page;
+      this.pageCount = params.page ? Number(params.pageCount) : this.pageCount;
+    });
+  }
+
+  handlePageSelection() {
+    const url = this.router.createUrlTree([], {
+      relativeTo: this.activatedRoute,
+      queryParams: {
+        page: this.page,
+        pageCount: this.pageCount,
+      }
+    }).toString();
+    this.location.go(url);
+  }
+
   getItems() {
-    this.sessionsService.getSessionsData('sessions', this.pageSize, this.queryFn).subscribe((response: any) => {
+    this.sessionsService.getSessionsData('sessions', this.page, this.pageCount, this.queryFn).subscribe((response: any) => {
       if (!response.length) {
         return false;
       }
@@ -50,9 +75,9 @@ export class SessionListComponent implements OnInit {
       }
 
       this.prevStrtAt = [];
-      this.paginationClickedCount = 0;
+      this.page = 0;
       this.disable_next = false;
-      this.disable_prev = false;
+      this.disable_prev = true;
 
       this.push_prev_startAt(this.firstInResponse);
     }, error => {
@@ -62,7 +87,7 @@ export class SessionListComponent implements OnInit {
 
   nextPage() {
     this.disable_next = true;
-    this.sessionsService.getSessionsNext('sessions', this.pageSize, this.lastInResponse, this.queryFn).subscribe((response: any) => {
+    this.sessionsService.getSessionsNext('sessions', this.pageCount, this.lastInResponse, this.queryFn).subscribe((response: any) => {
       if (!response.length) {
         this.disable_next = true;
         return;
@@ -74,9 +99,9 @@ export class SessionListComponent implements OnInit {
         this.sessions.push(item.payload.doc.data());
       }
 
-      this.paginationClickedCount++;
+      this.page++;
       this.push_prev_startAt(this.firstInResponse);
-      if (response.length < this.pageSize) {
+      if (response.length < this.pageCount) {
         // disable next button if data fetched is less than 5 - means no more data left to load
         // because limit ti get data is set to 5
         this.disable_next = true;
@@ -84,14 +109,15 @@ export class SessionListComponent implements OnInit {
         this.disable_next = false;
       }
       this.disable_prev = false;
+      this.handlePageSelection();
     }, error => {
-      this.disable_next = false;
+      console.log(error);
     });
   }
 
   prevPage() {
     this.disable_prev = true;
-    this.sessionsService.getSessionsPrev('sessions', this.pageSize, this.get_prev_startAt(), this.firstInResponse, this.queryFn).subscribe((response: any) => {
+    this.sessionsService.getSessionsPrev('sessions', this.pageCount, this.get_prev_startAt(), this.firstInResponse, this.queryFn).subscribe((response: any) => {
       this.firstInResponse = response[0].payload.doc;
       this.lastInResponse = response[response.length - 1].payload.doc;
 
@@ -101,20 +127,21 @@ export class SessionListComponent implements OnInit {
       }
 
       // maintaing page no.
-      this.paginationClickedCount--;
+      this.page--;
 
       // pop not required value in array
       this.pop_prev_startAt(this.firstInResponse);
 
       // enable buttons again
-      if (this.paginationClickedCount === 0) {
+      if (this.page === 0) {
         this.disable_prev = true;
       } else {
         this.disable_prev = false;
       }
       this.disable_next = false;
+      this.handlePageSelection();
     }, error => {
-      this.disable_prev = false;
+      console.log(error);
     });
   }
 
@@ -131,9 +158,9 @@ export class SessionListComponent implements OnInit {
   }
 
   get_prev_startAt() {
-    if (this.prevStrtAt.length > (this.paginationClickedCount + 1)) {
+    if (this.prevStrtAt.length > (this.page + 1)) {
       this.prevStrtAt.splice(this.prevStrtAt.length - 2, this.prevStrtAt.length - 1);
     }
-    return this.prevStrtAt[this.paginationClickedCount - 1];
+    return this.prevStrtAt[this.page - 1];
   }
 }
