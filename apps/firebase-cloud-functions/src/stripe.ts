@@ -1,12 +1,13 @@
 import * as functions from 'firebase-functions';
 import { db, stripe, API_URL } from './config';
-import { getUID, catchErrors, getUEmail, serverTimestamp } from './helpers';
+import { getUID, catchErrors, serverTimestamp, getUEmail } from './helpers';
 import { createUserDocumentInFirestore } from '.';
 import { firestore } from 'firebase-admin';
 import { getSession, setSessionUser } from './session';
 import get from 'lodash.get';
 import Stripe from 'stripe';
 import { IResponse, IStripe } from './../../../libs/schemes/src/lib/models';
+import { Session } from './../../../libs/schemes/src/lib/session/models/session.model';
 
 const STRIPE = 'stripe';
 const RETURN_URL = functions.config().stripe.return_url;
@@ -150,17 +151,17 @@ export const stripeSessionCharge = functions.https.onCall(
       const email = getUEmail(context);
       const { sessionId } = params;
 
-      const stripeData = await getStripe(uid);
+      const senderStripeData = await getStripe(uid);
 
-      if (!stripeData) {
+      if (!senderStripeData) {
         return Promise.resolve({
           type: 'error',
-          message: `Missing payment method`,
+          message: `Missing payment method for sender`,
         } as IResponse);
       }
 
-      const session = await getSession(sessionId);
-      const { accountId, customerId } = stripeData;
+      const session = await getSession(sessionId) as Session;
+      const { accountId: senderAccountId } = senderStripeData;
 
       if (session) {
         // owner can not pay it's own session
@@ -182,47 +183,69 @@ export const stripeSessionCharge = functions.https.onCall(
         }
 
         let stripeChargeId;
-        let response;
+        let stripeTransferId;
 
-        if (accountId) {
-          // @TODO: create paymentIntent if is account
-          stripeChargeId = null;
-        } else {
-          response = await createCharge({
-            customer: customerId,
-            amount: amount * 100,
-            currency,
-            receipt_email: email ?? '',
-            description: `Joie - Session #${sessionId}`,
-            metadata: {
-              title: get(session, 'title', ''),
-              session_id: sessionId,
-            },
-          });
+        const receiverStripeData = await getStripe(session.owner.uid);
 
-          stripeChargeId = response.id ?? null;
-        }
-
-        if (stripeChargeId) {
-          const sessionUserData = {
-            sessionId,
-            uid,
-            stripeChargeId,
-          };
-
-          await setSessionUser(`${sessionId}_${uid}`, {
-            ...sessionUserData,
-            updatedAt: serverTimestamp(),
-          });
-
+        if (!receiverStripeData) {
           return Promise.resolve({
-            type: 'success',
-            message: 'Session successfully paid',
+            type: 'error',
+            message: `Missing payment method for receiver`,
           } as IResponse);
         }
+        const { accountId: receiverAccountId } = receiverStripeData;
 
-        throw new Error(`Stripe - Something went wrong while creating charge`);
+        // @TODO: enforce firestore rules for this scenario
+        if (senderAccountId && receiverAccountId) {
+          const response = await chargeTransferAccountToAccount(
+            session,
+            senderAccountId,
+            receiverAccountId,
+            email,
+          );
+
+          if (response && response.stripeChargeId && response.stripeTransferId) {
+            stripeChargeId = response.stripeChargeId;
+            stripeTransferId = response.stripeTransferId;
+          } else {
+            throw new Error(`Stripe - Something went wrong while creating charge or tranfering, check Stripe logs`);
+          }
+        }
+
+        // if () {
+          // response = await createCharge({
+          //   customer: customerId,
+          //   amount: amount * 100,
+          //   currency,
+          //   receipt_email: email ?? '',
+          //   description: `Joie - Session #${sessionId}`,
+          //   metadata: {
+          //     title: get(session, 'title', ''),
+          //     session_id: sessionId,
+          //   },
+          // });
+
+        //   stripeChargeId = response.id ?? null;
+        // }
+
+        const sessionUserData = {
+          sessionId,
+          uid,
+          stripeChargeId,
+          stripeTransferId,
+        };
+
+        await setSessionUser(`${sessionId}_${uid}`, {
+          ...sessionUserData,
+          updatedAt: serverTimestamp(),
+        });
+
+        return Promise.resolve({
+          type: 'success',
+          message: 'Session successfully paid',
+        } as IResponse);
       }
+
       return Promise.resolve({
         type: 'error',
         message: `Session not found`,
@@ -340,6 +363,49 @@ const generateAccountLink = (accountID: string) => {
       return_url: `${RETURN_URL}?accountID=${accountID}`,
     })
     .then((link) => link.url);
+};
+
+const chargeTransferAccountToAccount = async (
+  session: Session,
+  senderAccountId: string,
+  receiverAccountId: string,
+  email?: string,
+): Promise<{ stripeChargeId: string; stripeTransferId: string } | undefined> => {
+  try {
+    let response;
+    let stripeChargeId;
+    let stripeTransferId;
+
+    // we charge first the sender
+    response = await stripe.charges.create(
+      {
+        amount: session.price.display * 100,
+        currency: session.price.currency,
+        application_fee_amount: 100, // @TODO: // we need to consult if we will charge fees & how much
+        transfer_group: `SESSION_${session.id}`,
+        receipt_email: email,
+      },
+      {
+        stripeAccount: senderAccountId,
+      },
+    );
+
+    stripeChargeId = response.id ?? null;
+
+    // then we transfer the funds
+    response = await stripe.transfers.create({
+      amount: session.price.display * 100,
+      currency: session.price.currency,
+      destination: receiverAccountId,
+      transfer_group: `SESSION_${session.id}`,
+    });
+
+    stripeTransferId = response.id ?? null;
+
+    return { stripeChargeId, stripeTransferId };
+  } catch (error) {
+    return undefined;
+  }
 };
 
 // export const stripeDisonnectAccount = functions.https.onCall(async (_, context) => {
