@@ -20,11 +20,10 @@ export class SessionsService {
     return this.db.get$<Session>('sessions', queryFn) as Observable<Session[]>;
   }
 
-  getSessionsData(path: string, page, pageSize, queryFn?: QueryFn) {
+  getSessionsData(path: string, pageSize, queryFn?: QueryFn) {
     return this.afs.collection(path, queryFn => queryFn
       .orderBy('eventId', 'desc')
-      .startAt(page)
-      .endAt(pageSize)
+      .limit(pageSize)
     ).snapshotChanges();
   }
 

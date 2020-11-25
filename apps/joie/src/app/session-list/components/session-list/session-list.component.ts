@@ -26,8 +26,8 @@ export class SessionListComponent implements OnInit {
   prevStrtAt: any = [];
   disable_next = false;
   disable_prev = true;
-  page = 0;
-  pageCount = 10;
+  paginationClickedCount = 0;
+  pageCount = 6;
 
   constructor(
     private sessionsService: SessionsService,
@@ -38,31 +38,11 @@ export class SessionListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.checkRoutePagination();
-    this.handlePageSelection();
     this.getItems();
   }
 
-  checkRoutePagination() {
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
-      this.page = params.page ? Number(params.page) : this.page;
-      this.pageCount = params.page ? Number(params.pageCount) : this.pageCount;
-    });
-  }
-
-  handlePageSelection() {
-    const url = this.router.createUrlTree([], {
-      relativeTo: this.activatedRoute,
-      queryParams: {
-        page: this.page,
-        pageCount: this.pageCount,
-      }
-    }).toString();
-    this.location.go(url);
-  }
-
   getItems() {
-    this.sessionsService.getSessionsData('sessions', this.page, this.pageCount, this.queryFn).subscribe((response: any) => {
+    this.sessionsService.getSessionsData('sessions', this.pageCount, this.queryFn).subscribe((response: any) => {
       if (!response.length) {
         return false;
       }
@@ -75,7 +55,6 @@ export class SessionListComponent implements OnInit {
       }
 
       this.prevStrtAt = [];
-      this.page = 0;
       this.disable_next = false;
       this.disable_prev = true;
 
@@ -99,7 +78,7 @@ export class SessionListComponent implements OnInit {
         this.sessions.push(item.payload.doc.data());
       }
 
-      this.page++;
+      this.paginationClickedCount++;
       this.push_prev_startAt(this.firstInResponse);
       if (response.length < this.pageCount) {
         // disable next button if data fetched is less than 5 - means no more data left to load
@@ -109,7 +88,6 @@ export class SessionListComponent implements OnInit {
         this.disable_next = false;
       }
       this.disable_prev = false;
-      this.handlePageSelection();
     }, error => {
       console.log(error);
     });
@@ -126,20 +104,19 @@ export class SessionListComponent implements OnInit {
         this.sessions.push(item.payload.doc.data());
       }
 
-      // maintaing page no.
-      this.page--;
+      // maintaing paginationClickedCount no.
+      this.paginationClickedCount--;
 
       // pop not required value in array
       this.pop_prev_startAt(this.firstInResponse);
 
       // enable buttons again
-      if (this.page === 0) {
+      if (this.paginationClickedCount === 0) {
         this.disable_prev = true;
       } else {
         this.disable_prev = false;
       }
       this.disable_next = false;
-      this.handlePageSelection();
     }, error => {
       console.log(error);
     });
@@ -158,9 +135,9 @@ export class SessionListComponent implements OnInit {
   }
 
   get_prev_startAt() {
-    if (this.prevStrtAt.length > (this.page + 1)) {
+    if (this.prevStrtAt.length > (this.paginationClickedCount + 1)) {
       this.prevStrtAt.splice(this.prevStrtAt.length - 2, this.prevStrtAt.length - 1);
     }
-    return this.prevStrtAt[this.page - 1];
+    return this.prevStrtAt[this.paginationClickedCount - 1];
   }
 }
