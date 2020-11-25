@@ -44,7 +44,6 @@
             "stylePreprocessorOptions": {
               "includePaths": ["node_modules/"]
             },
-            "extractCss": true,
             "scripts": []
           },
           "configurations": {
@@ -58,7 +57,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": true,
-              "extractCss": true,
               "namedChunks": true,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -233,6 +231,93 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        }
+      }
+    },
+    "firebase-cloud-functions": {
+      "root": "apps/firebase-cloud-functions",
+      "sourceRoot": "apps/firebase-cloud-functions/src",
+      "projectType": "application",
+      "prefix": "firebase-cloud-functions",
+      "schematics": {},
+      "architect": {
+        "build-node": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/firebase-cloud-functions",
+            "main": "apps/firebase-cloud-functions/src/index.ts",
+            "tsConfig": "apps/firebase-cloud-functions/tsconfig.app.json"
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/firebase-cloud-functions/src/environments/environment.ts",
+                  "with": "apps/firebase-cloud-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "build": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "nx run firebase-cloud-functions:build-node && npm run getCustomConfig && cp .runtimeconfig.json dist/apps/firebase-cloud-functions"
+              },
+              {
+                "command": "ts-node tools/scripts/build-firebase-functions-package-json.ts"
+              }
+            ],
+            "parallel": false
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "nx run firebase-cloud-functions:build && firebase emulators:start --only functions --inspect-functions"
+          }
+        },
+        "shell": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "nx run firebase-cloud-functions:build && firebase functions:shell --inspect-functions"
+          }
+        },
+        "start": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "nx run firebase-cloud-functions:shell"
+          }
+        },
+        "deploy": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "firebase deploy --only functions"
+          }
+        },
+        "logs": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "firebase funcions:log"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/firebase-cloud-functions/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/firebase-cloud-functions/jest.config.js",
+            "passWithNoTests": true
+          }
         }
       }
     }
