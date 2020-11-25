@@ -72,7 +72,6 @@
     "libphonenumber-js": "^1.9.4",
     "lodash.get": "^4.4.2",
     "modularscale-sass": "^3.0.10",
-    "ngx-auth-firebaseui": "^5.0.0",
     "ngx-quicklink": "^0.2.6",
     "normalize.css": "^8.0.1",
     "ramda": "^0.27.1",
