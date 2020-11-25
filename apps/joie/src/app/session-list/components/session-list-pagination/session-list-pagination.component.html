@@ -1,0 +1,7 @@
+<ng-container *ngIf="sessions">
+  <app-session-card *ngFor="let session of sessions" [session]="session"></app-session-card>
+  <div class="container">
+    <button mat-button [disabled]="disablePrev" (click)="prevPage()">PREV</button>
+    <button mat-button [disabled]="disableNext" (click)="nextPage()">NEXT</button>
+  </div>
+</ng-container>
