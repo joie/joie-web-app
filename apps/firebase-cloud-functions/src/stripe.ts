@@ -154,7 +154,7 @@ export const stripeSessionCharge = functions.https.onCall(
 
       let session = await getSession(sessionId) as Session;
 
-      const { accountId: senderAccountId, customerId: senderCustomerId } = senderStripeData;
+      const { customerId: senderCustomerId } = senderStripeData;
 
       if (session) {
         // owner can not pay it's own session
@@ -183,21 +183,21 @@ export const stripeSessionCharge = functions.https.onCall(
         const { accountId: receiverAccountId } = receiverStripeData;
 
         // @TODO: enforce firestore rules for this scenario
-        if (senderAccountId && receiverAccountId) {
-          const response = await chargeTransferAccountToAccount(
-            session,
-            senderAccountId,
-            receiverAccountId,
-            email,
-          );
+        // if (senderAccountId && receiverAccountId) {
+        //   const response = await chargeTransferAccountToAccount(
+        //     session,
+        //     senderAccountId,
+        //     receiverAccountId,
+        //     email,
+        //   );
 
-          if (response && response.stripeChargeId && response.stripeTransferId) {
-            stripeChargeId = response.stripeChargeId;
-            stripeTransferId = response.stripeTransferId;
-          } else {
-            throw new Error(`Stripe - (chargeTransferAccountToAccount) Something went wrong while creating charge or tranfering, check Stripe logs`);
-          }
-        }
+        //   if (response && response.stripeChargeId && response.stripeTransferId) {
+        //     stripeChargeId = response.stripeChargeId;
+        //     stripeTransferId = response.stripeTransferId;
+        //   } else {
+        //     throw new Error(`Stripe - (chargeTransferAccountToAccount) Something went wrong while creating charge or tranfering, check Stripe logs`);
+        //   }
+        // }
 
         // @TODO: enforce firestore rules for this scenario
         if (!stripeChargeId && senderCustomerId && receiverAccountId) {
@@ -207,7 +207,7 @@ export const stripeSessionCharge = functions.https.onCall(
             stripeChargeId = response.stripeChargeId;
             stripeTransferId = response.stripeTransferId;
           } else {
-            throw new Error(`Stripe - (chargeTransferCustomerToAccount) Something went wrong while creating charge or tranfering, check Stripe logs`);
+            throw new Error(get(response, 'message', 'Error while processing the Payment'));
           }
         }
 
@@ -230,7 +230,7 @@ export const stripeSessionCharge = functions.https.onCall(
           } as IResponse);
         }
 
-        throw new Error('Something went wrong, check Stripe logs');
+        throw new Error('Something went wrong');
       }
       throw new Error('Session not found');
     } catch (error) {
@@ -348,67 +348,67 @@ const generateAccountLink = (accountID: string) => {
     .then((link) => link.url);
 };
 
-const chargeTransferAccountToAccount = async (
-  session: Session,
-  senderAccountId: string,
-  receiverAccountId: string,
-  email?: string,
-): Promise<{ stripeChargeId: string; stripeTransferId: string } | undefined> => {
-  try {
-    let response;
-    let stripeChargeId;
-    let stripeTransferId;
+// const chargeTransferAccountToAccount = async (
+//   session: Session,
+//   senderAccountId: string,
+//   receiverAccountId: string,
+//   email?: string,
+// ): Promise<{ stripeChargeId: string; stripeTransferId: string } | undefined> => {
+//   try {
+//     let response;
+//     let stripeChargeId;
+//     let stripeTransferId;
 
-    // we charge first the sender
-    response = await stripe.charges.create(
-      {
-        amount: session.price.display * 100,
-        currency: session.price.currency,
-        application_fee_amount: 100, // @TODO: // we need to consult if we will charge fees & how much
-        source: 'tok_visa',
-        transfer_group: `SESSION_${session.id}_${email}`,
-        receipt_email: email,
-        metadata: {
-          title: get(session, 'title', ''),
-          session_id: session.id,
-        },
-        description: 'Initiated through Joie'
-      },
-      {
-        stripeAccount: senderAccountId,
-      },
-    );
+//     // we charge first the sender
+//     response = await stripe.charges.create(
+//       {
+//         amount: session.price.display * 100,
+//         currency: session.price.currency,
+//         application_fee_amount: 100, // @TODO: // we need to consult if we will charge fees & how much
+//         source: 'tok_visa',
+//         transfer_group: `SESSION_${session.id}_${email}`,
+//         receipt_email: email,
+//         metadata: {
+//           title: get(session, 'title', ''),
+//           session_id: session.id,
+//         },
+//         description: 'Initiated through Joie'
+//       },
+//       {
+//         stripeAccount: senderAccountId,
+//       },
+//     );
 
-    stripeChargeId = response.id ?? null;
+//     stripeChargeId = response.id ?? null;
 
-    // then we transfer the funds
-    response = await stripe.transfers.create({
-      amount: session.price.display * 100,
-      currency: session.price.currency,
-      destination: receiverAccountId,
-      transfer_group: `SESSION_${session.id}_${email}`,
-      metadata: {
-        title: get(session, 'title', ''),
-        session_id: session.id,
-      },
-      description: 'Initiated through Joie'
-    });
+//     // then we transfer the funds
+//     response = await stripe.transfers.create({
+//       amount: session.price.display * 100,
+//       currency: session.price.currency,
+//       destination: receiverAccountId,
+//       transfer_group: `SESSION_${session.id}_${email}`,
+//       metadata: {
+//         title: get(session, 'title', ''),
+//         session_id: session.id,
+//       },
+//       description: 'Initiated through Joie'
+//     });
 
-    stripeTransferId = response.id ?? null;
+//     stripeTransferId = response.id ?? null;
 
-    return { stripeChargeId, stripeTransferId };
-  } catch (error) {
-    console.log('error: ', error);
-    return undefined;
-  }
-};
+//     return { stripeChargeId, stripeTransferId };
+//   } catch (error) {
+//     console.log('error: ', error);
+//     return undefined;
+//   }
+// };
 
 const chargeTransferCustomerToAccount = async (
   session: Session,
   senderCustomerId: string,
   receiverAccountId: string,
   email?: string,
-): Promise<{ stripeChargeId: string; stripeTransferId: string } | undefined> => {
+): Promise<{ stripeChargeId: string | null; stripeTransferId: string | null; message?: string } | undefined> => {
   try {
     let response;
     let stripeChargeId;
@@ -448,8 +448,8 @@ const chargeTransferCustomerToAccount = async (
 
     return { stripeChargeId, stripeTransferId };
   } catch (error) {
-    console.log('error: ', error)
-    return undefined;
+    console.log('error: ', error);
+    return { stripeChargeId: null, stripeTransferId: null, message: error.message };
   }
 };
 

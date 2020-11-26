@@ -25,15 +25,15 @@ export class SessionEnrollDialogComponent {
     const resp = await this.paymentService.sessionCharge(this.sessionId).toPromise();
     this.dialogRef.close();
     if (resp && resp.type === 'success') {
-      this.snackBar.open(`Session Enrolment sucessful`, 'Close', {
+      this.snackBar.open(resp.message, 'Close', {
         duration: 4000,
         horizontalPosition: 'end',
         verticalPosition: 'bottom',
       });
       return;
     }
-    this.snackBar.open(`Session Enrolment failed`, 'Close', {
-      duration: 4000,
+    this.snackBar.open(resp.message, 'Close', {
+      duration: 5000,
       horizontalPosition: 'end',
       verticalPosition: 'bottom',
     });
