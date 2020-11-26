@@ -260,7 +260,12 @@ export const stripeGetSources = functions.https.onCall(async (_, context) => {
     return catchErrors(Promise.resolve({}));
   }
 
-  return catchErrors(Promise.resolve({ data: true }));
+  // until we support account -> account stripe payments don't remove this check
+  if (stripeData.customerId) {
+    return catchErrors(Promise.resolve({ data: true }));
+  }
+
+  return catchErrors(Promise.resolve({}));
 });
 
 export const stripeOnboard = functions.https.onCall(async () => {
