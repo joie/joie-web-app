@@ -1,4 +1,4 @@
-import { ICustomer } from './../../../../../../libs/schemes/src/lib/session/models/customer.model';
+import { IStripe } from './../../../../../../libs/schemes/src/lib/models/stripe.model';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFireFunctions } from '@angular/fire/functions';
@@ -10,8 +10,8 @@ import { DbService } from '../db/db.service';
 export class StripeService {
   constructor(private fns: AngularFireFunctions, private db: DbService) {}
 
-  getAccount(uid: string): Observable<ICustomer> {
-    return this.db.get$<ICustomer>(`users/${uid}/stripe/${uid}`) as Observable<ICustomer>;
+  getAccount(uid: string): Observable<IStripe> {
+    return this.db.get$<IStripe>(`users/${uid}/stripe/${uid}`) as Observable<IStripe>;
   }
 
   onboard(): Observable<any> {
