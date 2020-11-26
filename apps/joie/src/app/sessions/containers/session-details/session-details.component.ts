@@ -14,22 +14,15 @@ import { Pillar, PillarsIconsMap } from '../../../../../../../libs/schemes/src';
 })
 export class SessionDetailsComponent {
   sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
-  session$ = this.sessionId$.pipe(
-    switchMap((sessionId) => this.sessionsFacade.getSession(sessionId)),
+  session$ = this.sessionId$.pipe(switchMap(this.sessionsFacade.getSession), shareReplay(1));
+  owner$ = this.session$.pipe(pluck('owner'), shareReplay(1));
+  sessionOwnerId$ = this.owner$.pipe(pluck('uid'), shareReplay(1));
+  isOwner$ = this.sessionOwnerId$.pipe(
+    switchMap((sessionOwnerId) => this.authFacade.uid$.pipe(map((uid) => sessionOwnerId === uid))),
     shareReplay(1),
   );
-  eventId$: Observable<number | undefined> = this.session$.pipe(pluck('eventId'));
-  owner$ = this.session$.pipe(pluck('owner'), shareReplay());
-  sessionOwnerId$ = this.owner$.pipe(pluck('uid'), shareReplay());
 
-  isOwner$: Observable<boolean> = this.sessionOwnerId$.pipe(
-    switchMap((sessionOwnerId) =>
-      this.authFacade.uid$.pipe(
-        map((uid) => sessionOwnerId === uid),
-        // take(1)
-      ),
-    ),
-  );
+  eventId$: Observable<number | undefined> = this.session$.pipe(pluck('eventId'));
 
   // showDelete$: Observable<boolean> = combineLatest([this.authFacade, this.owner$]).pipe(
   //   map(result => Boolean(result[0].owner.uid === result[1].uid))
