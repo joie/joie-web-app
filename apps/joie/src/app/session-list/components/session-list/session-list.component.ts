@@ -1,10 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { CollectionReference, DocumentChangeAction, QueryFn } from '@angular/fire/firestore';
+import {
+  CollectionReference,
+  DocumentChangeAction,
+  DocumentSnapshot,
+  QueryDocumentSnapshot,
+  QueryFn,
+  QuerySnapshot,
+} from '@angular/fire/firestore';
 import { Observable, ReplaySubject } from 'rxjs';
 
 import { SessionsService } from '../../../services/sessions/sessions.service';
 import { Session, Status } from '../../../../../../../libs/schemes/src';
-import { distinctUntilChanged, pluck, shareReplay, switchMap, take, tap } from 'rxjs/operators';
+import { distinctUntilChanged, map, pluck, shareReplay, switchMap, take, tap } from 'rxjs/operators';
 
 const queryFn$ = new ReplaySubject<QueryFn>(1);
 @Component({
@@ -13,14 +20,15 @@ const queryFn$ = new ReplaySubject<QueryFn>(1);
   styleUrls: ['./session-list.component.scss'],
 })
 export class SessionListComponent implements OnInit {
-  sessionsSnapshots$: Observable<DocumentChangeAction<Session>[]>;
+  sessionsSnapshots$: Observable<QueryDocumentSnapshot<Session>[]>;
   pageSize = 2;
   field: keyof Pick<Session, 'createdAt'> = 'createdAt';
 
   constructor(private sessionsService: SessionsService) {
     this.sessionsSnapshots$ = queryFn$.pipe(
       distinctUntilChanged(),
-      switchMap(this.sessionsService.getSessionsSnapshots.bind(this.sessionsService)),
+      switchMap(this.sessionsService.getSessionsQuerySnapshots.bind(this.sessionsService)),
+      // map((snap: QuerySnapshot<Session>) => snap.docs),
       pluck('docs'),
       shareReplay(1),
     );
