@@ -11,7 +11,17 @@ import { Observable, ReplaySubject } from 'rxjs';
 
 import { SessionsService } from '../../../services/sessions/sessions.service';
 import { Session, Status } from '../../../../../../../libs/schemes/src';
-import { distinctUntilChanged, map, pluck, shareReplay, switchMap, take, tap } from 'rxjs/operators';
+import {
+  distinctUntilChanged,
+  exhaust,
+  exhaustMap,
+  map,
+  pluck,
+  shareReplay,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs/operators';
 
 const queryFn$ = new ReplaySubject<QueryFn>(1);
 @Component({
@@ -27,7 +37,7 @@ export class SessionListComponent implements OnInit {
   constructor(private sessionsService: SessionsService) {
     this.sessionsSnapshots$ = queryFn$.pipe(
       distinctUntilChanged(),
-      switchMap(this.sessionsService.getSessionsQuerySnapshots.bind(this.sessionsService)),
+      exhaustMap((queryFn) => this.sessionsService.getSessionsQuerySnapshots(queryFn).pipe(take(1))),
       // map((snap: QuerySnapshot<Session>) => snap.docs),
       pluck('docs'),
       shareReplay(1),
