@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'firebase/firestore';
-import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentChangeAction, QueryFn } from '@angular/fire/firestore';
 import { Observable, of, from } from 'rxjs';
 import { __, split, modulo, pipe, length, equals } from 'ramda';
 
@@ -23,12 +23,14 @@ export class DbService {
     return pipe(split('/'), length, isOdd, equals(0));
   }
 
+  getSnapshot$<T>(path: string, queryFn?: QueryFn) {
+    return (this.isCollection(path) ? this.afs.doc<T>(path) : this.afs.collection<T>(path, queryFn)).get();
+  }
+
   get$<T>(path: string, queryFn?: QueryFn): Observable<T> | Observable<T[]> {
     return (this.isCollection(path) ? this.afs.doc<T>(path) : this.afs.collection<T>(path, queryFn)).valueChanges({
       idField: 'id',
     });
-    // return this.afs.doc<T>(path).valueChanges();
-    // return this.afs.collection<T>(path).valueChanges();
   }
 
   set$<T>(path: any, data: T) {

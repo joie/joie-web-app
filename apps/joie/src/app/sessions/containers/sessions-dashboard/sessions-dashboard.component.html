@@ -1,7 +1,10 @@
 <main>
   <section>
     <div class="container">
-      <app-session-list-pagination [queryFn]="queryFn()" class="layout-rows-xs layout-columns-lg text-center"></app-session-list-pagination>
+      <button mat-button (click)="list.prevPage()">PREV</button>
+      <button mat-button (click)="list.nextPage()">NEXT</button>
+
+      <app-session-list #list class="layout-rows-xs layout-columns-lg"></app-session-list>
       <router-outlet name="popup"></router-outlet>
     </div>
   </section>

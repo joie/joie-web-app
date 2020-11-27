@@ -1,23 +1,56 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { QueryFn } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { CollectionReference, DocumentChangeAction, QueryFn } from '@angular/fire/firestore';
+import { Observable, ReplaySubject } from 'rxjs';
 
 import { SessionsService } from '../../../services/sessions/sessions.service';
-import { Session } from '../../../../../../../libs/schemes/src';
+import { Session, Status } from '../../../../../../../libs/schemes/src';
+import { distinctUntilChanged, pluck, shareReplay, switchMap, take, tap } from 'rxjs/operators';
 
+const queryFn$ = new ReplaySubject<QueryFn>(1);
 @Component({
   selector: 'app-session-list',
   templateUrl: './session-list.component.html',
   styleUrls: ['./session-list.component.scss'],
 })
 export class SessionListComponent implements OnInit {
-  @Input() queryFn: QueryFn;
+  sessionsSnapshots$: Observable<DocumentChangeAction<Session>[]>;
+  pageSize = 2;
+  field: keyof Pick<Session, 'createdAt'> = 'createdAt';
 
-  sessions$: Observable<Session[]>;
+  constructor(private sessionsService: SessionsService) {
+    this.sessionsSnapshots$ = queryFn$.pipe(
+      distinctUntilChanged(),
+      switchMap(this.sessionsService.getSessionsSnapshots.bind(this.sessionsService)),
+      pluck('docs'),
+      shareReplay(1),
+    );
+  }
 
-  constructor(private sessionsService: SessionsService) {}
+  private initListQuery() {
+    queryFn$.next(
+      (ref: CollectionReference): firebase.firestore.Query<firebase.firestore.DocumentData> =>
+        ref.where('status', '==', Status.Public).orderBy(this.field).limit(this.pageSize),
+    );
+  }
+
+  async nextPage(): Promise<void> {
+    const docs = await this.sessionsSnapshots$.pipe(take(1)).toPromise();
+    const last = docs[docs.length - 1];
+    queryFn$.next(
+      (ref: CollectionReference): firebase.firestore.Query<firebase.firestore.DocumentData> =>
+        ref.where('status', '==', Status.Public).orderBy(this.field).startAfter(last).limit(this.pageSize),
+    );
+  }
+
+  async prevPage(): Promise<void> {
+    const [first] = await this.sessionsSnapshots$.pipe(take(1)).toPromise();
+    queryFn$.next(
+      (ref: CollectionReference): firebase.firestore.Query<firebase.firestore.DocumentData> =>
+        ref.where('status', '==', Status.Public).orderBy(this.field).endBefore(first).limitToLast(this.pageSize),
+    );
+  }
 
   ngOnInit(): void {
-    this.sessions$ = this.sessionsService.getSessions(this.queryFn);
+    this.initListQuery();
   }
 }

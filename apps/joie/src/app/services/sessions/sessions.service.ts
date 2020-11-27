@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DbService } from '../db/db.service';
 import { Observable } from 'rxjs';
-import { QueryFn, AngularFirestore, } from '@angular/fire/firestore';
+import { QueryFn, AngularFirestore } from '@angular/fire/firestore';
 import { Session } from '../../../../../../libs/schemes/src';
 import { take } from 'rxjs/operators';
 import { AngularFireFunctions } from '@angular/fire/functions';
@@ -10,38 +10,11 @@ import { AngularFireFunctions } from '@angular/fire/functions';
   providedIn: 'root',
 })
 export class SessionsService {
-  constructor(
-    private db: DbService,
-    private fns: AngularFireFunctions,
-    private afs: AngularFirestore,
-    ) {}
+  constructor(private db: DbService, private fns: AngularFireFunctions, private afs: AngularFirestore) {}
 
-  getSessions(queryFn?: QueryFn) {
-    return this.db.get$<Session>('sessions', queryFn) as Observable<Session[]>;
-  }
-
-  getSessionsData(path: string, pageSize, queryFn?: QueryFn) {
-    return this.afs.collection(path, queryFn => queryFn
-      .orderBy('eventId', 'desc')
-      .limit(pageSize)
-    ).snapshotChanges();
-  }
-
-  getSessionsNext(path: string, pageSize, startAfter, queryFn?: QueryFn) {
-    return this.afs.collection(path, queryFn => queryFn
-      .orderBy('eventId', 'desc')
-      .startAfter(startAfter)
-      .limit(pageSize)
-    ).snapshotChanges();
-  }
-
-  getSessionsPrev(path: string, pageSize, prevStartAt, firstInResponse, queryFn?: QueryFn) {
-    return this.afs.collection(path, queryFn => queryFn
-      .orderBy('eventId', 'desc')
-      .startAt(prevStartAt)
-      .endBefore(firstInResponse)
-      .limit(pageSize)
-    ).snapshotChanges();
+  getSessionsSnapshots(queryFn?: QueryFn) {
+    // snapshots are required in order for pagination to work
+    return this.db.getSnapshot$<Session>('sessions', queryFn);
   }
 
   getSession(id: string) {
