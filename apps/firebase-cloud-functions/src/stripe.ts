@@ -457,29 +457,3 @@ const chargeTransferCustomerToAccount = async (
     return { stripeChargeId: null, stripeTransferId: null, message: error.message };
   }
 };
-
-// export const stripeDisonnectAccount = functions.https.onCall(async (_, context) => {
-//   const uid = getUID(context);
-//   if (!uid) {
-//     throw new functions.https.HttpsError('not-found', `couldn't find user`);
-//   }
-
-//   const customer = await getUserCustomer(uid);
-
-//   if (customer && customer.type === 'account') {
-//     // disconnect account from stripe also
-//     const deleted = await stripe.accounts.del(customer?.stripeId);
-
-//     if (deleted) {
-//       await deleteUserCustomerReference(uid);
-//       return Promise.resolve({ message: 'Stripe account succesfully disconnected', type: 'success' } as IResponse);
-//     }
-//     return Promise.resolve({
-//       message: `Stripe account failed to disconnect`,
-//       type: 'error',
-//       data: deleted,
-//     } as IResponse);
-//   }
-
-//   return Promise.resolve({ message: `Stripe account failed to disconnect`, type: 'error' } as IResponse);
-// });

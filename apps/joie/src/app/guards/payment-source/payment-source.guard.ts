@@ -27,9 +27,6 @@ export class PaymentSourceGuard implements CanActivate {
   }
 
   canActivate(next: ActivatedRouteSnapshot, { url }: RouterStateSnapshot): Observable<boolean | UrlTree> {
-    // console.log('KKKKKK');
-    // console.log(this.getUrlTree(url).toString());
-    // console.log(this.getUrlTree(url).toString());
     this.paymentService.getSources().subscribe(console.log);
     return this.paymentService.getSources().pipe(
       pluck('data'),

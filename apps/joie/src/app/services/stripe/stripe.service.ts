@@ -23,9 +23,4 @@ export class StripeService {
     const callable = this.fns.httpsCallable('stripeOnboardCallback');
     return callable({ accountID });
   }
-
-  disconnectAccount(): Observable<any> {
-    const callable = this.fns.httpsCallable('stripeDisonnectAccount');
-    return callable({});
-  }
 }
