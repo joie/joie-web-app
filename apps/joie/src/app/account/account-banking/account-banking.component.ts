@@ -4,7 +4,6 @@ import { StripeService } from './../../services/stripe/stripe.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthFacade } from '../../auth/services/auth.facade';
 import { pluck, shareReplay, switchMap } from 'rxjs/operators';
-import { Confirmable } from '../../shared/decorators/confirmable.decorator';
 
 @Component({
   selector: 'app-account-banking',
