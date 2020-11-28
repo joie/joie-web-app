@@ -1,4 +1,3 @@
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { StripeService } from './../../services/stripe/stripe.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,12 +16,7 @@ export class AccountBankingComponent implements OnInit {
   );
   stripeAccountID: string;
 
-  constructor(
-    private stripeService: StripeService,
-    private route: ActivatedRoute,
-    private authFacade: AuthFacade,
-    private snackBar: MatSnackBar,
-  ) {}
+  constructor(private stripeService: StripeService, private route: ActivatedRoute, private authFacade: AuthFacade) {}
 
   ngOnInit(): void {
     // in case we have a stripe callback

@@ -1,9 +1,8 @@
-import { IResponse } from '@joie/schemes';
-import { IStripe } from './../../../../../../libs/schemes/src/lib/models/stripe.model';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { DbService } from '../db/db.service';
+import { IResponse, IStripe } from '../../../../../../libs/schemes/src';
 
 @Injectable({
   providedIn: 'root',
