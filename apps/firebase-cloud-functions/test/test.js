@@ -1,7 +1,7 @@
 const assert = require('assert');
 const firebase = require('@firebase/testing');
 
-const MY_PROJECT_ID = 'sdlgndsjg';
+const MY_PROJECT_ID = 'joie-app';
 const myId = 'user_abc';
 const theirId = 'user_xyz';
 const myAuth = { uid: myId, email: 'abc@gmail.com' };
@@ -35,6 +35,8 @@ describe('Our social app', () => {
     const testDoc = db.collection('readonly').doc(draftId);
     await firebase.assertSucceeds(testDoc.get());
   });
+
+  it("can't write to public with no pillar field", async () => {});
 });
 
 after(async () => {
