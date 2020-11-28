@@ -7,14 +7,7 @@ import { MaterialModule } from '../core/material.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    TeacherComponent,
-  ],
-  imports: [
-    SharedModule,
-    TeacherRoutingModule,
-    SessionListModule,
-    MaterialModule,
-  ],
+  declarations: [TeacherComponent],
+  imports: [SharedModule, TeacherRoutingModule, SessionListModule, MaterialModule],
 })
 export class TeacherModule {}

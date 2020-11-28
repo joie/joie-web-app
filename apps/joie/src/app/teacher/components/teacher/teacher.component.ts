@@ -6,7 +6,7 @@ import { CollectionReference, QueryFn, AngularFirestore } from '@angular/fire/fi
 @Component({
   selector: 'app-teacher',
   templateUrl: './teacher.component.html',
-  styleUrls: ['./teacher.component.scss']
+  styleUrls: ['./teacher.component.scss'],
 })
 export class TeacherComponent implements OnInit {
   teacherForm = this.fb.group({
@@ -21,11 +21,7 @@ export class TeacherComponent implements OnInit {
   teacherUid: string;
   teacherData: any;
 
-  constructor(
-    private fb: FormBuilder,
-    private afs: AngularFirestore,
-    private route: ActivatedRoute,
-  ) { }
+  constructor(private fb: FormBuilder, private afs: AngularFirestore, private route: ActivatedRoute) {}
 
   public ngOnInit() {
     this.teacherUid = this.route.snapshot.paramMap.get('id');
@@ -33,9 +29,14 @@ export class TeacherComponent implements OnInit {
   }
 
   private getTeacherData() {
-    return this.afs.collection('sessions', (ref: CollectionReference) => ref.where('owner.uid', '==', this.teacherUid).orderBy('owner').limit(1)).valueChanges().subscribe(res => {
-      this.teacherData = res[0];
-    });
+    return this.afs
+      .collection('sessions', (ref: CollectionReference) =>
+        ref.where('owner.uid', '==', this.teacherUid).orderBy('owner').limit(1),
+      )
+      .valueChanges()
+      .subscribe((res) => {
+        this.teacherData = res[0];
+      });
   }
 
   queryFn(): QueryFn {
@@ -43,5 +44,4 @@ export class TeacherComponent implements OnInit {
   }
 
   onSubmit() {}
-
 }
