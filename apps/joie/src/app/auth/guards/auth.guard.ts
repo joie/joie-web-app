@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
           },
         },
       ],
-      { queryParams: { redirectUrl }, skipLocationChange: true }
+      { /* Removed unsupported properties by Angular migration: skipLocationChange. */ queryParams: { redirectUrl } }
     );
   }
 

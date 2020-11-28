@@ -20,10 +20,10 @@ export class AccountBankingComponent implements OnInit {
 
   ngOnInit(): void {
     // in case we have a stripe callback
-    this.stripeCallback();
+    this.listenStripeCallback();
   }
 
-  async stripeCallback(): Promise<void> {
+  async listenStripeCallback(): Promise<void> {
     this.stripeAccountID = this.route.snapshot.queryParamMap.get('accountID');
     if (this.stripeAccountID) {
       await this.stripeService.onboardCallback(this.stripeAccountID).toPromise();
