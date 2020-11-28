@@ -103,15 +103,8 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
           .subscribe(
             (res) => {
               this.showLoader = false;
-              this.snackBar.open(
-                `Session ${get(this.data, 'sessionId', false) ? 'updated' : 'created'} successfully`,
-                'View',
-                {
-                  duration: 4000,
-                  horizontalPosition: 'end',
-                  verticalPosition: 'bottom',
-                },
-              );
+              const sessionId = get(this.data, 'sessionId', false);
+              this.snackBar.open(`Session ${sessionId ? 'updated' : 'created'} successfully`, 'View');
               if (!get(this.data, 'session', false)) {
                 this.form.reset();
               }

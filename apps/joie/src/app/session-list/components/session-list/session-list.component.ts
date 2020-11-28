@@ -29,6 +29,11 @@ export class SessionListComponent implements OnInit {
     );
   }
 
+  getData(snapshot: QueryDocumentSnapshot<Session>) {
+    const { id } = snapshot;
+    return { ...snapshot.data(), id };
+  }
+
   private initListQuery() {
     queryFn$.next(
       (ref: CollectionReference): firebase.firestore.Query<firebase.firestore.DocumentData> =>
@@ -45,7 +50,6 @@ export class SessionListComponent implements OnInit {
     queryFn$.next(
       (ref: CollectionReference): firebase.firestore.Query<firebase.firestore.DocumentData> =>
         this.optionalQueryFn(ref)
-
           .where('status', '==', Status.Public)
           .orderBy(this.#field)
           .startAfter(last)

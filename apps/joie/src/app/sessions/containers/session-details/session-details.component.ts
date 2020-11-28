@@ -14,7 +14,7 @@ import { Pillar, PillarsIconsMap } from '../../../../../../../libs/schemes/src';
 })
 export class SessionDetailsComponent {
   sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
-  session$ = this.sessionId$.pipe(switchMap(this.sessionsFacade.getSession), shareReplay(1));
+  session$ = this.sessionId$.pipe(switchMap(this.sessionsFacade.getSession.bind(this.sessionsFacade)), shareReplay(1));
   owner$ = this.session$.pipe(pluck('owner'), shareReplay(1));
   sessionOwnerId$ = this.owner$.pipe(pluck('uid'), shareReplay(1));
   isOwner$ = this.sessionOwnerId$.pipe(
