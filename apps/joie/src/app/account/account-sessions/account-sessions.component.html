@@ -22,7 +22,7 @@
     <app-session-list
       class="layout-rows-xs layout-columns-lg"
       *ngIf="boundQueryFn$ | async as boundQueryFn"
-      [queryFn]="boundQueryFn"
+      [optionalQueryFn]="boundQueryFn"
     ></app-session-list>
   </div>
 </div>
