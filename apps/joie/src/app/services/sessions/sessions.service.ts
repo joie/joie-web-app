@@ -10,7 +10,7 @@ import { AngularFireFunctions } from '@angular/fire/functions';
   providedIn: 'root',
 })
 export class SessionsService {
-  constructor(private db: DbService, private fns: AngularFireFunctions, private afs: AngularFirestore) {}
+  constructor(private db: DbService, private fns: AngularFireFunctions) {}
 
   getSessionsQuerySnapshots(queryFn?: QueryFn): Observable<QuerySnapshot<Session>> {
     // snapshots are required in order for pagination to work
