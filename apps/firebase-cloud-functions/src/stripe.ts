@@ -5,8 +5,7 @@ import { createUserDocumentInFirestore } from '.';
 import { firestore } from 'firebase-admin';
 import { getSession, setSessionUser } from './session';
 import get from 'lodash.get';
-import { IResponse, IStripe } from './../../../libs/schemes/src/lib/models';
-import { Session } from './../../../libs/schemes/src/lib/session/models/session.model';
+import { IResponse, IStripe, Session } from '@joie/schemes';
 
 const STRIPE_PATH = 'stripe';
 const RETURN_URL = functions.config().stripe.return_url;
