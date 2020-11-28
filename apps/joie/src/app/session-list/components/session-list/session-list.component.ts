@@ -1,27 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  CollectionReference,
-  DocumentChangeAction,
-  DocumentSnapshot,
-  QueryDocumentSnapshot,
-  QueryFn,
-  QuerySnapshot,
-} from '@angular/fire/firestore';
+import { CollectionReference, QueryDocumentSnapshot, QueryFn } from '@angular/fire/firestore';
 import { Observable, ReplaySubject } from 'rxjs';
 
 import { SessionsService } from '../../../services/sessions/sessions.service';
 import { Session, Status } from '../../../../../../../libs/schemes/src';
-import {
-  distinctUntilChanged,
-  exhaust,
-  exhaustMap,
-  map,
-  pluck,
-  shareReplay,
-  switchMap,
-  take,
-  tap,
-} from 'rxjs/operators';
+import { distinctUntilChanged, exhaustMap, filter, pluck, shareReplay, take } from 'rxjs/operators';
 
 const queryFn$ = new ReplaySubject<QueryFn>(1);
 @Component({
@@ -31,14 +14,15 @@ const queryFn$ = new ReplaySubject<QueryFn>(1);
 })
 export class SessionListComponent implements OnInit {
   sessionsSnapshots$: Observable<QueryDocumentSnapshot<Session>[]>;
-  pageSize = 2;
-  field: keyof Pick<Session, 'createdAt'> = 'createdAt';
+  pageSize = 3;
+  #field: keyof Pick<Session, 'createdAt'> = 'createdAt';
 
   constructor(private sessionsService: SessionsService) {
     this.sessionsSnapshots$ = queryFn$.pipe(
       distinctUntilChanged(),
       exhaustMap((queryFn) => this.sessionsService.getSessionsQuerySnapshots(queryFn).pipe(take(1))),
       // map((snap: QuerySnapshot<Session>) => snap.docs),
+      filter((t) => !t.empty),
       pluck('docs'),
       shareReplay(1),
     );
@@ -47,7 +31,10 @@ export class SessionListComponent implements OnInit {
   private initListQuery() {
     queryFn$.next(
       (ref: CollectionReference): firebase.firestore.Query<firebase.firestore.DocumentData> =>
-        ref.where('status', '==', Status.Public).orderBy(this.field).limit(this.pageSize),
+        ref
+          .where('status', '==', Status.Public)
+          .orderBy(this.#field)
+          .limit(this.pageSize),
     );
   }
 
@@ -56,7 +43,11 @@ export class SessionListComponent implements OnInit {
     const last = docs[docs.length - 1];
     queryFn$.next(
       (ref: CollectionReference): firebase.firestore.Query<firebase.firestore.DocumentData> =>
-        ref.where('status', '==', Status.Public).orderBy(this.field).startAfter(last).limit(this.pageSize),
+        ref
+          .where('status', '==', Status.Public)
+          .orderBy(this.#field)
+          .startAfter(last)
+          .limit(this.pageSize),
     );
   }
 
@@ -64,7 +55,11 @@ export class SessionListComponent implements OnInit {
     const [first] = await this.sessionsSnapshots$.pipe(take(1)).toPromise();
     queryFn$.next(
       (ref: CollectionReference): firebase.firestore.Query<firebase.firestore.DocumentData> =>
-        ref.where('status', '==', Status.Public).orderBy(this.field).endBefore(first).limitToLast(this.pageSize),
+        ref
+          .where('status', '==', Status.Public)
+          .orderBy(this.#field)
+          .endBefore(first)
+          .limitToLast(this.pageSize),
     );
   }
 
