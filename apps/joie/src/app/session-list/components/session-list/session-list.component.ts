@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CollectionReference, QueryDocumentSnapshot, QueryFn } from '@angular/fire/firestore';
 import { Observable, ReplaySubject } from 'rxjs';
 
@@ -16,6 +16,7 @@ export class SessionListComponent implements OnInit {
   sessionsSnapshots$: Observable<QueryDocumentSnapshot<Session>[]>;
   pageSize = 3;
   #field: keyof Pick<Session, 'createdAt'> = 'createdAt';
+  @Input() optionalQueryFn: QueryFn = (ref) => ref;
 
   constructor(private sessionsService: SessionsService) {
     this.sessionsSnapshots$ = queryFn$.pipe(
@@ -31,7 +32,7 @@ export class SessionListComponent implements OnInit {
   private initListQuery() {
     queryFn$.next(
       (ref: CollectionReference): firebase.firestore.Query<firebase.firestore.DocumentData> =>
-        ref
+        this.optionalQueryFn(ref)
           .where('status', '==', Status.Public)
           .orderBy(this.#field)
           .limit(this.pageSize),
@@ -43,7 +44,8 @@ export class SessionListComponent implements OnInit {
     const last = docs[docs.length - 1];
     queryFn$.next(
       (ref: CollectionReference): firebase.firestore.Query<firebase.firestore.DocumentData> =>
-        ref
+        this.optionalQueryFn(ref)
+
           .where('status', '==', Status.Public)
           .orderBy(this.#field)
           .startAfter(last)
@@ -55,7 +57,7 @@ export class SessionListComponent implements OnInit {
     const [first] = await this.sessionsSnapshots$.pipe(take(1)).toPromise();
     queryFn$.next(
       (ref: CollectionReference): firebase.firestore.Query<firebase.firestore.DocumentData> =>
-        ref
+        this.optionalQueryFn(ref)
           .where('status', '==', Status.Public)
           .orderBy(this.#field)
           .endBefore(first)

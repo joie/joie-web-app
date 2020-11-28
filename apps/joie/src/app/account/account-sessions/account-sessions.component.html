@@ -19,11 +19,10 @@
       </a>
     </header>
 
-    uncomment session list
-    <!-- <app-session-list
+    <app-session-list
       class="layout-rows-xs layout-columns-lg"
       *ngIf="boundQueryFn$ | async as boundQueryFn"
-      [queryFn]="boundQueryFn"
-    ></app-session-list> -->
+      [optionalQueryFn]="boundQueryFn"
+    ></app-session-list>
   </div>
 </div>
