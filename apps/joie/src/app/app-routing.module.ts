@@ -91,9 +91,10 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      preloadingStrategy: QuicklinkStrategy,
-      paramsInheritanceStrategy: 'always',
-    }),
+    preloadingStrategy: QuicklinkStrategy,
+    paramsInheritanceStrategy: 'always',
+    relativeLinkResolution: 'legacy'
+}),
   ],
   exports: [RouterModule],
 })
