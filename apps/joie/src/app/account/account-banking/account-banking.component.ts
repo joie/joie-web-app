@@ -23,14 +23,13 @@ export class AccountBankingComponent implements OnInit {
     this.stripeCallback();
   }
 
-  stripeCallback = async () => {
+  async stripeCallback(): Promise<void> {
     this.stripeAccountID = this.route.snapshot.queryParamMap.get('accountID');
     if (this.stripeAccountID) {
       await this.stripeService.onboardCallback(this.stripeAccountID).toPromise();
     }
     window.close();
-    // tslint:disable-next-line: semicolon
-  };
+  }
 
   async connectStripe(): Promise<void> {
     await this.stripeService.connectStripe();
