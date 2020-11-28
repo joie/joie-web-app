@@ -26,6 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
@@ -33,6 +34,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+const snackBarOptions = { duration: 4000, horizontalPosition: 'end', verticalPosition: 'top' };
 @NgModule({
   imports: [
     OverlayModule,
@@ -67,6 +70,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatStepperModule,
     MatSidenavModule,
     MatIconModule,
+    MatSnackBarModule,
     CdkStepperModule,
   ],
   exports: [
@@ -102,8 +106,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatStepperModule,
     MatSidenavModule,
     MatIconModule,
-
+    MatSnackBarModule,
     CdkStepperModule,
   ],
+  providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: snackBarOptions }],
 })
 export class MaterialModule {}

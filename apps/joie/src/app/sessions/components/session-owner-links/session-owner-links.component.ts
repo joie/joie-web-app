@@ -44,11 +44,7 @@ export class SessionOwnerLinksComponent {
     if (type === 'success') {
       this.router.navigate(['/account', 'sessions']);
     }
-    this.snackBar.open(message, undefined, {
-      duration: 8000,
-      horizontalPosition: 'end',
-      verticalPosition: 'bottom',
-    });
+    this.snackBar.open(message, undefined);
   }
 
   @Confirmable(
