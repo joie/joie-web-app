@@ -40,14 +40,6 @@ export class AccountBankingComponent implements OnInit {
   };
 
   async connectStripe(): Promise<void> {
-    const resp = (await this.stripeService.onboard().toPromise()) as {
-      type: 'success' | 'error';
-      data?: any;
-      message: string;
-    };
-
-    if (resp.type === 'success') {
-      window.open(resp.data.url, '_blank');
-    }
+    await this.stripeService.connectStripe();
   }
 }
