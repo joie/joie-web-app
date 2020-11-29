@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 import { Pillar, PillarsIconsMap } from '../../../../../../../libs/schemes/src';
+import { KalturaService } from '../../../services/kaltura/kaltura.service';
 
 // @UntilDestroy()
 @Component({
@@ -57,8 +58,12 @@ export class SessionDetailsComponent {
     private activatedRoute: ActivatedRoute,
     private sessionsFacade: SessionsService,
     private authFacade: AuthFacade,
+    private kaltura: KalturaService,
   ) {}
 
+  callKaltura() {
+    this.kaltura.callKaltura().subscribe(console.log);
+  }
   // get kalturaSessionDetails$(): Observable<SessionStartActionArgs> {
   //   return this.session$.pipe(
   //     pluck('eventId', 'name'),
