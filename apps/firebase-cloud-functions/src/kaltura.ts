@@ -10,9 +10,9 @@ import {
   KalturaRecordStatus,
   KalturaNullableBoolean,
   KalturaDVRStatus,
-  // KalturaSourceType,
   KalturaScheduleEventRecurrenceType,
-  BaseEntryAddAction,
+  LiveStreamAddAction,
+  KalturaSourceType,
 } from 'kaltura-typescript-client/api/types';
 // import { catchErrors } from './helpers';
 
@@ -60,18 +60,17 @@ const startSessionAndUpdateClient = async (): Promise<string | undefined> => {
 
 const createLiveStreamEntry = async () => {
   await startSessionAndUpdateClient();
-  const entry = new KalturaLiveStreamEntry();
-  entry.name = 'Test Live Entry With Cloud Transcoding';
-  entry.description = 'Just a test live stream entry';
-  entry.dvrStatus = KalturaDVRStatus.enabled;
-  entry.dvrWindow = 120;
-  entry.explicitLive = KalturaNullableBoolean.trueValue;
+  const liveStreamEntry = new KalturaLiveStreamEntry();
+  liveStreamEntry.name = 'Test Live Entry With Cloud Transcoding';
+  liveStreamEntry.description = 'Just a test live stream entry';
+  liveStreamEntry.dvrStatus = KalturaDVRStatus.enabled;
+  liveStreamEntry.dvrWindow = 120;
+  liveStreamEntry.explicitLive = KalturaNullableBoolean.trueValue;
   // LIVE_STREAM_FLASH designates a standard web live entry acquired via an RTMP or RTSP stream
-  entry.mediaType = KalturaMediaType.liveStreamFlash;
-  entry.recordStatus = KalturaRecordStatus.disabled;
-  // client.liveStream.add(entry, KalturaSourceType.liveStream);
+  liveStreamEntry.mediaType = KalturaMediaType.liveStreamFlash;
+  liveStreamEntry.recordStatus = KalturaRecordStatus.disabled;
   // TODO await endSessionAndUpdateClient()
-  return await client.request(new BaseEntryAddAction({ entry }));
+  return await client.request(new LiveStreamAddAction({ liveStreamEntry, sourceType: KalturaSourceType.liveStream }));
 };
 
 export const createLiveStreamScheduleEvent = https.onCall(async (_, context) => {
