@@ -3,7 +3,7 @@ import { DynaFormBaseComponent } from '../../../../../../../libs/dyna-form';
 import { SessionsService } from '../../../services/sessions/sessions.service';
 import { KalturaApiHandShakeService } from '../../../kaltura-player/kaltura-api-handshake.service';
 import { environment } from '../../../../environments/environment';
-import { Format, Type } from '../../../sessions/enums';
+import { Format, Type } from '../../../../../../../libs/schemes/src';
 import { IMAGE } from '../../components/session-form-metadata/session-form-metadata.component';
 import { finalize, last, map, switchMap, take } from 'rxjs/operators';
 import { iif, Observable } from 'rxjs';
@@ -36,7 +36,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
     super();
     if (get(this.data, 'session', false)) {
       this.storeFormValueRef(this.data.session);
-      this.sessionId = get(this.data, 'sessionId');
+      this.sessionId = get(this.data, 'session.id');
       this.title = 'Edit Session';
       this.showAllFields = true;
     }
@@ -92,7 +92,7 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
               eventId,
               ...this.form.value,
             })),
-            switchMap((session) => this.sessionsService.setSession(get(this.data, 'sessionId', ''), session)),
+            switchMap((session) => this.sessionsService.setSession(this.sessionId, session)),
             map((session) =>
               // new session response returns a session object while update won't
               session ? session.id : this.sessionId,
@@ -103,15 +103,8 @@ export class SessionFormComponent extends DynaFormBaseComponent implements OnIni
           .subscribe(
             (res) => {
               this.showLoader = false;
-              this.snackBar.open(
-                `Session ${get(this.data, 'sessionId', false) ? 'updated' : 'created'} successfully`,
-                'View',
-                {
-                  duration: 4000,
-                  horizontalPosition: 'end',
-                  verticalPosition: 'bottom',
-                },
-              );
+              const sessionId = get(this.data, 'sessionId', false);
+              this.snackBar.open(`Session ${sessionId ? 'updated' : 'created'} successfully`, 'View');
               if (!get(this.data, 'session', false)) {
                 this.form.reset();
               }

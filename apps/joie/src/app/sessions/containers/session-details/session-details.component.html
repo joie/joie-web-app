@@ -1,63 +1,64 @@
-<ng-container *ngIf="session$ | async as session">
-  <main>
-    <section hidden></section>
-    <section class="session-offset-block-start"></section>
-    <section class="session-offset-block-start section-offset-block-start">
-      <div class="container grid">
-        <div class="layout-rows-sm">
-          <header class="layout-rows-xs text-center">
-            <app-session-owner-links
-              class="owner-links"
-              *ngIf="isOwner$ | async"
-            ></app-session-owner-links>
-            <div class="figure-pairing">
-              <app-icon
-                class="size-md"
-                [name]="pillarIcons.get(pillar[session?.pillar])"
-              ></app-icon>
-              <h4 [innerHTML]="session?.pillar | joiePrefix: false"></h4>
-            </div>
-            <h1>{{ session?.title }}</h1>
-            <address class="figure-pairing">
-              <img
-                src="{{ (owner$ | async)?.photoURL }}"
-                class="author-image"
-                width="28px"
-                height="28px"
-              />
-              <h3>{{ (owner$ | async)?.displayName }}</h3>
-            </address>
-          </header>
-
-          <div class="layout-columns row-spacing">
-            <app-paper-item>
-              <app-icon class="size-sm" name="calendar"></app-icon>
-              <span>
-                {{ session?.duration?.amount + session?.duration?.unit }}
-              </span>
-            </app-paper-item>
-            <app-paper-item>
-              <app-icon class="size-sm" name="clock"></app-icon>
-              <span>{{ session?.duration?.amount + session?.duration?.unit }}</span>
-            </app-paper-item>
-            <app-paper-item>
-              <app-icon class="size-sm" name="monitor"></app-icon>
-              <span>{{ session?.type }}</span>
-            </app-paper-item>
-            <app-paper-item>
-              <app-icon class="size-sm" name="bar-chart"></app-icon>
-              <span>{{ session?.level }}</span>
-            </app-paper-item>
-            <app-paper-item>
-              <app-icon class="size-sm" name="tag"></app-icon>
-              <span>{{ session?.price?.display | currency: session?.price?.currency }}</span>
-            </app-paper-item>
-            <app-paper-item>
-              <app-icon class="size-sm" name="send"></app-icon>
-              <span>Share</span>
-            </app-paper-item>
+<div class="container" *ngIf="session$ | async as session">
+  <div class="main-index-columns">
+    <main>
+      <header class="no-inset-gutters" style="content-visibility: revert; position: relative">
+        <div class="layout-rows-xs text-center">
+          <app-session-owner-links class="owner-links" *ngIf="isOwner$ | async"></app-session-owner-links>
+          <div class="figure-pairing">
+            <app-icon class="size-md" [name]="pillarIcons.get(pillar[session?.pillar])"></app-icon>
+            <h4>
+              <dfn [innerHTML]="session?.pillar | joiePrefix: false"></dfn>
+            </h4>
           </div>
-
+          <h1>{{ session?.title }}</h1>
+          <address class="figure-pairing">
+            <img src="{{ (owner$ | async)?.photoURL }}" class="author-image" width="28px" height="28px" />
+            <h3>{{ (owner$ | async)?.displayName }}</h3>
+          </address>
+          <ul class="attributes">
+            <li>
+              <app-paper-item>
+                <app-icon class="size-sm" name="calendar"></app-icon>
+                <span>
+                  {{ session?.duration?.amount + session?.duration?.unit }}
+                </span>
+              </app-paper-item>
+            </li>
+            <li>
+              <app-paper-item>
+                <app-icon class="size-sm" name="clock"></app-icon>
+                <span>{{ session?.duration?.amount + session?.duration?.unit }}</span>
+              </app-paper-item>
+            </li>
+            <li>
+              <app-paper-item>
+                <app-icon class="size-sm" name="monitor"></app-icon>
+                <span>{{ session?.type }}</span>
+              </app-paper-item>
+            </li>
+            <li>
+              <app-paper-item>
+                <app-icon class="size-sm" name="bar-chart"></app-icon>
+                <span>{{ session?.level }}</span>
+              </app-paper-item>
+            </li>
+            <li>
+              <app-paper-item>
+                <app-icon class="size-sm" name="tag"></app-icon>
+                <span>{{ session?.price?.display | currency: session?.price?.currency }}</span>
+              </app-paper-item>
+            </li>
+            <li>
+              <app-paper-item>
+                <app-icon class="size-sm" name="send"></app-icon>
+                <span>Share</span>
+              </app-paper-item>
+            </li>
+          </ul>
+        </div>
+      </header>
+      <section class="no-inset-gutters">
+        <figure>
           <app-video-intro
             *ngIf="session?.entryId || (isOwner$ | async) === false"
             [isLiveSession]="isLiveSession"
@@ -69,6 +70,7 @@
             [entryId]="session?.entryId"
             [entryLastUpdated]="session?.entryLastUpdated"
           ></app-video-intro>
+<<<<<<< HEAD
 
           <app-video-upload *ngIf="isOwner$ | async" [session]="session" [sessionId]="sessionId"></app-video-upload>
 
@@ -94,3 +96,28 @@
     </section>
   </main>
 </ng-container>
+=======
+        </figure>
+      </section>
+      <section class="no-inset-gutters">
+        <mat-tab-group mat-stretch-tabs>
+          <mat-tab label="What you will learn">
+            <app-what-learn [session]="session"></app-what-learn>
+          </mat-tab>
+          <mat-tab label="Meet your teacher">
+            <app-meet-teacher [session]="session"></app-meet-teacher>
+          </mat-tab>
+          <mat-tab label="What our community say">
+            <app-community-say [session]="session"></app-community-say>
+          </mat-tab>
+        </mat-tab-group>
+      </section>
+    </main>
+    <aside class="enrol-col">
+      <section style="content-visibility: revert">
+        <app-session-card [session]="session" [sessionId]="sessionId$ | async"></app-session-card>
+      </section>
+    </aside>
+  </div>
+</div>
+>>>>>>> live

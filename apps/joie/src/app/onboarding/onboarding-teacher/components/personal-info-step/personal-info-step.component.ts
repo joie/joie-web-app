@@ -1,11 +1,8 @@
-import {
-  TEACHER_ONBOARDING,
-  StorageServiceService,
-} from './../../../shared/storage-service.service';
+import { TEACHER_ONBOARDING, StorageServiceService } from './../../../shared/storage-service.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { OnboardingService } from '../../../shared/onboarding.service';
-import { lettersRegExPattern } from '../../../../models/regex';
+import { lettersRegExPattern } from '../../../../../../../../libs/schemes/src';
 import { TeacherOnboardingFormService } from '../../services/teacher-onboarding-form.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
@@ -41,17 +38,11 @@ export class PersonalInfoStepComponent {
     private fb: FormBuilder,
     public onboardingService: OnboardingService,
     private formService: TeacherOnboardingFormService,
-    private storage: StorageServiceService
+    private storage: StorageServiceService,
   ) {
     this.form = this.fb.group({
-      [FIRST_NAME]: [
-        '',
-        [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)],
-      ],
-      [LAST_NAME]: [
-        '',
-        [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)],
-      ],
+      [FIRST_NAME]: ['', [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)]],
+      [LAST_NAME]: ['', [Validators.required, Validators.minLength(3), Validators.pattern(lettersRegExPattern)]],
       [EMAIL]: ['', [Validators.required, Validators.email]],
       [PHONE]: ['', [Validators.required]],
     });

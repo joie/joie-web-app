@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../account.service';
 import { Observable } from 'rxjs';
-import { Stat } from '../../models/account.model';
+import { Stat } from '../../../../../../libs/schemes/src';
 
 @Component({
   selector: 'app-account-dashboard',

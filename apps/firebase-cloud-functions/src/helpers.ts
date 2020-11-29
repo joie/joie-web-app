@@ -1,4 +1,5 @@
 import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
 
 export const catchErrors = async (promise: Promise<unknown>): Promise<unknown> => {
   try {
@@ -18,7 +19,11 @@ export const getUID = (context: functions.https.CallableContext): string | undef
   }
 };
 
+<<<<<<< HEAD:functions/src/helpers.ts
 export const getUEmail = (context: functions.https.CallableContext) => {
+=======
+export const getUEmail = (context: functions.https.CallableContext): string | undefined => {
+>>>>>>> live:apps/firebase-cloud-functions/src/helpers.ts
   if (!context.auth) {
     throw new functions.https.HttpsError('permission-denied', 'function called without context.auth');
   } else {
@@ -33,4 +38,8 @@ export const assert = (data: never, key: string): unknown => {
   } else {
     return data[key];
   }
+};
+
+export const serverTimestamp = (): admin.firestore.FieldValue => {
+  return admin.firestore.FieldValue.serverTimestamp();
 };

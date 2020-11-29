@@ -7,6 +7,10 @@
   <app-icon class="size-sm" name="more-horizontal" [inline]="true"></app-icon>
 </button>
 <mat-menu #menu="matMenu" xPosition="before" yPosition="below">
+  <button mat-menu-item (click)="publishSession()" *ngIf="(isPublic$ | async) === false">
+    <app-icon [inline]="true" class="size-sm" name="flag"></app-icon>
+    Make public
+  </button>
   <a
     mat-menu-item
     [routerLink]="[
@@ -20,7 +24,7 @@
     <app-icon [inline]="true" class="size-sm" name="edit"></app-icon>
     Edit
   </a>
-  <button mat-menu-item (click)="deleteSession()" color="warn">
+  <button mat-menu-item (click)="deleteSession()">
     <app-icon [inline]="true" class="size-sm" name="trash"></app-icon>
     Delete
   </button>

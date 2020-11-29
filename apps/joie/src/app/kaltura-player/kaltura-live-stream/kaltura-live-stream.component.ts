@@ -2,6 +2,11 @@ import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { KalturaApiHandShakeService } from '../kaltura-api-handshake.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+<<<<<<< HEAD
+=======
+
+declare let kWidget;
+>>>>>>> live
 
 @UntilDestroy()
 @Component({

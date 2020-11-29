@@ -1,11 +1,7 @@
 import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AccountService } from '../account.service';
-import {
-  SessionReminders,
-  ActivityReminders,
-  NewsletterAndPromos,
-} from '../../models/toggle.model';
+import { SessionReminders, ActivityReminders, NewsletterAndPromos } from '../../../../../../libs/schemes/src';
 
 export const SESSION_REMINDERS = 'sessionReminders';
 export const ACCOUNT_ACTIVITY = 'accountActivity';
@@ -85,24 +81,20 @@ export class AccountNotificationSetingsComponent implements OnInit, OnDestroy {
   addToggles() {
     this.remindersKeys.forEach((key) =>
       this.remindersFormArray.push(
-        new FormControl(
-          this.getControlValue(this.settings[this.REMINDERS], this.remindersEnum, key)
-        )
-      )
+        new FormControl(this.getControlValue(this.settings[this.REMINDERS], this.remindersEnum, key)),
+      ),
     );
 
     this.activityKeys.forEach((key) =>
       this.activityFormArray.push(
-        new FormControl(this.getControlValue(this.settings[this.ACTIVITY], this.activityEnum, key))
-      )
+        new FormControl(this.getControlValue(this.settings[this.ACTIVITY], this.activityEnum, key)),
+      ),
     );
 
     this.newsletterKeys.forEach((key) =>
       this.newsletterFormArray.push(
-        new FormControl(
-          this.getControlValue(this.settings[this.NEWSLETTER], this.newsletterEnum, key)
-        )
-      )
+        new FormControl(this.getControlValue(this.settings[this.NEWSLETTER], this.newsletterEnum, key)),
+      ),
     );
   }
 

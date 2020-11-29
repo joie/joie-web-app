@@ -19,7 +19,7 @@ export class DialogRouterComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    console.log(this.route.snapshot);
+    // console.log('this.route.snapshot', this.route.snapshot);
     this.openDialog();
   }
 
@@ -30,20 +30,13 @@ export class DialogRouterComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      // console.log('The dialog was closed with:', result);
-      // console.log(this.route.parent.snapshot.params);
-
-      const redirectUrl = result?.redirectUrl;
-      console.log(redirectUrl);
-      if (redirectUrl) {
-        this.router.navigateByUrl(redirectUrl);
-      } else {
-        this.router.navigate([{ outlets: { popup: null } }]);
-        // this.router.navigate([
-        //   this.route.parent.snapshot.params,
-        //   { outlets: { popup: null } },
-        // ]);
+      let { url } = this.router;
+      let substringIndex = url.indexOf('/(');
+      if (substringIndex === -1) {
+        substringIndex = url.indexOf('(');
       }
+      url = url.substring(0, substringIndex);
+      this.router.navigateByUrl(url);
     });
   }
 }

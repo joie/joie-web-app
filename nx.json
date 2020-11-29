@@ -19,6 +19,12 @@
     },
     "dyna-form": {
       "tags": []
+    },
+    "schemes": {
+      "tags": []
+    },
+    "firebase-cloud-functions": {
+      "tags": []
     }
   }
 }

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
 // import { UntilDestroy } from '@ngneat/until-destroy';
 import { SessionsService } from '../../../services/sessions/sessions.service';
 import { Observable } from 'rxjs';
+import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
-import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
+import { Pillar, PillarsIconsMap } from '../../../../../../../libs/schemes/src';
 
 // @UntilDestroy()
 @Component({
@@ -13,26 +13,28 @@ import { Pillar, PillarsIconsMap } from '../../../enums/pillar.enum';
   styleUrls: ['./session-details.component.scss'],
 })
 export class SessionDetailsComponent {
-  private sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
-  session$ = this.sessionId$.pipe(
-    switchMap((sessionId) => {
-      this.sessionId = sessionId;
-      console.log(sessionId);
-      return this.sessionsFacade.getSession(sessionId);
-    }),
-    shareReplay(),
-  );
-  eventId$: Observable<number> = this.session$.pipe(pluck('eventId'));
-  displayName$ = this.authFacade.displayName$;
-  uid$ = this.authFacade.uid$;
-  sessionId: string;
-
-  owner$ = this.session$.pipe(pluck('owner'), shareReplay());
-  sessionOwnerId$ = this.owner$.pipe(pluck('uid'), shareReplay());
-
-  isOwner$: Observable<boolean> = this.sessionOwnerId$.pipe(
+  sessionId$: Observable<string> = this.activatedRoute.params.pipe(pluck('sessionId'));
+  session$ = this.sessionId$.pipe(switchMap(this.sessionsFacade.getSession.bind(this.sessionsFacade)), shareReplay(1));
+  owner$ = this.session$.pipe(pluck('owner'), shareReplay(1));
+  sessionOwnerId$ = this.owner$.pipe(pluck('uid'), shareReplay(1));
+  isOwner$ = this.sessionOwnerId$.pipe(
     switchMap((sessionOwnerId) => this.authFacade.uid$.pipe(map((uid) => sessionOwnerId === uid))),
+    shareReplay(1),
   );
+
+  eventId$: Observable<number | undefined> = this.session$.pipe(pluck('eventId'));
+
+  // showDelete$: Observable<boolean> = combineLatest([this.authFacade, this.owner$]).pipe(
+  //   map(result => Boolean(result[0].owner.uid === result[1].uid))
+  // );
+
+  // kalturaPlayerDetails$: Pick<SessionStartActionArgs, 'userId'> &
+  //   Pick<Session, 'eventId'> = combineLatest([this.#displayName$, this.#eventId$]).pipe(
+  //   map(([displayName, eventId]) => ({
+  //     userId: displayName,
+  //     eventId,
+  //   }))
+  // );
 
   // TODO - default assignment will be removed after integration
 
