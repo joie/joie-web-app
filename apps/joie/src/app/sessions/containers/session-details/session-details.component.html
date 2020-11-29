@@ -3,7 +3,7 @@
     <main>
       <header class="no-inset-gutters" style="content-visibility: revert; position: relative">
         <div class="layout-rows-xs text-center">
-          <button (click)="callKaltura()">Hi Kaltura</button>
+          <button (click)="getKalturaSession()">Hi Kaltura</button>
 
           <app-session-owner-links class="owner-links" *ngIf="isOwner$ | async"></app-session-owner-links>
           <div class="figure-pairing">

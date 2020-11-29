@@ -61,8 +61,8 @@ export class SessionDetailsComponent {
     private kaltura: KalturaService,
   ) {}
 
-  callKaltura() {
-    this.kaltura.callKaltura().subscribe(console.log);
+  getKalturaSession() {
+    this.kaltura.getKalturaSession().subscribe(console.log);
   }
   // get kalturaSessionDetails$(): Observable<SessionStartActionArgs> {
   //   return this.session$.pipe(
