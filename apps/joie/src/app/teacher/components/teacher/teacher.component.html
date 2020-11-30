@@ -1,0 +1,154 @@
+<div class="container">
+  <div class="main-index-columns">
+    <main>
+      <section>
+        <h1 class="text-center">{{ teacherData?.owner?.displayName }} Upcoming Sessions</h1>
+
+        <form (ngSubmit)="onSubmit()" [formGroup]="teacherForm" class="teachers-form">
+          <mat-form-field appearance="outline">
+            <mat-label>Format</mat-label>
+            <mat-select formControlName="format">
+              <mat-option>-- None --</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Type of Session</mat-label>
+            <mat-select formControlName="typeOfSession">
+              <mat-option>-- None --</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Pillar</mat-label>
+            <mat-select formControlName="pillar">
+              <mat-option>-- None --</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Activity</mat-label>
+            <mat-select formControlName="activity">
+              <mat-option>-- None --</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Level</mat-label>
+            <mat-select formControlName="level">
+              <mat-option>-- None --</mat-option>
+            </mat-select> </mat-form-field
+          ><mat-form-field appearance="outline">
+          <mat-label>Price</mat-label>
+          <mat-select formControlName="price">
+            <mat-option>-- None --</mat-option>
+          </mat-select>
+        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Date</mat-label>
+            <mat-select formControlName="date">
+              <mat-option>-- None --</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </section>
+      <section class="teacher-session-list">
+        <app-session-list
+          class="layout-rows-xs layout-columns-lg"
+          [optionalQueryFn]="queryFn()"
+        ></app-session-list>
+      </section>
+    </main>
+    <aside class="teacher-column">
+      <section class="no-inset-gutters">
+        <div class="layout-rows-xs layout-center">
+          <figure class="text-center">
+            <img class="teachers-photo" src="{{ teacherData?.owner?.photoURL }}" />
+            <figcaption>
+              <h2>{{ teacherData?.owner?.displayName }}</h2>
+            </figcaption>
+          </figure>
+          <address class="text-center">
+            <app-paper-item>
+              <app-icon class="size-sm" name="marker"></app-icon>
+              <span> Toronto, Canada. EST time </span>
+            </app-paper-item>
+          </address>
+          <button mat-raised-button color="primary">Follow</button>
+          <app-paper-item>
+            <app-icon class="size-sm" name="heart"></app-icon>
+            <span>97% of our community recommended Rachel</span>
+          </app-paper-item>
+        </div>
+      </section>
+      <section class="no-inset-gutters">
+        <dl class="attribute-list-columns">
+          <div>
+            <dt>
+              <app-paper-item>
+                <app-icon class="size-sm" name="compass"></app-icon>
+                <span>Activities</span>
+              </app-paper-item>
+            </dt>
+            <dd>Dance</dd>
+            <dd>Meditation</dd>
+          </div>
+          <div>
+            <dt>
+              <app-paper-item>
+                <app-icon class="size-sm" name="compass"></app-icon>
+                <span>Activities</span>
+              </app-paper-item>
+            </dt>
+            <dd>Dance</dd>
+            <dd>Meditation</dd>
+          </div>
+          <div>
+            <dt>
+              <app-paper-item>
+                <app-icon class="size-sm" name="compass"></app-icon>
+                <span>Activities</span>
+              </app-paper-item>
+            </dt>
+            <dd>Dance</dd>
+            <dd>Meditation</dd>
+          </div>
+          <div>
+            <dt>
+              <app-paper-item>
+                <app-icon class="size-sm" name="compass"></app-icon>
+                <span>Activities</span>
+              </app-paper-item>
+            </dt>
+            <dd>Dance</dd>
+            <dd>Meditation</dd>
+          </div>
+        </dl>
+      </section>
+      <section class="no-inset-gutters">
+        <div class="teachers-about">
+          <div class="teachers-about-title">
+            <p>About Me</p>
+            <button mat-stroked-button color="primary">Message</button>
+          </div>
+          <p>
+            Hi there, I'm so pleased to meet you! My name is Rachel, founder of Co: Mind-Body-Spirit. I am a Belly Dance
+            teacher/performer, a guided meditation teacher, and I hold a B.Sc. Hon. Neuroscience and have worked in
+            Adult Education as a Registered Nurse since 2014. I am incredibly passionate about a healthy lifestyle,
+            mental health, and chronic disease prevention. I suffered from depression, anxiety, and panic attacks for
+            years without realizing it. Cultivating wellness and personal power from within are, unfortunately, not
+            skills that many of us have had the privilege of learning. <br /><br />
+
+            <a href="javascript:void(0)">Read more</a>
+          </p>
+        </div>
+      </section>
+      <section class="no-inset-gutters">
+        <div class="teacher-comments">
+          <p>What my community say about me</p>
+        </div>
+      </section>
+    </aside>
+  </div>
+</div>
+<footer>
+  <section>
+    <app-subscribe-to-newsletter class="container"></app-subscribe-to-newsletter>
+  </section>
+</footer>

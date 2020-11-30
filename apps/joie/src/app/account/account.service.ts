@@ -1,15 +1,20 @@
 import { AuthService } from './../auth-state/services/auth/auth.service';
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
+import {AngularFirestore} from '@angular/fire/firestore';
 import { sessionsMock, notificationSettingsMock, dashboardStatsMock, passwordMock } from './account.mocks';
 import { map } from 'rxjs/operators';
+
 import { NotificationSettings, Stat } from '../../../../../libs/schemes/src';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private afs: AngularFirestore,
+  ) {}
 
   getUser(id: string) {
     return this.authService.state$.pipe(

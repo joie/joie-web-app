@@ -81,6 +81,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./terms-and-conditions/terms-and-conditions.module').then((m) => m.TermsAndConditionsModule),
   },
+  {
+    path: 'teacher',
+    loadChildren: () => import('./teacher/teacher.module').then((m) => m.TeacherModule),
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 

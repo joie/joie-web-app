@@ -15,6 +15,8 @@ import { AccountInfoComponent } from './account-info/account-info.component';
 import { AccountBankingComponent } from './account-banking/account-banking.component';
 import { AccountProfileComponent } from './account-profile/account-profile.component';
 import { MainLayoutComponent } from '../common/components/main-layout/main-layout.component';
+import { AccountTeacherInfoComponent } from './components/account-teacher-info/account-teacher-info.component';
+import { AccountStudentInfoComponent } from './components/account-student-info/account-student-info.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { MainLayoutComponent } from '../common/components/main-layout/main-layou
     AccountSidenavComponent,
     MainLayoutComponent,
     AccountProfileComponent,
+    AccountTeacherInfoComponent,
+    AccountStudentInfoComponent,
   ],
   imports: [
     SharedModule,

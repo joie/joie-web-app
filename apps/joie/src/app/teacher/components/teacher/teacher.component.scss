@@ -1,0 +1,63 @@
+.main-index-columns {
+  $gutter-hor: calc(2 * var(--joie-gutter));
+  display: grid;
+  grid-template-columns: calc(100% - var(--layout-column-aside)) auto;
+  grid-gap: $gutter-hor;
+
+  .teacher-session-list {
+    background: #ffffff;
+  }
+
+  aside {
+    padding: 0 $gutter-hor;
+  }
+}
+
+.teacher-column {
+  background-color: var(--joie-color-surface);
+
+  .teachers-photo {
+    border-radius: 50%;
+  }
+
+  .teachers-expertise {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 30px;
+
+    p {
+      margin: 0 0 0 24px;
+    }
+  }
+
+  .teachers-about {
+    .teachers-about-title {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      button {
+        height: 25px;
+        line-height: 23px;
+        border-color: #15aabf;
+      }
+    }
+  }
+}
+
+.attribute-list-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: var(--joie-gutter);
+  dt {
+    margin-block-end: 5px;
+  }
+  dd {
+    margin-inline-start: 28px;
+  }
+}
+
+.teachers-form {
+  display: grid;
+  grid-template-columns: 13% 16% 12% 13% 12% 11% 12%;
+  grid-auto-flow: column;
+  gap: var(--joie-gutter);
+}

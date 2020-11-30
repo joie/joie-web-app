@@ -59,4 +59,12 @@
             (click)="timezone.disabled = !timezone.disabled">Change Time Zone</button>
   </span>
 
+  <ng-container *ngIf="isTeacher; else isStudent">
+    <app-account-teacher-info></app-account-teacher-info>
+  </ng-container>
+
+  <ng-template #isStudent>
+    <app-account-student-info></app-account-student-info>
+  </ng-template>
+
 </form>
