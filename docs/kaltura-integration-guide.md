@@ -21,8 +21,8 @@
 Output:
 ```
 {
-  "id": 1552771,
-  "partnerId": 2976751,
+  "id": *******,
+  "partnerId": *******,
   "name": "Test video",
   "description": "Test video",
   "status": 2,
@@ -47,8 +47,8 @@ Output:
 ```
 {
   "blackoutConflicts": [],
-  "id": 6420851,
-  "partnerId": 2976751,
+  "id": *******,
+  "partnerId": *******,
   "summary": "test video",
   "description": "test video",
   "status": 2,
@@ -77,7 +77,7 @@ Output:
 {
   "eventId": 6420851,
   "resourceId": 1552771,
-  "partnerId": 2976751,
+  "partnerId": *******,
   "createdAt": 1598975299,
   "updatedAt": 1598975299,
   "objectType": "KalturaScheduleEventResource"
@@ -116,7 +116,7 @@ Output:
       "entryIds": "123",
       "blackoutConflicts": [],
       "id": 4495312,
-      "partnerId": 2976751,
+      "partnerId": *******,
       "summary": "TestingAPI",
       "description": "Testing API",
       "status": 2,
@@ -146,8 +146,8 @@ Output:
 {
   "objects": [
     {
-      "id": 1482391,
-      "partnerId": 2976751,
+      "id": *******,
+      "partnerId": *******,
       "name": "Live Session2",
       "systemName": "",
       "status": 2,
@@ -202,7 +202,7 @@ Output:
       msDuration: 0,
       id: '1_0v7lxhb8',
       name: 'Channel Employee Engagement Thumbnail',
-      partnerId: 2976751,
+      partnerId: *******,
       userId: 'jason@joie.co',
       creatorId: 'jason@joie.co',
       categories: '',
