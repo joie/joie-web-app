@@ -7,7 +7,7 @@ import { kalturaConfig } from './kaltura.config';
 export const environment = {
   production: false,
   firebase,
-  kalturaConfig
+  kalturaConfig,
 };
 
 /*

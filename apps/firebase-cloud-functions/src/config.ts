@@ -15,3 +15,5 @@ export const stripeToken = functions.config().stripe.token;
 // Export Stripe
 import { Stripe } from 'stripe';
 export const stripe = new Stripe(stripeToken, { apiVersion: '2020-08-27' });
+
+export const API_URL = functions.config().app.api_url;
