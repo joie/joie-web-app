@@ -1,0 +1,38 @@
+<mat-card class="upload-content text-center container">
+    <mat-tab-group headerPosition="below" mat-align-tabs="center">
+        <mat-tab label="Video">
+            <h3 class="joie-list-name">Upload an intro video</h3>
+            <mat-spinner style="margin: auto" *ngIf="uploading"></mat-spinner>
+            <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" accept="video/*" *ngIf="!uploading">
+                <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                    <div class="mt-3">Drop your file here or</div>
+                    <button mat-flat-button color="primary" (click)="uploadVideoControl.click()" type="button"
+                        class="uploadBtn" [disabled]="uploading">
+                        <span>Browse</span>
+                    </button>
+                </ng-template>
+            </ngx-file-drop>
+            <h5 class="border-bottom">
+                Up to 1 minitue video. Formats: Format: MP4, MOV, WMV, AVI.
+            </h5>
+        </mat-tab>
+        <mat-tab label="Image">
+            <h3 class="joie-list-name">Upload a thumbnail image</h3>
+            <mat-spinner style="margin: auto" *ngIf="uploading"></mat-spinner>
+            <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" accept="image/*" *ngIf="!uploading">
+                <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                    <div class="mt-3">Drop your file here or</div>
+                    <button mat-flat-button color="primary" (click)="uploadImgControl.click()" type="button"
+                        class="uploadBtn" [disabled]="uploading">
+                        <span *ngIf="!uploading">Browse</span>
+                    </button>
+                </ng-template>
+            </ngx-file-drop>
+            <h5 class="border-bottom">
+                Size: 1280x720 px. Formats: JPG, GIF, or PNG.
+            </h5>
+        </mat-tab>
+    </mat-tab-group>
+    <input hidden="true" type="file" accept="image/*" #uploadImgControl (change)="onClickFile($event)" />
+    <input hidden="true" type="file" accept="video/*" #uploadVideoControl (change)="onClickFile($event)" />
+</mat-card>

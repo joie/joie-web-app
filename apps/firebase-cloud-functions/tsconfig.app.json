@@ -9,10 +9,18 @@
     "strict": true,
     "target": "es2017",
     "resolveJsonModule": true,
+<<<<<<< HEAD:functions/tsconfig.json
+    "typeRoots": ["./functions/node_modules/@types"],
+    "noImplicitAny": false
+  },
+  "compileOnSave": true,
+  "include": ["src"],
+=======
     "esModuleInterop": true,
     "types": ["node"]
   },
   "compileOnSave": true,
   "exclude": ["**/*.spec.ts"],
   "include": ["src"]
+>>>>>>> live:apps/firebase-cloud-functions/tsconfig.app.json
 }

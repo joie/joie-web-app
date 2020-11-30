@@ -1,0 +1,30 @@
+.mt-3 {
+  margin-top: 20px;
+}
+
+.uploadBtn[disabled] {
+  background-color: #15aabf90 !important;
+}
+
+.upload-content {
+  height: 300px;
+  border: 3px solid #15aabf;
+}
+
+.container {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.joie-list-name {
+  color: #15aabf;
+}
+
+.border-bottom {
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.ngx-file-drop__content {
+  display: block !important;
+}

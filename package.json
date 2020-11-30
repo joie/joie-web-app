@@ -72,9 +72,16 @@
     "libphonenumber-js": "^1.9.4",
     "lodash.get": "^4.4.2",
     "modularscale-sass": "^3.0.10",
+<<<<<<< HEAD
+    "ngx-file-drop": "^10.0.0",
+    "ngx-auth-firebaseui": "^4.4.0",
+    "ngx-mat-intl-tel-input": "^3.2.2",
+    "ngx-quicklink": "^0.2.3",
+=======
     "ngx-auth-firebaseui": "^5.0.0",
     "ngx-mat-intl-tel-input": "^3.3.0",
     "ngx-quicklink": "^0.2.6",
+>>>>>>> live
     "normalize.css": "^8.0.1",
     "ramda": "^0.27.1",
     "rxjs": "^6.6.3",

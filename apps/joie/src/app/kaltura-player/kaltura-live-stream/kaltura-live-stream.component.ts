@@ -2,8 +2,11 @@ import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { KalturaApiHandShakeService } from '../kaltura-api-handshake.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+<<<<<<< HEAD
+=======
 
 declare let kWidget;
+>>>>>>> live
 
 @UntilDestroy()
 @Component({
@@ -14,7 +17,6 @@ declare let kWidget;
 export class KalturaLiveStreamPlayerComponent implements OnChanges {
   @Input() width = 600;
   @Input() height = 400;
-  // @Input() isLiveSession: boolean; // ! @pratheeshkumarrd this is never used
   @Input() displayName: string;
   @Input() eventId: number;
   @Input() sessionType: number;
@@ -36,7 +38,6 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
       );
 
       if (allLiveStreamArgsHasValue) {
-        this.kalturaApiHandShakeService.getKalturaSession(); // ! @pratheeshkumarrd should this be set only once on init?
         this.openLiveStreamSession();
       }
     }
@@ -48,6 +49,7 @@ export class KalturaLiveStreamPlayerComponent implements OnChanges {
       .pipe(untilDestroyed(this))
       .subscribe(
         (result) => {
+          console.log('openLiveStreamSession result: ', result);
           this.isLoading = false;
           const url = `https://${KalturaApiHandShakeService.partnerId}.kaf.kaltura.com/virtualEvent/launch?ks=${result}`;
           this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);

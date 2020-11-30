@@ -3,6 +3,8 @@ import { SharedModule } from '../shared/shared.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SessionsRoutingModule } from './sessions-routing.module';
 
 import { SessionsDashboardComponent } from './containers/sessions-dashboard/sessions-dashboard.component';
@@ -16,6 +18,9 @@ import { WhatLearnComponent } from './components/what-learn/what-learn.component
 import { MeetTeacherComponent } from './components/meet-teacher/meet-teacher.component';
 import { CommunitySayComponent } from './components/community-say/community-say.component';
 import { SessionFormModule } from '../session-form/session-form.module';
+import { VideoUploadComponent } from './components/video-upload/video-upload.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { NgxFileDropModule } from 'ngx-file-drop';
 import { SessionOwnerLinksComponent } from './components/session-owner-links/session-owner-links.component';
 
 @NgModule({
@@ -28,6 +33,7 @@ import { SessionOwnerLinksComponent } from './components/session-owner-links/ses
     WhatLearnComponent,
     MeetTeacherComponent,
     CommunitySayComponent,
+    VideoUploadComponent,
     SessionOwnerLinksComponent,
   ],
   imports: [
@@ -36,10 +42,15 @@ import { SessionOwnerLinksComponent } from './components/session-owner-links/ses
     MatCardModule,
     MatDialogModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatSnackBarModule,
+    NgxFileDropModule,
     KalturaPlayerModule,
     SessionListModule,
     SessionFormModule,
   ],
+  providers: [],
   exports: [SessionEnrollDialogComponent],
 })
 export class SessionsModule {}

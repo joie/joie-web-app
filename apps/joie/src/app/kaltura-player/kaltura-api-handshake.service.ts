@@ -3,13 +3,15 @@ import { throwError, Observable, forkJoin } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import {
   KalturaClient,
-  SessionStartAction,
   KalturaSessionType,
   KalturaMediaEntryFilter,
   KalturaFilterPager,
   MediaListAction,
   ScheduleResourceAddAction,
+<<<<<<< HEAD
+=======
   // KalturaScheduleResource,
+>>>>>>> live
   KalturaCameraScheduleResource,
   KalturaLiveEntryScheduleResource,
   KalturaLocationScheduleResource,
@@ -24,24 +26,58 @@ import {
   ScheduleEventListAction,
   ScheduleEventResourceAddAction,
   KalturaScheduleEventResource,
+  MediaAddAction,
+  KalturaMediaEntry,
+  KalturaMediaType,
+  MediaAddContentAction,
+  KalturaUploadedFileTokenResource,
+  UploadTokenUploadAction,
+  UploadTokenAddAction,
+  KalturaUploadToken,
+  MediaUpdateContentAction,
+  KalturaEntryReplacementOptions,
 } from 'kaltura-ngx-client';
 import { environment } from '../../environments/environment';
+<<<<<<< HEAD
+import { Roles, UserContextualRole } from '../models';
+import { AngularFireFunctions } from '@angular/fire/functions';
+
+declare var kWidget;
+declare var $: any;
+
+interface IResponse {
+  type: 'success' | 'error';
+  data: any;
+  message: string;
+}
+=======
 import { Roles, UserContextualRole } from '../../../../../libs/schemes/src';
+>>>>>>> live
 
 @Injectable({ providedIn: 'root' })
 export class KalturaApiHandShakeService {
-  static readonly clientSecret = environment.kalturaConfig.clientSecret;
   static readonly partnerId = environment.kalturaConfig.partner_id;
+  static readonly uiconfId = environment.kalturaConfig.uiconf_id;
   // expiry time of the session
   public expiry: 84000;
+  kWidget = kWidget;
 
-  constructor(private kaltura: KalturaClient) {}
+  constructor(private kaltura: KalturaClient, private fns: AngularFireFunctions) {
+    this.getKalturaSession();
+  }
 
   getKalturaSession() {
-    this.kaltura.setOptions({
-      clientTag: 'sample-code',
-      endpointUrl: 'https://www.kaltura.com',
+    this.startSession().subscribe((resp: IResponse) => {
+      if (resp.type === 'success') {
+        this.kaltura.setOptions(resp.data.kaltura_options);
+        this.kaltura.setDefaultRequestOptions({ ks: resp.data.session });
+      } else {
+        console.error(resp.message);
+        throwError(resp.message);
+      }
     });
+<<<<<<< HEAD
+=======
     // create session for Kalutura handshake
     this.kaltura
       .request(
@@ -60,6 +96,7 @@ export class KalturaApiHandShakeService {
           throwError(error);
         },
       );
+>>>>>>> live
   }
 
   /**
@@ -180,18 +217,90 @@ export class KalturaApiHandShakeService {
     return this.kaltura.request(new ScheduleEventResourceAddAction({ scheduleEventResource }));
   }
 
+  createMediaAddAction(data: { description: string; name: string; }): Observable<any> {
+    const entry = new KalturaMediaEntry();
+    entry.mediaType = KalturaMediaType.video;
+    entry.description = data.description;
+    entry.name = data.name;
+
+    return this.kaltura.request(new MediaAddAction({ entry }));
+  }
+
+  createMediaAddContentAction(entryId, uploadTokenID): Observable<any> {
+    const resource = new KalturaUploadedFileTokenResource();
+    resource.token = uploadTokenID;
+
+    return this.kaltura.request(new MediaAddContentAction({ entryId, resource }));
+  }
+
+  createUploadTokenUploadAction(uploadTokenId, fileData): Observable<any> {
+    return this.kaltura.request(
+      new UploadTokenUploadAction({
+        uploadTokenId,
+        fileData,
+        resume: true,
+        finalChunk: true,
+        resumeAt: -1,
+      })
+    );
+  }
+
+  createUploadTokenAddAction(): Observable<any> {
+    return this.kaltura.request(
+      new UploadTokenAddAction({ uploadToken: new KalturaUploadToken() })
+    );
+  }
+
+  createMediaUpdateContentAction(entryId, uploadTokenID, conversionProfileId): Observable<any> {
+    const advancedOptions = new KalturaEntryReplacementOptions();
+    const resource = new KalturaUploadedFileTokenResource();
+    resource.token = uploadTokenID;
+
+    return this.kaltura.request(
+      new MediaUpdateContentAction({
+        entryId,
+        resource,
+        conversionProfileId,
+        advancedOptions,
+      })
+    );
+  }
+
   /**
    * to create a session
    * @param sessionCreationDetails for session information
    * @param role of the session
    * @param type of user
    * @param userCtxRole userContextualRole of the user
+   *
+   * @returns session token
    */
   createSession(
     userId,
     eventId,
     role: string = Roles.viewer,
     type: number = KalturaSessionType.user,
+<<<<<<< HEAD
+    userCtxRole: number = UserContextualRole.guest
+  ): Observable<string> {
+    const privileges = `eventId:${eventId},role:${role},userContextualRole:${userCtxRole}`;
+
+    const { partnerId } = KalturaApiHandShakeService;
+
+    return this.startSession({
+      partnerId,
+      type,
+      expiry: this.expiry,
+      privileges,
+      userId,
+    }).pipe(
+      map((resp: IResponse) => {
+        if (resp.type === 'success') {
+          return resp.data.session as string;
+        }
+        return null;
+      })
+=======
     userCtxRole: number = UserContextualRole.guest,
   ): Observable<any> {
     const privileges = `eventId:${eventId},role:${role},userContextualRole:${userCtxRole}`;
@@ -206,6 +315,45 @@ export class KalturaApiHandShakeService {
         privileges,
         userId,
       }),
+>>>>>>> live
     );
+  }
+
+  startSession(params?: { partnerId: number; type: number; expiry: number; privileges: string; userId: string; }) {
+    const callable = this.fns.httpsCallable('startKalturaSession');
+    return callable(params);
+  }
+
+  /**
+   * Embed Kaltura Player
+   * @param entryID | string
+   *
+   * @url http://kgit.html5video.org/tags/v2.57.1/docs/api#kWidget.settingsObject
+   */
+  boot(entryID: any) {
+    const { uiconfId, partnerId } = KalturaApiHandShakeService;
+
+    const kalturaConfiguration = {
+      targetId: 'player',
+      wid: partnerId,
+      uiconf_id: uiconfId,
+      flashvars: {},
+      cache_st: 1602684332,
+      entry_id: entryID,
+    };
+    this.kWidget.embed(kalturaConfiguration);
+  }
+
+  reboot(entryID: any) {
+    console.log('updated video id-->', entryID);
+    this.kWidget.addReadyCallback((playerId) => {
+      // var kdp = document.getElementById('player');
+      const kdp = $('#player').get(0);
+      kdp.sendNotification('changeMedia', { entryId: $(this).attr('data-entryId') });
+      kdp.kBind('changeMedia', (data) => {
+        console.log('data?-------------->', data);
+        kdp.evaluate();
+      });
+    });
   }
 }
