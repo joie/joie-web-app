@@ -69,6 +69,7 @@
     "firebaseui": "^4.6.1",
     "husky": "^4.3.0",
     "kaltura-ngx-client": "file:libs/kaltura-ngx-client.tgz",
+    "kaltura-typescript-client": "file:libs/kaltura-typescript-client-7.0.2-v20201129-114618.tgz",
     "libphonenumber-js": "^1.9.4",
     "lodash.get": "^4.4.2",
     "modularscale-sass": "^3.0.10",
@@ -80,6 +81,7 @@
     "rxjs": "^6.6.3",
     "stripe": "^8.102.0",
     "tslib": "^2.0.0",
+    "xhr2": "^0.2.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

@@ -3,6 +3,20 @@
     <main>
       <header class="no-inset-gutters" style="content-visibility: revert; position: relative">
         <div class="layout-rows-xs text-center">
+          <button (click)="getKalturaSession()">Hi Kaltura</button>
+          <button (click)="joinSession()">joinSession</button>
+
+          <iframe
+            style="background: black; border-radius: 6px; border: 0 none"
+            src="{{
+              endpointUrl
+            }}/virtualEvent/launch?ks=djJ8Mjk3Njc1MXxgTFMXMSJuQSQtLKd2yFXo3xhj2TL9ugCfO-wVD0J0gvyVXahXQEczVpDRMm1voZZwXS_JXDPlb6kytb3nsIm7ZeFir5iLT5bTNljIas-Xv9vT2BpcO75ErTv_mVWxvRbmUHhL3oD2cwwPco0_0TAOP1Oz85PV1EZCuxGgjVkDmUbRCz2bdMAc8F-HJ9v5oSvRWuvrOKDO6a4KlVg-a8Rs"
+            wmode="transparent"
+            allow="microphone *; camera *; speakers *; usermedia *; autoplay *; fullscreen *;"
+            width="100%"
+            height="700px"
+          ></iframe>
+
           <app-session-owner-links class="owner-links" *ngIf="isOwner$ | async"></app-session-owner-links>
           <div class="figure-pairing">
             <app-icon class="size-md" [name]="pillarIcons.get(pillar[session?.pillar])"></app-icon>

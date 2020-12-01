@@ -1,11 +1,12 @@
 // TODO  delete this file
+export const endpointUrl = 'https://www.kaltura.com';
 
-export enum Roles {
+export enum RoleType {
   admin = 'adminRole',
   viewer = 'viewerRole',
 }
 
-export enum UserContextualRole {
+export enum UserContextualRoleType {
   instructor = 0,
   guest = 3,
 }

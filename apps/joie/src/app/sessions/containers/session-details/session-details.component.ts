@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
 import { AuthFacade } from '../../../auth/services/auth.facade';
 import { Pillar, PillarsIconsMap } from '../../../../../../../libs/schemes/src';
+import { KalturaService } from '../../../services/kaltura/kaltura.service';
+import { endpointUrl } from '../../../../../../../libs/schemes/src';
 
 // @UntilDestroy()
 @Component({
@@ -23,7 +25,7 @@ export class SessionDetailsComponent {
   );
 
   eventId$: Observable<number | undefined> = this.session$.pipe(pluck('eventId'));
-
+  endpointUrl = endpointUrl;
   // showDelete$: Observable<boolean> = combineLatest([this.authFacade, this.owner$]).pipe(
   //   map(result => Boolean(result[0].owner.uid === result[1].uid))
   // );
@@ -57,8 +59,16 @@ export class SessionDetailsComponent {
     private activatedRoute: ActivatedRoute,
     private sessionsFacade: SessionsService,
     private authFacade: AuthFacade,
+    private kaltura: KalturaService,
   ) {}
 
+  getKalturaSession() {
+    this.kaltura.getKalturaSession().subscribe(console.log);
+  }
+
+  joinSession() {
+    this.kaltura.joinSession().subscribe(console.log);
+  }
   // get kalturaSessionDetails$(): Observable<SessionStartActionArgs> {
   //   return this.session$.pipe(
   //     pluck('eventId', 'name'),
