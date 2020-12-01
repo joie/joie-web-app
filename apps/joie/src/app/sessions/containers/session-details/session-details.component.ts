@@ -64,6 +64,10 @@ export class SessionDetailsComponent {
   getKalturaSession() {
     this.kaltura.getKalturaSession().subscribe(console.log);
   }
+
+  getScheduleResourceList() {
+    this.kaltura.getScheduleResourceList().subscribe(console.log);
+  }
   // get kalturaSessionDetails$(): Observable<SessionStartActionArgs> {
   //   return this.session$.pipe(
   //     pluck('eventId', 'name'),

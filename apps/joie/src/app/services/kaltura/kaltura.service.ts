@@ -12,4 +12,9 @@ export class KalturaService {
     const callable = this.fns.httpsCallable('addLiveStream');
     return callable({});
   }
+
+  getScheduleResourceList(): Observable<[]> {
+    const callable = this.fns.httpsCallable('getScheduleResourceList');
+    return callable({});
+  }
 }

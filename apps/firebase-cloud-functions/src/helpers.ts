@@ -27,6 +27,14 @@ export const getUEmail = (context: functions.https.CallableContext): string | un
   }
 };
 
+export const getUDisplayName = (context: functions.https.CallableContext): string | undefined => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError('permission-denied', 'function called without context.auth');
+  } else {
+    return context.auth.token.displayName;
+  }
+};
+
 // Validates UID on callable functions
 export const isTeacher = (context: functions.https.CallableContext): boolean | undefined => {
   if (!context.auth) {
