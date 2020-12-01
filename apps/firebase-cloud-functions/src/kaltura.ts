@@ -1,9 +1,9 @@
 import { config, https } from 'firebase-functions';
-import { getUID } from './helpers';
+import { getUID, isTeacher, getUDisplayName } from './helpers';
 import { catchErrors } from './helpers';
 import { KalturaClient } from 'kaltura-typescript-client';
 import { KalturaSessionType } from 'kaltura-typescript-client/api/types/KalturaSessionType';
-import { SessionStartAction } from 'kaltura-typescript-client/api/types/SessionStartAction';
+import { SessionStartAction, SessionStartActionArgs } from 'kaltura-typescript-client/api/types/SessionStartAction';
 import { ScheduleResourceAddAction } from 'kaltura-typescript-client/api/types/ScheduleResourceAddAction';
 import { KalturaLocationScheduleResource } from 'kaltura-typescript-client/api/types/KalturaLocationScheduleResource';
 import { KalturaLiveStreamScheduleEvent } from 'kaltura-typescript-client/api/types/KalturaLiveStreamScheduleEvent';
@@ -11,49 +11,21 @@ import { ScheduleEventAddAction } from 'kaltura-typescript-client/api/types/Sche
 import { KalturaScheduleEventRecurrenceType } from 'kaltura-typescript-client/api/types/KalturaScheduleEventRecurrenceType';
 import { KalturaScheduleEventResource } from 'kaltura-typescript-client/api/types/KalturaScheduleEventResource';
 import { ScheduleEventResourceAddAction } from 'kaltura-typescript-client/api/types/ScheduleEventResourceAddAction';
+// import { ScheduleResourceGetAction } from 'kaltura-typescript-client/api/types/ScheduleResourceGetAction';
+import { ScheduleEventGetAction } from 'kaltura-typescript-client/api/types/ScheduleEventGetAction';
+import { SessionEndAction } from 'kaltura-typescript-client/api/types/SessionEndAction';
+import { UserContextualRoleType, RoleType, endpointUrl } from '@joie/schemes';
 
 // Kaltura TypeScript library, it uses XMLHttpRequest to connect to Kaltura API
 (global as any).XMLHttpRequest = require('xhr2');
 
 const options = {
   clientTag: 'sample-code',
-  endpointUrl: 'https://www.kaltura.com',
+  endpointUrl,
 };
 const client = new KalturaClient(options);
 
-const startSessionAndUpdateClient = async (type: KalturaSessionType, userId?: string): Promise<string | undefined> => {
-  const { admin_secret, user_secret, partner_id } = config().kaltura;
-
-  if (!admin_secret || !user_secret || !partner_id) {
-    throw new https.HttpsError('internal', 'missing Kaltura env credentials');
-  }
-
-  try {
-    const sessionStartActionArgs = {
-      secret: admin_secret,
-      partnerId: Number(partner_id),
-      userId,
-      type, // what will be the difference? priviliges?
-      expiry: 86400, // TODO discuss preferred time
-      // eventTags: 'vcprovider:newrow', // @ilirhushi clarify this
-      // resourceTags: 'custom_rec_auto_start:1,custom_rs_show_participant:1', // @ilirhushi clarify this
-      // targetId: 'kalturaVodPlayer', // @ilirhushi clarify this
-    };
-
-    const ks = await client.request(new SessionStartAction(sessionStartActionArgs));
-    if (!ks) {
-      throw new https.HttpsError('failed-precondition', `kaltura client 'SessionStartAction' request failed`);
-    }
-
-    // !SIDE EFFECT! impure mutation of the global 'client'
-    // it update client default request options upon kaltura session success
-    client.setDefaultRequestOptions({ ks });
-
-    return ks;
-  } catch (error) {
-    throw new https.HttpsError('internal', `error: ${error}`);
-  }
-};
+const { admin_secret, partner_id } = config().kaltura;
 
 // HTTPS CALLS
 // export const getScheduleResourceList = https.onCall(async (_, context) => {
@@ -63,7 +35,15 @@ const startSessionAndUpdateClient = async (type: KalturaSessionType, userId?: st
 
 // TODO change name
 export const addLiveStream = https.onCall(async (_, context) => {
-  await startSessionAndUpdateClient(KalturaSessionType.admin);
+  if (!isTeacher(context)) {
+    throw new https.HttpsError('permission-denied', 'must be a teacher');
+  }
+
+  const customSessionArgs = {
+    userId: getUID(context), // optional, keeping here for logging requests
+    type: KalturaSessionType.admin,
+  };
+  await startSessionAndUpdateClient(getSessionArgs(customSessionArgs));
   // Creating a Resource
   const resource = await createLocationScheduleResource();
   // Creating an Event
@@ -77,11 +57,109 @@ export const addLiveStream = https.onCall(async (_, context) => {
   return catchErrors(associateEventWithResource(event.id, resource.id));
 });
 
+export const joinSession = https.onCall(async (_, context) => {
+  const eventId = 7681893; // ! should be dynamically set in arguments
+  // const resourceId = 1935943; // ! should be dynamically set in arguments
+  const uid = getUID(context);
+  if (!uid) {
+    throw new https.HttpsError('permission-denied', 'must be a user');
+  }
+
+  const isOwner = await catchErrors(isScheduledEventOwner(eventId, uid));
+  let privileges = `eventId:${eventId}`;
+  privileges += `,role:${isOwner ? RoleType.admin : RoleType.viewer}`;
+  privileges += `,userContextualRole:${isOwner ? UserContextualRoleType.instructor : UserContextualRoleType.guest}`;
+  privileges += `,firstName:${getUDisplayName(context)}`;
+
+  const customSessionArgs = {
+    userId: getUID(context), // optional, keeping here for logging requests
+    privileges,
+    // expiry = 86400; // TODO get accurate duration according to session time
+  };
+
+  return await startSessionAndUpdateClient(getSessionArgs(customSessionArgs));
+
+  // const customSessionArgs = {
+  //   userId: getUID(context), // optional, keeping here for logging requests
+  //   type: KalturaSessionType.admin,
+  // };
+  // await startSessionAndUpdateClient(getSessionArgs(customSessionArgs));
+
+  // const customSessionArgs = {
+  //   userId: getUID(context), // optional, keeping here for logging requests
+  //   type: KalturaSessionType.admin,
+  // };
+  // getSessionArgs(customSessionArgs)
+  // secret = "xxxxx"
+  // userId = "max@organization.com";
+  // type = KalturaSessionType::USER;
+  // partnerId = 1234567;
+  // expiry = 86400;
+  // privileges = "eventId:3371011,role:viewerRole,userContextualRole:3,firstName:Max";
+});
+
 // METHODS
+function getDefaultSessionArgs() {
+  return {
+    secret: admin_secret,
+    partnerId: Number(partner_id),
+    type: KalturaSessionType.user, // what will be the difference? priviliges?
+    expiry: 86400, // TODO discuss preferred time
+    // userId,
+    // eventTags: 'vcprovider:newrow', // @ilirhushi clarify this
+    // resourceTags: 'custom_rec_auto_start:1,custom_rs_show_participant:1', // @ilirhushi clarify this
+    // targetId: 'kalturaVodPlayer', // @ilirhushi clarify this
+  };
+}
+
+function getSessionArgs(customArgs: Partial<SessionStartActionArgs> = {}): SessionStartActionArgs {
+  if (!admin_secret || !partner_id) {
+    throw new https.HttpsError('internal', 'missing Kaltura env credentials');
+  }
+
+  return { ...getDefaultSessionArgs(), ...customArgs };
+}
+
+async function isScheduledEventOwner(scheduleEventId: number, uid: string) {
+  await startSessionAndUpdateClient(getSessionArgs({ type: KalturaSessionType.admin }));
+
+  // const resource = await client.request(new ScheduleResourceGetAction({ scheduleResourceId: resourceId }));
+  const event = await client.request(new ScheduleEventGetAction({ scheduleEventId }));
+  if (!event) {
+    throw new https.HttpsError('not-found', 'event not found');
+  }
+
+  // end admin session and start relevant session with priviliges
+  await endSession();
+
+  return event.organizer === uid;
+}
+
+async function startSessionAndUpdateClient(args: SessionStartActionArgs): Promise<string | undefined> {
+  try {
+    const ks = await client.request(new SessionStartAction(args));
+    if (!ks) {
+      throw new https.HttpsError('failed-precondition', `kaltura client 'SessionStartAction' request failed`);
+    }
+
+    // !SIDE EFFECT! impure mutation of the global 'client'
+    // it update client default request options upon kaltura session success
+    client.setDefaultRequestOptions({ ks });
+
+    return ks;
+  } catch (error) {
+    throw new https.HttpsError('internal', `error: ${error}`);
+  }
+}
+
+async function endSession() {
+  return await client.request(new SessionEndAction({}));
+}
+
 async function createLocationScheduleResource() {
   const args = {
     name: 'room name',
-    tags: 'vcprovider:newrow custom_company_logo:https://joie-app.web.app/assets/images/logo-joie.svg', // TODO make sure this works
+    tags: 'vcprovider:newrow,custom_company_logo:https://joie-app.web.app/assets/images/logo-joie.svg', // TODO make sure this works
     // systemName: 'system name optional', // optional // TODO what is this for? should be unique
     description: 'lorem ipsum', // optional
   };
@@ -95,13 +173,15 @@ async function createLocationScheduleResource() {
 // https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-an-event
 // ! important ! 'KalturaLiveStreamScheduleEvent' is described as a broadcasting event
 // ! which probably means 1-to-many. we need a many-to-many or 1-to-many and many-to-1
-async function createLiveStreamScheduleEvent(organizer?: string) {
+async function createLiveStreamScheduleEvent(organizer: string | undefined) {
+  if (!organizer) {
+    throw new https.HttpsError('permission-denied', 'must be a user');
+  }
   const args = {
     startDate: new Date(),
     endDate: new Date(new Date().getTime() + 2 * 60 * 60 * 1000),
     recurrenceType: KalturaScheduleEventRecurrenceType.none,
     summary: 'event summary, say something',
-
     organizer, // optional
     // ! not relevant until decided to actually use 'KalturaRecordScheduleEvent'
     // templateEntryId: (string) the entry used for session recording

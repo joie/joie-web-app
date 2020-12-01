@@ -13,8 +13,8 @@ export class KalturaService {
     return callable({});
   }
 
-  getScheduleResourceList(): Observable<[]> {
-    const callable = this.fns.httpsCallable('getScheduleResourceList');
+  joinSession(): Observable<[]> {
+    const callable = this.fns.httpsCallable('joinSession');
     return callable({});
   }
 }

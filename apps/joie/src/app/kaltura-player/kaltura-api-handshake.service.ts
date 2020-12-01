@@ -26,7 +26,7 @@ import {
   KalturaScheduleEventResource,
 } from 'kaltura-ngx-client';
 import { environment } from '../../environments/environment';
-import { Roles, UserContextualRole } from '../../../../../libs/schemes/src';
+import { RoleType, UserContextualRoleType } from '../../../../../libs/schemes/src';
 
 @Injectable({ providedIn: 'root' })
 export class KalturaApiHandShakeService {
@@ -190,9 +190,9 @@ export class KalturaApiHandShakeService {
   createSession(
     userId,
     eventId,
-    role: string = Roles.viewer,
+    role: string = RoleType.viewer,
     type: number = KalturaSessionType.user,
-    userCtxRole: number = UserContextualRole.guest,
+    userCtxRole: number = UserContextualRoleType.guest,
   ): Observable<any> {
     const privileges = `eventId:${eventId},role:${role},userContextualRole:${userCtxRole}`;
 
